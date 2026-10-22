@@ -13,7 +13,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-urdu-3/alif/story.mp4"
+     "src": "https://youtu.be/73iCUzD0gbM"
     }
    ]
   },
@@ -29,7 +29,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-urdu-3/alif/vocabulary.mp4"
+     "src": "https://youtu.be/jELWFLxzA_4"
     }
    ]
   },
@@ -383,7 +383,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "video": {
    "title": "How to write الف",
-   "src": "videos/stemford-urdu-3/alif/formation.mp4"
+   "src": "https://youtu.be/o5-K4jYeAAU"
   }
  },
  "7": [
@@ -845,7 +845,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-urdu-3/ba/story.mp4"
+     "src": "https://youtu.be/rha2EccIGh8"
     }
    ]
   },
@@ -861,7 +861,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-urdu-3/ba/vocabulary.mp4"
+     "src": "https://youtu.be/mp44bnHr2kg"
     }
    ]
   },
@@ -1215,7 +1215,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "video": {
    "title": "How to write بے",
-   "src": "videos/stemford-urdu-3/ba/formation.mp4"
+   "src": "https://youtu.be/GQDQ7Nd6okE"
   }
  },
  "13": [
@@ -1231,7 +1231,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-urdu-3/پ/story.mp4"
+     "src": "https://youtu.be/dlZ_kRIk3q8"
     }
    ]
   },
@@ -1247,7 +1247,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-urdu-3/پ/activity.mp4"
+     "src": "https://youtu.be/eKkFbj-plKA"
     }
    ]
   },
@@ -1601,7 +1601,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "video": {
    "title": "How to write پے",
-   "src": "videos/stemford-urdu-3/پ/formation.mp4"
+   "src": "https://youtu.be/qKuzEjCkJok"
   }
  },
  "15": [
@@ -1617,7 +1617,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-urdu-3/ت/story.mp4"
+     "src": "https://youtu.be/uYMM8Ace9Y8"
     }
    ]
   },
@@ -1633,7 +1633,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-urdu-3/ت/vocabulary.mp4"
+     "src": "https://youtu.be/kjSYtJMVtWk"
     }
    ]
   },
@@ -1987,7 +1987,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "video": {
    "title": "How to write تے",
-   "src": "videos/stemford-urdu-3/ت/formation.mp4"
+   "src": "https://youtu.be/U7C_J0c2ILc"
   }
  },
  "17": [

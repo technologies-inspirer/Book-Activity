@@ -235,9 +235,22 @@ def lesson_folder(folder):
     return VIDEO_DIR + folder + '/'
 
 
+# The publisher's unlisted YouTube copies (same videos and lengths as the files), used before the files so they
+# play on every device. Pay's "activity.mp4" is its Vocabulary lesson.
+YOUTUBE = {
+    '01 alif': {'Story': '73iCUzD0gbM', 'Vocabulary': 'jELWFLxzA_4', 'Formation': 'o5-K4jYeAAU'},
+    '03 bay': {'Story': 'rha2EccIGh8', 'Vocabulary': 'mp44bnHr2kg', 'Formation': 'GQDQ7Nd6okE'},
+    '04 pay': {'Story': 'dlZ_kRIk3q8', 'Vocabulary': 'eKkFbj-plKA', 'Formation': 'qKuzEjCkJok'},
+    '05 tay': {'Story': 'uYMM8Ace9Y8', 'Vocabulary': 'kjSYtJMVtWk', 'Formation': 'U7C_J0c2ILc'},
+}
+
+
 def videos(folder, names):
     out = []
     for title, cands in names:
+        if title in YOUTUBE.get(folder, {}):
+            out.append({'title': title, 'src': 'https://youtu.be/' + YOUTUBE[folder][title]})
+            continue
         for c in cands:
             if os.path.exists(lesson_folder(folder) + c):
                 out.append({'title': title, 'src': lesson_folder(folder) + c})
@@ -314,7 +327,9 @@ def trace_page(page, name, folder):
     act = {'type': 'fill', 'title': 'لکھیں', 'steps': [s for s in steps if s['marks']]}
     act['colours'] = palette(page, im)
     hits = sorted(glob.glob(lesson_folder(folder) + 'format*.mp4'))
-    if hits:
+    if 'Formation' in YOUTUBE.get(folder, {}):
+        act['video'] = {'title': 'How to write ' + name, 'src': 'https://youtu.be/' + YOUTUBE[folder]['Formation']}
+    elif hits:
         act['video'] = {'title': 'How to write ' + name, 'src': hits[0].replace('\\', '/')}
     return act
 
