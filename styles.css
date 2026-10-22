@@ -725,3 +725,14 @@ img.ink { pointer-events: none; }
   .rbar .grow { display: none; }
   .r-pages { font-size: 12px; }
 }
+
+/* YouTube player box, and the button that brings the sound in where the browser started it silent */
+.yt-box { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #000; }
+.yt-box[hidden] { display: none; }
+.yt-box iframe { display: block; width: 100%; height: 100%; border: 0; border-radius: 0; aspect-ratio: auto; }
+.yt-sound {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; display: flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border: 0; border-radius: 99px; background: var(--accent); color: var(--accent-ink);
+  font: 800 20px/1 var(--display); box-shadow: 0 8px 24px rgba(0, 0, 0, .45); cursor: pointer; animation: bob 1.6s ease-in-out infinite;
+}
+.yt-sound span { font-size: 18px; }

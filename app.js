@@ -349,8 +349,7 @@
     stopSpeak(); closeMenu();
     const player = el('video', { controls: true, autoplay: true, playsinline: true, class: 'own-video' });
     // the publisher's videos on YouTube play in YouTube's player; '#t=a,b' keeps to that part of the video
-    const yt = el('iframe', { class: 'own-video', hidden: true, allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen',
-      allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin' });
+    const yt = el('div', { class: 'yt-box', hidden: true });
     const picks = el('div', { class: 'video-picks' });
     const play = k => {
       const [url, part] = vids[k].src.split('#t='), id = /youtu/.test(url) && ytId(url);
@@ -358,12 +357,11 @@
       if (id) {
         player.pause();
         const [a, b] = (part || '').split(',');
-        yt.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`
-          + (a ? `&start=${Math.floor(+a)}` : '') + (b ? `&end=${Math.ceil(+b)}` : '');
+        youTube(yt, id, +a || 0, +b || 0);
         picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
         return;
       }
-      yt.src = 'about:blank';
+      yt.replaceChildren();
       player.src = encodeURI(vids[k].src);
       player.play().catch(() => {});
       picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
@@ -1104,6 +1102,47 @@
     location.hash = link(book, idx + 1, z.id);   // route() opens it, so a scanned QR lands in the same place
   }
 
+  /* ---------- YouTube player that starts by itself ----------
+     A video in a page may start on its own with sound only where the browser allows it (Chrome, Android). An
+     iPhone does not: there it starts silent, and a big "Tap for sound" button brings the sound in. */
+  let ytApi = null;
+  function loadYouTube() {
+    return ytApi || (ytApi = new Promise(res => {
+      if (window.YT?.Player) return res();
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { prev?.(); res(); };
+      document.head.append(el('script', { src: 'https://www.youtube.com/iframe_api' }));
+    }));
+  }
+  function youTube(box, id, start, end) {
+    box.replaceChildren();
+    const slot = el('div');
+    const sound = el('button', { class: 'yt-sound', hidden: true, html: '🔊<span>Tap for sound</span>' });
+    box.append(slot, sound);
+    loadYouTube().then(() => {
+      if (!slot.isConnected) return;                       // closed before the player was ready
+      const vars = { autoplay: 1, playsinline: 1, rel: 0, origin: location.origin };
+      if (start) vars.start = Math.floor(start);
+      if (end) vars.end = Math.ceil(end);
+      const p = new YT.Player(slot, {
+        videoId: id, width: '100%', height: '100%', playerVars: vars,
+        events: {
+          onReady: e => {
+            e.target.getIframe().setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
+            e.target.playVideo();
+            // not playing a moment later: the browser stopped sound. Play silent, and offer the sound.
+            setTimeout(() => {
+              if (!box.isConnected || e.target.getPlayerState?.() === YT.PlayerState.PLAYING) return;
+              e.target.mute(); e.target.playVideo(); sound.hidden = false;
+            }, 1200);
+          }
+        }
+      });
+      // with the sound on, the captions YouTube shows for a silent video are not needed
+      sound.onclick = () => { p.unMute?.(); p.setVolume?.(100); p.playVideo?.(); p.unloadModule?.('captions'); sound.hidden = true; };
+    });
+  }
+
   function syncVideo(r) {
     const open = modalEl?.dataset.video;
     if (!r.video) { if (open) closeModal(); return; }
@@ -1125,13 +1164,13 @@
     const asFile = location.protocol === 'file:';
     const frame = asFile
       ? el('a', { class: 'yt-out', target: '_blank', rel: 'noopener' }, el('span', { html: I.play }), 'Watch on YouTube')
-      : el('iframe', { title, allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen', allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin' });
+      : el('div', { class: 'yt-box' });
     const picks = el('div', { class: 'video-picks' });
     const play = k => {
       if (asFile) {
         frame.href = `https://www.youtube.com/watch?v=${vids[k].id}`;
         frame.style.backgroundImage = `url(https://i.ytimg.com/vi/${vids[k].id}/hqdefault.jpg)`;
-      } else frame.src = `https://www.youtube.com/embed/${vids[k].id}?autoplay=1&rel=0&playsinline=1`;
+      } else youTube(frame, vids[k].id);
       picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
     };
     if (vids.length > 1) vids.forEach((v, k) => {

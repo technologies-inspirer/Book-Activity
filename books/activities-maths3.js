@@ -1057,7 +1057,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   ],
   "video": {
    "title": "How to write 3",
-   "src": "videos/stemford-maths-3/3/formation+activity.mp4#t=0,40"
+   "src": "https://youtu.be/aqCyjz2w1mM#t=0,40"
   }
  },
  "14": [
@@ -1073,7 +1073,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Activity Corner: number 3",
-     "src": "videos/stemford-maths-3/3/formation+activity.mp4#t=40"
+     "src": "https://youtu.be/aqCyjz2w1mM#t=40"
     }
    ]
   }
