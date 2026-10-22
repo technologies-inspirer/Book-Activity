@@ -103,24 +103,7 @@
     syncVideo(r);
   }
 
-  /* ---------- phones: a book is read sideways (landscape), full screen ---------- */
-  const isPhone = () => matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 820;
-  // Needs a tap (the browser only allows it then). Android turns the screen; an iPhone cannot be turned by a
-  // website, so there the reader asks the child to turn the phone.
-  function goLandscape() {
-    if (!isPhone()) return;
-    const root = document.documentElement;
-    const full = document.fullscreenElement || !root.requestFullscreen ? Promise.resolve() : root.requestFullscreen({ navigationUI: 'hide' });
-    full.then(() => screen.orientation?.lock?.('landscape')).catch(() => {});
-  }
-  function leaveLandscape() {
-    if (!isPhone()) return;
-    try { screen.orientation?.unlock?.(); } catch (e) { /* not locked */ }
-    if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
-  }
-
   function leaveReader() {
-    if (R) leaveLandscape();
     stopSpeak();
     closeMenu();
     closeModal();
@@ -211,7 +194,7 @@
   function showSeries(series) {
     document.title = series.name + ' — Javed Publishers';
     const shelf = el('div', { class: 'shelf row big' },
-      books.filter(series.of).map(b => el('a', { class: 'card', href: link(b, 1), onclick: () => { introNext = true; goLandscape(); } },
+      books.filter(series.of).map(b => el('a', { class: 'card', href: link(b, 1), onclick: () => { introNext = true; } },
         el('div', { class: 'card-book' }, book3d(b)),
         el('div', { class: 'card-cap' }, el('b', {}, b.title), el('small', {}, `${b.pages.length} pages`)))));
     const step = d => shelf.scrollBy({ left: d * shelf.clientWidth * .8, behavior: 'smooth' });
@@ -244,7 +227,6 @@
       opening = true;
       // Turn the book to face the reader; the cover itself opens in the reader.
       ry = Math.round(ry / 360) * 360; rx = 0; apply();
-      goLandscape();
       setTimeout(() => { introNext = true; location.hash = link(b, 1); }, 520);
     };
     if (justClosed) {                        // arriving from a closed book: settle back to the resting angle
@@ -827,14 +809,7 @@
         label, editBtn,
         el('button', { class: 'btn ghost hide-sm', onclick: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.() }, 'Full screen')),
       el('div', { class: 'rstage' }, prev, el('div', { class: 'book-wrap' }, bookEl), next),
-      el('div', { class: 'rfoot' }, slider, tools),
-      // shown only on a phone held upright
-      el('div', { class: 'rotate-hint' },
-        el('div', { class: 'rotate-ic' }, '📱'),
-        el('b', {}, 'Turn your phone sideways'),
-        el('small', {}, 'Phone ko ghuma kar landscape mein parhein'),
-        el('button', { class: 'btn primary', onclick: goLandscape }, 'Turn to landscape'),
-        el('button', { class: 'btn ghost', onclick: () => root.classList.add('hint-off') }, 'Read upright')));
+      el('div', { class: 'rfoot' }, slider, tools));
     app.replaceChildren(root);
 
     function after() {

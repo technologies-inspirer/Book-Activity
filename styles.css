@@ -633,19 +633,16 @@ img.ink { pointer-events: none; }
 .game-score { font: 800 22px/1 var(--display); color: #23324a; background: #ffd166; border-radius: 99px; padding: 8px 16px; }
 
 /* ---------- phones ---------- */
-.rotate-hint { display: none; }
-@media (orientation: portrait) and (pointer: coarse) and (max-width: 820px) {
-  .rotate-hint {
-    display: flex; position: fixed; inset: 0; z-index: 60; flex-direction: column; align-items: center; justify-content: center;
-    gap: 12px; padding: 24px; text-align: center; background: rgba(8, 14, 26, .94);
+/* a phone held upright: the page bars stay as they are, only the book lies on its side, so it opens wide
+   (two pages side by side) and the child turns the phone to read it */
+@media (orientation: portrait) and (max-width: 820px) {
+  .rstage { position: relative; }
+  .book-wrap {
+    position: absolute; top: 50%; left: 50%; width: calc(100dvh - 190px); height: calc(100vw - 16px);
+    transform: translate(-50%, -50%) rotate(90deg); align-items: center;
   }
-  .rotate-hint b { font: 800 24px/1.2 var(--display); }
-  .rotate-hint small { color: var(--muted); font-size: 15px; margin-bottom: 8px; }
-  .rotate-hint .btn { min-width: 220px; justify-content: center; }
-  .rotate-ic { font-size: 64px; animation: turn 2s ease-in-out infinite; }
-  .reader.hint-off .rotate-hint { display: none; }
+  .book { width: min(100%, calc((100vw - 40px) * var(--ratio) * 2)); }
 }
-@keyframes turn { 0%, 30% { transform: rotate(0); } 60%, 100% { transform: rotate(-90deg); } }
 /* a phone held sideways: thin bars, so the book gets the whole height */
 @media (orientation: landscape) and (max-height: 520px) {
   .rbar { padding: 4px 10px; gap: 8px; }
