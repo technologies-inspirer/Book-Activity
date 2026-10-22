@@ -115,7 +115,8 @@ def fill_ink(page, box):
 
 
 # The publisher's unlisted YouTube copies (same videos and lengths as the files), used before the files.
-# Number 3's Formation link was number 2's video, so 3 keeps its own file until the right link comes.
+# Number 3's Formation keeps its own file: both links sent for it (8bZzeJSP2ZQ, 2mH3sS8yWrs) play other numbers
+# (2 and 4), though the second is titled "Formation of Number 3".
 YOUTUBE = {
     1: {'Story': 'bdWkFht01GQ', 'Formation': 'ylCwxgeAO_s'},
     2: {'Story': 'KaE4Tg0WES4', 'Formation': '8bZzeJSP2ZQ'},

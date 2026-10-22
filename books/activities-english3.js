@@ -341,7 +341,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-english-3/b/vocabulary.mp4"
+     "src": "https://youtu.be/4iRjXznttw4"
     }
    ]
   },
