@@ -1,0 +1,6 @@
+# Lesson videos are too big for GitHub (2+ GB, some files over 100 MB); keep them on the PC / a drive.
+videos/**/*.mp4
+videos/**/*.mov
+# local tool output
+tools/__pycache__/
+.claude/

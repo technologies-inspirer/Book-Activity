@@ -1,0 +1,126 @@
+"""Find the QR codes printed in each converted book and the YouTube videos behind them.
+
+    python tools/link_videos.py            # resolve the QR codes already found (books/<id>/qr.json)
+    python tools/link_videos.py scan "C:/path/Book.pdf" <book-id>   # scan a PDF for QR codes first
+
+Writes books/<id>/qr.json as { page: { box: [x, y, w, h] in % of the page, url, title, videos: [{id, title}] } }
+and rebuilds books/library.js so the reader can show a Watch video button on those pages.
+"""
+import glob
+import html
+import json
+import os
+import re
+import sys
+import urllib.request
+
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'books')
+YT = re.compile(r'(?:youtube(?:-nocookie)?\.com/(?:embed/|watch\?v=|shorts/)|youtu\.be/)([\w-]{11})')
+
+
+def scan(pdf, book_id):
+    import numpy as np
+    import pymupdf
+    from pyzbar.pyzbar import ZBarSymbol, decode
+    found = {}
+    doc = pymupdf.open(pdf)
+    for i, page in enumerate(doc):
+        for zoom in (2.5, 4):               # small codes only read at the higher zoom
+            pix = page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False, colorspace=pymupdf.csGRAY)
+            hits = decode(np.frombuffer(pix.samples, np.uint8).reshape(pix.h, pix.w), symbols=[ZBarSymbol.QRCODE])
+            if hits:
+                r = hits[0].rect
+                found[str(i + 1)] = {'url': hits[0].data.decode(), 'box': [
+                    round(r.left / pix.w * 100, 1), round(r.top / pix.h * 100, 1),
+                    round(r.width / pix.w * 100, 1), round(r.height / pix.h * 100, 1)]}
+                break
+        print('\r  scanning page %d/%d' % (i + 1, len(doc)), end='', flush=True)
+    print()
+    with open(os.path.join(ROOT, book_id, 'qr.json'), 'w', encoding='utf-8') as f:
+        json.dump(found, f, indent=1)
+
+
+def fetch(url):
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        return r.geturl(), r.read().decode('utf-8', 'ignore')
+
+
+def clean(t):
+    return re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', t))).strip()
+
+
+def videos_on(page_html):
+    """YouTube videos embedded on the page, in page order."""
+    out, seen = [], set()
+    for m in YT.finditer(page_html):
+        vid = m.group(1)
+        if vid in seen:
+            continue
+        seen.add(vid)
+        out.append({'id': vid, 'title': video_title(vid)})
+    return out
+
+
+def video_title(vid):
+    """The video's own title, as YouTube reports it."""
+    try:
+        _, body = fetch('https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=' + vid)
+        return json.loads(body).get('title', '')[:70]
+    except Exception:
+        return ''
+
+
+def resolve(book_dir):
+    path = os.path.join(book_dir, 'qr.json')
+    if not os.path.exists(path):
+        return
+    with open(path, encoding='utf-8') as f:
+        qr = json.load(f)
+    for page, item in sorted(qr.items(), key=lambda kv: int(kv[0])):
+        if isinstance(item, list):          # older scans kept a list per page
+            item = qr[page] = item[0]
+        item.pop('count', None)
+        try:
+            final, body = fetch(item['url'])
+            # a QR that leads straight to a YouTube video is that one video, not the others suggested beside it
+            direct = re.search(r'youtube\.com/watch\?(?:.*&)?v=([\w-]{11})|youtu\.be/([\w-]{11})', final)
+            if direct:
+                vid = direct.group(1) or direct.group(2)
+                item['videos'] = [{'id': vid, 'title': video_title(vid)}]
+            else:
+                item['videos'] = videos_on(body)
+            campaign = re.search(r'utm_campaign=([^&]+)', final)
+            item['title'] = clean(urllib.request.unquote(campaign.group(1)).replace('+', ' ')) if campaign else ''
+        except Exception as e:              # dead link: keep the QR, but there is nothing to play
+            item['videos'], item['title'] = [], ''
+            print('   page %s: %s -> %s' % (page, item['url'], e))
+        print('   page %s: %d video(s)  %s' % (page, len(item['videos']), item['title']))
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(qr, f, indent=1, ensure_ascii=False)
+
+
+def rebuild_library():
+    metas = []
+    for m in sorted(glob.glob(os.path.join(ROOT, '*', 'meta.json'))):
+        with open(m, encoding='utf-8') as f:
+            meta = json.load(f)
+        q = os.path.join(os.path.dirname(m), 'qr.json')
+        if os.path.exists(q):
+            with open(q, encoding='utf-8') as f:
+                # only pages whose QR really leads to a video get a button
+                meta['qr'] = {k: v for k, v in json.load(f).items() if isinstance(v, dict) and v.get('videos')}
+        metas.append(meta)
+    with open(os.path.join(ROOT, 'library.js'), 'w', encoding='utf-8') as f:
+        f.write('// Generated by tools/import_pdf.py and tools/link_videos.py — do not edit by hand.\n')
+        f.write('window.PDF_BOOKS = ' + json.dumps(metas, indent=1, ensure_ascii=False) + ';\n')
+    print('library.js: %d book(s)' % len(metas))
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 4 and sys.argv[1] == 'scan':
+        scan(sys.argv[2], sys.argv[3])
+    for d in sorted(glob.glob(os.path.join(ROOT, '*', ''))):
+        print(os.path.basename(os.path.dirname(d)))
+        resolve(d)
+    rebuild_library()
