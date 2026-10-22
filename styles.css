@@ -650,6 +650,21 @@ img.ink { pointer-events: none; }
   }
   body:has(.reader) .video-cap small { display: none; }
   body:has(.reader) .video-picks { margin-bottom: 0; }
+  /* games and the Learn animation lie on their side too */
+  body:has(.reader) .game-card, body:has(.reader) .story-card {
+    position: fixed; left: 50%; top: 50%; margin: 0; max-height: none;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  body:has(.reader) .game-card { width: min(760px, calc(100dvh - 70px)); padding: 10px 16px 12px; }
+  body:has(.reader) .game-card h3 { font-size: 20px; }
+  body:has(.reader) .game-prompt { font-size: 16px; margin: 2px 0 6px; min-height: 0; }
+  body:has(.reader) .game-scene { max-height: calc(100vw - 190px); }
+  body:has(.reader) .game-stars { font-size: 22px; min-height: 0; margin-top: 4px; }
+  body:has(.reader) .story-card { width: min(760px, calc(100dvh - 70px), calc((100vw - 190px) * 16 / 9 + 32px)); padding: 10px 16px 12px; }
+  body:has(.reader) .story-card h3 { font-size: 18px; margin: 0 0 4px; }
+  body:has(.reader) .story-text { font-size: 15px; min-height: 0; margin: 6px 2px 4px; }
+  body:has(.reader) .story-card .modal-x { top: -8px; right: -8px; }
+  body:has(.reader) .game-card .modal-x { top: -8px; right: -8px; }
 }
 /* a phone held sideways: thin bars, so the book gets the whole height */
 @media (orientation: landscape) and (max-height: 520px) {

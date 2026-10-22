@@ -430,7 +430,7 @@
         setTimeout(() => {
           if (token !== storyToken) return;
           if (k + 1 < st.scenes.length) show(k + 1);
-          else { end.hidden = false; speak(st.title, 'The end.', null, caption); }
+          else { end.hidden = false; speak(st.title, /[؀-ۿ]/.test(st.title) ? 'ختم شد۔' : 'The end.', null, caption); }
         }, 900);
       };
       speak(st.title, sc.text, next, caption);
@@ -1000,14 +1000,17 @@
   function stopSpeak() {
     speakToken++;
     if (synth) synth.cancel();
+    if (clip) { clip.onended = clip.onerror = null; clip.pause(); clip = null; }
     narrEl?.remove();
     narrEl = null;
   }
 
   // Read sentence by sentence (long single utterances get cut off in Chrome) and highlight the spoken word.
+  let clip = null;                           // the recorded sentence playing, if any
   function speak(title, text, onDone, captionHost) {
     stopSpeak();
-    if (!synth) return toast('This browser cannot read aloud.');
+    const rec = window.RECORDED || {};
+    if (!synth && !(text || '').match(/[^.!?۔؟]+[.!?۔؟]*\s*/g)?.some(s => rec[s.trim()])) return toast('This browser cannot read aloud.');
     const sentences = (text || '').match(/[^.!?۔؟]+[.!?۔؟]*\s*/g) || [];
     if (!sentences.length) return;
     const token = speakToken;
@@ -1016,7 +1019,8 @@
     const pauseBtn = el('button', { title: 'Pause', html: I.pause });
     pauseBtn.addEventListener('click', () => {
       paused = !paused;
-      paused ? synth.pause() : synth.resume();
+      if (clip) paused ? clip.pause() : clip.play().catch(() => {});
+      else if (synth) paused ? synth.pause() : synth.resume();
       pauseBtn.innerHTML = paused ? I.play : I.pause;
       pauseBtn.title = paused ? 'Play' : 'Pause';
     });
@@ -1037,8 +1041,19 @@
       const words = [];
       caption.replaceChildren();
       s.replace(/\S+/g, (w, at) => { const sp = el('span', {}, w); words.push([at, sp]); caption.append(sp, ' '); return w; });
-      const u = new SpeechSynthesisUtterance(s);
       const urdu = /[؀-ۿ]/.test(s);
+      const file = rec[s.trim()];
+      if (file) {
+        caption.dir = urdu ? 'rtl' : 'ltr';
+        words.forEach(([, sp]) => sp.classList.add('on'));
+        clip = new Audio(file);
+        clip.onended = () => { clip = null; say(i + 1); };
+        clip.onerror = () => { clip = null; say(i + 1); };
+        clip.play().catch(() => { clip = null; say(i + 1); });
+        return;
+      }
+      if (!synth) return say(i + 1);
+      const u = new SpeechSynthesisUtterance(s);
       u.lang = urdu ? 'ur-PK' : 'en-US';
       u.voice = pickVoice(urdu);
       caption.dir = urdu ? 'rtl' : 'ltr';
