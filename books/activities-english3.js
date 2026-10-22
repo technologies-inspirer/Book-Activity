@@ -13,7 +13,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-english-3/Story of Letter a.mp4"
+     "src": "https://youtu.be/KKkkqobdveI"
     }
    ]
   },
@@ -29,7 +29,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Phonic Poem",
-     "src": "videos/stemford-english-3/Letter a Phonic Poem.mp4"
+     "src": "https://youtu.be/-i30XV92Hpw"
     }
    ]
   },
@@ -45,7 +45,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-english-3/Letter a Vocabulary.mp4"
+     "src": "https://youtu.be/QgYi6xU8ghU"
     }
    ]
   },
@@ -309,7 +309,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   ],
   "video": {
    "title": "How to write a",
-   "src": "videos/stemford-english-3/Letter a Formation.mp4"
+   "src": "https://youtu.be/BvpmsnhmTcs"
   }
  },
  "7": [
@@ -325,7 +325,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-english-3/b/story.mp4"
+     "src": "https://youtu.be/iT7XGS97cMw"
     }
    ]
   },
@@ -593,7 +593,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   ],
   "video": {
    "title": "How to write b",
-   "src": "videos/stemford-english-3/b/formation.mp4#t=0,22"
+   "src": "https://youtu.be/g78mGR65Mn0#t=0,22"
   }
  },
  "9": [
@@ -609,7 +609,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-english-3/c/story.mp4"
+     "src": "https://youtu.be/P938hLOEMgA"
     }
    ]
   },
@@ -625,7 +625,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-english-3/c/vocabulary.mp4"
+     "src": "https://youtu.be/yvMBOSd8N3w"
     }
    ]
   },
@@ -889,7 +889,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   ],
   "video": {
    "title": "How to write c",
-   "src": "videos/stemford-english-3/c/formation.mp4#t=0,24"
+   "src": "https://youtu.be/VlgoeeDdgTw#t=0,24"
   }
  },
  "11": [
@@ -905,7 +905,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-english-3/d/story.mp4"
+     "src": "https://youtu.be/LPn1tKHnAlU"
     }
    ]
   },
@@ -921,7 +921,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-english-3/d/vocabulary.mp4"
+     "src": "https://youtu.be/hqT8AJnYZ7s"
     }
    ]
   },
@@ -1185,7 +1185,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   ],
   "video": {
    "title": "How to write d",
-   "src": "videos/stemford-english-3/d/formation.mp4"
+   "src": "https://youtu.be/7KlJb0dB6l4"
   }
  },
  "17": [

@@ -114,9 +114,22 @@ def fill_ink(page, box):
     return _fill_ink(page, box)
 
 
+# The publisher's unlisted YouTube copies (same videos and lengths as the files), used before the files.
+# Number 3's Formation link was number 2's video, so 3 keeps its own file until the right link comes.
+YOUTUBE = {
+    1: {'Story': 'bdWkFht01GQ', 'Formation': 'ylCwxgeAO_s'},
+    2: {'Story': 'KaE4Tg0WES4', 'Formation': '8bZzeJSP2ZQ'},
+    3: {'Story': 'ChqF6Y5LD-0', 'Vocabulary': 'Vm40lGrG6QY'},
+    4: {'Story': 'MWLk36-Ssog', 'Vocabulary': '10g3Sr7riLo', 'Formation': 'R-niy_5dt6Y'},
+}
+
+
 def number_video(n, names):
     out = []
     for title, cands in names:
+        if title in YOUTUBE.get(n, {}):
+            out.append({'title': title, 'src': 'https://youtu.be/' + YOUTUBE[n][title]})
+            continue
         for c in cands:
             path = '%s%d/%s' % (VIDEO_DIR, n, c)
             if os.path.exists(path):
@@ -131,6 +144,8 @@ PARTS = {1: (50, 112), 2: (50, 50), 3: (40, 40), 4: (39, 39)}
 
 
 def formation_file(n):
+    if 'Formation' in YOUTUBE.get(n, {}):
+        return 'https://youtu.be/' + YOUTUBE[n]['Formation']
     hits = sorted(glob.glob('%s%d/format*.mp4' % (VIDEO_DIR, n)))
     return hits[0].replace('\\', '/') if hits else None
 

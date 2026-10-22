@@ -114,9 +114,24 @@ FORMATION_END = {'b': 22, 'c': 24}
 VIDEO_BUTTONS = {'Story': ('📖', 25.5), 'Phonic Poem': ('🎵', 30), 'Vocabulary': ('🔤', 34.5)}
 
 
+# The publisher's unlisted YouTube copies of the lesson videos: used before the files in videos/, so the videos
+# play on every device (the files are too big for GitHub). Checked against the files: same videos, same length.
+# Letter b's Vocabulary link was letter a's video, so b keeps its own file until the right link comes.
+YOUTUBE = {
+    'a': {'Story': 'KKkkqobdveI', 'Vocabulary': 'QgYi6xU8ghU', 'Phonic Poem': '-i30XV92Hpw', 'Formation': 'BvpmsnhmTcs'},
+    'b': {'Story': 'iT7XGS97cMw', 'Formation': 'g78mGR65Mn0'},
+    'c': {'Story': 'P938hLOEMgA', 'Vocabulary': 'yvMBOSd8N3w', 'Formation': 'VlgoeeDdgTw'},
+    'd': {'Story': 'LPn1tKHnAlU', 'Vocabulary': 'hqT8AJnYZ7s', 'Formation': '7KlJb0dB6l4'},
+}
+
+
 def videos_for(L, names):
     out = []
     for t, cands in names:
+        key = 'Formation' if t.startswith('How to write') else t
+        if key in YOUTUBE.get(L, {}):
+            out.append({'title': t, 'src': 'https://youtu.be/' + YOUTUBE[L][key]})
+            continue
         for n in [cands] if isinstance(cands, str) else cands:
             if os.path.exists(VIDEO_DIR + n.format(L=L)):
                 out.append({'title': t, 'src': VIDEO_DIR + n.format(L=L)})

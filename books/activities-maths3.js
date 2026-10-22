@@ -13,7 +13,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-maths-3/1/story.mp4"
+     "src": "https://youtu.be/bdWkFht01GQ"
     }
    ]
   }
@@ -333,7 +333,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   ],
   "video": {
    "title": "How to write 1",
-   "src": "videos/stemford-maths-3/1/formatin +activity.mp4#t=0,50"
+   "src": "https://youtu.be/ylCwxgeAO_s#t=0,50"
   }
  },
  "8": [
@@ -349,7 +349,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Activity Corner: number 1",
-     "src": "videos/stemford-maths-3/1/formatin +activity.mp4#t=112"
+     "src": "https://youtu.be/ylCwxgeAO_s#t=112"
     }
    ]
   }
@@ -367,7 +367,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-maths-3/2/story.mp4"
+     "src": "https://youtu.be/KaE4Tg0WES4"
     }
    ]
   }
@@ -687,7 +687,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   ],
   "video": {
    "title": "How to write 2",
-   "src": "videos/stemford-maths-3/2/formation +activity.mp4#t=0,50"
+   "src": "https://youtu.be/8bZzeJSP2ZQ#t=0,50"
   }
  },
  "11": [
@@ -703,7 +703,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Activity Corner: number 2",
-     "src": "videos/stemford-maths-3/2/formation +activity.mp4#t=50"
+     "src": "https://youtu.be/8bZzeJSP2ZQ#t=50"
     }
    ]
   }
@@ -721,7 +721,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-maths-3/3/story.mp4"
+     "src": "https://youtu.be/ChqF6Y5LD-0"
     }
    ]
   },
@@ -737,7 +737,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-maths-3/3/vocabulary.mp4"
+     "src": "https://youtu.be/Vm40lGrG6QY"
     }
    ]
   }
@@ -1091,7 +1091,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Story",
-     "src": "videos/stemford-maths-3/4/story.mp4"
+     "src": "https://youtu.be/MWLk36-Ssog"
     }
    ]
   },
@@ -1107,7 +1107,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Vocabulary",
-     "src": "videos/stemford-maths-3/4/vocabulary.mp4"
+     "src": "https://youtu.be/10g3Sr7riLo"
     }
    ]
   }
@@ -1427,7 +1427,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   ],
   "video": {
    "title": "How to write 4",
-   "src": "videos/stemford-maths-3/4/formation +activity.mp4#t=0,39"
+   "src": "https://youtu.be/R-niy_5dt6Y#t=0,39"
   }
  },
  "17": [
@@ -1443,7 +1443,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "videos": [
     {
      "title": "Activity Corner: number 4",
-     "src": "videos/stemford-maths-3/4/formation +activity.mp4#t=39"
+     "src": "https://youtu.be/R-niy_5dt6Y#t=39"
     }
    ]
   }

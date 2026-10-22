@@ -348,15 +348,29 @@
   function openVideos(title, vids, start = 0) {
     stopSpeak(); closeMenu();
     const player = el('video', { controls: true, autoplay: true, playsinline: true, class: 'own-video' });
+    // the publisher's videos on YouTube play in YouTube's player; '#t=a,b' keeps to that part of the video
+    const yt = el('iframe', { class: 'own-video', hidden: true, allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen',
+      allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin' });
     const picks = el('div', { class: 'video-picks' });
     const play = k => {
+      const [url, part] = vids[k].src.split('#t='), id = /youtu/.test(url) && ytId(url);
+      player.hidden = !!id; yt.hidden = !id;
+      if (id) {
+        player.pause();
+        const [a, b] = (part || '').split(',');
+        yt.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`
+          + (a ? `&start=${Math.floor(+a)}` : '') + (b ? `&end=${Math.ceil(+b)}` : '');
+        picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
+        return;
+      }
+      yt.src = 'about:blank';
       player.src = encodeURI(vids[k].src);
       player.play().catch(() => {});
       picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
     };
     if (vids.length > 1) vids.forEach((v, k) => picks.append(el('button', { onclick: () => play(k) }, v.title)));
     play(start);
-    modal(el('div', { class: 'modal-card video-card' }, player,
+    modal(el('div', { class: 'modal-card video-card' }, player, yt,
       el('div', { class: 'video-cap' }, title, picks, el('small', {}, 'Press ✕ to go back to the page'))));
   }
 
