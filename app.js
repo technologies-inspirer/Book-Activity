@@ -836,6 +836,26 @@
       after();
     }
 
+    // A finger swiped across the book turns the page, like a real one. On an upright phone the book lies on
+    // its side, so the swipe runs along the phone's length.
+    let touch = null, swipedAt = 0;
+    bookEl.addEventListener('touchstart', e => {
+      touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+    }, { passive: true });
+    bookEl.addEventListener('touchend', e => {
+      if (!touch || editMode) return;
+      const t = e.changedTouches[0], dx = t.clientX - touch.x, dy = t.clientY - touch.y;
+      touch = null;
+      const sideways = matchMedia('(orientation: portrait) and (max-width: 820px)').matches;
+      const along = sideways ? dy : dx, across = sideways ? dx : dy;
+      if (Math.abs(along) < 40 || Math.abs(along) < Math.abs(across) * 1.2) return;
+      swipedAt = Date.now();
+      // the finger moving towards the book's left goes on in an English book, back in an Urdu one
+      flip((along < 0) !== rtl ? 1 : -1);
+    });
+    // a swipe is not a tap: it must not also open the page it started on
+    bookEl.addEventListener('click', e => { if (Date.now() - swipedAt < 500) { e.stopPropagation(); e.preventDefault(); } }, true);
+
     // One sheet turns over the spine: its front is the page leaving, its back the page arriving.
     function flip(dir) {
       const s = R.spread, t = s + dir;

@@ -642,6 +642,14 @@ img.ink { pointer-events: none; }
     transform: translate(-50%, -50%) rotate(90deg); align-items: center;
   }
   .book { width: min(100%, calc((100vw - 40px) * var(--ratio) * 2)); }
+  /* a video opened from the book lies on its side too, so the phone stays turned the same way */
+  body:has(.reader) .modal .video-card {
+    width: min(calc(100dvh - 120px), calc((100vw - 130px) * 16 / 9));
+    position: fixed; left: 50%; top: 50%; margin: 0;
+    transform: translate(calc(-50% + 48px), -50%) rotate(90deg);
+  }
+  body:has(.reader) .video-cap small { display: none; }
+  body:has(.reader) .video-picks { margin-bottom: 0; }
 }
 /* a phone held sideways: thin bars, so the book gets the whole height */
 @media (orientation: landscape) and (max-height: 520px) {
