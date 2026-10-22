@@ -803,7 +803,7 @@
     const root = el('div', { class: 'reader' },
       el('div', { class: 'rbar' },
         el('a', { class: 'btn ghost', href: `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
-        el('button', { class: 'btn ghost', onclick: () => R.close() }, 'Close book'),
+        el('button', { class: 'btn ghost hide-sm', onclick: () => R.close() }, 'Close book'),
         el('b', {}, book.title),
         el('span', { class: 'grow' }),
         label, editBtn,
