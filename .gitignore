@@ -4,3 +4,5 @@ videos/**/*.mov
 # local tool output
 tools/__pycache__/
 .claude/
+node_modules/
+dist/

@@ -1,12 +1,17 @@
 @echo off
-rem Opens Javed Publishers in the browser. YouTube videos only play over http, so the site runs through a small local server.
-rem Uses Python when the PC has it, otherwise the PowerShell server that comes with Windows.
+rem Start the React + Vite development server.
 cd /d "%~dp0"
-start "" /min cmd /c "ping -n 3 127.0.0.1 >nul & start "" http://127.0.0.1:5173/"
-python -c "pass" >nul 2>&1
-if %errorlevel%==0 (
-  python tools\serve.py
-) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File tools\serve.ps1
+where npm >nul 2>&1
+if errorlevel 1 (
+  echo Node.js and npm are required. Install Node.js, then run npm install.
+  pause
+  exit /b 1
 )
-pause
+if not exist node_modules (
+  call npm install
+  if errorlevel 1 (
+    pause
+    exit /b 1
+  )
+)
+call npm run dev -- --host 127.0.0.1 --open

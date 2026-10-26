@@ -1,19 +1,33 @@
-(() => {
-  'use strict';
+import { books } from './src/data/books.js';
+import { series, seriesOf } from './src/data/series.js';
 
+const drawings = {};
+const brush = { color: '#e63946', size: 12, erase: false };
+
+export function mountBookActivityApp(app, { intro = false, onPositionChange } = {}) {
+  // Every reader mount owns its delayed work. React can unmount it mid-animation.
+  const timers = new Set();
+  const schedule = (callback, delay) => {
+    const timer = window.setTimeout(() => {
+      timers.delete(timer);
+      callback();
+    }, delay);
+    timers.add(timer);
+    return timer;
+  };
+  const players = new Map();
+  const clearPlayer = box => {
+    players.get(box)?.destroy();
+    players.delete(box);
+    box.replaceChildren();
+  };
   const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
-  const books = window.DEMO_BOOKS;
-  const app = document.getElementById('app');
-
-  const drawings = {};                       // `${bookId}:${pageIndex}:${zoneId}` -> data URL
-  const brush = { color: '#e63946', size: 12, erase: false };
   let R = null;                              // the open reader, if any
   let editMode = false;
   let menu = null;                           // open section menu
   let modalEl = null;
   let focusEl = null;                        // the zoomed-in page, if one is open
-  let introNext = false;                     // play the cover opening when the reader appears
-  let justClosed = false;                    // the reader just closed the book onto the preview
+  let introNext = intro;                     // play the cover opening when the reader appears
 
   const I = {
     speaker: '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
@@ -47,7 +61,7 @@
     document.querySelector('.toast')?.remove();
     document.body.append(el('div', { class: 'toast', role: 'status' }, msg));
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => document.querySelector('.toast')?.remove(), ms);
+    toastTimer = schedule(() => document.querySelector('.toast')?.remove(), ms);
   }
 
   function ytId(v) {
@@ -63,28 +77,17 @@
   function saveZones(b) {
     try { localStorage.setItem(zkey(b), JSON.stringify(b.pages.map(p => p.zones || []))); } catch (e) { /* storage unavailable */ }
   }
-  function loadZones(b) {
-    try {
-      const saved = JSON.parse(localStorage.getItem(zkey(b)));
-      if (Array.isArray(saved)) saved.forEach((z, i) => { if (b.pages[i]) b.pages[i].zones = z; });
-    } catch (e) { /* nothing saved */ }
-  }
-  // Books converted from PDF (tools/import_pdf.py) go first on the shelf.
-  books.unshift(...(window.PDF_BOOKS || []).map(b => ({
-    id: b.id, title: b.title, author: b.author || 'Imported from PDF', tag: 'Book', c1: b.c1, c2: b.c2, rtl: !!b.rtl,
-    ratio: b.ratio, dir: b.dir, cover: `${b.dir}/cover.jpg`,
-    pages: Array.from({ length: b.pages }, (_, i) => ({ img: `${b.dir}/p${String(i + 1).padStart(3, '0')}.jpg`, qr: b.qr?.[i + 1], acts: [].concat(window.BOOK_ACTIVITIES?.[b.id]?.[i + 1] || []), zones: window.BOOK_ZONES?.[b.id]?.[i + 1] || [] }))
-  })));
-  books.forEach(loadZones);
 
   /* ---------- routing: #/book/<id>/read/<page>/video/<zoneId> ---------- */
   const link = (b, page, zid) =>
     `#/book/${encodeURIComponent(b.id)}` + (page ? `/read/${page}` : '') + (zid ? `/video/${encodeURIComponent(zid)}` : '');
 
   function parseHash() {
-    const p = location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+    const p = location.hash.replace(/^#\/?/, '').split('/').map(part => {
+      try { return decodeURIComponent(part); } catch { return part; }
+    });
     return {
-      series: p[0] === 'series' ? SERIES.find(x => x.id === p[1]) : null,
+      series: p[0] === 'series' ? series.find(x => x.id === p[1]) : null,
       book: p[0] === 'book' ? books.find(b => b.id === p[1]) : null,
       read: p[2] === 'read',
       page: Math.max(1, parseInt(p[3], 10) || 1),
@@ -94,8 +97,7 @@
 
   function route() {
     const r = parseHash();
-    if (!r.book) { leaveReader(); return showLibrary(r.series); }
-    if (!r.read) { leaveReader(); return showPreview(r.book); }
+    if (!r.book || !r.read) { leaveReader(); app.replaceChildren(); return; }
     const s = Math.floor((r.page - 1) / 2);
     if (!R || R.book !== r.book) showReader(r.book, s, introNext);
     else if (R.spread !== s && !R.busy) R.show(s);
@@ -105,6 +107,7 @@
 
   function leaveReader() {
     stopSpeak();
+    demoToken++;
     closeMenu();
     closeModal();
     focusEl?.remove();
@@ -123,155 +126,6 @@
       el('div', { class: 'cv-icon' }, b.icon || '📖'),
       el('b', { class: 'cv-title' }, b.title),
       el('span', { class: 'cv-author' }, b.author));
-  }
-
-  function book3d(b) {
-    return el('div', { class: 'b3d', style: `--c1:${b.c1 || '#34495e'};--c2:${b.c2 || '#1f2d3d'}` },
-      el('div', { class: 'b3d-back' }),
-      el('div', { class: 'b3d-spine' }, el('span', {}, b.title)),
-      el('div', { class: 'b3d-edge r' }), el('div', { class: 'b3d-edge t' }), el('div', { class: 'b3d-edge b' }),
-      el('div', { class: 'b3d-first' }),
-      el('div', { class: 'b3d-cover' },
-        el('div', { class: 'face front' }, coverFace(b)),
-        el('div', { class: 'face inner' })));
-  }
-
-  /* ---------- library: the series first, then the books of the chosen series in a row ---------- */
-  const SERIES = [
-    { id: 'stemford', name: 'StemFord Series', of: b => !/^maxford/.test(b.id) },
-    { id: 'maxford', name: 'MaxFord Series', of: b => /^maxford/.test(b.id) }
-  ];
-  const seriesOf = b => SERIES.find(x => x.of(b)) || SERIES[0];
-
-  function header() {
-    const home = () => !location.hash.replace(/^#\/?/, '');
-    const go = id => e => {
-      e.preventDefault();
-      if (!home()) location.hash = '#/';
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 60);
-    };
-    return el('header', { class: 'topbar' },
-      el('a', { class: 'logo', href: '#/', title: 'Javed Publishers' }, el('img', { src: 'assets/logo-white.png', alt: 'Javed Publishers' })),
-      el('nav', { class: 'topnav' },
-        el('a', { href: '#/', onclick: go('series') }, 'Series'),
-        el('a', { href: '#/', onclick: go('resources') }, 'Resources')));
-  }
-
-  // Home: a dashboard. Logo bar, a welcome panel with the numbers, the series, and room for book resources.
-  function showLibrary(series) {
-    if (series) return showSeries(series);
-    document.title = 'Javed Publishers — Interactive Books';
-    const pages = books.reduce((t, b) => t + b.pages.length, 0);
-    const videos = books.reduce((t, b) => t + b.pages.filter(p => p.qr || p.acts.some(a => a.type === 'videos' || a.video)).length, 0);
-    const acts = books.reduce((t, b) => t + b.pages.reduce((u, p) => u + p.acts.length, 0), 0);
-    const stat = (n, label) => el('div', { class: 'stat' }, el('b', {}, n.toLocaleString()), el('span', {}, label));
-    const tiles = el('div', { class: 'series-tiles' }, SERIES.map(x => {
-      const list = books.filter(x.of);
-      return el('a', { class: 'series-tile', href: `#/series/${x.id}` },
-        el('div', { class: 'series-covers' }, list.slice(0, 3).map((b, k) =>
-          el('img', { src: b.cover, alt: '', style: `--k:${k};--n:${Math.min(3, list.length)}` }))),
-        el('b', {}, x.name), el('small', {}, `${list.length} book${list.length === 1 ? '' : 's'}`),
-        el('span', { class: 'tile-go' }, 'Open series →'));
-    }));
-    app.replaceChildren(el('div', { class: 'lib dash' }, header(),
-      el('section', { class: 'welcome' },
-        el('div', { class: 'welcome-text' },
-          el('span', { class: 'eyebrow' }, 'Interactive digital books'),
-          el('h1', {}, 'Learning that ', el('em', {}, 'comes alive')),
-          el('p', {}, 'Every book opens like a real one. Pages read aloud, play videos, teach with animations and games, and let children trace and colour.')),
-        el('div', { class: 'stats' }, stat(books.length, 'Books'), stat(pages, 'Pages'), stat(acts, 'Activities'), stat(videos, 'Pages with videos'))),
-      el('section', { class: 'panel', id: 'series' },
-        el('div', { class: 'panel-head' }, el('h2', {}, 'Our Series'), el('small', {}, 'Choose a series to see its books')),
-        tiles),
-      el('section', { class: 'panel', id: 'resources' },
-        el('div', { class: 'panel-head' }, el('h2', {}, 'Book Resources'), el('small', {}, 'Teacher guides, worksheets and downloads')),
-        // the publisher's resources go here
-        el('div', { class: 'resources-empty' }, 'Resources will appear here soon.')),
-      el('footer', { class: 'foot' }, `© ${new Date().getFullYear()} Javed Publishers. All rights reserved.`)));
-  }
-
-  // A series on its own page: all its books, big, in one row that scrolls sideways.
-  function showSeries(series) {
-    document.title = series.name + ' — Javed Publishers';
-    const shelf = el('div', { class: 'shelf row big' },
-      books.filter(series.of).map(b => el('a', { class: 'card', href: link(b, 1), onclick: () => { introNext = true; } },
-        el('div', { class: 'card-book' }, book3d(b)),
-        el('div', { class: 'card-cap' }, el('b', {}, b.title), el('small', {}, `${b.pages.length} pages`)))));
-    const step = d => shelf.scrollBy({ left: d * shelf.clientWidth * .8, behavior: 'smooth' });
-    const back = el('button', { class: 'row-nav prev', title: 'Scroll left', html: I.left, onclick: () => step(-1) });
-    const fwd = el('button', { class: 'row-nav next', title: 'Scroll right', html: I.right, onclick: () => step(1) });
-    const sync = () => {
-      back.disabled = shelf.scrollLeft < 4;
-      fwd.disabled = shelf.scrollLeft + shelf.clientWidth > shelf.scrollWidth - 4;
-    };
-    shelf.addEventListener('scroll', sync);
-    app.replaceChildren(el('div', { class: 'lib dash series-page' }, header(),
-      el('a', { class: 'btn ghost back-home', href: '#/', html: I.left + '<span>All series</span>' }),
-      el('h1', { class: 'series-title' }, series.name),
-      el('div', { class: 'row-wrap' }, back, shelf, fwd)));
-    requestAnimationFrame(sync);
-  }
-
-  /* ---------- 3D preview ---------- */
-  function showPreview(b) {
-    document.title = b.title + ' — Javed Publishers';
-    const zones = b.pages.flatMap(p => p.zones || []);
-    const count = f => zones.filter(f).length;
-    const model = book3d(b);
-    let ry = -32, rx = 8, moved = false, opening = false;
-    const apply = () => { model.style.setProperty('--ry', ry + 'deg'); model.style.setProperty('--rx', rx + 'deg'); };
-    apply();
-
-    const open = () => {
-      if (opening) return;
-      opening = true;
-      // Turn the book to face the reader; the cover itself opens in the reader.
-      ry = Math.round(ry / 360) * 360; rx = 0; apply();
-      setTimeout(() => { introNext = true; location.hash = link(b, 1); }, 520);
-    };
-    if (justClosed) {                        // arriving from a closed book: settle back to the resting angle
-      justClosed = false;
-      ry = 0; rx = 0; apply();
-      requestAnimationFrame(() => requestAnimationFrame(() => { ry = -32; rx = 8; apply(); }));
-    }
-
-    const stage = el('div', { class: 'pv-stage' }, model, el('div', { class: 'pv-hint' }, 'Drag to turn the book · click it to open'));
-    let last = null;
-    stage.addEventListener('pointerdown', e => {
-      if (opening) return;
-      last = [e.clientX, e.clientY]; moved = false;
-      stage.setPointerCapture(e.pointerId);
-      model.classList.add('dragging');
-    });
-    stage.addEventListener('pointermove', e => {
-      if (!last) return;
-      const dx = e.clientX - last[0], dy = e.clientY - last[1];
-      if (Math.abs(dx) + Math.abs(dy) > 2) moved = true;
-      ry += dx * 0.6; rx = clamp(rx - dy * 0.3, -30, 30);
-      last = [e.clientX, e.clientY];
-      apply();
-    });
-    stage.addEventListener('pointerup', e => {
-      model.classList.remove('dragging');
-      const wasClick = last && !moved;
-      last = null;
-      if (wasClick && model.contains(document.elementFromPoint(e.clientX, e.clientY))) open();
-    });
-
-    app.replaceChildren(el('div', { class: 'pv' },
-      stage,
-      el('div', { class: 'pv-info' },
-        el('span', { class: 'pv-tag' }, b.tag || 'Book'),
-        el('h1', {}, b.title),
-        el('p', {}, b.author),
-        el('ul', { class: 'chips' },
-          el('li', {}, `${b.pages.length} pages`),
-          el('li', {}, `${count(z => z.type === 'section' && z.narration)} voice sections`),
-          el('li', {}, `${count(z => z.video)} videos`),
-          el('li', {}, `${count(z => z.type === 'fill')} activities`)),
-        el('div', { class: 'pv-actions' },
-          el('button', { class: 'btn primary big', onclick: open }, 'Open book'),
-          el('a', { href: `#/series/${seriesOf(b).id}` }, '← Back to library')))));
   }
 
   /* ---------- pages ---------- */
@@ -361,7 +215,7 @@
         picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
         return;
       }
-      yt.replaceChildren();
+      clearPlayer(yt);
       player.src = encodeURI(vids[k].src);
       player.play().catch(() => {});
       picks.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === k));
@@ -439,7 +293,7 @@
       const next = () => {
         if (moved || token !== storyToken) return;
         moved = true;
-        setTimeout(() => {
+        schedule(() => {
           if (token !== storyToken) return;
           if (k + 1 < st.scenes.length) show(k + 1);
           else { end.hidden = false; speak(st.title, /[؀-ۿ]/.test(st.title) ? 'ختم شد۔' : 'The end.', null, caption); }
@@ -447,7 +301,7 @@
       };
       speak(st.title, sc.text, next, caption);
       // Without a working voice the story still moves on; with one, speech normally ends well before this.
-      setTimeout(next, (synth ? secs * 2 : secs) * 1000);
+      schedule(next, (synth ? secs * 2 : secs) * 1000);
     }
     show(0);
   }
@@ -529,7 +383,7 @@
       };
       speak(g.title, g.ur ? `شاباش! ${t.say}` + (done ? ` آپ نے ${order.length} میں سے ${stars} ستارے جیتے۔ بہت خوب!` : '')
         : `Yes! ${t.say}` + (done ? ` You got ${stars} out of ${order.length} stars. Well done!` : ''), next, said);
-      if (!done) setTimeout(next, 3500);
+      if (!done) schedule(next, 3500);
       if (done) { prompt.innerHTML = g.ur ? `<b>سب مل گئے! 🎉 ${stars} / ${order.length} ستارے</b>` : `<b>You found them all! 🎉 ${stars} / ${order.length} stars</b>`; again.hidden = false; }
     };
     ask();
@@ -555,18 +409,18 @@
       const s = act.steps[i];
       // The next step waits until the voice has finished and every mark has been drawn.
       let spoke = false, drew = false, next = false;
-      const go = () => { if (spoke && drew && !next) { next = true; setTimeout(() => step(i + 1), 500); } };
+      const go = () => { if (spoke && drew && !next) { next = true; schedule(() => step(i + 1), 500); } };
       const gap = k => s.marks.slice(0, k).reduce((t, m) => t + (m.scribble ? 2600 : m.letter || m.glyph ? 1700 : 1400), 0);
-      s.marks.forEach((m, k) => setTimeout(() => {
+      s.marks.forEach((m, k) => schedule(() => {
         if (token !== demoToken) return;
         const mark = makeMark(m, layer);
         pencil.style.left = (m.px ?? m.x) + '%';
         pencil.style.top = (m.py ?? m.y) + '%';
-        setTimeout(() => token === demoToken && layer.append(mark), 450);
+        schedule(() => token === demoToken && layer.append(mark), 450);
       }, gap(k)));
-      setTimeout(() => { drew = true; go(); }, gap(s.marks.length) + 600);
+      schedule(() => { drew = true; go(); }, gap(s.marks.length) + 600);
       speak('Show me how', s.say, () => { spoke = true; go(); });
-      setTimeout(() => { spoke = true; go(); }, Math.max(4000, s.say.split(' ').length * 450));   // keep going even without a voice
+      schedule(() => { spoke = true; go(); }, Math.max(4000, s.say.split(' ').length * 450));   // keep going even without a voice
     };
     step(0);
   }
@@ -650,7 +504,7 @@
             + `<path class="brush" pathLength="1" d="${d}" transform="translate(.1667 .1667) scale(.6667)"/></mask></defs>`
             + `<image href="${m.ink.src}" x="0" y="0" width="1" height="1" preserveAspectRatio="none" mask="url(#${id})"/></svg>` });
         // once the pen has finished, show the whole letter in case the brush missed a corner
-        setTimeout(() => mk.querySelector('image')?.removeAttribute('mask'), 1900);
+        schedule(() => mk.querySelector('image')?.removeAttribute('mask'), 1900);
         return mk;
       }
       const px = (layer.clientWidth * (w > 7 ? .011 : .007)).toFixed(1);
@@ -684,13 +538,13 @@
     return mark;
   }
 
-  function closeFocus() {
+  function closeFocus(redraw = true) {
     if (!focusEl) return;
     demoToken++;
     stopSpeak();
     focusEl.remove();
     focusEl = null;
-    if (R && !R.busy) R.show(R.spread);      // redraw the spread so new writing shows on the page
+    if (redraw && R && !R.busy) R.show(R.spread);      // redraw the spread so new writing shows on the page
   }
 
   function openFocus(book, idx, fromEl) {
@@ -835,12 +689,14 @@
       // Keep the address in step with the pages, but leave a video deep link alone.
       const h = parseHash();
       if (!(h.video && Math.floor((h.page - 1) / 2) === s)) history.replaceState(null, '', link(book, a));
+      onPositionChange?.(book.id, a);
       // Fetch the neighbouring spreads now so the next page turn has its pictures ready.
       [-2, -1, 2, 3].forEach(k => { const p = pageOf(book, s * 2 + k); if (p?.img) new Image().src = p.img; });
     }
 
     function show(s) {
       if (R.busy) return;
+      closeFocus(false); closeGame(); closeStory(); closeModal();
       stopSpeak(); closeMenu();
       R.spread = clamp(s, 0, spreads - 1);
       left.replaceChildren(renderPage(book, L(R.spread), true));
@@ -884,7 +740,9 @@
       (fwd ? right : left).replaceChildren(renderPage(book, fwd ? Rt(t) : L(t), true));
       sheet.getBoundingClientRect();
       sheet.classList.add('go');
-      setTimeout(() => {
+      const reader = R;
+      schedule(() => {
+        if (R !== reader) { sheet.remove(); return; }
         (fwd ? left : right).replaceChildren(renderPage(book, fwd ? L(t) : Rt(t), true));
         sheet.remove();
         R.spread = t;
@@ -905,6 +763,7 @@
 
     function openBook() {
       R.busy = true;
+      const reader = R;
       const sheet = coverSheet();
       bookEl.classList.add('closed', 'no-anim');
       (rtl ? right : left).style.visibility = 'hidden';
@@ -912,8 +771,14 @@
       sheet.getBoundingClientRect();
       bookEl.classList.remove('no-anim');
       sheet.classList.remove('no-anim');
-      setTimeout(() => { bookEl.classList.remove('closed'); sheet.classList.add('go'); pageSound('book-open'); }, 350);
-      setTimeout(() => { (rtl ? right : left).style.visibility = ''; sheet.remove(); R.busy = false; }, 1500);
+      schedule(() => {
+        if (R !== reader) { sheet.remove(); return; }
+        bookEl.classList.remove('closed'); sheet.classList.add('go'); pageSound('book-open');
+      }, 350);
+      schedule(() => {
+        if (R !== reader) { sheet.remove(); return; }
+        (rtl ? right : left).style.visibility = ''; sheet.remove(); R.busy = false;
+      }, 1500);
     }
 
     function closeBook() {
@@ -922,13 +787,16 @@
       stopSpeak(); closeMenu();
       pageSound('book-open');
       const sheet = coverSheet();
+      const reader = R;
       sheet.classList.add('go');
       bookEl.append(sheet);
       (rtl ? right : left).style.visibility = 'hidden';
       sheet.getBoundingClientRect();
       sheet.classList.remove('no-anim', 'go');
       bookEl.classList.add('closed');
-      setTimeout(() => { justClosed = true; location.hash = link(book); }, 1250);
+      schedule(() => {
+        if (R === reader) location.hash = link(book);
+      }, 1250);
     }
 
     if (rtl) slider.style.direction = 'rtl';
@@ -1083,6 +951,14 @@
 
   /* ---------- modals: video, QR, zone editor ---------- */
   function closeModal() {
+    modalEl?.querySelectorAll('video').forEach(video => {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    });
+    for (const box of players.keys()) {
+      if (modalEl?.contains(box)) clearPlayer(box);
+    }
     modalEl?.remove();
     modalEl = null;
   }
@@ -1115,7 +991,7 @@
     }));
   }
   function youTube(box, id, start, end) {
-    box.replaceChildren();
+    clearPlayer(box);
     const slot = el('div');
     const sound = el('button', { class: 'yt-sound', hidden: true, html: '🔊<span>Tap for sound</span>' });
     box.append(slot, sound);
@@ -1128,16 +1004,18 @@
         videoId: id, width: '100%', height: '100%', playerVars: vars,
         events: {
           onReady: e => {
+            if (!box.isConnected) return;
             e.target.getIframe().setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
             e.target.playVideo();
             // not playing a moment later: the browser stopped sound. Play silent, and offer the sound.
-            setTimeout(() => {
+            schedule(() => {
               if (!box.isConnected || e.target.getPlayerState?.() === YT.PlayerState.PLAYING) return;
               e.target.mute(); e.target.playVideo(); sound.hidden = false;
             }, 1200);
           }
         }
       });
+      players.set(box, p);
       // with the sound on, the captions YouTube shows for a silent video are not needed
       sound.onclick = () => { p.unMute?.(); p.setVolume?.(100); p.playVideo?.(); p.unloadModule?.('captions'); sound.hidden = true; };
     });
@@ -1292,15 +1170,17 @@
   }
 
   /* ---------- global wiring ---------- */
-  document.addEventListener('pointerdown', e => {
+  const onDocumentPointerDown = e => {
     if (menu && !menu.m.contains(e.target) && !menu.box.contains(e.target)) closeMenu();
-  });
-  document.addEventListener('keydown', e => {
+  };
+  const onDocumentKeyDown = e => {
     if (e.key === 'Escape') { if (modalEl) modalEl.close(); else if (storyEl) closeStory(); else if (gameEl) closeGame(); else if (focusEl) closeFocus(); else if (menu) closeMenu(); else stopSpeak(); return; }
-    if (!R || modalEl || focusEl || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if (!R || modalEl || focusEl || storyEl || gameEl || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
     if (e.key === 'ArrowRight') R.flip(R.rtl ? -1 : 1);
     if (e.key === 'ArrowLeft') R.flip(R.rtl ? 1 : -1);
-  });
+  };
+  document.addEventListener('pointerdown', onDocumentPointerDown);
+  document.addEventListener('keydown', onDocumentKeyDown);
   // Opened as a file, YouTube will not play: move over to the local server when it is running.
   if (location.protocol === 'file:') {
     const SERVER = 'http://127.0.0.1:5173/';
@@ -1309,6 +1189,20 @@
   }
 
   window.addEventListener('hashchange', route);
-  window.addEventListener('beforeunload', () => synth?.cancel());
   route();
-})();
+
+  return () => {
+    window.removeEventListener('hashchange', route);
+    document.removeEventListener('pointerdown', onDocumentPointerDown);
+    document.removeEventListener('keydown', onDocumentKeyDown);
+    clearTimeout(toastTimer);
+    document.querySelector('.toast')?.remove();
+    leaveReader();
+    timers.forEach(timer => window.clearTimeout(timer));
+    timers.clear();
+    for (const box of players.keys()) clearPlayer(box);
+    synth?.cancel();
+    Object.values(sounds).forEach(sound => sound.pause());
+    app.replaceChildren();
+  };
+}
