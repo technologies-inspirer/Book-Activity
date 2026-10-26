@@ -35,7 +35,7 @@ export function createDemoStore(bookIds) {
     currentId: null,
     accounts: [
       { id: 'demo-admin', name: 'Amina — Demo Admin', email: DEMO_CREDENTIALS.admin.email, role: 'admin', enabled: true, allBooks: true, bookIds: [], expires: '' },
-      { id: 'demo-reader', name: 'Sana — Demo Reader', email: DEMO_CREDENTIALS.user.email, role: 'user', enabled: true, allBooks: false, bookIds: bookIds.slice(0, 3), expires: '' },
+      { id: 'demo-reader', name: 'Sana — Demo Reader', email: DEMO_CREDENTIALS.user.email, role: 'user', enabled: true, allBooks: true, bookIds: [], expires: '' },
       { id: 'demo-disabled', name: 'Ali — Sample Account', email: 'ali@javed.example', role: 'user', enabled: false, allBooks: false, bookIds: [], expires: '' }
     ],
     progress: {}
@@ -80,6 +80,22 @@ export function createDemoStore(bookIds) {
     toggleEnabled(id) { requireAdmin(); const account = find(id); if (account.role === 'admin') throw new Error('Use a user account for this demo action.'); replace(id, { enabled: !account.enabled }); },
     resetPassword(id, password) { requireAdmin(); find(id); validatePassword(password); passwords.set(id, password); },
     updateProfile(input) { const account = find(state.currentId); replace(account.id, identity(input, state.accounts, account.id)); },
+    updateSchoolProfile(input) {
+      const account = find(state.currentId);
+      if (account.role !== 'user') throw new Error('Sign in as a demo reader to edit a school profile.');
+      const values = { ...account.schoolProfile, ...input };
+      const schoolProfile = Object.fromEntries(['name', 'description', 'email', 'address', 'country', 'state', 'city', 'contactPerson', 'phone'].map(key => [key, String(values[key] || '').trim()]));
+      if (!schoolProfile.name) throw new Error('Enter the school name.');
+      if (schoolProfile.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(schoolProfile.email)) throw new Error('Enter a valid school email address.');
+      replace(account.id, { schoolProfile });
+    },
+    updateSchoolLogo(logo) {
+      const account = find(state.currentId);
+      if (account.role !== 'user') throw new Error('Sign in as a demo reader to update a school logo.');
+      if (typeof logo !== 'string' || (logo && !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(logo))) throw new Error('Choose a valid PNG, JPG or WebP logo.');
+      if (logo.length > 2800000) throw new Error('Choose a logo smaller than 2 MB.');
+      replace(account.id, { schoolLogo: logo });
+    },
     changePassword(current, next) {
       const account = find(state.currentId);
       if (passwords.get(account.id) !== current) throw new Error('The current demo password is incorrect.');

@@ -1,0 +1,116 @@
+/* Shared interface palette for portals, series, previews and reader overlays.
+   Book artwork, printed pages, pen colours and activity answer marks stay intact. */
+:root {
+  color-scheme: light;
+  --theme-bg: #fbf8f1;
+  --theme-panel: #ffffff;
+  --theme-border: #e3e8e5;
+  --theme-text: #103640;
+  --theme-muted: #5c7481;
+  --theme-teal: #0b625e;
+  --theme-teal-dark: #004344;
+  --theme-gold: #ffbf47;
+  --theme-gold-hover: #ffd174;
+  --theme-warm-text: #996108;
+  --theme-soft: #e3f2ed;
+  --theme-field: #fffefa;
+  --theme-shadow: #254d4626;
+  --bg: var(--theme-bg);
+  --bg2: #f3f7ef;
+  --ink: var(--theme-text);
+  --muted: var(--theme-muted);
+  --accent: var(--theme-gold);
+  --accent-ink: var(--theme-text);
+  --blue: var(--theme-teal);
+}
+
+body { background: var(--theme-bg); color: var(--theme-text); }
+:is(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--theme-teal);
+  outline-offset: 4px;
+}
+
+/* Navigation and book browsing */
+.topbar { border-color: var(--theme-border); }
+.logo img {
+  filter: brightness(0) saturate(100%) invert(19%) sepia(25%) saturate(1900%) hue-rotate(137deg) brightness(91%) contrast(105%);
+}
+.topnav a:hover { background: var(--theme-soft); color: var(--theme-teal); }
+.btn { background: var(--theme-soft); color: var(--theme-text); }
+.btn:hover { background: #d4e9e1; }
+.btn.ghost { background: transparent; border-color: #bed2cb; }
+.btn.ghost:hover { background: var(--theme-soft); }
+.btn.primary { background: var(--theme-gold); color: var(--theme-text); }
+.btn.primary:hover { background: var(--theme-gold-hover); }
+.btn.on { background: var(--theme-teal); border-color: var(--theme-teal); color: #fff; }
+.btn.danger { background: #b83343; color: #fff; }
+.series-tile, .panel { background: var(--theme-panel); border-color: var(--theme-border); }
+.series-tile:hover { border-color: var(--theme-teal); }
+.tile-go, .pv-info .pv-tag { color: var(--theme-teal); }
+.chips li { background: var(--theme-soft); color: var(--theme-teal); }
+.pv-stage::after { background: radial-gradient(closest-side, var(--theme-shadow), transparent); }
+.row-nav { box-shadow: 0 6px 16px var(--theme-shadow); }
+
+/* Reader chrome; printed book pages and their transformations are untouched. */
+.reader { background: var(--theme-bg); color: var(--theme-text); }
+.rbar { background: var(--theme-panel); border-bottom: 1px solid var(--theme-border); }
+.rfoot { background: var(--theme-panel); border-top: 1px solid var(--theme-border); }
+.reader .nav { background: var(--theme-soft); color: var(--theme-teal); box-shadow: 0 3px 12px var(--theme-shadow); }
+.reader .nav:hover { background: var(--theme-gold); color: var(--theme-text); }
+.tools { background: var(--theme-soft); color: var(--theme-text); }
+.tools .sz i { background: var(--theme-teal); }
+.tools button.on { border-color: var(--theme-teal); box-shadow: 0 0 0 2px var(--theme-gold); }
+.tools .txt { background: var(--theme-panel); color: var(--theme-text); }
+.tools i.sep { background: #bed2cb; }
+
+/* Menus, speech, video captions and publisher forms use the same readable surfaces. */
+.zmenu, .narr, .modal-card, .toast {
+  background: var(--theme-panel);
+  color: var(--theme-text);
+  box-shadow: 0 12px 34px var(--theme-shadow);
+}
+.zmenu { border: 1px solid var(--theme-border); }
+.zmenu button, .zmenu button:nth-of-type(2), .zmenu button:nth-of-type(3) {
+  background: var(--theme-teal); color: #fff;
+}
+.zmenu button.x, .narr button { background: var(--theme-soft); color: var(--theme-text); }
+.narr-body small { color: var(--theme-teal); }
+.narr-text span.on, .story-text span.on, .game-said span.on {
+  background: #ffedbd; box-shadow: 0 0 0 2px #ffedbd;
+}
+.modal, .game, .story { background: #073e3b99; }
+.modal-x { background: var(--theme-teal); color: #fff; border-color: var(--theme-panel); }
+.video-card { background: #000; }
+.video-cap {
+  background: var(--theme-bg); color: var(--theme-text);
+  padding: 12px 14px; border: 1px solid var(--theme-border); border-radius: 14px;
+}
+.video-cap small { color: var(--theme-muted); }
+.video-picks button { background: var(--theme-soft); color: var(--theme-teal); }
+.video-picks button.on { background: var(--theme-gold); color: var(--theme-text); }
+.zform input[type=text], .zform textarea { background: var(--theme-field); color: var(--theme-text); border-color: #bed2cb; }
+.zform .seg label { border-color: var(--theme-border); }
+.zform .seg label:has(input:checked) { background: var(--theme-soft); border-color: var(--theme-teal); }
+.zform .btn { background: var(--theme-soft); color: var(--theme-text); }
+.zform .btn.primary { background: var(--theme-gold); color: var(--theme-text); }
+.zform .btn.danger { background: #b83343; color: #fff; }
+
+/* Activity controls share the palette; coloured drawings and game feedback retain meaning. */
+.fx { background: #fbf8f1f5; }
+.fx-btn { background: var(--theme-panel); color: var(--theme-text); box-shadow: 0 2px 8px #254d4612; }
+.fx-btn.listen, .fx-btn.video, .fx-btn.how { background: var(--theme-teal); color: #fff; }
+.fx-btn.self { background: var(--theme-gold); color: var(--theme-text); }
+.fx-page { box-shadow: 0 20px 60px var(--theme-shadow); }
+.watch-btn, .game-btn { background: var(--theme-gold); color: var(--theme-text); box-shadow: 0 .5cqw 1.4cqw #99610833; }
+.story-btn { background: var(--theme-teal); color: #fff; box-shadow: 0 .5cqw 1.4cqw #0b625e33; }
+.vid-pill { background: var(--theme-teal); color: #fff; }
+.game-card, .story-card { background: var(--theme-bg); color: var(--theme-text); box-shadow: 0 20px 60px var(--theme-shadow); }
+.game-card h3, .story-card h3, .story-end b { color: var(--theme-teal); }
+.game-prompt b { color: var(--theme-teal); }
+.game-said { color: var(--theme-muted); }
+.game-score { background: var(--theme-gold); color: var(--theme-text); }
+.game-scene, .story-stage { box-shadow: 0 0 0 4px #d1e9df; }
+.story-ctl { background: var(--theme-teal); color: #fff; }
+.story-dots button { background: #bad6cc; }
+.story-dots button.on { background: var(--theme-teal); }
+.story-end { background: #fbf8f1eb; }

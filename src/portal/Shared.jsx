@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDemo } from './DemoContext.jsx';
+import { ResourceOptions } from './ResourceOptions.jsx';
 
 export function DemoNotice() {
   return <div className="demo-notice"><span className="demo-dot" />Frontend demo only — real authentication is not connected. <span>Changes reset on refresh. UI access checks do not provide real security.</span></div>;
@@ -22,7 +23,7 @@ export function EmptyState({ title, children }) {
   return <div className="portal-empty"><span aria-hidden="true">◇</span><h2>{title}</h2><p>{children}</p></div>;
 }
 export function Resources() {
-  return <section className="portal-panel"><p className="portal-eyebrow">Learning materials</p><h1>Resources</h1><EmptyState title="A little more learning, coming soon">Teacher guides, worksheets and downloads will appear here when the publisher adds them.</EmptyState></section>;
+  return <section className="portal-panel"><p className="portal-eyebrow">Learning materials</p><h1>Resources</h1><ResourceOptions showHeading={false} /></section>;
 }
 export function Modal({ title, children, onClose }) {
   const ref = useRef(null);

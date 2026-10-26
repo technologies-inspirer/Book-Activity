@@ -3,6 +3,20 @@ import { Book3D } from '../components/Book3D.jsx';
 import { series } from '../data/series.js';
 import { EmptyState } from './Shared.jsx';
 
+export function BookTile({ book, onBookOpen }) {
+  return (
+    <a className="portal-book-card" href={`#/book/${encodeURIComponent(book.id)}/read/1`} onClick={onBookOpen}>
+      <div className="portal-cover-stage"><Book3D book={book} /></div>
+      <div className="portal-book-caption">
+        <span className="portal-eyebrow">{series.find(item => item.of(book))?.name}</span>
+        <h3>{book.title}</h3>
+        <span className="portal-muted">{book.pages.length} pages</span>
+        <span className="book-open-label">Open book <span aria-hidden="true">&#8599;</span></span>
+      </div>
+    </a>
+  );
+}
+
 export function BookCollection({ books, onBookOpen, dropdownNavigation = false }) {
   const [filter, setFilter] = useState('all');
   const shown = books.filter(book => filter === 'all' || series.find(item => item.id === filter)?.of(book));
@@ -44,15 +58,7 @@ export function BookCollection({ books, onBookOpen, dropdownNavigation = false }
       {shown.length ? (
         <div className="portal-book-grid">
           {shown.map(book => (
-            <a className="portal-book-card" key={book.id} href={`#/book/${encodeURIComponent(book.id)}/read/1`} onClick={onBookOpen}>
-              <div className="portal-cover-stage"><Book3D book={book} /></div>
-              <div className="portal-book-caption">
-                <span className="portal-eyebrow">{series.find(item => item.of(book))?.name}</span>
-                <h3>{book.title}</h3>
-                <span className="portal-muted">{book.pages.length} pages</span>
-                <span className="book-open-label">Open book <span aria-hidden="true">&#8599;</span></span>
-              </div>
-            </a>
+            <BookTile key={book.id} book={book} onBookOpen={onBookOpen} />
           ))}
         </div>
       ) : (

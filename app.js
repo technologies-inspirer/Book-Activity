@@ -4,7 +4,7 @@ import { series, seriesOf } from './src/data/series.js';
 const drawings = {};
 const brush = { color: '#e63946', size: 12, erase: false };
 
-export function mountBookActivityApp(app, { intro = false, onPositionChange } = {}) {
+export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref } = {}) {
   // Every reader mount owns its delayed work. React can unmount it mid-animation.
   const timers = new Set();
   const schedule = (callback, delay) => {
@@ -668,7 +668,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange } = 
 
     const root = el('div', { class: 'reader' },
       el('div', { class: 'rbar' },
-        el('a', { class: 'btn ghost', href: `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
+        el('a', { class: 'btn ghost', href: libraryHref || `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
         el('button', { class: 'btn ghost hide-sm', onclick: () => R.close() }, 'Close book'),
         el('b', {}, book.title),
         el('span', { class: 'grow' }),

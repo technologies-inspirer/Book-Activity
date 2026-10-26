@@ -67,7 +67,7 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
         <div className="sidebar-foot">
           <span className="portal-pill">Frontend prototype</span>
           <p>Small steps.<br />Wonderful discoveries.</p>
-          <a href="#/">Public book library &#8599;</a>
+          <a href="#/admin/books">Book collection &#8599;</a>
         </div>
       </aside>
       <div className="admin-workspace">
