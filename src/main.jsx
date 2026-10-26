@@ -5,6 +5,7 @@ import '../books/zones.js';
 import '../books/activities.js';
 import '../books/audio-urdu3.js';
 import '../styles.css';
+import './theme.css';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<p role="status">Loading interactive books…</p>);

@@ -1,59 +1,44 @@
-import { SiteHeader } from '../components/SiteHeader.jsx';
-import { SeriesTile } from '../components/BookLibrary.jsx';
-import { useDemo } from './DemoContext.jsx';
-import { series } from '../data/series.js';
-import { BookCollection } from './BookCollection.jsx';
+import { useCallback, useRef, useState } from 'react';
 import { DemoNotice, Resources } from './Shared.jsx';
 import { ProfilePage } from './ProfilePage.jsx';
+import { UserSidebar } from './UserSidebar.jsx';
+import { SchoolProfile } from './SchoolProfile.jsx';
+import { UserDashboard } from './UserDashboard.jsx';
+import { LearningLibrary } from './LearningLibrary.jsx';
 
-export function UserPortal({ page = 'books', onBookOpen }) {
-  const { account, assignedBooks, progress } = useDemo();
-  const position = progress[account.id];
-  const continuedBook = position && assignedBooks.find(book => book.id === position.bookId);
+export function UserPortal({ page = 'books', libraryRoute = [], onBookOpen }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const toggleRef = useRef(null);
+  const closeSidebar = useCallback(() => {
+    setSidebarOpen(false);
+    toggleRef.current?.focus();
+  }, []);
+  const selectedPage = ['resources', 'profile', 'school', 'library'].includes(page) ? page : 'books';
+  const pageTitle = { books: 'Dashboard', library: 'Explore Books', school: 'School Profile', resources: 'Resources', profile: 'My Profile' }[selectedPage];
   return (
-    <div className="portal user-shell">
-      <SiteHeader />
-      <main className="user-main" key={page}>
-        {page === 'resources' ? <Resources /> : page === 'profile' ? <ProfilePage /> : (
-          <>
-            <section className="user-welcome">
-              <div>
-                <p className="portal-eyebrow">Your next discovery awaits</p>
-                <h1>Welcome, {account.name}.</h1>
-                <p>There&rsquo;s a whole world between these pages.<br />Pick a book and let your curiosity lead the way.</p>
-              </div>
-              <span className="welcome-monogram" aria-hidden="true">
-                {account.name.charAt(0).toUpperCase()}<span>&#10022;</span>
-              </span>
-            </section>
-            {continuedBook && (
-              <section className="continue-reading portal-panel">
-                <img src={continuedBook.cover} alt="" />
-                <div>
-                  <p className="portal-eyebrow">Continue Reading</p>
-                  <h2>{continuedBook.title}</h2>
-                  <p className="portal-muted">Page {position.page} of {continuedBook.pages.length} &middot; This session</p>
-                </div>
-                <a className="portal-primary" href={`#/book/${encodeURIComponent(continuedBook.id)}/read/${position.page}`}>
-                  Pick up where you left off &rarr;
-                </a>
-              </section>
-            )}
-            {assignedBooks.length > 0 && (
-              <section className="portal-series-section" aria-label="Your series">
-                <h2>Your series</h2>
-                <div className="series-tiles">
-                  {series.filter(item => assignedBooks.some(item.of)).map(item => (
-                    <SeriesTile key={item.id} item={item} availableBooks={assignedBooks} />
-                  ))}
-                </div>
-              </section>
-            )}
-            <BookCollection books={assignedBooks} onBookOpen={onBookOpen} />
-          </>
-        )}
+    <div className={`portal user-shell user-portal-shell${sidebarOpen ? ' sidebar-open' : ''}`}>
+      {sidebarOpen && <><button className="user-sidebar-backdrop" type="button" tabIndex="-1" aria-label="Close sidebar" onClick={closeSidebar} /><UserSidebar page={selectedPage === 'library' ? 'books' : selectedPage} onClose={closeSidebar} /></>}
+      <div className="user-workspace">
+      <header className="portal-topline user-portal-header">
+        <div className="user-header-start">
+          <button className="user-sidebar-toggle" ref={toggleRef} type="button" aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'} title={sidebarOpen ? 'Close sidebar' : 'Open sidebar'} aria-expanded={sidebarOpen} aria-controls="user-sidebar" onClick={() => setSidebarOpen(value => !value)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+          <span>Javed Publishers <span aria-hidden="true">/</span> {pageTitle}</span>
+        </div>
+        <nav aria-label="User account links">
+          <a className="portal-textlink" href="#/user/resources" onClick={closeSidebar} aria-current={selectedPage === 'resources' ? 'page' : undefined}>Resources</a>
+          <a className="portal-textlink" href="#/user/profile" onClick={closeSidebar} aria-current={selectedPage === 'profile' ? 'page' : undefined}>Profile</a>
+        </nav>
+      </header>
+      <main className={`user-main${['school', 'library'].includes(selectedPage) ? ' user-school-main' : ''}`} key={selectedPage}>
+        {selectedPage === 'school' ? <SchoolProfile /> :
+          selectedPage === 'resources' ? <Resources /> :
+          selectedPage === 'profile' ? <ProfilePage /> :
+          selectedPage === 'library' ? <LearningLibrary segments={libraryRoute} onBookOpen={onBookOpen} /> :
+          <UserDashboard />}
+
       </main>
       <DemoNotice />
+      </div>
     </div>
   );
 }

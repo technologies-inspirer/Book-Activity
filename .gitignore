@@ -5,4 +5,5 @@ videos/**/*.mov
 tools/__pycache__/
 .claude/
 node_modules/
+.vite/
 dist/

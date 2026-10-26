@@ -15,6 +15,7 @@ test('fictional login, invalid credentials, disabled accounts and sign out', () 
   store.signOut();
   assert.equal(store.snapshot().currentId, null);
   assert.equal(store.signIn('  READER@JAVED.EXAMPLE ', DEMO_CREDENTIALS.user.password), 'user');
+  assert.deepEqual(availableBooks(store.snapshot().accounts.find(a => a.id === store.snapshot().currentId), books), books, 'The default reader dashboard contains the complete catalogue');
   store.signOut();
   assert.throws(() => store.signIn('ali@javed.example', 'DisabledDemo!2026'), /disabled/);
 });
@@ -84,4 +85,51 @@ test('profile, password change, per-user reading progress and refresh reset', ()
   assert.throws(() => reloaded.signIn('updated@example.test', 'ChangedDemo!2026'), /Incorrect/);
   assert.equal(reloaded.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password), 'user');
   assert.deepEqual(reloaded.snapshot().progress, {});
+});
+
+test('school profiles are validated and scoped to the signed-in demo reader', () => {
+  const store = fresh();
+  loginAdmin(store);
+  assert.throws(() => store.updateSchoolProfile({ name: 'Demo School' }), /demo reader/);
+  const secondId = store.createUser(newUser());
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.throws(() => store.updateSchoolProfile({ name: '  ' }), /school name/);
+  assert.throws(() => store.updateSchoolProfile({ name: 'Demo School', email: 'invalid' }), /school email/);
+  store.updateSchoolProfile({ name: ' Demo School ', description: ' Fictional school description ', country: 'Pakistan', state: 'Punjab', city: 'Demo City', contactPerson: ' Demo Contact ', email: 'school@example.test', phone: '12345', address: 'Fictional campus' });
+  const reader = store.snapshot().accounts.find(account => account.id === store.snapshot().currentId);
+  assert.equal(reader.schoolProfile.name, 'Demo School');
+  assert.equal(reader.schoolProfile.contactPerson, 'Demo Contact');
+  assert.equal(reader.schoolProfile.description, 'Fictional school description');
+  assert.equal(reader.schoolProfile.country, 'Pakistan');
+  assert.equal(reader.schoolProfile.state, 'Punjab');
+  assert.equal(reader.schoolProfile.city, 'Demo City');
+  store.updateSchoolProfile({ name: 'Updated Demo School' });
+  assert.equal(store.snapshot().accounts.find(account => account.id === 'demo-reader').schoolProfile.city, 'Demo City');
+  assert.equal(store.snapshot().accounts.find(account => account.id === secondId).schoolProfile, undefined);
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.equal(store.snapshot().accounts.find(account => account.id === store.snapshot().currentId).schoolProfile.address, 'Fictional campus');
+  assert.equal(fresh().snapshot().accounts.find(account => account.id === 'demo-reader').schoolProfile, undefined);
+});
+
+test('school logos stay in the reader account memory and can be replaced or removed', () => {
+  const store = fresh();
+  loginAdmin(store);
+  assert.throws(() => store.updateSchoolLogo(''), /demo reader/);
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.throws(() => store.updateSchoolLogo('https://example.test/logo.png'), /valid PNG/);
+  assert.throws(() => store.updateSchoolLogo('data:image/svg+xml;base64,PHN2Zz4='), /valid PNG/);
+  assert.throws(() => store.updateSchoolLogo('data:image/png;base64,' + 'A'.repeat(2800000)), /2 MB/);
+  const logo = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLbtAAAAABJRU5ErkJggg==';
+  store.updateSchoolLogo(logo);
+  assert.equal(store.snapshot().accounts.find(account => account.id === 'demo-reader').schoolLogo, logo);
+  assert.equal(store.snapshot().accounts.find(account => account.id === 'demo-disabled').schoolLogo, undefined);
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.equal(store.snapshot().accounts.find(account => account.id === 'demo-reader').schoolLogo, logo);
+  store.updateSchoolLogo('');
+  assert.equal(store.snapshot().accounts.find(account => account.id === 'demo-reader').schoolLogo, '');
+  assert.equal(fresh().snapshot().accounts.find(account => account.id === 'demo-reader').schoolLogo, undefined);
 });

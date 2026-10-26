@@ -10,7 +10,7 @@
     "prepare:pages": "npm run build && node tools/prepare-pages.mjs",
     "check:pages": "node tools/check-pages.mjs",
     "check": "node tools/check-migration.mjs",
-    "test": "node --test tests/demoStore.test.js"
+    "test": "node --test tests/demoStore.test.js tests/learningCatalog.test.js"
   },
   "dependencies": {
     "react": "^19.1.0",

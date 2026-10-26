@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { books } from '../data/books.js';
 import { Book3D } from './Book3D.jsx';
 import { SiteHeader } from './SiteHeader.jsx';
+import { useDemo } from '../portal/DemoContext.jsx';
 
 function BookCard({ book, onBookOpen }) {
   return (
@@ -16,6 +17,7 @@ function BookCard({ book, onBookOpen }) {
 }
 
 export function SeriesPage({ item, onBookOpen, availableBooks = books }) {
+  const { account } = useDemo();
   const shelfRef = useRef(null);
   const [canGoBack, setCanGoBack] = useState(false);
   const [canGoForward, setCanGoForward] = useState(false);
@@ -51,9 +53,9 @@ export function SeriesPage({ item, onBookOpen, availableBooks = books }) {
   return (
     <div className="lib dash series-page">
       <SiteHeader />
-      <a className="btn ghost back-home" href="#/">
+      <a className="btn ghost back-home" href={account?.role === 'admin' ? '#/admin/books' : '#/user'}>
         <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        <span>All series</span>
+        <span>{account?.role === 'admin' ? 'Series & Books' : 'My Books'}</span>
       </a>
       <h1 className="series-title">{item.name}</h1>
       <div className="row-wrap">

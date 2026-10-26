@@ -27,6 +27,9 @@ export default defineConfig({
     {
       name: 'copy-book-activity-assets',
       apply: 'build',
+      transformIndexHtml(html) {
+        return html.replace(/\r\n?/g, '\n');
+      },
       closeBundle() {
         const outputDir = resolve(projectRoot, 'dist');
         const html = resolve(outputDir, 'app.html');
