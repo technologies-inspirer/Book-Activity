@@ -53,7 +53,7 @@ for (const book of books) {
 inspect(window.RECORDED);
 ['assets/logo.png', 'assets/logo-white.png', 'sounds/page-flip.wav', 'sounds/book-open.wav'].forEach(checkAsset);
 const html = readFileSync(resolve(root, 'dist/index.html'), 'utf8');
-assert.match(html, /\/Book-Activity\/assets\//);
+assert.match(html, /\/Book-Activity\/site-assets\//);
 assert.doesNotMatch(html, /src\/main\.jsx/);
 console.log(`PASS: ${books.length} book IDs, ${pages} pages, ${activities} activities; data, QR links and build assets preserved.`);
 console.log(`Optional local lesson videos absent: ${missingVideos.size}. Supply these files to verify their playback.`);

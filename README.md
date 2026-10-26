@@ -27,7 +27,7 @@ npm run check
 npm run preview
 ```
 
-The production files are written to `dist/`. Vite is configured with the `/Book-Activity/` base path for GitHub Pages project-site deployment.
+The production files are written to `dist/`. Vite is configured with the `/Book-Activity/` base path for GitHub Pages project-site deployment. `app.html` is the editable Vite HTML entry; the development server serves it at the normal root URL. Root `index.html` is the generated GitHub Pages entry.
 The preview URL is normally http://localhost:4173/Book-Activity/. Open the HTTP URL rather than double-clicking `index.html`.
 
 `npm run check` requires a completed build. It checks preserved book IDs, page counts, activity and zone data, QR links, and the presence of referenced assets in both the source and build. Missing optional local videos are reported separately.
@@ -94,4 +94,19 @@ Run the build, check and preview commands above, then test:
 
 Local production-preview checks covered navigation, page turns, game scoring, demonstration rendering, drawing retention, stories, Urdu reader layout, QR modal routing, hash reloads and cleanup. Actual audible playback, external YouTube playback, missing local videos, device touch/fullscreen behaviour and the live GitHub Pages site still need manual verification. Google Fonts and YouTube requests were blocked in the test environment.
 
-GitHub Pages must serve the **built contents of `dist/`** at `/Book-Activity/`; serving this React source directory directly will not run the app. Review the existing Pages publishing settings before any future update. No deployment or push is performed by these commands.
+## Publishing with the existing main/root Pages setting
+
+The repository's GitHub Pages site publishes `main` and `/ (root)`. It cannot execute raw JSX or replace Vite's `%BASE_URL%` placeholder. To support that existing setting, root `index.html` contains the built page, and `site-assets/` contains its generated JavaScript, CSS and illustration. The original `books/`, `sounds/` and `assets/` are reused directly, without duplicating the large book folders.
+
+After changing the app, run:
+
+```sh
+npm run prepare:pages
+npm run check
+npm run check:pages
+npm test
+```
+
+Commit the updated source files together with `index.html`, `site-assets/` and `.nojekyll`, then push to `main` when ready to publish. `prepare:pages` replaces only the generated HTML/assets locally; it does not push or change GitHub settings. Do not edit generated `index.html` or `site-assets/` manually; edit `app.html`, `src/` or the original source files instead. `npm run dev` continues to use the source entry with hot reload, and `npm run preview` serves `dist/`.
+
+The public demo login is https://technologies-inspirer.github.io/Book-Activity/#/login. The previously prepared `gh-pages` branch is optional; changing Pages settings to use it is no longer required for this main/root setup.
