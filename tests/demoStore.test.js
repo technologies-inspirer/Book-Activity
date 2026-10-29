@@ -133,3 +133,94 @@ test('school logos stay in the reader account memory and can be replaced or remo
   assert.equal(store.snapshot().accounts.find(account => account.id === 'demo-reader').schoolLogo, '');
   assert.equal(fresh().snapshot().accounts.find(account => account.id === 'demo-reader').schoolLogo, undefined);
 });
+
+test('admin series creation validates names, survives refresh and appears after reader sign-in', () => {
+  const values = new Map();
+  const storage = { getItem: key => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
+  const store = createDemoStore(books.map(book => book.id), storage);
+  assert.throws(() => store.createSeries({ name: 'New Series' }), /admin/);
+  loginAdmin(store);
+  assert.throws(() => store.createSeries({ name: '  ' }), /series name/);
+  assert.throws(() => store.createSeries({ name: ' stemford series ' }), /already exists/);
+  const created = store.createSeries({ name: ' Bright Minds ', description: ' A new collection ' });
+  assert.equal(created.name, 'Bright Minds');
+  assert.equal(created.description, 'A new collection');
+  assert.throws(() => store.createSeries({ name: 'BRIGHT MINDS' }), /already exists/);
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.deepEqual(store.snapshot().customSeries, [created]);
+  assert.throws(() => store.createSeries({ name: 'Reader Series' }), /admin/);
+  const refreshed = createDemoStore(books.map(book => book.id), storage);
+  assert.deepEqual(refreshed.snapshot().customSeries, [created]);
+});
+
+test('corrupt series storage recovers and failed saves do not publish a series', () => {
+  const store = createDemoStore([], { getItem: () => 'invalid json', setItem: () => { throw Error('Quota exceeded'); } });
+  assert.deepEqual(store.snapshot().customSeries, []);
+  loginAdmin(store);
+  assert.throws(() => store.createSeries({ name: 'Unsaved Series' }), /Cannot save/);
+  assert.deepEqual(store.snapshot().customSeries, []);
+});
+
+test('subjects are admin-created, scoped to class and series, and survive refresh', () => {
+  const values = new Map();
+  const storage = { getItem: key => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
+  const store = createDemoStore([], storage);
+  const input = { name: ' General Knowledge ', classId: 'play-group', seriesId: 'stemford' };
+  assert.throws(() => store.createSubject(input), /admin/);
+  loginAdmin(store);
+  assert.throws(() => store.createSubject({ ...input, name: ' ' }), /subject name/);
+  assert.throws(() => store.createSubject({ ...input, classId: 'missing' }), /valid class/);
+  assert.throws(() => store.createSubject({ ...input, seriesId: 'missing' }), /valid class/);
+  assert.throws(() => store.createSubject({ ...input, name: 'ENGLISH' }), /already exists/);
+  const created = store.createSubject(input);
+  assert.equal(created.name, 'General Knowledge');
+  assert.throws(() => store.createSubject({ ...input, name: 'general knowledge' }), /already exists/);
+  store.createSubject({ ...input, classId: 'class-1' });
+  const customSeries = store.createSeries({ name: 'Future Series' });
+  store.createSubject({ ...input, seriesId: customSeries.id });
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.equal(store.snapshot().customSubjects.length, 3);
+  assert.throws(() => store.createSubject(input), /admin/);
+  assert.deepEqual(createDemoStore([], storage).snapshot().customSubjects, store.snapshot().customSubjects);
+});
+
+test('invalid saved subjects and failed subject writes do not affect the catalogue', () => {
+  const storage = { getItem: () => '[{"id":"subject-one","name":"Invalid","classId":"missing","seriesId":"stemford"}]', setItem: () => { throw Error('blocked'); } };
+  const store = createDemoStore([], storage);
+  assert.deepEqual(store.snapshot().customSubjects, []);
+  loginAdmin(store);
+  assert.throws(() => store.createSubject({ name: 'Drawing', classId: 'play-group', seriesId: 'stemford' }), /Cannot save/);
+  assert.deepEqual(store.snapshot().customSubjects, []);
+});
+
+test('assignment edits require admin, validate selections, support unassigning and persist', () => {
+  const values = new Map();
+  const storage = { getItem: key => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
+  const store = createDemoStore([], storage);
+  const input = { seriesId: 'stemford', subjectId: 'english', classIds: ['prep', 'nursery', 'prep'] };
+  assert.throws(() => store.assignSubjectClasses(input), /admin/);
+  loginAdmin(store);
+  assert.throws(() => store.assignSubjectClasses({ ...input, subjectId: 'missing' }), /valid series/);
+  assert.throws(() => store.assignSubjectClasses({ ...input, classIds: ['bad'] }), /valid classes/);
+  store.assignSubjectClasses(input);
+  assert.deepEqual(store.snapshot().subjectAssignments[0].classIds, ['prep', 'nursery']);
+  const subject = store.createSubject({ name: 'Drawing', seriesId: 'stemford', classId: 'prep' });
+  store.assignSubjectClasses({ ...input, subjectId: subject.id, classIds: ['class-2'] });
+  assert.deepEqual(createDemoStore([], storage).snapshot().subjectAssignments, store.snapshot().subjectAssignments);
+  store.assignSubjectClasses({ ...input, classIds: [] });
+  assert.deepEqual(store.snapshot().subjectAssignments.find(row => row.subjectId === 'english').classIds, []);
+  store.signOut();
+  store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.equal(store.snapshot().subjectAssignments.length, 2);
+  assert.throws(() => store.assignSubjectClasses(input), /admin/);
+});
+
+test('invalid stored assignments are ignored and failed saves leave defaults intact', () => {
+  const store = createDemoStore([], { getItem: () => '[{"subjectId":"missing","seriesId":"stemford","classIds":["prep"]}]', setItem: () => { throw Error('blocked'); } });
+  assert.deepEqual(store.snapshot().subjectAssignments, []);
+  loginAdmin(store);
+  assert.throws(() => store.assignSubjectClasses({ subjectId: 'english', seriesId: 'stemford', classIds: ['prep'] }), /Cannot save assignments/);
+  assert.deepEqual(store.snapshot().subjectAssignments, []);
+});

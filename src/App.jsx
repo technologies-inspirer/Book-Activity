@@ -11,10 +11,11 @@ import { AdminPortal } from './portal/AdminPortal.jsx';
 import { UserPortal } from './portal/UserPortal.jsx';
 import { DemoNotice, SignOut } from './portal/Shared.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
+import { GlobalLoader } from './loading/LoadingScreen.jsx';
 import './portal/portal.css';
 
 export function App() {
-  return <DemoProvider><AppRoutes /></DemoProvider>;
+  return <DemoProvider><AppRoutes /><GlobalLoader /></DemoProvider>;
 }
 
 function AppRoutes() {

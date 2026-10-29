@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": { "node": ">=22.13.0" },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,9 +11,11 @@
     "prepare:pages": "npm run build && node tools/prepare-pages.mjs",
     "check:pages": "node tools/check-pages.mjs",
     "check": "node tools/check-migration.mjs",
-    "test": "node --test tests/demoStore.test.js tests/learningCatalog.test.js"
+    "test": "node --test tests/demoStore.test.js tests/learningCatalog.test.js tests/loadingState.test.js tests/authoring.test.js"
   },
   "dependencies": {
+    "jszip": "^3.10.1",
+    "pdfjs-dist": "^6.4.299",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

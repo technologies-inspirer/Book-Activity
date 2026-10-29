@@ -1,10 +1,16 @@
 import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
+import { createLoadingScope } from './src/loading/loadingState.js';
+import { setDrawingCursor } from './src/drawingCursors.js';
 
 const drawings = {};
 const brush = { color: '#e63946', size: 12, erase: false };
 
-export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref } = {}) {
+export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref, activityPreview, onPreviewClose } = {}) {
+  const loading = createLoadingScope();
+  const previewOwner = activityPreview ? `activity-preview-${crypto.randomUUID()}` : null;
+  const previewBrush = activityPreview ? { ...brush } : null;
+  let previewObserver;
   // Every reader mount owns its delayed work. React can unmount it mid-animation.
   const timers = new Set();
   const schedule = (callback, delay) => {
@@ -16,7 +22,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     return timer;
   };
   const players = new Map();
+  const videoLoading = new Map();
   const clearPlayer = box => {
+    videoLoading.get(box)?.();
+    videoLoading.delete(box);
     players.get(box)?.destroy();
     players.delete(box);
     box.replaceChildren();
@@ -51,7 +60,21 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       else n.setAttribute(k, v === true ? '' : v);
     }
     n.append(...kids.flat().filter(k => k != null && k !== false));
+    if (previewOwner && /^(game|story|fx|modal|narr)(\s|$)/.test(attrs?.class || '')) n.dataset.activityPreview = previewOwner;
+    if (tag === 'video') loading.media(n);
     return n;
+  }
+  function setPageImage(img, book, page) {
+    if (page.img) {
+      img.src = page.img;
+      loading.image(img);
+    } else {
+      const finish = loading.begin('Preparing your page...');
+      pageImage(book, page.pdf).then(url => {
+        img.src = url;
+        loading.image(img);
+      }).catch(() => toast('This page could not be loaded. Please try again.')).finally(finish);
+    }
   }
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const pageOf = (book, i) => book.pages[i];
@@ -155,7 +178,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (!pg) { node.classList.add('blank'); return node; }
     if (pg.img || pg.pdf) {
       const img = el('img', { class: 'page-bg', alt: `Page ${idx + 1}`, draggable: 'false' });
-      if (pg.img) img.src = pg.img; else pageImage(book, pg.pdf).then(u => { img.src = u; });
+      setPageImage(img, book, pg);
       node.append(img);
     }
     if (pg.html) node.append(el('div', { class: 'page-html', html: pg.html }));
@@ -552,7 +575,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     stopSpeak(); closeMenu();
     const pg = pageOf(book, idx), ratio = book.ratio || 0.75, key = `${book.id}:${idx}:page`;
     const img = el('img', { class: 'page-bg', alt: `Page ${idx + 1}`, draggable: 'false' });
-    if (pg.img) img.src = pg.img; else pageImage(book, pg.pdf).then(u => { img.src = u; });
+    setPageImage(img, book, pg);
     const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key);
     const sheet = el('div', { class: 'fx-page' }, img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));
@@ -573,7 +596,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const showHow = fill && el('button', { class: 'fx-btn how', html: I.play + '<span>Show me how</span>',
       onclick: () => { sheet.classList.remove('pen'); tools.hidden = true; playDemo(fillAct, demo); } });
     const myself = fill && el('button', { class: 'fx-btn self', html: I.pen + "<span>I'll do it myself</span>",
-      onclick: () => { stopDemo(demo); sheet.classList.add('pen'); tools.hidden = false; } });
+      onclick: () => { stopDemo(demo); brush.erase = false; sheet.classList.add('pen'); tools.hidden = false; tools.sync(); } });
     if (!fill) { sheet.classList.add('pen'); tools.hidden = false; }
     const panel = el('div', { class: 'fx-panel' },
       el('button', { class: 'fx-btn close', onclick: closeFocus, html: I.x + '<span>Close</span>' }),
@@ -602,6 +625,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   // The canvas keeps a fixed resolution tied to the zone, so drawings survive resizes and page turns.
   function inkCanvas(book, z, key) {
     const c = el('canvas', { class: 'ink' });
+    setDrawingCursor(c, brush.erase);
     c.width = Math.round(z.w * 12);
     c.height = Math.round(z.h * 12 / (book.ratio || 0.75));
     const ctx = c.getContext('2d');
@@ -821,12 +845,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const colors = only?.length ? only : ['#e63946', '#f4a261', '#4aa3df'];
     if (!colors.includes(brush.color)) brush.color = colors[0];
     const wrap = el('div', { class: 'tools', hidden: true }, el('span', { class: 'tools-lbl' }, 'Colour & write'));
-    const sync = () => wrap.querySelectorAll('button').forEach(b => {
-      b.classList.toggle('on', !!(
-        (b.dataset.c && !brush.erase && b.dataset.c === brush.color) ||
-        (b.dataset.s && +b.dataset.s === brush.size) ||
-        (b.dataset.e && brush.erase)));
-    });
+    const sync = () => {
+      app.querySelectorAll('canvas.ink').forEach(canvas => setDrawingCursor(canvas, brush.erase));
+      focusEl?.querySelectorAll('canvas.ink').forEach(canvas => setDrawingCursor(canvas, brush.erase));
+      wrap.querySelectorAll('button').forEach(b => {
+        b.classList.toggle('on', !!(
+          (b.dataset.c && !brush.erase && b.dataset.c === brush.color) ||
+          (b.dataset.s && +b.dataset.s === brush.size) ||
+          (b.dataset.e && brush.erase)));
+      });
+    };
     colors.forEach(c => wrap.append(el('button', { class: 'sw', style: `--c:${c}`, 'data-c': c, title: 'Colour', onclick: () => { brush.color = c; brush.erase = false; sync(); } })));
     wrap.append(el('i', { class: 'sep' }));
     [[6, 6], [12, 11], [26, 18]].forEach(([s, px]) => wrap.append(el('button', { class: 'sz', 'data-s': s, title: 'Brush size', onclick: () => { brush.size = s; sync(); } }, el('i', { style: `--s:${px}px` }))));
@@ -834,6 +862,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       el('button', { class: 'txt', 'data-e': 1, onclick: () => { brush.erase = !brush.erase; sync(); } }, 'Eraser'),
       el('button', { class: 'txt', onclick: onClear }, 'Clear'));
     sync();
+    wrap.sync = sync;
     return wrap;
   }
 
@@ -927,6 +956,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         caption.dir = urdu ? 'rtl' : 'ltr';
         words.forEach(([, sp]) => sp.classList.add('on'));
         clip = new Audio(file);
+        loading.media(clip);
         clip.onended = () => { clip = null; say(i + 1); };
         clip.onerror = () => { clip = null; say(i + 1); };
         clip.play().catch(() => { clip = null; say(i + 1); });
@@ -956,7 +986,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       video.removeAttribute('src');
       video.load();
     });
-    for (const box of players.keys()) {
+    for (const box of new Set([...players.keys(), ...videoLoading.keys()])) {
       if (modalEl?.contains(box)) clearPlayer(box);
     }
     modalEl?.remove();
@@ -982,21 +1012,30 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
      A video in a page may start on its own with sound only where the browser allows it (Chrome, Android). An
      iPhone does not: there it starts silent, and a big "Tap for sound" button brings the sound in. */
   let ytApi = null;
+  let youtubeScript = null, youtubeReadyHandler = null, previousYoutubeReady;
   function loadYouTube() {
-    return ytApi || (ytApi = new Promise(res => {
+    return ytApi || (ytApi = new Promise((res, reject) => {
       if (window.YT?.Player) return res();
+      const timeout = schedule(() => { ytApi = null; reject(new Error('Video connection timed out.')); }, 15000);
       const prev = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => { prev?.(); res(); };
-      document.head.append(el('script', { src: 'https://www.youtube.com/iframe_api' }));
+      previousYoutubeReady = prev;
+      youtubeReadyHandler = () => { clearTimeout(timeout); prev?.(); res(); };
+      window.onYouTubeIframeAPIReady = youtubeReadyHandler;
+      youtubeScript = el('script', { src: 'https://www.youtube.com/iframe_api', onerror: () => { clearTimeout(timeout); ytApi = null; reject(new Error('Video connection unavailable.')); } });
+      document.head.append(youtubeScript);
     }));
   }
   function youTube(box, id, start, end) {
     clearPlayer(box);
+    let finish = loading.begin('Loading video...');
+    const stopLoading = () => { clearTimeout(startupTimeout); finish?.(); finish = null; };
+    const startupTimeout = schedule(() => { stopLoading(); if (box.isConnected) toast('The video is taking too long to connect. You can close it and try again.'); }, 15000);
+    videoLoading.set(box, stopLoading);
     const slot = el('div');
     const sound = el('button', { class: 'yt-sound', hidden: true, html: '🔊<span>Tap for sound</span>' });
     box.append(slot, sound);
     loadYouTube().then(() => {
-      if (!slot.isConnected) return;                       // closed before the player was ready
+      if (!slot.isConnected) { stopLoading(); return; }    // closed before the player was ready
       const vars = { autoplay: 1, playsinline: 1, rel: 0, origin: location.origin };
       if (start) vars.start = Math.floor(start);
       if (end) vars.end = Math.ceil(end);
@@ -1004,6 +1043,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         videoId: id, width: '100%', height: '100%', playerVars: vars,
         events: {
           onReady: e => {
+            stopLoading();
             if (!box.isConnected) return;
             e.target.getIframe().setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
             e.target.playVideo();
@@ -1012,13 +1052,19 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
               if (!box.isConnected || e.target.getPlayerState?.() === YT.PlayerState.PLAYING) return;
               e.target.mute(); e.target.playVideo(); sound.hidden = false;
             }, 1200);
-          }
+          },
+          onStateChange: e => {
+            if (!box.isConnected) { stopLoading(); return; }
+            if (e.data === 3) finish ||= loading.begin('Buffering video...');
+            else stopLoading();
+          },
+          onError: () => { stopLoading(); if (box.isConnected) toast('This video could not be loaded. Please try again.'); }
         }
       });
       players.set(box, p);
       // with the sound on, the captions YouTube shows for a silent video are not needed
       sound.onclick = () => { p.unMute?.(); p.setVolume?.(100); p.playVideo?.(); p.unloadModule?.('captions'); sound.hidden = true; };
-    });
+    }).catch(() => { stopLoading(); if (box.isConnected) toast('This video could not connect. Check your internet connection.'); });
   }
 
   function syncVideo(r) {
@@ -1188,10 +1234,27 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       .then(() => location.replace(SERVER + location.hash), () => {});
   }
 
-  window.addEventListener('hashchange', route);
-  route();
+  if (activityPreview) {
+    const { book: original, pageIndex, activity, videos } = activityPreview;
+    // Preview drawings are isolated from the child's drawings in the original reader.
+    const book = { ...original, id: previewOwner, pages: original.pages.map((page, index) => index === pageIndex && activity?.type === 'fill' ? { ...page, qr: undefined, zones: [], acts: [activity] } : page) };
+    if (videos) openVideos(activityPreview.title || 'Videos', videos);
+    else if (activity.type === 'game') openGame(book, pageIndex, activity);
+    else if (activity.type === 'story') openStory(book, pageIndex, activity);
+    else if (activity.type === 'videos') openVideos(activity.title, activity.videos);
+    else if (activity.type === 'fill') openFocus(book, pageIndex, app);
+    previewObserver = new MutationObserver(() => {
+      if (!document.querySelector(`[data-activity-preview="${previewOwner}"]`)) onPreviewClose?.();
+    });
+    previewObserver.observe(document.body, { childList: true, subtree: true });
+  } else {
+    window.addEventListener('hashchange', route);
+    route();
+  }
 
   return () => {
+    previewObserver?.disconnect();
+    loading.dispose();
     window.removeEventListener('hashchange', route);
     document.removeEventListener('pointerdown', onDocumentPointerDown);
     document.removeEventListener('keydown', onDocumentKeyDown);
@@ -1201,6 +1264,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     timers.forEach(timer => window.clearTimeout(timer));
     timers.clear();
     for (const box of players.keys()) clearPlayer(box);
+    if (youtubeReadyHandler && window.onYouTubeIframeAPIReady === youtubeReadyHandler) window.onYouTubeIframeAPIReady = previousYoutubeReady;
+    youtubeScript?.remove();
+    if (previewOwner) Object.keys(drawings).filter(key => key.startsWith(`${previewOwner}:`)).forEach(key => { delete drawings[key]; });
+    if (previewBrush) Object.assign(brush, previewBrush);
     synth?.cancel();
     Object.values(sounds).forEach(sound => sound.pause());
     app.replaceChildren();

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getLearningBooks, learningBookMetadata, learningClasses, learningSubjects, libraryLink } from '../src/data/learningCatalog.js';
+import { getSubjectAssignments, getLearningSubjects, getLearningBooks, learningBookMetadata, learningClasses, learningSubjects, libraryLink } from '../src/data/learningCatalog.js';
 
 globalThis.window = {};
 await import('../books/library.js');
@@ -41,4 +41,28 @@ test('class options and selection links support the complete navigation flow', (
   assert.equal(libraryLink(), '#/user/library');
   assert.equal(libraryLink('play-group', 'stemford'), '#/user/library/play-group/stemford');
   assert.equal(libraryLink('class-1', 'stemford', 'science'), '#/user/library/class-1/stemford/science');
+});
+
+
+test('created subjects appear only in their class and series without exposing unassigned books', () => {
+  const custom = [{ id: 'subject-test', name: 'Drawing', classId: 'prep', seriesId: 'stemford' }];
+  assert.deepEqual(getLearningSubjects([], custom, { classId: 'prep', seriesId: 'stemford' }), [{ id: 'subject-test', name: 'Drawing' }]);
+  assert.deepEqual(getLearningSubjects([], custom, { classId: 'play-group', seriesId: 'stemford' }), []);
+  assert.deepEqual(getLearningSubjects([], custom, { classId: 'prep', seriesId: 'maxford' }), []);
+  assert.equal(getLearningSubjects(books, custom, { classId: 'play-group', seriesId: 'stemford' }).length, 4);
+});
+
+test('class assignments merge subject rows and update navigation without copying books', () => {
+  const custom = [
+    { id: 'subject-a', name: 'Drawing', classId: 'prep', seriesId: 'stemford' },
+    { id: 'subject-b', name: 'Drawing', classId: 'nursery', seriesId: 'stemford' }
+  ];
+  const row = getSubjectAssignments(custom).find(row => row.subjectId === 'subject-a');
+  assert.deepEqual(row.classIds, ['prep', 'nursery']);
+  const overrides = [{ seriesId: 'stemford', subjectId: 'english', classIds: ['prep'] }];
+  assert.ok(!getLearningSubjects(books, custom, { classId: 'play-group', seriesId: 'stemford' }, overrides).some(s => s.id === 'english'));
+  assert.ok(getLearningSubjects(books, custom, { classId: 'prep', seriesId: 'stemford' }, overrides).some(s => s.id === 'english'));
+  assert.deepEqual(getLearningBooks(books, { classId: 'prep', seriesId: 'stemford', subjectId: 'english' }), []);
+  assert.equal(getLearningBooks(books).length, 8);
+  assert.deepEqual(getLearningSubjects([], [], { classId: 'play-group', seriesId: 'stemford' }), [], 'Unassigned original books remain hidden');
 });

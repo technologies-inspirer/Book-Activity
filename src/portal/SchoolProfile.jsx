@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDemo } from './DemoContext.jsx';
 import { Feedback } from './Shared.jsx';
+import { beginLoading } from '../loading/loadingState.js';
 
 const logoTypes = ['image/png', 'image/jpeg', 'image/webp'];
 const maxLogoSize = 2 * 1024 * 1024;
@@ -22,6 +23,9 @@ export function SchoolProfile() {
   const [uploading, setUploading] = useState(false);
   const fileInput = useRef(null);
   const activeReader = useRef(null);
+  useEffect(() => {
+    if (uploading) return beginLoading('Loading school logo...');
+  }, [uploading]);
 
   useEffect(() => () => {
     const reader = activeReader.current;
