@@ -9,6 +9,8 @@ const projectRoot = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   base: '/Book-Activity/',
   publicDir: false,
+  server: { watch: { ignored: [resolve(projectRoot, 'index.html').replace(/\\/g, '/'), '**/site-assets/**'] } },
+  optimizeDeps: { entries: ['app.html'], include: ['react', 'react-dom', 'react-dom/client', 'jszip', 'pdfjs-dist'] },
   plugins: [
     react(),
     {
@@ -51,6 +53,8 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           const moduleId = id.replace(/\\/g, '/');
+          if (moduleId.includes('/node_modules/pdfjs-dist/')) return 'pdf-engine';
+          if (/\/node_modules\/(jszip|pako|readable-stream|lie|immediate|setimmediate|core-util-is|inherits|isarray|process-nextick-args|safe-buffer|string_decoder|util-deprecate)\//.test(moduleId)) return 'authoring-vendor';
           const activityFile = moduleId.match(/\/books\/(activities[^/]+)\.js$/);
           if (activityFile) return activityFile[1];
           if (moduleId.includes('/node_modules/')) return 'vendor';

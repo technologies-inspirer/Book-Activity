@@ -1,19 +1,18 @@
 import { useEffect, useRef } from 'react';
-import { learningClasses, learningSubjects, getLearningBooks, libraryLink } from '../data/learningCatalog.js';
-import { series } from '../data/series.js';
+import { learningClasses, getLearningSubjects, getLearningBooks, libraryLink } from '../data/learningCatalog.js';
 import { useDemo } from './DemoContext.jsx';
 import { BookTile } from './BookCollection.jsx';
 import { EmptyState } from './Shared.jsx';
 import { LibraryBookIcon, LibraryClassIcon } from './LibraryIcons.jsx';
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
-  const { assignedBooks } = useDemo();
+  const { assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
   const titleRef = useRef(null);
   const selectedClass = learningClasses.find(item => item.id === segments[0]);
   const classBooks = selectedClass ? getLearningBooks(assignedBooks, { classId: selectedClass.id }) : [];
   const selectedSeries = series.find(item => item.id === segments[1]) || series.find(item => classBooks.some(item.of)) || series[0];
   const selection = { classId: selectedClass?.id, seriesId: selectedSeries.id };
-  const subjectOptions = selectedClass ? learningSubjects.filter(subject => getLearningBooks(classBooks, { seriesId: selectedSeries.id, subjectId: subject.id }).length > 0) : [];
+  const subjectOptions = selectedClass ? getLearningSubjects(classBooks, customSubjects, selection, subjectAssignments) : [];
   const selectedSubject = subjectOptions.find(item => item.id === segments[2]);
   const selectedBooks = selectedSubject ? getLearningBooks(assignedBooks, { ...selection, subjectId: selectedSubject.id }) : [];
   const step = !selectedClass ? 0 : !selectedSubject ? 1 : 2;
@@ -67,7 +66,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
           ) : (
             <section className="library-results" aria-label={`${selectedSubject.name} books`}>
               <div className="portal-page-heading"><h2>{selectedSubject.name} books</h2><span className="portal-pill">{selectedBooks.length} available</span></div>
-              <div className="portal-book-grid">{selectedBooks.map(book => <BookTile key={book.id} book={book} onBookOpen={onBookOpen} />)}</div>
+              {selectedBooks.length ? <div className="portal-book-grid">{selectedBooks.map(book => <BookTile key={book.id} book={book} onBookOpen={onBookOpen} />)}</div> : <EmptyState title="No books added yet">Books for this subject will appear here when they are added.</EmptyState>}
             </section>
           )}
         </>

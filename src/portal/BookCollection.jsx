@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Book3D } from '../components/Book3D.jsx';
-import { series } from '../data/series.js';
+import { useDemo } from './DemoContext.jsx';
 import { EmptyState } from './Shared.jsx';
 
 export function BookTile({ book, onBookOpen }) {
+  const { series } = useDemo();
   return (
     <a className="portal-book-card" href={`#/book/${encodeURIComponent(book.id)}/read/1`} onClick={onBookOpen}>
       <div className="portal-cover-stage"><Book3D book={book} /></div>
@@ -18,6 +19,7 @@ export function BookTile({ book, onBookOpen }) {
 }
 
 export function BookCollection({ books, onBookOpen, dropdownNavigation = false }) {
+  const { series } = useDemo();
   const [filter, setFilter] = useState('all');
   const shown = books.filter(book => filter === 'all' || series.find(item => item.id === filter)?.of(book));
 

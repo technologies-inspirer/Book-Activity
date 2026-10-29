@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { books } from '../data/books.js';
 import { useDemo } from './DemoContext.jsx';
 import { availableBooks, isExpired } from './demoStore.js';
@@ -7,11 +7,16 @@ import { DemoNotice, Logo, Resources, SignOut } from './Shared.jsx';
 import { UsersAccess } from './UsersAccess.jsx';
 import { ProfilePage } from './ProfilePage.jsx';
 import { DashboardBanner } from './DashboardBanner.jsx';
+import { AddSeries } from './AddSeries.jsx';
+import { AddSubject } from './AddSubject.jsx';
+import { AssignSubjects } from './AssignSubjects.jsx';
+import { LoadingScreen } from '../loading/LoadingScreen.jsx';
+const PdfAuthoring = lazy(() => import('../authoring/PdfAuthoring.jsx'));
 
-const existingLinks = [['overview', 'Dashboard', '◫'], ['users', 'Users & Access', '♙'], ['books', 'Series & Books', '▤'], ['resources', 'Resources', '◇'], ['profile', 'My Profile', '○']];
+const existingLinks = [['overview', 'Dashboard', '◫'], ['users', 'Users & Access', '♙'], ['books', 'Series & Books', '▤'], ['pdf-activities', 'PDF & Activities', '▤'], ['resources', 'Resources', '◇'], ['profile', 'My Profile', '○']];
 const placeholderLinks = [
-  ['series', 'Add Series', '▤'],
-  ['subjects-books', 'Subjects / Books', '▤'],
+  ['series', 'Add New Series', '▤'],
+  ['subjects-books', 'Add New Subject', '▤'],
   ['assign-subject-to-classes', 'Assign Subject to Classes', '▧'],
   ['smart-board-data', 'Smart Board Data', '□'],
   ['tutorial-management', 'Tutorial Management', '▷'],
@@ -28,6 +33,7 @@ const links = [
   'series',
   'subjects-books',
   'assign-subject-to-classes',
+  'pdf-activities',
   'resource-materials',
   'profile'
 ].map(id => linksById.get(id));
@@ -42,7 +48,7 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const currentPage = page === 'dashboard' ? 'overview' : page;
   const selected = links.some(([id]) => id === currentPage) ? currentPage : 'overview';
-  const isPlaceholder = placeholderLinks.some(([id]) => id === selected);
+  const isPlaceholder = !['series', 'subjects-books', 'assign-subject-to-classes'].includes(selected) && placeholderLinks.some(([id]) => id === selected);
 
   return (
     <div className="portal admin-shell">
@@ -82,6 +88,10 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
         <main className="admin-main" id="admin-main" tabIndex="-1" key={selected}>
           {selected === 'overview' && <Overview />}
           {selected === 'users' && <UsersAccess />}
+          {selected === 'series' && <AddSeries />}
+          {selected === 'subjects-books' && <AddSubject />}
+          {selected === 'assign-subject-to-classes' && <AssignSubjects />}
+          {selected === 'pdf-activities' && <Suspense fallback={<LoadingScreen label="Opening PDF editor..." />}><PdfAuthoring /></Suspense>}
           {selected === 'books' && (
             <>
               <div className="portal-page-heading">

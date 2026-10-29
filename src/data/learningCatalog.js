@@ -33,6 +33,30 @@ export function getLearningBooks(books, selection = {}) {
   });
 }
 
+export function getSubjectAssignments(customSubjects = [], overrides = []) {
+  const rows = new Map();
+  const add = (subject, seriesId, classId, hasBooks = false) => {
+    const key = JSON.stringify([seriesId, subject.name.toLowerCase()]);
+    if (!rows.has(key)) rows.set(key, { subjectId: subject.id, name: subject.name, seriesId, classIds: [], bookClassIds: [] });
+    const row = rows.get(key);
+    if (!row.classIds.includes(classId)) row.classIds.push(classId);
+    if (hasBooks && !row.bookClassIds.includes(classId)) row.bookClassIds.push(classId);
+  };
+  Object.values(learningBookMetadata).forEach(meta => add(learningSubjects.find(s => s.id === meta.subjectId), meta.seriesId, meta.classId, true));
+  customSubjects.forEach(subject => add(subject, subject.seriesId, subject.classId));
+  return [...rows.values()].map(row => {
+    const override = overrides.find(item => item.seriesId === row.seriesId && item.subjectId === row.subjectId);
+    return { ...row, classIds: override ? override.classIds : row.classIds };
+  });
+}
+
+export function getLearningSubjects(books, customSubjects, selection, assignments = []) {
+  return getSubjectAssignments(customSubjects, assignments)
+    .filter(row => row.seriesId === selection.seriesId && row.classIds.includes(selection.classId))
+    .filter(row => !row.bookClassIds.includes(selection.classId) || getLearningBooks(books, { ...selection, subjectId: row.subjectId }).length > 0)
+    .map(row => ({ id: row.subjectId, name: row.name }));
+}
+
 export function libraryLink(classId, seriesId, subjectId) {
   return '#/user/library' + [classId, seriesId, subjectId].filter(Boolean).map(part => `/${encodeURIComponent(part)}`).join('');
 }

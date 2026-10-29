@@ -12,9 +12,11 @@
       rel="stylesheet"
     />
     <link rel="icon" href="%BASE_URL%assets/logo.png" />
+    <link rel="preload" href="%BASE_URL%assets/loading-owl.png" as="image" />
+    <link rel="stylesheet" href="/src/loading/loading.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div class="book-loading-screen" role="status" aria-live="polite"><div class="book-loading-card"><div class="book-loading-art" aria-hidden="true"><span class="book-loading-glow"></span><img src="%BASE_URL%assets/loading-owl.png" alt="" width="1316" height="1195" /><span class="book-loading-shadow"></span></div><p>Loading your books...</p><span class="book-loading-dots" aria-hidden="true"><i></i><i></i><i></i></span></div></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

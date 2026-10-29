@@ -37,6 +37,44 @@
 .portal .portal-field input { background: var(--portal-field); color: var(--portal-text); border: 1px solid var(--portal-border); border-radius: 10px; min-width: 0; width: 100%; padding: 12px 14px; font-weight: 400; color-scheme: light; }
 .portal input::placeholder { color: #72868e; }
 .portal .portal-field input:focus { border-color: var(--portal-accent-text); }
+.portal .portal-field select { font: inherit; font-weight: 400; background: var(--portal-field); color: var(--portal-text); border: 1px solid var(--portal-border); border-radius: 10px; padding: 12px 14px; width: 100%; min-width: 0; }
+.assignment-page .portal-page-heading h1 { font-size: clamp(1.4rem, 2.3vw, 2rem); }
+.assignment-page .portal-page-heading p { margin-top: 6px; font-size: .82rem; }
+.assignment-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+.assignment-filters .portal-field { margin: 0; }
+.assignment-search { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 10px; }
+.assignment-table { margin-top: 18px; }
+.assignment-table :is(th, td) { padding: 12px; vertical-align: middle; }
+.assignment-table tbody tr:nth-child(odd) { background: var(--portal-soft); }
+.assignment-table td:nth-child(5) { width: 48%; }
+.catalog-table td { overflow-wrap: anywhere; }
+.catalog-table td:nth-child(1) { width: 20%; }
+.catalog-table td:last-child { min-width: 130px; }
+.portal .assignment-edit { font-size: .72rem; padding: 5px 9px; white-space: nowrap; }
+.assignment-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.assignment-badges .portal-pill { font-size: .65rem; padding: 2px 8px; }
+.assignment-pagination, .assignment-pagination > div, .assignment-pagination > label { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.assignment-pagination { justify-content: space-between; margin: 20px 0; font-size: .78rem; }
+.assignment-pagination select { background: var(--portal-field); color: var(--portal-text); padding: 6px 10px; border: 1px solid var(--portal-border); border-radius: 6px; }
+.assignment-page button:disabled { opacity: .45; }
+.assignment-class-fieldset { border: 1px solid var(--portal-border); border-radius: 10px; padding: 16px; margin: 20px 0; min-width: 0; }
+.assignment-class-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.assignment-class-options label { display: flex; align-items: center; gap: 8px; font-size: .85rem; }
+.assignment-class-options input { accent-color: var(--portal-accent-text); }
+.assignment-no-results { text-align: center; }
+@media (max-width: 760px) {
+  .assignment-filters { grid-template-columns: 1fr; }
+  .assignment-class-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.portal .portal-field textarea { font: inherit; font-weight: 400; background: var(--portal-field); color: var(--portal-text); border: 1px solid var(--portal-border); border-radius: 10px; padding: 12px 14px; resize: vertical; width: 100%; }
+.portal textarea:focus-visible { outline: 3px solid var(--portal-accent-text); outline-offset: 4px; }
+.series-create-panel { max-width: 760px; }
+.series-list-panel { margin-top: 24px; }
+.series-admin-list { list-style: none; padding: 0; margin: 0 0 20px; }
+.series-admin-list li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--portal-border); }
+.series-admin-list h3, .series-admin-list p { margin: 0; overflow-wrap: anywhere; }
+.series-admin-list li > div { min-width: 0; }
+.library-series-options a { overflow-wrap: anywhere; max-width: 100%; }
 .password-wrap { display: flex; align-items: center; position: relative; }
 .portal .password-wrap input { padding-right: 66px; }
 .password-wrap button { position: absolute; right: 5px; height: 36px; padding: 0 10px; border: 0; border-radius: 7px; background: transparent; color: var(--portal-accent-text); font-size: .75rem; font-weight: 800; }

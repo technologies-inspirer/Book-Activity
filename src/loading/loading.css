@@ -1,0 +1,16 @@
+.book-loading-screen { position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; background: transparent; pointer-events: none; padding: 20px; font-family: 'Nunito', system-ui, sans-serif; color: #103640; }
+.book-loading-card { box-sizing: border-box; width: min(420px, 100%); padding: 30px; text-align: center; border: 0; background: transparent; box-shadow: none; }
+.book-loading-art { position: relative; width: 290px; max-width: 100%; margin: 0 auto 18px; isolation: isolate; }
+.book-loading-art img { display: block; width: 100%; height: auto; position: relative; z-index: 1; transform-origin: 50% 85%; animation: book-owl-read 2.4s ease-in-out infinite; }
+.book-loading-glow { position: absolute; width: 38%; height: 38%; top: 1%; left: 9%; border-radius: 50%; background: radial-gradient(circle, #ffdf70a6, #fff2b340 45%, transparent 70%); animation: book-bulb-glow 1.8s ease-in-out infinite; }
+.book-loading-shadow { display: block; width: 55%; height: 8px; border-radius: 50%; background: #0b625e20; margin: 4px auto 0; animation: book-owl-shadow 2.4s ease-in-out infinite; }
+.book-loading-card p { font: 800 15px/1.5 'Nunito', system-ui, sans-serif; margin: 0 0 12px; color: #103640; }
+.book-loading-dots { display: flex; gap: 7px; justify-content: center; }
+.book-loading-dots i { width: 7px; height: 7px; border-radius: 50%; background: #ffbf47; animation: book-loading-dot 1.2s ease-in-out infinite; }
+.book-loading-dots i:nth-child(2) { animation-delay: .15s; }
+.book-loading-dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes book-owl-read { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-8px) rotate(1.5deg); } }
+@keyframes book-bulb-glow { 0%, 100% { opacity: .45; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.25); } }
+@keyframes book-owl-shadow { 0%, 100% { transform: scaleX(1); opacity: .7; } 50% { transform: scaleX(.85); opacity: .4; } }
+@keyframes book-loading-dot { 0%, 65%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-5px); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .book-loading-screen *, .book-loading-screen *::before, .book-loading-screen *::after { animation: none !important; } }

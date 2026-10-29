@@ -3,7 +3,7 @@ import { useDemo } from './DemoContext.jsx';
 import { ResourceOptions } from './ResourceOptions.jsx';
 
 export function DemoNotice() {
-  return <div className="demo-notice"><span className="demo-dot" />Frontend demo only — real authentication is not connected. <span>Changes reset on refresh. UI access checks do not provide real security.</span></div>;
+  return <div className="demo-notice"><span className="demo-dot" />Frontend demo only — real authentication is not connected. <span>Account changes reset on refresh. Added series and subjects stay in this browser. UI access checks do not provide real security.</span></div>;
 }
 export function Logo({ href = '#/' }) {
   return <a className="portal-logo" href={href} aria-label="Javed Publishers home"><img src="assets/logo-white.png" alt="Javed Publishers" /></a>;

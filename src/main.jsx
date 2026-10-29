@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import { LoadingScreen } from './loading/LoadingScreen.jsx';
 import '../data.js';
 import '../books/library.js';
 import '../books/zones.js';
@@ -8,9 +9,10 @@ import '../styles.css';
 import './theme.css';
 
 const root = createRoot(document.getElementById('root'));
-root.render(<p role="status">Loading interactive books…</p>);
+root.render(<LoadingScreen />);
 
 async function startApp() {
+  const minimumStartup = new Promise(resolve => setTimeout(resolve, 1500));
   await Promise.all([
     import('../books/activities-english3.js'),
     import('../books/activities-computer0.js'),
@@ -19,6 +21,7 @@ async function startApp() {
     import('../books/activities-urdu3.js')
   ]);
   const { App } = await import('./App.jsx');
+  await minimumStartup;
   root.render(<App />);
 }
 
