@@ -1,3 +1,4 @@
+import { ResponsiveTable } from './ResponsiveTable.jsx';
 import { useState } from 'react';
 import { getSubjectAssignments, learningClasses } from '../data/learningCatalog.js';
 import { useDemo } from './DemoContext.jsx';
@@ -68,10 +69,10 @@ export function AssignSubjects() {
       <label className="portal-field">Classes<select name="classFilter" value={filters.classId} onChange={event => set({ classId: event.target.value })}><option value="">All classes</option>{learningClasses.map(item => <option value={item.id} key={item.id}>{item.name}</option>)}</select></label>
       <div className="assignment-search"><button type="button" className="portal-secondary" onClick={() => { setFilters(emptyFilters); setApplied(emptyFilters); setPage(1); }}>Reset</button><button className="portal-primary">Search</button></div>
     </form>
-    <div className="portal-table-wrap assignment-table"><table><caption className="sr-only">Subjects and their assigned classes</caption><thead><tr><th scope="col">Actions</th><th scope="col">Publisher</th><th scope="col">Series</th><th scope="col">Subject</th><th scope="col">Assigned Classes</th></tr></thead><tbody>
+    <ResponsiveTable className="assignment-table" label="Subjects and assigned classes"><table><caption className="sr-only">Subjects and their assigned classes</caption><thead><tr><th scope="col">Actions</th><th scope="col">Publisher</th><th scope="col">Series</th><th scope="col">Subject</th><th scope="col">Assigned Classes</th></tr></thead><tbody>
       {shown.map(row => <tr key={`${row.seriesId}/${row.subjectId}`}><td><button className="portal-secondary assignment-edit" aria-label={`Edit classes for ${row.name} in ${series.find(item => item.id === row.seriesId)?.name}`} onClick={() => setDialog({ initial: row })}>Edit classes</button></td><td>Javed Publishers</td><td>{series.find(item => item.id === row.seriesId)?.name}</td><td>{row.name}</td><td><div className="assignment-badges">{learningClasses.filter(item => row.classIds.includes(item.id)).map(item => <span className="portal-pill" key={item.id}>&#10003; {item.name}</span>)}{!row.classIds.length && <span className="portal-muted">No classes assigned</span>}</div></td></tr>)}
       {!shown.length && <tr><td colSpan={5} className="assignment-no-results">No assignments match your filters.</td></tr>}
-    </tbody></table></div>
+    </tbody></table></ResponsiveTable>
     <div className="assignment-pagination"><div><button type="button" className="portal-secondary" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>Previous</button><span aria-live="polite">Page {currentPage} of {pages}</span><button type="button" className="portal-secondary" disabled={currentPage === pages} onClick={() => setPage(currentPage + 1)}>Next</button></div><label>Show<select aria-label="Rows per page" value={pageSize} onChange={event => { setPageSize(Number(event.target.value)); setPage(1); }}>{[10, 20, 50].map(size => <option key={size} value={size}>{size}</option>)}</select><span>{filtered.length} results</span></label></div>
     <p className="portal-muted small">Assignments are saved in this browser when local storage is available.</p>
     {dialog && <AssignmentDialog rows={rows} series={series} initial={dialog.initial} onClose={() => setDialog(null)} onSaved={text => setMessage({ text })} />}

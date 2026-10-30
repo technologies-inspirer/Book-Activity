@@ -1,5 +1,6 @@
 import JSZip from 'jszip';
 import { MAX_DRAFT_BYTES, MAX_PAGES, validateActivity } from './project.js';
+import { youtubeId } from './readerBook.js';
 
 const abort = signal => { if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError'); };
 const safePath = value => typeof value === 'string' && /^[a-zA-Z0-9_./-]+$/.test(value) && !value.startsWith('/') && !value.split('/').some(part => part === '..');
@@ -19,9 +20,11 @@ export async function exportProject(draft, { signal, onProgress } = {}) {
       }
       return metadata;
     });
-    return { number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, imagePath: `${prefix}.jpg`, thumbnailPath: `${prefix}-thumbnail.jpg`, activities };
+    return { number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, text: page.text || '', embeddedVideos: page.embeddedVideos || [], imagePath: `${prefix}.jpg`, thumbnailPath: `${prefix}-thumbnail.jpg`, activities };
   });
-  zip.file('project.json', JSON.stringify({ format: 'book-activity-draft', version: 1, title: draft.title, fileName: draft.fileName, seriesId: draft.seriesId, classId: draft.classId, subjectId: draft.subjectId, pages }, null, 2));
+  const manifest = JSON.stringify({ format: 'book-activity-draft', version: 1, title: draft.title, fileName: draft.fileName, originalBookId: draft.originalBookId || '', rtl: !!draft.rtl, seriesId: draft.seriesId, classId: draft.classId, subjectId: draft.subjectId, pages }, null, 2);
+  if (new TextEncoder().encode(manifest).length > 2 * 1024 * 1024) throw new Error('Draft settings are too large. Split this book into smaller drafts.');
+  zip.file('project.json', manifest);
   zip.file('README.txt', 'Book-Activity authoring draft. Import this ZIP on the admin PDF & Activities page to continue editing. JPEG pages are in pages/; activity files are in activities/. This package does not publish a book to the live reader.');
   abort(signal);
   return zip.generateAsync({ type: 'blob', compression: 'STORE' }, metadata => { abort(signal); onProgress?.(metadata.percent); });
@@ -57,10 +60,13 @@ export async function importProject(file, { signal } = {}) {
       activities.push(validateActivity({ ...item, id: crypto.randomUUID(), media }));
     }
     if (page.sourcePageNumber !== undefined && (!Number.isInteger(page.sourcePageNumber) || page.sourcePageNumber < 1 || page.sourcePageNumber > MAX_PAGES)) throw new Error('Invalid original page number in this draft.');
-    pages.push({ number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, image: await blob(page.imagePath, 'image/jpeg'), thumbnail: await blob(page.thumbnailPath, 'image/jpeg'), activities });
+    if (page.text !== undefined && (typeof page.text !== 'string' || page.text.length > 4000)) throw new Error('Invalid page text in this draft.');
+    if (page.embeddedVideos !== undefined && (!Array.isArray(page.embeddedVideos) || page.embeddedVideos.length > 20 || !page.embeddedVideos.every(video => youtubeId(video?.url) && typeof video.title === 'string' && video.title.length <= 200))) throw new Error('Invalid linked video in this draft.');
+    pages.push({ number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, text: page.text || '', embeddedVideos: page.embeddedVideos || [], image: await blob(page.imagePath, 'image/jpeg'), thumbnail: await blob(page.thumbnailPath, 'image/jpeg'), activities });
   }
   abort(signal);
-  return { version: 1, id: crypto.randomUUID(), title: data.title, fileName: String(data.fileName || ''), seriesId: String(data.seriesId || ''), classId: String(data.classId || ''), subjectId: String(data.subjectId || ''), pages };
+  if (data.originalBookId !== undefined && (typeof data.originalBookId !== 'string' || data.originalBookId.length > 200 || !/^[a-z0-9-]*$/.test(data.originalBookId))) throw new Error('Invalid original book reference.');
+  return { version: 1, id: crypto.randomUUID(), title: data.title, fileName: String(data.fileName || ''), originalBookId: data.originalBookId || '', rtl: !!data.rtl, seriesId: String(data.seriesId || ''), classId: String(data.classId || ''), subjectId: String(data.subjectId || ''), pages };
 }
 
 export function downloadBlob(blob, filename) {

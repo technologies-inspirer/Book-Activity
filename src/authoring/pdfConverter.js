@@ -1,6 +1,7 @@
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { MAX_DRAFT_BYTES, MAX_PDF_BYTES, MAX_PAGES } from './project.js';
+import { extractPdfContent, identifyOriginalBook } from './readerBook.js';
 
 GlobalWorkerOptions.workerSrc = workerUrl;
 // Bundle fonts, character maps and image decoders locally, including for GitHub Pages.
@@ -18,7 +19,7 @@ class LocalBinaryDataFactory {
 const checkAbort = signal => { if (signal.aborted) throw new DOMException('Conversion cancelled', 'AbortError'); };
 const canvasBlob = canvas => new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Could not convert this page into an image.')), 'image/jpeg', .88));
 
-export async function convertPdf(file, { signal, onProgress }) {
+export async function convertPdf(file, { signal, onProgress, lessonLinks, originalBooks = [] }) {
   if (!file || file.size > MAX_PDF_BYTES || !file.size) throw new Error('Choose a PDF smaller than 50 MB.');
   if (!(await file.slice(0, 1024).text()).includes('%PDF-')) throw new Error('This file is not a valid PDF.');
   checkAbort(signal);
@@ -31,6 +32,7 @@ export async function convertPdf(file, { signal, onProgress }) {
   const thumbnail = document.createElement('canvas');
   try {
     const pdf = await task.promise;
+    const preferences = await pdf.getViewerPreferences();
     checkAbort(signal);
     if (pdf.numPages > MAX_PAGES) throw new Error(`Choose a PDF with no more than ${MAX_PAGES} pages.`);
     const pages = [];
@@ -44,18 +46,21 @@ export async function convertPdf(file, { signal, onProgress }) {
       await page.render({ canvasContext: canvas.getContext('2d'), viewport, background: '#ffffff' }).promise;
       checkAbort(signal);
       const image = await canvasBlob(canvas);
+      const [content, annotations] = await Promise.all([page.getTextContent(), page.getAnnotations({ intent: 'display' })]);
+      const extracted = extractPdfContent(content, annotations, lessonLinks);
       thumbnail.width = Math.max(1, Math.round(canvas.width / canvas.height * 180)); thumbnail.height = 180;
       thumbnail.getContext('2d').drawImage(canvas, 0, 0, thumbnail.width, thumbnail.height);
       const thumb = await canvasBlob(thumbnail);
       bytes += image.size + thumb.size;
       if (bytes > MAX_DRAFT_BYTES) throw new Error('Converted pages are too large. Split this PDF into smaller books.');
-      pages.push({ number, image, thumbnail: thumb, width: canvas.width, height: canvas.height, activities: [] });
+      pages.push({ number, image, thumbnail: thumb, width: canvas.width, height: canvas.height, activities: [], ...extracted });
       onProgress({ completed: number, total: pdf.numPages });
       page.cleanup();
       await new Promise(resolve => setTimeout(resolve, 0));
     }
     checkAbort(signal);
-    return { version: 1, id: crypto.randomUUID(), title: file.name.replace(/\.pdf$/i, ''), fileName: file.name, seriesId: '', classId: '', subjectId: '', pages };
+    const originalBookId = identifyOriginalBook(pages, originalBooks);
+    return { version: 1, id: crypto.randomUUID(), title: file.name.replace(/\.pdf$/i, ''), fileName: file.name, originalBookId, rtl: preferences?.Direction === 'R2L', seriesId: '', classId: '', subjectId: '', pages: pages.map(({ sourceMatches, ...page }) => page) };
   } catch (error) {
     if (signal.aborted) throw new DOMException('Conversion cancelled', 'AbortError');
     if (passwordProtected) throw new Error('This PDF is password protected. Upload an unlocked copy.');

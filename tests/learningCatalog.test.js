@@ -1,10 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getSubjectAssignments, getLearningSubjects, getLearningBooks, learningBookMetadata, learningClasses, learningSubjects, libraryLink } from '../src/data/learningCatalog.js';
+import { getSubjectAssignments, getLearningSubjects, getLearningBooks, learningBookMetadata, learningClasses, learningSubjects, libraryLink, schoolAllowsSelection } from '../src/data/learningCatalog.js';
 
 globalThis.window = {};
 await import('../books/library.js');
 const books = window.PDF_BOOKS;
+
+test('school selections filter class and subject choices without changing global assignments', () => {
+  const account = { schoolAssignments: [{ classId: 'play-group', subjects: [{ seriesId: 'stemford', subjectId: 'maths' }] }] };
+  assert.equal(schoolAllowsSelection(account, { classId: 'play-group' }), true);
+  assert.equal(schoolAllowsSelection(account, { classId: 'class-1' }), false);
+  assert.equal(schoolAllowsSelection(account, { classId: 'play-group', seriesId: 'stemford', subjectId: 'maths' }), true);
+  assert.equal(schoolAllowsSelection(account, { classId: 'play-group', seriesId: 'stemford', subjectId: 'english' }), false);
+  assert.equal(schoolAllowsSelection({}, { classId: 'class-1' }), true);
+  assert.equal(schoolAllowsSelection({ schoolAssignments: [] }, { classId: 'play-group' }), false);
+  assert.equal(schoolAllowsSelection({ role: 'admin', schoolAssignments: [] }, { classId: 'play-group' }), true);
+});
 
 test('the learning catalogue covers all original book IDs without changing their data', () => {
   assert.deepEqual(Object.keys(learningBookMetadata).sort(), books.map(book => book.id).sort());

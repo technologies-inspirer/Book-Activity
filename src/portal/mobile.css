@@ -1,0 +1,204 @@
+.admin-mobile-header, .portal-drawer-close, .mobile-header-icon, .mobile-table-controls { display: none; }
+.admin-workspace-content { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.reader-mobile-actions { display: none; }
+.portal-drawer-backdrop { position: fixed; inset: 0; z-index: 80; background: #003f3eb3; border: 0; padding: 0; touch-action: none; }
+
+@media (max-width: 1023px) {
+  .portal { min-height: 100dvh; }
+  .portal :is(input,select,textarea) { font-size: 16px !important; }
+  .portal :is(.portal-primary,.portal-secondary,.school-back,.school-logo-actions button) { min-height: 44px; }
+  .admin-shell, .user-portal-shell.sidebar-open { grid-template-columns: minmax(0, 1fr); }
+  .admin-mobile-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: 0; z-index: 20; padding: max(8px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) 8px max(14px, env(safe-area-inset-left)); min-height: 64px; background: #004344; color: #fffaf0; box-shadow: 0 2px 12px #003f3e15; }
+  .admin-mobile-header .portal-logo { min-width: 0; }
+  .admin-mobile-header .portal-logo img { width: min(175px, 44vw); }
+  .portal-menu-toggle, .portal-mobile-account { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 10px; border-radius: 12px; border: 1px solid #ffffff30; color: #fffaf0; background: #ffffff0a; }
+  .portal-menu-toggle svg, .portal-mobile-account svg { width: 22px; height: 22px; }
+  .portal .admin-navigation-drawer, .user-portal-shell .user-sidebar { position: fixed; z-index: 81; inset: 0 auto 0 0; width: min(300px, calc(100vw - 48px)); height: 100dvh; padding: max(20px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain; border: 0; background: #004344; }
+  .admin-navigation-drawer { visibility: hidden; transform: translateX(-100%); }
+  .admin-navigation-drawer.is-open { visibility: visible; transform: translateX(0); }
+  .portal .admin-sidebar .admin-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .admin-navigation-drawer .admin-brand .portal-logo { flex: 1; min-width: 0; }
+  .admin-navigation-drawer .portal-logo img { width: 175px; }
+  .portal .portal-drawer-close, .portal .user-sidebar-close { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; background: #ffffff0b; border: 1px solid #ffffff40; color: #fffaf0; font-size: 26px; }
+  .portal .admin-sidebar .admin-brand > .portal-eyebrow { display: block; flex-basis: 100%; margin: 0; font-size: .65rem; }
+  .portal .admin-sidebar nav, .portal .admin-sidebar nav.open { display: grid; grid-template-columns: 1fr; margin-top: 24px; }
+  .portal .admin-sidebar nav a, .portal .admin-sidebar nav button { min-height: 48px; font-size: .9rem; padding: 12px; }
+  .portal .admin-sidebar .sidebar-foot { display: block; margin-top: auto; padding-top: 24px; }
+  .portal .admin-sidebar nav .portal-signout { margin-top: 18px; border-top: 1px solid #ffffff26; }
+  .admin-main { padding: 22px 20px 32px; }
+  .admin-main, .user-main { padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+  .admin-workspace-content > .portal-topline { padding: 12px 20px; font-size: .75rem; }
+  .admin-workspace-content > .portal-topline .portal-pill { display: none; }
+  .user-portal-header { position: sticky; top: 0; z-index: 20; min-height: 64px; padding: max(8px, env(safe-area-inset-top)) 14px 8px; background: var(--portal-bg); box-shadow: 0 2px 12px #003f3e0d; flex-wrap: nowrap; gap: 8px; }
+  .user-header-start { flex: 1; flex-wrap: nowrap; gap: 10px; min-width: 0; }
+  .user-header-start .user-header-breadcrumb { margin: 0; font-size: .95rem; font-weight: 800; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .user-header-breadcrumb .header-publisher { display: none; }
+  .portal .user-sidebar-toggle { width: 44px; height: 44px; flex-shrink: 0; }
+  .user-portal-header nav { display: flex; gap: 4px; flex-shrink: 0; }
+  .user-portal-header nav a { display: grid; place-items: center; width: 44px; min-height: 44px; padding: 10px; border: 1px solid var(--portal-border); border-radius: 12px; background: var(--portal-panel); }
+  .mobile-header-icon { display: block; width: 22px; height: 22px; }
+  .user-header-link-text { display: none; }
+  .demo-notice { padding-bottom: max(18px, env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 760px), (max-width: 1023px) and (max-height: 520px) {
+  .portal :is(input, select, textarea) { font-size: 16px !important; max-width: 100%; }
+  .portal :is(input,select,textarea):not([type=checkbox]):not([type=radio]):not([type=file]) { min-height: 44px; }
+  .portal input[type=checkbox], .portal input[type=radio] { width: 20px; height: 20px; flex-shrink: 0; }
+  .portal :is(.portal-primary,.portal-secondary,.school-back,.school-logo-actions button,.school-edit-remove) { min-height: 44px; }
+  .portal .school-back { width: 44px; }
+  .portal .school-logo-actions button { width: 44px; }
+  .portal .portal-field { min-width: 0; font-size: .83rem; }
+  .portal .portal-muted { overflow-wrap: anywhere; }
+  .admin-main, .user-main { padding: 18px 16px 28px; }
+  .admin-main, .user-main { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .portal-page-heading { gap: 14px; margin-bottom: 20px; align-items: flex-start; }
+  .portal-page-heading > div { min-width: 0; }
+  .portal-page-heading h1 { font-size: 1.45rem; }
+  .portal-page-heading .portal-actions, .pdf-save-actions { flex-wrap: wrap; width: 100%; gap: 8px; }
+  .portal-page-heading .portal-actions > *, .pdf-save-actions > button { flex: 1; }
+  .portal .portal-primary, .portal .portal-secondary { font-size: .83rem; padding: 10px 14px; }
+  .portal-panel { padding: 18px; border-radius: 16px; }
+  .admin-welcome-banner { padding: 24px 20px; border-radius: 18px; }
+  .portal .admin-welcome-banner h1 { font-size: 1.55rem; line-height: 1.25; }
+  .admin-summary-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+  .admin-summary-card { min-height: 104px; padding: 14px 10px; }
+  .admin-summary-copy > span { font-size: .75rem; }
+  .admin-summary-copy > strong { font-size: 1.65rem; }
+  .admin-summary-copy > small { font-size: .65rem; }
+  .admin-summary-copy .admin-shortcut-status { font-size: .63rem; }
+  .admin-dashboard-note { font-size: .72rem; }
+  .admin-export-row .admin-export-card { width: 100%; min-height: 64px; }
+  .login-top { padding: max(22px, env(safe-area-inset-top)) 20px 12px; justify-content: center; }
+  .login-layout { display: flex; flex-direction: column; max-width: 540px; padding: 12px 16px 28px; gap: 28px; }
+  .login-panel { order: 0; width: 100%; padding: 24px 20px; }
+  .login-story { order: 1; }
+  .login-story h1 { font-size: 2.4rem; }
+  .login-covers { max-width: 280px; }
+  .login-covers img { height: 105px; }
+  .login-covers img:nth-child(2) { height: 125px; }
+  .credential-row span, .credential-row code { overflow-wrap: anywhere; }
+  .user-welcome { padding: 24px 20px; border-radius: 18px; }
+  .user-welcome h1 { font-size: 1.65rem; overflow-wrap: anywhere; }
+  .learning-entry { padding: 20px 16px; gap: 12px; }
+  .learning-entry-copy { min-width: 0; }
+  .learning-entry-count { font-size: .75rem; }
+  .library-choice-card { min-height: 150px; border-radius: 16px; }
+  .library-series-options { gap: 8px; }
+  .library-series-options a { min-height: 44px; display: inline-flex; align-items: center; font-size: .8rem; }
+  .library-steps { padding: 20px 8px; }
+  .portal .library-steps li { font-size: .7rem; }
+  .portal .portal-book-select { width: 100%; min-height: 48px; }
+  .portal-book-caption h3 { font-size: .9rem; }
+  .portal-book-caption .portal-eyebrow { font-size: .6rem; }
+  .portal .portal-book-caption a { min-height: 44px; }
+  .portal-dialog { max-height: calc(100dvh - 24px); width: calc(100% - 24px); max-width: 580px; padding: 20px 16px max(20px, env(safe-area-inset-bottom)); border-radius: 18px; }
+  .portal-dialog-head h2 { font-size: 1.15rem; }
+  .portal-dialog .portal-actions { flex-wrap: wrap; gap: 8px; }
+  .portal-dialog .portal-actions > button { flex: 1; }
+  .portal-dialog .portal-actions > .portal-field { flex-basis: 100%; }
+  .school-register-filters { grid-template-columns: minmax(0,1fr); gap: 10px; }
+  .assignment-filters { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .assignment-pagination { gap: 16px; align-items: flex-start; }
+  .assignment-pagination > div { justify-content: space-between; gap: 6px; width: 100%; }
+  .assignment-pagination > label { width: 100%; justify-content: flex-end; gap: 8px; }
+  .assignment-class-options { gap: 4px 12px; }
+  .assignment-class-options label { min-height: 44px; }
+  .class-subject-panel { padding: 20px 16px; border-radius: 12px; }
+  .portal .class-subject-panel h2 { font-size: 1rem; }
+  .class-subject-badges li { padding: 7px 8px; font-size: .75rem; }
+  .class-subject-source { font-size: .68rem; }
+  .class-subject-check { margin-top: 3px; }
+  .school-edit-grid, .school-edit-location, .organization-details-grid, .organization-location-grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .school-edit-section, .organization-details-panel { padding: 20px 16px; border-radius: 12px; }
+  .school-edit-hint, .organization-profile-note { font-size: .73rem; }
+  .school-edit-modules label { min-height: 44px; padding: 8px 10px; font-size: .8rem; }
+  .school-edit-actions > * { flex: 1; }
+  .school-edit-class-table th label { flex-wrap: wrap; gap: 5px; }
+  .school-edit-subjects label { min-height: 44px; padding: 7px; font-size: .7rem; }
+  .school-edit-class-table tbody th { width: 70px; }
+  .school-edit-class-table .school-edit-hint { font-size: .7rem; }
+  .school-profile-template { padding: 16px; }
+  .school-form-top, .school-location-grid { grid-template-columns: minmax(0,1fr); }
+  .school-logo-panel p { font-size: .75rem; }
+  .organization-image-panel { min-height: 190px; border-radius: 12px; }
+  .organization-image-section { margin-bottom: 24px; }
+  .portal .organization-image-section h2 { font-size: 1.05rem; }
+  /* Use one semantic table and the same controls as labelled cards on phones. */
+  .portal .mobile-card-table { border: 0; border-radius: 0; overflow: visible; }
+  .portal .mobile-card-table table { display: block; min-width: 0; width: 100%; }
+  .portal .mobile-card-table thead { display: none; }
+  .portal .mobile-card-table tbody { display: grid; gap: 14px; }
+  .portal .mobile-card-table tbody tr { display: grid; min-width: 0; border: 1px solid var(--portal-border); border-radius: 14px; background: var(--portal-panel); padding: 8px 14px; box-shadow: 0 2px 8px #00434406; }
+  .portal .mobile-card-table tbody :is(th,td) { display: block; width: auto; min-width: 0; max-width: none; padding: 10px 0; font-size: .85rem; border: 0; overflow-wrap: anywhere; }
+  .portal .mobile-card-table td[data-label] { display: grid; grid-template-columns: minmax(88px, 30%) minmax(0,1fr); gap: 12px; align-items: start; }
+  .portal .mobile-card-table td[data-label]::before { content: attr(data-label); color: var(--portal-muted); font-size: .73rem; font-weight: 600; padding-top: 2px; }
+  .portal .mobile-card-table td[data-label] > * { min-width: 0; max-width: 100%; }
+  .portal .mobile-card-table .portal-pill { font-size: .72rem; white-space: normal; padding: 5px 8px; }
+  .portal .mobile-card-table td:nth-child(n+2) { border-top: 1px solid var(--portal-border); }
+  .portal .mobile-card-table .school-actions-trigger { font-size: .8rem; }
+  .portal .mobile-card-table .assignment-edit { white-space: normal; font-size: .8rem; }
+  .portal .mobile-card-table .mobile-table-controls { display: flex; margin-bottom: 12px; }
+  .mobile-table-controls label { display: flex; gap: 10px; align-items: center; min-height: 44px; font-size: .85rem; }
+  .portal .school-register-table tbody tr { grid-template-columns: 1fr auto; }
+  .portal .school-register-table tbody td { grid-column: 1 / -1; }
+  .portal .school-register-table tbody td:nth-child(1) { grid-column: 2; grid-row: 1; padding: 12px 0 12px 14px; }
+  .portal .school-register-table tbody td:nth-child(2) { grid-column: 1; grid-row: 1; border: 0; display: block; }
+  .portal .school-register-table tbody td:nth-child(2)::before { display: none; }
+  .portal .school-register-table tbody td:nth-child(3) { font-weight: 800; }
+  .portal.school-action-menu { max-height: min(460px, calc(100dvh - 24px)); padding: 8px; border-radius: 12px; }
+  .school-action-menu button { min-height: 44px; font-size: .85rem; }
+}
+
+@media (max-width: 360px) {
+  .admin-main, .user-main { padding-inline: 12px; }
+  .admin-summary-card { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .admin-summary-copy { width: 100%; }
+  .portal-book-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .portal .portal-book-caption h3 { font-size: .8rem; }
+  .portal-book-caption { padding: 12px 10px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .admin-navigation-drawer { transition: transform .2s ease, visibility .2s; }
+}
+
+@media (max-width: 1023px) {
+  .reader .rbar { flex-shrink: 0; gap: 8px; padding: max(6px, env(safe-area-inset-top)) 10px 6px; }
+  .reader .rbar { padding-left: max(10px, env(safe-area-inset-left)); padding-right: max(10px, env(safe-area-inset-right)); }
+  .reader .rbar .hide-sm { display: none; }
+  .reader .rbar .btn { min-height: 44px; padding: 8px 10px; flex-shrink: 0; }
+  .reader .rbar b { min-width: 0; flex: 1; font-size: 15px; }
+  .reader .rbar .grow { display: none; }
+  .reader .r-pages { font-size: 11px; }
+  .reader .nav { width: 44px; height: 44px; }
+  .reader .rfoot { flex-shrink: 0; min-height: 42px; padding: 4px 12px max(6px, env(safe-area-inset-bottom)); }
+  .reader .rfoot input[type=range] { min-height: 32px; max-width: 65vw; }
+  .reader-mobile-actions { display: flex; flex-shrink: 0; align-items: center; gap: 16px; padding: 8px 12px; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; background: var(--theme-panel); border-block: 1px solid var(--theme-border); color: var(--theme-text); }
+  .reader-mobile-group { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .reader-mobile-group > small { font-size: 11px; font-weight: 800; white-space: nowrap; }
+  .reader-mobile-action { min-height: 44px; border: 1px solid var(--theme-border); border-radius: 12px; padding: 8px 12px; font: 800 13px/1.2 var(--ui); white-space: nowrap; background: var(--theme-soft); color: var(--theme-teal); }
+  .reader-mobile-action:disabled { opacity: .45; }
+  .fx { padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+  .fx .fx-btn, .video-picks button { min-height: 44px; }
+  .fx .tools button { min-width: 36px; min-height: 36px; }
+  .fx .tools .txt { min-height: 44px; }
+  .fx .fx-panel { max-height: 45dvh; overflow-y: auto; overscroll-behavior: contain; }
+  .modal-x { min-width: 44px; min-height: 44px; }
+  .draft-reader-adminbar { flex-shrink: 0; padding-top: max(8px, env(safe-area-inset-top)); }
+  .draft-reader-adminbar .portal-pill { display: none; }
+  .draft-reader-adminbar > label { flex: 1; }
+  .draft-reader-adminbar :is(.portal-primary,.portal-secondary) { min-height: 44px; }
+  .draft-reader-adminbar .draft-reader-spacer { display: none; }
+}
+@media (orientation: portrait) and (max-width: 820px) {
+  .reader .rstage { container-type: size; }
+  .reader .book-wrap { width: calc(100cqh - 40px); }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .reader-mobile-actions { padding: 4px 10px; }
+  .reader-mobile-action { min-height: 40px; }
+  .reader .rfoot { min-height: 30px; padding-block: 0; }
+  .reader .book { width: min(100%, calc((100dvh - 160px) * var(--ratio) * 2)); }
+  .fx .fx-panel { max-height: calc(100dvh - 20px); }
+}

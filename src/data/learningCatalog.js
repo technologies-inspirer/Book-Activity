@@ -26,6 +26,12 @@ export const learningBookMetadata = {
   'stemford-science-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'science' }
 };
 
+// Schools without explicit class selections retain their existing library access.
+export function schoolAllowsSelection(account, selection) {
+  if (account?.role === 'admin' || !Array.isArray(account?.schoolAssignments)) return true;
+  return account.schoolAssignments.some(row => row.classId === selection.classId && (!selection.seriesId || row.subjects.some(subject => subject.seriesId === selection.seriesId && (!selection.subjectId || subject.subjectId === selection.subjectId))));
+}
+
 export function getLearningBooks(books, selection = {}) {
   return books.filter(book => {
     const metadata = learningBookMetadata[book.id];

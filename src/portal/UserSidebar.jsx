@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useDemo } from './DemoContext.jsx';
 import { Logo, SignOut } from './Shared.jsx';
 
@@ -7,27 +6,11 @@ const items = [
   { page: 'school', href: '#/user/school', label: 'School Profile', icon: '▤' }
 ];
 
-export function UserSidebar({ page, onClose }) {
+export function UserSidebar({ page, onClose, sidebarRef, closeRef, mobile }) {
   const { account } = useDemo();
-  const sidebarRef = useRef(null);
-  const closeRef = useRef(null);
-
-  useEffect(() => {
-    closeRef.current?.focus();
-    const onKeyDown = event => {
-      if (event.key === 'Escape') { event.preventDefault(); onClose(); }
-      if (event.key !== 'Tab' || !matchMedia('(max-width: 760px)').matches) return;
-      const targets = [...sidebarRef.current.querySelectorAll('a[href], button:not(:disabled)')];
-      const first = targets[0], last = targets[targets.length - 1];
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-    };
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [onClose]);
 
   return (
-    <aside id="user-sidebar" className="admin-sidebar user-sidebar" ref={sidebarRef} onClick={event => { if (event.target.closest('a')) onClose(); }}>
+    <aside id="user-sidebar" className="admin-sidebar user-sidebar" ref={sidebarRef} role={mobile ? 'dialog' : undefined} aria-modal={mobile ? true : undefined} aria-label="User menu" onClick={event => { if (event.target.closest('a')) onClose(); }}>
       <div className="admin-brand">
         <Logo href="#/user" />
         <button className="user-sidebar-close" type="button" ref={closeRef} aria-label="Close sidebar" onClick={onClose}>✕</button>

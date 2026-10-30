@@ -6,11 +6,13 @@ import { setDrawingCursor } from './src/drawingCursors.js';
 const drawings = {};
 const brush = { color: '#e63946', size: 12, erase: false };
 
-export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref, activityPreview, onPreviewClose } = {}) {
+export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref, activityPreview, onPreviewClose, readerBook, readerOptions = {} } = {}) {
   const loading = createLoadingScope();
   const previewOwner = activityPreview ? `activity-preview-${crypto.randomUUID()}` : null;
   const previewBrush = activityPreview ? { ...brush } : null;
   let previewObserver;
+  let selectedReaderPage = Math.max(1, readerOptions.initialPage || 1);
+  const selectReaderPage = number => { selectedReaderPage = number; onPositionChange?.(readerBook.id, number); };
   // Every reader mount owns its delayed work. React can unmount it mid-animation.
   const timers = new Set();
   const schedule = (callback, delay) => {
@@ -36,6 +38,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   let menu = null;                           // open section menu
   let modalEl = null;
   let focusEl = null;                        // the zoomed-in page, if one is open
+  let focusResizeCleanup = null;
   let introNext = intro;                     // play the cover opening when the reader appears
 
   const I = {
@@ -133,8 +136,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     demoToken++;
     closeMenu();
     closeModal();
-    focusEl?.remove();
-    focusEl = null;
+    closeFocus(false);
     closeGame();
     closeStory();
     R = null;
@@ -182,6 +184,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       node.append(img);
     }
     if (pg.html) node.append(el('div', { class: 'page-html', html: pg.html }));
+    if (readerBook && live) {
+      node.addEventListener('pointerdown', () => selectReaderPage(idx + 1), true);
+      const actions = el('div', { class: 'draft-reader-page-tools' });
+      if (pg.text?.trim()) actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); speak(`Page ${idx + 1}`, pg.text); } }, 'Listen'));
+      actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); brush.erase = false; openFocus(book, idx, node, true); } }, 'Write / Colour'));
+      (pg.linkedActivities || []).forEach(activity => actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); readerOptions.onActivity?.(activity, idx + 1); } }, activity.title)));
+      node.append(actions);
+    }
     (pg.zones || []).forEach(z => node.append(renderZone(book, idx, z, live)));
     if (pg.html) node.append(el('div', { class: 'page-no' }, String(idx + 1)));
     if (!pg.html) {
@@ -195,7 +205,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       });
       if (live) {
         node.classList.add('zoomable');
-        node.addEventListener('click', e => { if (!editMode && !e.target.closest('.zone, .vid-hot, .watch-btn, .game-btn, .story-btn')) openFocus(book, idx, node); });
+        node.addEventListener('click', e => { if (!editMode && !e.target.closest('.zone, .vid-hot, .watch-btn, .game-btn, .story-btn, .draft-reader-page-tools')) openFocus(book, idx, node); });
       }
     }
     if (live) bindZoneDrawing(node, book, idx);
@@ -250,8 +260,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   }
 
   /* ---------- story animation: the book's own pictures move while the story is read ---------- */
-  let storyEl = null, storyToken = 0;
+  let storyEl = null, storyToken = 0, storyResizeObserver = null;
   function closeStory() {
+    storyResizeObserver?.disconnect(); storyResizeObserver = null;
     storyToken++;
     stopSpeak();
     storyEl?.remove();
@@ -288,6 +299,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const W = stage.clientWidth, H = W / ASPECT, imgW = W * 100 / v.w, imgH = imgW / ratio;
       return `translate(${W / 2 - v.cx / 100 * imgW}px, ${H / 2 - v.cy / 100 * imgH}px) scale(${100 / v.w})`;
     };
+    storyResizeObserver = new ResizeObserver(() => {
+      const width = stage.clientWidth;
+      if (!width || pic.style.width === width + 'px') return;
+      pic.style.width = width + 'px';
+      pic.style.transition = 'none';
+      pic.style.transform = frame(st.scenes[at].to);
+    });
+    storyResizeObserver.observe(stage);
     pauseBtn.addEventListener('click', () => {
       paused = !paused;
       paused ? synth?.pause() : synth?.resume();
@@ -305,7 +324,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       dots.querySelectorAll('button').forEach((d, i) => d.classList.toggle('on', i === k));
       const sc = st.scenes[k];
       const secs = Math.max(5, sc.text.split(' ').length * 0.42 + 1);
-      pic.src = pageOf(book, sc.page - 1).img;
+      pic.src = (book.storyPages || book.pages)[sc.page - 1].img;
       pic.style.width = stage.clientWidth + 'px';
       pic.style.transition = 'none';
       pic.style.transform = frame(sc.from);
@@ -562,6 +581,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   }
 
   function closeFocus(redraw = true) {
+    focusResizeCleanup?.(); focusResizeCleanup = null;
     if (!focusEl) return;
     demoToken++;
     stopSpeak();
@@ -570,7 +590,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (redraw && R && !R.busy) R.show(R.spread);      // redraw the spread so new writing shows on the page
   }
 
-  function openFocus(book, idx, fromEl) {
+  function openFocus(book, idx, fromEl, writeNow = false) {
     if (focusEl || R?.busy) return;
     stopSpeak(); closeMenu();
     const pg = pageOf(book, idx), ratio = book.ratio || 0.75, key = `${book.id}:${idx}:page`;
@@ -582,7 +602,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     const listen = el('button', { class: 'fx-btn listen', hidden: true, html: I.speaker + '<span>Listen</span>' });
     pageText(book).then(pages => {
-      const text = (pages[idx] || []).map(b => b[4]).filter(t => /[a-z]{2}/i.test(t)).join('. ');
+      const text = (pages[idx] || []).map(b => b[4]).filter(t => /\p{L}/u.test(t)).join('. ');
       if (!text || !focusEl) return;
       listen.hidden = false;
       listen.addEventListener('click', () => speak(`Page ${idx + 1}`, text));
@@ -597,7 +617,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       onclick: () => { sheet.classList.remove('pen'); tools.hidden = true; playDemo(fillAct, demo); } });
     const myself = fill && el('button', { class: 'fx-btn self', html: I.pen + "<span>I'll do it myself</span>",
       onclick: () => { stopDemo(demo); brush.erase = false; sheet.classList.add('pen'); tools.hidden = false; tools.sync(); } });
-    if (!fill) { sheet.classList.add('pen'); tools.hidden = false; }
+    if (!fill || writeNow) { sheet.classList.add('pen'); tools.hidden = false; }
     const panel = el('div', { class: 'fx-panel' },
       el('button', { class: 'fx-btn close', onclick: closeFocus, html: I.x + '<span>Close</span>' }),
       showHow, myself,
@@ -610,11 +630,15 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     document.body.append(focusEl);
 
     // Fit the whole page on screen, then grow it out of the page that was clicked.
-    const side = innerWidth > 760;
-    const pr = panel.getBoundingClientRect();
-    const h = Math.min(innerHeight - (side ? 24 : pr.height + 36), (innerWidth - (side ? pr.width + 52 : 16)) / ratio);
-    sheet.style.height = h + 'px';
-    sheet.style.width = h * ratio + 'px';
+    const fit = () => {
+      const side = innerWidth > 760, pr = panel.getBoundingClientRect();
+      const h = Math.max(60, Math.min(innerHeight - (side ? 24 : pr.height + 36), (innerWidth - (side ? pr.width + 52 : 16)) / ratio));
+      sheet.style.height = h + 'px'; sheet.style.width = h * ratio + 'px';
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    window.visualViewport?.addEventListener('resize', fit);
+    focusResizeCleanup = () => { window.removeEventListener('resize', fit); window.visualViewport?.removeEventListener('resize', fit); };
     const to = sheet.getBoundingClientRect(), from = fromEl.getBoundingClientRect();
     sheet.style.transform = `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width})`;
     sheet.getBoundingClientRect();
@@ -672,6 +696,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const rtl = !!book.rtl, L = s => s * 2 + (rtl ? 1 : 0), Rt = s => s * 2 + (rtl ? 0 : 1);
     const bookEl = el('div', { class: 'book' + (rtl ? ' rtl' : ''), style: `--ratio:${ratio};aspect-ratio:${ratio * 2};--c1:${book.c2 || '#1f2d3d'}` }, left, right);
     const label = el('span', { class: 'r-pages' });
+    const mobileActions = el('div', { class: 'reader-mobile-actions', role: 'toolbar', 'aria-label': 'Page activities' });
     const slider = el('input', { type: 'range', min: 0, max: spreads - 1, step: 1, 'aria-label': 'Go to pages', oninput: e => show(+e.target.value) });
     // the button on the left goes back in a left-to-right book and forward in a right-to-left one
     const prev = el('button', { class: 'nav prev', title: rtl ? 'Next pages' : 'Previous pages', html: I.left, onclick: () => flip(rtl ? 1 : -1) });
@@ -692,13 +717,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     const root = el('div', { class: 'reader' },
       el('div', { class: 'rbar' },
-        el('a', { class: 'btn ghost', href: libraryHref || `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
+        readerBook ? el('button', { class: 'btn ghost', onclick: () => readerOptions.onClose?.(), html: I.left + '<span>Back to upload</span>' }) : el('a', { class: 'btn ghost', href: libraryHref || `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
         el('button', { class: 'btn ghost hide-sm', onclick: () => R.close() }, 'Close book'),
         el('b', {}, book.title),
         el('span', { class: 'grow' }),
-        label, editBtn,
+        label, !readerBook && editBtn,
         el('button', { class: 'btn ghost hide-sm', onclick: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.() }, 'Full screen')),
       el('div', { class: 'rstage' }, prev, el('div', { class: 'book-wrap' }, bookEl), next),
+      mobileActions,
       el('div', { class: 'rfoot' }, slider, tools));
     app.replaceChildren(root);
 
@@ -710,10 +736,37 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       (rtl ? prev : next).disabled = s >= spreads - 1;
       const hasFill = [0, 1].some(k => (pageOf(book, s * 2 + k)?.zones || []).some(z => z.type === 'fill'));
       tools.hidden = !hasFill || editMode;
+      mobileActions.replaceChildren();
+      [s * 2, s * 2 + 1].forEach(idx => {
+        const page = pageOf(book, idx);
+        if (!page) return;
+        const group = el('div', { class: 'reader-mobile-group' }, el('small', {}, `Page ${idx + 1}`));
+        const button = (name, work) => group.append(el('button', { class: 'reader-mobile-action', disabled: editMode, 'aria-label': `Page ${idx + 1}: ${name}`, onclick: () => { if (R?.book !== book || R.busy) return; if (readerBook) selectReaderPage(idx + 1); work(); } }, name));
+        const zoom = () => openFocus(book, idx, (idx === L(s) ? left : right).querySelector('.page'), true);
+        button('Write / Colour', zoom);
+        if (page.text || book.dir || book.text) button('Listen', () => pageText(book).then(pages => {
+          if (R?.book !== book || R.spread !== s || !root.isConnected) return;
+          const text = (pages[idx] || []).map(block => block[4]).filter(text => /\p{L}/u.test(text)).join('. ');
+          if (text) speak(`Page ${idx + 1}`, text); else toast('This page has no readable text.');
+        }));
+        if (page.qr) button('Watch video', () => playVideo(book, idx, { id: 'page' }));
+        (page.acts || []).forEach(activity => {
+          if (activity.type === 'game') button(activity.label || 'Play', () => openGame(book, idx, activity));
+          else if (activity.type === 'story') button(activity.label || 'Story', () => openStory(book, idx, activity));
+          else if (activity.type === 'videos') button(activity.label || 'Videos', () => openVideos(activity.title, activity.videos));
+        });
+        (page.linkedActivities || []).forEach(activity => button(activity.title, () => readerOptions.onActivity?.(activity, idx + 1)));
+        mobileActions.append(group);
+      });
       // Keep the address in step with the pages, but leave a video deep link alone.
-      const h = parseHash();
-      if (!(h.video && Math.floor((h.page - 1) / 2) === s)) history.replaceState(null, '', link(book, a));
-      onPositionChange?.(book.id, a);
+      if (readerBook) {
+        if (selectedReaderPage < a || selectedReaderPage > b) selectedReaderPage = a;
+        onPositionChange?.(book.id, selectedReaderPage);
+      } else {
+        const h = parseHash();
+        if (!(h.video && Math.floor((h.page - 1) / 2) === s)) history.replaceState(null, '', link(book, a));
+        onPositionChange?.(book.id, a);
+      }
       // Fetch the neighbouring spreads now so the next page turn has its pictures ready.
       [-2, -1, 2, 3].forEach(k => { const p = pageOf(book, s * 2 + k); if (p?.img) new Image().src = p.img; });
     }
@@ -819,7 +872,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       sheet.classList.remove('no-anim', 'go');
       bookEl.classList.add('closed');
       schedule(() => {
-        if (R === reader) location.hash = link(book);
+        if (R === reader) { if (readerBook) readerOptions.onClose?.(); else location.hash = link(book); }
       }, 1250);
     }
 
@@ -1005,6 +1058,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
   function playVideo(book, idx, z) {
     closeMenu();
+    if (readerBook) { syncVideo({ book, page: idx + 1, video: z.id }); return; }
     location.hash = link(book, idx + 1, z.id);   // route() opens it, so a scanned QR lands in the same place
   }
 
@@ -1110,7 +1164,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           ? 'Opened as a file, so the video plays on YouTube. Open the site with start.bat to watch it here.'
           : `Press ✕ to go back to page ${idx + 1}`)));
     // Closing puts the address back on the page, so the reader is exactly where they left.
-    modal(card, () => history.replaceState(null, '', link(r.book, R ? R.spread * 2 + 1 : r.page)));
+    modal(card, () => { if (!readerBook) history.replaceState(null, '', link(r.book, R ? R.spread * 2 + 1 : r.page)); });
     modalEl.dataset.video = r.video;
   }
 
@@ -1155,6 +1209,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   }
 
   function pageText(book) {
+    if (book.text) return Promise.resolve(book.text);
     if (!book.dir) return Promise.resolve([]);
     return book.text ||= fetch(`${book.dir}/text.json`).then(r => r.ok ? r.json() : []).catch(() => []);
   }
@@ -1220,6 +1275,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (menu && !menu.m.contains(e.target) && !menu.box.contains(e.target)) closeMenu();
   };
   const onDocumentKeyDown = e => {
+    if (readerBook && readerOptions.isBlocked?.()) return;
     if (e.key === 'Escape') { if (modalEl) modalEl.close(); else if (storyEl) closeStory(); else if (gameEl) closeGame(); else if (focusEl) closeFocus(); else if (menu) closeMenu(); else stopSpeak(); return; }
     if (!R || modalEl || focusEl || storyEl || gameEl || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
     if (e.key === 'ArrowRight') R.flip(R.rtl ? -1 : 1);
@@ -1234,7 +1290,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       .then(() => location.replace(SERVER + location.hash), () => {});
   }
 
-  if (activityPreview) {
+  if (readerBook) {
+    selectedReaderPage = clamp(selectedReaderPage, 1, readerBook.pages.length);
+    showReader(readerBook, Math.floor((selectedReaderPage - 1) / 2), false);
+    readerOptions.onReady?.({ getSelectedPage: () => selectedReaderPage, goToPage: number => { if (!R?.busy) { selectedReaderPage = clamp(number, 1, readerBook.pages.length); R.show(Math.floor((selectedReaderPage - 1) / 2)); } } });
+  } else if (activityPreview) {
     const { book: original, pageIndex, activity, videos } = activityPreview;
     // Preview drawings are isolated from the child's drawings in the original reader.
     const book = { ...original, id: previewOwner, pages: original.pages.map((page, index) => index === pageIndex && activity?.type === 'fill' ? { ...page, qr: undefined, zones: [], acts: [activity] } : page) };

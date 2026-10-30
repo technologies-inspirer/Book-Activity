@@ -1,19 +1,20 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useMobileLayout, usePortalDrawer } from './usePortalDrawer.js';
 import { books } from '../data/books.js';
-import { useDemo } from './DemoContext.jsx';
-import { availableBooks, isExpired } from './demoStore.js';
 import { BookCollection } from './BookCollection.jsx';
 import { DemoNotice, Logo, Resources, SignOut } from './Shared.jsx';
-import { UsersAccess } from './UsersAccess.jsx';
-import { ProfilePage } from './ProfilePage.jsx';
-import { DashboardBanner } from './DashboardBanner.jsx';
+import { SchoolRegister } from './SchoolRegister.jsx';
+import { SchoolCreate, SchoolEdit } from './SchoolEdit.jsx';
+import { OrganizationProfile } from './OrganizationProfile.jsx';
+import { AdminDashboard } from './AdminDashboard.jsx';
 import { AddSeries } from './AddSeries.jsx';
 import { AddSubject } from './AddSubject.jsx';
 import { AssignSubjects } from './AssignSubjects.jsx';
+import { ClassesSubjects } from './ClassesSubjects.jsx';
 import { LoadingScreen } from '../loading/LoadingScreen.jsx';
 const PdfAuthoring = lazy(() => import('../authoring/PdfAuthoring.jsx'));
 
-const existingLinks = [['overview', 'Dashboard', '◫'], ['users', 'Users & Access', '♙'], ['books', 'Series & Books', '▤'], ['pdf-activities', 'PDF & Activities', '▤'], ['resources', 'Resources', '◇'], ['profile', 'My Profile', '○']];
+const existingLinks = [['overview', 'Dashboard', '◫'], ['schools', 'School Register', '♙'], ['books', 'Series & Books', '▤'], ['pdf-activities', 'PDF & Activities', '▤'], ['resources', 'Resources', '◇'], ['profile', 'My Profile', '○']];
 const placeholderLinks = [
   ['series', 'Add New Series', '▤'],
   ['subjects-books', 'Add New Subject', '▤'],
@@ -26,27 +27,27 @@ const placeholderLinks = [
   ['data-clone', 'Data Clone', '▣']
 ];
 const linksById = new Map([...existingLinks, ...placeholderLinks].map(link => [link[0], link]));
+linksById.set('classes-subjects', ['classes-subjects', 'Classes & Subjects', '▦']);
 const links = [
   'overview',
-  'users',
+  'classes-subjects',
+  'schools',
   'books',
   'series',
   'subjects-books',
   'assign-subject-to-classes',
   'pdf-activities',
-  'resource-materials',
   'profile'
 ].map(id => linksById.get(id));
 
-function Overview() {
-  const { accounts, account } = useDemo();
-  const users = accounts.filter(value => value.role === 'user');
-  const counts = [[users.length, 'Demo users'], [users.filter(user => user.enabled && !isExpired(user)).length, 'Active accounts'], [users.reduce((sum, user) => sum + availableBooks(user, books).length, 0), 'Assigned book accesses']];
-  return <><div className="portal-page-heading"><div><p className="portal-eyebrow">A place for every reader</p><h1>Welcome back, {account.name.split(' ')[0]}.</h1></div><span className="portal-pill">Admin demo</span></div><p className="portal-muted">A small view of a world of learning. Manage your readers and their books from here.</p><div className="portal-stats">{counts.map(([number, label]) => <section className="portal-panel" key={label}><span>{label}</span><strong>{number}</strong><small>Sample data + local demo changes</small></section>)}</div><DashboardBanner /><p className="portal-muted small">Counts represent sample accounts and this session’s edits. Assigned book accesses count each active user’s assignments separately.</p></>;
-}
-export function AdminPortal({ page = 'overview', onBookOpen }) {
+export function AdminPortal({ page = 'overview', segments = [], onBookOpen }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const currentPage = page === 'dashboard' ? 'overview' : page;
+  const mobile = useMobileLayout();
+  const sidebarRef = useRef(null), closeRef = useRef(null), toggleRef = useRef(null);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  usePortalDrawer({ open: menuOpen, mobile, sidebarRef, closeRef, toggleRef, onClose: closeMenu });
+  useEffect(closeMenu, [page, segments.join('/'), closeMenu]);
+  const currentPage = page === 'dashboard' ? 'overview' : page === 'users' ? 'schools' : page;
   const selected = links.some(([id]) => id === currentPage) ? currentPage : 'overview';
   const isPlaceholder = !['series', 'subjects-books', 'assign-subject-to-classes'].includes(selected) && placeholderLinks.some(([id]) => id === selected);
 
@@ -56,11 +57,12 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
         event.preventDefault();
         document.getElementById('admin-main').focus();
       }}>Skip to content</a>
-      <aside className="admin-sidebar">
+      {mobile && menuOpen && <button className="portal-drawer-backdrop" aria-label="Close admin menu" tabIndex={-1} onClick={closeMenu} />}
+      <aside id="admin-sidebar" ref={sidebarRef} className={`admin-sidebar admin-navigation-drawer${menuOpen ? ' is-open' : ''}`} inert={mobile && !menuOpen} role={mobile ? 'dialog' : undefined} aria-modal={mobile && menuOpen ? true : undefined} aria-label="Admin menu" onClick={event => { if (event.target.closest('a')) closeMenu(); }}>
         <div className="admin-brand">
-          <Logo />
+          <Logo href="#/admin" />
+          <button ref={closeRef} type="button" className="portal-drawer-close" aria-label="Close admin menu" onClick={closeMenu}>×</button>
           <span className="portal-eyebrow">Publisher workspace</span>
-          <button className="portal-secondary mobile-menu" aria-expanded={menuOpen} aria-controls="admin-navigation" onClick={() => setMenuOpen(!menuOpen)}>Menu</button>
         </div>
         <nav id="admin-navigation" aria-label="Admin navigation" className={menuOpen ? 'open' : ''}>
           {links.map(([id, label, icon]) => (
@@ -77,6 +79,12 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
         </div>
       </aside>
       <div className="admin-workspace">
+        <header className="admin-mobile-header" inert={mobile && menuOpen}>
+          <button ref={toggleRef} type="button" className="portal-menu-toggle" aria-label="Open admin menu" aria-expanded={menuOpen} aria-controls="admin-sidebar" onClick={() => setMenuOpen(true)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+          <Logo href="#/admin" />
+          <a href="#/admin/profile" className="portal-mobile-account" aria-label="My profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 22v-3a8 8 0 0 1 16 0v3" /></svg></a>
+        </header>
+        <div className="admin-workspace-content" inert={mobile && menuOpen}>
         <div className="portal-topline">
           {isPlaceholder ? <span>Javed Publisher</span> : (
             <>
@@ -86,8 +94,9 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
           )}
         </div>
         <main className="admin-main" id="admin-main" tabIndex="-1" key={selected}>
-          {selected === 'overview' && <Overview />}
-          {selected === 'users' && <UsersAccess />}
+          {selected === 'overview' && <AdminDashboard />}
+          {selected === 'classes-subjects' && <ClassesSubjects />}
+          {selected === 'schools' && (segments[0] === 'add' ? <SchoolCreate /> : segments[0] === 'edit' ? <SchoolEdit id={segments[1]} /> : <SchoolRegister />)}
           {selected === 'series' && <AddSeries />}
           {selected === 'subjects-books' && <AddSubject />}
           {selected === 'assign-subject-to-classes' && <AssignSubjects />}
@@ -103,9 +112,10 @@ export function AdminPortal({ page = 'overview', onBookOpen }) {
             </>
           )}
           {selected === 'resources' && <Resources />}
-          {selected === 'profile' && <ProfilePage />}
+          {selected === 'profile' && <OrganizationProfile />}
         </main>
         {!isPlaceholder && <DemoNotice />}
+        </div>
       </div>
     </div>
   );

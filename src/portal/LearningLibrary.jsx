@@ -1,18 +1,19 @@
 import { useEffect, useRef } from 'react';
-import { learningClasses, getLearningSubjects, getLearningBooks, libraryLink } from '../data/learningCatalog.js';
+import { learningClasses, getLearningSubjects, getLearningBooks, libraryLink, schoolAllowsSelection } from '../data/learningCatalog.js';
 import { useDemo } from './DemoContext.jsx';
 import { BookTile } from './BookCollection.jsx';
 import { EmptyState } from './Shared.jsx';
 import { LibraryBookIcon, LibraryClassIcon } from './LibraryIcons.jsx';
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
-  const { assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
+  const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
+  const classes = learningClasses.filter(item => ['play-group', 'nursery', 'prep'].includes(item.id) && schoolAllowsSelection(account, { classId: item.id }));
   const titleRef = useRef(null);
-  const selectedClass = learningClasses.find(item => item.id === segments[0]);
+  const selectedClass = classes.find(item => item.id === segments[0]);
   const classBooks = selectedClass ? getLearningBooks(assignedBooks, { classId: selectedClass.id }) : [];
   const selectedSeries = series.find(item => item.id === segments[1]) || series.find(item => classBooks.some(item.of)) || series[0];
   const selection = { classId: selectedClass?.id, seriesId: selectedSeries.id };
-  const subjectOptions = selectedClass ? getLearningSubjects(classBooks, customSubjects, selection, subjectAssignments) : [];
+  const subjectOptions = selectedClass ? getLearningSubjects(classBooks, customSubjects, selection, subjectAssignments).filter(subject => schoolAllowsSelection(account, { ...selection, subjectId: subject.id })) : [];
   const selectedSubject = subjectOptions.find(item => item.id === segments[2]);
   const selectedBooks = selectedSubject ? getLearningBooks(assignedBooks, { ...selection, subjectId: selectedSubject.id }) : [];
   const step = !selectedClass ? 0 : !selectedSubject ? 1 : 2;
@@ -46,7 +47,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
       </ol>
       {step === 0 ? (assignedBooks.length ? (
         <section aria-label="Select your class" className="library-choice-grid library-class-grid">
-          {learningClasses.map(item => {
+          {classes.map(item => {
             const count = getLearningBooks(assignedBooks, { classId: item.id }).length;
             return <a key={item.id} className="library-choice-card" href={libraryLink(item.id)}><LibraryClassIcon /><h2>{item.name}</h2><p>{count ? `${count} book${count === 1 ? '' : 's'} available` : 'No books available'}</p></a>;
           })}
