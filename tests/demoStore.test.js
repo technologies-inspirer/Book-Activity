@@ -7,6 +7,118 @@ const fresh = () => createDemoStore(books.map(book => book.id));
 const loginAdmin = store => store.signIn(DEMO_CREDENTIALS.admin.email, DEMO_CREDENTIALS.admin.password);
 const newUser = (overrides = {}) => ({ name: 'Fictional Learner', email: 'learner@example.test', password: 'Temporary!2026', allBooks: false, bookIds: ['book-two'], expires: '', ...overrides });
 
+test('organization profile and image changes are admin-only, independent and session-scoped', () => {
+  const store = fresh();
+  assert.throws(() => store.updateOrganizationProfile({ name: 'Example Publisher' }), /fictional admin/);
+  loginAdmin(store);
+  const originalAccounts = JSON.stringify(store.snapshot().accounts);
+  store.updateOrganizationProfile({ name: 'Example Publisher', description: 'Demo publisher', email: 'publisher@example.test', address: 'Example Road', country: 'Pakistan', state: 'Punjab', city: 'Lahore' });
+  assert.equal(store.snapshot().organizationProfile.city, 'Lahore');
+  assert.equal(JSON.stringify(store.snapshot().accounts), originalAccounts, 'Organization contact changes do not change login credentials or schools');
+  const before = JSON.stringify(store.snapshot().organizationProfile);
+  assert.throws(() => store.updateOrganizationProfile({ name: ' ' }), /organization name/);
+  assert.throws(() => store.updateOrganizationProfile({ email: 'invalid' }), /email/);
+  assert.equal(JSON.stringify(store.snapshot().organizationProfile), before);
+  const image = 'data:image/png;base64,aGVsbG8=';
+  store.updateOrganizationImage('logo', image);
+  store.updateOrganizationImage('letterHead', image);
+  store.updateOrganizationImage('logo', '');
+  assert.equal(store.snapshot().organizationProfile.logo, '');
+  assert.equal(store.snapshot().organizationProfile.letterHead, image);
+  store.updateOrganizationProfile({ name: 'Updated Publisher', logo: 'javascript:bad' });
+  assert.equal(store.snapshot().organizationProfile.logo, '', 'Text form cannot overwrite image fields');
+  assert.throws(() => store.updateOrganizationImage('other', image), /Logo or Letter Head/);
+  assert.throws(() => store.updateOrganizationImage('logo', 'data:image/svg+xml;base64,aGVsbG8='), /valid PNG/);
+  assert.throws(() => store.updateOrganizationImage('logo', 'data:image/png;base64,' + 'A'.repeat(2800000)), /2 MB/);
+  store.signOut();store.signIn(DEMO_CREDENTIALS.user.email, DEMO_CREDENTIALS.user.password);
+  assert.throws(() => store.updateOrganizationImage('logo', image), /fictional admin/);
+  assert.throws(() => store.updateOrganizationProfile({ name: 'Other' }), /fictional admin/);
+  assert.equal(fresh().snapshot().organizationProfile.name, 'Javed Publishers');
+});
+
+test('school class selections restrict only that school and retain independent book permissions', () => {
+  const realBooks = ['new-stemford-english-3', 'stemford-maths-3', 'stemford-english-1'].map(id => ({ id }));
+  const store = createDemoStore(realBooks.map(book => book.id)); loginAdmin(store);
+  const [id, other] = store.importSchools([newUser({ allBooks: true }), newUser({ email: 'another@example.test', allBooks: true })]);
+  const school = () => store.snapshot().accounts.find(item => item.id === id);
+  assert.equal(availableBooks(school(), realBooks).length, 3, 'Existing schools retain their library until selections are saved');
+  const assignments = [{ classId: 'play-group', subjects: [{ seriesId: 'stemford', subjectId: 'maths' }] }];
+  store.updateSchoolAssignments(id, assignments);
+  assert.deepEqual(availableBooks(school(), realBooks), [realBooks[1]]);
+  assert.equal(availableBooks(store.snapshot().accounts.find(item => item.id === other), realBooks).length, 3);
+  assert.throws(() => store.updateSchoolAssignments(id, [{ classId: 'class-8', subjects: [{ seriesId: 'stemford', subjectId: 'maths' }] }]), /subjects/);
+  assert.throws(() => store.updateSchoolAssignments(id, [...assignments, ...assignments]), /classes/);
+  assert.deepEqual(school().schoolAssignments, assignments, 'Invalid selections do not partially save');
+  store.updateAccess(id, { allBooks: false, bookIds: [realBooks[0].id] });
+  assert.equal(availableBooks(school(), realBooks).length, 0, 'Class selection cannot grant an unassigned book');
+  store.updateSchoolAssignments(id, []);
+  assert.deepEqual(availableBooks(school(), realBooks), []);
+  assert.throws(() => store.updateSchoolAssignments('demo-admin', []), /school/);
+  store.signOut();store.signIn('learner@example.test', 'Temporary!2026');
+  assert.throws(() => store.updateSchoolAssignments(other, []), /fictional admin/);
+});
+
+test('school editing saves full details atomically and preserves other principals and credentials', () => {
+  const store = fresh(); loginAdmin(store);
+  const [id] = store.importSchools([newUser({ principals: [{ name: 'Principal One', username: 'first' }, { name: 'Principal Two', username: 'second' }] })]);
+  const school = () => store.snapshot().accounts.find(item => item.id === id);
+  store.updateSchool(id, { schoolProfile: { name: 'Example School', description: 'School description', phone: '0000', country: 'Pakistan', state: 'Punjab', city: 'Lahore' }, principals: [{ ...school().principals[0], name: 'Updated Principal' }, school().principals[1]], modules: ['Books', 'Resources'], access: { allBooks: true, expiresAt: '2099-01-01T12:00' } });
+  assert.equal(school().schoolProfile.description, 'School description');
+  assert.equal(school().schoolProfile.country, 'Pakistan');
+  assert.equal(school().principals[1].username, 'second');
+  const previous = JSON.stringify(school());
+  assert.throws(() => store.updateSchool(id, { schoolProfile: { city: 'Karachi' }, principals: [{ name: '', email: 'bad' }] }), /principal/);
+  assert.equal(JSON.stringify(school()), previous);
+  store.signOut(); assert.equal(store.signIn('learner@example.test', 'Temporary!2026'), 'user');
+});
+
+test('school imports are atomic, retain existing accounts and support reader sign in', () => {
+  const store = fresh();
+  const school = newUser({ name: 'Example School', schoolProfile: { name: 'Example School', address: 'Demo Road', city: 'Lahore' } });
+  assert.throws(() => store.importSchools([school]), /fictional admin/);
+  loginAdmin(store);
+  const before = store.snapshot().accounts.length;
+  assert.throws(() => store.importSchools([school, { ...school }]), /already exists/);
+  assert.equal(store.snapshot().accounts.length, before, 'Duplicate rows do not partially import');
+  assert.throws(() => store.importSchools([school, { ...school, email: 'other@example.test', password: 'short' }]), /8 characters/);
+  assert.equal(store.snapshot().accounts.length, before);
+  const [id] = store.importSchools([school]);
+  assert.equal(store.snapshot().accounts.length, before + 1);
+  assert.equal(store.snapshot().accounts.find(item => item.id === id).schoolProfile.city, 'Lahore');
+  assert.ok(!JSON.stringify(store.snapshot()).includes(school.password));
+  store.signOut();
+  assert.equal(store.signIn(school.email, school.password), 'user');
+  assert.deepEqual(availableBooks(store.snapshot().accounts.find(item => item.id === id), books), [books[1]]);
+});
+
+test('school details, principals, activation and expiry affect the existing account', () => {
+  const store = fresh(); loginAdmin(store);
+  const [id, second] = store.importSchools([newUser(), newUser({ email: 'second@example.test' })]);
+  store.updateSchool(id, { name: 'Updated School', schoolProfile: { name: 'Updated School', city: 'Karachi' }, principals: [{ name: 'Demo Principal', email: 'principal@example.test', phone: '000' }], loginPrefix: 'example', modules: ['Books', 'Resources'] });
+  assert.equal(store.snapshot().accounts.find(item => item.id === id).principals.length, 1);
+  assert.throws(() => store.updateSchool(id, { principals: [{ name: '' }] }), /principal/);
+  assert.throws(() => store.updateSchool(id, { modules: ['Unknown'] }), /modules/);
+  assert.throws(() => store.updateSchool(id, { modules: ['Paper Maker'], access: { expires: 'invalid' } }), /expiry/);
+  assert.deepEqual(store.snapshot().accounts.find(item => item.id === id).modules, ['Books', 'Resources'], 'Invalid book access does not partially update features');
+  store.setHeadSchool(id); store.setHeadSchool(second);
+  assert.equal(store.snapshot().accounts.filter(item => item.isHeadSchool).length, 1);
+  assert.equal(store.snapshot().accounts.find(item => item.id === second).isHeadSchool, true);
+  store.setSchoolsEnabled([id, second], false);
+  assert.throws(() => store.signIn('learner@example.test', 'Temporary!2026'), /disabled/);
+  assert.throws(() => store.setSchoolsEnabled([id, 'demo-admin'], true), /school/);
+  assert.equal(store.snapshot().accounts.find(item => item.id === id).enabled, false, 'Invalid bulk action is atomic');
+  store.setSchoolsEnabled([id], true);
+  store.updateAccess(id, { allBooks: true, expiresAt: '2000-01-01T12:00' });
+  assert.equal(availableBooks(store.snapshot().accounts.find(item => item.id === id), books).length, 0);
+  assert.throws(() => store.signIn('learner@example.test', 'Temporary!2026'), /expired/);
+  store.updateAccess(id, { allBooks: true, expires: '', expiresAt: '' });
+  store.resetPassword(id, 'NewSchool!2026');
+  store.signOut();
+  assert.equal(store.signIn('learner@example.test', 'NewSchool!2026'), 'user');
+  assert.equal(store.snapshot().accounts.find(item => item.id === id).schoolProfile.city, 'Karachi');
+  assert.throws(() => store.updateSchool(second, {}), /fictional admin/);
+});
+
 test('fictional login, invalid credentials, disabled accounts and sign out', () => {
   const store = fresh();
   assert.throws(() => store.signIn('admin@javed.example', 'incorrect'), /Incorrect demo/);

@@ -73,3 +73,36 @@ test('only real bundled activities can be applied and exported as reusable refer
   assert.throws(() => validateActivity({ type: 'existing', templateId: 'made-up-activity' }), /existing collection/);
   assert.equal(JSON.stringify(sourceBook.pages[source.pageNumber - 1]), before);
 });
+
+
+test('PDF reader extraction uses actual text and trusted video links only', async () => {
+  const { extractPdfContent, buildDraftReaderBook } = await import('../src/authoring/readerBook.js');
+  const known = new Map([['https://o2o.to/i/test', [{ id: '7hpynjvzeS0', title: 'Known lesson' }]]]);
+  const result = extractPdfContent({ items: [{ str: 'Hello', hasEOL: false }, { str: 'reader', hasEOL: true }] }, [{ url: 'https://youtu.be/7hpynjvzeS0' }, { url: 'https://o2o.to/i/test' }, { url: 'javascript:alert(1)' }, { url: 'https://example.com/video' }], known);
+  assert.equal(result.text, 'Hello reader');
+  assert.equal(result.embeddedVideos.length, 1);
+  const draft = { id: 'draft', title: 'Uploaded', pages: [{ number: 1, width: 600, height: 800, activities: [{ id: 'linked', title: 'Story', type: 'existing' }], ...result }] };
+  const book = buildDraftReaderBook(draft, ['blob:page-one']);
+  assert.equal(book.pages[0].img, 'blob:page-one');
+  assert.equal(book.pages[0].qr.videos[0].id, '7hpynjvzeS0');
+  assert.equal(book.pages[0].linkedActivities[0].id, 'linked');
+  assert.deepEqual(book.pages[0].acts, [], 'No games or activity answers are invented for an arbitrary PDF');
+  assert.equal(book.text[0][0][4], 'Hello reader');
+});
+
+test('original activities require consistent lesson links and retain source pages after deletion', async () => {
+  const { buildKnownLessonLinks, extractPdfContent, identifyOriginalBook, buildDraftReaderBook } = await import('../src/authoring/readerBook.js');
+  const original = { id: 'original', pages: [1, 2, 3].map(number => ({ img: `original-${number}`, acts: [{ type: 'game', id: `game-${number}` }], qr: { url: `https://lesson.test/${number}`, videos: [{ id: '7hpynjvzeS0' }] } })) };
+  const links = buildKnownLessonLinks([original]);
+  const pages = original.pages.map((page, index) => ({ number: index + 1, width: 600, height: 800, activities: [], ...extractPdfContent({}, [{ url: page.qr.url }], links) }));
+  assert.equal(identifyOriginalBook(pages, [original]), 'original');
+  assert.equal(identifyOriginalBook(pages.slice(0, 2), [original]), '');
+  assert.equal(identifyOriginalBook(pages.map((page, index) => ({ ...page, sourceMatches: index ? [] : page.sourceMatches })), [original]), '');
+  assert.equal(identifyOriginalBook(pages.map(page => ({ ...page, number: 1 })), [original]), '');
+  const draft = deleteDraftPage({ id: 'draft', originalBookId: 'original', pages }, 2);
+  const reader = buildDraftReaderBook(draft, ['blob:one', 'blob:three'], [original]);
+  assert.equal(reader.pages[1].acts[0].id, 'game-3');
+  assert.equal(reader.pages[1].qr, original.pages[2].qr);
+  assert.equal(reader.storyPages[2].img, 'blob:three');
+  assert.equal(original.pages[2].img, 'original-3');
+});

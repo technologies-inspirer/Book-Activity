@@ -7,9 +7,9 @@ export const DEMO_CREDENTIALS = {
 export function localDate(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
-export const isExpired = account => !!account.expires && account.expires < localDate();
+export const isExpired = account => account.expiresAt ? Date.parse(account.expiresAt) < Date.now() : !!account.expires && account.expires < localDate();
 export const availableBooks = (account, books) => !account || !account.enabled || isExpired(account)
-  ? [] : books.filter(book => account.role === 'admin' || account.allBooks || account.bookIds.includes(book.id));
+  ? [] : books.filter(book => (account.role === 'admin' || account.allBooks || account.bookIds.includes(book.id)) && schoolAllowsSelection(account, learningBookMetadata[book.id] || {}));
 
 const normalizeEmail = value => String(value || '').trim().toLowerCase();
 const validatePassword = value => {
@@ -20,17 +20,42 @@ function identity(input, accounts, exceptId) {
   const email = normalizeEmail(input.email);
   if (!name) throw new Error('Enter a full name.');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Enter a valid email address.');
-  if (accounts.some(account => account.id !== exceptId && account.email === email)) throw new Error('A demo account with this email already exists.');
+  if (accounts.some(account => (exceptId === undefined || account.id !== exceptId) && account.email === email)) throw new Error('A demo account with this email already exists.');
   return { name, email };
 }
 function access(input, validIds) {
   const expires = input.expires || '';
   if (expires && (!/^\d{4}-\d{2}-\d{2}$/.test(expires) || Number.isNaN(Date.parse(expires)))) throw new Error('Enter a valid expiry date.');
-  return { allBooks: !!input.allBooks, bookIds: [...new Set(input.bookIds || [])].filter(id => validIds.includes(id)), expires };
+  const expiresAt = input.expiresAt || '';
+  if (expiresAt && (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(expiresAt) || Number.isNaN(Date.parse(expiresAt)))) throw new Error('Enter a valid expiry date and time.');
+  return { allBooks: !!input.allBooks, bookIds: [...new Set(input.bookIds || [])].filter(id => validIds.includes(id)), expires, expiresAt };
+}
+
+export const SCHOOL_MODULES = ['Books', 'Resources', 'Paper Maker'];
+function schoolDetails(input, previous = {}) {
+  const profile = { ...previous.schoolProfile, ...input.schoolProfile };
+  const schoolProfile = { ...profile, name: String(profile.name || input.name || previous.name || '').trim(), address: String(profile.address || '').trim(), city: String(profile.city || '').trim() };
+  if (!schoolProfile.name || schoolProfile.name.length > 150 || schoolProfile.address.length > 1000 || schoolProfile.city.length > 100) throw new Error('Enter a valid school name, address and city.');
+  for (const [key, limit] of [['description', 1000], ['phone', 50], ['country', 100], ['state', 100]]) {
+    schoolProfile[key] = String(profile[key] || '').trim();
+    if (schoolProfile[key].length > limit) throw new Error(`School ${key} is too long.`);
+  }
+  const modules = input.modules ?? previous.modules ?? ['Books'];
+  if (!Array.isArray(modules) || modules.some(item => !SCHOOL_MODULES.includes(item))) throw new Error('Choose valid school modules.');
+  const loginPrefix = String(input.loginPrefix ?? previous.loginPrefix ?? '').trim();
+  if (loginPrefix && !/^[a-zA-Z0-9_-]{1,30}$/.test(loginPrefix)) throw new Error('Login prefix can contain up to 30 letters, numbers, underscores or hyphens.');
+  const principals = input.principals ?? previous.principals ?? [];
+  if (!Array.isArray(principals) || principals.length > 50) throw new Error('A school can have up to 50 principals.');
+  const checkedPrincipals = principals.map(item => {
+    const principal = { name: String(item.name || '').trim(), email: String(item.email || '').trim(), phone: String(item.phone || '').trim(), username: String(item.username || '').trim() };
+    if (!principal.name || principal.name.length > 150 || principal.phone.length > 50 || principal.username.length > 150 || (principal.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(principal.email))) throw new Error('Enter a valid principal name and email.');
+    return principal;
+  });
+  return { schoolProfile, modules: [...new Set(modules)], loginPrefix, principals: checkedPrincipals };
 }
 
 import { series as originalSeries } from '../data/series.js';
-import { learningClasses, learningSubjects, learningBookMetadata, getSubjectAssignments } from '../data/learningCatalog.js';
+import { learningClasses, learningSubjects, learningBookMetadata, getSubjectAssignments, schoolAllowsSelection } from '../data/learningCatalog.js';
 
 export const SERIES_STORAGE_KEY = 'book-activity.custom-series.v1';
 export const SUBJECT_STORAGE_KEY = 'book-activity.custom-subjects.v1';
@@ -74,6 +99,7 @@ export function createDemoStore(bookIds, seriesStorage = null) {
     }).map(({ seriesId, subjectId, classIds }) => ({ seriesId, subjectId, classIds: [...new Set(classIds)] }));
   } catch { /* Invalid stored assignments leave the default class selections intact. */ }
   let state = {
+    organizationProfile: { name: 'Javed Publishers', description: 'Publishing company', email: '', address: '', country: '', state: '', city: '', logo: 'assets/logo.png', letterHead: 'assets/logo.png' },
     customSeries,
     customSubjects,
     subjectAssignments,
@@ -163,10 +189,82 @@ export function createDemoStore(bookIds, seriesStorage = null) {
       publish({ accounts: [...state.accounts, { id, ...details, ...permissions, role: 'user', enabled: true }] });
       return id;
     },
+    importSchools(inputs) {
+      requireAdmin();
+      if (!Array.isArray(inputs) || !inputs.length || inputs.length > 500) throw new Error('Import between 1 and 500 schools.');
+      const pending = [];
+      for (const input of inputs) {
+        const details = identity(input, [...state.accounts, ...pending]);
+        validatePassword(input.password);
+        const permissions = access(input, bookIds);
+        pending.push({ ...details, ...permissions, ...schoolDetails(input), role: 'user', enabled: true });
+      }
+      const added = pending.map((item, index) => ({ ...item, id: `local-user-${nextId + index}` }));
+      added.forEach((item, index) => passwords.set(item.id, inputs[index].password));
+      nextId += added.length;
+      publish({ accounts: [...state.accounts, ...added] });
+      return added.map(item => item.id);
+    },
+    updateSchool(id, input) {
+      requireAdmin();
+      const account = find(id);
+      if (account.role !== 'user') throw new Error('Choose a school account.');
+      const details = identity({ name: input.name ?? account.name, email: input.email ?? account.email }, state.accounts, id);
+      const metadata = schoolDetails(input, account);
+      const permissions = input.access ? access(input.access, bookIds) : {};
+      replace(id, { ...details, ...metadata, ...permissions });
+    },
+    setSchoolsEnabled(ids, enabled) {
+      requireAdmin();
+      if (!ids.length || ids.some(id => find(id).role !== 'user')) throw new Error('Choose school accounts.');
+      publish({ accounts: state.accounts.map(item => ids.includes(item.id) ? { ...item, enabled: !!enabled } : item) });
+    },
+    updateSchoolAssignments(id, selections) {
+      requireAdmin();
+      if (find(id).role !== 'user') throw new Error('Choose a school account.');
+      if (!Array.isArray(selections) || selections.length > learningClasses.length) throw new Error('Choose valid school classes.');
+      const rows = getSubjectAssignments(state.customSubjects, state.subjectAssignments);
+      const classes = new Set();
+      const schoolAssignments = selections.map(selection => {
+        if (!learningClasses.some(item => item.id === selection.classId) || classes.has(selection.classId) || !Array.isArray(selection.subjects)) throw new Error('Choose valid school classes.');
+        classes.add(selection.classId);
+        const subjects = new Set();
+        return { classId: selection.classId, subjects: selection.subjects.map(subject => {
+          const key = `${subject.seriesId}/${subject.subjectId}`;
+          if (subjects.has(key) || !rows.some(row => row.seriesId === subject.seriesId && row.subjectId === subject.subjectId && row.classIds.includes(selection.classId))) throw new Error('Choose subjects assigned to this class.');
+          subjects.add(key);
+          return { seriesId: subject.seriesId, subjectId: subject.subjectId };
+        }) };
+      });
+      replace(id, { schoolAssignments });
+    },
+    setHeadSchool(id) {
+      requireAdmin();
+      const account = find(id);
+      if (account.role !== 'user') throw new Error('Choose a school account.');
+      const isHeadSchool = !account.isHeadSchool;
+      publish({ accounts: state.accounts.map(item => ({ ...item, isHeadSchool: item.id === id && isHeadSchool })) });
+    },
     updateAccess(id, input) { requireAdmin(); find(id); replace(id, access(input, bookIds)); },
     toggleEnabled(id) { requireAdmin(); const account = find(id); if (account.role === 'admin') throw new Error('Use a user account for this demo action.'); replace(id, { enabled: !account.enabled }); },
     resetPassword(id, password) { requireAdmin(); find(id); validatePassword(password); passwords.set(id, password); },
     updateProfile(input) { const account = find(state.currentId); replace(account.id, identity(input, state.accounts, account.id)); },
+    updateOrganizationProfile(input) {
+      requireAdmin();
+      const values = { ...state.organizationProfile, ...input };
+      const fields = Object.fromEntries(['name', 'description', 'email', 'address', 'country', 'state', 'city'].map(key => [key, String(values[key] || '').trim()]));
+      if (!fields.name || fields.name.length > 150) throw new Error('Enter an organization name of up to 150 characters.');
+      if (fields.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) throw new Error('Enter a valid organization email.');
+      if (['description', 'address'].some(key => fields[key].length > 1000) || ['country', 'state', 'city'].some(key => fields[key].length > 100)) throw new Error('Organization details are too long.');
+      publish({ organizationProfile: { ...state.organizationProfile, ...fields } });
+    },
+    updateOrganizationImage(kind, image) {
+      requireAdmin();
+      if (!['logo', 'letterHead'].includes(kind)) throw new Error('Choose Logo or Letter Head.');
+      if (typeof image !== 'string' || (image && !/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(image))) throw new Error('Choose a valid PNG, JPG or WebP image.');
+      if (image.length > 2800000) throw new Error('Choose an image smaller than 2 MB.');
+      publish({ organizationProfile: { ...state.organizationProfile, [kind]: image } });
+    },
     updateSchoolProfile(input) {
       const account = find(state.currentId);
       if (account.role !== 'user') throw new Error('Sign in as a demo reader to edit a school profile.');

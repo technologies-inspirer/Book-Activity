@@ -13,6 +13,7 @@ import { DemoNotice, SignOut } from './portal/Shared.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
 import { GlobalLoader } from './loading/LoadingScreen.jsx';
 import './portal/portal.css';
+import './portal/mobile.css';
 
 export function App() {
   return <DemoProvider><AppRoutes /><GlobalLoader /></DemoProvider>;
@@ -60,7 +61,7 @@ function AppRoutes() {
       return <div className="portal"><main className="user-main"><section className="portal-panel"><h1>Choose your demo workspace</h1><p>This page belongs to the other fictional demo role. These UI checks do not provide real security.</p><a className="portal-primary" href={`#/${account.role === 'admin' ? 'admin' : 'user'}`}>Open my workspace</a> <SignOut /></section></main><DemoNotice /></div>;
     }
     return route.type === 'admin'
-      ? <AdminPortal page={route.page} onBookOpen={() => setIntroNext(true)} />
+      ? <AdminPortal page={route.page} segments={route.segments} onBookOpen={() => setIntroNext(true)} />
       : <UserPortal page={route.page} libraryRoute={route.segments} onBookOpen={() => setIntroNext(true)} />;
   }
   if (account?.role === 'user' && route.book && !assignedBooks.some(book => book.id === route.book.id)) {
