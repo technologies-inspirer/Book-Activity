@@ -112,12 +112,6 @@
 .login-panel > p { font-size: .85rem; }
 .login-panel .portal-primary { justify-content: space-between; margin-top: 8px; }
 .login-help { text-align: center; color: var(--portal-muted); margin: 20px 0 24px; font-size: .75rem !important; }
-.demo-credentials { border-top: 1px solid var(--portal-border); padding-top: 20px; }
-.demo-credentials h3 { font-size: .78rem; margin-bottom: 10px; }
-.credential-row { display: grid; grid-template-columns: 1fr auto; gap: 1px 8px; font-size: .72rem; margin: 12px 0; overflow-wrap: anywhere; }
-.credential-row b { color: var(--portal-accent-text); grid-column: 1 / -1; }
-.credential-row code { color: var(--portal-text); font-size: .7rem; }
-.demo-credentials > p { color: var(--portal-muted); font-size: .68rem; margin-bottom: 0; }
 /* Publisher workspace */
 .admin-shell { display: grid; grid-template-columns: 244px minmax(0,1fr); }
 .admin-sidebar { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 32px 20px 20px; display: flex; flex-direction: column; border-right: 1px solid var(--portal-border); background: #004344; }
@@ -476,7 +470,6 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
   .login-covers img:nth-child(2) { height: 145px; }
   .login-caption { margin: 0; }
   .login-panel { padding: 26px; }
-  .credential-row { grid-template-columns: 1fr; gap: 3px; }
   .admin-shell { grid-template-columns: 1fr; }
   .user-portal-shell.sidebar-open { grid-template-columns: minmax(0, 1fr); }
   .learning-entry { gap: 15px; padding: 20px; align-items: flex-start; }
