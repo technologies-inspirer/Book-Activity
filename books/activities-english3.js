@@ -7651,5 +7651,41 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
    "title": "How to write z",
    "src": "https://youtu.be/jgFNaIzE8yw"
   }
- }
+ },
+ "35": [
+  {
+   "type": "videos",
+   "label": "Review",
+   "icon": "🔁",
+   "title": "Review j, k, i, l",
+   "button": {
+    "x": 72,
+    "y": 2.5
+   },
+   "videos": [
+    {
+     "title": "Review j, k, i, l",
+     "src": "https://youtu.be/61rE4o_fulA"
+    }
+   ]
+  }
+ ],
+ "36": [
+  {
+   "type": "videos",
+   "label": "Review",
+   "icon": "🔁",
+   "title": "Review j, k, i, l",
+   "button": {
+    "x": 72,
+    "y": 2.5
+   },
+   "videos": [
+    {
+     "title": "Review j, k, i, l",
+     "src": "https://youtu.be/61rE4o_fulA"
+    }
+   ]
+  }
+ ]
 });

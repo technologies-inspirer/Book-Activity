@@ -59,7 +59,7 @@ test('only real bundled activities can be applied and exported as reusable refer
   const { books } = await import('../src/data/books.js');
   const catalogue = buildExistingActivities(books, window.RECORDED);
   registerExistingActivities(catalogue);
-  assert.equal(catalogue.filter(item => item.source === 'activity').length, 369);
+  assert.equal(catalogue.filter(item => item.source === 'activity').length, 371);
   assert.equal(new Set(catalogue.map(item => item.id)).size, catalogue.length);
   for (const kind of existingActivityKinds) assert.ok(catalogue.some(item => item.kind === kind.id), kind.name);
   const source = catalogue.find(item => item.kind === 'game');
