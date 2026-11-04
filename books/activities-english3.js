@@ -7646,6 +7646,10 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write z",
+   "src": "https://youtu.be/jgFNaIzE8yw"
+  }
  }
 });

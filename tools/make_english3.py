@@ -142,7 +142,7 @@ YOUTUBE = {
     'w': {'Story': 'GApjuMHJhck', 'Vocabulary': 'zONpvvO9zuk', 'Formation': 'M1sUUgFOk7Y'},
     'x': {'Story': '5pQLox4GvsE', 'Vocabulary': 'XcysTO3YraA', 'Formation': 'uwbeKdMiALc'},
     'y': {'Story': 'sYpjWmQZ1d8', 'Vocabulary': 'bRVHrPrhvnM', 'Formation': 'BjOPfJP_GyQ'},
-    'z': {'Story': 'WULsTbiU2DY', 'Vocabulary': 'xUqI6ovr8bU'},  # Formation Z link not given yet
+    'z': {'Story': 'WULsTbiU2DY', 'Vocabulary': 'xUqI6ovr8bU', 'Formation': 'jgFNaIzE8yw'},
 }
 
 
