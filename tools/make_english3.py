@@ -121,6 +121,28 @@ YOUTUBE = {
     'b': {'Story': 'iT7XGS97cMw', 'Vocabulary': '4iRjXznttw4', 'Formation': 'g78mGR65Mn0'},
     'c': {'Story': 'P938hLOEMgA', 'Vocabulary': 'yvMBOSd8N3w', 'Formation': 'VlgoeeDdgTw'},
     'd': {'Story': 'LPn1tKHnAlU', 'Vocabulary': 'hqT8AJnYZ7s', 'Formation': '7KlJb0dB6l4'},
+    'e': {'Story': '0tj6JlvWIHI', 'Vocabulary': 'NQPbUO5pXpg', 'Formation': '70w9_K349xY'},
+    'f': {'Story': '35IKdUzmH6E', 'Vocabulary': 'XQN90QhbJMU', 'Formation': 'r5QXxxmUbCY'},
+    'g': {'Story': 'n4KdQquDG_g', 'Vocabulary': '-BQUZmFcZAM', 'Formation': 'H2b4de1xVJE'},
+    'h': {'Story': 'VyzNQowpw7E', 'Vocabulary': 't12Kx7LKSyI', 'Formation': 'wpAZ1DZO_1I'},
+    'i': {'Story': 'njGARHusfG8', 'Vocabulary': 'G5Bxv5owlNU', 'Formation': 'gto8RDdtlGM'},
+    'j': {'Story': '6MLRMLB7Tbg', 'Vocabulary': 'LR7Y0iSnzas', 'Formation': 'g30TrIRfR4M'},
+    'k': {'Story': 'b_DWuEJ6MOs', 'Vocabulary': 'nidvHPBsxZc', 'Formation': 'RjFn3Vn-ZsM'},
+    'l': {'Story': 'P210OFxIdoo', 'Vocabulary': 'aZ20dsbTEgA', 'Formation': 'gqyC5yG8F_c'},
+    'm': {'Story': 'dlNrPQ43M7k', 'Vocabulary': 'zLsd3kBBCoE', 'Formation': 'mzSHvPyhznI'},
+    'n': {'Story': 'gszeBwehGtI', 'Vocabulary': 'ZvEcqgPghS4', 'Formation': 'cBBMwouz8kU'},
+    'o': {'Story': '57mIvToMn_M', 'Vocabulary': '2nKu3PBxjaE', 'Formation': 'rmmFktcrJ4Q'},
+    'p': {'Story': 'gH8Qe8dO7dU', 'Vocabulary': 'A5f_ltm8Gs4', 'Formation': 'xDfhYxGrJV4'},
+    'q': {'Story': '6CueyGyaFLI', 'Vocabulary': 'GOMCExkqUws', 'Formation': 'MA3zkenXlQo'},
+    'r': {'Story': 'pTouIhk3uRE', 'Vocabulary': 'icL2DIUuSLY', 'Formation': 'yXxYImahZsU'},
+    's': {'Story': '-Nggz43oaCY', 'Vocabulary': 'sF3ZRvod24c', 'Formation': 'TfTA-uawTJI'},
+    't': {'Story': 'QGqKILZf254', 'Vocabulary': 'wp_Hp3Ezvt8', 'Formation': 'rPQyI0cGH1o'},
+    'u': {'Story': 'S3g9rBd5xvw', 'Vocabulary': 'pNaPPdsnwRw', 'Formation': 'fJFEHSPyqZo'},
+    'v': {'Story': 'eyqIsXYRAfU', 'Vocabulary': 'AiS6d0387hg', 'Formation': 'F3JzG8iKDIQ'},
+    'w': {'Story': 'GApjuMHJhck', 'Vocabulary': 'zONpvvO9zuk', 'Formation': 'M1sUUgFOk7Y'},
+    'x': {'Story': '5pQLox4GvsE', 'Vocabulary': 'XcysTO3YraA', 'Formation': 'uwbeKdMiALc'},
+    'y': {'Story': 'sYpjWmQZ1d8', 'Vocabulary': 'bRVHrPrhvnM', 'Formation': 'BjOPfJP_GyQ'},
+    'z': {'Story': 'WULsTbiU2DY', 'Vocabulary': 'xUqI6ovr8bU'},  # Formation Z link not given yet
 }
 
 

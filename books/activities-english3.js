@@ -1190,112 +1190,34 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
  },
  "17": [
   {
-   "type": "story",
-   "label": "Learn e",
-   "icon": "🔤",
-   "title": "The letter e",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter e",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 17,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter e. Say it with me. e, e, e!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/0tj6JlvWIHI"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter e",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 17,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of e."
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The happy elephant brings an envelope."
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "e for envelope."
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "e for egg."
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "e for elephant."
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "envelope, egg, elephant. They all begin with e!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/NQPbUO5pXpg"
     }
    ]
   },
@@ -1556,116 +1478,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write e",
+   "src": "https://youtu.be/70w9_K349xY"
+  }
  },
  "19": [
   {
-   "type": "story",
-   "label": "Learn f",
-   "icon": "🔤",
-   "title": "The letter f",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter f",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 19,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter f. Say it with me. f, f, f!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/35IKdUzmH6E"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter f",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 19,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of f."
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The frog and the fish are in the pond."
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "f for fish."
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "f for frog."
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "f for fan."
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "fish, frog, fan. They all begin with f!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/XQN90QhbJMU"
     }
    ]
   },
@@ -1914,116 +1762,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write f",
+   "src": "https://youtu.be/r5QXxxmUbCY"
+  }
  },
  "21": [
   {
-   "type": "story",
-   "label": "Learn g",
-   "icon": "🔤",
-   "title": "The letter g",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter g",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 21,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter g. Say it with me. g, g, g!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/n4KdQquDG_g"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter g",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 21,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of g."
-    },
-    {
-     "page": 21,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The goat looks at the grapes."
-    },
-    {
-     "page": 21,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "g for guava."
-    },
-    {
-     "page": 21,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "g for grapes."
-    },
-    {
-     "page": 21,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "g for goat."
-    },
-    {
-     "page": 21,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "guava, grapes, goat. They all begin with g!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/-BQUZmFcZAM"
     }
    ]
   },
@@ -2284,116 +2058,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write g",
+   "src": "https://youtu.be/H2b4de1xVJE"
+  }
  },
  "23": [
   {
-   "type": "story",
-   "label": "Learn h",
-   "icon": "🔤",
-   "title": "The letter h",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter h",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 23,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter h. Say it with me. h, h, h!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/VyzNQowpw7E"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter h",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 23,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of h."
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The hen stands happily near her house."
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "h for hat."
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "h for hen."
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "h for house."
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "hat, hen, house. They all begin with h!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/t12Kx7LKSyI"
     }
    ]
   },
@@ -2642,116 +2342,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write h",
+   "src": "https://youtu.be/wpAZ1DZO_1I"
+  }
  },
  "27": [
   {
-   "type": "story",
-   "label": "Learn i",
-   "icon": "🔤",
-   "title": "The letter i",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter i",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 27,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter i. Say it with me. i, i, i!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/njGARHusfG8"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter i",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 27,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of i."
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The insect sees the inkpot."
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "i for insect."
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "i for inkpot."
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "i for igloo."
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "insect, inkpot, igloo. They all begin with i!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/G5Bxv5owlNU"
     }
    ]
   },
@@ -3012,116 +2638,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write i",
+   "src": "https://youtu.be/gto8RDdtlGM"
+  }
  },
  "29": [
   {
-   "type": "story",
-   "label": "Learn j",
-   "icon": "🔤",
-   "title": "The letter j",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter j",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 29,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter j. Say it with me. j, j, j!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/6MLRMLB7Tbg"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter j",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 29,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of j."
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The jet flies over the jeep."
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "j for jar."
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "j for jug."
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "j for jeep."
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "jar, jug, jeep. They all begin with j!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/LR7Y0iSnzas"
     }
    ]
   },
@@ -3382,116 +2934,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write j",
+   "src": "https://youtu.be/g30TrIRfR4M"
+  }
  },
  "31": [
   {
-   "type": "story",
-   "label": "Learn k",
-   "icon": "🔤",
-   "title": "The letter k",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter k",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 31,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter k. Say it with me. k, k, k!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/b_DWuEJ6MOs"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter k",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 31,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of k."
-    },
-    {
-     "page": 31,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The king fills his cup with hot tea."
-    },
-    {
-     "page": 31,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "k for key."
-    },
-    {
-     "page": 31,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "k for kettle."
-    },
-    {
-     "page": 31,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "k for kitten."
-    },
-    {
-     "page": 31,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "key, kettle, kitten. They all begin with k!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/nidvHPBsxZc"
     }
    ]
   },
@@ -3752,116 +3230,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write k",
+   "src": "https://youtu.be/RjFn3Vn-ZsM"
+  }
  },
  "33": [
   {
-   "type": "story",
-   "label": "Learn l",
-   "icon": "🔤",
-   "title": "The letter l",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter l",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 33,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter l. Say it with me. l, l, l!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/P210OFxIdoo"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter l",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 33,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of l."
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The lamb stands near the lemon tree."
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "l for lemon."
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "l for leaf."
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "l for lion."
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "lemon, leaf, lion. They all begin with l!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/aZ20dsbTEgA"
     }
    ]
   },
@@ -4122,116 +3526,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write l",
+   "src": "https://youtu.be/gqyC5yG8F_c"
+  }
  },
  "39": [
   {
-   "type": "story",
-   "label": "Learn m",
-   "icon": "🔤",
-   "title": "The letter m",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter m",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 39,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter m. Say it with me. m, m, m!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/dlNrPQ43M7k"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter m",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 39,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of m."
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The monkey eats a mango."
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "m for map."
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "m for mango."
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "m for monkey."
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "map, mango, monkey. They all begin with m!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/zLsd3kBBCoE"
     }
    ]
   },
@@ -4492,116 +3822,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write m",
+   "src": "https://youtu.be/mzSHvPyhznI"
+  }
  },
  "41": [
   {
-   "type": "story",
-   "label": "Learn n",
-   "icon": "🔤",
-   "title": "The letter n",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter n",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 41,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter n. Say it with me. n, n, n!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/gszeBwehGtI"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter n",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 41,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of n."
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The nuts are on the newspaper."
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "n for nest."
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "n for nuts."
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "n for newspaper."
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "nest, nuts, newspaper. They all begin with n!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/ZvEcqgPghS4"
     }
    ]
   },
@@ -4862,116 +4118,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write n",
+   "src": "https://youtu.be/cBBMwouz8kU"
+  }
  },
  "43": [
   {
-   "type": "story",
-   "label": "Learn o",
-   "icon": "🔤",
-   "title": "The letter o",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter o",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 43,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter o. Say it with me. o, o, o!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/57mIvToMn_M"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter o",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 43,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of o."
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The ox eats an onion."
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "o for orange."
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "o for ox."
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "o for octopus."
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "orange, ox, octopus. They all begin with o!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/2nKu3PBxjaE"
     }
    ]
   },
@@ -5232,116 +4414,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write o",
+   "src": "https://youtu.be/rmmFktcrJ4Q"
+  }
  },
  "45": [
   {
-   "type": "story",
-   "label": "Learn p",
-   "icon": "🔤",
-   "title": "The letter p",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter p",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 45,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter p. Say it with me. p, p, p!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/gH8Qe8dO7dU"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter p",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 45,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of p."
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The parrot is sitting on a pear tree."
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "p for pear."
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "p for peacock."
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "p for parrot."
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "pear, peacock, parrot. They all begin with p!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/A5f_ltm8Gs4"
     }
    ]
   },
@@ -5602,116 +4710,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write p",
+   "src": "https://youtu.be/xDfhYxGrJV4"
+  }
  },
  "49": [
   {
-   "type": "story",
-   "label": "Learn q",
-   "icon": "🔤",
-   "title": "The letter q",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter q",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 49,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter q. Say it with me. q, q, q!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/6CueyGyaFLI"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter q",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 49,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of q."
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The quail rests on the quilt."
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "q for quill."
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "q for quilt."
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "q for quail."
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "quill, quilt, quail. They all begin with q!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/GOMCExkqUws"
     }
    ]
   },
@@ -5972,116 +5006,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write q",
+   "src": "https://youtu.be/MA3zkenXlQo"
+  }
  },
  "51": [
   {
-   "type": "story",
-   "label": "Learn r",
-   "icon": "🔤",
-   "title": "The letter r",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter r",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 51,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter r. Say it with me. r, r, r!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/pTouIhk3uRE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter r",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 51,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of r."
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The rabbit jumps into the ring."
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "r for ring."
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "r for rabbit."
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "r for racket."
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "ring, rabbit, racket. They all begin with r!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/icL2DIUuSLY"
     }
    ]
   },
@@ -6342,116 +5302,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write r",
+   "src": "https://youtu.be/yXxYImahZsU"
+  }
  },
  "53": [
   {
-   "type": "story",
-   "label": "Learn s",
-   "icon": "🔤",
-   "title": "The letter s",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter s",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 53,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter s. Say it with me. s, s, s!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/-Nggz43oaCY"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter s",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 53,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of s."
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The sun shines on the sunflower."
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "s for sunflower."
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "s for sun."
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "s for snake."
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "sunflower, sun, snake. They all begin with s!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/sF3ZRvod24c"
     }
    ]
   },
@@ -6712,116 +5598,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write s",
+   "src": "https://youtu.be/TfTA-uawTJI"
+  }
  },
  "55": [
   {
-   "type": "story",
-   "label": "Learn t",
-   "icon": "🔤",
-   "title": "The letter t",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter t",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 55,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter t. Say it with me. t, t, t!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/QGqKILZf254"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter t",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 55,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of t."
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The tiger is under the tree."
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "t for turtle."
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "t for tomato."
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "t for tiger."
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "turtle, tomato, tiger. They all begin with t!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/wp_Hp3Ezvt8"
     }
    ]
   },
@@ -7082,116 +5894,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write t",
+   "src": "https://youtu.be/rPQyI0cGH1o"
+  }
  },
  "61": [
   {
-   "type": "story",
-   "label": "Learn u",
-   "icon": "🔤",
-   "title": "The letter u",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter u",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 61,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter u. Say it with me. u, u, u!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/S3g9rBd5xvw"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter u",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 61,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of u."
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The umpire holds an umbrella."
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "u for urn."
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "u for umpire."
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "u for umbrella."
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "urn, umpire, umbrella. They all begin with u!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/pNaPPdsnwRw"
     }
    ]
   },
@@ -7452,116 +6190,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write u",
+   "src": "https://youtu.be/fJFEHSPyqZo"
+  }
  },
  "63": [
   {
-   "type": "story",
-   "label": "Learn v",
-   "icon": "🔤",
-   "title": "The letter v",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter v",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 63,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter v. Say it with me. v, v, v!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/eyqIsXYRAfU"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter v",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 63,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of v."
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The van moves through the valley."
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "v for vest."
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "v for van."
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "v for valley."
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "vest, van, valley. They all begin with v!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/AiS6d0387hg"
     }
    ]
   },
@@ -7822,116 +6486,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write v",
+   "src": "https://youtu.be/F3JzG8iKDIQ"
+  }
  },
  "65": [
   {
-   "type": "story",
-   "label": "Learn w",
-   "icon": "🔤",
-   "title": "The letter w",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter w",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 65,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter w. Say it with me. w, w, w!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/GApjuMHJhck"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter w",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 65,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of w."
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "A piece of wood lies near the well."
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "w for watch."
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "w for wood."
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "w for well."
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "watch, wood, well. They all begin with w!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/zONpvvO9zuk"
     }
    ]
   },
@@ -8192,116 +6782,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write w",
+   "src": "https://youtu.be/M1sUUgFOk7Y"
+  }
  },
  "67": [
   {
-   "type": "story",
-   "label": "Learn x",
-   "icon": "🔤",
-   "title": "The letter x",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter x",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 67,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter x. Say it with me. x, x, x!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/5pQLox4GvsE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter x",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 67,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of x."
-    },
-    {
-     "page": 67,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The boy plays the xylophone near the X-ray."
-    },
-    {
-     "page": 67,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "x for X-ray."
-    },
-    {
-     "page": 67,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "x for Christmas tree."
-    },
-    {
-     "page": 67,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "x for xylophone."
-    },
-    {
-     "page": 67,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "X-ray, Christmas tree, xylophone. They all begin with x!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/XcysTO3YraA"
     }
    ]
   },
@@ -8562,116 +7078,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write x",
+   "src": "https://youtu.be/uwbeKdMiALc"
+  }
  },
  "71": [
   {
-   "type": "story",
-   "label": "Learn y",
-   "icon": "🔤",
-   "title": "The letter y",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter y",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 71,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter y. Say it with me. y, y, y!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/sYpjWmQZ1d8"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter y",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 71,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of y."
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "The yak plays with the colourful yo-yo."
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "y for yarn."
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "y for yo-yo."
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "y for yak."
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "yarn, yo-yo, yak. They all begin with y!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/bRVHrPrhvnM"
     }
    ]
   },
@@ -8920,116 +7362,42 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write y",
+   "src": "https://youtu.be/BjOPfJP_GyQ"
+  }
  },
  "73": [
   {
-   "type": "story",
-   "label": "Learn z",
-   "icon": "🔤",
-   "title": "The letter z",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story of letter z",
    "button": {
-    "x": 47,
-    "y": 23.5
+    "x": 64,
+    "y": 25.5
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 73,
-     "from": {
-      "cx": 20,
-      "cy": 19,
-      "w": 40
-     },
-     "to": {
-      "cx": 20,
-      "cy": 19,
-      "w": 30
-     },
-     "text": "This is the letter z. Say it with me. z, z, z!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/WULsTbiU2DY"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary of letter z",
+   "button": {
+    "x": 64,
+    "y": 34.5
+   },
+   "videos": [
     {
-     "page": 73,
-     "from": {
-      "cx": 80,
-      "cy": 18,
-      "w": 40
-     },
-     "to": {
-      "cx": 85,
-      "cy": 18,
-      "w": 26
-     },
-     "text": "Look at the mouth, and say the sound of z."
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 50,
-      "cy": 42,
-      "w": 80
-     },
-     "to": {
-      "cx": 50,
-      "cy": 38,
-      "w": 50
-     },
-     "text": "There is a zebra at the zoo."
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 20,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 20,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "z for zip."
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 45,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 45,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "z for zebra."
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 75,
-      "cy": 74,
-      "w": 36
-     },
-     "to": {
-      "cx": 75,
-      "cy": 74,
-      "w": 30
-     },
-     "text": "z for zoo."
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 50,
-      "cy": 74,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 74,
-      "w": 90
-     },
-     "text": "zip, zebra, zoo. They all begin with z!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/xUqI6ovr8bU"
     }
    ]
   },
