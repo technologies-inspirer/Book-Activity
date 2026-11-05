@@ -145,6 +145,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.64,
         12.26
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_876_398.png",
+       "box": [
+        87.43,
+        37.79,
+        1.16,
+        12.26
+       ]
       }
      },
      {
@@ -163,6 +172,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.64,
         12.26
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_694_398.png",
+       "box": [
+        69.19,
+        37.79,
+        1.16,
+        12.26
+       ]
       }
      },
      {
@@ -179,6 +197,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         50.25,
         37.79,
         2.64,
+        12.26
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_512_398.png",
+       "box": [
+        50.94,
+        37.79,
+        1.27,
         12.26
        ]
       }
@@ -204,6 +231,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.66,
         12.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_876_503.png",
+       "box": [
+        87.43,
+        48.28,
+        1.16,
+        12.33
+       ]
       }
      },
      {
@@ -220,6 +256,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         68.44,
         48.28,
         2.66,
+        12.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_694_503.png",
+       "box": [
+        69.19,
+        48.28,
+        1.16,
         12.33
        ]
       }
@@ -240,6 +285,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.66,
         12.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_512_503.png",
+       "box": [
+        50.94,
+        48.28,
+        1.27,
+        12.33
+       ]
       }
      },
      {
@@ -258,6 +312,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.66,
         12.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_330_503.png",
+       "box": [
+        32.81,
+        48.28,
+        1.16,
+        12.33
+       ]
       }
      },
      {
@@ -274,6 +337,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.83,
         48.28,
         2.66,
+        12.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_148_503.png",
+       "box": [
+        14.58,
+        48.28,
+        1.16,
         12.33
        ]
       }
@@ -299,6 +371,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.64,
         12.26
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_876_609.png",
+       "box": [
+        87.43,
+        58.85,
+        1.16,
+        12.26
+       ]
       }
      },
      {
@@ -315,6 +396,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         68.44,
         58.85,
         2.64,
+        12.26
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_694_609.png",
+       "box": [
+        69.19,
+        58.85,
+        1.16,
         12.26
        ]
       }
@@ -335,6 +425,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.64,
         12.26
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_512_609.png",
+       "box": [
+        50.94,
+        58.85,
+        1.27,
+        12.26
+       ]
       }
      },
      {
@@ -353,6 +452,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         2.64,
         12.26
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_330_609.png",
+       "box": [
+        32.81,
+        58.85,
+        1.16,
+        12.26
+       ]
       }
      },
      {
@@ -369,6 +477,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.83,
         58.85,
         2.64,
+        12.26
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p006_148_609.png",
+       "box": [
+        14.58,
+        58.85,
+        1.16,
         12.26
        ]
       }
@@ -595,6 +712,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.65,
         13.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_849_393.png",
+       "box": [
+        83.36,
+        37.16,
+        9.35,
+        13.0
+       ]
       }
      },
      {
@@ -613,6 +739,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.65,
         13.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_668_393.png",
+       "box": [
+        65.23,
+        37.16,
+        9.23,
+        13.0
+       ]
       }
      },
      {
@@ -629,6 +764,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.87,
         37.16,
         7.65,
+        13.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_486_393.png",
+       "box": [
+        47.08,
+        37.16,
+        9.23,
         13.0
        ]
       }
@@ -654,6 +798,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.69,
         13.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_849_498.png",
+       "box": [
+        83.36,
+        47.65,
+        9.35,
+        13.08
+       ]
       }
      },
      {
@@ -670,6 +823,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         66.0,
         47.65,
         7.69,
+        13.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_668_498.png",
+       "box": [
+        65.23,
+        47.65,
+        9.23,
         13.08
        ]
       }
@@ -690,6 +852,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.69,
         13.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_486_498.png",
+       "box": [
+        47.08,
+        47.65,
+        9.23,
+        13.08
+       ]
       }
      },
      {
@@ -708,6 +879,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.69,
         13.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_304_498.png",
+       "box": [
+        28.84,
+        47.65,
+        9.23,
+        13.08
+       ]
       }
      },
      {
@@ -724,6 +904,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.46,
         47.65,
         7.69,
+        13.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_122_498.png",
+       "box": [
+        10.69,
+        47.65,
+        9.23,
         13.08
        ]
       }
@@ -749,6 +938,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.65,
         13.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_849_604.png",
+       "box": [
+        83.36,
+        58.22,
+        9.35,
+        13.0
+       ]
       }
      },
      {
@@ -765,6 +963,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         66.02,
         58.22,
         7.65,
+        13.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_668_604.png",
+       "box": [
+        65.23,
+        58.22,
+        9.23,
         13.0
        ]
       }
@@ -785,6 +992,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.65,
         13.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_486_604.png",
+       "box": [
+        47.08,
+        58.22,
+        9.23,
+        13.0
+       ]
       }
      },
      {
@@ -803,6 +1019,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.65,
         13.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_304_604.png",
+       "box": [
+        28.84,
+        58.22,
+        9.23,
+        13.0
+       ]
       }
      },
      {
@@ -819,6 +1044,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.48,
         58.22,
         7.65,
+        13.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p008_122_604.png",
+       "box": [
+        10.69,
+        58.22,
+        9.23,
         13.0
        ]
       }
@@ -977,6 +1211,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.47,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_796_406.png",
+       "box": [
+        76.78,
+        39.53,
+        17.07,
+        6.17
+       ]
       }
      },
      {
@@ -995,6 +1238,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.47,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_619_406.png",
+       "box": [
+        59.08,
+        39.53,
+        17.07,
+        6.17
+       ]
       }
      },
      {
@@ -1011,6 +1263,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         46.19,
         39.53,
         7.47,
+        6.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_442_406.png",
+       "box": [
+        41.38,
+        39.53,
+        17.07,
         6.17
        ]
       }
@@ -1036,6 +1297,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.47,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_796_518.png",
+       "box": [
+        76.78,
+        50.75,
+        17.07,
+        6.17
+       ]
       }
      },
      {
@@ -1052,6 +1322,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.88,
         50.75,
         7.47,
+        6.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_619_518.png",
+       "box": [
+        59.08,
+        50.75,
+        17.07,
         6.17
        ]
       }
@@ -1072,6 +1351,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.47,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_442_518.png",
+       "box": [
+        41.38,
+        50.75,
+        17.07,
+        6.17
+       ]
       }
      },
      {
@@ -1090,6 +1378,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.47,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_266_518.png",
+       "box": [
+        23.79,
+        50.75,
+        16.96,
+        6.17
+       ]
       }
      },
      {
@@ -1106,6 +1403,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.81,
         50.75,
         7.47,
+        6.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_88_518.png",
+       "box": [
+        6.0,
+        50.75,
+        17.07,
         6.17
        ]
       }
@@ -1131,6 +1437,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.38,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_796_630.png",
+       "box": [
+        76.78,
+        61.98,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -1147,6 +1462,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.92,
         61.98,
         7.38,
+        6.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_619_630.png",
+       "box": [
+        59.08,
+        61.98,
+        17.07,
         6.09
        ]
       }
@@ -1167,6 +1491,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.38,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_442_630.png",
+       "box": [
+        41.38,
+        61.98,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -1185,6 +1518,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.38,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_265_630.png",
+       "box": [
+        23.7,
+        61.98,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -1201,6 +1543,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.85,
         61.98,
         7.38,
+        6.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p012_88_630.png",
+       "box": [
+        6.0,
+        61.98,
+        17.07,
         6.09
        ]
       }
@@ -1363,6 +1714,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.57,
         7.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_799_406.png",
+       "box": [
+        77.08,
+        39.34,
+        17.07,
+        7.33
+       ]
       }
      },
      {
@@ -1381,6 +1741,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.37,
         7.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_621_406.png",
+       "box": [
+        59.24,
+        39.35,
+        17.07,
+        7.24
+       ]
       }
      },
      {
@@ -1397,6 +1766,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         41.74,
         39.35,
         16.37,
+        7.24
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_442_406.png",
+       "box": [
+        41.38,
+        39.35,
+        17.07,
         7.24
        ]
       }
@@ -1422,6 +1800,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.37,
         7.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_799_515.png",
+       "box": [
+        77.08,
+        50.29,
+        17.07,
+        7.24
+       ]
       }
      },
      {
@@ -1438,6 +1825,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         59.59,
         50.29,
         16.37,
+        7.24
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_621_515.png",
+       "box": [
+        59.24,
+        50.29,
+        17.07,
         7.24
        ]
       }
@@ -1458,6 +1854,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.37,
         7.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_442_515.png",
+       "box": [
+        41.38,
+        50.29,
+        17.07,
+        7.24
+       ]
       }
      },
      {
@@ -1476,6 +1881,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.57,
         7.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_265_514.png",
+       "box": [
+        23.63,
+        50.22,
+        16.96,
+        7.33
+       ]
       }
      },
      {
@@ -1492,6 +1906,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.99,
         50.22,
         16.57,
+        7.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_86_514.png",
+       "box": [
+        5.79,
+        50.22,
+        16.96,
         7.33
        ]
       }
@@ -1517,6 +1940,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.37,
         7.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_799_624.png",
+       "box": [
+        77.08,
+        61.18,
+        17.07,
+        7.24
+       ]
       }
      },
      {
@@ -1533,6 +1965,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         59.59,
         61.18,
         16.37,
+        7.24
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_621_624.png",
+       "box": [
+        59.24,
+        61.18,
+        17.07,
         7.24
        ]
       }
@@ -1553,6 +1994,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.37,
         7.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_442_624.png",
+       "box": [
+        41.38,
+        61.18,
+        17.07,
+        7.24
+       ]
       }
      },
      {
@@ -1571,6 +2021,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.37,
         7.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_265_624.png",
+       "box": [
+        23.63,
+        61.18,
+        16.96,
+        7.24
+       ]
       }
      },
      {
@@ -1587,6 +2046,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.09,
         61.18,
         16.37,
+        7.24
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p014_86_624.png",
+       "box": [
+        5.79,
+        61.18,
+        16.96,
         7.24
        ]
       }
@@ -1749,6 +2217,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_800_406.png",
+       "box": [
+        77.17,
+        39.86,
+        16.96,
+        4.17
+       ]
       }
      },
      {
@@ -1767,6 +2244,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.11,
         4.24
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_622_406.png",
+       "box": [
+        59.32,
+        39.85,
+        16.96,
+        4.24
+       ]
       }
      },
      {
@@ -1783,6 +2269,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         43.36,
         39.85,
         13.11,
+        4.24
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_442_406.png",
+       "box": [
+        41.38,
+        39.85,
+        17.07,
         4.24
        ]
       }
@@ -1808,6 +2303,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_800_523.png",
+       "box": [
+        77.17,
+        51.58,
+        16.96,
+        4.17
+       ]
       }
      },
      {
@@ -1824,6 +2328,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.36,
         51.58,
         12.88,
+        4.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_622_523.png",
+       "box": [
+        59.32,
+        51.58,
+        16.96,
         4.17
        ]
       }
@@ -1844,6 +2357,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_442_523.png",
+       "box": [
+        41.38,
+        51.58,
+        17.07,
+        4.17
+       ]
       }
      },
      {
@@ -1862,6 +2384,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_264_523.png",
+       "box": [
+        23.54,
+        51.58,
+        17.07,
+        4.17
+       ]
       }
      },
      {
@@ -1878,6 +2409,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.79,
         51.58,
         12.88,
+        4.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_85_523.png",
+       "box": [
+        5.69,
+        51.58,
+        17.07,
         4.17
        ]
       }
@@ -1903,6 +2443,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_800_639.png",
+       "box": [
+        77.17,
+        63.24,
+        16.96,
+        4.17
+       ]
       }
      },
      {
@@ -1919,6 +2468,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.36,
         63.24,
         12.88,
+        4.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_622_639.png",
+       "box": [
+        59.32,
+        63.24,
+        16.96,
         4.17
        ]
       }
@@ -1939,6 +2497,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_442_639.png",
+       "box": [
+        41.38,
+        63.24,
+        17.07,
+        4.17
+       ]
       }
      },
      {
@@ -1957,6 +2524,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.88,
         4.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_264_639.png",
+       "box": [
+        23.54,
+        63.24,
+        17.07,
+        4.17
+       ]
       }
      },
      {
@@ -1973,6 +2549,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.79,
         63.24,
         12.88,
+        4.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p016_85_639.png",
+       "box": [
+        5.69,
+        63.24,
+        17.07,
         4.17
        ]
       }
@@ -2199,6 +2784,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.89,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_800_407.png",
+       "box": [
+        77.17,
+        39.64,
+        16.96,
+        6.17
+       ]
       }
      },
      {
@@ -2217,6 +2811,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.89,
         6.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_622_407.png",
+       "box": [
+        59.32,
+        39.64,
+        16.96,
+        6.17
+       ]
       }
      },
      {
@@ -2233,6 +2836,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         42.48,
         39.64,
         14.89,
+        6.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_442_407.png",
+       "box": [
+        41.38,
+        39.64,
+        17.07,
         6.17
        ]
       }
@@ -2258,6 +2870,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.71,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_800_521.png",
+       "box": [
+        77.17,
+        51.04,
+        16.96,
+        6.09
+       ]
       }
      },
      {
@@ -2274,6 +2895,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         60.45,
         51.04,
         14.71,
+        6.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_622_521.png",
+       "box": [
+        59.32,
+        51.04,
+        16.96,
         6.09
        ]
       }
@@ -2294,6 +2924,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.71,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_442_521.png",
+       "box": [
+        41.38,
+        51.04,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -2312,6 +2951,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.71,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_264_521.png",
+       "box": [
+        23.54,
+        51.04,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -2328,6 +2976,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.79,
         50.97,
         14.89,
+        6.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_85_520.png",
+       "box": [
+        5.69,
+        50.97,
+        17.07,
         6.17
        ]
       }
@@ -2353,6 +3010,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.71,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_800_634.png",
+       "box": [
+        77.17,
+        62.38,
+        16.96,
+        6.09
+       ]
       }
      },
      {
@@ -2369,6 +3035,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         60.45,
         62.38,
         14.71,
+        6.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_622_634.png",
+       "box": [
+        59.32,
+        62.38,
+        16.96,
         6.09
        ]
       }
@@ -2389,6 +3064,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.71,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_442_634.png",
+       "box": [
+        41.38,
+        62.38,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -2407,6 +3091,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.71,
         6.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_264_634.png",
+       "box": [
+        23.54,
+        62.38,
+        17.07,
+        6.09
+       ]
       }
      },
      {
@@ -2423,6 +3116,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.88,
         62.38,
         14.71,
+        6.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p018_85_634.png",
+       "box": [
+        5.69,
+        62.38,
+        17.07,
         6.09
        ]
       }
@@ -2645,6 +3347,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_805_413.png",
+       "box": [
+        77.61,
+        40.47,
+        17.07,
+        5.16
+       ]
       }
      },
      {
@@ -2663,6 +3374,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_625_413.png",
+       "box": [
+        59.7,
+        40.47,
+        17.07,
+        5.16
+       ]
       }
      },
      {
@@ -2679,6 +3399,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         44.19,
         40.47,
         12.31,
+        5.16
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_447_413.png",
+       "box": [
+        41.86,
+        40.47,
+        16.96,
         5.16
        ]
       }
@@ -2704,6 +3433,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_805_527.png",
+       "box": [
+        77.61,
+        51.81,
+        17.07,
+        5.16
+       ]
       }
      },
      {
@@ -2720,6 +3458,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.07,
         51.81,
         12.31,
+        5.16
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_625_527.png",
+       "box": [
+        59.7,
+        51.81,
+        17.07,
         5.16
        ]
       }
@@ -2740,6 +3487,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_447_527.png",
+       "box": [
+        41.86,
+        51.81,
+        16.96,
+        5.16
+       ]
       }
      },
      {
@@ -2758,6 +3514,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_268_527.png",
+       "box": [
+        23.94,
+        51.81,
+        16.96,
+        5.16
+       ]
       }
      },
      {
@@ -2774,6 +3539,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.35,
         51.81,
         12.31,
+        5.16
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_88_527.png",
+       "box": [
+        6.02,
+        51.81,
+        16.96,
         5.16
        ]
       }
@@ -2799,6 +3573,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_805_640.png",
+       "box": [
+        77.61,
+        63.14,
+        17.07,
+        5.16
+       ]
       }
      },
      {
@@ -2815,6 +3598,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.07,
         63.14,
         12.31,
+        5.16
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_625_640.png",
+       "box": [
+        59.7,
+        63.14,
+        17.07,
         5.16
        ]
       }
@@ -2835,6 +3627,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_447_640.png",
+       "box": [
+        41.86,
+        63.14,
+        16.96,
+        5.16
+       ]
       }
      },
      {
@@ -2853,6 +3654,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.31,
         5.16
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_268_640.png",
+       "box": [
+        23.94,
+        63.14,
+        16.96,
+        5.16
+       ]
       }
      },
      {
@@ -2869,6 +3679,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.35,
         63.14,
         12.31,
+        5.16
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p020_88_640.png",
+       "box": [
+        6.02,
+        63.14,
+        16.96,
         5.16
        ]
       }
@@ -3091,6 +3910,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_805_406.png",
+       "box": [
+        78.08,
+        38.66,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3109,6 +3937,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_629_406.png",
+       "box": [
+        60.46,
+        38.66,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3125,6 +3962,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         44.41,
         38.66,
         11.65,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_453_406.png",
+       "box": [
+        42.85,
+        38.66,
+        14.77,
         11.42
        ]
       }
@@ -3150,6 +3996,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_805_511.png",
+       "box": [
+        78.08,
+        49.16,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3166,6 +4021,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.02,
         49.16,
         11.65,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_629_511.png",
+       "box": [
+        60.46,
+        49.16,
+        14.77,
         11.42
        ]
       }
@@ -3186,6 +4050,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_453_511.png",
+       "box": [
+        42.85,
+        49.16,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3204,6 +4077,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_277_511.png",
+       "box": [
+        25.23,
+        49.16,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3220,6 +4102,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.18,
         49.16,
         11.65,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_101_511.png",
+       "box": [
+        7.62,
+        49.16,
+        14.77,
         11.42
        ]
       }
@@ -3245,6 +4136,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_805_616.png",
+       "box": [
+        78.08,
+        59.71,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3261,6 +4161,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.98,
         59.64,
         11.74,
+        11.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_629_616.png",
+       "box": [
+        60.46,
+        59.64,
+        14.77,
         11.5
        ]
       }
@@ -3281,6 +4190,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_453_616.png",
+       "box": [
+        42.85,
+        59.71,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3299,6 +4217,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_277_616.png",
+       "box": [
+        25.23,
+        59.71,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3315,6 +4242,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.18,
         59.71,
         11.65,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p024_101_616.png",
+       "box": [
+        7.62,
+        59.71,
+        14.77,
         11.42
        ]
       }
@@ -3537,6 +4473,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.56,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_799_406.png",
+       "box": [
+        77.46,
+        38.66,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3555,6 +4500,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.56,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_624_406.png",
+       "box": [
+        59.9,
+        38.66,
+        14.88,
+        11.42
+       ]
       }
      },
      {
@@ -3571,6 +4525,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         44.07,
         38.66,
         11.56,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_449_406.png",
+       "box": [
+        42.46,
+        38.66,
+        14.77,
         11.42
        ]
       }
@@ -3596,6 +4559,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_799_511.png",
+       "box": [
+        77.46,
+        49.14,
+        14.77,
+        11.5
+       ]
       }
      },
      {
@@ -3612,6 +4584,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.52,
         49.14,
         11.65,
+        11.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_624_511.png",
+       "box": [
+        59.9,
+        49.14,
+        14.88,
         11.5
        ]
       }
@@ -3632,6 +4613,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_449_511.png",
+       "box": [
+        42.46,
+        49.14,
+        14.77,
+        11.5
+       ]
       }
      },
      {
@@ -3650,6 +4640,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.65,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_274_511.png",
+       "box": [
+        24.9,
+        49.14,
+        14.88,
+        11.5
+       ]
       }
      },
      {
@@ -3666,6 +4665,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.02,
         49.14,
         11.65,
+        11.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_99_511.png",
+       "box": [
+        7.46,
+        49.14,
+        14.77,
         11.5
        ]
       }
@@ -3691,6 +4699,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.56,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_799_616.png",
+       "box": [
+        77.46,
+        59.71,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3707,6 +4724,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.56,
         59.71,
         11.56,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_624_616.png",
+       "box": [
+        59.9,
+        59.71,
+        14.88,
         11.42
        ]
       }
@@ -3727,6 +4753,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.56,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_449_616.png",
+       "box": [
+        42.46,
+        59.71,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -3745,6 +4780,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.56,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_274_616.png",
+       "box": [
+        24.9,
+        59.71,
+        14.88,
+        11.42
+       ]
       }
      },
      {
@@ -3761,6 +4805,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.07,
         59.71,
         11.56,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p026_99_616.png",
+       "box": [
+        7.46,
+        59.71,
+        14.77,
         11.42
        ]
       }
@@ -3983,6 +5036,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.96,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_804_405.png",
+       "box": [
+        77.9,
+        38.58,
+        14.88,
+        11.5
+       ]
       }
      },
      {
@@ -4001,6 +5063,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.96,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_628_405.png",
+       "box": [
+        60.39,
+        38.58,
+        14.77,
+        11.5
+       ]
       }
      },
      {
@@ -4017,6 +5088,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.67,
         38.58,
         8.96,
+        11.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_452_405.png",
+       "box": [
+        42.77,
+        38.58,
+        14.77,
         11.5
        ]
       }
@@ -4042,6 +5122,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.89,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_804_511.png",
+       "box": [
+        77.9,
+        49.16,
+        14.88,
+        11.42
+       ]
       }
      },
      {
@@ -4058,6 +5147,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.33,
         49.16,
         8.89,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_628_511.png",
+       "box": [
+        60.39,
+        49.16,
+        14.77,
         11.42
        ]
       }
@@ -4078,6 +5176,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.89,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_452_511.png",
+       "box": [
+        42.77,
+        49.16,
+        14.77,
+        11.42
+       ]
       }
      },
      {
@@ -4096,6 +5203,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.89,
         11.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_276_511.png",
+       "box": [
+        25.14,
+        49.16,
+        14.88,
+        11.42
+       ]
       }
      },
      {
@@ -4112,6 +5228,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.51,
         49.16,
         8.89,
+        11.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_100_511.png",
+       "box": [
+        7.52,
+        49.16,
+        14.88,
         11.42
        ]
       }
@@ -4137,6 +5262,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.96,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_804_616.png",
+       "box": [
+        77.9,
+        59.64,
+        14.88,
+        11.5
+       ]
       }
      },
      {
@@ -4153,6 +5287,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.29,
         59.64,
         8.96,
+        11.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_628_616.png",
+       "box": [
+        60.39,
+        59.64,
+        14.77,
         11.5
        ]
       }
@@ -4173,6 +5316,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.96,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_452_616.png",
+       "box": [
+        42.77,
+        59.64,
+        14.77,
+        11.5
+       ]
       }
      },
      {
@@ -4191,6 +5343,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.96,
         11.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_276_616.png",
+       "box": [
+        25.14,
+        59.64,
+        14.88,
+        11.5
+       ]
       }
      },
      {
@@ -4207,6 +5368,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.48,
         59.64,
         8.96,
+        11.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p028_100_616.png",
+       "box": [
+        7.52,
+        59.64,
+        14.88,
         11.5
        ]
       }
@@ -4429,6 +5599,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_801_398.png",
+       "box": [
+        77.62,
+        37.64,
+        14.77,
+        13.17
+       ]
       }
      },
      {
@@ -4447,6 +5626,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_625_398.png",
+       "box": [
+        60.08,
+        37.64,
+        14.77,
+        13.17
+       ]
       }
      },
      {
@@ -4463,6 +5651,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         44.68,
         37.64,
         10.55,
+        13.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_450_398.png",
+       "box": [
+        42.52,
+        37.64,
+        14.88,
         13.17
        ]
       }
@@ -4488,6 +5685,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_801_504.png",
+       "box": [
+        77.62,
+        48.2,
+        14.77,
+        13.17
+       ]
       }
      },
      {
@@ -4504,6 +5710,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.19,
         48.2,
         10.55,
+        13.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_625_504.png",
+       "box": [
+        60.08,
+        48.2,
+        14.77,
         13.17
        ]
       }
@@ -4524,6 +5739,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_450_504.png",
+       "box": [
+        42.52,
+        48.2,
+        14.88,
+        13.17
+       ]
       }
      },
      {
@@ -4542,6 +5766,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_275_504.png",
+       "box": [
+        24.98,
+        48.2,
+        14.88,
+        13.17
+       ]
       }
      },
      {
@@ -4558,6 +5791,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.6,
         48.2,
         10.55,
+        13.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_99_504.png",
+       "box": [
+        7.44,
+        48.2,
+        14.88,
         13.17
        ]
       }
@@ -4583,6 +5825,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_801_609.png",
+       "box": [
+        77.62,
+        58.7,
+        14.77,
+        13.17
+       ]
       }
      },
      {
@@ -4599,6 +5850,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.19,
         58.7,
         10.55,
+        13.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_625_609.png",
+       "box": [
+        60.08,
+        58.7,
+        14.77,
         13.17
        ]
       }
@@ -4619,6 +5879,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_450_609.png",
+       "box": [
+        42.54,
+        58.7,
+        14.77,
+        13.17
+       ]
       }
      },
      {
@@ -4637,6 +5906,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.55,
         13.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_275_609.png",
+       "box": [
+        24.98,
+        58.7,
+        14.88,
+        13.17
+       ]
       }
      },
      {
@@ -4653,6 +5931,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.6,
         58.7,
         10.55,
+        13.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p030_99_609.png",
+       "box": [
+        7.44,
+        58.7,
+        14.88,
         13.17
        ]
       }
@@ -4875,6 +6162,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.25,
         6.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_833_412.png",
+       "box": [
+        82.06,
+        40.12,
+        7.5,
+        6.33
+       ]
       }
      },
      {
@@ -4893,6 +6189,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.25,
         6.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_653_412.png",
+       "box": [
+        64.06,
+        40.12,
+        7.5,
+        6.33
+       ]
       }
      },
      {
@@ -4909,6 +6214,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.18,
         40.12,
         5.25,
+        6.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_473_412.png",
+       "box": [
+        46.06,
+        40.12,
+        7.5,
         6.33
        ]
       }
@@ -4934,6 +6248,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.25,
         6.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_833_523.png",
+       "box": [
+        82.06,
+        51.22,
+        7.5,
+        6.33
+       ]
       }
      },
      {
@@ -4950,6 +6273,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.18,
         51.22,
         5.25,
+        6.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_653_523.png",
+       "box": [
+        64.06,
+        51.22,
+        7.5,
         6.33
        ]
       }
@@ -4970,6 +6302,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.33,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_473_523.png",
+       "box": [
+        46.06,
+        51.21,
+        7.5,
+        6.42
+       ]
       }
      },
      {
@@ -4988,6 +6329,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.25,
         6.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_292_523.png",
+       "box": [
+        27.98,
+        51.22,
+        7.5,
+        6.33
+       ]
       }
      },
      {
@@ -5004,6 +6354,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.07,
         51.21,
         5.33,
+        6.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_112_523.png",
+       "box": [
+        9.98,
+        51.21,
+        7.5,
         6.42
        ]
       }
@@ -5029,6 +6388,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.25,
         6.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_833_634.png",
+       "box": [
+        82.06,
+        62.34,
+        7.5,
+        6.33
+       ]
       }
      },
      {
@@ -5045,6 +6413,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.18,
         62.34,
         5.25,
+        6.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_653_634.png",
+       "box": [
+        64.06,
+        62.34,
+        7.5,
         6.33
        ]
       }
@@ -5065,6 +6442,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.33,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_473_634.png",
+       "box": [
+        46.06,
+        62.32,
+        7.5,
+        6.42
+       ]
       }
      },
      {
@@ -5083,6 +6469,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.25,
         6.33
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_292_634.png",
+       "box": [
+        27.98,
+        62.34,
+        7.5,
+        6.33
+       ]
       }
      },
      {
@@ -5099,6 +6494,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.1,
         62.34,
         5.25,
+        6.33
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p034_112_634.png",
+       "box": [
+        9.98,
+        62.34,
+        7.5,
         6.33
        ]
       }
@@ -5321,6 +6725,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.2,
         10.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_835_399.png",
+       "box": [
+        82.21,
+        38.24,
+        7.5,
+        10.17
+       ]
       }
      },
      {
@@ -5339,6 +6752,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.2,
         10.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_654_399.png",
+       "box": [
+        64.13,
+        38.24,
+        7.5,
+        10.17
+       ]
       }
      },
      {
@@ -5355,6 +6777,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.21,
         38.24,
         5.2,
+        10.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_473_399.png",
+       "box": [
+        46.06,
+        38.24,
+        7.5,
         10.17
        ]
       }
@@ -5380,6 +6811,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.2,
         10.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_835_507.png",
+       "box": [
+        82.21,
+        49.02,
+        7.5,
+        10.17
+       ]
       }
      },
      {
@@ -5396,6 +6836,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.28,
         49.02,
         5.2,
+        10.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_654_507.png",
+       "box": [
+        64.13,
+        49.02,
+        7.5,
         10.17
        ]
       }
@@ -5416,6 +6865,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.2,
         10.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_473_507.png",
+       "box": [
+        46.06,
+        49.02,
+        7.5,
+        10.17
+       ]
       }
      },
      {
@@ -5434,6 +6892,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.2,
         10.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_296_507.png",
+       "box": [
+        28.37,
+        49.02,
+        7.5,
+        10.17
+       ]
       }
      },
      {
@@ -5450,6 +6917,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.9,
         49.02,
         5.2,
+        10.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_120_507.png",
+       "box": [
+        10.75,
+        49.02,
+        7.5,
         10.17
        ]
       }
@@ -5475,6 +6951,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.2,
         10.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_835_615.png",
+       "box": [
+        82.21,
+        59.8,
+        7.5,
+        10.17
+       ]
       }
      },
      {
@@ -5491,6 +6976,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.3,
         59.88,
         5.16,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_654_616.png",
+       "box": [
+        64.13,
+        59.88,
+        7.5,
         10.08
        ]
       }
@@ -5511,6 +7005,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.16,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_473_616.png",
+       "box": [
+        46.06,
+        59.88,
+        7.5,
+        10.08
+       ]
       }
      },
      {
@@ -5529,6 +7032,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.16,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_297_616.png",
+       "box": [
+        28.46,
+        59.88,
+        7.38,
+        10.08
+       ]
       }
      },
      {
@@ -5545,6 +7057,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.92,
         59.88,
         5.16,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p036_120_616.png",
+       "box": [
+        10.75,
+        59.88,
+        7.5,
         10.08
        ]
       }
@@ -5745,6 +7266,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.88,
         7.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_832_412.png",
+       "box": [
+        82.04,
+        39.85,
+        6.69,
+        7.92
+       ]
       }
      },
      {
@@ -5763,6 +7293,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.88,
         7.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_656_412.png",
+       "box": [
+        64.53,
+        39.85,
+        6.57,
+        7.92
+       ]
       }
      },
      {
@@ -5779,6 +7318,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.75,
         39.85,
         4.88,
+        7.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_480_412.png",
+       "box": [
+        46.9,
+        39.85,
+        6.57,
         7.92
        ]
       }
@@ -5804,6 +7352,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_826_520.png",
+       "box": [
+        81.37,
+        50.65,
+        7.5,
+        8.08
+       ]
       }
      },
      {
@@ -5820,6 +7377,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.01,
         50.65,
         4.98,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_650_520.png",
+       "box": [
+        63.75,
+        50.65,
+        7.5,
         8.08
        ]
       }
@@ -5840,6 +7406,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_474_520.png",
+       "box": [
+        46.13,
+        50.65,
+        7.5,
+        8.08
+       ]
       }
      },
      {
@@ -5858,6 +7433,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_295_520.png",
+       "box": [
+        28.21,
+        50.65,
+        7.5,
+        8.08
+       ]
       }
      },
      {
@@ -5874,6 +7458,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.01,
         50.65,
         4.98,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_120_520.png",
+       "box": [
+        10.75,
+        50.65,
+        7.5,
         8.08
        ]
       }
@@ -5899,6 +7492,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_826_628.png",
+       "box": [
+        81.37,
+        61.48,
+        7.5,
+        8.08
+       ]
       }
      },
      {
@@ -5915,6 +7517,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.05,
         61.48,
         4.98,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_651_628.png",
+       "box": [
+        63.85,
+        61.48,
+        7.38,
         8.08
        ]
       }
@@ -5935,6 +7546,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_474_628.png",
+       "box": [
+        46.13,
+        61.48,
+        7.5,
+        8.08
+       ]
       }
      },
      {
@@ -5953,6 +7573,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_295_628.png",
+       "box": [
+        28.21,
+        61.48,
+        7.5,
+        8.08
+       ]
       }
      },
      {
@@ -5969,6 +7598,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.01,
         61.48,
         4.98,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p038_120_628.png",
+       "box": [
+        10.75,
+        61.48,
+        7.5,
         8.08
        ]
       }
@@ -6191,6 +7829,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.8,
         7.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_828_421.png",
+       "box": [
+        81.54,
+        40.89,
+        7.85,
+        7.0
+       ]
       }
      },
      {
@@ -6209,6 +7856,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.8,
         7.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_650_421.png",
+       "box": [
+        63.71,
+        40.89,
+        7.72,
+        7.0
+       ]
       }
      },
      {
@@ -6225,6 +7881,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.9,
         40.89,
         7.8,
+        7.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_472_421.png",
+       "box": [
+        45.94,
+        40.89,
+        7.72,
         7.0
        ]
       }
@@ -6250,6 +7915,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.8,
         7.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_829_528.png",
+       "box": [
+        81.63,
+        51.66,
+        7.72,
+        7.0
+       ]
       }
      },
      {
@@ -6266,6 +7940,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.67,
         51.66,
         7.8,
+        7.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_650_528.png",
+       "box": [
+        63.71,
+        51.66,
+        7.72,
         7.0
        ]
       }
@@ -6286,6 +7969,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.8,
         7.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_472_528.png",
+       "box": [
+        45.94,
+        51.66,
+        7.72,
+        7.0
+       ]
       }
      },
      {
@@ -6304,6 +7996,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.7,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_292_528.png",
+       "box": [
+        27.92,
+        51.68,
+        7.85,
+        6.92
+       ]
       }
      },
      {
@@ -6320,6 +8021,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.03,
         51.68,
         7.7,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_113_528.png",
+       "box": [
+        10.02,
+        51.68,
+        7.72,
         6.92
        ]
       }
@@ -6345,6 +8055,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.7,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_829_636.png",
+       "box": [
+        81.63,
+        62.46,
+        7.72,
+        6.92
+       ]
       }
      },
      {
@@ -6361,6 +8080,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.72,
         62.46,
         7.7,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_650_636.png",
+       "box": [
+        63.71,
+        62.46,
+        7.72,
         6.92
        ]
       }
@@ -6381,6 +8109,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.8,
         7.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_472_636.png",
+       "box": [
+        45.94,
+        62.44,
+        7.72,
+        7.0
+       ]
       }
      },
      {
@@ -6399,6 +8136,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.7,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_292_636.png",
+       "box": [
+        27.92,
+        62.46,
+        7.85,
+        6.92
+       ]
       }
      },
      {
@@ -6415,6 +8161,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.03,
         62.46,
         7.7,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p040_113_636.png",
+       "box": [
+        10.02,
+        62.46,
+        7.72,
         6.92
        ]
       }
@@ -6637,6 +8392,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_835_406.png",
+       "box": [
+        82.2,
+        38.88,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6655,6 +8419,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_655_406.png",
+       "box": [
+        64.2,
+        38.88,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6671,6 +8444,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         46.2,
         38.88,
         8.23,
+        10.41
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_476_406.png",
+       "box": [
+        46.28,
+        38.88,
+        8.07,
         10.41
        ]
       }
@@ -6696,6 +8478,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_835_512.png",
+       "box": [
+        82.2,
+        49.44,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6712,6 +8503,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.12,
         49.44,
         8.23,
+        10.41
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_655_512.png",
+       "box": [
+        64.2,
+        49.44,
+        8.07,
         10.41
        ]
       }
@@ -6732,6 +8532,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_476_512.png",
+       "box": [
+        46.28,
+        49.44,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6750,6 +8559,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_296_512.png",
+       "box": [
+        28.28,
+        49.44,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6766,6 +8584,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.27,
         49.44,
         8.23,
+        10.41
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_117_512.png",
+       "box": [
+        10.34,
+        49.44,
+        8.07,
         10.41
        ]
       }
@@ -6791,6 +8618,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_835_617.png",
+       "box": [
+        82.2,
+        59.98,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6807,6 +8643,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.12,
         59.98,
         8.23,
+        10.41
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_655_617.png",
+       "box": [
+        64.2,
+        59.98,
+        8.07,
         10.41
        ]
       }
@@ -6827,6 +8672,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_476_617.png",
+       "box": [
+        46.28,
+        59.98,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6845,6 +8699,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.23,
         10.41
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_296_617.png",
+       "box": [
+        28.28,
+        59.98,
+        8.07,
+        10.41
+       ]
       }
      },
      {
@@ -6861,6 +8724,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.24,
         59.98,
         8.23,
+        10.41
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p042_116_617.png",
+       "box": [
+        10.26,
+        59.98,
+        8.19,
         10.41
        ]
       }
@@ -7083,6 +8955,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_831_416.png",
+       "box": [
+        81.79,
+        40.09,
+        7.72,
+        8.83
+       ]
       }
      },
      {
@@ -7101,6 +8982,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_649_416.png",
+       "box": [
+        63.61,
+        40.09,
+        7.85,
+        8.83
+       ]
       }
      },
      {
@@ -7117,6 +9007,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.89,
         40.09,
         7.83,
+        8.83
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_472_416.png",
+       "box": [
+        45.94,
+        40.09,
+        7.72,
         8.83
        ]
       }
@@ -7142,6 +9041,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_830_522.png",
+       "box": [
+        81.69,
+        50.7,
+        7.85,
+        8.83
+       ]
       }
      },
      {
@@ -7158,6 +9066,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.62,
         50.7,
         7.83,
+        8.83
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_649_522.png",
+       "box": [
+        63.61,
+        50.7,
+        7.85,
         8.83
        ]
       }
@@ -7178,6 +9095,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_472_522.png",
+       "box": [
+        45.94,
+        50.7,
+        7.72,
+        8.83
+       ]
       }
      },
      {
@@ -7196,6 +9122,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_292_522.png",
+       "box": [
+        27.94,
+        50.7,
+        7.72,
+        8.83
+       ]
       }
      },
      {
@@ -7212,6 +9147,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.93,
         50.7,
         7.83,
+        8.83
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_112_522.png",
+       "box": [
+        9.92,
+        50.7,
+        7.85,
         8.83
        ]
       }
@@ -7237,6 +9181,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_831_627.png",
+       "box": [
+        81.79,
+        61.25,
+        7.72,
+        8.83
+       ]
       }
      },
      {
@@ -7253,6 +9206,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.62,
         61.25,
         7.83,
+        8.83
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_649_627.png",
+       "box": [
+        63.61,
+        61.25,
+        7.85,
         8.83
        ]
       }
@@ -7273,6 +9235,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_472_627.png",
+       "box": [
+        45.94,
+        61.25,
+        7.72,
+        8.83
+       ]
       }
      },
      {
@@ -7291,6 +9262,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.83,
         8.83
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_292_627.png",
+       "box": [
+        27.94,
+        61.25,
+        7.72,
+        8.83
+       ]
       }
      },
      {
@@ -7307,6 +9287,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.93,
         61.25,
         7.83,
+        8.83
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p044_112_627.png",
+       "box": [
+        9.92,
+        61.25,
+        7.85,
         8.83
        ]
       }
@@ -7507,6 +9496,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_832_414.png",
+       "box": [
+        81.67,
+        39.71,
+        8.88,
+        10.08
+       ]
       }
      },
      {
@@ -7523,6 +9521,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.13,
         39.71,
         8.12,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_652_414.png",
+       "box": [
+        63.75,
+        39.71,
+        8.88,
         10.08
        ]
       }
@@ -7548,6 +9555,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_832_518.png",
+       "box": [
+        81.67,
+        50.15,
+        8.88,
+        10.08
+       ]
       }
      },
      {
@@ -7564,6 +9580,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.13,
         50.15,
         8.12,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_652_518.png",
+       "box": [
+        63.75,
+        50.15,
+        8.88,
         10.08
        ]
       }
@@ -7584,6 +9609,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_472_518.png",
+       "box": [
+        45.73,
+        50.15,
+        9.0,
+        10.08
+       ]
       }
      },
      {
@@ -7602,6 +9636,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_293_518.png",
+       "box": [
+        27.83,
+        50.15,
+        8.88,
+        10.08
+       ]
       }
      },
      {
@@ -7618,6 +9661,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.21,
         50.15,
         8.12,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_113_518.png",
+       "box": [
+        9.83,
+        50.15,
+        8.88,
         10.08
        ]
       }
@@ -7643,6 +9695,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_832_623.png",
+       "box": [
+        81.67,
+        60.6,
+        8.88,
+        10.08
+       ]
       }
      },
      {
@@ -7659,6 +9720,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.13,
         60.6,
         8.12,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_652_623.png",
+       "box": [
+        63.75,
+        60.6,
+        8.88,
         10.08
        ]
       }
@@ -7679,6 +9749,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_472_623.png",
+       "box": [
+        45.73,
+        60.6,
+        9.0,
+        10.08
+       ]
       }
      },
      {
@@ -7697,6 +9776,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.12,
         10.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_293_623.png",
+       "box": [
+        27.83,
+        60.6,
+        8.88,
+        10.08
+       ]
       }
      },
      {
@@ -7713,6 +9801,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.21,
         60.6,
         8.12,
+        10.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p046_113_623.png",
+       "box": [
+        9.83,
+        60.6,
+        8.88,
         10.08
        ]
       }
@@ -7935,6 +10032,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_798_416.png",
+       "box": [
+        76.91,
+        40.02,
+        17.66,
+        9.25
+       ]
       }
      },
      {
@@ -7953,6 +10059,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_619_416.png",
+       "box": [
+        59.0,
+        40.02,
+        17.54,
+        9.25
+       ]
       }
      },
      {
@@ -7969,6 +10084,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         43.18,
         40.08,
         12.85,
+        9.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_439_416.png",
+       "box": [
+        41.08,
+        40.08,
+        17.07,
         9.17
        ]
       }
@@ -7994,6 +10118,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_798_520.png",
+       "box": [
+        76.91,
+        50.46,
+        17.66,
+        9.25
+       ]
       }
      },
      {
@@ -8010,6 +10143,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.28,
         50.46,
         12.98,
+        9.25
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_619_520.png",
+       "box": [
+        59.0,
+        50.46,
+        17.54,
         9.25
        ]
       }
@@ -8030,6 +10172,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_439_520.png",
+       "box": [
+        40.98,
+        50.46,
+        17.66,
+        9.25
+       ]
       }
      },
      {
@@ -8048,6 +10199,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_260_520.png",
+       "box": [
+        23.08,
+        50.46,
+        17.54,
+        9.25
+       ]
       }
      },
      {
@@ -8064,6 +10224,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.4,
         50.46,
         12.98,
+        9.25
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_80_520.png",
+       "box": [
+        5.06,
+        50.46,
+        17.66,
         9.25
        ]
       }
@@ -8089,6 +10258,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_798_624.png",
+       "box": [
+        76.91,
+        60.9,
+        17.66,
+        9.25
+       ]
       }
      },
      {
@@ -8105,6 +10283,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.28,
         60.9,
         12.98,
+        9.25
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_619_624.png",
+       "box": [
+        59.0,
+        60.9,
+        17.54,
         9.25
        ]
       }
@@ -8125,6 +10312,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_439_624.png",
+       "box": [
+        40.98,
+        60.9,
+        17.66,
+        9.25
+       ]
       }
      },
      {
@@ -8143,6 +10339,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         12.98,
         9.25
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_260_624.png",
+       "box": [
+        23.08,
+        60.9,
+        17.54,
+        9.25
+       ]
       }
      },
      {
@@ -8159,6 +10364,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.4,
         60.9,
         12.98,
+        9.25
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p050_80_624.png",
+       "box": [
+        5.06,
+        60.9,
+        17.66,
         9.25
        ]
       }
@@ -8381,6 +10595,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_798_403.png",
+       "box": [
+        76.91,
+        38.14,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8399,6 +10622,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_619_403.png",
+       "box": [
+        58.98,
+        38.14,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8415,6 +10647,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         43.27,
         38.14,
         13.08,
+        12.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_439_403.png",
+       "box": [
+        40.98,
+        38.14,
+        17.66,
         12.84
        ]
       }
@@ -8440,6 +10681,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_798_504.png",
+       "box": [
+        76.91,
+        48.3,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8456,6 +10706,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.27,
         48.3,
         13.08,
+        12.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_619_504.png",
+       "box": [
+        58.98,
+        48.3,
+        17.66,
         12.84
        ]
       }
@@ -8476,6 +10735,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_439_504.png",
+       "box": [
+        40.98,
+        48.3,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8494,6 +10762,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_259_504.png",
+       "box": [
+        22.98,
+        48.3,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8510,6 +10787,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.35,
         48.3,
         13.08,
+        12.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_80_504.png",
+       "box": [
+        5.06,
+        48.3,
+        17.66,
         12.84
        ]
       }
@@ -8535,6 +10821,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_798_606.png",
+       "box": [
+        76.91,
+        58.47,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8551,6 +10846,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.27,
         58.47,
         13.08,
+        12.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_619_606.png",
+       "box": [
+        58.98,
+        58.47,
+        17.66,
         12.84
        ]
       }
@@ -8571,6 +10875,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_439_606.png",
+       "box": [
+        40.98,
+        58.47,
+        17.66,
+        12.84
+       ]
       }
      },
      {
@@ -8589,6 +10902,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.08,
         12.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_260_606.png",
+       "box": [
+        23.08,
+        58.47,
+        17.54,
+        12.84
+       ]
       }
      },
      {
@@ -8605,6 +10927,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.35,
         58.47,
         13.08,
+        12.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p052_80_606.png",
+       "box": [
+        5.06,
+        58.47,
+        17.66,
         12.84
        ]
       }
@@ -8827,6 +11158,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_790_413.png",
+       "box": [
+        75.71,
+        39.56,
+        19.73,
+        10.59
+       ]
       }
      },
      {
@@ -8845,6 +11185,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.39,
         10.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_610_413.png",
+       "box": [
+        57.69,
+        39.58,
+        19.84,
+        10.5
+       ]
       }
      },
      {
@@ -8861,6 +11210,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         42.36,
         39.56,
         14.52,
+        10.59
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_430_413.png",
+       "box": [
+        39.69,
+        39.56,
+        19.84,
         10.59
        ]
       }
@@ -8886,6 +11244,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_790_517.png",
+       "box": [
+        75.71,
+        49.96,
+        19.73,
+        10.59
+       ]
       }
      },
      {
@@ -8902,6 +11269,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         60.36,
         49.96,
         14.52,
+        10.59
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_610_517.png",
+       "box": [
+        57.69,
+        49.96,
+        19.84,
         10.59
        ]
       }
@@ -8922,6 +11298,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_430_517.png",
+       "box": [
+        39.69,
+        49.96,
+        19.84,
+        10.59
+       ]
       }
      },
      {
@@ -8940,6 +11325,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_251_517.png",
+       "box": [
+        21.77,
+        49.96,
+        19.84,
+        10.59
+       ]
       }
      },
      {
@@ -8956,6 +11350,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.44,
         49.96,
         14.52,
+        10.59
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_71_517.png",
+       "box": [
+        3.77,
+        49.96,
+        19.84,
         10.59
        ]
       }
@@ -8981,6 +11384,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_790_621.png",
+       "box": [
+        75.71,
+        60.34,
+        19.73,
+        10.59
+       ]
       }
      },
      {
@@ -8997,6 +11409,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         60.36,
         60.34,
         14.52,
+        10.59
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_610_621.png",
+       "box": [
+        57.69,
+        60.34,
+        19.84,
         10.59
        ]
       }
@@ -9017,6 +11438,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_430_621.png",
+       "box": [
+        39.69,
+        60.34,
+        19.84,
+        10.59
+       ]
       }
      },
      {
@@ -9035,6 +11465,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         14.52,
         10.59
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_251_621.png",
+       "box": [
+        21.77,
+        60.34,
+        19.84,
+        10.59
+       ]
       }
      },
      {
@@ -9051,6 +11490,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.44,
         60.34,
         14.52,
+        10.59
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p054_71_621.png",
+       "box": [
+        3.77,
+        60.34,
+        19.84,
         10.59
        ]
       }
@@ -9273,6 +11721,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.88,
         12.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_795_400.png",
+       "box": [
+        76.23,
+        38.0,
+        19.84,
+        12.0
+       ]
       }
      },
      {
@@ -9289,6 +11746,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.22,
         38.0,
         13.88,
+        12.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_615_400.png",
+       "box": [
+        58.23,
+        38.0,
+        19.84,
         12.0
        ]
       }
@@ -9314,6 +11780,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.98,
         12.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_795_503.png",
+       "box": [
+        76.23,
+        48.32,
+        19.84,
+        12.09
+       ]
       }
      },
      {
@@ -9330,6 +11805,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.16,
         48.32,
         13.98,
+        12.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_615_503.png",
+       "box": [
+        58.23,
+        48.32,
+        19.84,
         12.09
        ]
       }
@@ -9350,6 +11834,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.98,
         12.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_435_503.png",
+       "box": [
+        40.23,
+        48.32,
+        19.84,
+        12.09
+       ]
       }
      },
      {
@@ -9368,6 +11861,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.98,
         12.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_256_503.png",
+       "box": [
+        22.31,
+        48.32,
+        19.84,
+        12.09
+       ]
       }
      },
      {
@@ -9384,6 +11886,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.24,
         48.32,
         13.98,
+        12.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_76_503.png",
+       "box": [
+        4.31,
+        48.32,
+        19.84,
         12.09
        ]
       }
@@ -9409,6 +11920,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.98,
         12.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_795_607.png",
+       "box": [
+        76.23,
+        58.7,
+        19.84,
+        12.09
+       ]
       }
      },
      {
@@ -9425,6 +11945,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.16,
         58.7,
         13.98,
+        12.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_615_607.png",
+       "box": [
+        58.23,
+        58.7,
+        19.84,
         12.09
        ]
       }
@@ -9445,6 +11974,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.98,
         12.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_435_607.png",
+       "box": [
+        40.23,
+        58.7,
+        19.84,
+        12.09
+       ]
       }
      },
      {
@@ -9463,6 +12001,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         13.98,
         12.09
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_256_607.png",
+       "box": [
+        22.31,
+        58.7,
+        19.84,
+        12.09
+       ]
       }
      },
      {
@@ -9479,6 +12026,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.24,
         58.7,
         13.98,
+        12.09
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p056_76_607.png",
+       "box": [
+        4.31,
+        58.7,
+        19.84,
         12.09
        ]
       }
@@ -9701,6 +12257,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.41,
         8.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_822_405.png",
+       "box": [
+        80.69,
+        39.07,
+        9.23,
+        8.58
+       ]
       }
      },
      {
@@ -9719,6 +12284,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_642_404.png",
+       "box": [
+        62.69,
+        38.99,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9735,6 +12309,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.6,
         38.99,
         7.49,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_462_404.png",
+       "box": [
+        44.67,
+        38.99,
+        9.35,
         8.67
        ]
       }
@@ -9760,6 +12343,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_822_512.png",
+       "box": [
+        80.69,
+        49.72,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9776,6 +12368,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.56,
         49.72,
         7.49,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_642_512.png",
+       "box": [
+        62.69,
+        49.72,
+        9.23,
         8.67
        ]
       }
@@ -9796,6 +12397,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_463_512.png",
+       "box": [
+        44.77,
+        49.72,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9814,6 +12424,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_283_512.png",
+       "box": [
+        26.77,
+        49.72,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9830,6 +12449,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.64,
         49.72,
         7.49,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_103_512.png",
+       "box": [
+        8.77,
+        49.72,
+        9.23,
         8.67
        ]
       }
@@ -9855,6 +12483,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_822_619.png",
+       "box": [
+        80.69,
+        60.44,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9871,6 +12508,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.56,
         60.44,
         7.49,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_642_619.png",
+       "box": [
+        62.69,
+        60.44,
+        9.23,
         8.67
        ]
       }
@@ -9891,6 +12537,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_463_619.png",
+       "box": [
+        44.77,
+        60.44,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9909,6 +12564,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.49,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_283_619.png",
+       "box": [
+        26.77,
+        60.44,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -9925,6 +12589,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.64,
         60.44,
         7.49,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p060_103_619.png",
+       "box": [
+        8.77,
+        60.44,
+        9.23,
         8.67
        ]
       }
@@ -10125,6 +12798,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.2,
         8.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_830_404.png",
+       "box": [
+        81.46,
+        38.96,
+        9.23,
+        8.58
+       ]
       }
      },
      {
@@ -10143,6 +12825,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.2,
         8.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_649_404.png",
+       "box": [
+        63.38,
+        38.96,
+        9.23,
+        8.58
+       ]
       }
      },
      {
@@ -10159,6 +12850,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.89,
         38.96,
         4.2,
+        8.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_469_404.png",
+       "box": [
+        45.38,
+        38.96,
+        9.23,
         8.58
        ]
       }
@@ -10184,6 +12884,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.25,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_830_511.png",
+       "box": [
+        81.46,
+        49.66,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -10200,6 +12909,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.87,
         49.66,
         4.25,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_649_511.png",
+       "box": [
+        63.38,
+        49.66,
+        9.23,
         8.67
        ]
       }
@@ -10220,6 +12938,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.25,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_469_511.png",
+       "box": [
+        45.38,
+        49.66,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -10238,6 +12965,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.25,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_290_511.png",
+       "box": [
+        27.46,
+        49.66,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -10254,6 +12990,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.95,
         49.66,
         4.25,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_110_511.png",
+       "box": [
+        9.46,
+        49.66,
+        9.23,
         8.67
        ]
       }
@@ -10279,6 +13024,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.25,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_830_618.png",
+       "box": [
+        81.46,
+        60.38,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -10295,6 +13049,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.87,
         60.38,
         4.25,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_649_618.png",
+       "box": [
+        63.38,
+        60.38,
+        9.23,
         8.67
        ]
       }
@@ -10315,6 +13078,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.25,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_469_618.png",
+       "box": [
+        45.38,
+        60.38,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -10333,6 +13105,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.25,
         8.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_290_618.png",
+       "box": [
+        27.46,
+        60.38,
+        9.23,
+        8.67
+       ]
       }
      },
      {
@@ -10349,6 +13130,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.95,
         60.38,
         4.25,
+        8.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p062_110_618.png",
+       "box": [
+        9.46,
+        60.38,
+        9.23,
         8.67
        ]
       }
@@ -10571,6 +13361,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.8,
         11.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_820_404.png",
+       "box": [
+        80.34,
+        38.49,
+        9.93,
+        11.67
+       ]
       }
      },
      {
@@ -10589,6 +13388,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.8,
         11.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_641_404.png",
+       "box": [
+        62.42,
+        38.49,
+        9.93,
+        11.67
+       ]
       }
      },
      {
@@ -10605,6 +13413,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         44.49,
         38.49,
         9.8,
+        11.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_461_404.png",
+       "box": [
+        44.42,
+        38.49,
+        9.93,
         11.67
        ]
       }
@@ -10630,6 +13447,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.87,
         11.74
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_820_509.png",
+       "box": [
+        80.34,
+        48.93,
+        9.93,
+        11.74
+       ]
       }
      },
      {
@@ -10646,6 +13472,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.46,
         48.93,
         9.87,
+        11.74
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_641_509.png",
+       "box": [
+        62.42,
+        48.93,
+        9.93,
         11.74
        ]
       }
@@ -10666,6 +13501,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.87,
         11.74
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_461_509.png",
+       "box": [
+        44.42,
+        48.93,
+        9.93,
+        11.74
+       ]
       }
      },
      {
@@ -10684,6 +13528,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.87,
         11.74
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_281_509.png",
+       "box": [
+        26.42,
+        48.93,
+        9.93,
+        11.74
+       ]
       }
      },
      {
@@ -10700,6 +13553,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.53,
         48.93,
         9.87,
+        11.74
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_102_509.png",
+       "box": [
+        8.5,
+        48.93,
+        9.93,
         11.74
        ]
       }
@@ -10725,6 +13587,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.8,
         11.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_820_614.png",
+       "box": [
+        80.34,
+        59.44,
+        9.93,
+        11.67
+       ]
       }
      },
      {
@@ -10741,6 +13612,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.45,
         59.44,
         9.8,
+        11.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_641_614.png",
+       "box": [
+        62.44,
+        59.44,
+        9.81,
         11.67
        ]
       }
@@ -10761,6 +13641,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.8,
         11.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_461_614.png",
+       "box": [
+        44.42,
+        59.44,
+        9.93,
+        11.67
+       ]
       }
      },
      {
@@ -10779,6 +13668,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.8,
         11.67
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_281_614.png",
+       "box": [
+        26.42,
+        59.44,
+        9.93,
+        11.67
+       ]
       }
      },
      {
@@ -10795,6 +13693,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.56,
         59.44,
         9.8,
+        11.67
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p064_102_614.png",
+       "box": [
+        8.5,
+        59.44,
+        9.93,
         11.67
        ]
       }
@@ -11017,6 +13924,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.1,
         12.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_831_398.png",
+       "box": [
+        81.42,
+        37.71,
+        9.93,
+        12.42
+       ]
       }
      },
      {
@@ -11035,6 +13951,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.1,
         12.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_652_398.png",
+       "box": [
+        63.5,
+        37.71,
+        9.93,
+        12.42
+       ]
       }
      },
      {
@@ -11051,6 +13976,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.91,
         37.71,
         9.1,
+        12.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_472_398.png",
+       "box": [
+        45.5,
+        37.71,
+        9.93,
         12.42
        ]
       }
@@ -11076,6 +14010,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.15,
         12.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_831_503.png",
+       "box": [
+        81.42,
+        48.2,
+        9.93,
+        12.5
+       ]
       }
      },
      {
@@ -11092,6 +14035,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.88,
         48.2,
         9.15,
+        12.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_652_503.png",
+       "box": [
+        63.5,
+        48.2,
+        9.93,
         12.5
        ]
       }
@@ -11112,6 +14064,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.15,
         12.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_472_503.png",
+       "box": [
+        45.5,
+        48.2,
+        9.93,
+        12.5
+       ]
       }
      },
      {
@@ -11130,6 +14091,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.15,
         12.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_292_503.png",
+       "box": [
+        27.58,
+        48.2,
+        9.93,
+        12.5
+       ]
       }
      },
      {
@@ -11146,6 +14116,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.96,
         48.2,
         9.15,
+        12.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_112_503.png",
+       "box": [
+        9.58,
+        48.2,
+        9.93,
         12.5
        ]
       }
@@ -11171,6 +14150,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.1,
         12.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_831_608.png",
+       "box": [
+        81.42,
+        58.76,
+        9.93,
+        12.42
+       ]
       }
      },
      {
@@ -11187,6 +14175,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.91,
         58.76,
         9.1,
+        12.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_652_608.png",
+       "box": [
+        63.5,
+        58.76,
+        9.93,
         12.42
        ]
       }
@@ -11207,6 +14204,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.1,
         12.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_472_608.png",
+       "box": [
+        45.5,
+        58.76,
+        9.93,
+        12.42
+       ]
       }
      },
      {
@@ -11225,6 +14231,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.1,
         12.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_292_608.png",
+       "box": [
+        27.58,
+        58.76,
+        9.93,
+        12.42
+       ]
       }
      },
      {
@@ -11241,6 +14256,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.99,
         58.76,
         9.1,
+        12.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p066_112_608.png",
+       "box": [
+        9.58,
+        58.76,
+        9.93,
         12.42
        ]
       }
@@ -11463,6 +14487,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.44,
         7.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_798_398.png",
+       "box": [
+        77.12,
+        38.6,
+        16.38,
+        7.08
+       ]
       }
      },
      {
@@ -11481,6 +14514,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.44,
         7.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_621_398.png",
+       "box": [
+        59.35,
+        38.6,
+        16.38,
+        7.08
+       ]
       }
      },
      {
@@ -11497,6 +14539,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         43.82,
         38.6,
         11.44,
+        7.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_441_398.png",
+       "box": [
+        41.35,
+        38.6,
+        16.38,
         7.08
        ]
       }
@@ -11522,6 +14573,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.44,
         7.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_798_511.png",
+       "box": [
+        77.12,
+        49.88,
+        16.38,
+        7.08
+       ]
       }
      },
      {
@@ -11538,6 +14598,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.82,
         49.88,
         11.44,
+        7.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_621_511.png",
+       "box": [
+        59.35,
+        49.88,
+        16.38,
         7.08
        ]
       }
@@ -11558,6 +14627,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.44,
         7.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_441_511.png",
+       "box": [
+        41.35,
+        49.88,
+        16.38,
+        7.08
+       ]
       }
      },
      {
@@ -11576,6 +14654,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.44,
         7.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_261_511.png",
+       "box": [
+        23.33,
+        49.88,
+        16.5,
+        7.08
+       ]
       }
      },
      {
@@ -11592,6 +14679,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.89,
         49.88,
         11.44,
+        7.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_82_511.png",
+       "box": [
+        5.42,
+        49.88,
+        16.38,
         7.08
        ]
       }
@@ -11617,6 +14713,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.58,
         7.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_798_623.png",
+       "box": [
+        77.12,
+        61.14,
+        16.38,
+        7.17
+       ]
       }
      },
      {
@@ -11633,6 +14738,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         61.82,
         61.21,
         11.44,
+        7.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_621_624.png",
+       "box": [
+        59.35,
+        61.21,
+        16.38,
         7.08
        ]
       }
@@ -11653,6 +14767,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.58,
         7.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_441_623.png",
+       "box": [
+        41.35,
+        61.14,
+        16.38,
+        7.17
+       ]
       }
      },
      {
@@ -11671,6 +14794,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.58,
         7.17
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_261_623.png",
+       "box": [
+        23.33,
+        61.14,
+        16.5,
+        7.17
+       ]
       }
      },
      {
@@ -11687,6 +14819,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.82,
         61.14,
         11.58,
+        7.17
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p070_82_623.png",
+       "box": [
+        5.42,
+        61.14,
+        16.38,
         7.17
        ]
       }
@@ -11909,6 +15050,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_815_394.png",
+       "box": [
+        79.45,
+        37.51,
+        12.57,
+        11.58
+       ]
       }
      },
      {
@@ -11927,6 +15077,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_638_394.png",
+       "box": [
+        61.68,
+        37.51,
+        12.57,
+        11.58
+       ]
       }
      },
      {
@@ -11943,6 +15102,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.17,
         37.51,
         9.57,
+        11.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_458_394.png",
+       "box": [
+        43.68,
+        37.51,
+        12.57,
         11.58
        ]
       }
@@ -11968,6 +15136,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_815_507.png",
+       "box": [
+        79.45,
+        48.74,
+        12.57,
+        11.58
+       ]
       }
      },
      {
@@ -11984,6 +15161,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.13,
         48.74,
         9.57,
+        11.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_637_507.png",
+       "box": [
+        61.58,
+        48.74,
+        12.69,
         11.58
        ]
       }
@@ -12004,6 +15190,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_458_507.png",
+       "box": [
+        43.68,
+        48.74,
+        12.57,
+        11.58
+       ]
       }
      },
      {
@@ -12022,6 +15217,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_278_507.png",
+       "box": [
+        25.66,
+        48.74,
+        12.69,
+        11.58
+       ]
       }
      },
      {
@@ -12038,6 +15242,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.25,
         48.74,
         9.57,
+        11.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_98_507.png",
+       "box": [
+        7.75,
+        48.74,
+        12.57,
         11.58
        ]
       }
@@ -12063,6 +15276,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_815_619.png",
+       "box": [
+        79.45,
+        59.96,
+        12.57,
+        11.58
+       ]
       }
      },
      {
@@ -12079,6 +15301,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.13,
         59.96,
         9.57,
+        11.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_637_619.png",
+       "box": [
+        61.58,
+        59.96,
+        12.69,
         11.58
        ]
       }
@@ -12099,6 +15330,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_458_619.png",
+       "box": [
+        43.68,
+        59.96,
+        12.57,
+        11.58
+       ]
       }
      },
      {
@@ -12117,6 +15357,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.57,
         11.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_278_619.png",
+       "box": [
+        25.66,
+        59.96,
+        12.69,
+        11.58
+       ]
       }
      },
      {
@@ -12133,6 +15382,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.25,
         59.96,
         9.57,
+        11.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p072_98_619.png",
+       "box": [
+        7.75,
+        59.96,
+        12.57,
         11.58
        ]
       }
@@ -12355,6 +15613,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.8,
         11.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_796_389.png",
+       "box": [
+        76.81,
+        37.11,
+        16.84,
+        11.0
+       ]
       }
      },
      {
@@ -12373,6 +15640,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_624_389.png",
+       "box": [
+        59.57,
+        37.09,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12389,6 +15665,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         41.6,
         37.11,
         16.8,
+        11.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_444_389.png",
+       "box": [
+        41.57,
+        37.11,
+        16.84,
         11.0
        ]
       }
@@ -12414,6 +15699,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_796_497.png",
+       "box": [
+        76.81,
+        47.87,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12430,6 +15724,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         59.53,
         47.87,
         16.94,
+        11.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_624_497.png",
+       "box": [
+        59.57,
+        47.87,
+        16.84,
         11.08
        ]
       }
@@ -12450,6 +15753,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_444_497.png",
+       "box": [
+        41.57,
+        47.87,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12468,6 +15780,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_265_497.png",
+       "box": [
+        23.65,
+        47.87,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12484,6 +15805,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.61,
         47.87,
         16.94,
+        11.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_85_497.png",
+       "box": [
+        5.65,
+        47.87,
+        16.84,
         11.08
        ]
       }
@@ -12509,6 +15839,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_796_606.png",
+       "box": [
+        76.81,
+        58.71,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12525,6 +15864,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         59.53,
         58.71,
         16.94,
+        11.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_624_606.png",
+       "box": [
+        59.57,
+        58.71,
+        16.84,
         11.08
        ]
       }
@@ -12545,6 +15893,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_444_606.png",
+       "box": [
+        41.57,
+        58.71,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12563,6 +15920,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.94,
         11.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_265_606.png",
+       "box": [
+        23.65,
+        58.71,
+        16.84,
+        11.08
+       ]
       }
      },
      {
@@ -12579,6 +15945,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.61,
         58.71,
         16.94,
+        11.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p074_85_606.png",
+       "box": [
+        5.65,
+        58.71,
+        16.84,
         11.08
        ]
       }
@@ -12801,6 +16176,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.89,
         12.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_790_383.png",
+       "box": [
+        76.19,
+        36.33,
+        16.84,
+        12.0
+       ]
       }
      },
      {
@@ -12819,6 +16203,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.89,
         12.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_617_383.png",
+       "box": [
+        58.86,
+        36.33,
+        16.96,
+        12.0
+       ]
       }
      },
      {
@@ -12835,6 +16228,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         40.94,
         36.33,
         16.89,
+        12.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_438_383.png",
+       "box": [
+        40.96,
+        36.33,
+        16.84,
         12.0
        ]
       }
@@ -12860,6 +16262,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.76,
         11.91
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_790_492.png",
+       "box": [
+        76.19,
+        47.18,
+        16.84,
+        11.91
+       ]
       }
      },
      {
@@ -12876,6 +16287,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         58.92,
         47.18,
         16.76,
+        11.91
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_617_492.png",
+       "box": [
+        58.88,
+        47.18,
+        16.84,
         11.91
        ]
       }
@@ -12896,6 +16316,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.76,
         11.91
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_438_492.png",
+       "box": [
+        40.96,
+        47.18,
+        16.84,
+        11.91
+       ]
       }
      },
      {
@@ -12914,6 +16343,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.76,
         11.91
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_258_492.png",
+       "box": [
+        22.96,
+        47.18,
+        16.84,
+        11.91
+       ]
       }
      },
      {
@@ -12930,6 +16368,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.08,
         47.18,
         16.76,
+        11.91
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_78_492.png",
+       "box": [
+        5.04,
+        47.18,
+        16.84,
         11.91
        ]
       }
@@ -12955,6 +16402,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.89,
         12.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_790_599.png",
+       "box": [
+        76.19,
+        57.94,
+        16.84,
+        12.0
+       ]
       }
      },
      {
@@ -12971,6 +16427,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         58.9,
         57.94,
         16.89,
+        12.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_617_599.png",
+       "box": [
+        58.86,
+        57.94,
+        16.96,
         12.0
        ]
       }
@@ -12991,6 +16456,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.89,
         12.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_438_599.png",
+       "box": [
+        40.96,
+        57.94,
+        16.84,
+        12.0
+       ]
       }
      },
      {
@@ -13009,6 +16483,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         16.89,
         12.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_258_599.png",
+       "box": [
+        22.96,
+        57.94,
+        16.84,
+        12.0
+       ]
       }
      },
      {
@@ -13025,6 +16508,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.02,
         57.94,
         16.89,
+        12.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p076_78_599.png",
+       "box": [
+        5.04,
+        57.94,
+        16.84,
         12.0
        ]
       }
@@ -13247,6 +16739,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_820_393.png",
+       "box": [
+        80.29,
+        37.31,
+        10.27,
+        11.84
+       ]
       }
      },
      {
@@ -13265,6 +16766,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_640_393.png",
+       "box": [
+        62.29,
+        37.31,
+        10.27,
+        11.84
+       ]
       }
      },
      {
@@ -13281,6 +16791,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.27,
         37.31,
         8.4,
+        11.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_461_393.png",
+       "box": [
+        44.39,
+        37.31,
+        10.15,
         11.84
        ]
       }
@@ -13306,6 +16825,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_820_505.png",
+       "box": [
+        80.29,
+        48.53,
+        10.27,
+        11.84
+       ]
       }
      },
      {
@@ -13322,6 +16850,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.23,
         48.53,
         8.4,
+        11.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_640_505.png",
+       "box": [
+        62.29,
+        48.53,
+        10.27,
         11.84
        ]
       }
@@ -13342,6 +16879,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_461_505.png",
+       "box": [
+        44.39,
+        48.53,
+        10.15,
+        11.84
+       ]
       }
      },
      {
@@ -13360,6 +16906,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_281_505.png",
+       "box": [
+        26.37,
+        48.53,
+        10.27,
+        11.84
+       ]
       }
      },
      {
@@ -13376,6 +16931,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.34,
         48.53,
         8.4,
+        11.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_102_505.png",
+       "box": [
+        8.46,
+        48.53,
+        10.15,
         11.84
        ]
       }
@@ -13401,6 +16965,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_820_617.png",
+       "box": [
+        80.29,
+        59.75,
+        10.27,
+        11.84
+       ]
       }
      },
      {
@@ -13417,6 +16990,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         63.23,
         59.75,
         8.4,
+        11.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_640_617.png",
+       "box": [
+        62.29,
+        59.75,
+        10.27,
         11.84
        ]
       }
@@ -13437,6 +17019,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_461_617.png",
+       "box": [
+        44.39,
+        59.75,
+        10.15,
+        11.84
+       ]
       }
      },
      {
@@ -13455,6 +17046,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.4,
         11.84
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_281_617.png",
+       "box": [
+        26.37,
+        59.75,
+        10.27,
+        11.84
+       ]
       }
      },
      {
@@ -13471,6 +17071,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.34,
         59.75,
         8.4,
+        11.84
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p078_102_617.png",
+       "box": [
+        8.46,
+        59.75,
+        10.15,
         11.84
        ]
       }
@@ -13693,6 +17302,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.82,
         10.76
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_836_395.png",
+       "box": [
+        82.31,
+        37.71,
+        7.85,
+        10.76
+       ]
       }
      },
      {
@@ -13711,6 +17329,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.82,
         10.76
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_656_395.png",
+       "box": [
+        64.31,
+        37.71,
+        7.85,
+        10.76
+       ]
       }
      },
      {
@@ -13727,6 +17354,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         46.85,
         37.71,
         6.82,
+        10.76
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_477_395.png",
+       "box": [
+        46.4,
+        37.71,
+        7.72,
         10.76
        ]
       }
@@ -13752,6 +17388,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.77,
         10.66
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_836_503.png",
+       "box": [
+        82.31,
+        48.5,
+        7.85,
+        10.66
+       ]
       }
      },
      {
@@ -13768,6 +17413,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.85,
         48.5,
         6.77,
+        10.66
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_656_503.png",
+       "box": [
+        64.31,
+        48.5,
+        7.85,
         10.66
        ]
       }
@@ -13788,6 +17442,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.77,
         10.66
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_477_503.png",
+       "box": [
+        46.4,
+        48.5,
+        7.72,
+        10.66
+       ]
       }
      },
      {
@@ -13806,6 +17469,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.77,
         10.66
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_297_503.png",
+       "box": [
+        28.38,
+        48.5,
+        7.85,
+        10.66
+       ]
       }
      },
      {
@@ -13822,6 +17494,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.92,
         48.5,
         6.77,
+        10.66
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_117_503.png",
+       "box": [
+        10.38,
+        48.5,
+        7.85,
         10.66
        ]
       }
@@ -13847,6 +17528,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.82,
         10.76
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_836_610.png",
+       "box": [
+        82.31,
+        59.21,
+        7.85,
+        10.76
+       ]
       }
      },
      {
@@ -13863,6 +17553,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.82,
         59.21,
         6.82,
+        10.76
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_656_610.png",
+       "box": [
+        64.31,
+        59.21,
+        7.85,
         10.76
        ]
       }
@@ -13883,6 +17582,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.82,
         10.76
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_477_610.png",
+       "box": [
+        46.4,
+        59.21,
+        7.72,
+        10.76
+       ]
       }
      },
      {
@@ -13901,6 +17609,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         6.82,
         10.76
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_297_610.png",
+       "box": [
+        28.38,
+        59.21,
+        7.85,
+        10.76
+       ]
       }
      },
      {
@@ -13917,6 +17634,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.89,
         59.21,
         6.82,
+        10.76
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p080_117_610.png",
+       "box": [
+        10.38,
+        59.21,
+        7.85,
         10.76
        ]
       }
@@ -14139,6 +17865,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_820_397.png",
+       "box": [
+        80.31,
+        38.32,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14157,6 +17892,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_640_397.png",
+       "box": [
+        62.31,
+        38.32,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14173,6 +17917,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         44.94,
         38.32,
         9.04,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_461_397.png",
+       "box": [
+        44.39,
+        38.32,
+        10.15,
         8.08
        ]
       }
@@ -14198,6 +17951,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_820_506.png",
+       "box": [
+        80.31,
+        49.26,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14214,6 +17976,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.86,
         49.26,
         9.04,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_640_506.png",
+       "box": [
+        62.31,
+        49.26,
+        10.15,
         8.08
        ]
       }
@@ -14234,6 +18005,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_461_506.png",
+       "box": [
+        44.39,
+        49.26,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14252,6 +18032,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_281_506.png",
+       "box": [
+        26.39,
+        49.26,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14268,6 +18057,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.97,
         49.26,
         9.04,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_102_506.png",
+       "box": [
+        8.48,
+        49.26,
+        10.04,
         8.08
        ]
       }
@@ -14293,6 +18091,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_820_616.png",
+       "box": [
+        80.31,
+        60.21,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14309,6 +18116,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         62.86,
         60.21,
         9.04,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_640_616.png",
+       "box": [
+        62.31,
+        60.21,
+        10.15,
         8.08
        ]
       }
@@ -14329,6 +18145,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_461_616.png",
+       "box": [
+        44.39,
+        60.21,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14347,6 +18172,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         9.04,
         8.08
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_281_616.png",
+       "box": [
+        26.39,
+        60.21,
+        10.15,
+        8.08
+       ]
       }
      },
      {
@@ -14363,6 +18197,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.94,
         60.21,
         9.04,
+        8.08
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p084_101_616.png",
+       "box": [
+        8.39,
+        60.21,
+        10.15,
         8.08
        ]
       }
@@ -14585,6 +18428,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_840_400.png",
+       "box": [
+        82.88,
+        38.93,
+        6.69,
+        6.42
+       ]
       }
      },
      {
@@ -14603,6 +18455,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_661_400.png",
+       "box": [
+        64.96,
+        38.93,
+        6.69,
+        6.42
+       ]
       }
      },
      {
@@ -14619,6 +18480,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.82,
         38.93,
         4.98,
+        6.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_481_400.png",
+       "box": [
+        46.96,
+        38.93,
+        6.69,
         6.42
        ]
       }
@@ -14644,6 +18514,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_840_515.png",
+       "box": [
+        82.88,
+        50.43,
+        6.69,
+        6.42
+       ]
       }
      },
      {
@@ -14660,6 +18539,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.82,
         50.43,
         4.98,
+        6.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_661_515.png",
+       "box": [
+        64.96,
+        50.43,
+        6.69,
         6.42
        ]
       }
@@ -14680,6 +18568,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_481_515.png",
+       "box": [
+        46.96,
+        50.43,
+        6.69,
+        6.42
+       ]
       }
      },
      {
@@ -14698,6 +18595,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.98,
         6.42
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_301_515.png",
+       "box": [
+        28.96,
+        50.43,
+        6.69,
+        6.42
+       ]
       }
      },
      {
@@ -14714,6 +18620,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.89,
         50.43,
         4.98,
+        6.42
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_122_515.png",
+       "box": [
+        11.04,
+        50.43,
+        6.69,
         6.42
        ]
       }
@@ -14739,6 +18654,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.04,
         6.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_840_629.png",
+       "box": [
+        82.88,
+        61.86,
+        6.69,
+        6.5
+       ]
       }
      },
      {
@@ -14755,6 +18679,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.79,
         61.86,
         5.04,
+        6.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_661_629.png",
+       "box": [
+        64.96,
+        61.86,
+        6.69,
         6.5
        ]
       }
@@ -14775,6 +18708,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.04,
         6.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_481_629.png",
+       "box": [
+        46.96,
+        61.86,
+        6.69,
+        6.5
+       ]
       }
      },
      {
@@ -14793,6 +18735,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.04,
         6.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_301_629.png",
+       "box": [
+        28.96,
+        61.86,
+        6.69,
+        6.5
+       ]
       }
      },
      {
@@ -14809,6 +18760,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.86,
         61.86,
         5.04,
+        6.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p086_122_629.png",
+       "box": [
+        11.04,
+        61.86,
+        6.69,
         6.5
        ]
       }
@@ -15031,6 +18991,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_832_401.png",
+       "box": [
+        82.12,
+        38.96,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15049,6 +19018,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_653_401.png",
+       "box": [
+        64.2,
+        38.96,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15065,6 +19043,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         47.02,
         38.96,
         5.05,
+        6.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_473_401.png",
+       "box": [
+        46.2,
+        38.96,
+        6.69,
         6.58
        ]
       }
@@ -15090,6 +19077,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_832_513.png",
+       "box": [
+        82.12,
+        50.23,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15106,6 +19102,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.02,
         50.23,
         5.05,
+        6.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_653_513.png",
+       "box": [
+        64.2,
+        50.23,
+        6.69,
         6.58
        ]
       }
@@ -15126,6 +19131,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_473_513.png",
+       "box": [
+        46.2,
+        50.23,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15144,6 +19158,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_294_513.png",
+       "box": [
+        28.26,
+        50.23,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15160,6 +19183,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.09,
         50.23,
         5.05,
+        6.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_114_513.png",
+       "box": [
+        10.26,
+        50.23,
+        6.69,
         6.58
        ]
       }
@@ -15185,6 +19217,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_832_626.png",
+       "box": [
+        82.12,
+        61.51,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15201,6 +19242,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.02,
         61.51,
         5.05,
+        6.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_653_626.png",
+       "box": [
+        64.2,
+        61.51,
+        6.69,
         6.58
        ]
       }
@@ -15221,6 +19271,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_473_626.png",
+       "box": [
+        46.2,
+        61.51,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15239,6 +19298,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         5.05,
         6.58
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_294_626.png",
+       "box": [
+        28.26,
+        61.51,
+        6.69,
+        6.58
+       ]
       }
      },
      {
@@ -15255,6 +19323,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.09,
         61.51,
         5.05,
+        6.58
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p088_114_626.png",
+       "box": [
+        10.26,
+        61.51,
+        6.69,
         6.58
        ]
       }
@@ -15477,6 +19554,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_836_398.png",
+       "box": [
+        82.37,
+        38.63,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15495,6 +19581,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_657_398.png",
+       "box": [
+        64.46,
+        38.63,
+        7.38,
+        6.92
+       ]
       }
      },
      {
@@ -15511,6 +19606,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         46.42,
         38.63,
         7.53,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_477_398.png",
+       "box": [
+        46.44,
+        38.63,
+        7.5,
         6.92
        ]
       }
@@ -15536,6 +19640,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_836_511.png",
+       "box": [
+        82.37,
+        49.91,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15552,6 +19665,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.38,
         49.91,
         7.53,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_657_511.png",
+       "box": [
+        64.46,
+        49.91,
+        7.38,
         6.92
        ]
       }
@@ -15572,6 +19694,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_477_511.png",
+       "box": [
+        46.44,
+        49.91,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15590,6 +19721,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_297_511.png",
+       "box": [
+        28.44,
+        49.91,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15606,6 +19746,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.46,
         49.91,
         7.53,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_118_511.png",
+       "box": [
+        10.54,
+        49.91,
+        7.38,
         6.92
        ]
       }
@@ -15631,6 +19780,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_836_623.png",
+       "box": [
+        82.37,
+        61.18,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15647,6 +19805,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         64.38,
         61.18,
         7.53,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_657_623.png",
+       "box": [
+        64.46,
+        61.18,
+        7.38,
         6.92
        ]
       }
@@ -15667,6 +19834,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_477_623.png",
+       "box": [
+        46.44,
+        61.18,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15685,6 +19861,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         7.53,
         6.92
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_297_623.png",
+       "box": [
+        28.44,
+        61.18,
+        7.5,
+        6.92
+       ]
       }
      },
      {
@@ -15701,6 +19886,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         10.46,
         61.18,
         7.53,
+        6.92
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p090_118_623.png",
+       "box": [
+        10.54,
+        61.18,
+        7.38,
         6.92
        ]
       }
@@ -15923,6 +20117,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.77,
         10.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_819_396.png",
+       "box": [
+        80.21,
+        37.94,
+        10.27,
+        10.0
+       ]
       }
      },
      {
@@ -15941,6 +20144,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         8.77,
         10.0
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_640_396.png",
+       "box": [
+        62.31,
+        37.94,
+        10.15,
+        10.0
+       ]
       }
      },
      {
@@ -15957,6 +20169,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         45.04,
         37.94,
         8.77,
+        10.0
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_460_396.png",
+       "box": [
+        44.29,
+        37.94,
+        10.27,
         10.0
        ]
       }
@@ -15982,6 +20203,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.83,
         5.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_798_641.png",
+       "box": [
+        77.12,
+        63.19,
+        16.38,
+        5.5
+       ]
       }
      },
      {
@@ -15998,6 +20228,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.78,
         63.19,
         4.83,
+        5.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_628_641.png",
+       "box": [
+        60.06,
+        63.19,
+        16.27,
         5.5
        ]
       }
@@ -16018,6 +20257,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.83,
         5.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_448_641.png",
+       "box": [
+        42.04,
+        63.19,
+        16.38,
+        5.5
+       ]
       }
      },
      {
@@ -16036,6 +20284,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.83,
         5.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_268_641.png",
+       "box": [
+        24.14,
+        63.19,
+        16.27,
+        5.5
+       ]
       }
      },
      {
@@ -16052,6 +20309,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.9,
         63.19,
         4.83,
+        5.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_88_641.png",
+       "box": [
+        6.12,
+        63.19,
+        16.38,
         5.5
        ]
       }
@@ -16077,6 +20343,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.83,
         5.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_807_747.png",
+       "box": [
+        77.96,
+        73.75,
+        16.38,
+        5.5
+       ]
       }
      },
      {
@@ -16093,6 +20368,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         65.78,
         73.75,
         4.83,
+        5.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_628_747.png",
+       "box": [
+        60.06,
+        73.75,
+        16.27,
         5.5
        ]
       }
@@ -16113,6 +20397,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.83,
         5.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_448_747.png",
+       "box": [
+        42.04,
+        73.75,
+        16.38,
+        5.5
+       ]
       }
      },
      {
@@ -16131,6 +20424,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         4.83,
         5.5
        ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_268_747.png",
+       "box": [
+        24.14,
+        73.75,
+        16.27,
+        5.5
+       ]
       }
      },
      {
@@ -16147,6 +20449,15 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
         11.9,
         73.75,
         4.83,
+        5.5
+       ]
+      },
+      "dots": {
+       "src": "books/stemford-urdu-3/ink/p092_88_747.png",
+       "box": [
+        6.12,
+        73.75,
+        16.38,
         5.5
        ]
       }

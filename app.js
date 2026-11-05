@@ -2,8 +2,10 @@ import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
+import { evenly, inkShape, inkDistance, cover, finished } from './src/traceCheck.js';
 
 const drawings = {};
+const traced = {};                           // page -> the letters traced on it (their stars stay when it reopens)
 const brush = { color: '#e63946', size: 12, erase: false };
 
 export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref, activityPreview, onPreviewClose, readerBook, readerOptions = {} } = {}) {
@@ -196,8 +198,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (pg.html) node.append(el('div', { class: 'page-no' }, String(idx + 1)));
     if (!pg.html) {
       // Book pages: what the child wrote in the zoomed view stays on the page, and a click zooms in.
-      const ink = drawings[`${book.id}:${idx}:page`];
+      const ink = drawings[`${book.id}:${idx}:page`], traced = drawings[`${book.id}:${idx}:page:letters`];
       if (ink) node.append(el('img', { class: 'ink', src: ink, alt: '' }));
+      if (traced) node.append(el('img', { class: 'ink-letters', src: traced, alt: '' }));
       if (pg.qr) node.append(videoButton(book, idx, live));
       (pg.acts || []).forEach(a => {
         if (a.type === 'game') node.append(gameButton(book, idx, a, live));
@@ -516,6 +519,26 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     9: 'M.92 .3C.9 .02 .1 .02 .1 .3C.1 .56 .8 .6 .92 .3V.98'
   };
 
+  // A GLYPHS path as its pen strokes, in order: lists of points (0..1 of the letter box), close together.
+  const glyphCache = new Map();
+  function glyphStrokes(d) {
+    if (glyphCache.has(d)) return glyphCache.get(d);
+    const NS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('style', 'position:absolute;width:0;height:0;overflow:hidden');
+    document.body.append(svg);
+    const out = d.split(/(?=M)/).map(part => {
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', part);
+      svg.append(p);
+      const L = p.getTotalLength(), n = Math.max(2, Math.ceil(L / .02)), pts = [];
+      for (let k = 0; k <= n; k++) { const q = p.getPointAtLength(L * k / n); pts.push([q.x, q.y]); }
+      return pts;
+    });
+    svg.remove();
+    glyphCache.set(d, out);
+    return out;
+  }
+
   function makeMark(m, layer) {
     if (m.ring || m.line) {
       // drawn on a page-sized sheet so circles and lines keep their shape
@@ -596,8 +619,13 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const pg = pageOf(book, idx), ratio = book.ratio || 0.75, key = `${book.id}:${idx}:page`;
     const img = el('img', { class: 'page-bg', alt: `Page ${idx + 1}`, draggable: 'false' });
     setPageImage(img, book, pg);
-    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key);
-    const sheet = el('div', { class: 'fx-page' }, img, canvasFor());
+    const fillAct = (pg.acts || []).find(a => a.type === 'fill'), fill = !!fillAct;
+    const sheet = el('div', { class: 'fx-page' }, img);
+    // On trace pages the child's letters are checked: a star for a good one, "try again" for a wrong one.
+    const score = el('div', { class: 'trace-score', hidden: true });
+    const checker = fill ? traceChecker(book, fillAct, sheet, score, key) : null;
+    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker);
+    sheet.prepend(img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));
 
     const listen = el('button', { class: 'fx-btn listen', hidden: true, html: I.speaker + '<span>Listen</span>' });
@@ -608,9 +636,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       listen.addEventListener('click', () => speak(`Page ${idx + 1}`, text));
     });
     // Fill pages: "Show me how" plays the worked answers; "I'll do it myself" hands over the pen.
-    const fillAct = (pg.acts || []).find(a => a.type === 'fill'), fill = !!fillAct;
     // A page that names its colours (an apple: red and green) offers only those.
-    const tools = drawTools(() => { delete drawings[key]; sheet.querySelector('canvas').replaceWith(canvasFor()); }, fillAct?.colours);
+    const tools = drawTools(() => { delete drawings[key]; checker?.reset(); sheet.querySelector('canvas').replaceWith(canvasFor()); }, fillAct?.colours);
     const demo = el('div', { class: 'demo' });
     sheet.append(demo);
     const showHow = fill && el('button', { class: 'fx-btn how', html: I.play + '<span>Show me how</span>',
@@ -620,7 +647,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (!fill || writeNow) { sheet.classList.add('pen'); tools.hidden = false; }
     const panel = el('div', { class: 'fx-panel' },
       el('button', { class: 'fx-btn close', onclick: closeFocus, html: I.x + '<span>Close</span>' }),
-      showHow, myself,
+      showHow, myself, checker && score,
       fillAct?.video && el('button', { class: 'fx-btn video', onclick: () => openVideos(fillAct.video.title, [fillAct.video]), html: I.play + `<span>${fillAct.video.title}</span>` }),
       listen,
       pg.qr && el('button', { class: 'fx-btn video', onclick: () => playVideo(book, idx, { id: 'page' }), html: I.play + '<span>Watch video</span>' }),
@@ -647,7 +674,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   }
 
   // The canvas keeps a fixed resolution tied to the zone, so drawings survive resizes and page turns.
-  function inkCanvas(book, z, key) {
+  // watch (optional): the tracing letters on this page. Each touch asks it first: the letter being traced
+  // takes the touch ('own'), a touch on a letter not picked yet draws nothing ('block'), anything else draws.
+  function inkCanvas(book, z, key, watch) {
     const c = el('canvas', { class: 'ink' });
     setDrawingCursor(c, brush.erase);
     c.width = Math.round(z.w * 12);
@@ -670,18 +699,374 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       ctx.lineCap = ctx.lineJoin = 'round';
       ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
     };
-    const end = () => { if (last) { last = null; drawings[key] = c.toDataURL(); } };
+    let own = false;
+    const end = () => {
+      if (!last) return;
+      last = null;
+      if (own) { own = false; watch.up(c); }
+      drawings[key] = c.toDataURL();
+    };
     c.addEventListener('pointerdown', e => {
       if (editMode) return;
       e.preventDefault();
+      const p = pos(e), mode = watch ? watch.down(p, c, brush.erase) : 'free';
+      if (mode === 'block') return;
       c.setPointerCapture(e.pointerId);
-      last = pos(e);
-      seg(last, [last[0] + 0.1, last[1] + 0.1]);
+      last = p;
+      own = mode === 'own';
+      if (!own) seg(last, [last[0] + 0.1, last[1] + 0.1]);
     });
-    c.addEventListener('pointermove', e => { if (last) { const p = pos(e); seg(last, p); last = p; } });
+    c.addEventListener('pointermove', e => {
+      if (!last) return;
+      const p = pos(e);
+      if (own) watch.move(p, c); else seg(last, p);
+      last = p;
+    });
     c.addEventListener('pointerup', end);
     c.addEventListener('pointercancel', end);
     return c;
+  }
+
+  /* ---------- tracing: touch a letter's start circle, then trace it; the colour goes only onto the letter ---------- */
+  // Each dotted letter has a small circle where it starts. Touching it picks that letter: only it can be
+  // written on until it is finished. As the finger moves, the letter is coloured in around it (its own shape,
+  // cut from the page, so the writing always comes out neat), and when all of it is coloured a star appears.
+  // While the child waits, the next letter's circle glows and a hand points at it, like a game's hint.
+  // The Urdu lines are recorded by tools/make_urdu_audio.py (TRACING there): change both together.
+  const PRAISE = { en: ['Good job!', 'Well done!', 'Great!', 'Super!', 'Excellent!', 'Very good!'], ur: ['شاباش!', 'بہت خوب!', 'زبردست!', 'بہت اچھے!'] };
+  const SAY = {
+    en: { tap: 'Touch the circle to start.', done: 'Excellent! You traced them all. You are a star!' },
+    ur: { tap: 'شروع کرنے کے لیے دائرے کو چھوئیں۔', done: 'بہت خوب! آپ نے سب لکھ لیا۔ آپ ستارہ ہیں!' }
+  };
+  const ALL_DONE = { en: 'You did it! 🎉', ur: 'شاباش! 🎉' };
+
+  // Short sounds made on the spot, so nothing extra has to download.
+  let audioCtx = null;
+  function chime(kind) {
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const notes = kind === 'good' ? [[659, 0], [988, .12]] : kind === 'done' ? [[523, 0], [659, .12], [784, .24], [1047, .36]] : [[523, 0]];
+      notes.forEach(([f, at]) => {
+        const o = audioCtx.createOscillator(), g = audioCtx.createGain(), t = audioCtx.currentTime + at;
+        o.type = 'sine';
+        o.frequency.value = f;
+        g.gain.setValueAtTime(.0001, t);
+        g.gain.exponentialRampToValueAtTime(kind === 'tick' ? .08 : .25, t + .02);
+        g.gain.exponentialRampToValueAtTime(.0001, t + .35);
+        o.connect(g).connect(audioCtx.destination);
+        o.start(t); o.stop(t + .4);
+      });
+    } catch (e) { /* no sound on this browser; the star still shows */ }
+  }
+
+  function traceChecker(book, act, sheet, score, key) {
+    // dots: the book's own dotted letter. Usually that is the ink "Show me how" uses; where "Show me how" draws a
+    // nicer shape than the dots (the Urdu rows), the mark carries the dots separately.
+    const targets = act.steps.flatMap(s => s.marks).filter(m => m.glyph && (m.dots || m.ink))
+      .map((m, i) => ({ i, m, dots: m.dots || m.ink, shape: null, img: null, covered: null, done: false, circle: null, badge: null, tint: null }));
+    if (!targets.length) return null;
+    const lang = book.rtl ? 'ur' : 'en';
+    warmUp([...PRAISE[lang], ...Object.values(SAY[lang])]);
+    // The traced letters get their own sheet over the page, drawn plainly (the child's other drawing is blended
+    // into the page like crayon, which lets the book's dots show through; a traced letter should look solid).
+    // It is the same size as the drawing canvas, so the two share their measurements.
+    const lettersKey = key + ':letters';
+    const letters = el('canvas', { class: 'ink-letters' });
+    letters.width = 1200;
+    letters.height = Math.round(1200 / (book.ratio || 0.75));
+    const lx = letters.getContext('2d');
+    if (drawings[lettersKey]) { const im = new Image(); im.onload = () => lx.drawImage(im, 0, 0); im.src = drawings[lettersKey]; }
+    const saveLetters = () => { drawings[lettersKey] = letters.toDataURL(); };
+    const layer = el('div', { class: 'trace-fb' });
+    sheet.append(letters, layer);
+    const said = el('div');                 // the voice speaks without the caption bar covering the page
+    const finishedHere = traced[key] || (traced[key] = new Set());   // letters already done on this page
+    let active = null, painting = null, hintTimer = null, hand = null, cheered = false;
+    const canvas = () => sheet.querySelector('canvas.ink');
+
+    // the ink box (the letter box plus 25% each side) in canvas pixels, and the letter inside it
+    const inkRect = (t, c) => { const [x, y, w, h] = t.dots.box; return [x / 100 * c.width, y / 100 * c.height, w / 100 * c.width, h / 100 * c.height]; };
+    const letterRect = (t, c) => { const [x, y, w, h] = inkRect(t, c); return [x + w / 6, y + h / 6, w * 2 / 3, h * 2 / 3]; };
+    const inRect = ([x, y], [x0, y0, w, h]) => x >= x0 && x <= x0 + w && y >= y0 && y <= y0 + h;
+    const rectGap = ([px, py], [x, y, w, h]) => Math.hypot(Math.max(x - px, 0, px - x - w), Math.max(y - py, 0, py - y - h));
+    // The letter a point is on: inside a letter's ink box, the nearest letter (the Urdu rows' boxes overlap).
+    const letterAt = (p, c) => {
+      let best = null, gap = Infinity;
+      for (const t of targets) if (inRect(p, inkRect(t, c))) { const g = rectGap(p, letterRect(t, c)); if (g < gap) { gap = g; best = t; } }
+      return best;
+    };
+    // a point of the ink picture as a place on the page, in %
+    const onPage = (t, [x, y]) => { const [bx, by, bw, bh] = t.dots.box; return [bx + x / t.shape.w * bw, by + y / t.shape.h * bh]; };
+    const toCanvas = (e, c) => { const r = c.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * c.width, (e.clientY - r.top) / r.height * c.height]; };
+
+    // The letter's dots as a picture in one colour, the size of its ink box.
+    const tinted = (t, colour) => {
+      const o = document.createElement('canvas');
+      o.width = t.img.naturalWidth; o.height = t.img.naturalHeight;
+      const x = o.getContext('2d');
+      x.drawImage(t.img, 0, 0);
+      x.globalCompositeOperation = 'source-in';
+      x.fillStyle = colour;
+      x.fillRect(0, 0, o.width, o.height);
+      return o;
+    };
+
+    // Where the letter starts: where its pen stroke starts (GLYPHS), or for Urdu, the top right of the letter.
+    function startOf(t) {
+      const s = t.shape, g = t.m.glyph !== 'ur' && GLYPHS[t.m.glyph];
+      let far;
+      if (g) {
+        const [u, v] = g.match(/^M([-\d.]+) ([-\d.]+)/).slice(1).map(Number);
+        const want = [(u * 2 / 3 + 1 / 6) * s.w, (v * 2 / 3 + 1 / 6) * s.h];   // letter box -> ink box
+        far = p => Math.hypot(p[0] - want[0], p[1] - want[1]);
+      } else {
+        far = p => p[1] / s.h - (book.rtl ? p[0] : -p[0]) / s.w * .6;
+      }
+      return s.middle.reduce((a, b) => (far(b) < far(a) ? b : a));
+    }
+
+    function addCircle(t) {
+      const [x, y] = onPage(t, startOf(t));
+      const circle = el('button', { class: 'trace-start', style: `left:${x}%;top:${y}%`, 'aria-label': 'Start this letter' });
+      // touch the circle and carry on drawing from it
+      circle.addEventListener('pointerdown', e => {
+        e.preventDefault(); e.stopPropagation();
+        const c = canvas();
+        if (!c || t.done) return;
+        pick(t);
+        circle.setPointerCapture?.(e.pointerId);
+        begin(t, toCanvas(e, c), c);
+      });
+      circle.addEventListener('pointermove', e => { const c = canvas(); if (painting && c) paintTo(toCanvas(e, c), c); });
+      circle.addEventListener('pointerup', () => { const c = canvas(); if (c) up(c); });
+      circle.addEventListener('pointercancel', () => { const c = canvas(); if (c) up(c); });
+      t.circle = circle;
+      layer.append(circle);
+    }
+
+    function pick(t) {
+      if (active === t) return;
+      active?.circle?.classList.remove('on');
+      active = t;
+      t.circle?.classList.add('on');
+      layer.classList.add('busy');
+      clearHint();
+      markNext();
+      chime('tick');
+    }
+
+    // Gently point the child back to the circle they should touch.
+    function nudge(t, talk) {
+      const c = t?.circle;
+      if (!c) return;
+      c.classList.remove('nudge'); void c.offsetWidth; c.classList.add('nudge');
+      if (talk) speak('', SAY[lang].tap, null, said);
+    }
+
+    function begin(t, p, c) {
+      if (!t.tint || t.tint.colour !== brush.color) { t.tint = tinted(t, brush.color); t.tint.colour = brush.color; }
+      painting = { t, last: p };
+      paintAt(t, p, c);
+    }
+
+    // Colour the letter around the finger: only the letter's own ink, never anything beside it.
+    function paintAt(t, p, c) {
+      const s = t.shape, [x0, y0, w, h] = inkRect(t, c), sx = w / s.w, sy = h / s.h;
+      const q = [(p[0] - x0) / sx, (p[1] - y0) / sy];
+      if (inkDistance(s, q) > Math.max(s.half * 3, s.h * .1)) return;      // too far from the letter to count
+      const r = Math.max(s.half * 2.2, s.h * .07);
+      lx.save();
+      lx.beginPath();
+      lx.ellipse(p[0], p[1], r * sx, r * sy, 0, 0, Math.PI * 2);
+      lx.clip();
+      lx.drawImage(t.tint, x0, y0, w, h);
+      lx.restore();
+      cover(s, t.covered, q, r);
+    }
+
+    function paintTo(p, c) {
+      const { t, last } = painting, [, , w] = inkRect(t, c);
+      evenly([last, p], Math.max(2, w / t.shape.w * t.shape.half)).slice(1).forEach(q => paintAt(t, q, c));
+      painting.last = p;
+      if (finished(t.shape, t.covered)) complete(t, c);
+    }
+
+    function up(c) {
+      if (!painting) return;
+      const { t } = painting;
+      painting = null;
+      if (!t.done && finished(t.shape, t.covered)) complete(t, c);
+      saveLetters();
+      scheduleHint();
+    }
+
+    function showScore() {
+      const n = targets.filter(t => t.done).length;
+      score.hidden = n === 0;
+      score.textContent = `⭐ ${n} / ${targets.length}`;
+    }
+
+    function star(t) {
+      const [x, y, w] = t.m.box;
+      t.badge = el('div', { class: 'trace-badge good', style: `left:${x + w / 2}%;top:${y}%` }, '⭐');
+      layer.append(t.badge);
+    }
+
+    function complete(t, c, quiet = false) {
+      if (t.done) return;
+      t.done = true;
+      painting = null;
+      finishedHere.add(t.i);
+      if (c && t.tint) { lx.drawImage(t.tint, ...inkRect(t, c)); saveLetters(); }   // fill in any corner the finger missed
+      t.circle?.remove(); t.circle = null;
+      if (active === t) { active = null; layer.classList.remove('busy'); }
+      star(t);
+      showScore();
+      if (quiet) return;
+      if (targets.every(o => o.done) && !cheered) {
+        cheered = true;
+        chime('done');
+        layer.append(el('div', { class: 'trace-badge done' }, ALL_DONE[lang]));
+        layer.append(el('div', { class: 'trace-party' }, ...'⭐🎉🌟✨⭐🎈🌟🎉'.match(/\p{Extended_Pictographic}/gu).map((s, k) => el('span', { style: `--k:${k}` }, s))));
+        speak('', SAY[lang].done, null, said);
+      } else {
+        chime('good');
+        const list = PRAISE[lang];
+        speak('', list[Math.floor(Math.random() * list.length)], null, said);
+      }
+    }
+
+    // The letter to do next (the picked one, or the first not done yet) has a ring round its dot.
+    const nextLetter = () => (active && !active.done ? active : targets.find(t => !t.done && t.circle));
+    function markNext() {
+      const next = nextLetter();
+      targets.forEach(t => t.circle?.classList.toggle('next', t === next));
+    }
+
+    // How the letter is written, as pen strokes in order (each a list of places on the page, in %). The hint
+    // pencil follows them, lifting between strokes.
+    //   Letters and numbers: the strokes "Show me how" draws (GLYPHS: 'a' goes round from the top right, then
+    //   down the stick), each point moved onto the middle of the book's dots so the pencil stays on them.
+    //   Urdu: from the top right, on to the nearest part of the letter each time; a jump starts a new stroke.
+    function pathOf(t) {
+      if (t.path) return t.path;
+      const s = t.shape, g = t.m.glyph !== 'ur' && GLYPHS[t.m.glyph];
+      const nearest = q => { let b = s.middle[0], d = Infinity; s.middle.forEach(m => { const e = (m[0] - q[0]) ** 2 + (m[1] - q[1]) ** 2; if (e < d) { d = e; b = m; } }); return [b, Math.sqrt(d)]; };
+      let strokes;
+      if (g) {
+        strokes = glyphStrokes(g).map(line => line.map(([u, v]) => {
+          const q = [(u * 2 / 3 + 1 / 6) * s.w, (v * 2 / 3 + 1 / 6) * s.h];      // letter box -> ink box
+          const [m, d] = nearest(q);
+          return d < s.h * .12 ? m : q;
+        }));
+      } else {
+        let left = s.middle.slice(), at = startOf(t), line = [];
+        strokes = [line];
+        while (left.length) {
+          let k = 0, best = Infinity;
+          left.forEach((p, i) => { const d = (p[0] - at[0]) ** 2 + (p[1] - at[1]) ** 2; if (d < best) { best = d; k = i; } });
+          if (Math.sqrt(best) > (s.step || 3) * 3 && line.length) strokes.push(line = []);
+          at = left.splice(k, 1)[0];
+          line.push(at);
+        }
+      }
+      return (t.path = strokes.filter(l => l.length).map(l => l.map(p => onPage(t, p))));
+    }
+
+    // The hint: after a few quiet seconds the next letter's ring pulses and a pencil shows how to write it,
+    // starting at the start dot.
+    function clearHint() {
+      if (hintTimer) { clearTimeout(hintTimer); hintTimer = null; }
+      hand?.remove(); hand = null;
+      layer.querySelectorAll('.trace-start.hint').forEach(b => b.classList.remove('hint'));
+    }
+    function scheduleHint(wait = 3000) {
+      clearHint();
+      markNext();
+      hintTimer = schedule(() => {
+        hintTimer = null;
+        const next = nextLetter();
+        if (!next?.circle || painting) return;
+        next.circle.classList.add('hint');
+        const strokes = pathOf(next), first = strokes[0][0];
+        hand = el('div', { class: 'trace-hint' });
+        const pencil = el('div', { class: 'trace-pencil', style: `left:${first[0]}%;top:${first[1]}%` }, '✏️');
+        hand.append(pencil);
+        layer.append(hand);
+        // Move at an even speed along each stroke (the page's height is width / ratio). Between strokes the
+        // pencil lifts: it fades out, moves to the next stroke's start, and fades in. Then it rests a moment.
+        const ratio = book.ratio || 0.75, LIFT = 4;      // a lift takes as long as drawing 4% of the page
+        const pts = [];                                   // [x, y, distance so far, shown]
+        let run = 0;
+        strokes.forEach((line, n) => {
+          if (n) { const [px, py] = pts[pts.length - 1]; pts.push([px, py, run += .01, 0]); pts.push([line[0][0], line[0][1], run += LIFT, 0]); }
+          line.forEach((p, k) => {
+            if (k) run += Math.hypot(p[0] - line[k - 1][0], (p[1] - line[k - 1][1]) / ratio);
+            pts.push([p[0], p[1], n && !k ? run += .01 : run, 1]);
+          });
+        });
+        const total = run || 1;
+        const frames = pts.map(([x, y, d, shown]) => ({ left: x + '%', top: y + '%', opacity: shown, offset: d / total * .8 }));
+        frames.push({ ...frames[frames.length - 1], offset: 1 });
+        pencil.animate?.(frames, { duration: Math.max(2600, total * 120), iterations: Infinity, easing: 'linear' });
+      }, wait);
+    }
+
+    // Load each letter's dots; letters already done on this page keep their star.
+    let loaded = 0;
+    targets.forEach(t => {
+      const im = new Image();
+      im.onload = () => {
+        const w = im.naturalWidth, h = im.naturalHeight, cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        const cx = cv.getContext('2d');
+        cx.drawImage(im, 0, 0);
+        const px = cx.getImageData(0, 0, w, h).data, alpha = new Uint8Array(w * h);
+        for (let i = 0; i < alpha.length; i++) alpha[i] = px[i * 4 + 3];
+        t.shape = inkShape(alpha, w, h);
+        t.img = im;
+        t.covered = new Uint8Array(t.shape.middle.length);
+        if (finishedHere.has(t.i)) complete(t, null, true); else addCircle(t);
+        if (++loaded === targets.length) scheduleHint(1500);    // show the first hint soon
+      };
+      im.src = t.dots.src;
+    });
+
+    return {
+      // The canvas asks what to do with a touch: 'own' (the letter being traced takes it), 'block' (nothing
+      // is drawn) or 'free' (ordinary drawing, like colouring the picture).
+      down(p, c, erasing) {
+        clearHint();
+        const t = letterAt(p, c);
+        if (erasing) return t ? 'block' : 'free';
+        if (active) {
+          // on the letter, or just beside it (the colour still only lands on the letter)
+          if (t === active || rectGap(p, letterRect(active, c)) < inkRect(active, c)[3] * .25) { begin(active, p, c); return 'own'; }
+          nudge(active, false);
+          scheduleHint();
+          return 'block';
+        }
+        if (t) { if (!t.done) nudge(t, true); scheduleHint(); return 'block'; }
+        return 'free';
+      },
+      move(p, c) { if (painting) paintTo(p, c); },
+      up,
+      reset() {
+        clearHint();
+        painting = null; active = null; cheered = false;
+        finishedHere.clear();
+        lx.clearRect(0, 0, letters.width, letters.height);
+        delete drawings[lettersKey];
+        layer.replaceChildren();
+        layer.classList.remove('busy');
+        targets.forEach(t => {
+          t.done = false; t.badge = null; t.circle = null;
+          if (t.shape) { t.covered.fill(0); addCircle(t); }
+        });
+        showScore();
+        scheduleHint();
+      }
+    };
   }
 
   /* ---------- reader ---------- */
@@ -967,6 +1352,20 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     narrEl = null;
   }
 
+  // Recorded sentences, each loaded once and played again from memory (so short replies come at once).
+  const recordings = new Map();
+  function recording(file) {
+    let a = recordings.get(file);
+    if (!a) { a = new Audio(file); a.preload = 'auto'; recordings.set(file, a); }
+    a.currentTime = 0;
+    return a;
+  }
+  // Load the recordings of these texts now, ready for when they are said.
+  function warmUp(texts) {
+    const rec = window.RECORDED || {};
+    texts.forEach(t => (t.match(/[^.!?۔؟]+[.!?۔؟]*\s*/g) || []).forEach(s => { const f = rec[s.trim()]; if (f) recording(f).load(); }));
+  }
+
   // Read sentence by sentence (long single utterances get cut off in Chrome) and highlight the spoken word.
   let clip = null;                           // the recorded sentence playing, if any
   function speak(title, text, onDone, captionHost) {
@@ -1008,7 +1407,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (file) {
         caption.dir = urdu ? 'rtl' : 'ltr';
         words.forEach(([, sp]) => sp.classList.add('on'));
-        clip = new Audio(file);
+        clip = recording(file);
         loading.media(clip);
         clip.onended = () => { clip = null; say(i + 1); };
         clip.onerror = () => { clip = null; say(i + 1); };

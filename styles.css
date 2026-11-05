@@ -357,6 +357,8 @@ button { cursor: pointer; }
 .zone.fill svg { width: 100%; height: 100%; display: block; }
 .ink { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; touch-action: none; cursor: crosshair; }
 img.ink { pointer-events: none; }
+/* letters traced on a trace page: drawn plainly over the page, so they look solid */
+.ink-letters { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .frame { position: absolute; inset: 3cqw; border: .5cqw dashed #cfc6b0; border-radius: 2cqw; }
 .ml { padding: 3cqw 5cqw; }
 .ml div { display: flex; align-items: center; gap: 3cqw; height: 21cqw; font: 800 12cqw/1 var(--display); color: #23324a; }
@@ -543,6 +545,57 @@ img.ink { pointer-events: none; }
 .fx-btn.how { background: linear-gradient(135deg, #7b5ea7, #4aa3df); color: #fff; }
 .fx-btn.self { background: linear-gradient(135deg, #43aa8b, #2bb673); color: #fff; }
 .demo { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+
+/* tracing: a start circle on each letter, the picked letter coloured in under the finger, a star when done */
+.trace-fb { position: absolute; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+.trace-badge {
+  position: absolute; transform: translate(-50%, -110%); white-space: nowrap;
+  font: 800 2.6cqw/1 var(--ui, 'Baloo 2', sans-serif); padding: .9cqw 1.8cqw; border-radius: 99px;
+  box-shadow: 0 .5cqw 1.4cqw rgba(0, 0, 0, .25); animation: tracePop .35s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+.trace-badge.good { background: none; box-shadow: none; padding: 0; font-size: 4.4cqw; filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .3)); }
+.trace-badge.done { left: 50%; top: 50%; transform: translate(-50%, -50%); background: #2bb673; color: #fff; font-size: 5cqw; padding: 2cqw 4cqw; }
+/* the start dot: small, so the letter stays clear; the touch area around it is bigger, for small fingers */
+.trace-start {
+  position: absolute; width: max(4.6cqw, 32px); height: max(4.6cqw, 32px); padding: 0; transform: translate(-50%, -50%);
+  border: 0; border-radius: 50%; background: none; pointer-events: auto; cursor: pointer; touch-action: none;
+}
+.trace-start::after {
+  content: ''; position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: max(.7cqw, 5px); height: max(.7cqw, 5px);
+  border-radius: 50%; background: #d62f6f; box-shadow: 0 0 0 max(.18cqw, 1.5px) #fff;
+}
+/* the letter to do next has a thin ring round its dot; the picked letter's ring is green and pulses */
+.trace-start.next::before, .trace-start.on::before {
+  content: ''; position: absolute; left: 50%; top: 50%; translate: -50% -50%; box-sizing: border-box;
+  width: max(2.2cqw, 14px); height: max(2.2cqw, 14px); border-radius: 50%; border: max(.25cqw, 2px) solid #d62f6f;
+}
+.trace-start.on::after { background: #2bb673; }
+.trace-start.on::before { border-color: #2bb673; animation: traceRing 1.4s ease-out infinite; }
+.trace-fb.busy .trace-start:not(.on) { opacity: .35; }
+.trace-start.hint::before { animation: traceRing 1s ease-out infinite; }
+.trace-start.nudge { animation: traceShake .5s; }
+/* the hint pencil: its tip (bottom left of the emoji) sits on the point it is writing */
+.trace-pencil {
+  position: absolute; font-size: max(3.6cqw, 22px); line-height: 1; transform: translate(-14%, -86%); pointer-events: none;
+  filter: drop-shadow(0 .3cqw .5cqw rgba(0, 0, 0, .3));
+}
+.fx-page:not(.pen) .trace-start, .fx-page:not(.pen) .trace-hint { display: none; }
+@keyframes traceRing { 0% { scale: 1; opacity: 1; } 70% { scale: 1.5; opacity: .2; } 100% { scale: 1; opacity: 1; } }
+.trace-party { position: absolute; inset: 0; }
+.trace-party span {
+  position: absolute; top: 105%; left: calc(6% + var(--k) * 12%); font-size: 5cqw;
+  animation: traceRise 2.4s ease-out calc(var(--k) * .12s) forwards;
+}
+.trace-score {
+  align-self: stretch; text-align: center; padding: 10px; border-radius: 16px;
+  background: #fff7d6; color: #7a5200; font: 800 20px/1 var(--ui, 'Baloo 2', sans-serif);
+  animation: tracePop .35s cubic-bezier(.3, 1.6, .5, 1) both;
+}
+.trace-score[hidden] { display: none; }
+@keyframes tracePop { from { opacity: 0; scale: .3; } to { opacity: 1; scale: 1; } }
+@keyframes traceShake { 0%, 100% { translate: 0; } 20%, 60% { translate: -.8cqw; } 40%, 80% { translate: .8cqw; } }
+@keyframes traceRise { 0% { top: 105%; opacity: 1; rotate: 0deg; } 100% { top: -15%; opacity: 0; rotate: 40deg; } }
+@media (prefers-reduced-motion: reduce) { .trace-badge, .trace-party span, .trace-score, .trace-start, .trace-start::before { animation: none; } .trace-pencil { display: none; } .trace-party { display: none; } }
 .pencil { position: absolute; left: 50%; top: 105%; font-size: 6cqw; transform: translate(-10%, -90%); transition: left .45s ease, top .45s ease; filter: drop-shadow(0 .5cqw .6cqw rgba(0, 0, 0, .3)); z-index: 2; }
 .mk { position: absolute; color: #d62f6f; font: 400 4.6cqw/1 'Gochi Hand', 'Comic Sans MS', cursive; }
 .mk.write { transform: translateY(-62%); white-space: nowrap; animation: writeIn .9s steps(10) both; }
