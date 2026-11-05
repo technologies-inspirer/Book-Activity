@@ -291,8 +291,9 @@ def trace_page(page, name, folder):
     rows = dotted_rows(im)
 
     def marks(boxes):
-        # The dotted letters are the same letter as the big ones, so they take the big letter's own calligraphic
-        # shape, scaled to their height (cutting the dots out gives only a stiff line, which looks like a 1).
+        # The dotted letters are the same letter as the big ones, so "Show me how" draws them with the big letter's
+        # own calligraphic shape, scaled to their height (cutting the dots out gives only a stiff line, which looks
+        # like a 1). The child's tracing is checked against the dots themselves, kept as 'dots'.
         if big:
             ref = big[0]
             rw, rh = ref['box'][2], ref['box'][3]
@@ -303,7 +304,13 @@ def trace_page(page, name, folder):
                 x = b[0] + b[2] / 2 - w / 2
                 box = [round(x, 2), b[1], round(w, 2), h]
                 pb = [round(x - w * PAD, 2), round(b[1] - h * PAD, 2), round(w * (1 + 2 * PAD), 2), round(h * (1 + 2 * PAD), 2)]
-                out.append({'glyph': 'ur', 'box': box, 'ink': {'src': ref['ink']['src'], 'box': pb}})
+                m = {'glyph': 'ur', 'box': box, 'ink': {'src': ref['ink']['src'], 'box': pb}}
+                src, db = make_ink(BOOK, page, b)
+                if cv2.imread(src, cv2.IMREAD_UNCHANGED)[..., 3].mean() > 6:
+                    m['dots'] = {'src': src, 'box': db}
+                else:
+                    os.remove(src)
+                out.append(m)
             return out
         out = []
         for b in boxes:

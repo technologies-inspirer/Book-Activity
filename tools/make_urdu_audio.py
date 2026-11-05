@@ -21,6 +21,9 @@ OUT = 'books/%s/audio' % BOOK
 URDU = re.compile('[؀-ۿ]')
 # the reader speaks one sentence at a time, split the same way (app.js speak())
 SENTENCES = re.compile(r'[^.!?۔؟]+[.!?۔؟]*\s*')
+# what the tracing says when a child writes a letter (app.js PRAISE.ur and SAY.ur: keep the two the same)
+TRACING = ['شاباش!', 'بہت خوب!', 'زبردست!', 'بہت اچھے!',
+           'شروع کرنے کے لیے دائرے کو چھوئیں۔', 'بہت خوب! آپ نے سب لکھ لیا۔ آپ ستارہ ہیں!']
 
 
 def sentences(text):
@@ -45,6 +48,7 @@ def texts():
                     said.append(f'آپ نے {n} میں سے {stars} ستارے جیتے۔ بہت خوب!')
             elif a['type'] == 'fill':
                 said += [st['say'] for st in a['steps']]
+    said += TRACING
     out = []
     for t in said:
         for s in sentences(t):

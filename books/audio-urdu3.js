@@ -530,5 +530,10 @@ window.RECORDED = Object.assign(window.RECORDED || {}, {
 "یہ یکہ ہے۔": "books/stemford-urdu-3/audio/220a010c9843.mp3",
 "یادگار کہاں ہے؟": "books/stemford-urdu-3/audio/c8eb3a628184.mp3",
 "یہ یادگار ہے۔": "books/stemford-urdu-3/audio/36de78c11152.mp3",
-"آئیں، حرف چھوٹی یے، بڑی یے لکھیں۔": "books/stemford-urdu-3/audio/c3bfd0053fab.mp3"
+"آئیں، حرف چھوٹی یے، بڑی یے لکھیں۔": "books/stemford-urdu-3/audio/c3bfd0053fab.mp3",
+"زبردست!": "books/stemford-urdu-3/audio/573d3c6ff25e.mp3",
+"بہت اچھے!": "books/stemford-urdu-3/audio/4e868e9753de.mp3",
+"شروع کرنے کے لیے دائرے کو چھوئیں۔": "books/stemford-urdu-3/audio/66415d951490.mp3",
+"آپ نے سب لکھ لیا۔": "books/stemford-urdu-3/audio/4978391df542.mp3",
+"آپ ستارہ ہیں!": "books/stemford-urdu-3/audio/fb6312383072.mp3"
 });
