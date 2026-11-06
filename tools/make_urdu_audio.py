@@ -24,6 +24,9 @@ SENTENCES = re.compile(r'[^.!?۔؟]+[.!?۔؟]*\s*')
 # what the tracing says when a child writes a letter (app.js PRAISE.ur and SAY.ur: keep the two the same)
 TRACING = ['شاباش!', 'بہت خوب!', 'زبردست!', 'بہت اچھے!',
            'شروع کرنے کے لیے دائرے کو چھوئیں۔', 'بہت خوب! آپ نے سب لکھ لیا۔ آپ ستارہ ہیں!']
+# what colouring says when the child picks the wrong colour for a part (src/colourFill.js COLOUR_NAMES: keep the same)
+COLOURS = ['لال', 'گلابی', 'نارنجی', 'بھورا', 'ہلکا بھورا', 'پیلا', 'ہرا', 'گہرا ہرا', 'نیلا', 'ہلکا نیلا', 'جامنی', 'سرمئی', 'کالا']
+TRACING += [f'{c} رنگ لگائیں۔' for c in COLOURS]
 
 
 def sentences(text):

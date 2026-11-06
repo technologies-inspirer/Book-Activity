@@ -1450,70 +1450,34 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
  ],
  "20": [
   {
-   "type": "story",
-   "label": "Learn 5",
-   "icon": "🔢",
-   "title": "The number five",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 5",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 20,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number five. Say it with me. five, five, five!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/779YnZIbOOs"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 5",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 20,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the birds. Let us count them. 1, 2, 3, 4, 5!"
-    },
-    {
-     "page": 20,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Five birds. The number five!"
-    },
-    {
-     "page": 21,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number five on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/SNQMJxsKA3Q"
     }
    ]
   }
@@ -1830,74 +1794,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 5",
+   "src": "https://youtu.be/VzghS4d5-ms"
+  }
  },
  "24": [
   {
-   "type": "story",
-   "label": "Learn 6",
-   "icon": "🔢",
-   "title": "The number six",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 6",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 24,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number six. Say it with me. six, six, six!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/h8sXAv99Kks"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 6",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 24,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the chicks. Let us count them. 1, 2, 3, 4, 5, 6!"
-    },
-    {
-     "page": 24,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Six chicks. The number six!"
-    },
-    {
-     "page": 25,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number six on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/stAjQiIxCtI"
     }
    ]
   }
@@ -2214,74 +2146,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 6",
+   "src": "https://youtu.be/2CLEzDsTBEA"
+  }
  },
  "28": [
   {
-   "type": "story",
-   "label": "Learn 7",
-   "icon": "🔢",
-   "title": "The number seven",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 7",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 28,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number seven. Say it with me. seven, seven, seven!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/G29jJKkU_s4"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 7",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 28,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the ducks. Let us count them. 1, 2, 3, 4, 5, 6, 7!"
-    },
-    {
-     "page": 28,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Seven ducks. The number seven!"
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number seven on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/46MV9sncyLc"
     }
    ]
   }
@@ -2598,74 +2498,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 7",
+   "src": "https://youtu.be/oTrg4A1lLAk"
+  }
  },
  "31": [
   {
-   "type": "story",
-   "label": "Learn 8",
-   "icon": "🔢",
-   "title": "The number eight",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 8",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 31,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number eight. Say it with me. eight, eight, eight!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/ye7b80pRZ3I"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 8",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 31,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the pears. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8!"
-    },
-    {
-     "page": 31,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Eight pears. The number eight!"
-    },
-    {
-     "page": 32,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number eight on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/_bqe-bWMtZQ"
     }
    ]
   }
@@ -2982,74 +2850,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 8",
+   "src": "https://youtu.be/3j5ZWKT73cI"
+  }
  },
  "34": [
   {
-   "type": "story",
-   "label": "Learn 9",
-   "icon": "🔢",
-   "title": "The number nine",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 9",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 34,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number nine. Say it with me. nine, nine, nine!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/aMcVnhHWuF8"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 9",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 34,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the apples. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9!"
-    },
-    {
-     "page": 34,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Nine apples. The number nine!"
-    },
-    {
-     "page": 35,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number nine on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/MqsN8d-RiC4"
     }
    ]
   }
@@ -3366,7 +3202,11 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 9",
+   "src": "https://youtu.be/KHwXtf21Kks"
+  }
  },
  "40": [
   {
@@ -3658,70 +3498,34 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
  },
  "42": [
   {
-   "type": "story",
-   "label": "Learn 10",
-   "icon": "🔢",
-   "title": "The number ten",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 10",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 42,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number ten. Say it with me. ten, ten, ten!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Sm-En8jET04"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 10",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 42,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the bees. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10!"
-    },
-    {
-     "page": 42,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Ten bees. The number ten!"
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number ten on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/iKwWE1VnIzo"
     }
    ]
   }
@@ -4326,74 +4130,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 10",
+   "src": "https://youtu.be/sC4VCflnqp4"
+  }
  },
  "46": [
   {
-   "type": "story",
-   "label": "Learn 11",
-   "icon": "🔢",
-   "title": "The number eleven",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 11",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 46,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number eleven. Say it with me. eleven, eleven, eleven!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/-zgwnOL-5Js"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 11",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 46,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the eggs. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11!"
-    },
-    {
-     "page": 46,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Eleven eggs. The number eleven!"
-    },
-    {
-     "page": 47,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number eleven on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/9qKXU-DXF9M"
     }
    ]
   }
@@ -4998,74 +4770,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 11",
+   "src": "https://youtu.be/m_xd8I1Zvhs"
+  }
  },
  "48": [
   {
-   "type": "story",
-   "label": "Learn 12",
-   "icon": "🔢",
-   "title": "The number twelve",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 12",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 48,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number twelve. Say it with me. twelve, twelve, twelve!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/qJXK02D3cD4"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 12",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 48,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the socks. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12!"
-    },
-    {
-     "page": 48,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Twelve socks. The number twelve!"
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number twelve on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/Zyac1OF-PXs"
     }
    ]
   }
@@ -5670,74 +5410,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 12",
+   "src": "https://youtu.be/7R_Lgx9kJVA"
+  }
  },
  "50": [
   {
-   "type": "story",
-   "label": "Learn 13",
-   "icon": "🔢",
-   "title": "The number thirteen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 13",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 50,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number thirteen. Say it with me. thirteen, thirteen, thirteen!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/9MsWEAKev8c"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 13",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 50,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the spoons. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13!"
-    },
-    {
-     "page": 50,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Thirteen spoons. The number thirteen!"
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number thirteen on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/nZrEJfFfqhU"
     }
    ]
   }
@@ -6342,74 +6050,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 13",
+   "src": "https://youtu.be/1KFEvFeOZtA"
+  }
  },
  "52": [
   {
-   "type": "story",
-   "label": "Learn 14",
-   "icon": "🔢",
-   "title": "The number fourteen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 14",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 52,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number fourteen. Say it with me. fourteen, fourteen, fourteen!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/ZkEnFFVIIp4"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 14",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 52,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the umbrellas. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14!"
-    },
-    {
-     "page": 52,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Fourteen umbrellas. The number fourteen!"
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number fourteen on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/CeUO5hFAXxs"
     }
    ]
   }
@@ -7014,74 +6690,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 14",
+   "src": "https://youtu.be/bbmAQByCmu8"
+  }
  },
  "54": [
   {
-   "type": "story",
-   "label": "Learn 15",
-   "icon": "🔢",
-   "title": "The number fifteen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 15",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 54,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number fifteen. Say it with me. fifteen, fifteen, fifteen!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Z8_GwPHOp8U"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 15",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 54,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the tomatoes. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15!"
-    },
-    {
-     "page": 54,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Fifteen tomatoes. The number fifteen!"
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number fifteen on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/ufz6ur4c--4"
     }
    ]
   }
@@ -7686,74 +7330,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 15",
+   "src": "https://youtu.be/QBFFaKqYoLs"
+  }
  },
  "58": [
   {
-   "type": "story",
-   "label": "Learn 16",
-   "icon": "🔢",
-   "title": "The number sixteen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 16",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 58,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number sixteen. Say it with me. sixteen, sixteen, sixteen!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/PbeuyPDsp1o"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 16",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 58,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the cups. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16!"
-    },
-    {
-     "page": 58,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Sixteen cups. The number sixteen!"
-    },
-    {
-     "page": 59,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number sixteen on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/WrpBpaozCsk"
     }
    ]
   }
@@ -8358,74 +7970,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 16",
+   "src": "https://youtu.be/QGCfzbnrANk"
+  }
  },
  "60": [
   {
-   "type": "story",
-   "label": "Learn 17",
-   "icon": "🔢",
-   "title": "The number seventeen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 17",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 60,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number seventeen. Say it with me. seventeen, seventeen, seventeen!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/tIcGD4w9V-s"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 17",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 60,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the hot air balloons. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17!"
-    },
-    {
-     "page": 60,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Seventeen hot air balloons. The number seventeen!"
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number seventeen on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/_1a-Q9Pp4dU"
     }
    ]
   }
@@ -9030,74 +8610,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 17",
+   "src": "https://youtu.be/z90yDkF_NWk"
+  }
  },
  "62": [
   {
-   "type": "story",
-   "label": "Learn 18",
-   "icon": "🔢",
-   "title": "The number eighteen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 18",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 62,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number eighteen. Say it with me. eighteen, eighteen, eighteen!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/b-FyIl_HpoE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 18",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 62,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the bananas. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18!"
-    },
-    {
-     "page": 62,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Eighteen bananas. The number eighteen!"
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number eighteen on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/DiWqw72Fppo"
     }
    ]
   }
@@ -9702,74 +9250,26 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 18",
+   "src": "https://youtu.be/DvoJJlQ2HME"
+  }
  },
  "64": [
   {
-   "type": "story",
-   "label": "Learn 19",
-   "icon": "🔢",
-   "title": "The number nineteen",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 19",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 64,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number nineteen. Say it with me. nineteen, nineteen, nineteen!"
-    },
-    {
-     "page": 64,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the balls. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19!"
-    },
-    {
-     "page": 64,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Nineteen balls. The number nineteen!"
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number nineteen on the next page. Well done!"
+     "title": "Story",
+     "src": "https://youtu.be/DzLD_1R5xpE"
     }
    ]
   }
@@ -10374,74 +9874,42 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 19",
+   "src": "https://youtu.be/Z9pmTaxPKuY"
+  }
  },
  "66": [
   {
-   "type": "story",
-   "label": "Learn 20",
-   "icon": "🔢",
-   "title": "The number twenty",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: number 20",
    "button": {
     "x": 30,
     "y": 18
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 66,
-     "from": {
-      "cx": 18,
-      "cy": 17,
-      "w": 42
-     },
-     "to": {
-      "cx": 18,
-      "cy": 17,
-      "w": 30
-     },
-     "text": "This is the number twenty. Say it with me. twenty, twenty, twenty!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/3IT4EZgwr1s"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: number 20",
+   "button": {
+    "x": 30,
+    "y": 28
+   },
+   "videos": [
     {
-     "page": 66,
-     "from": {
-      "cx": 60,
-      "cy": 50,
-      "w": 95
-     },
-     "to": {
-      "cx": 60,
-      "cy": 48,
-      "w": 70
-     },
-     "text": "Look at the pencils. Let us count them. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20!"
-    },
-    {
-     "page": 66,
-     "from": {
-      "cx": 72,
-      "cy": 74,
-      "w": 60
-     },
-     "to": {
-      "cx": 72,
-      "cy": 76,
-      "w": 40
-     },
-     "text": "Twenty pencils. The number twenty!"
-    },
-    {
-     "page": 67,
-     "from": {
-      "cx": 50,
-      "cy": 45,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 45,
-      "w": 70
-     },
-     "text": "Now let us trace and write the number twenty on the next page. Well done!"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/wSIyboMY2tA"
     }
    ]
   }
@@ -10758,6 +10226,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
-  ]
+  ],
+  "video": {
+   "title": "How to write 20",
+   "src": "https://youtu.be/w-YrhMgNnuw"
+  }
  }
 };

@@ -120,6 +120,23 @@ YOUTUBE = {
     2: {'Story': 'KaE4Tg0WES4', 'Formation': '8bZzeJSP2ZQ'},
     3: {'Story': 'ChqF6Y5LD-0', 'Vocabulary': 'Vm40lGrG6QY', 'Formation': 'aqCyjz2w1mM'},
     4: {'Story': 'MWLk36-Ssog', 'Vocabulary': '10g3Sr7riLo', 'Formation': 'R-niy_5dt6Y'},
+    5: {'Story': '779YnZIbOOs', 'Vocabulary': 'SNQMJxsKA3Q', 'Formation': 'VzghS4d5-ms'},
+    6: {'Story': 'h8sXAv99Kks', 'Vocabulary': 'stAjQiIxCtI', 'Formation': '2CLEzDsTBEA'},
+    7: {'Story': 'G29jJKkU_s4', 'Vocabulary': '46MV9sncyLc', 'Formation': 'oTrg4A1lLAk'},
+    8: {'Story': 'ye7b80pRZ3I', 'Vocabulary': '_bqe-bWMtZQ', 'Formation': '3j5ZWKT73cI'},
+    9: {'Story': 'aMcVnhHWuF8', 'Vocabulary': 'MqsN8d-RiC4', 'Formation': 'KHwXtf21Kks'},
+    10: {'Story': 'Sm-En8jET04', 'Vocabulary': 'iKwWE1VnIzo', 'Formation': 'sC4VCflnqp4'},
+    11: {'Story': '-zgwnOL-5Js', 'Vocabulary': '9qKXU-DXF9M', 'Formation': 'm_xd8I1Zvhs'},
+    12: {'Story': 'qJXK02D3cD4', 'Vocabulary': 'Zyac1OF-PXs', 'Formation': '7R_Lgx9kJVA'},
+    13: {'Story': '9MsWEAKev8c', 'Vocabulary': 'nZrEJfFfqhU', 'Formation': '1KFEvFeOZtA'},
+    14: {'Story': 'ZkEnFFVIIp4', 'Vocabulary': 'CeUO5hFAXxs', 'Formation': 'bbmAQByCmu8'},
+    15: {'Story': 'Z8_GwPHOp8U', 'Vocabulary': 'ufz6ur4c--4', 'Formation': 'QBFFaKqYoLs'},
+    # 16's Vocabulary is titled "Formation of Number 16" on YouTube, but it is the cups video (the vocabulary)
+    16: {'Story': 'PbeuyPDsp1o', 'Vocabulary': 'WrpBpaozCsk', 'Formation': 'QGCfzbnrANk'},
+    17: {'Story': 'tIcGD4w9V-s', 'Vocabulary': '_1a-Q9Pp4dU', 'Formation': 'z90yDkF_NWk'},
+    18: {'Story': 'b-FyIl_HpoE', 'Vocabulary': 'DiWqw72Fppo', 'Formation': 'DvoJJlQ2HME'},
+    19: {'Story': 'DzLD_1R5xpE', 'Formation': 'Z9pmTaxPKuY'},      # Vocabulary 19 not given yet
+    20: {'Story': '3IT4EZgwr1s', 'Vocabulary': 'wSIyboMY2tA', 'Formation': 'w-YrhMgNnuw'},
 }
 
 

@@ -3,10 +3,13 @@ import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
 import { evenly, inkShape, inkDistance, cover, finished } from './src/traceCheck.js';
+import { regionFrom, spread, partColour, closestColour, colourName, hexOf, pageColours } from './src/colourFill.js';
 
 const drawings = {};
 const traced = {};                           // page -> the letters traced on it (their stars stay when it reopens)
 const brush = { color: '#e63946', size: 12, erase: false };
+const PALETTE = ['#e63946', '#f4a261', '#4aa3df'];   // the usual colours, when a page names none of its own
+const SIZES = [[12, 11], [26, 18]];                  // crayon sizes: [width on the page, dot shown on its button]
 
 export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref, activityPreview, onPreviewClose, readerBook, readerOptions = {} } = {}) {
   const loading = createLoadingScope();
@@ -621,10 +624,37 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     setPageImage(img, book, pg);
     const fillAct = (pg.acts || []).find(a => a.type === 'fill'), fill = !!fillAct;
     const sheet = el('div', { class: 'fx-page' }, img);
-    // On trace pages the child's letters are checked: a star for a good one, "try again" for a wrong one.
+    // On trace pages each dotted letter is traced from its start dot, with a star when it is done.
     const score = el('div', { class: 'trace-score', hidden: true });
     const checker = fill ? traceChecker(book, fillAct, sheet, score, key) : null;
-    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker);
+    // Colouring the picture: the colours on offer, and what to show when the child picks the wrong one for a part
+    // (a red strawberry coloured blue): a note by their finger, the right colour's button glows, and a voice.
+    // Only the colours the page needs are offered: the ones the book's activity names (a sketch with black outlines:
+    // grapes are green, purple and brown), or else the ones the page picture shows (red-outlined strawberries, the
+    // blue hint in a big 9), found once the picture has loaded. A page with neither keeps the usual three. When a
+    // part still needs a colour not on offer (a green ball), that colour, as the book prints it, is added.
+    // (named: the activity's own list. shown: the colour "Show me how" paints the picture with, like the yellow
+    // duck; the page's other colours, like its big red letter to colour, are read from the picture as well.)
+    const named = fillAct?.colours || [];
+    const shown = [...new Set((fillAct?.steps || []).flatMap(s => s.marks).filter(m => m.scribble).map(m => m.scribble))];
+    const palette = [...(named.length ? named : shown.length ? shown : PALETTE)];
+    if (book.rtl) warmUp(palette.map(c => `${colourName(c).ur} رنگ لگائیں۔`));
+    let tipTimer = null;
+    const wrongColour = (right, [fx, fy]) => {
+      const name = colourName(right), ur = !!book.rtl;
+      sheet.querySelector('.colour-tip')?.remove();
+      const tip = el('div', { class: 'colour-tip', dir: ur ? 'rtl' : null, style: `left:${fx * 100}%;top:${fy * 100}%` },
+        el('i', { style: `background:${right}` }), ur ? `${name.ur} رنگ` : `Use ${name.en}!`);
+      sheet.append(tip);
+      const swatch = sheet.parentElement?.querySelector(`.fx-panel .sw[data-c="${right}"]`);
+      swatch?.classList.add('want');
+      clearTimeout(tipTimer);
+      tipTimer = schedule(() => { tip.remove(); swatch?.classList.remove('want'); }, 2400);
+      chime('tick');
+      speak('', ur ? `${name.ur} رنگ لگائیں۔` : `Use the ${name.en} colour.`, null, el('div'));
+    };
+    const addColour = hex => { tools.addColour(hex); return hex; };
+    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, wrong: wrongColour, add: addColour });
     sheet.prepend(img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));
 
@@ -637,7 +667,19 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     });
     // Fill pages: "Show me how" plays the worked answers; "I'll do it myself" hands over the pen.
     // A page that names its colours (an apple: red and green) offers only those.
-    const tools = drawTools(() => { delete drawings[key]; checker?.reset(); sheet.querySelector('canvas').replaceWith(canvasFor()); }, fillAct?.colours);
+    const tools = drawTools(() => { delete drawings[key]; checker?.reset(); sheet.querySelector('canvas').replaceWith(canvasFor()); }, palette);
+    const pageColoursRead = () => {
+      const px = pixelsOf(img);
+      if (!px || named.length) return;           // the activity's own list is the page's colours
+      // the letters to trace are not pictures to colour
+      const skip = (fillAct?.steps || []).flatMap(s => s.marks).map(m => (m.dots || m.ink)?.box).filter(Boolean)
+        .map(([x, y, w, h]) => [x / 100 * px.w, y / 100 * px.h, (x + w) / 100 * px.w, (y + h) / 100 * px.h]);
+      const list = [...shown];
+      const sameKind = rgb => closestColour(rgb, list, 60) || list.some(c => colourName(c).en === colourName(hexOf(rgb)).en);
+      for (const rgb of pageColours(px.data, px.w, px.h, { skip })) if (!sameKind(rgb)) list.push(hexOf(rgb));
+      tools.setColours(list.length ? list : PALETTE);
+    };
+    if (pixelsOf(img)) pageColoursRead(); else img.addEventListener('load', pageColoursRead, { once: true });
     const demo = el('div', { class: 'demo' });
     sheet.append(demo);
     const showHow = fill && el('button', { class: 'fx-btn how', html: I.play + '<span>Show me how</span>',
@@ -673,10 +715,51 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     sheet.style.transform = '';
   }
 
+  // The part of the page picture around a touch (fx, fy: 0..1 of the page): { mask, want, paper }. mask is a small
+  // canvas, opaque inside the part; want is the colour the book shows for it ([r, g, b]), or null if it does not
+  // say; paper is true when the touch is on the open page round the pictures.
+  // The picture is read once, at 600 pixels wide (plenty for colouring, and quick to search).
+  const pagePixels = new Map();
+  function pixelsOf(img) {
+    if (!img.complete || !img.naturalWidth) return null;
+    let px = pagePixels.get(img.src);
+    if (!px) {
+      const w = 600, h = Math.round(600 * img.naturalHeight / img.naturalWidth), cv = document.createElement('canvas');
+      cv.width = w; cv.height = h;
+      const cx = cv.getContext('2d', { willReadFrequently: true });
+      cx.drawImage(img, 0, 0, w, h);
+      try { px = { w, h, data: cx.getImageData(0, 0, w, h).data }; } catch { return null; }   // a picture we may not read
+      pagePixels.set(img.src, px);
+    }
+    return px;
+  }
+  function colourArea(img, fx, fy) {
+    const px = pixelsOf(img);
+    if (!px) return null;
+    const core = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0 });
+    if (!core) return null;
+    // A part this big is the page itself (the paper round the pictures), not something to colour.
+    let size = 0;
+    for (let i = 0; i < core.length; i++) size += core[i];
+    if (size > core.length * .25) return { mask: null, want: null, paper: true };
+    const part = spread(core, px.w, px.h, 2);          // the colour reaches a little into the outline
+    const out = document.createElement('canvas');
+    out.width = px.w; out.height = px.h;
+    const ox = out.getContext('2d'), mask = ox.createImageData(px.w, px.h);
+    for (let i = 0; i < part.length; i++) if (part[i]) mask.data[i * 4 + 3] = 255;
+    ox.putImageData(mask, 0, 0);
+    return { mask: out, want: partColour(px.data, px.w, px.h, core) };
+  }
+
   // The canvas keeps a fixed resolution tied to the zone, so drawings survive resizes and page turns.
   // watch (optional): the tracing letters on this page. Each touch asks it first: the letter being traced
   // takes the touch ('own'), a touch on a letter not picked yet draws nothing ('block'), anything else draws.
-  function inkCanvas(book, z, key, watch) {
+  // page (optional): { img, palette, wrong, add }. img is the page picture under the canvas: colouring then stays
+  // inside the lines, each stroke only landing in the part of the picture where it began (src/colourFill.js),
+  // and the open paper round the pictures is not coloured at all.
+  // Where the book shows the part's colour (a red strawberry) and that colour is on offer (palette), only it
+  // colours there: another colour draws nothing and wrong(rightColour) is told, to show the child. If that colour\n  // is not on offer, add(colour) offers it first.
+  function inkCanvas(book, z, key, watch, page) {
     const c = el('canvas', { class: 'ink' });
     setDrawingCursor(c, brush.erase);
     c.width = Math.round(z.w * 12);
@@ -687,22 +770,36 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       im.onload = () => ctx.drawImage(im, 0, 0);
       im.src = drawings[key];
     }
-    let last = null;
+    let last = null, inside = null;           // inside: the part of the picture this stroke may colour
     const pos = e => {
       const r = c.getBoundingClientRect();
       return [(e.clientX - r.left) / r.width * c.width, (e.clientY - r.top) / r.height * c.height];
     };
+    const line = (x, a, b) => {
+      x.strokeStyle = brush.color;
+      x.lineWidth = brush.size * (brush.erase ? 2.5 : 1);
+      x.lineCap = x.lineJoin = 'round';
+      x.beginPath(); x.moveTo(a[0], a[1]); x.lineTo(b[0], b[1]); x.stroke();
+    };
+    const scratch = document.createElement('canvas'), sx = scratch.getContext('2d');
     const seg = (a, b) => {
       ctx.globalCompositeOperation = brush.erase ? 'destination-out' : 'source-over';
-      ctx.strokeStyle = brush.color;
-      ctx.lineWidth = brush.size * (brush.erase ? 2.5 : 1);
-      ctx.lineCap = ctx.lineJoin = 'round';
-      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+      if (!inside) { line(ctx, a, b); return; }
+      // Draw the piece of line on its own, keep only what falls inside the part, and put that on the page.
+      const pad = brush.size + 2, x0 = Math.floor(Math.min(a[0], b[0]) - pad), y0 = Math.floor(Math.min(a[1], b[1]) - pad);
+      const w = Math.ceil(Math.abs(a[0] - b[0]) + pad * 2), h = Math.ceil(Math.abs(a[1] - b[1]) + pad * 2);
+      scratch.width = w; scratch.height = h;          // also clears it
+      line(sx, [a[0] - x0, a[1] - y0], [b[0] - x0, b[1] - y0]);
+      sx.globalCompositeOperation = 'destination-in';
+      const k = inside.width / c.width;
+      sx.drawImage(inside, x0 * k, y0 * k, w * k, h * k, 0, 0, w, h);
+      ctx.drawImage(scratch, x0, y0);
     };
     let own = false;
     const end = () => {
       if (!last) return;
       last = null;
+      inside = null;
       if (own) { own = false; watch.up(c); }
       drawings[key] = c.toDataURL();
     };
@@ -711,9 +808,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       e.preventDefault();
       const p = pos(e), mode = watch ? watch.down(p, c, brush.erase) : 'free';
       if (mode === 'block') return;
+      const area = mode === 'free' && !brush.erase && page ? colourArea(page.img, p[0] / c.width, p[1] / c.height) : null;
+      // the paper round the pictures is not coloured (nor anything while the page picture is still loading)
+      if (mode === 'free' && !brush.erase && page && (!area || area.paper)) return;
+      // the colour the book shows for this part: one on offer, or else it is offered now
+      const right = area?.want && page.palette ? closestColour(area.want, page.palette) || page.add?.(hexOf(area.want)) || null : null;
+      if (right && right.toLowerCase() !== brush.color.toLowerCase()) { page.wrong?.(right, [p[0] / c.width, p[1] / c.height]); return; }
       c.setPointerCapture(e.pointerId);
       last = p;
       own = mode === 'own';
+      inside = area?.mask || null;
       if (!own) seg(last, [last[0] + 0.1, last[1] + 0.1]);
     });
     c.addEventListener('pointermove', e => {
@@ -1280,7 +1384,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   ['page-flip', 'book-open'].forEach(n => { sounds[n] = new Audio(`sounds/${n}.wav`); sounds[n].preload = 'auto'; });
 
   function drawTools(onClear, only) {
-    const colors = only?.length ? only : ['#e63946', '#f4a261', '#4aa3df'];
+    const colors = only?.length ? only : [...PALETTE];
+    if (!SIZES.some(([s]) => s === brush.size)) brush.size = SIZES[0][0];
     if (!colors.includes(brush.color)) brush.color = colors[0];
     const wrap = el('div', { class: 'tools', hidden: true }, el('span', { class: 'tools-lbl' }, 'Colour & write'));
     const sync = () => {
@@ -1293,14 +1398,31 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           (b.dataset.e && brush.erase)));
       });
     };
-    colors.forEach(c => wrap.append(el('button', { class: 'sw', style: `--c:${c}`, 'data-c': c, title: 'Colour', onclick: () => { brush.color = c; brush.erase = false; sync(); } })));
-    wrap.append(el('i', { class: 'sep' }));
-    [[6, 6], [12, 11], [26, 18]].forEach(([s, px]) => wrap.append(el('button', { class: 'sz', 'data-s': s, title: 'Brush size', onclick: () => { brush.size = s; sync(); } }, el('i', { style: `--s:${px}px` }))));
+    const swatch = c => el('button', { class: 'sw', style: `--c:${c}`, 'data-c': c, title: 'Colour', onclick: () => { brush.color = c; brush.erase = false; sync(); } });
+    colors.forEach(c => wrap.append(swatch(c)));
+    const sep = el('i', { class: 'sep' });
+    wrap.append(sep);
+    SIZES.forEach(([s, px]) => wrap.append(el('button', { class: 'sz', 'data-s': s, title: 'Brush size', onclick: () => { brush.size = s; sync(); } }, el('i', { style: `--s:${px}px` }))));
     wrap.append(el('i', { class: 'sep' }),
       el('button', { class: 'txt', 'data-e': 1, onclick: () => { brush.erase = !brush.erase; sync(); } }, 'Eraser'),
       el('button', { class: 'txt', onclick: onClear }, 'Clear'));
     sync();
     wrap.sync = sync;
+    // Offer one more colour (one a picture on the page needs). `colors` is the caller's list, so it grows too.
+    wrap.addColour = c => {
+      if (colors.includes(c)) return;
+      colors.push(c);
+      sep.before(swatch(c));
+      sync();
+    };
+    // Offer just these colours (the ones the page needs), in place of the ones shown.
+    wrap.setColours = list => {
+      colors.splice(0, colors.length, ...list);
+      wrap.querySelectorAll('.sw').forEach(b => b.remove());
+      colors.forEach(c => sep.before(swatch(c)));
+      if (!colors.includes(brush.color)) brush.color = colors[0];
+      sync();
+    };
     return wrap;
   }
 

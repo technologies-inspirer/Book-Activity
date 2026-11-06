@@ -535,5 +535,18 @@ window.RECORDED = Object.assign(window.RECORDED || {}, {
 "بہت اچھے!": "books/stemford-urdu-3/audio/4e868e9753de.mp3",
 "شروع کرنے کے لیے دائرے کو چھوئیں۔": "books/stemford-urdu-3/audio/66415d951490.mp3",
 "آپ نے سب لکھ لیا۔": "books/stemford-urdu-3/audio/4978391df542.mp3",
-"آپ ستارہ ہیں!": "books/stemford-urdu-3/audio/fb6312383072.mp3"
+"آپ ستارہ ہیں!": "books/stemford-urdu-3/audio/fb6312383072.mp3",
+"لال رنگ لگائیں۔": "books/stemford-urdu-3/audio/3569c2f3fa74.mp3",
+"گلابی رنگ لگائیں۔": "books/stemford-urdu-3/audio/5195c6885aae.mp3",
+"نارنجی رنگ لگائیں۔": "books/stemford-urdu-3/audio/3e057d70fe4d.mp3",
+"بھورا رنگ لگائیں۔": "books/stemford-urdu-3/audio/e213a6154b0d.mp3",
+"ہلکا بھورا رنگ لگائیں۔": "books/stemford-urdu-3/audio/87e8c05beb46.mp3",
+"پیلا رنگ لگائیں۔": "books/stemford-urdu-3/audio/58a21e4124d0.mp3",
+"ہرا رنگ لگائیں۔": "books/stemford-urdu-3/audio/6744f707e994.mp3",
+"گہرا ہرا رنگ لگائیں۔": "books/stemford-urdu-3/audio/1dca4b9ea3ca.mp3",
+"نیلا رنگ لگائیں۔": "books/stemford-urdu-3/audio/aa4e982ac245.mp3",
+"ہلکا نیلا رنگ لگائیں۔": "books/stemford-urdu-3/audio/2f86545bfc0a.mp3",
+"جامنی رنگ لگائیں۔": "books/stemford-urdu-3/audio/6f36c3cc2890.mp3",
+"سرمئی رنگ لگائیں۔": "books/stemford-urdu-3/audio/22d7819dbc4f.mp3",
+"کالا رنگ لگائیں۔": "books/stemford-urdu-3/audio/adda9f47e075.mp3"
 });
