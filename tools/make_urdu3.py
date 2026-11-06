@@ -90,31 +90,10 @@ PAGE_COLOURS = {
 }
 
 
-def page_colour(im):
-    """The page's own colour: the big coloured letter with arrows at the top (blue bay, green alif...)."""
-    H, W = im.shape[:2]
-    crop = im[int(H * .03):int(H * .2), int(W * .55):int(W * .88)].reshape(-1, 3).astype(int)
-    sat = crop.max(axis=1) - crop.min(axis=1)
-    px = crop[(sat > 70) & (crop.max(axis=1) > 80)]
-    if len(px) < 50:
-        return None
-    b, g, r = np.median(px, axis=0).astype(int)
-    return '#%02x%02x%02x' % (r, g, b)
-
-
 def palette(page, im):
-    """Three colours: the picture's own (PAGE_COLOURS), and the page's colour third."""
-    cols = [INK[c] for c in PAGE_COLOURS.get(page, [])][:2]
-    own = page_colour(im)
-    near = lambda a, b: sum(abs(int(a[k:k + 2], 16) - int(b[k:k + 2], 16)) for k in (1, 3, 5)) < 90
-    if own and not any(near(own, c) for c in cols):
-        cols.append(own)
-    for c in [INK[c] for c in PAGE_COLOURS.get(page, [])][2:] + ['#e63946', '#f4a261', '#4aa3df']:
-        if len(cols) >= 3:
-            break
-        if not any(near(c, x) for x in cols):
-            cols.append(c)
-    return cols
+    """Only the colours the page's picture needs (PAGE_COLOURS): nothing added to make up a number. A page with
+    none listed gets none here, and the reader offers the colours it finds on the page, or the usual ones."""
+    return [INK[c] for c in PAGE_COLOURS.get(page, [])]
 
 
 def page_img(p):

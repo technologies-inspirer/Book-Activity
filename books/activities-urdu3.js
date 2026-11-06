@@ -496,7 +496,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#43aa8b",
    "#7b5ea7",
-   "#85c774"
+   "#8d5524"
   ],
   "video": {
    "title": "How to write الف",
@@ -1561,8 +1561,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f9c74f",
-   "#f4a261",
-   "#5eb1e3"
+   "#f4a261"
   ],
   "video": {
    "title": "How to write بے",
@@ -2064,8 +2063,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#43aa8b",
-   "#2d6a4f",
-   "#f79357"
+   "#2d6a4f"
   ],
   "video": {
    "title": "How to write پے",
@@ -2568,7 +2566,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f9c74f",
    "#4aa3df",
-   "#a3ce62"
+   "#ff8fab"
   ],
   "video": {
    "title": "How to write تے",
@@ -3134,8 +3132,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#e63946",
-   "#43aa8b",
-   "#f4a261"
+   "#43aa8b"
   ]
  },
  "19": [
@@ -3697,8 +3694,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#8d5524",
-   "#d4a373",
-   "#b470b8"
+   "#d4a373"
   ]
  },
  "23": [
@@ -4260,8 +4256,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#4aa3df",
-   "#90e0ef",
-   "#86c775"
+   "#90e0ef"
   ]
  },
  "25": [
@@ -4822,9 +4817,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    }
   ],
   "colours": [
-   "#f9c74f",
-   "#f16c97",
-   "#e63946"
+   "#f9c74f"
   ]
  },
  "27": [
@@ -5386,8 +5379,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#4aa3df",
-   "#f9c74f",
-   "#e63946"
+   "#f9c74f"
   ]
  },
  "29": [
@@ -5949,8 +5941,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f9c74f",
-   "#8d5524",
-   "#e63946"
+   "#8d5524"
   ]
  },
  "33": [
@@ -6512,8 +6503,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#43aa8b",
-   "#8d5524",
-   "#e63946"
+   "#8d5524"
   ]
  },
  "35": [
@@ -7076,7 +7066,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#e63946",
    "#f9c74f",
-   "#cfa666"
+   "#4aa3df"
   ]
  },
  "37": [
@@ -7617,7 +7607,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#d4a373",
-   "#f16b60"
+   "#f9c74f"
   ]
  },
  "39": [
@@ -8179,8 +8169,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#43aa8b",
-   "#f9c74f",
-   "#86c775"
+   "#f9c74f"
   ]
  },
  "41": [
@@ -8743,7 +8732,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#9aa5b1",
    "#8d5524",
-   "#f16c97"
+   "#90e0ef"
   ]
  },
  "43": [
@@ -9304,9 +9293,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    }
   ],
   "colours": [
-   "#222222",
-   "#f79357",
-   "#e63946"
+   "#222222"
   ]
  },
  "45": [
@@ -9820,7 +9807,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#4aa3df",
    "#8d5524",
-   "#ad69b0"
+   "#43aa8b"
   ]
  },
  "49": [
@@ -10382,8 +10369,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f9c74f",
-   "#f4a261",
-   "#e63946"
+   "#f4a261"
   ]
  },
  "51": [
@@ -11508,8 +11494,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#8d5524",
-   "#f4a261",
-   "#577abc"
+   "#f4a261"
   ]
  },
  "55": [
@@ -12045,7 +12030,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#d4a373",
    "#9aa5b1",
-   "#86c775"
+   "#4aa3df"
   ]
  },
  "59": [
@@ -12607,8 +12592,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#9aa5b1",
-   "#4aa3df",
-   "#e63946"
+   "#4aa3df"
   ]
  },
  "61": [
@@ -13148,8 +13132,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#9aa5b1",
-   "#4aa3df",
-   "#00adef"
+   "#4aa3df"
   ]
  },
  "63": [
@@ -13711,8 +13694,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#8d5524",
-   "#f9c74f",
-   "#f16d97"
+   "#f9c74f"
   ]
  },
  "65": [
@@ -14274,8 +14256,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#e63946",
-   "#f9c74f",
-   "#4aa3df"
+   "#f9c74f"
   ]
  },
  "69": [
@@ -14837,8 +14818,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#ff8fab",
-   "#7b5ea7",
-   "#e63946"
+   "#7b5ea7"
   ]
  },
  "71": [
@@ -15400,8 +15380,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#e63946",
-   "#9aa5b1",
-   "#00bdf4"
+   "#9aa5b1"
   ]
  },
  "73": [
@@ -15963,8 +15942,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f9c74f",
-   "#43aa8b",
-   "#e63946"
+   "#43aa8b"
   ]
  },
  "75": [
@@ -16526,8 +16504,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f4a261",
-   "#43aa8b",
-   "#84c773"
+   "#43aa8b"
   ]
  },
  "77": [
@@ -17652,8 +17629,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f4a261",
-   "#43aa8b",
-   "#577abc"
+   "#43aa8b"
   ]
  },
  "83": [
@@ -18215,8 +18191,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#8d5524",
-   "#d4a373",
-   "#b571b9"
+   "#d4a373"
   ]
  },
  "85": [
@@ -18778,8 +18753,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#4aa3df",
-   "#9aa5b1",
-   "#e63946"
+   "#9aa5b1"
   ]
  },
  "87": [
@@ -19339,11 +19313,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
     ]
    }
   ],
-  "colours": [
-   "#cfa666",
-   "#e63946",
-   "#4aa3df"
-  ]
+  "colours": []
  },
  "89": [
   {
@@ -19904,8 +19874,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#8d5524",
-   "#4aa3df",
-   "#f16c97"
+   "#4aa3df"
   ]
  },
  "91": [
@@ -20468,7 +20437,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#9aa5b1",
-   "#85c773"
+   "#f9c74f"
   ]
  }
 };
