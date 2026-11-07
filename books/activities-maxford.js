@@ -876,7 +876,15 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
   "video": {
    "title": "How to write b",
    "src": "videos/maxford-qaida-3/Letter b Formation and Activities.mp4#t=0,67"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#f9c74f",
+   "#4aa3df",
+   "#43aa8b",
+   "#f4a261",
+   "#7b5ea7"
+  ]
  },
  "17": [
   {
@@ -1399,6 +1407,9 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
      }
     ]
    }
+  ],
+  "colours": [
+   "#4aa3df"
   ]
  },
  "23": [
@@ -2855,6 +2866,9 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
      }
     ]
    }
+  ],
+  "colours": [
+   "#4aa3df"
   ]
  },
  "39": [
@@ -3334,7 +3348,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the grapes. Let us make it green! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#7bc043",
+      "scribble": "#43aa8b",
       "cx": 60.2,
       "cy": 78.2,
       "rx": 14.5,
@@ -3345,6 +3359,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
   ],
   "colours": [
    "#43aa8b",
+   "#7b5ea7",
    "#8d5524"
   ]
  },
@@ -3821,6 +3836,10 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
      }
     ]
    }
+  ],
+  "colours": [
+   "#f9c74f",
+   "#43aa8b"
   ]
  },
  "49": [
@@ -5280,7 +5299,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the kangaroo. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#c68642",
+      "scribble": "#8d5524",
       "cx": 63.3,
       "cy": 78.6,
       "rx": 8.1,
@@ -5290,7 +5309,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
    }
   ],
   "colours": [
-   "#8d5524"
+   "#8d5524",
+   "#d4a373"
   ]
  },
  "61": [
@@ -6260,7 +6280,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the monkey. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#a0522d",
+      "scribble": "#8d5524",
       "cx": 79.5,
       "cy": 79.1,
       "rx": 13.3,
@@ -6271,7 +6291,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
   ],
   "colours": [
    "#8d5524",
-   "#d4a373"
+   "#d4a373",
+   "#43aa8b"
   ]
  },
  "73": [
@@ -6751,7 +6772,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the nest. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#b07d48",
+      "scribble": "#8d5524",
       "cx": 64.4,
       "cy": 79.0,
       "rx": 17.6,
@@ -7242,7 +7263,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the orange. Let us make it orange! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#ff9f1c",
+      "scribble": "#f4a261",
       "cx": 61.5,
       "cy": 78.7,
       "rx": 15.5,
@@ -7744,7 +7765,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
   ],
   "colours": [
    "#43aa8b",
-   "#e63946"
+   "#e63946",
+   "#f9c74f"
   ]
  },
  "87": [
@@ -8224,7 +8246,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the quail. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#b5835a",
+      "scribble": "#8d5524",
       "cx": 62.2,
       "cy": 77.3,
       "rx": 15.6,
@@ -8234,7 +8256,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
    }
   ],
   "colours": [
-   "#8d5524"
+   "#8d5524",
+   "#f9c74f"
   ]
  },
  "91": [
@@ -9205,7 +9228,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the snake. Let us make it green! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#90be6d",
+      "scribble": "#43aa8b",
       "cx": 60.2,
       "cy": 77.9,
       "rx": 14.4,
@@ -9215,7 +9238,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
    }
   ],
   "colours": [
-   "#43aa8b"
+   "#43aa8b",
+   "#f9c74f"
   ]
  },
  "99": [
@@ -9695,7 +9719,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the turtle. Let us make it green! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#52b788",
+      "scribble": "#43aa8b",
       "cx": 64.9,
       "cy": 81.0,
       "rx": 17.9,
@@ -10194,6 +10218,13 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
      }
     ]
    }
+  ],
+  "colours": [
+   "#e63946",
+   "#f9c74f",
+   "#4aa3df",
+   "#43aa8b",
+   "#f4a261"
   ]
  },
  "111": [
@@ -10670,10 +10701,10 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     ]
    },
    {
-    "say": "Now let us colour the vase. Let us make it orange! Well done! Now it is your turn.",
+    "say": "Now let us colour the vase. Let us make it red! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#f4a261",
+      "scribble": "#e63946",
       "cx": 60.2,
       "cy": 68.6,
       "rx": 4.9,
@@ -10683,8 +10714,12 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
    }
   ],
   "colours": [
-   "#f4a261",
-   "#ff8fab"
+   "#e63946",
+   "#4aa3df",
+   "#ff8fab",
+   "#222222",
+   "#8d5524",
+   "#00aaa0"
   ]
  },
  "115": [
@@ -11164,7 +11199,7 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
     "say": "Now let us colour the window. Let us make it blue! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#a2d2ff",
+      "scribble": "#90e0ef",
       "cx": 61.3,
       "cy": 78.1,
       "rx": 15.3,
@@ -11174,7 +11209,9 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
    }
   ],
   "colours": [
-   "#4aa3df"
+   "#90e0ef",
+   "#8d5524",
+   "#ff8fab"
   ]
  },
  "119": [
@@ -11662,6 +11699,14 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
      }
     ]
    }
+  ],
+  "colours": [
+   "#f4a261",
+   "#e63946",
+   "#f9c74f",
+   "#43aa8b",
+   "#4aa3df",
+   "#7b5ea7"
   ]
  },
  "125": [
@@ -12141,7 +12186,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
   "colours": [
    "#4aa3df",
    "#e63946",
-   "#f9c74f"
+   "#f9c74f",
+   "#43aa8b"
   ]
  },
  "129": [
@@ -12619,7 +12665,8 @@ window.BOOK_ACTIVITIES['maxford-global-qaida-3-english'] = {
    }
   ],
   "colours": [
-   "#222222"
+   "#222222",
+   "#ff8fab"
   ]
  }
 };

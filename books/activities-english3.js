@@ -310,7 +310,11 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write a",
    "src": "https://youtu.be/BvpmsnhmTcs"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#43aa8b"
+  ]
  },
  "7": [
   {
@@ -594,7 +598,10 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write b",
    "src": "https://youtu.be/g78mGR65Mn0#t=0,22"
-  }
+  },
+  "colours": [
+   "#e63946"
+  ]
  },
  "9": [
   {
@@ -890,7 +897,13 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write c",
    "src": "https://youtu.be/VlgoeeDdgTw#t=0,24"
-  }
+  },
+  "colours": [
+   "#ff8fab",
+   "#f9c74f",
+   "#8d5524",
+   "#e63946"
+  ]
  },
  "11": [
   {
@@ -1186,7 +1199,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write d",
    "src": "https://youtu.be/7KlJb0dB6l4"
-  }
+  },
+  "colours": [
+   "#f9c74f",
+   "#f4a261",
+   "#e63946"
+  ]
  },
  "17": [
   {
@@ -1482,7 +1500,11 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write e",
    "src": "https://youtu.be/70w9_K349xY"
-  }
+  },
+  "colours": [
+   "#9aa5b1",
+   "#e63946"
+  ]
  },
  "19": [
   {
@@ -1766,7 +1788,11 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write f",
    "src": "https://youtu.be/r5QXxxmUbCY"
-  }
+  },
+  "colours": [
+   "#4aa3df",
+   "#e63946"
+  ]
  },
  "21": [
   {
@@ -2050,7 +2076,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the grapes. Let us make it green! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#7bc043",
+      "scribble": "#43aa8b",
       "cx": 71,
       "cy": 32,
       "rx": 14,
@@ -2062,7 +2088,13 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write g",
    "src": "https://youtu.be/H2b4de1xVJE"
-  }
+  },
+  "colours": [
+   "#43aa8b",
+   "#7b5ea7",
+   "#8d5524",
+   "#e63946"
+  ]
  },
  "23": [
   {
@@ -2346,7 +2378,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write h",
    "src": "https://youtu.be/wpAZ1DZO_1I"
-  }
+  },
+  "colours": [
+   "#f9c74f",
+   "#43aa8b",
+   "#e63946"
+  ]
  },
  "27": [
   {
@@ -2642,7 +2679,11 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write i",
    "src": "https://youtu.be/gto8RDdtlGM"
-  }
+  },
+  "colours": [
+   "#90e0ef",
+   "#e63946"
+  ]
  },
  "29": [
   {
@@ -2938,7 +2979,11 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write j",
    "src": "https://youtu.be/g30TrIRfR4M"
-  }
+  },
+  "colours": [
+   "#4aa3df",
+   "#e63946"
+  ]
  },
  "31": [
   {
@@ -3222,7 +3267,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the kangaroo. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#c68642",
+      "scribble": "#8d5524",
       "cx": 70,
       "cy": 26,
       "rx": 11,
@@ -3234,7 +3279,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write k",
    "src": "https://youtu.be/RjFn3Vn-ZsM"
-  }
+  },
+  "colours": [
+   "#8d5524",
+   "#d4a373",
+   "#e63946"
+  ]
  },
  "33": [
   {
@@ -3530,7 +3580,11 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write l",
    "src": "https://youtu.be/gqyC5yG8F_c"
-  }
+  },
+  "colours": [
+   "#43aa8b",
+   "#e63946"
+  ]
  },
  "39": [
   {
@@ -3814,7 +3868,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the monkey. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#a0522d",
+      "scribble": "#8d5524",
       "cx": 73,
       "cy": 27,
       "rx": 12,
@@ -3826,7 +3880,13 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write m",
    "src": "https://youtu.be/mzSHvPyhznI"
-  }
+  },
+  "colours": [
+   "#8d5524",
+   "#d4a373",
+   "#43aa8b",
+   "#e63946"
+  ]
  },
  "41": [
   {
@@ -4110,7 +4170,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the nest. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#b07d48",
+      "scribble": "#8d5524",
       "cx": 70,
       "cy": 27,
       "rx": 20,
@@ -4122,7 +4182,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write n",
    "src": "https://youtu.be/cBBMwouz8kU"
-  }
+  },
+  "colours": [
+   "#8d5524",
+   "#43aa8b",
+   "#e63946"
+  ]
  },
  "43": [
   {
@@ -4406,7 +4471,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the orange. Let us make it orange! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#ff9f1c",
+      "scribble": "#f4a261",
       "cx": 70,
       "cy": 22.5,
       "rx": 19,
@@ -4418,7 +4483,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write o",
    "src": "https://youtu.be/rmmFktcrJ4Q"
-  }
+  },
+  "colours": [
+   "#f4a261",
+   "#43aa8b",
+   "#e63946"
+  ]
  },
  "45": [
   {
@@ -4714,7 +4784,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write p",
    "src": "https://youtu.be/xDfhYxGrJV4"
-  }
+  },
+  "colours": [
+   "#43aa8b",
+   "#e63946",
+   "#f9c74f"
+  ]
  },
  "49": [
   {
@@ -4998,7 +5073,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the quail. Let us make it brown! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#b5835a",
+      "scribble": "#8d5524",
       "cx": 69,
       "cy": 24,
       "rx": 16,
@@ -5010,7 +5085,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write q",
    "src": "https://youtu.be/MA3zkenXlQo"
-  }
+  },
+  "colours": [
+   "#8d5524",
+   "#f9c74f",
+   "#e63946"
+  ]
  },
  "51": [
   {
@@ -5306,7 +5386,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write r",
    "src": "https://youtu.be/yXxYImahZsU"
-  }
+  },
+  "colours": [
+   "#d4a373",
+   "#ff8fab",
+   "#e63946"
+  ]
  },
  "53": [
   {
@@ -5590,7 +5675,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the snake. Let us make it green! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#90be6d",
+      "scribble": "#43aa8b",
       "cx": 72,
       "cy": 25,
       "rx": 17,
@@ -5602,7 +5687,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write s",
    "src": "https://youtu.be/TfTA-uawTJI"
-  }
+  },
+  "colours": [
+   "#43aa8b",
+   "#f9c74f",
+   "#e63946"
+  ]
  },
  "55": [
   {
@@ -5886,7 +5976,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the turtle. Let us make it green! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#52b788",
+      "scribble": "#43aa8b",
       "cx": 70,
       "cy": 22,
       "rx": 20,
@@ -5898,7 +5988,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write t",
    "src": "https://youtu.be/rPQyI0cGH1o"
-  }
+  },
+  "colours": [
+   "#43aa8b",
+   "#8d5524",
+   "#e63946"
+  ]
  },
  "61": [
   {
@@ -6194,7 +6289,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write u",
    "src": "https://youtu.be/fJFEHSPyqZo"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#f9c74f",
+   "#4aa3df",
+   "#43aa8b",
+   "#f4a261"
+  ]
  },
  "63": [
   {
@@ -6475,10 +6577,10 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     ]
    },
    {
-    "say": "Now let us colour the vase. Let us make it orange! Well done! Now it is your turn.",
+    "say": "Now let us colour the vase. Let us make it red! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#f4a261",
+      "scribble": "#e63946",
       "cx": 73,
       "cy": 25,
       "rx": 10,
@@ -6490,7 +6592,15 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write v",
    "src": "https://youtu.be/F3JzG8iKDIQ"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#4aa3df",
+   "#ff8fab",
+   "#222222",
+   "#8d5524",
+   "#00aaa0"
+  ]
  },
  "65": [
   {
@@ -6774,7 +6884,7 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "say": "Now let us colour the window. Let us make it blue! Well done! Now it is your turn.",
     "marks": [
      {
-      "scribble": "#a2d2ff",
+      "scribble": "#90e0ef",
       "cx": 71,
       "cy": 27,
       "rx": 15,
@@ -6786,7 +6896,13 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write w",
    "src": "https://youtu.be/M1sUUgFOk7Y"
-  }
+  },
+  "colours": [
+   "#90e0ef",
+   "#8d5524",
+   "#ff8fab",
+   "#e63946"
+  ]
  },
  "67": [
   {
@@ -7082,7 +7198,15 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write x",
    "src": "https://youtu.be/uwbeKdMiALc"
-  }
+  },
+  "colours": [
+   "#f4a261",
+   "#e63946",
+   "#f9c74f",
+   "#43aa8b",
+   "#4aa3df",
+   "#7b5ea7"
+  ]
  },
  "71": [
   {
@@ -7366,7 +7490,13 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write y",
    "src": "https://youtu.be/BjOPfJP_GyQ"
-  }
+  },
+  "colours": [
+   "#4aa3df",
+   "#e63946",
+   "#f9c74f",
+   "#43aa8b"
+  ]
  },
  "73": [
   {
@@ -7650,7 +7780,12 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
   "video": {
    "title": "How to write z",
    "src": "https://youtu.be/jgFNaIzE8yw"
-  }
+  },
+  "colours": [
+   "#222222",
+   "#ff8fab",
+   "#e63946"
+  ]
  },
  "35": [
   {

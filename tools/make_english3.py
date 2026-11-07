@@ -10,6 +10,7 @@ import os
 import sys
 
 from ink import make_ink
+from book_colours import page_colours
 
 LETTER_PAGE = dict(zip('abcdefghijklmnopqrstuvwxyz',
                        [5, 7, 9, 11, 17, 19, 21, 23, 27, 29, 31, 33, 39, 41, 43, 45, 49, 51, 53, 55, 61, 63, 65, 67, 71, 73]))
@@ -93,7 +94,7 @@ COLOUR = {
     's': ('snake', 'green', '#90be6d', (72, 25, 17, 12)),
     't': ('turtle', 'green', '#52b788', (70, 22, 20, 10)),
     'u': ('umbrella', 'red', '#e63946', (71, 17, 17, 7)),
-    'v': ('vase', 'orange', '#f4a261', (73, 25, 10, 14)),
+    'v': ('vase', 'red', '#e63946', (73, 25, 10, 14)),
     'w': ('window', 'blue', '#a2d2ff', (71, 27, 15, 13)),
     'x': ('xylophone', 'orange', '#f4a261', (68, 26, 14, 14)),
 }
@@ -251,10 +252,11 @@ def trace_page(L, page, boxes):
     if L in COLOUR:
         name, word, col, (cx, cy, rx, ry) = COLOUR[L]
         steps.append({'say': f'Now let us colour the {name}. Let us make it {word}! Well done! Now it is your turn.',
-                      'marks': [{'scribble': col, 'cx': cx, 'cy': cy, 'rx': rx, 'ry': ry}]})
+                      'marks': [{'scribble': page_colours('new-stemford-english-3', page)[0], 'cx': cx, 'cy': cy, 'rx': rx, 'ry': ry}]})
     else:
         steps[-1]['say'] = 'One more line. Well done! Now it is your turn.'
     act = {'type': 'fill', 'title': 'Trace and write', 'steps': steps}
+    act['colours'] = page_colours('new-stemford-english-3', page)
     how = formation_for(L)
     if how:
         act['video'] = how

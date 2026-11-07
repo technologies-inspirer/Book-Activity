@@ -15,6 +15,7 @@ import cv2
 import numpy as np
 
 from ink import PAD, make_ink
+from book_colours import page_colours
 from make_maxford import fill_ink as _fill_ink
 import make_maxford
 
@@ -271,6 +272,7 @@ def trace_page(n, page):
         {'say': 'One more line. Well done! Now it is your turn.', 'marks': write(row2, False)},
     ]
     act = {'type': 'fill', 'title': 'Trace and write', 'steps': steps}
+    act['colours'] = page_colours(BOOK, page)
     vid = formation_video(n)
     if vid:
         act['video'] = vid

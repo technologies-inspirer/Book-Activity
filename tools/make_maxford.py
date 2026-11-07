@@ -14,6 +14,7 @@ import cv2
 import numpy as np
 
 from ink import PAD, make_ink
+from book_colours import page_colours
 from make_english3 import HOW
 
 BOOK = 'maxford-global-qaida-3-english'
@@ -66,19 +67,7 @@ COLOUR = {
     'm': ('monkey', 'brown', '#a0522d'), 'n': ('nest', 'brown', '#b07d48'), 'o': ('orange', 'orange', '#ff9f1c'),
     'p': ('parrot', 'green', '#43aa8b'), 'q': ('quail', 'brown', '#b5835a'), 'r': ('rabbit', 'light brown', '#d4a373'),
     's': ('snake', 'green', '#90be6d'), 't': ('turtle', 'green', '#52b788'), 'u': ('umbrella', 'red', '#e63946'),
-    'v': ('vase', 'orange', '#f4a261'), 'w': ('window', 'blue', '#a2d2ff'), 'x': ('xylophone', 'orange', '#f4a261'),
-}
-
-# The colours each trace page's sketch needs: only these show in "Colour & write". A letter that is not listed
-# (the book says "use different colours", or there is nothing to colour) keeps the usual choice.
-INK_COLOURS = {'red': '#e63946', 'green': '#43aa8b', 'brown': '#8d5524', 'light brown': '#d4a373', 'yellow': '#f9c74f',
-               'orange': '#f4a261', 'grey': '#9aa5b1', 'blue': '#4aa3df', 'light blue': '#90e0ef', 'pink': '#ff8fab',
-               'black': '#222222'}
-PALETTE = {
-    'a': ['red', 'green'], 'd': ['yellow', 'orange'], 'e': ['grey'], 'g': ['green', 'brown'], 'i': ['light blue'],
-    'j': ['blue'], 'k': ['brown'], 'l': ['green'], 'm': ['brown', 'light brown'], 'n': ['brown', 'green'],
-    'o': ['orange', 'green'], 'p': ['green', 'red'], 'q': ['brown'], 'r': ['light brown', 'pink'], 's': ['green'],
-    't': ['green', 'brown'], 'v': ['orange', 'pink'], 'w': ['blue'], 'y': ['blue', 'red', 'yellow'], 'z': ['black'],
+    'v': ('vase', 'red', '#e63946'), 'w': ('window', 'blue', '#a2d2ff'), 'x': ('xylophone', 'orange', '#f4a261'),
 }
 
 # where the three "as in" pictures sit on a Sound page (x from, x to), and the game's view of them
@@ -288,12 +277,11 @@ def trace_page(L, page):
         name, word, col = COLOUR[L]
         cx, cy, rx, ry = sketch(im)
         steps.append({'say': f'Now let us colour the {name}. Let us make it {word}! Well done! Now it is your turn.',
-                      'marks': [{'scribble': col, 'cx': cx, 'cy': cy, 'rx': rx, 'ry': ry}]})
+                      'marks': [{'scribble': page_colours(BOOK, page)[0], 'cx': cx, 'cy': cy, 'rx': rx, 'ry': ry}]})
     else:
         steps[-1]['say'] = 'One more line. Well done! Now it is your turn.'
     act = {'type': 'fill', 'title': 'Trace and say the sound', 'steps': steps}
-    if L in PALETTE:
-        act['colours'] = [INK_COLOURS[c] for c in PALETTE[L]]
+    act['colours'] = page_colours(BOOK, page)
     how = videos_for(L, [('How to write ' + L, 'Letter {L} Formation.mp4')])
     if how:
         act['video'] = how[0]

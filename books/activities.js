@@ -36,7 +36,7 @@ window.BOOK_ACTIVITIES = {
         ] }
     ],
     6: {
-      type: 'fill', title: 'Trace and colour',
+      type: 'fill', title: 'Trace and colour', colours: ['#e63946', '#43aa8b'],
       steps: [
         { say: 'Let us write the letter a. Start here, go round like a ball, then go up, and come down with a little tail.',
           marks: [{ letter: 'a', x: 11, y: 26.6, s: 10.5, weight: .07 }] },
@@ -84,7 +84,7 @@ window.BOOK_ACTIVITIES = {
       ]
     },
     14: {
-      type: 'fill', title: 'Exercise',
+      type: 'fill', title: 'Exercise', colours: ['#222222'],
       steps: [
         { say: 'Number one. The brain of a computer is the CPU. So we tick CPU.', marks: [{ tick: 1, x: 62.4, y: 25.0 }] },
         { say: 'Number two. A monitor looks like a TV screen. We write monitor, and tick monitor.',

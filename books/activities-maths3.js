@@ -334,7 +334,11 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 1",
    "src": "https://youtu.be/ylCwxgeAO_s#t=0,50"
-  }
+  },
+  "colours": [
+   "#f4a261",
+   "#f9c74f"
+  ]
  },
  "8": [
   {
@@ -688,7 +692,12 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 2",
    "src": "https://youtu.be/8bZzeJSP2ZQ#t=0,50"
-  }
+  },
+  "colours": [
+   "#43aa8b",
+   "#f9c74f",
+   "#ff8fab"
+  ]
  },
  "11": [
   {
@@ -1058,7 +1067,13 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 3",
    "src": "https://youtu.be/aqCyjz2w1mM#t=0,40"
-  }
+  },
+  "colours": [
+   "#f4a261",
+   "#4aa3df",
+   "#43aa8b",
+   "#ce79b5"
+  ]
  },
  "14": [
   {
@@ -1428,7 +1443,12 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 4",
    "src": "https://youtu.be/R-niy_5dt6Y#t=0,39"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#43aa8b",
+   "#f9c74f"
+  ]
  },
  "17": [
   {
@@ -1798,7 +1818,14 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 5",
    "src": "https://youtu.be/VzghS4d5-ms"
-  }
+  },
+  "colours": [
+   "#ff8fab",
+   "#43aa8b",
+   "#f9c74f",
+   "#f4a261",
+   "#4aa3df"
+  ]
  },
  "24": [
   {
@@ -2150,7 +2177,12 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 6",
    "src": "https://youtu.be/2CLEzDsTBEA"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#43aa8b",
+   "#ff8fab"
+  ]
  },
  "28": [
   {
@@ -2502,7 +2534,12 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 7",
    "src": "https://youtu.be/oTrg4A1lLAk"
-  }
+  },
+  "colours": [
+   "#e63946",
+   "#f9c74f",
+   "#4aa3df"
+  ]
  },
  "31": [
   {
@@ -2854,7 +2891,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 8",
    "src": "https://youtu.be/3j5ZWKT73cI"
-  }
+  },
+  "colours": [
+   "#e63946"
+  ]
  },
  "34": [
   {
@@ -3206,7 +3246,13 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 9",
    "src": "https://youtu.be/KHwXtf21Kks"
-  }
+  },
+  "colours": [
+   "#4aa3df",
+   "#43aa8b",
+   "#e63946",
+   "#f4a261"
+  ]
  },
  "40": [
   {
@@ -3494,6 +3540,9 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
      }
     ]
    }
+  ],
+  "colours": [
+   "#222222"
   ]
  },
  "42": [
@@ -4134,7 +4183,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 10",
    "src": "https://youtu.be/sC4VCflnqp4"
-  }
+  },
+  "colours": [
+   "#43aa8b"
+  ]
  },
  "46": [
   {
@@ -4774,7 +4826,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 11",
    "src": "https://youtu.be/m_xd8I1Zvhs"
-  }
+  },
+  "colours": [
+   "#ce79b5"
+  ]
  },
  "48": [
   {
@@ -5414,7 +5469,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 12",
    "src": "https://youtu.be/7R_Lgx9kJVA"
-  }
+  },
+  "colours": [
+   "#90e0ef"
+  ]
  },
  "50": [
   {
@@ -6054,7 +6112,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 13",
    "src": "https://youtu.be/1KFEvFeOZtA"
-  }
+  },
+  "colours": [
+   "#f9c74f"
+  ]
  },
  "52": [
   {
@@ -6694,7 +6755,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 14",
    "src": "https://youtu.be/bbmAQByCmu8"
-  }
+  },
+  "colours": [
+   "#ff8fab"
+  ]
  },
  "54": [
   {
@@ -7334,7 +7398,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 15",
    "src": "https://youtu.be/QBFFaKqYoLs"
-  }
+  },
+  "colours": [
+   "#4aa3df"
+  ]
  },
  "58": [
   {
@@ -7974,7 +8041,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 16",
    "src": "https://youtu.be/QGCfzbnrANk"
-  }
+  },
+  "colours": [
+   "#e63946"
+  ]
  },
  "60": [
   {
@@ -8614,7 +8684,13 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 17",
    "src": "https://youtu.be/z90yDkF_NWk"
-  }
+  },
+  "colours": [
+   "#f9c74f",
+   "#f4a261",
+   "#ff8fab",
+   "#4aa3df"
+  ]
  },
  "62": [
   {
@@ -9254,7 +9330,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 18",
    "src": "https://youtu.be/DvoJJlQ2HME"
-  }
+  },
+  "colours": [
+   "#90e0ef"
+  ]
  },
  "64": [
   {
@@ -9878,7 +9957,10 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 19",
    "src": "https://youtu.be/Z9pmTaxPKuY"
-  }
+  },
+  "colours": [
+   "#43aa8b"
+  ]
  },
  "66": [
   {
@@ -10230,6 +10312,9 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "video": {
    "title": "How to write 20",
    "src": "https://youtu.be/w-YrhMgNnuw"
-  }
+  },
+  "colours": [
+   "#7b5ea7"
+  ]
  }
 };

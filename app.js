@@ -631,8 +631,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // (a red strawberry coloured blue): a note by their finger, the right colour's button glows, and a voice.
     // Only the colours the page needs are offered: the ones the book's activity names (a sketch with black outlines:
     // grapes are green, purple and brown), or else the ones the page picture shows (red-outlined strawberries, the
-    // blue hint in a big 9), found once the picture has loaded. A page with neither keeps the usual three. When a
-    // part still needs a colour not on offer (a green ball), that colour, as the book prints it, is added.
+    // blue hint in a big 9), found once the picture has loaded. A page with neither keeps the usual three.
+    // Only unreviewed pages may add a missing colour from the picture; reviewed lists stay fixed.
     // (named: the activity's own list. shown: the colour "Show me how" paints the picture with, like the yellow
     // duck; the page's other colours, like its big red letter to colour, are read from the picture as well.)
     const named = fillAct?.colours || [];
@@ -653,7 +653,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       chime('tick');
       speak('', ur ? `${name.ur} رنگ لگائیں۔` : `Use the ${name.en} colour.`, null, el('div'));
     };
-    const addColour = hex => { tools.addColour(hex); return hex; };
+    const addColour = hex => {
+      // Reviewed palettes are complete. Backgrounds and printed decorations must not add extra swatches.
+      if (named.length) return null;
+      tools.addColour(hex);
+      return hex;
+    };
     const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, wrong: wrongColour, add: addColour });
     sheet.prepend(img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));

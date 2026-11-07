@@ -29,7 +29,7 @@
         { name: 'Android', cx: 49, say: 'Android helps many mobile phones work.' },
         { name: 'arrow keys', cx: 78, say: 'Arrow keys move things up, down, left and right.' }
       ]),
-      { type: 'fill', title: 'Encircle the A pictures', steps: [
+      { type: 'fill', title: 'Encircle the A pictures', colours: ['#e63946'], steps: [
         { say: 'Which pictures begin with A? Android begins with A. Let us draw a circle.', marks: [{ ring: 1, cx: 17.5, cy: 71, rx: 7.5, ry: 6.5 }] },
         { say: 'Adaptor begins with A too!', marks: [{ ring: 1, cx: 37, cy: 74, rx: 8, ry: 6 }] },
         { say: 'And arrow keys begin with A. Ball, butterfly and fan do not begin with A. Now it is your turn!', marks: [{ ring: 1, cx: 66, cy: 74.5, rx: 9, ry: 5 }] }
@@ -41,7 +41,7 @@
         { name: 'Bluetooth', cx: 52, say: 'Bluetooth joins devices without any wires.' },
         { name: 'browser', cx: 81, say: 'A browser helps us visit websites on the internet.' }
       ]),
-      { type: 'fill', title: 'Trace the letter B', steps: [
+      { type: 'fill', title: 'Trace the letter B', colours: ['#222222'], steps: [
         { say: 'Let us trace the letter B in Bluetooth. Go down, then two bumps.', marks: [{ glyph: 'B', box: [43.3, 65.2, 3.5, 4.4], ink: INK['43.3,65.2'] }] },
         { say: 'Now trace B in Backspace. Down, then bump, bump. Well done! Now it is your turn.', marks: [{ glyph: 'B', box: [43.3, 74.4, 3.5, 4.4], ink: INK['43.3,74.4'] }] }
       ] }
@@ -52,9 +52,9 @@
         { name: 'CPU', cx: 48, say: 'The CPU is the brain of the computer.' },
         { name: 'compact disc', cx: 78, say: 'A compact disc keeps music, pictures and files.' }
       ]),
-      { type: 'fill', title: 'Colour the CPU', steps: [
+      { type: 'fill', title: 'Colour the CPU', colours: ['#9aa5b1'], steps: [
         { say: 'This is the CPU, the brain of the computer. Let us colour it grey. Now it is your turn!',
-          marks: [{ scribble: '#8d99ae', cx: 62, cy: 72.5, rx: 10, ry: 9.5 }] }
+          marks: [{ scribble: '#9aa5b1', cx: 62, cy: 72.5, rx: 10, ry: 9.5 }] }
       ] }
     ],
     7: [
@@ -63,18 +63,18 @@
         { name: 'drag and drop', cx: 48, say: 'Drag and drop: we hold, move, and let go to move things.' },
         { name: 'document', cx: 81, say: 'A document is a file where we write.' }
       ]),
-      { type: 'fill', title: 'Tick the D pictures', steps: [
+      { type: 'fill', title: 'Tick the D pictures', colours: ['#e63946'], steps: [
         { say: 'Which pictures begin with D? The desktop begins with D. Tick it!', marks: [{ tick: 1, x: 84, y: 69 }] },
         { say: 'The document begins with D too. Tick! The controller and Android do not begin with D. Now it is your turn!', marks: [{ tick: 1, x: 36, y: 79 }] }
       ] }
     ],
-    8: { type: 'fill', title: 'Match the letters', steps: [
+    8: { type: 'fill', title: 'Match the letters', colours: ['#e63946'], steps: [
       { say: 'Adaptor begins with A. Join big A and small a to the adaptor.', marks: [{ line: [24.5, 62, 38, 30] }, { line: [62, 30, 74.5, 30] }] },
       { say: 'Bluetooth begins with B. Join big B and small b.', marks: [{ line: [24.5, 30, 38, 46] }, { line: [62, 46, 74.5, 62] }] },
       { say: 'Browser begins with B too.', marks: [{ line: [24.5, 46, 38, 62] }, { line: [62, 62, 74.5, 78] }] },
       { say: 'Arrow keys begin with A. Well done! Now it is your turn.', marks: [{ line: [24.5, 78, 38, 78] }, { line: [62, 78, 74.5, 46] }] }
     ] },
-    9: { type: 'fill', title: 'Match the same pictures', steps: [
+    9: { type: 'fill', title: 'Match the same pictures', colours: ['#e63946'], steps: [
       { say: 'Find the same pictures and join them. Controller goes with controller.', marks: [{ line: [36.5, 31.5, 66.5, 61.5] }] },
       { say: 'The folders window goes with the folders window.', marks: [{ line: [36.5, 46.5, 66.5, 76.5] }] },
       { say: 'CPU goes with CPU.', marks: [{ line: [36.5, 61.5, 66.5, 31.5] }] },

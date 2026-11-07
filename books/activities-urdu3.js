@@ -2566,7 +2566,7 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f9c74f",
    "#4aa3df",
-   "#ff8fab"
+   "#e63946"
   ],
   "video": {
    "title": "How to write تے",
@@ -8169,7 +8169,8 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#43aa8b",
-   "#f9c74f"
+   "#f9c74f",
+   "#222222"
   ]
  },
  "41": [
@@ -19313,7 +19314,9 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
     ]
    }
   ],
-  "colours": []
+  "colours": [
+   "#222222"
+  ]
  },
  "89": [
   {

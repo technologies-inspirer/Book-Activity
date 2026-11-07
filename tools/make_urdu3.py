@@ -15,6 +15,7 @@ import cv2
 import numpy as np
 
 from ink import PAD, make_ink
+from book_colours import page_colours
 
 BOOK = 'stemford-urdu-3'
 VIDEO_DIR = 'videos/stemford-urdu-3/'
@@ -69,31 +70,6 @@ LESSON_VIDEOS = [('Story', ['story.mp4']), ('Phonic Poem', ['phonic poem.mp4', '
 ALIASES = {'03 bay': ['ba', 'be'], '04 pay': ['pa', 'pe'], '05 tay': ['ta', 'te'], '06 ttay': ['tta', 'tte']}
 # buttons sit in the sky at the top left of the big picture: icon and top (%)
 VIDEO_BUTTONS = {'Story': ('📖', 33), 'Phonic Poem': ('🎵', 38), 'Vocabulary': ('🔤', 43)}
-
-
-# The colours each trace page's picture needs, shown in "Colour & write" (the book's own colour hint first,
-# like the green fingerprint on the grapes). Page 88 has no picture, so it keeps the usual choice.
-INK = {'red': '#e63946', 'green': '#43aa8b', 'dark green': '#2d6a4f', 'purple': '#7b5ea7', 'brown': '#8d5524',
-       'light brown': '#d4a373', 'yellow': '#f9c74f', 'orange': '#f4a261', 'blue': '#4aa3df', 'light blue': '#90e0ef',
-       'pink': '#ff8fab', 'grey': '#9aa5b1', 'black': '#222222'}
-PAGE_COLOURS = {
-    6: ['green', 'purple', 'brown'], 8: ['yellow', 'orange', 'green'], 12: ['yellow', 'orange'],
-    14: ['green', 'dark green'], 16: ['yellow', 'blue', 'pink'], 18: ['red', 'green'], 20: ['brown', 'light brown'],
-    24: ['blue', 'light blue'], 26: ['yellow'], 28: ['blue', 'yellow'], 30: ['yellow', 'brown'], 34: ['green', 'brown'],
-    36: ['red', 'yellow', 'blue'], 38: ['brown', 'light brown', 'yellow'], 40: ['green', 'yellow'],
-    42: ['grey', 'brown', 'light blue'], 44: ['black'], 46: ['blue', 'brown', 'green'], 50: ['yellow', 'orange'],
-    52: ['orange', 'yellow', 'brown'], 54: ['brown', 'orange'], 56: ['light brown', 'grey', 'blue'],
-    60: ['grey', 'blue'], 62: ['grey', 'blue'], 64: ['brown', 'yellow'], 66: ['red', 'yellow'], 70: ['pink', 'purple'],
-    72: ['red', 'grey'], 74: ['yellow', 'green'], 76: ['orange', 'green'], 78: ['red', 'yellow', 'blue'],
-    80: ['orange', 'green'], 84: ['brown', 'light brown'], 86: ['blue', 'grey'], 90: ['brown', 'blue'],
-    92: ['brown', 'grey', 'yellow'],
-}
-
-
-def palette(page, im):
-    """Only the colours the page's picture needs (PAGE_COLOURS): nothing added to make up a number. A page with
-    none listed gets none here, and the reader offers the colours it finds on the page, or the usual ones."""
-    return [INK[c] for c in PAGE_COLOURS.get(page, [])]
 
 
 def page_img(p):
@@ -311,7 +287,7 @@ def trace_page(page, name, folder):
         steps.append({'say': 'اب نقطوں پر لکھیں۔' if k == 0 else 'اگلی لائن۔', 'marks': marks(r)})
     steps[-1]['say'] += ' شاباش! اب آپ کی باری۔'
     act = {'type': 'fill', 'title': 'لکھیں', 'steps': [s for s in steps if s['marks']]}
-    act['colours'] = palette(page, im)
+    act['colours'] = page_colours(BOOK, page)
     hits = sorted(glob.glob(lesson_folder(folder) + 'format*.mp4'))
     if 'Formation' in YOUTUBE.get(folder, {}):
         act['video'] = {'title': 'How to write ' + name, 'src': 'https://youtu.be/' + YOUTUBE[folder]['Formation']}
