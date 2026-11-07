@@ -2,9 +2,11 @@ import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
-import { evenly, inkShape, inkDistance, cover, finished } from './src/traceCheck.js';
+import { evenly, inkShape, inkDistance, cover, finished, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
 import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from './src/colourFill.js';
 import bookColourRegions from './books/colour-regions.json';
+import { englishLessons } from './src/englishLessons.js';
+import './src/englishLearning.css';
 
 const drawings = {};
 const traced = {};                           // page -> the letters traced on it (their stars stay when it reopens)
@@ -926,8 +928,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       return o;
     };
 
-    // Where the letter starts: where its pen stroke starts (GLYPHS), or for Urdu, the top right of the letter.
+    // Urdu uses the book's printed start-dot. Latin letters retain their known pen-stroke start.
     function startOf(t) {
+      if (t.startInk) return t.startInk;
       const s = t.shape, g = t.m.glyph !== 'ur' && GLYPHS[t.m.glyph];
       let far;
       if (g) {
@@ -1062,7 +1065,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // pencil follows them, lifting between strokes.
     //   Letters and numbers: the strokes "Show me how" draws (GLYPHS: 'a' goes round from the top right, then
     //   down the stick), each point moved onto the middle of the book's dots so the pencil stays on them.
-    //   Urdu: from the top right, on to the nearest part of the letter each time; a jump starts a new stroke.
+    //   Urdu: from the printed start-dot, following connected ink, then lifting for separate letter dots.
     function pathOf(t) {
       if (t.path) return t.path;
       const s = t.shape, g = t.m.glyph !== 'ur' && GLYPHS[t.m.glyph];
@@ -1075,15 +1078,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           return d < s.h * .12 ? m : q;
         }));
       } else {
-        let left = s.middle.slice(), at = startOf(t), line = [];
-        strokes = [line];
-        while (left.length) {
-          let k = 0, best = Infinity;
-          left.forEach((p, i) => { const d = (p[0] - at[0]) ** 2 + (p[1] - at[1]) ** 2; if (d < best) { best = d; k = i; } });
-          if (Math.sqrt(best) > (s.step || 3) * 3 && line.length) strokes.push(line = []);
-          at = left.splice(k, 1)[0];
-          line.push(at);
-        }
+        strokes = orderedInkStrokes(s, startOf(t));
       }
       return (t.path = strokes.filter(l => l.length).map(l => l.map(p => onPage(t, p))));
     }
@@ -1119,6 +1114,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
             if (k) run += Math.hypot(p[0] - line[k - 1][0], (p[1] - line[k - 1][1]) / ratio);
             pts.push([p[0], p[1], n && !k ? run += .01 : run, 1]);
           });
+          if (line.length === 1) pts.push([line[0][0], line[0][1], run += 1.5, 1]);
         });
         const total = run || 1;
         const frames = pts.map(([x, y, d, shown]) => ({ left: x + '%', top: y + '%', opacity: shown, offset: d / total * .8 }));
@@ -1129,6 +1125,39 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     // Load each letter's dots; letters already done on this page keep their star.
     let loaded = 0;
+    let startsReady = false;
+    function prepareStarts() {
+      if (startsReady || loaded !== targets.length) return;
+      const pageImage = sheet.querySelector('img.page-bg');
+      if (book.rtl && pageImage && !pageImage.complete) {
+        pageImage.addEventListener('load', prepareStarts, { once: true });
+        pageImage.addEventListener('error', prepareStarts, { once: true });
+        return;
+      }
+      startsReady = true;
+      if (book.rtl) {
+        const pixels = pageImage && pixelsOf(pageImage);
+        if (pixels) for (const t of targets.filter(target => target.m.dots)) {
+          const [x, y, w, h] = t.dots.box;
+          const start = printedTraceStart(pixels.data, pixels.w, pixels.h, [x / 100 * pixels.w, y / 100 * pixels.h, w / 100 * pixels.w, h / 100 * pixels.h]);
+          if (start) t.startInk = [(start[0] / pixels.w * 100 - x) / w * t.shape.w, (start[1] / pixels.h * 100 - y) / h * t.shape.h];
+        }
+        const reference = targets.find(t => t.m.dots && t.startInk);
+        if (reference) {
+          const bounds = t => {
+            const xs = t.shape.middle.map(point => point[0]), ys = t.shape.middle.map(point => point[1]);
+            return [Math.min(...xs), Math.min(...ys), Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)];
+          };
+          const [x, y, w, h] = bounds(reference), u = (reference.startInk[0] - x) / (w || 1), v = (reference.startInk[1] - y) / (h || 1);
+          for (const t of targets.filter(target => !target.m.dots)) {
+            const [a, b, width, height] = bounds(t), want = [a + u * width, b + v * height];
+            t.startInk = t.shape.middle.reduce((best, point) => Math.hypot(point[0] - want[0], point[1] - want[1]) < Math.hypot(best[0] - want[0], best[1] - want[1]) ? point : best);
+          }
+        }
+      }
+      targets.forEach(t => { if (finishedHere.has(t.i)) complete(t, null, true); else addCircle(t); });
+      scheduleHint(1500);
+    }
     targets.forEach(t => {
       const im = new Image();
       im.onload = () => {
@@ -1141,8 +1170,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         t.shape = inkShape(alpha, w, h);
         t.img = im;
         t.covered = new Uint8Array(t.shape.middle.length);
-        if (finishedHere.has(t.i)) complete(t, null, true); else addCircle(t);
-        if (++loaded === targets.length) scheduleHint(1500);    // show the first hint soon
+        loaded++;
+        prepareStarts();
       };
       im.src = t.dots.src;
     });
@@ -1190,6 +1219,75 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     editMode = false;
     const spreads = Math.ceil(book.pages.length / 2);
     const ratio = book.ratio || 0.75;
+    const lessons = !readerBook ? englishLessons(book) : [];
+    let currentLesson = lessons[0];
+    const lessonView = el('section', { class: 'english-lesson', hidden: true, 'aria-label': 'Letter learning' });
+    const letterButtons = [];
+    const stopLessonVideo = () => lessonView.querySelectorAll('iframe').forEach(frame => frame.remove());
+    const closeLesson = () => {
+      stopLessonVideo();
+      lessonView.hidden = true;
+      root.classList.remove('english-lesson-open');
+      root.querySelector(`.english-letter[data-letter="${currentLesson?.letter}"]`)?.focus();
+    };
+    const rail = (items, label) => el('nav', { class: 'english-letter-rail', 'aria-label': label },
+      el('small', {}, label), items.map(lesson => {
+        const button = el('button', { class: 'english-letter', 'data-letter': lesson.letter, 'aria-label': `Learn letter ${lesson.letter}`, onclick: () => selectLesson(lesson) },
+          el('b', {}, lesson.letter.toUpperCase()), el('span', {}, lesson.letter));
+        letterButtons.push(button);
+        return button;
+      }));
+    const action = (title, description, icon, colour, work) => el('button', { class: 'english-activity', onclick: work },
+      el('span', { class: 'english-activity-icon', style: `--tile:${colour[0]};--tile-ink:${colour[1]}`, html: icon }),
+      el('span', { class: 'english-activity-copy' }, el('b', {}, title), el('small', {}, description)), el('span', { html: I.right }));
+    const videoFor = (lesson, label) => lesson.videos.find(activity => (activity.label || '').toLowerCase() === label);
+    function watchLesson(lesson, label = 'story') {
+      const video = videoFor(lesson, label);
+      if (video?.videos?.length) openVideos(video.title, video.videos);
+      else if (lesson.story) openStory(book, lesson.page - 1, lesson.story);
+      else speak(`Letter ${lesson.letter}`, `${lesson.letter.toUpperCase()}. ${lesson.words.map(word => `${word} begins with ${lesson.letter}.`).join(' ')}`);
+    }
+    function openDrawing(lesson) {
+      const key = `${book.id}:letter:${lesson.letter}:drawing`, previousBrush = { ...brush };
+      const board = el('div', { class: 'english-drawing-board' });
+      const createCanvas = () => inkCanvas({ ...book, ratio: 1 }, { w: 100, h: 70 }, key);
+      const drawingTools = drawTools(() => { delete drawings[key]; board.replaceChildren(createCanvas()); }, ['#e63946', '#f9c74f', '#43aa8b', '#4aa3df', '#7b5ea7', '#222222']);
+      drawingTools.hidden = false;
+      board.append(createCanvas());
+      modal(el('div', { class: 'modal-card english-drawing-card' }, el('h3', {}, `Draw with ${lesson.letter.toUpperCase()}${lesson.letter}`),
+        el('p', {}, `Can you draw ${lesson.words[0] ? `a picture of ${lesson.words[0]}` : `something beginning with ${lesson.letter}`}? Pick a colour and make it yours.`), board, drawingTools),
+      () => Object.assign(brush, previousBrush));
+    }
+    function selectLesson(lesson) {
+      if (R?.busy) return;
+      if (editMode) { editMode = false; root.classList.remove('edit'); editBtn.classList.remove('on'); }
+      show(Math.floor((lesson.page - 1) / 2));
+      currentLesson = lesson;
+      root.classList.add('english-lesson-open');
+      lessonView.hidden = false;
+      letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === lesson.letter)));
+      const trace = () => openFocus(book, lesson.tracePage - 1, right.querySelector('.page'), true);
+      const activities = el('div', { class: 'english-lesson-actions' },
+        action('Listen & learn', `Hear the sound and discover ${lesson.letter} words.`, I.speaker, ['#e6edcf', '#658334'], () => watchLesson(lesson, 'vocabulary')),
+        lesson.game && action('Find the pictures', `Look for ${lesson.words.slice(0, 2).join(', ')} and more.`, '&#10022;', ['#fff0c4', '#b78322'], () => openGame(book, lesson.page - 1, lesson.game)),
+        lesson.trace && action(`Trace ${lesson.letter.toUpperCase()}${lesson.letter}`, 'Follow the dots, then colour the picture.', I.pen, ['#deedf3', '#427f94'], trace),
+        action('Drawing time', 'A fresh canvas for your own ideas.', I.pen, ['#f7e3dc', '#b76b4b'], () => openDrawing(lesson)),
+        videoFor(lesson, 'phonic poem') && action('Phonic poem', 'Listen, repeat and sing along.', I.play, ['#ece3f3', '#8a63a0'], () => watchLesson(lesson, 'phonic poem')));
+      lessonView.replaceChildren(
+        el('div', { class: 'english-lesson-top' }, el('button', { class: 'english-back', onclick: closeLesson, html: I.left + '<span>Back to book</span>' }), el('span', {}, 'ENGLISH / LETTER EXPLORER')),
+        el('div', { class: 'english-lesson-heading' }, el('small', {}, `LETTER ${lesson.letter.toUpperCase()} / ${lessons.indexOf(lesson) + 1} OF 26`),
+          el('h1', { tabindex: '-1' }, `A little adventure with ${lesson.letter.toUpperCase()}${lesson.letter}`), el('p', {}, 'Watch a story. Find a picture. Make your mark.')),
+        el('div', { class: 'english-lesson-grid' }, el('div', {},
+          lesson.lessonVideo
+            ? el('div', { class: 'english-lesson-video' },
+              el('iframe', { src: `https://www.youtube.com/embed/${lesson.lessonVideo.id}?rel=0&playsinline=1`, title: lesson.lessonVideo.title || `Letter ${lesson.letter} lesson video`, allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share', allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin' }),
+              el('p', {}, `Letter ${lesson.letter.toUpperCase()} · Watch the full lesson`))
+            : el('div', { class: 'english-video-unavailable' }, el('b', {}, `Letter ${lesson.letter.toUpperCase()}${lesson.letter}`), el('p', {}, 'The QR lesson video is not available for this letter yet.')),
+          el('div', { class: 'english-word-list', 'aria-label': 'Listen to a word' }, lesson.words.map(word => el('button', { onclick: () => speak(word, `${word}. ${word} begins with ${lesson.letter}.`) }, word)))),
+        el('div', {}, activities, el('p', { class: 'english-lesson-note' }, 'Explore at your own pace. A little practice, every day.'))));
+      lessonView.scrollTop = 0;
+      lessonView.querySelector('h1')?.focus({ preventScroll: true });
+    }
 
     const left = el('div', { class: 'slot left' }), right = el('div', { class: 'slot right' });
     // Urdu books open from the right: the earlier page of a spread is on the right, and pages turn the other way.
@@ -1215,7 +1313,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (editMode) toast('Publisher mode: drag a box on a page to add a section. Click a box to edit it.', 5000);
     });
 
-    const root = el('div', { class: 'reader' },
+    const stage = el('div', { class: 'rstage' }, prev, el('div', { class: 'book-wrap' }, bookEl), next);
+    const englishLayout = lessons.length && el('div', { class: 'english-reader-layout' }, rail(lessons.slice(0, 13), 'A – M'),
+      el('div', { class: 'english-reader-center' }, stage, lessonView,
+        el('div', { class: 'english-reader-dock', role: 'toolbar', 'aria-label': 'Letter activities' },
+          el('button', { onclick: () => selectLesson(currentLesson), html: I.speaker + '<span>Letter lesson</span>' }),
+          el('button', { onclick: () => watchLesson(currentLesson), html: I.play + '<span>Story</span>' }),
+          el('button', { onclick: () => { selectLesson(currentLesson); openFocus(book, currentLesson.tracePage - 1, right.querySelector('.page'), true); }, html: I.pen + '<span>Trace & colour</span>' }),
+          el('button', { onclick: () => openDrawing(currentLesson), html: I.pen + '<span>Drawing pad</span>' }))),
+      rail(lessons.slice(13), 'N – Z'));
+    const root = el('div', { class: 'reader' + (lessons.length ? ' english-learning' : '') },
       el('div', { class: 'rbar' },
         readerBook ? el('button', { class: 'btn ghost', onclick: () => readerOptions.onClose?.(), html: I.left + '<span>Back to upload</span>' }) : el('a', { class: 'btn ghost', href: libraryHref || `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
         el('button', { class: 'btn ghost hide-sm', onclick: () => R.close() }, 'Close book'),
@@ -1223,7 +1330,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         el('span', { class: 'grow' }),
         label, !readerBook && editBtn,
         el('button', { class: 'btn ghost hide-sm', onclick: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.() }, 'Full screen')),
-      el('div', { class: 'rstage' }, prev, el('div', { class: 'book-wrap' }, bookEl), next),
+      englishLayout || stage,
       mobileActions,
       el('div', { class: 'rfoot' }, slider, tools));
     app.replaceChildren(root);
@@ -1232,6 +1339,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const s = R.spread, a = s * 2 + 1, b = Math.min(a + 1, book.pages.length);
       label.textContent = (a === b ? `Page ${a}` : `Pages ${a}–${b}`) + ` of ${book.pages.length}`;
       slider.value = s;
+      if (lessons.length) {
+        currentLesson = lessons.find(lesson => Math.floor((lesson.page - 1) / 2) === s) || currentLesson;
+        letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === currentLesson.letter)));
+      }
       (rtl ? next : prev).disabled = s === 0;
       (rtl ? prev : next).disabled = s >= spreads - 1;
       const hasFill = [0, 1].some(k => (pageOf(book, s * 2 + k)?.zones || []).some(z => z.type === 'fill'));
@@ -1273,6 +1384,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     function show(s) {
       if (R.busy) return;
+      stopLessonVideo();
+      lessonView.hidden = true;
+      root.classList.remove('english-lesson-open');
       closeFocus(false); closeGame(); closeStory(); closeModal();
       stopSpeak(); closeMenu();
       R.spread = clamp(s, 0, spreads - 1);
@@ -1377,7 +1491,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
 
     if (rtl) slider.style.direction = 'rtl';
-    R = { book, root, spread: 0, busy: false, rtl, show, flip, close: closeBook };
+    R = { book, root, spread: 0, busy: false, rtl, show, flip, close: closeBook, closeLesson,
+      stepLesson: direction => selectLesson(lessons[clamp(lessons.indexOf(currentLesson) + direction, 0, lessons.length - 1)]) };
     show(startSpread);
     if (intro) openBook();
   }
@@ -1808,8 +1923,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   };
   const onDocumentKeyDown = e => {
     if (readerBook && readerOptions.isBlocked?.()) return;
-    if (e.key === 'Escape') { if (modalEl) modalEl.close(); else if (storyEl) closeStory(); else if (gameEl) closeGame(); else if (focusEl) closeFocus(); else if (menu) closeMenu(); else stopSpeak(); return; }
+    if (e.key === 'Escape') { if (modalEl) modalEl.close(); else if (storyEl) closeStory(); else if (gameEl) closeGame(); else if (focusEl) closeFocus(); else if (menu) closeMenu(); else if (R?.root.classList.contains('english-lesson-open')) R.closeLesson(); else stopSpeak(); return; }
     if (!R || modalEl || focusEl || storyEl || gameEl || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    if (R.root.classList.contains('english-lesson-open')) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); R.stepLesson(e.key === 'ArrowRight' ? 1 : -1); }
+      return;
+    }
     if (e.key === 'ArrowRight') R.flip(R.rtl ? -1 : 1);
     if (e.key === 'ArrowLeft') R.flip(R.rtl ? 1 : -1);
   };
