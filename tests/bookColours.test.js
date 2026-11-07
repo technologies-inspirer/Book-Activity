@@ -5,6 +5,7 @@ import vm from 'node:vm';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const reviewed = JSON.parse(read('books/colour-palettes.json'));
+const regionRules = JSON.parse(read('books/colour-regions.json'));
 const context = { window: {} };
 vm.createContext(context);
 for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-maths3', 'activities-computer0']) {
@@ -12,6 +13,24 @@ for (const file of ['activities', 'activities-english3', 'activities-maxford', '
 }
 const activities = JSON.parse(JSON.stringify(context.window.BOOK_ACTIVITIES));
 const fill = (book, page) => [].concat(activities[book][page]).find(activity => activity.type === 'fill');
+
+test('part rules refer to real activities and colours available on their pages', () => {
+  for (const [book, pages] of Object.entries(regionRules)) for (const [page, regions] of Object.entries(pages)) {
+    const activity = fill(book, page);
+    assert.ok(activity, `${book} / ${page}`);
+    for (const region of regions) {
+      assert.ok(activity.colours.includes(region.colour), `Unavailable part colour: ${book} / ${page} / ${region.part}`);
+      const box = region.box || region.componentBox;
+      if (box) {
+        const [x, y, w, h] = box;
+        assert.ok(x >= 0 && y >= 0 && w > 0 && h > 0 && x + w <= 100 && y + h <= 100);
+      } else {
+        assert.ok(region.polygon.length >= 3);
+        assert.ok(region.polygon.every(point => point.every(n => n >= 0 && n <= 100)));
+      }
+    }
+  }
+});
 
 test('all 117 bundled drawing activities have their reviewed page palette', () => {
   let total = 0;

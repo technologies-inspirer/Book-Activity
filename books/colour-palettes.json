@@ -104,7 +104,7 @@
     },
     "stemford-maths-3": {
       "7": { "picture": "aeroplane: orange outline, yellow wing hint", "colours": ["orange", "yellow"] },
-      "10": { "picture": "butterflies: green, yellow and pink hints", "colours": ["green", "yellow", "pink"] },
+      "10": { "picture": "butterflies: green, yellow and red hints", "colours": ["green", "yellow", "red"] },
       "13": { "picture": "fish: orange, blue and green hints; magenta number", "colours": ["orange", "blue", "green", "magenta"] },
       "16": { "picture": "red apples and green leaves; yellow number", "colours": ["red", "green", "yellow"] },
       "21": { "picture": "flowers with five differently coloured outlines", "colours": ["pink", "green", "yellow", "orange", "blue"] },

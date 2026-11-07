@@ -1,0 +1,253 @@
+{
+  "new-stemford-english-3": {
+    "6": [
+      {"part":"leaf","colour":"#43aa8b","polygon":[[67,13],[87,13],[87,22],[74,22],[67,19]]},
+      {"part":"apple","colour":"#e63946","box":[52,14,43,30]}
+    ],
+    "12": [
+      {"part":"beak","colour":"#f4a261","componentBox":[55,16.5,12,4]},
+      {"part":"duck","colour":"#f9c74f","componentBox":[52,8,46,36]}
+    ],
+    "18": [
+      {"part":"elephant","colour":"#9aa5b1","componentBox":[50,8,48,40]}
+    ],
+    "22": [
+      {"part":"stalk","colour":"#8d5524","componentBox":[50,8,30,11]},
+      {"part":"grapes and leaves","colour":"#43aa8b","componentBox":[50,15,46,32]}
+    ],
+    "28": [
+      {"part":"igloo","colour":"#90e0ef","componentBox":[50,8,48,40]}
+    ],
+    "30": [
+      {"part":"jug","colour":"#4aa3df","componentBox":[50,8,48,40]}
+    ],
+    "32": [
+      {"part":"belly","colour":"#d4a373","componentBox":[63,26,12,14]},
+      {"part":"kangaroo","colour":"#8d5524","componentBox":[50,6,46,42]}
+    ],
+    "34": [
+      {"part":"leaf","colour":"#43aa8b","componentBox":[50,8,48,40]}
+    ],
+    "40": [
+      {"part":"leaves","colour":"#43aa8b","componentBox":[56,6,12,8]},
+      {"part":"face","colour":"#d4a373","componentBox":[66,29,14,8]},
+      {"part":"hands","colour":"#d4a373","componentBox":[55,35,8,5]},
+      {"part":"hands","colour":"#d4a373","componentBox":[83,35,8,5]},
+      {"part":"monkey and branch","colour":"#8d5524","componentBox":[50,6,48,36]}
+    ],
+    "42": [
+      {"part":"leaves","colour":"#43aa8b","componentBox":[50,7,6,10]},
+      {"part":"nest and twig","colour":"#8d5524","componentBox":[50,7,47,36]}
+    ],
+    "44": [
+      {"part":"leaf and stalk","colour":"#43aa8b","componentBox":[64,8,18,10]},
+      {"part":"orange","colour":"#f4a261","componentBox":[50,8,47,35]}
+    ],
+    "46": [
+      {"part":"beak","colour":"#e63946","componentBox":[61,12,11,10]},
+      {"part":"feet","colour":"#f9c74f","componentBox":[65,37,20,6]},
+      {"part":"parrot","colour":"#43aa8b","componentBox":[50,8,45,35]}
+    ],
+    "50": [
+      {"part":"beak","colour":"#f9c74f","componentBox":[50,13,7,5]},
+      {"part":"quail","colour":"#8d5524","componentBox":[50,8,47,35]}
+    ],
+    "52": [
+      {"part":"left inner ear","colour":"#ff8fab","componentBox":[60,7,8,9]},
+      {"part":"right inner ear","colour":"#ff8fab","componentBox":[71,10,13,7]},
+      {"part":"rabbit","colour":"#d4a373","componentBox":[50,7,47,36]}
+    ],
+    "54": [
+      {"part":"belly","colour":"#f9c74f","componentBox":[58,24,14,15]},
+      {"part":"snake","colour":"#43aa8b","componentBox":[50,8,47,35]}
+    ],
+    "56": [
+      {"part":"shell","colour":"#8d5524","componentBox":[61,14,31,19]},
+      {"part":"turtle","colour":"#43aa8b","componentBox":[50,8,47,35]}
+    ],
+    "66": [
+      {"part":"left curtain","colour":"#ff8fab","componentBox":[53,11,12,31]},
+      {"part":"right curtain","colour":"#ff8fab","componentBox":[81,11,13,31]},
+      {"part":"panes","colour":"#90e0ef","componentBox":[65,15,16,21]},
+      {"part":"window frame","colour":"#8d5524","componentBox":[50,9,47,34]}
+    ],
+    "72": [
+      {"part":"sail","colour":"#f9c74f","componentBox":[67,18,24,18]},
+      {"part":"hull","colour":"#e63946","componentBox":[65,36,23,4]},
+      {"part":"water and clouds","colour":"#4aa3df","componentBox":[50,6,47,39]}
+    ]
+  },
+  "maxford-global-qaida-3-english": {
+    "12": [
+      {"part":"leaf","colour":"#43aa8b","polygon":[[76.3,67.3],[81,63],[90,63],[90,70],[76.3,70]]},
+      {"part":"apple","colour":"#e63946","box":[54,63,40,32]}
+    ],
+    "20": [
+      {"part":"cap","colour":"#4aa3df","componentBox":[35,62,62,34]}
+    ],
+    "24": [
+      {"part":"beak","colour":"#f4a261","componentBox":[49,69,13,5]},
+      {"part":"duck","colour":"#f9c74f","componentBox":[45,62,47,32]}
+    ],
+    "32": [
+      {"part":"elephant","colour":"#9aa5b1","componentBox":[35,62,62,34]}
+    ],
+    "40": [
+      {"part":"stalk","colour":"#8d5524","componentBox":[69,65,20,13]},
+      {"part":"grapes and leaf","colour":"#43aa8b","componentBox":[38,62,55,32]}
+    ],
+    "50": [
+      {"part":"igloo","colour":"#90e0ef","componentBox":[35,62,62,34]}
+    ],
+    "54": [
+      {"part":"jug","colour":"#4aa3df","componentBox":[35,62,62,34]}
+    ],
+    "58": [
+      {"part":"belly","colour":"#d4a373","componentBox":[62,78,9,12]},
+      {"part":"kangaroo","colour":"#8d5524","componentBox":[48,63,39,33]}
+    ],
+    "62": [
+      {"part":"leaf","colour":"#43aa8b","componentBox":[35,62,62,34]}
+    ],
+    "70": [
+      {"part":"leaves","colour":"#43aa8b","componentBox":[63,63,14,6]},
+      {"part":"face","colour":"#d4a373","componentBox":[69,84,10,8]},
+      {"part":"hands","colour":"#d4a373","componentBox":[60,92,8,4]},
+      {"part":"hands","colour":"#d4a373","componentBox":[81,92,8,4]},
+      {"part":"monkey and branch","colour":"#8d5524","componentBox":[35,62,62,34]}
+    ],
+    "74": [
+      {"part":"leaves","colour":"#43aa8b","componentBox":[78,63,11,12]},
+      {"part":"nest and twig","colour":"#8d5524","componentBox":[38,65,55,30]}
+    ],
+    "78": [
+      {"part":"leaf and stalk","colour":"#43aa8b","componentBox":[57,63,22,8]},
+      {"part":"orange","colour":"#f4a261","componentBox":[38,63,55,31]}
+    ],
+    "82": [
+      {"part":"beak","colour":"#e63946","componentBox":[54,66,11,8]},
+      {"part":"feet","colour":"#f9c74f","componentBox":[57,90,20,6]},
+      {"part":"parrot","colour":"#43aa8b","componentBox":[40,62,50,34]}
+    ],
+    "88": [
+      {"part":"beak","colour":"#f9c74f","componentBox":[46,68,9,4]},
+      {"part":"quail","colour":"#8d5524","componentBox":[40,62,52,34]}
+    ],
+    "92": [
+      {"part":"inner ears","colour":"#ff8fab","componentBox":[51,63,23,9]},
+      {"part":"rabbit","colour":"#d4a373","componentBox":[42,63,51,33]}
+    ],
+    "96": [
+      {"part":"belly","colour":"#f9c74f","componentBox":[49,76,14,17]},
+      {"part":"snake","colour":"#43aa8b","componentBox":[40,62,53,34]}
+    ],
+    "100": [
+      {"part":"shell","colour":"#8d5524","componentBox":[60,67,32,22]},
+      {"part":"turtle","colour":"#43aa8b","componentBox":[35,62,62,34]}
+    ],
+    "116": [
+      {"part":"left curtain","colour":"#ff8fab","componentBox":[41,62,13,34]},
+      {"part":"right curtain","colour":"#ff8fab","componentBox":[69,62,14,34]},
+      {"part":"panes","colour":"#90e0ef","componentBox":[54,67,15,24]},
+      {"part":"window frame","colour":"#8d5524","componentBox":[35,62,62,34]}
+    ],
+    "126": [
+      {"part":"sail","colour":"#f9c74f","componentBox":[62,72,24,16]},
+      {"part":"hull","colour":"#e63946","componentBox":[60,88,26,4]},
+      {"part":"water and clouds","colour":"#4aa3df","componentBox":[40,62,53,34]}
+    ]
+  },
+  "stemford-urdu-3": {
+    "6": [
+      {"part":"stalk","colour":"#8d5524","componentBox":[31,6,7,13]},
+      {"part":"grapes and leaves","colour":"#43aa8b","componentBox":[1,7,54,38]}
+    ],
+    "8": [
+      {"part":"stalk","colour":"#43aa8b","componentBox":[37,6,8,10]},
+      {"part":"mango","colour":"#f9c74f","componentBox":[1,7,54,38]}
+    ],
+    "12": [
+      {"part":"beak","colour":"#f4a261","componentBox":[39,12,10,7]},
+      {"part":"feet","colour":"#f4a261","componentBox":[21,36,26,6]},
+      {"part":"duck","colour":"#f9c74f","componentBox":[1,7,54,38]}
+    ],
+    "14": [
+      {"part":"leaf","colour":"#43aa8b","componentBox":[1,7,54,38]}
+    ],
+    "18": [
+      {"part":"leaves and stem","colour":"#43aa8b","componentBox":[13,10,33,10]},
+      {"part":"tomato","colour":"#e63946","componentBox":[1,10,54,34]}
+    ],
+    "24": [
+      {"part":"jug","colour":"#4aa3df","componentBox":[1,7,54,38]}
+    ],
+    "26": [
+      {"part":"moon","colour":"#f9c74f","componentBox":[1,7,54,38]}
+    ],
+    "28": [
+      {"part":"plate","colour":"#4aa3df","componentBox":[1,7,54,38]}
+    ],
+    "30": [
+      {"part":"envelope","colour":"#f9c74f","componentBox":[1,7,54,38]}
+    ],
+    "34": [
+      {"part":"trunk","colour":"#8d5524","componentBox":[19,26,17,19]},
+      {"part":"leaves","colour":"#43aa8b","componentBox":[1,7,54,38]}
+    ],
+    "40": [
+      {"part":"tyres","colour":"#222222","componentBox":[6,35,13,10]},
+      {"part":"tyres","colour":"#222222","componentBox":[43,35,12,10]}
+    ],
+    "42": [
+      {"part":"mountain","colour":"#9aa5b1","componentBox":[1,7,54,38]}
+    ],
+    "52": [
+      {"part":"mane","colour":"#8d5524","componentBox":[30,8,25,21]},
+      {"part":"face","colour":"#f9c74f","componentBox":[38,16,15,9]},
+      {"part":"lion","colour":"#f4a261","componentBox":[1,7,54,38]}
+    ],
+    "56": [
+      {"part":"face","colour":"#d4a373","componentBox":[18,15,22,13]},
+      {"part":"beard","colour":"#9aa5b1","componentBox":[20,28,22,8]},
+      {"part":"clothes","colour":"#4aa3df","componentBox":[1,7,54,38]}
+    ],
+    "60": [
+      {"part":"aeroplane","colour":"#9aa5b1","componentBox":[1,7,54,38]}
+    ],
+    "62": [
+      {"part":"utensils","colour":"#9aa5b1","componentBox":[1,7,54,38]}
+    ],
+    "64": [
+      {"part":"beak","colour":"#f9c74f","componentBox":[39,8,12,6]},
+      {"part":"bird","colour":"#8d5524","componentBox":[1,7,54,38]}
+    ],
+    "72": [
+      {"part":"blades","colour":"#9aa5b1","componentBox":[27,7,25,25]},
+      {"part":"handles","colour":"#e63946","componentBox":[1,7,54,38]}
+    ],
+    "74": [
+      {"part":"stalk","colour":"#43aa8b","componentBox":[45,7,9,10]},
+      {"part":"banana","colour":"#f9c74f","componentBox":[1,7,54,38]}
+    ],
+    "76": [
+      {"part":"leaves","colour":"#43aa8b","componentBox":[30,7,24,13]},
+      {"part":"carrot","colour":"#f4a261","componentBox":[1,7,54,38]}
+    ],
+    "80": [
+      {"part":"leaves and stalk","colour":"#43aa8b","componentBox":[2,7,33,17]},
+      {"part":"orange","colour":"#f4a261","componentBox":[1,7,54,38]}
+    ],
+    "84": [
+      {"part":"flesh","colour":"#d4a373","componentBox":[6,22,23,20]},
+      {"part":"shell","colour":"#8d5524","componentBox":[1,7,54,38]}
+    ],
+    "90": [
+      {"part":"tea","colour":"#8d5524","componentBox":[11,20,31,8]},
+      {"part":"cup and saucer","colour":"#4aa3df","componentBox":[1,7,54,38]}
+    ],
+    "92": [
+      {"part":"donkey","colour":"#9aa5b1","componentBox":[40,9,15,36]},
+      {"part":"cart","colour":"#8d5524","componentBox":[1,7,39,38]}
+    ]
+  }
+}

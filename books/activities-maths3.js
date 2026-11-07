@@ -696,7 +696,7 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
   "colours": [
    "#43aa8b",
    "#f9c74f",
-   "#ff8fab"
+   "#e63946"
   ]
  },
  "11": [

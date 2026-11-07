@@ -16,3 +16,14 @@ npm run check:pages
 Computer activities are handwritten in `books/activities.js` and `books/activities-computer0.js`; keep their `colours` fields in sync with the reviewed data. The integration tests check every existing drawing activity and ensure each demonstration uses an available swatch.
 
 The reader treats an explicit `colours` list as complete. It does not add swatches from a page background when a child draws. Custom activities without a list retain automatic colour discovery.
+
+## Colour limits inside each picture
+
+`books/colour-regions.json` supplements printed colour hints on black-outline pictures. It currently contains part rules for 61 pages. All coordinates are percentages of the source image.
+
+- `componentBox: [x, y, width, height]` identifies a closed part by the centre of its bounding box. It assigns a colour without cutting the original outline into a rectangle. Put specific parts (beak, face, shell) before the enclosing picture. Printed colour hints take priority over these assignments.
+- `polygon` and `box` explicitly separate joined interiors. On both English apple pages the leaf and fruit share an open neck in the printed outline. The leaf polygon takes priority over the fruit box. Their stroke masks are disjoint, even when a stroke is dragged through the neck. These boundaries also assign the required colour.
+
+Wrong colours reuse the existing Maths feedback: the stroke is rejected, the correct swatch is highlighted and the reader says which colour to use. Erasing remains available. Free design tasks keep their available choices unless the book gives a printed colour hint.
+
+Browser checks with the actual English and Maxford images verify red on the leaf and green on the apple are rejected, and neither colour crosses into the other part while dragging. The Maths number 2 also rejects red and accepts green. Printed green can differ substantially from the crayon's RGB value, so matching falls back to the same named colour family instead of disabling the restriction.

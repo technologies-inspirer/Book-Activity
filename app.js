@@ -3,7 +3,8 @@ import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
 import { evenly, inkShape, inkDistance, cover, finished } from './src/traceCheck.js';
-import { regionFrom, spread, partColour, closestColour, colourName, hexOf, pageColours } from './src/colourFill.js';
+import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from './src/colourFill.js';
+import bookColourRegions from './books/colour-regions.json';
 
 const drawings = {};
 const traced = {};                           // page -> the letters traced on it (their stars stay when it reopens)
@@ -659,7 +660,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       tools.addColour(hex);
       return hex;
     };
-    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, wrong: wrongColour, add: addColour });
+    const regions = fillAct?.colourRegions || bookColourRegions[book.id]?.[idx + 1] || [];
+    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, regions, wrong: wrongColour, add: addColour });
     sheet.prepend(img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));
 
@@ -738,7 +740,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     return px;
   }
-  function colourArea(img, fx, fy) {
+  function colourArea(img, fx, fy, regions) {
     const px = pixelsOf(img);
     if (!px) return null;
     const core = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0 });
@@ -747,23 +749,26 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     let size = 0;
     for (let i = 0; i < core.length; i++) size += core[i];
     if (size > core.length * .25) return { mask: null, want: null, paper: true };
-    const part = spread(core, px.w, px.h, 2);          // the colour reaches a little into the outline
+    const selected = colourRegionAt(regions, fx * 100, fy * 100);
+    const part = restrictColourRegion(spread(core, px.w, px.h, 2), px.w, px.h, regions, selected);
     const out = document.createElement('canvas');
     out.width = px.w; out.height = px.h;
     const ox = out.getContext('2d'), mask = ox.createImageData(px.w, px.h);
     for (let i = 0; i < part.length; i++) if (part[i]) mask.data[i * 4 + 3] = 255;
     ox.putImageData(mask, 0, 0);
-    return { mask: out, want: partColour(px.data, px.w, px.h, core) };
+    const want = partColour(px.data, px.w, px.h, core);
+    return { mask: out, required: selected?.colour || (!want && componentColourRegion(core, px.w, px.h, regions)?.colour), want };
   }
 
   // The canvas keeps a fixed resolution tied to the zone, so drawings survive resizes and page turns.
   // watch (optional): the tracing letters on this page. Each touch asks it first: the letter being traced
   // takes the touch ('own'), a touch on a letter not picked yet draws nothing ('block'), anything else draws.
-  // page (optional): { img, palette, wrong, add }. img is the page picture under the canvas: colouring then stays
+  // page (optional): { img, palette, regions, wrong, add }. img is the page picture under the canvas: colouring stays
   // inside the lines, each stroke only landing in the part of the picture where it began (src/colourFill.js),
   // and the open paper round the pictures is not coloured at all.
   // Where the book shows the part's colour (a red strawberry) and that colour is on offer (palette), only it
-  // colours there: another colour draws nothing and wrong(rightColour) is told, to show the child. If that colour\n  // is not on offer, add(colour) offers it first.
+  // colours there: another colour draws nothing and wrong(rightColour) is told, to show the child.
+  // Reviewed picture parts also require their assigned colour; only unreviewed palettes may add a swatch.
   function inkCanvas(book, z, key, watch, page) {
     const c = el('canvas', { class: 'ink' });
     setDrawingCursor(c, brush.erase);
@@ -813,11 +818,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       e.preventDefault();
       const p = pos(e), mode = watch ? watch.down(p, c, brush.erase) : 'free';
       if (mode === 'block') return;
-      const area = mode === 'free' && !brush.erase && page ? colourArea(page.img, p[0] / c.width, p[1] / c.height) : null;
+      const area = mode === 'free' && !brush.erase && page ? colourArea(page.img, p[0] / c.width, p[1] / c.height, page.regions) : null;
       // the paper round the pictures is not coloured (nor anything while the page picture is still loading)
       if (mode === 'free' && !brush.erase && page && (!area || area.paper)) return;
       // the colour the book shows for this part: one on offer, or else it is offered now
-      const right = area?.want && page.palette ? closestColour(area.want, page.palette) || page.add?.(hexOf(area.want)) || null : null;
+      const right = area?.required || (area?.want && page.palette ? requiredSwatch(area.want, page.palette) || page.add?.(hexOf(area.want)) || null : null);
       if (right && right.toLowerCase() !== brush.color.toLowerCase()) { page.wrong?.(right, [p[0] / c.width, p[1] / c.height]); return; }
       c.setPointerCapture(e.pointerId);
       last = p;

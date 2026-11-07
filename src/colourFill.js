@@ -107,6 +107,54 @@ export function closestColour(want, palette, maxFar = 80) {
   return d <= maxFar ? best : null;
 }
 
+// Reviewed parts supplement the book's printed colour hints, especially black-outline pictures.
+// Earlier regions take priority: a leaf polygon can sit over its fruit's larger bounding box.
+export function colourRegionAt(regions = [], x, y) {
+  return regions.find(region => {
+    if (region.box) {
+      const [a, b, w, h] = region.box;
+      return x >= a && y >= b && x <= a + w && y <= b + h;
+    }
+    let inside = false;
+    const points = region.polygon || [];
+    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+      const [ax, ay] = points[i], [bx, by] = points[j];
+      if ((ay > y) !== (by > y) && x < (bx - ax) * (y - ay) / (by - ay) + ax) inside = !inside;
+    }
+    return inside;
+  }) || null;
+}
+
+// Closed black-outline parts use their component's centre, not the finger position. A beak remains
+// orange even when touched at its very tip; the original outline supplies its complete boundary.
+export function componentColourRegion(mask, w, h, regions = []) {
+  let x0 = w, x1 = -1, y0 = h, y1 = -1;
+  for (let i = 0; i < mask.length; i++) if (mask[i]) {
+    const x = i % w, y = Math.floor(i / w);
+    x0 = Math.min(x0, x); x1 = Math.max(x1, x);
+    y0 = Math.min(y0, y); y1 = Math.max(y1, y);
+  }
+  if (x1 < 0) return null;
+  const x = (x0 + x1) / 2 / w * 100, y = (y0 + y1) / 2 / h * 100;
+  return regions.find(region => {
+    if (!region.componentBox) return false;
+    const [a, b, width, height] = region.componentBox;
+    return x >= a && y >= b && x <= a + width && y <= b + height;
+  }) || null;
+}
+
+// The original outline still supplies the shape. Reviewed boundaries only separate parts when the
+// printed outlines join (the apple and leaf share an open neck). They never fill outside that shape.
+export function restrictColourRegion(mask, w, h, regions, selected) {
+  if (!regions?.length) return mask;
+  const clipped = mask.slice();
+  for (let i = 0; i < clipped.length; i++) if (clipped[i]) {
+    const part = colourRegionAt(regions, (i % w) / w * 100, Math.floor(i / w) / h * 100);
+    if (part !== selected) clipped[i] = 0;
+  }
+  return clipped;
+}
+
 // What to call a colour, in English and Urdu, by its hue and how light it is.
 // tools/make_urdu_audio.py records "<Urdu name> رنگ لگائیں۔" for each: keep the two lists the same.
 export const COLOUR_NAMES = {
@@ -126,6 +174,16 @@ export function colourName(hex) {
   else if (h < 305) en = 'purple';
   else en = 'pink';
   return { en, ur: COLOUR_NAMES[en] };
+}
+
+// Printed greens/blues can be much lighter than the crayon swatch. They still require that colour,
+// rather than silently dropping the restriction because the RGB distance exceeds closestColour's limit.
+export function requiredSwatch(want, palette) {
+  const closest = closestColour(want, palette);
+  if (closest) return closest;
+  const family = colour => colourName(colour).en.replace(/^(light|dark) /, '');
+  const name = family(hexOf(want));
+  return palette.find(colour => family(colour) === name) || null;
 }
 // Every colour the book shows for the parts of a page picture (each part's colour as partColour finds it), so only
 // those are offered. The picture is cut into its parts in one pass: the open areas between its lines. Each part's

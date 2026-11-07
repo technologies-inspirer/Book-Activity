@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { regionFrom, spread, partColour, closestColour, colourName, hexOf, pageColours } from '../src/colourFill.js';
+import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from '../src/colourFill.js';
 
 // A white 40 x 40 picture with a black ring (radius 10 to 12) round (20, 20), and a red dot outside it.
 function picture({ gap = false } = {}) {
@@ -14,6 +14,42 @@ function picture({ gap = false } = {}) {
   return { rgba, w, h };
 }
 const at = (m, w, x, y) => m[y * w + x];
+
+test('connected fruit and leaf have separate required colours and stroke masks', () => {
+  const w = 100, h = 100;
+  const connected = new Uint8Array(w * h);
+  // One connected white shape: the printed black outlines can leave the neck open.
+  for (let y = 15; y <= 70; y++) for (let x = 40; x <= 70; x++) connected[y * w + x] = 1;
+  const regions = [
+    { colour: '#43aa8b', polygon: [[40, 15], [71, 15], [71, 30], [40, 30]] },
+    { colour: '#e63946', box: [40, 15, 31, 56] }
+  ];
+  const leaf = colourRegionAt(regions, 55, 20), fruit = colourRegionAt(regions, 55, 50);
+  assert.equal(leaf.colour, '#43aa8b');
+  assert.equal(fruit.colour, '#e63946');
+  const red = restrictColourRegion(connected, w, h, regions, fruit);
+  const green = restrictColourRegion(connected, w, h, regions, leaf);
+  assert.equal(at(red, w, 55, 50), 1);
+  assert.equal(at(red, w, 55, 20), 0, 'red cannot enter the leaf, even across an open neck');
+  assert.equal(at(green, w, 55, 20), 1);
+  assert.equal(at(green, w, 55, 50), 0, 'green cannot enter the fruit');
+  assert.equal(at(green, w, 10, 20), 0, 'a polygon never paints outside the original shape');
+  assert.equal(connected[20 * w + 55], 1, 'the original mask is preserved');
+  assert.equal(colourRegionAt(regions, 10, 10), null);
+});
+
+test('component colour uses the closed part as a whole without cutting it into rectangles', () => {
+  const w = 100, h = 100, beak = new Uint8Array(w * h);
+  for (let y = 20; y < 30; y++) for (let x = 25; x < 45; x++) beak[y * w + x] = 1;
+  const regions = [
+    { colour: '#f4a261', componentBox: [30, 20, 10, 10] },
+    { colour: '#f9c74f', componentBox: [10, 10, 80, 80] }
+  ];
+  assert.equal(componentColourRegion(beak, w, h, regions).colour, '#f4a261');
+  assert.deepEqual(restrictColourRegion(beak, w, h, regions, null), beak, 'original beak boundary remains intact');
+  assert.equal(componentColourRegion(new Uint8Array(w * h), w, h, regions), null);
+  assert.equal(restrictColourRegion(beak, w, h, [], null), beak, 'Maths pages without overrides keep their mask');
+});
 
 test('colouring inside a shape stays inside it', () => {
   const { rgba, w, h } = picture();
@@ -78,6 +114,14 @@ test('the colour on offer that is meant, and none when nothing is close', () => 
   const palette = ['#e63946', '#f4a261', '#4aa3df'];
   assert.equal(closestColour([235, 40, 50], palette), '#e63946');
   assert.equal(closestColour([60, 160, 70], palette), null);      // green is not on offer
+});
+
+test('lighter printed Maths hints still enforce the corresponding crayon colour', () => {
+  const palette = ['#43aa8b', '#f9c74f', '#e63946'];
+  assert.equal(closestColour([127, 196, 70], palette), null, 'printed green is beyond the RGB threshold');
+  assert.equal(requiredSwatch([127, 196, 70], palette), '#43aa8b');
+  assert.equal(requiredSwatch([230, 30, 40], palette), '#e63946');
+  assert.equal(requiredSwatch([60, 150, 230], palette), null, 'no blue swatch is offered');
 });
 
 test('colours are named the way a child would say them, in English and Urdu', () => {
