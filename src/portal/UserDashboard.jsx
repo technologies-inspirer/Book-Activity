@@ -12,7 +12,7 @@ export function UserDashboard() {
       <section className="user-welcome">
         <div>
           <p className="portal-eyebrow">Your next discovery awaits</p>
-          <h1>Welcome, {account.name}.</h1>
+          <h1>JAVED PUBLISHERS DEMO</h1>
           <p>Choose your class, explore a series and subject, and open your next book.</p>
         </div>
         <span className="welcome-monogram" aria-hidden="true">{account.name.charAt(0).toUpperCase()}<span>✦</span></span>
