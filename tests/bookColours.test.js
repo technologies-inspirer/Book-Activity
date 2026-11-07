@@ -24,6 +24,9 @@ test('part rules refer to real activities and colours available on their pages',
       if (box) {
         const [x, y, w, h] = box;
         assert.ok(x >= 0 && y >= 0 && w > 0 && h > 0 && x + w <= 100 && y + h <= 100);
+      } else if (region.seed) {
+        assert.ok(region.seed.every(n => n >= 0 && n <= 100));
+        if (region.cut) assert.ok(region.cut.length === 2 && region.cut.every(point => point.every(n => n >= 0 && n <= 100)));
       } else {
         assert.ok(region.polygon.length >= 3);
         assert.ok(region.polygon.every(point => point.every(n => n >= 0 && n <= 100)));

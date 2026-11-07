@@ -10,7 +10,7 @@ const near = (data, i, r, g, b, tol) => (data[i] - r) ** 2 + (data[i + 1] - g) *
 // tol: how different a pixel may be from the touched colour and still be part of it.
 // Returns the part as a Uint8Array (1 inside), grown by `grow` pixels so the colour reaches into the outline,
 // or null when the touch is on a line with no space to colour near it.
-export function regionFrom(rgba, w, h, x, y, { tol = 70, grow = 2, gapClose = 1 } = {}) {
+export function regionFrom(rgba, w, h, x, y, { tol = 70, grow = 2, gapClose = 1, cuts = [] } = {}) {
   x = Math.round(x); y = Math.round(y);
   if (x < 0 || y < 0 || x >= w || y >= h) return null;
   // Start from the lightest pixel close by: a touch landing on an outline still colours the space beside it.
@@ -25,6 +25,16 @@ export function regionFrom(rgba, w, h, x, y, { tol = 70, grow = 2, gapClose = 1 
   // colour run out.
   const line = new Uint8Array(w * h);
   for (let i = 0; i < w * h; i++) if (!near(rgba, i * 4, r, g, b, tol)) line[i] = 1;
+  // Close a reviewed opening between two printed outline endpoints. Flooding then follows the real
+  // leaf outline, rather than a broad approximate polygon that can include part of the apple.
+  for (const [[ax, ay], [bx, by]] of cuts) {
+    const x0 = ax / 100 * w, y0 = ay / 100 * h, dx = (bx - ax) / 100 * w, dy = (by - ay) / 100 * h;
+    const steps = Math.max(1, Math.ceil(Math.max(Math.abs(dx), Math.abs(dy))));
+    for (let k = 0; k <= steps; k++) {
+      const xx = Math.round(x0 + dx * k / steps), yy = Math.round(y0 + dy * k / steps);
+      if (xx >= 0 && xx < w && yy >= 0 && yy < h) line[yy * w + xx] = 1;
+    }
+  }
   const wall = gapClose ? spread(line, w, h, gapClose) : line;
   if (wall[sy * w + sx]) wall[sy * w + sx] = 0;
 
@@ -128,6 +138,12 @@ export function colourRegionAt(regions = [], x, y) {
 // Closed black-outline parts use their component's centre, not the finger position. A beak remains
 // orange even when touched at its very tip; the original outline supplies its complete boundary.
 export function componentColourRegion(mask, w, h, regions = []) {
+  const seeded = regions.find(region => {
+    if (!region.seed) return false;
+    const [x, y] = region.seed;
+    return !!mask[Math.round(y / 100 * h) * w + Math.round(x / 100 * w)];
+  });
+  if (seeded) return seeded;
   let x0 = w, x1 = -1, y0 = h, y1 = -1;
   for (let i = 0; i < mask.length; i++) if (mask[i]) {
     const x = i % w, y = Math.floor(i / w);

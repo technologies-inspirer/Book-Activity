@@ -15,6 +15,31 @@ function picture({ gap = false } = {}) {
 }
 const at = (m, w, x, y) => m[y * w + x];
 
+test('closing the printed leaf neck follows its actual outline without including the upper fruit', () => {
+  const w = 100, h = 100, rgba = new Uint8ClampedArray(w * h * 4).fill(255);
+  const black = (x, y) => { const i = (y * w + x) * 4; rgba[i] = rgba[i + 1] = rgba[i + 2] = 0; };
+  // Fruit and leaf are separate outlined rectangles with an open join between x=51 and x=59.
+  for (let x = 20; x <= 80; x++) { black(x, 40); black(x, 80); }
+  for (let y = 40; y <= 80; y++) { black(20, y); black(80, y); }
+  for (let x = 50; x <= 75; x++) black(x, 15);
+  for (let y = 15; y <= 40; y++) { black(50, y); black(75, y); }
+  for (let x = 51; x < 60; x++) { const i = (40 * w + x) * 4; rgba[i] = rgba[i + 1] = rgba[i + 2] = 255; }
+  const regions = [
+    { colour: '#43aa8b', seed: [65, 25], cut: [[49, 40], [61, 40]] },
+    { colour: '#e63946', seed: [45, 60] }
+  ];
+  const uncut = regionFrom(rgba, w, h, 65, 25, { grow: 0 });
+  assert.equal(at(uncut, w, 45, 60), 1, 'an open neck joins both shapes');
+  const cuts = regions.map(region => region.cut).filter(Boolean);
+  const leaf = regionFrom(rgba, w, h, 65, 25, { grow: 0, cuts });
+  const fruit = regionFrom(rgba, w, h, 45, 60, { grow: 0, cuts });
+  assert.equal(componentColourRegion(leaf, w, h, regions).colour, '#43aa8b');
+  assert.equal(componentColourRegion(fruit, w, h, regions).colour, '#e63946');
+  const green = spread(leaf, w, h, 1);
+  for (let i = 0; i < fruit.length; i++) assert.ok(!(green[i] && fruit[i]), 'no green pixel overlaps any fruit interior');
+  assert.equal(at(green, w, 65, 43), 0, 'the upper shoulder directly below the leaf remains red');
+});
+
 test('connected fruit and leaf have separate required colours and stroke masks', () => {
   const w = 100, h = 100;
   const connected = new Uint8Array(w * h);

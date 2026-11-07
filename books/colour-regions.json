@@ -1,8 +1,8 @@
 {
   "new-stemford-english-3": {
     "6": [
-      {"part":"leaf","colour":"#43aa8b","polygon":[[67,13],[87,13],[87,22],[74,22],[67,19]]},
-      {"part":"apple","colour":"#e63946","box":[52,14,43,30]}
+      {"part":"leaf","colour":"#43aa8b","seed":[79,17.5],"cut":[[72.85,19.05],[73.65,19.9]]},
+      {"part":"apple","colour":"#e63946","seed":[73,32]}
     ],
     "12": [
       {"part":"beak","colour":"#f4a261","componentBox":[55,16.5,12,4]},
@@ -79,8 +79,8 @@
   },
   "maxford-global-qaida-3-english": {
     "12": [
-      {"part":"leaf","colour":"#43aa8b","polygon":[[76.3,67.3],[81,63],[90,63],[90,70],[76.3,70]]},
-      {"part":"apple","colour":"#e63946","box":[54,63,40,32]}
+      {"part":"leaf","colour":"#43aa8b","seed":[81,66.5],"cut":[[76.6,66.5],[76.15,68.2]]},
+      {"part":"apple","colour":"#e63946","seed":[74,81]}
     ],
     "20": [
       {"part":"cap","colour":"#4aa3df","componentBox":[35,62,62,34]}

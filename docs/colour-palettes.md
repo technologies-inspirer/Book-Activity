@@ -22,7 +22,8 @@ The reader treats an explicit `colours` list as complete. It does not add swatch
 `books/colour-regions.json` supplements printed colour hints on black-outline pictures. It currently contains part rules for 61 pages. All coordinates are percentages of the source image.
 
 - `componentBox: [x, y, width, height]` identifies a closed part by the centre of its bounding box. It assigns a colour without cutting the original outline into a rectangle. Put specific parts (beak, face, shell) before the enclosing picture. Printed colour hints take priority over these assignments.
-- `polygon` and `box` explicitly separate joined interiors. On both English apple pages the leaf and fruit share an open neck in the printed outline. The leaf polygon takes priority over the fruit box. Their stroke masks are disjoint, even when a stroke is dragged through the neck. These boundaries also assign the required colour.
+- `seed` identifies a part by a point inside it. `cut` closes a small opening between the printed outline's endpoints before finding that part. Both English apple pages use this: the cut closes the leaf neck, so the mask follows the leaf's actual outline and excludes the apple shoulder below it. A broad polygon must not substitute for the leaf outline. Cut masks grow by only one pixel into the outline to avoid bleeding across the boundary.
+- `polygon` and `box` remain available for explicit geometric boundaries where appropriate.
 
 Wrong colours reuse the existing Maths feedback: the stroke is rejected, the correct swatch is highlighted and the reader says which colour to use. Erasing remains available. Free design tasks keep their available choices unless the book gives a printed colour hint.
 

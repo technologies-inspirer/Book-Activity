@@ -743,14 +743,15 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   function colourArea(img, fx, fy, regions) {
     const px = pixelsOf(img);
     if (!px) return null;
-    const core = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0 });
+    const cuts = (regions || []).map(region => region.cut).filter(Boolean);
+    const core = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0, cuts });
     if (!core) return null;
     // A part this big is the page itself (the paper round the pictures), not something to colour.
     let size = 0;
     for (let i = 0; i < core.length; i++) size += core[i];
     if (size > core.length * .25) return { mask: null, want: null, paper: true };
     const selected = colourRegionAt(regions, fx * 100, fy * 100);
-    const part = restrictColourRegion(spread(core, px.w, px.h, 2), px.w, px.h, regions, selected);
+    const part = restrictColourRegion(spread(core, px.w, px.h, cuts.length ? 1 : 2), px.w, px.h, regions, selected);
     const out = document.createElement('canvas');
     out.width = px.w; out.height = px.h;
     const ox = out.getContext('2d'), mask = ox.createImageData(px.w, px.h);
