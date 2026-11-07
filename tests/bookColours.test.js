@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import { englishLessons } from '../src/englishLessons.js';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const reviewed = JSON.parse(read('books/colour-palettes.json'));
@@ -13,6 +14,56 @@ for (const file of ['activities', 'activities-english3', 'activities-maxford', '
 }
 const activities = JSON.parse(JSON.stringify(context.window.BOOK_ACTIVITIES));
 const fill = (book, page) => [].concat(activities[book][page]).find(activity => activity.type === 'fill');
+
+test('Urdu Story, Vocabulary and Formation buttons retain all supplied YouTube links', () => {
+  const links = JSON.parse(read('books/urdu3-videos.json'));
+  const rows = [...read('tools/make_urdu3.py').matchAll(/^\s+\((\d+), '([^']+)', '([^']+)', '([^']+)'/gm)];
+  let count = 0;
+  for (const [, pageString, , , folder] of rows) {
+    if (!links[folder]) continue;
+    const page = Number(pageString), picture = activities['stemford-urdu-3'][page];
+    for (const label of ['Story', 'Vocabulary']) {
+      const buttons = picture.filter(activity => activity.type === 'videos' && activity.label === label);
+      assert.equal(buttons.length, 1, `${folder}: ${label}`);
+      assert.equal(buttons[0].videos[0].src, 'https://youtu.be/' + links[folder][label]);
+      assert.match(links[folder][label], /^[\w-]{11}$/);
+    }
+    assert.equal(fill('stemford-urdu-3', page + 1).video.src, 'https://youtu.be/' + links[folder].Formation);
+    assert.match(links[folder].Formation, /^[\w-]{11}$/);
+    assert.ok(picture.some(activity => activity.type === 'game'), `${folder}: retain game`);
+    count++;
+  }
+  assert.equal(count, 35, 'four earlier lessons plus 31 newly supplied lessons');
+  assert.equal(activities['stemford-urdu-3'][17].find(activity => activity.label === 'Story').videos[0].src, 'https://youtu.be/e4815ka_wq8');
+  assert.equal(fill('stemford-urdu-3', 18).video.src, 'https://youtu.be/_UXlxnjoG20');
+  assert.equal(fill('stemford-urdu-3', 92).video.src, 'https://youtu.be/m1dAALoV24c');
+  assert.equal(links['28 qaaf'].Formation, links['29 kaaf'].Formation, 'retain the shared link exactly as supplied');
+});
+
+test('English letter explorer connects all 26 letters to their real lesson and trace pages', () => {
+  const id = 'new-stemford-english-3';
+  vm.runInContext(read('books/library.js'), context);
+  const metadata = context.window.PDF_BOOKS.find(book => book.id === id);
+  const book = { id, pages: Array.from({ length: 82 }, (_, index) => ({ acts: [].concat(activities[id][index + 1] || []), qr: metadata.qr[index + 1] })) };
+  const lessons = englishLessons(book);
+  assert.equal(lessons.map(lesson => lesson.letter).join(''), 'abcdefghijklmnopqrstuvwxyz');
+  for (const lesson of lessons) {
+    assert.ok(lesson.words.length > 0);
+    assert.ok(lesson.game && lesson.trace, lesson.letter);
+    assert.ok(lesson.story || lesson.videos.length, lesson.letter);
+    assert.ok(lesson.lessonVideo?.id, `QR video: ${lesson.letter}`);
+    assert.ok(book.pages[lesson.page - 1].qr.videos.some(video => video.id === lesson.lessonVideo.id));
+    assert.equal(lesson.tracePage, lesson.page + 1);
+    assert.equal(lesson.trace, book.pages[lesson.tracePage - 1].acts.find(activity => activity.type === 'fill'));
+    for (const video of lesson.videos) assert.ok(video.videos.length > 0);
+  }
+  assert.equal(lessons[1].page, 7);
+  assert.equal(lessons[0].lessonVideo.id, '7hpynjvzeS0');
+  assert.equal(lessons[1].lessonVideo.id, '4msW4WKxoQM');
+  assert.equal(lessons[25].page, 73);
+  assert.deepEqual(englishLessons({ ...book, id: 'stemford-maths-3' }), []);
+  assert.deepEqual(englishLessons({ ...book, id: 'maxford-global-qaida-3-english' }), []);
+});
 
 test('part rules refer to real activities and colours available on their pages', () => {
   for (const [book, pages] of Object.entries(regionRules)) for (const [page, regions] of Object.entries(pages)) {

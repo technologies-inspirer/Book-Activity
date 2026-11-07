@@ -64,6 +64,81 @@ export function inkDistance(ink, [x, y]) {
   return px >= 0 && py >= 0 && px < ink.w && py < ink.h ? ink.outside[py * ink.w + px] : Infinity;
 }
 
+// The book's dark, round start-dot is larger than its little tracing dashes. Grey letter dots and
+// coloured writing lines are excluded. rect is the padded letter crop in source-image pixels.
+export function printedTraceStart(rgba, w, h, rect) {
+  const [rx, ry, rw, rh] = rect, x0 = Math.max(0, Math.floor(rx)), y0 = Math.max(0, Math.floor(ry));
+  const x1 = Math.min(w, Math.ceil(rx + rw)), y1 = Math.min(h, Math.ceil(ry + rh));
+  const seen = new Uint8Array(w * h);
+  const dark = i => Math.max(rgba[i * 4], rgba[i * 4 + 1], rgba[i * 4 + 2]) < 90;
+  let best = null;
+  for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+    const seed = y * w + x;
+    if (seen[seed] || !dark(seed)) continue;
+    const stack = [seed]; seen[seed] = 1;
+    let area = 0, sx = 0, sy = 0, ax = x, bx = x, ay = y, by = y;
+    while (stack.length) {
+      const i = stack.pop(), px = i % w, py = Math.floor(i / w);
+      area++; sx += px; sy += py;
+      ax = Math.min(ax, px); bx = Math.max(bx, px); ay = Math.min(ay, py); by = Math.max(by, py);
+      for (let yy = Math.max(y0, py - 1); yy <= Math.min(y1 - 1, py + 1); yy++) for (let xx = Math.max(x0, px - 1); xx <= Math.min(x1 - 1, px + 1); xx++) {
+        const next = yy * w + xx;
+        if (!seen[next] && dark(next)) { seen[next] = 1; stack.push(next); }
+      }
+    }
+    const width = bx - ax + 1, height = by - ay + 1, density = area / (width * height);
+    if (area < 3 || width < 2 || height < 2 || width / height < .6 || width / height > 1.65 || density < .55 || Math.max(width, height) > Math.min(rw, rh) * .22) continue;
+    const score = area * density;
+    if (!best || score > best.score) best = { score, point: [sx / area, sy / area] };
+  }
+  return best?.point || null;
+}
+
+// Follow connected ink by distance along the stroke, not a greedy jump to the next nearby dot.
+// The body is traced before disconnected letter dots, with a pen lift between components.
+export function orderedInkStrokes(ink, start) {
+  const points = ink.middle;
+  if (!points.length) return [];
+  const edges = points.map(() => []), radius = (ink.step || 3) * 3.1;
+  for (let i = 0; i < points.length; i++) for (let j = i + 1; j < points.length; j++) {
+    const distance = Math.hypot(points[i][0] - points[j][0], points[i][1] - points[j][1]);
+    if (distance > radius) continue;
+    if (evenly([points[i], points[j]], 1).some(point => inkDistance(ink, point) > Math.max(1, ink.half * .35))) continue;
+    edges[i].push([j, distance]); edges[j].push([i, distance]);
+  }
+  let first = 0;
+  points.forEach((point, index) => { if (Math.hypot(point[0] - start[0], point[1] - start[1]) < Math.hypot(points[first][0] - start[0], points[first][1] - start[1])) first = index; });
+  const seen = new Set(), groups = [];
+  for (let i = 0; i < points.length; i++) {
+    if (seen.has(i)) continue;
+    const group = [i]; seen.add(i);
+    for (let k = 0; k < group.length; k++) for (const [next] of edges[group[k]]) if (!seen.has(next)) { seen.add(next); group.push(next); }
+    groups.push(group);
+  }
+  groups.sort((a, b) => Number(b.includes(first)) - Number(a.includes(first)) || b.length - a.length);
+  const strokes = [];
+  let at = start;
+  for (const group of groups) {
+    const from = group.reduce((a, b) => Math.hypot(points[b][0] - at[0], points[b][1] - at[1]) < Math.hypot(points[a][0] - at[0], points[a][1] - at[1]) ? b : a);
+    const distances = new Map(group.map(index => [index, Infinity])), previous = new Map(), waiting = new Set(group);
+    distances.set(from, 0);
+    while (waiting.size) {
+      const next = [...waiting].reduce((a, b) => distances.get(b) < distances.get(a) ? b : a);
+      waiting.delete(next);
+      for (const [neighbor, length] of edges[next]) {
+        const distance = distances.get(next) + length;
+        if (waiting.has(neighbor) && distance < distances.get(neighbor)) { distances.set(neighbor, distance); previous.set(neighbor, next); }
+      }
+    }
+    const last = group.reduce((a, b) => distances.get(b) > distances.get(a) ? b : a), path = [];
+    let index = last;
+    while (index != null) { path.unshift(points[index]); index = previous.get(index); }
+    if (!strokes.length && Math.hypot(path[0][0] - start[0], path[0][1] - start[1]) > .1) path.unshift(start);
+    strokes.push(path); at = path[path.length - 1];
+  }
+  return strokes;
+}
+
 // Mark the parts of the letter's middle within `r` of the finger at q as gone over. Returns how many were new.
 export function cover(ink, covered, q, r) {
   let fresh = 0;

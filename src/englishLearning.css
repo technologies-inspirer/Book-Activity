@@ -1,0 +1,111 @@
+/* English reader prototype: the existing book stays at the centre of learning. */
+.reader.english-learning { background: #f5f4ec; color: #123f43; }
+.english-learning .rbar { background: #fffdf6; border-bottom: 1px solid #dfe6dd; min-height: 65px; }
+.english-learning .rbar .btn { color: #315b5b; }
+.english-learning .r-pages { color: #658080; }
+.english-reader-layout { flex: 1; display: flex; min-height: 0; padding: 20px 22px 0; gap: 20px; }
+.english-reader-center { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.english-letter-rail { width: 91px; flex: none; display: flex; flex-direction: column; min-height: 0; padding: 12px 8px; gap: 6px; background: #fffdf7; border: 1px solid #e0e7dc; border-radius: 24px; overflow-y: auto; scrollbar-width: thin; }
+.english-letter-rail > small { text-align: center; color: #7c8e82; font-size: 10px; letter-spacing: .15em; font-weight: 800; margin: 0 0 6px; }
+.english-letter { flex: 1 0 37px; min-height: 37px; border: 1px solid transparent; border-radius: 12px; color: #315d59; background: #edf2e8; display: flex; align-items: center; justify-content: center; gap: 4px; transition: background .15s, transform .15s; }
+.english-letter b { font: 800 22px/1 var(--display); }
+.english-letter span { font-size: 15px; font-weight: 700; opacity: .65; }
+.english-letter:hover { background: #d8e8d5; transform: translateY(-1px); }
+.english-letter[aria-current="true"] { color: white; background: #11665f; box-shadow: 0 4px 10px #11665f25; }
+.english-learning button:focus-visible { outline: 3px solid #e9ae35; outline-offset: 3px; }
+.english-learning .rstage { padding: 16px 0; }
+.english-learning .rstage .nav { background: #e2ebe0; color: #2c665f; width: 38px; height: 38px; }
+.english-learning .book { width: min(100%, calc((100dvh - 245px) * var(--ratio) * 2)); }
+.english-learning .book::before { box-shadow: 0 15px 30px #183c392b; }
+.english-learning .rfoot { background: transparent; padding: 9px 24px; }
+.english-learning .rfoot input { accent-color: #11665f; }
+.english-learning .reader-mobile-actions { display: none; }
+.english-reader-dock { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; padding: 9px; background: #fffdf7; border: 1px solid #dde5da; border-radius: 18px; margin: 0 auto; }
+.english-reader-dock button { display: flex; align-items: center; gap: 7px; padding: 10px 15px; border: 0; border-radius: 11px; font-weight: 750; font-size: 13px; background: transparent; color: #486763; }
+.english-reader-dock button:first-child { background: #11665f; color: white; }
+.english-reader-dock button:hover { background: #e8eddf; color: #154f48; }
+.english-reader-dock svg { width: 18px; height: 18px; fill: currentColor; }
+.english-lesson { min-height: 0; flex: 1; overflow: auto; padding: 2px 16px 22px; }
+.english-lesson[hidden] { display: none; }
+.english-lesson-open .rstage, .english-lesson-open .reader-mobile-actions, .english-lesson-open .rfoot { display: none; }
+.english-lesson-open .english-reader-dock { margin-bottom: 18px; }
+.english-lesson-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0 20px; }
+.english-back { display: flex; gap: 6px; align-items: center; border: 0; background: none; color: #48736d; font-size: 13px; font-weight: 750; padding: 8px 0; }
+.english-back svg { width: 17px; height: 17px; }
+.english-lesson-top > span { color: #8c9c86; font-size: 11px; letter-spacing: .16em; font-weight: 800; }
+.english-lesson-heading { margin-bottom: 23px; }
+.english-lesson-heading small { color: #ae781f; font-weight: 800; letter-spacing: .16em; font-size: 10px; }
+.english-lesson-heading h1 { font: 800 clamp(26px, 3.4vw, 43px)/1.2 var(--display); letter-spacing: -.035em; margin: 8px 0; color: #123f43; }
+.english-lesson-heading h1:focus { outline: none; }
+.english-lesson-heading p { color: #74867c; font-size: 14px; margin: 0; }
+.english-lesson-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr); gap: 28px; align-items: start; }
+.english-hero { display: block; position: relative; padding: 0; width: 100%; border: 8px solid white; background: #edf4dc; border-radius: 23px; overflow: hidden; aspect-ratio: 1.13; box-shadow: 0 12px 30px #224b3a0d; cursor: pointer; }
+.english-hero img { display: block; width: 100%; position: absolute; top: 0; left: 0; }
+.english-hero-play { position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 68px; border-radius: 50%; display: grid; place-items: center; background: #fffef1ee; color: #10665e; box-shadow: 0 4px 24px #173f3a30; }
+.english-hero-play svg { width: 30px; height: 30px; fill: currentColor; }
+.english-hero-caption { position: absolute; bottom: 0; inset-inline: 0; padding: 13px; background: #11665ff0; color: white; font-size: 13px; font-weight: 750; }
+.english-lesson-video { overflow: hidden; border: 8px solid #fff; border-radius: 22px; background: #fff; box-shadow: 0 12px 30px #224b3a0d; }
+.english-lesson-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #152b2b; }
+.english-lesson-video p { margin: 0; padding: 13px 10px 6px; color: #607b70; font-size: 12px; font-weight: 700; }
+.english-video-unavailable { background: #e8efdd; padding: 40px 24px; border-radius: 20px; color: #4b6d5c; }
+.english-video-unavailable b { font-size: 45px; }
+.english-word-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+.english-word-list button { border: 1px solid #dce5d5; color: #466c5e; background: #fffdf7; padding: 8px 15px; border-radius: 99px; font-size: 13px; font-weight: 700; text-transform: capitalize; }
+.english-word-list button:hover { background: #e7efd9; }
+.english-lesson-actions { display: grid; gap: 10px; }
+.english-activity { display: flex; gap: 14px; align-items: center; width: 100%; text-align: left; border: 1px solid #e1e7dc; padding: 16px; background: #fffdf7; border-radius: 18px; color: #214d48; transition: transform .15s, box-shadow .15s; }
+.english-activity:hover { transform: translateY(-2px); box-shadow: 0 6px 18px #153d3510; }
+.english-activity-icon { width: 43px; height: 43px; flex: none; background: var(--tile); color: var(--tile-ink); border-radius: 13px; display: grid; place-items: center; font-size: 22px; font-weight: 800; }
+.english-activity-icon svg { width: 23px; height: 23px; fill: currentColor; }
+.english-activity-copy { flex: 1; min-width: 0; }
+.english-activity b { display: block; font-size: 15px; margin-bottom: 5px; }
+.english-activity small { color: #839084; font-size: 12px; line-height: 1.4; display: block; }
+.english-activity > span:last-child { display: grid; place-items: center; }
+.english-activity > span:last-child svg { width: 16px; height: 16px; color: #99aa98; }
+.english-lesson-note { font-size: 11px; color: #8b9b87; margin: 15px 0 0; text-align: center; }
+.english-drawing-card { width: min(900px, 95vw); background: #f6f5ec; }
+.english-drawing-card h3 { font: 800 25px var(--display); margin: 0 0 4px; }
+.english-drawing-card > p { color: #798e81; font-size: 13px; margin: 0 0 14px; }
+.english-drawing-board { position: relative; width: 100%; aspect-ratio: 10/7; max-height: 60dvh; background: #fff; border: 1px solid #dbe3d6; border-radius: 14px; overflow: hidden; }
+.english-drawing-card .tools { color: #234f46; margin-top: 12px; background: #e7eddf; }
+.english-drawing-card .tools .sz i { background: #205f58; }
+.english-drawing-card .tools .txt { background: #fffdf8; }
+@media (max-width: 1050px) {
+  .english-reader-layout { padding: 12px 12px 0; gap: 10px; }
+  .english-letter-rail { width: 65px; padding: 10px 5px; }
+  .english-lesson { padding: 0 8px 18px; }
+  .english-lesson-grid { gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(220px, 1fr); }
+  .english-activity { padding: 12px; gap: 9px; }
+  .english-reader-dock button { padding: 9px 10px; }
+}
+@media (max-width: 680px) {
+  .english-reader-layout { flex-wrap: wrap; gap: 8px; padding: 8px; overflow: auto; }
+  .english-letter-rail { width: calc(50% - 4px); max-height: 62px; flex-direction: row; border-radius: 14px; overflow-x: auto; overflow-y: hidden; padding: 6px; order: 0; }
+  .english-letter-rail > small { display: none; }
+  .english-letter { flex: 0 0 42px; min-height: 40px; }
+  .english-reader-center { flex: 1 0 100%; min-height: calc(100% - 70px); order: 1; }
+  .english-lesson-grid { grid-template-columns: 1fr; }
+  .english-lesson-heading h1 { font-size: 30px; }
+  .english-hero { max-width: 460px; margin: auto; }
+  .english-reader-dock { gap: 2px; padding: 5px; border-radius: 13px; }
+  .english-reader-dock button { font-size: 11px; padding: 8px 7px; gap: 4px; }
+  .english-reader-dock svg { width: 15px; height: 15px; }
+  .english-learning .rstage { min-height: 300px; }
+  .english-learning .book { width: 100%; }
+  .english-learning .book-wrap { position: static; top: auto; left: auto; width: auto; height: auto; transform: none; margin: 0; }
+  .english-learning .rbar { min-height: 54px; padding: 8px; gap: 6px; }
+  .english-learning .rbar b { font-size: 13px; }
+  .english-learning .rbar .btn { font-size: 11px; padding: 6px; }
+  .english-learning .r-pages { font-size: 10px; }
+}
+@media (orientation: portrait) and (max-width: 820px) {
+  .english-learning .book-wrap { position: static; top: auto; left: auto; width: auto; height: auto; transform: none; }
+  .english-learning .book { width: 100%; }
+  body:has(.english-learning) .modal .video-card,
+  body:has(.english-learning) .game-card,
+  body:has(.english-learning) .story-card { position: relative; left: auto; top: auto; transform: none; width: min(760px, calc(100vw - 30px)); max-height: calc(100dvh - 30px); overflow: auto; }
+  body:has(.english-learning) .game-scene { max-height: 48dvh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .english-activity, .english-letter { transition: none; }
+}

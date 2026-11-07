@@ -2575,98 +2575,34 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
  },
  "17": [
   {
-   "type": "story",
-   "label": "سیکھیں ٹ",
-   "icon": "🔤",
-   "title": "حرف ٹے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ٹے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 17,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ٹے ہے۔ میرے ساتھ کہیں: ٹے، ٹے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/e4815ka_wq8"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ٹے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 17,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ٹوکری میں ٹماٹر ہیں۔"
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ٹے سے ٹوکری۔"
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ٹے سے ٹماٹر۔"
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ٹے سے ٹرک۔"
-    },
-    {
-     "page": 17,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ٹوکری، ٹماٹر، ٹرک۔ یہ سب ٹے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/72_5cYtQ_Wk"
     }
    ]
   },
@@ -3133,102 +3069,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#e63946",
    "#43aa8b"
-  ]
+  ],
+  "video": {
+   "title": "How to write ٹے",
+   "src": "https://youtu.be/_UXlxnjoG20"
+  }
  },
  "19": [
   {
-   "type": "story",
-   "label": "سیکھیں ث",
-   "icon": "🔤",
-   "title": "حرف ثے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ثے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 19,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ثے ہے۔ میرے ساتھ کہیں: ثے، ثے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/U-6gVehLAIE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ثے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 19,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ثنا نے ٹوکری میں ثمر سجایا۔"
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ثے سے ثنا۔"
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ثے سے ثمر۔"
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ثے سے ثابت انڈا۔"
-    },
-    {
-     "page": 19,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ثنا، ثمر، ثابت انڈا۔ یہ سب ثے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/vzf4tiGfZxQ"
     }
    ]
   },
@@ -3695,102 +3571,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#d4a373"
-  ]
+  ],
+  "video": {
+   "title": "How to write ثے",
+   "src": "https://youtu.be/74xjpzid3qo"
+  }
  },
  "23": [
   {
-   "type": "story",
-   "label": "سیکھیں ج",
-   "icon": "🔤",
-   "title": "حرف جیم",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: جیم",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 23,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف جیم ہے۔ میرے ساتھ کہیں: جیم، جیم!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/2o_Ce5l8VSw"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: جیم",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 23,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "جویریہ اور جاوید نے جہاز کو دیکھا۔"
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "جیم سے جہاز۔"
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "جیم سے جگ۔"
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "جیم سے جلیبی۔"
-    },
-    {
-     "page": 23,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "جہاز، جگ، جلیبی۔ یہ سب جیم سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/SDvuQ0-BcDw"
     }
    ]
   },
@@ -4257,102 +4073,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#4aa3df",
    "#90e0ef"
-  ]
+  ],
+  "video": {
+   "title": "How to write جیم",
+   "src": "https://youtu.be/Gl4KN7nNLh8"
+  }
  },
  "25": [
   {
-   "type": "story",
-   "label": "سیکھیں چ",
-   "icon": "🔤",
-   "title": "حرف چے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: چے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 25,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف چے ہے۔ میرے ساتھ کہیں: چے، چے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/2T8qSDwWZ3A"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: چے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 25,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "چاند کے پاس چوزہ اور چابی ہے۔"
-    },
-    {
-     "page": 25,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چے سے چوزہ۔"
-    },
-    {
-     "page": 25,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چے سے چابی۔"
-    },
-    {
-     "page": 25,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چے سے چائے۔"
-    },
-    {
-     "page": 25,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "چوزہ، چابی، چائے۔ یہ سب چے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/NK0uUztEsTo"
     }
    ]
   },
@@ -4818,102 +4574,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#f9c74f"
-  ]
+  ],
+  "video": {
+   "title": "How to write چے",
+   "src": "https://youtu.be/Y-Ma704I67Q"
+  }
  },
  "27": [
   {
-   "type": "story",
-   "label": "سیکھیں ح",
-   "icon": "🔤",
-   "title": "حرف بڑی حے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: بڑی حے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 27,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف بڑی حے ہے۔ میرے ساتھ کہیں: بڑی حے، بڑی حے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/AJNxglM9Pjo"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: بڑی حے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 27,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "حلوائی نے حلوا پکایا۔"
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "بڑی حے سے حلوائی۔"
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "بڑی حے سے حلوا۔"
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "بڑی حے سے حجام۔"
-    },
-    {
-     "page": 27,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "حلوائی، حلوا، حجام۔ یہ سب بڑی حے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/dOOIGhcqKbY"
     }
    ]
   },
@@ -5380,102 +5076,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#4aa3df",
    "#f9c74f"
-  ]
+  ],
+  "video": {
+   "title": "How to write بڑی حے",
+   "src": "https://youtu.be/a8EtbFrWNMc"
+  }
  },
  "29": [
   {
-   "type": "story",
-   "label": "سیکھیں خ",
-   "icon": "🔤",
-   "title": "حرف خے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: خے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 29,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف خے ہے۔ میرے ساتھ کہیں: خے، خے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/FMUhda-nRyk"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: خے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 29,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "خرگوش نے خربوزہ کھایا۔"
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "خے سے خط۔"
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "خے سے خربوزہ۔"
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "خے سے خرگوش۔"
-    },
-    {
-     "page": 29,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "خط، خربوزہ، خرگوش۔ یہ سب خے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/hNh7LmdlcSo"
     }
    ]
   },
@@ -5942,102 +5578,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f9c74f",
    "#8d5524"
-  ]
+  ],
+  "video": {
+   "title": "How to write خے",
+   "src": "https://youtu.be/HQhdyh95Gr4"
+  }
  },
  "33": [
   {
-   "type": "story",
-   "label": "سیکھیں د",
-   "icon": "🔤",
-   "title": "حرف دال",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: دال",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 33,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف دال ہے۔ میرے ساتھ کہیں: دال، دال!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/OFmYDB0KC34"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: دال",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 33,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "دانیہ نے دادا جان کو دلیہ دیا۔"
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "دال سے درزی۔"
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "دال سے دلیہ۔"
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "دال سے درخت۔"
-    },
-    {
-     "page": 33,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "درزی، دلیہ، درخت۔ یہ سب دال سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/5pxem931WGY"
     }
    ]
   },
@@ -6504,102 +6080,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#43aa8b",
    "#8d5524"
-  ]
+  ],
+  "video": {
+   "title": "How to write دال",
+   "src": "https://youtu.be/aVdyq-BPm_k"
+  }
  },
  "35": [
   {
-   "type": "story",
-   "label": "سیکھیں ڈ",
-   "icon": "🔤",
-   "title": "حرف ڈال",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ڈال",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 35,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ڈال ہے۔ میرے ساتھ کہیں: ڈال، ڈال!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/SMA9C18By_o"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ڈال",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 35,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ڈاکیا ڈاک خانے سے ڈاک لایا۔"
-    },
-    {
-     "page": 35,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ڈال سے ڈاکیا۔"
-    },
-    {
-     "page": 35,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ڈال سے ڈول۔"
-    },
-    {
-     "page": 35,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ڈال سے ڈبہ۔"
-    },
-    {
-     "page": 35,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ڈاکیا، ڈول، ڈبہ۔ یہ سب ڈال سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/VVHQatpFUns"
     }
    ]
   },
@@ -7067,88 +6583,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#e63946",
    "#f9c74f",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write ڈال",
+   "src": "https://youtu.be/8V8FYfwNhqA"
+  }
  },
  "37": [
   {
-   "type": "story",
-   "label": "سیکھیں ذ",
-   "icon": "🔤",
-   "title": "حرف ذال",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ذال",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 37,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ذال ہے۔ میرے ساتھ کہیں: ذال، ذال!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/L5kkFrxrN-M"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ذال",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 37,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ذرار ذخیرہ سے ذرات دیکھ رہا ہے۔"
-    },
-    {
-     "page": 37,
-     "from": {
-      "cx": 74.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 74.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ذال سے ذرات۔"
-    },
-    {
-     "page": 37,
-     "from": {
-      "cx": 27.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 27.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ذال سے ذخیرہ۔"
-    },
-    {
-     "page": 37,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ذرات، ذخیرہ۔ یہ سب ذال سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/_j6QjTpglmQ"
     }
    ]
   },
@@ -7608,102 +7078,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#8d5524",
    "#d4a373",
    "#f9c74f"
-  ]
+  ],
+  "video": {
+   "title": "How to write ذال",
+   "src": "https://youtu.be/000QEGnRCRM"
+  }
  },
  "39": [
   {
-   "type": "story",
-   "label": "سیکھیں ر",
-   "icon": "🔤",
-   "title": "حرف رے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: رے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 39,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف رے ہے۔ میرے ساتھ کہیں: رے، رے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/OdjxXS12oMw"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: رے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 39,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ریل گاڑی رکشا سے تیز چلی۔"
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "رے سے رکشا۔"
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "رے سے رسی۔"
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "رے سے رومال۔"
-    },
-    {
-     "page": 39,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "رکشا، رسی، رومال۔ یہ سب رے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/crjwkfc4R-M"
     }
    ]
   },
@@ -8171,102 +7581,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#43aa8b",
    "#f9c74f",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "How to write رے",
+   "src": "https://youtu.be/xwGbiLjVQaw"
+  }
  },
  "41": [
   {
-   "type": "story",
-   "label": "سیکھیں ڑ",
-   "icon": "🔤",
-   "title": "حرف ڑے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ڑے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 41,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ڑے ہے۔ میرے ساتھ کہیں: ڑے، ڑے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Apd1En8Tg9A"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ڑے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 41,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "گاڑی چلی پہاڑوں کے درمیان۔"
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چڑیا۔"
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "گاڑی۔"
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "پہاڑ۔"
-    },
-    {
-     "page": 41,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "چڑیا، گاڑی، پہاڑ۔ ان سب میں حرف ڑے آتا ہے۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/4lVBw-jkCkU"
     }
    ]
   },
@@ -8734,102 +8084,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#9aa5b1",
    "#8d5524",
    "#90e0ef"
-  ]
+  ],
+  "video": {
+   "title": "How to write ڑے",
+   "src": "https://youtu.be/RFqIV0pkZKc"
+  }
  },
  "43": [
   {
-   "type": "story",
-   "label": "سیکھیں ز",
-   "icon": "🔤",
-   "title": "حرف زے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: زے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 43,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف زے ہے۔ میرے ساتھ کہیں: زے، زے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/QRPTso_dD6M"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: زے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 43,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "زرافہ زیبرا سے لمبا ہے۔"
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "زے سے زنجیر۔"
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "زے سے زیور۔"
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "زے سے زیبرا۔"
-    },
-    {
-     "page": 43,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "زنجیر، زیور، زیبرا۔ یہ سب زے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/dfkSeU8plds"
     }
    ]
   },
@@ -9295,88 +8585,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   ],
   "colours": [
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "How to write زے",
+   "src": "https://youtu.be/5Wdfk6wpZY4"
+  }
  },
  "45": [
   {
-   "type": "story",
-   "label": "سیکھیں ژ",
-   "icon": "🔤",
-   "title": "حرف ژے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ژے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 45,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ژے ہے۔ میرے ساتھ کہیں: ژے، ژے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/gjDqhfKtXZs"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ژے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 45,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "اژدھا بچ گیا ژالہ باری سے۔"
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 74.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 74.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ٹیلی ویژن۔"
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 27.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 27.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ژالہ باری۔"
-    },
-    {
-     "page": 45,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ٹیلی ویژن، ژالہ باری۔ ان سب میں حرف ژے آتا ہے۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/Yg9EAchT4TE"
     }
    ]
   },
@@ -9809,102 +9053,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#4aa3df",
    "#8d5524",
    "#43aa8b"
-  ]
+  ],
+  "video": {
+   "title": "How to write ژے",
+   "src": "https://youtu.be/oPhYPZy7pTI"
+  }
  },
  "49": [
   {
-   "type": "story",
-   "label": "سیکھیں س",
-   "icon": "🔤",
-   "title": "حرف سین",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: سین",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 49,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف سین ہے۔ میرے ساتھ کہیں: سین، سین!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/4OZe2eIua6k"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: سین",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 49,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "سائیکل پر سیب رکھے ہیں۔"
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "سین سے سیب۔"
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "سین سے سورج۔"
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "سین سے سائیکل۔"
-    },
-    {
-     "page": 49,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "سیب، سورج، سائیکل۔ یہ سب سین سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/AUQw7qsa74A"
     }
    ]
   },
@@ -10371,102 +9555,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f9c74f",
    "#f4a261"
-  ]
+  ],
+  "video": {
+   "title": "How to write سین",
+   "src": "https://youtu.be/EeHzh9U5aPs"
+  }
  },
  "51": [
   {
-   "type": "story",
-   "label": "سیکھیں ش",
-   "icon": "🔤",
-   "title": "حرف شین",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: شین",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 51,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف شین ہے۔ میرے ساتھ کہیں: شین، شین!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/5I3S2hqpT0U"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: شین",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 51,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "شیر شہد کھا رہا ہے۔"
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "شین سے شہد۔"
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "شین سے شلجم۔"
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "شین سے شیر۔"
-    },
-    {
-     "page": 51,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "شہد، شلجم، شیر۔ یہ سب شین سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/gGpzdCht5Mg"
     }
    ]
   },
@@ -10934,102 +10058,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#f4a261",
    "#f9c74f",
    "#8d5524"
-  ]
+  ],
+  "video": {
+   "title": "How to write شین",
+   "src": "https://youtu.be/r4T0yLpZpyM"
+  }
  },
  "53": [
   {
-   "type": "story",
-   "label": "سیکھیں ص",
-   "icon": "🔤",
-   "title": "حرف صاد",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: صاد",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 53,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف صاد ہے۔ میرے ساتھ کہیں: صاد، صاد!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Vi4ZjB9P0_Q"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: صاد",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 53,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "صراحی کے پاس صابن پڑا ہے۔"
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "صاد سے صراحی۔"
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "صاد سے صابن۔"
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "صاد سے صندوق۔"
-    },
-    {
-     "page": 53,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "صراحی، صابن، صندوق۔ یہ سب صاد سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/ciVxqbfwTEw"
     }
    ]
   },
@@ -11496,102 +10560,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#f4a261"
-  ]
+  ],
+  "video": {
+   "title": "How to write صاد",
+   "src": "https://youtu.be/1jWQkHivjGY"
+  }
  },
  "55": [
   {
-   "type": "story",
-   "label": "سیکھیں ض",
-   "icon": "🔤",
-   "title": "حرف ضاد",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ضاد",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 55,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ضاد ہے۔ میرے ساتھ کہیں: ضاد، ضاد!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/CPiRd-vigwI"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ضاد",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 55,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ضعیف ضیافت کھا رہے ہیں۔"
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ضاد سے ضعیف۔"
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ضاد سے ضیافت۔"
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ضاد سے ضرب۔"
-    },
-    {
-     "page": 55,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ضعیف، ضیافت، ضرب۔ یہ سب ضاد سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/2zGIABVoLo4"
     }
    ]
   },
@@ -12032,102 +11036,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#d4a373",
    "#9aa5b1",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write ضاد",
+   "src": "https://youtu.be/pM9RgCksXIQ"
+  }
  },
  "59": [
   {
-   "type": "story",
-   "label": "سیکھیں ط",
-   "icon": "🔤",
-   "title": "حرف طوئے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: طوئے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 59,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف طوئے ہے۔ میرے ساتھ کہیں: طوئے، طوئے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/zcXDkv7WGaw"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: طوئے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 59,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "طاہر طیارے کے پاس کھڑا ہے۔"
-    },
-    {
-     "page": 59,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "طوئے سے طالب علم۔"
-    },
-    {
-     "page": 59,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "طوئے سے طیارہ۔"
-    },
-    {
-     "page": 59,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "طوئے سے طوطا۔"
-    },
-    {
-     "page": 59,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "طالب علم، طیارہ، طوطا۔ یہ سب طوئے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/U4z2Oi5dfkI"
     }
    ]
   },
@@ -12594,88 +11538,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#9aa5b1",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write طوئے",
+   "src": "https://youtu.be/tCSN7QC8gt4"
+  }
  },
  "61": [
   {
-   "type": "story",
-   "label": "سیکھیں ظ",
-   "icon": "🔤",
-   "title": "حرف ظوئے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ظوئے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 61,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ظوئے ہے۔ میرے ساتھ کہیں: ظوئے، ظوئے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/NpH_LxV2bUc"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ظوئے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 61,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ظریف ظروف لینے گیا۔"
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 74.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 74.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ظوئے سے ظریف۔"
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 27.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 27.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "ظوئے سے ظروف۔"
-    },
-    {
-     "page": 61,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ظریف، ظروف۔ یہ سب ظوئے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/LhGz73lmPf8"
     }
    ]
   },
@@ -13134,102 +12032,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#9aa5b1",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write ظوئے",
+   "src": "https://youtu.be/L8g9-rqKibg"
+  }
  },
  "63": [
   {
-   "type": "story",
-   "label": "سیکھیں ع",
-   "icon": "🔤",
-   "title": "حرف عین",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: عین",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 63,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف عین ہے۔ میرے ساتھ کہیں: عین، عین!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Heh5fIoM9oE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: عین",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 63,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "عورت عمارت کے پاس کھڑی ہے۔"
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "عین سے عورت۔"
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "عین سے عینک۔"
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "عین سے عقاب۔"
-    },
-    {
-     "page": 63,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "عورت، عینک، عقاب۔ یہ سب عین سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/zli0vD5lFgg"
     }
    ]
   },
@@ -13696,102 +12534,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#f9c74f"
-  ]
+  ],
+  "video": {
+   "title": "How to write عین",
+   "src": "https://youtu.be/B2uUfY6jKWw"
+  }
  },
  "65": [
   {
-   "type": "story",
-   "label": "سیکھیں غ",
-   "icon": "🔤",
-   "title": "حرف غین",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: غین",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 65,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف غین ہے۔ میرے ساتھ کہیں: غین، غین!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/3prnr6zwzSc"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: غین",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 65,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "غلیل سے غبارے کو نشانہ لگایا۔"
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "غین سے غبارہ۔"
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "غین سے غلیل۔"
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "غین سے غالیچہ۔"
-    },
-    {
-     "page": 65,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "غبارہ، غلیل، غالیچہ۔ یہ سب غین سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/miR57kxPqSA"
     }
    ]
   },
@@ -14258,102 +13036,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#e63946",
    "#f9c74f"
-  ]
+  ],
+  "video": {
+   "title": "How to write غین",
+   "src": "https://youtu.be/D-W0ikzdw70"
+  }
  },
  "69": [
   {
-   "type": "story",
-   "label": "سیکھیں ف",
-   "icon": "🔤",
-   "title": "حرف فے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: فے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 69,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف فے ہے۔ میرے ساتھ کہیں: فے، فے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/bJ3hKWH05Qs"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: فے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 69,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "فاطمہ فاختہ کے ساتھ کھیل رہی ہے۔"
-    },
-    {
-     "page": 69,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "فے سے فراک۔"
-    },
-    {
-     "page": 69,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "فے سے فاختہ۔"
-    },
-    {
-     "page": 69,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "فے سے فصل۔"
-    },
-    {
-     "page": 69,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "فراک، فاختہ، فصل۔ یہ سب فے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/PMKa-L95vGI"
     }
    ]
   },
@@ -14820,102 +13538,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#ff8fab",
    "#7b5ea7"
-  ]
+  ],
+  "video": {
+   "title": "How to write فے",
+   "src": "https://youtu.be/ZzAPAfSGp7Y"
+  }
  },
  "71": [
   {
-   "type": "story",
-   "label": "سیکھیں ق",
-   "icon": "🔤",
-   "title": "حرف قاف",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: قاف",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 71,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف قاف ہے۔ میرے ساتھ کہیں: قاف، قاف!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Bq0kU0TzNFk"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: قاف",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 71,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "قندیل قلم سے لکھ رہی ہے۔"
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "قاف سے قلم۔"
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "قاف سے قلفی۔"
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "قاف سے قلعہ۔"
-    },
-    {
-     "page": 71,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "قلم، قلفی، قلعہ۔ یہ سب قاف سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/fI2bfRHXO04"
     }
    ]
   },
@@ -15382,102 +14040,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#e63946",
    "#9aa5b1"
-  ]
+  ],
+  "video": {
+   "title": "How to write قاف",
+   "src": "https://youtu.be/zazq2DiLmwk"
+  }
  },
  "73": [
   {
-   "type": "story",
-   "label": "سیکھیں ک",
-   "icon": "🔤",
-   "title": "حرف کاف",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: کاف",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 73,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف کاف ہے۔ میرے ساتھ کہیں: کاف، کاف!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/2w1FkRMrQvo"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: کاف",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 73,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "کرن کتاب پڑھ رہی ہے۔"
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "کاف سے کیلا۔"
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "کاف سے کشتی۔"
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "کاف سے کنگھی۔"
-    },
-    {
-     "page": 73,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "کیلا، کشتی، کنگھی۔ یہ سب کاف سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/oWpxsN2FLME"
     }
    ]
   },
@@ -15944,102 +14542,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f9c74f",
    "#43aa8b"
-  ]
+  ],
+  "video": {
+   "title": "How to write کاف",
+   "src": "https://youtu.be/zazq2DiLmwk"
+  }
  },
  "75": [
   {
-   "type": "story",
-   "label": "سیکھیں گ",
-   "icon": "🔤",
-   "title": "حرف گاف",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: گاف",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 75,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف گاف ہے۔ میرے ساتھ کہیں: گاف، گاف!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/y--ERheNhWg"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: گاف",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 75,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "گائے نے گاجر کھائی۔"
-    },
-    {
-     "page": 75,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "گاف سے گاجر۔"
-    },
-    {
-     "page": 75,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "گاف سے گلاب۔"
-    },
-    {
-     "page": 75,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "گاف سے گیند۔"
-    },
-    {
-     "page": 75,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "گاجر، گلاب، گیند۔ یہ سب گاف سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/9MnL5Glziw4"
     }
    ]
   },
@@ -16506,102 +15044,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f4a261",
    "#43aa8b"
-  ]
+  ],
+  "video": {
+   "title": "How to write گاف",
+   "src": "https://youtu.be/C9mFiLBlTI4"
+  }
  },
  "77": [
   {
-   "type": "story",
-   "label": "سیکھیں ل",
-   "icon": "🔤",
-   "title": "حرف لام",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: لام",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 77,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف لام ہے۔ میرے ساتھ کہیں: لام، لام!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/Tlv_4ene_5Y"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: لام",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 77,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "لیاقت لالٹین کے پاس بیٹھا لڈو کھا رہا ہے۔"
-    },
-    {
-     "page": 77,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "لام سے لڈو۔"
-    },
-    {
-     "page": 77,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "لام سے لٹو۔"
-    },
-    {
-     "page": 77,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "لام سے لیموں۔"
-    },
-    {
-     "page": 77,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "لڈو، لٹو، لیموں۔ یہ سب لام سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/ymqj-Yfz0MI"
     }
    ]
   },
@@ -17069,102 +15547,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#e63946",
    "#f9c74f",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write لام",
+   "src": "https://youtu.be/n0fMaZw242A"
+  }
  },
  "79": [
   {
-   "type": "story",
-   "label": "سیکھیں م",
-   "icon": "🔤",
-   "title": "حرف میم",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: میم",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 79,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف میم ہے۔ میرے ساتھ کہیں: میم، میم!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/NV5-PIkgtEM"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: میم",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 79,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "مور نے مچھلی کو دیکھا۔"
-    },
-    {
-     "page": 79,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "میم سے مرغی۔"
-    },
-    {
-     "page": 79,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "میم سے مچھلی۔"
-    },
-    {
-     "page": 79,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "میم سے موم بتی۔"
-    },
-    {
-     "page": 79,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "مرغی، مچھلی، موم بتی۔ یہ سب میم سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/eqjQ7RcD89w"
     }
    ]
   },
@@ -17631,102 +16049,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#f4a261",
    "#43aa8b"
-  ]
+  ],
+  "video": {
+   "title": "How to write میم",
+   "src": "https://youtu.be/wTzhB4gJ2js"
+  }
  },
  "83": [
   {
-   "type": "story",
-   "label": "سیکھیں ن",
-   "icon": "🔤",
-   "title": "حرف نون",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: نون",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 83,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف نون ہے۔ میرے ساتھ کہیں: نون، نون!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/2FOVSsunrtc"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: نون",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 83,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "بھائی نے ناشپاتی اور ناریل خریدے۔"
-    },
-    {
-     "page": 83,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "نون سے ناشپاتی۔"
-    },
-    {
-     "page": 83,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "نون سے ناریل۔"
-    },
-    {
-     "page": 83,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "نون سے نلکا۔"
-    },
-    {
-     "page": 83,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "ناشپاتی، ناریل، نلکا۔ یہ سب نون سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/XcctjIIZ7Gg"
     }
    ]
   },
@@ -18193,102 +16551,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#d4a373"
-  ]
+  ],
+  "video": {
+   "title": "How to write نون",
+   "src": "https://youtu.be/SaF2IWNCI8Y"
+  }
  },
  "85": [
   {
-   "type": "story",
-   "label": "سیکھیں و",
-   "icon": "🔤",
-   "title": "حرف واؤ",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: واؤ",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 85,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف واؤ ہے۔ میرے ساتھ کہیں: واؤ، واؤ!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/IYqyzWziB_g"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: واؤ",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 85,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "ویگن میں وادی کی سیر کی۔"
-    },
-    {
-     "page": 85,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "واؤ سے وین۔"
-    },
-    {
-     "page": 85,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "واؤ سے ورق۔"
-    },
-    {
-     "page": 85,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "واؤ سے وردی۔"
-    },
-    {
-     "page": 85,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "وین، ورق، وردی۔ یہ سب واؤ سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/hKy1a8dOMRE"
     }
    ]
   },
@@ -18755,7 +17053,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#4aa3df",
    "#9aa5b1"
-  ]
+  ],
+  "video": {
+   "title": "How to write واؤ",
+   "src": "https://youtu.be/-vKD7_ilPpk"
+  }
  },
  "87": [
   {
@@ -19320,98 +17622,34 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
  },
  "89": [
   {
-   "type": "story",
-   "label": "سیکھیں ء",
-   "icon": "🔤",
-   "title": "حرف ہمزہ",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ہمزہ",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 89,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف ہمزہ ہے۔ میرے ساتھ کہیں: ہمزہ، ہمزہ!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/fQqR41rKjGM"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ہمزہ",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 89,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "بھائی آئس کریم لائے اور ہم نے مٹھائی کھائی۔"
-    },
-    {
-     "page": 89,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "گائے۔"
-    },
-    {
-     "page": 89,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "مٹھائی۔"
-    },
-    {
-     "page": 89,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "رضائی۔"
-    },
-    {
-     "page": 89,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "گائے، مٹھائی، رضائی۔ ان سب میں حرف ہمزہ آتا ہے۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/XY0zjN7QFw8"
     }
    ]
   },
@@ -19878,102 +18116,42 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
   "colours": [
    "#8d5524",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write ہمزہ",
+   "src": "https://youtu.be/yzVnaAdH9J4"
+  }
  },
  "91": [
   {
-   "type": "story",
-   "label": "سیکھیں ی",
-   "icon": "🔤",
-   "title": "حرف چھوٹی یے، بڑی یے",
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: چھوٹی یے، بڑی یے",
    "button": {
     "x": 11.5,
-    "y": 23
+    "y": 33
    },
-   "scenes": [
+   "videos": [
     {
-     "page": 91,
-     "from": {
-      "cx": 80,
-      "cy": 15,
-      "w": 40
-     },
-     "to": {
-      "cx": 82,
-      "cy": 15,
-      "w": 28
-     },
-     "text": "یہ حرف چھوٹی یے، بڑی یے ہے۔ میرے ساتھ کہیں: چھوٹی یے، بڑی یے، چھوٹی یے، بڑی یے!"
-    },
+     "title": "Story",
+     "src": "https://youtu.be/JoBuLceIDjY"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: چھوٹی یے، بڑی یے",
+   "button": {
+    "x": 11.5,
+    "y": 43
+   },
+   "videos": [
     {
-     "page": 91,
-     "from": {
-      "cx": 50,
-      "cy": 40,
-      "w": 90
-     },
-     "to": {
-      "cx": 50,
-      "cy": 40,
-      "w": 66
-     },
-     "text": "یاور نے یکہ کی سواری کی۔"
-    },
-    {
-     "page": 91,
-     "from": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 80.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چھوٹی یے، بڑی یے سے یاسمین۔"
-    },
-    {
-     "page": 91,
-     "from": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 50.0,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چھوٹی یے، بڑی یے سے یکہ۔"
-    },
-    {
-     "page": 91,
-     "from": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 38
-     },
-     "to": {
-      "cx": 19.5,
-      "cy": 72,
-      "w": 30
-     },
-     "text": "چھوٹی یے، بڑی یے سے یادگار۔"
-    },
-    {
-     "page": 91,
-     "from": {
-      "cx": 50,
-      "cy": 72,
-      "w": 100
-     },
-     "to": {
-      "cx": 50,
-      "cy": 72,
-      "w": 90
-     },
-     "text": "یاسمین، یکہ، یادگار۔ یہ سب چھوٹی یے، بڑی یے سے شروع ہوتے ہیں۔"
+     "title": "Vocabulary",
+     "src": "https://youtu.be/rbdPJndvwMQ"
     }
    ]
   },
@@ -20441,6 +18619,10 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
    "#8d5524",
    "#9aa5b1",
    "#f9c74f"
-  ]
+  ],
+  "video": {
+   "title": "How to write چھوٹی یے، بڑی یے",
+   "src": "https://youtu.be/m1dAALoV24c"
+  }
  }
 };

@@ -10,6 +10,7 @@ On each trace page: "Show me how", where the pen fills the two big letters and t
 import glob
 import json
 import os
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -192,12 +193,7 @@ def lesson_folder(folder):
 
 # The publisher's unlisted YouTube copies (same videos and lengths as the files), used before the files so they
 # play on every device. Pay's "activity.mp4" is its Vocabulary lesson.
-YOUTUBE = {
-    '01 alif': {'Story': '73iCUzD0gbM', 'Vocabulary': 'jELWFLxzA_4', 'Formation': 'o5-K4jYeAAU'},
-    '03 bay': {'Story': 'rha2EccIGh8', 'Vocabulary': 'mp44bnHr2kg', 'Formation': 'GQDQ7Nd6okE'},
-    '04 pay': {'Story': 'dlZ_kRIk3q8', 'Vocabulary': 'eKkFbj-plKA', 'Formation': 'qKuzEjCkJok'},
-    '05 tay': {'Story': 'uYMM8Ace9Y8', 'Vocabulary': 'kjSYtJMVtWk', 'Formation': 'U7C_J0c2ILc'},
-}
+YOUTUBE = json.loads((Path(__file__).resolve().parents[1] / 'books' / 'urdu3-videos.json').read_text(encoding='utf-8'))
 
 
 def videos(folder, names):
