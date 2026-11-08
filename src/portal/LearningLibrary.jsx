@@ -5,8 +5,8 @@ import { BookTile } from './BookCollection.jsx';
 import { EmptyState } from './Shared.jsx';
 import { LibraryBookIcon } from './LibraryIcons.jsx';
 import { LearningIllustration } from './LearningIllustration.jsx';
+import { LearningLandscape, LearningScenery } from './LearningScenery.jsx';
 import classSelectionTemplate from '../../assets/class-selection-template.png';
-import openBookTemplate from '../../assets/open-book-template.png';
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
   const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
@@ -32,8 +32,9 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
   }, [segments.join('/')]);
 
   return (
-    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--open-template': step === 2 ? `url("${openBookTemplate}")` : undefined }}>
-      <a className="school-back" href={backHref} aria-label={step === 0 ? 'Back to dashboard' : 'Back to previous selection'}>←</a>
+    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")` }}>
+      <LearningScenery />
+      <div className="library-navigation"><a className="library-back-link" href={backHref}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg><span>{step === 0 ? 'Back to dashboard' : step === 1 ? 'Back to classes' : 'Back to subjects'}</span></a></div>
       <header className="library-heading portal-panel">
         <span className="library-heading-icon"><LibraryBookIcon /></span>
         <div>
@@ -79,8 +80,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
           )}
         </>
       )}
-      {step < 2 && <div className="library-class-footer" aria-hidden="true" />}
-      {step === 2 && <div className="library-open-footer" aria-hidden="true" />}
+      <LearningLandscape />
     </div>
   );
 }
