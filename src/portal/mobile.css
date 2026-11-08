@@ -74,9 +74,6 @@
   .login-panel { order: 0; width: 100%; padding: 24px 20px; }
   .login-story { order: 1; }
   .login-story h1 { font-size: 2.4rem; }
-  .login-covers { max-width: 280px; }
-  .login-covers img { height: 105px; }
-  .login-covers img:nth-child(2) { height: 125px; }
   .user-welcome { padding: 24px 20px; border-radius: 18px; }
   .user-welcome h1 { font-size: 1.65rem; overflow-wrap: anywhere; }
   .learning-entry { padding: 20px 16px; gap: 12px; }

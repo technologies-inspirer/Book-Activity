@@ -1,6 +1,7 @@
 import { useDemo } from './DemoContext.jsx';
 import { LibraryBookIcon } from './LibraryIcons.jsx';
 import { ResourceOptions } from './ResourceOptions.jsx';
+import { LearningIllustration } from './LearningIllustration.jsx';
 
 export function UserDashboard() {
   const { account, assignedBooks, progress } = useDemo();
@@ -8,14 +9,14 @@ export function UserDashboard() {
   const continuedBook = position && assignedBooks.find(book => book.id === position.bookId);
 
   return (
-    <>
+    <div className="learning-dashboard">
       <section className="user-welcome">
         <div>
-          <p className="portal-eyebrow">Your next discovery awaits</p>
-          <h1>JAVED PUBLISHERS DEMO</h1>
+          <p className="portal-eyebrow">Hello, {account.name}!</p>
+          <h1>A new day.<br />A new discovery.</h1>
           <p>Choose your class, explore a series and subject, and open your next book.</p>
         </div>
-        <span className="welcome-monogram" aria-hidden="true">{account.name.charAt(0).toUpperCase()}<span>✦</span></span>
+        <LearningIllustration />
       </section>
       <a className="learning-entry portal-panel" href="#/user/library">
         <span className="learning-entry-icon"><LibraryBookIcon /></span>
@@ -39,6 +40,6 @@ export function UserDashboard() {
           <a className="portal-primary" href={`#/book/${encodeURIComponent(continuedBook.id)}/read/${position.page}`}>Continue reading →</a>
         </section>
       )}
-    </>
+    </div>
   );
 }

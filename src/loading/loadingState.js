@@ -13,7 +13,7 @@ export const loadingState = {
   snapshot: () => snapshot
 };
 
-export function beginLoading(label = 'Loading...', delay = 200, { minimum = 1200, onRelease } = {}) {
+export function beginLoading(label = 'Loading...', delay = 200, { minimum = 3000, onRelease } = {}) {
   const id = Symbol();
   const item = { label, visible: delay === 0 };
   let visibleAt = item.visible ? Date.now() : null;
