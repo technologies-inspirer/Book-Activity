@@ -2,6 +2,7 @@ import { useDemo } from './DemoContext.jsx';
 import { LibraryBookIcon } from './LibraryIcons.jsx';
 import { ResourceOptions } from './ResourceOptions.jsx';
 import { LearningIllustration } from './LearningIllustration.jsx';
+import { LearningLandscape, LearningScenery } from './LearningScenery.jsx';
 
 export function UserDashboard() {
   const { account, assignedBooks, progress } = useDemo();
@@ -10,6 +11,7 @@ export function UserDashboard() {
 
   return (
     <div className="learning-dashboard">
+      <LearningScenery />
       <section className="user-welcome">
         <div>
           <p className="portal-eyebrow">Hello, {account.name}!</p>
@@ -40,6 +42,7 @@ export function UserDashboard() {
           <a className="portal-primary" href={`#/book/${encodeURIComponent(continuedBook.id)}/read/${position.page}`}>Continue reading →</a>
         </section>
       )}
+      <LearningLandscape />
     </div>
   );
 }
