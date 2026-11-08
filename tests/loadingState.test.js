@@ -30,12 +30,12 @@ test('reader loading ends on image errors, playback, detachment and scope dispos
   const image = Object.assign(new EventTarget(), { complete: false, isConnected: true });
   scope.image(image); t.mock.timers.tick(200);
   assert.equal(loadingState.snapshot(), 'Loading your page...');
-  image.dispatchEvent(new Event('error')); t.mock.timers.tick(1200);
+  image.dispatchEvent(new Event('error')); t.mock.timers.tick(3000);
   assert.equal(loadingState.snapshot(), null);
   const video = Object.assign(new EventTarget(), { tagName: 'VIDEO', paused: false, readyState: 0, isConnected: true });
   scope.media(video); video.dispatchEvent(new Event('waiting')); t.mock.timers.tick(200);
   assert.equal(loadingState.snapshot(), 'Buffering video...');
-  video.dispatchEvent(new Event('playing')); t.mock.timers.tick(1200);
+  video.dispatchEvent(new Event('playing')); t.mock.timers.tick(3000);
   assert.equal(loadingState.snapshot(), null);
   video.dispatchEvent(new Event('waiting')); t.mock.timers.tick(200);
   video.isConnected = false; notify();
@@ -48,12 +48,12 @@ test('reader loading ends on image errors, playback, detachment and scope dispos
 });
 
 
-test('visible loaders remain for 1.2 seconds but forced cleanup clears them immediately', t => {
+test('visible loaders remain for 3 seconds but forced cleanup clears them immediately', t => {
   t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
   const finish = beginLoading('Visible', 0);
   t.mock.timers.tick(400);
   finish();
-  t.mock.timers.tick(799);
+  t.mock.timers.tick(2599);
   assert.equal(loadingState.snapshot(), 'Visible');
   t.mock.timers.tick(1);
   assert.equal(loadingState.snapshot(), null);

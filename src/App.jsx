@@ -51,7 +51,7 @@ function AppRoutes() {
   }, [route, account?.id]);
 
   if (!account || route.type === 'login') {
-    return <LoginPage returnTo={['reader', 'preview', 'series'].includes(route.type) || (route.type === 'user' && route.page === 'library') ? location.hash : null} />;
+    return <LoginPage />;
   }
   if (account && (!account.enabled || isExpired(account))) {
     return <div className="portal"><SiteHeader /><main className="user-main"><section className="portal-panel"><h1>Demo access unavailable</h1><p>This demo account is disabled or its access has expired. Contact the demo administrator.</p><SignOut /></section></main><DemoNotice /></div>;

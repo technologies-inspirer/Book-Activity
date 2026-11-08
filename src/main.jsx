@@ -12,7 +12,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<LoadingScreen />);
 
 async function startApp() {
-  const minimumStartup = new Promise(resolve => setTimeout(resolve, 1500));
+  const minimumStartup = new Promise(resolve => setTimeout(resolve, 3000));
   await Promise.all([
     import('../books/activities-english3.js'),
     import('../books/activities-computer0.js'),
