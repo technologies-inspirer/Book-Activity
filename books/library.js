@@ -3184,5 +3184,16 @@ window.PDF_BOOKS = [
     "title": "Stemford Urdu 3 /37"
    }
   }
+ },
+ {
+  "id": "stemford-urdu-4",
+  "title": "Stemford Urdu 4+",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-urdu-4",
+  "pages": 96,
+  "ratio": 0.7222,
+  "c1": "#d0cbbd",
+  "c2": "#7a776f",
+  "rtl": true
  }
 ];

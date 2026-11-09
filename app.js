@@ -294,7 +294,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     storyEl = el('div', { class: 'story' },
       el('div', { class: 'story-card' },
         el('button', { class: 'modal-x', title: 'Close', onclick: closeStory, html: I.x }),
-        el('h3', {}, st.title), stage, caption,
+        el('h3', { dir: st.ur || book.rtl ? 'rtl' : null }, st.title), stage, caption,
         el('div', { class: 'story-bar' },
           el('button', { class: 'story-ctl', title: 'Back', onclick: () => show(at - 1), html: I.left }),
           pauseBtn,
@@ -373,8 +373,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
   function openGame(book, idx, g) {
     closeGame(); closeMenu();
-    const pg = pageOf(book, idx), ratio = book.ratio || 0.75, c = g.crop;
+    const pg = pageOf(book, idx), ratio = book.ratio || 0.75;
     const order = g.targets.slice().sort(() => Math.random() - 0.5);
+    let c = order[0].view || g.crop;
     let round = 0, stars = 0, busy = false;
 
     const prompt = el('div', { class: 'game-prompt', dir: g.ur ? 'rtl' : null });
@@ -383,17 +384,22 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const starsEl = el('div', { class: 'game-stars' });
     const scoreEl = el('div', { class: 'game-score' });
     const showScore = () => {
-      starsEl.replaceChildren(...order.map((_, k) => el('span', { class: k < stars ? 'on' : '' }, k < stars ? '⭐' : '☆')));
-      scoreEl.textContent = `Score: ${stars} / ${order.length}`;
+      starsEl.replaceChildren(...(order.length > 10
+        ? [el('span', { class: 'on', dir: 'ltr' }, `⭐ ${stars} / ${order.length}`)]
+        : order.map((_, k) => el('span', { class: k < stars ? 'on' : '' }, k < stars ? '⭐' : '☆'))));
+      scoreEl.dir = g.ur ? 'rtl' : 'ltr';
+      scoreEl.replaceChildren(g.ur ? 'درست جواب: ' : 'Score: ', el('bdi', { dir: 'ltr' }, `${stars} / ${order.length}`));
     };
     // Show only the cropped part of the page; targets are placed relative to that crop.
     const pic = el('img', { src: pg.img, alt: '', draggable: 'false',
       style: `width:${100 / c.w * 100}%;left:${-c.x / c.w * 100}%;top:${-c.y / c.h * 100}%` });
-    const scene = el('div', { class: 'game-scene', style: `aspect-ratio:${(c.w * ratio) / c.h}` }, pic);
+    const scene = el('div', { class: 'game-scene', style: `--game-aspect:${(c.w * ratio) / c.h};aspect-ratio:${(c.w * ratio) / c.h}` }, pic);
+    const hitButtons = [];
     g.targets.forEach(t => {
       const b = el('button', { class: 'game-hit', 'aria-label': t.name,
         style: `left:${(t.x - c.x) / c.w * 100}%;top:${(t.y - c.y) / c.h * 100}%;width:${t.w / c.w * 100}%;height:${t.h / c.h * 100}%` });
       b.addEventListener('click', () => pick(t, b));
+      hitButtons.push([t, b]);
       scene.append(b);
     });
     const again = el('button', { class: 'fx-btn listen', hidden: true, html: '<b>↻</b><span>Play again</span>', onclick: () => openGame(book, idx, g) });
@@ -408,7 +414,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     const ask = () => {
       const t = order[round];
-      prompt.innerHTML = g.ur ? `سوال ${round + 1} / ${order.length}: <b>${t.name}</b> کہاں ہے؟ اس پر ٹیپ کریں!` : `Question ${round + 1} of ${order.length}: Can you find the <b>${t.name}</b>? Tap it!`;
+      c = t.view || g.crop;
+      const aspect = (c.w * ratio) / c.h;
+      scene.style.setProperty('--game-aspect', aspect);
+      scene.style.aspectRatio = aspect;
+      pic.style.cssText = `width:${100 / c.w * 100}%;left:${-c.x / c.w * 100}%;top:${-c.y / c.h * 100}%`;
+      for (const [item, button] of hitButtons) {
+        button.hidden = item.x < c.x || item.y < c.y || item.x + item.w > c.x + c.w + .01 || item.y + item.h > c.y + c.h + .01;
+        button.style.cssText = `left:${(item.x-c.x)/c.w*100}%;top:${(item.y-c.y)/c.h*100}%;width:${item.w/c.w*100}%;height:${item.h/c.h*100}%`;
+      }
+      prompt.innerHTML = g.ur ? `سوال <bdi dir="ltr">${round + 1} / ${order.length}</bdi>: <b>${t.name}</b> کہاں ہے؟ اس پر ٹیپ کریں!` : `Question ${round + 1} of ${order.length}: Can you find the <b>${t.name}</b>? Tap it!`;
       speak(g.title, g.ur ? `${t.name} کہاں ہے؟ اس پر ٹیپ کریں!` : `Can you find the ${t.name}? Tap it!`, null, said);
     };
     const pick = (t, b) => {
@@ -435,7 +450,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       speak(g.title, g.ur ? `شاباش! ${t.say}` + (done ? ` آپ نے ${order.length} میں سے ${stars} ستارے جیتے۔ بہت خوب!` : '')
         : `Yes! ${t.say}` + (done ? ` You got ${stars} out of ${order.length} stars. Well done!` : ''), next, said);
       if (!done) schedule(next, 3500);
-      if (done) { prompt.innerHTML = g.ur ? `<b>سب مل گئے! 🎉 ${stars} / ${order.length} ستارے</b>` : `<b>You found them all! 🎉 ${stars} / ${order.length} stars</b>`; again.hidden = false; }
+      if (done) { prompt.innerHTML = g.ur ? `<b>سب مل گئے! 🎉 <bdi dir="ltr">${stars} / ${order.length}</bdi> ستارے</b>` : `<b>You found them all! 🎉 ${stars} / ${order.length} stars</b>`; again.hidden = false; }
     };
     ask();
   }

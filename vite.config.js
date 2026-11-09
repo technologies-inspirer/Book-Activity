@@ -40,7 +40,11 @@ export default defineConfig({
         for (const directory of ['assets', 'books', 'sounds', 'videos']) {
           const source = resolve(projectRoot, directory);
           if (existsSync(source)) {
-            cpSync(source, resolve(outputDir, directory), { recursive: true });
+          cpSync(source, resolve(outputDir, directory), {
+            recursive: true,
+            // Imported books use page JPEGs; keep large original PDFs local.
+            filter: path => directory !== 'books' || !/\.pdf$/i.test(path)
+          });
           }
         }
       }

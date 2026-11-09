@@ -104,7 +104,7 @@
   body:has(.english-learning) .modal .video-card,
   body:has(.english-learning) .game-card,
   body:has(.english-learning) .story-card { position: relative; left: auto; top: auto; transform: none; width: min(760px, calc(100vw - 30px)); max-height: calc(100dvh - 30px); overflow: auto; }
-  body:has(.english-learning) .game-scene { max-height: 48dvh; }
+  body:has(.english-learning) .game-scene { --game-height: 48dvh; max-height: var(--game-height); }
 }
 @media (prefers-reduced-motion: reduce) {
   .english-activity, .english-letter { transition: none; }

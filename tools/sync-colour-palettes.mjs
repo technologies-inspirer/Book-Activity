@@ -6,6 +6,7 @@ for (const [file, book] of [
   ['activities-english3.js', 'new-stemford-english-3'],
   ['activities-maxford.js', 'maxford-global-qaida-3-english'],
   ['activities-urdu3.js', 'stemford-urdu-3'],
+  ['activities-urdu4.js', 'stemford-urdu-4'],
   ['activities-maths3.js', 'stemford-maths-3']
 ]) {
   const path = new URL(`books/${file}`, root);
