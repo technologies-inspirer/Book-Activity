@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { evenly, inkShape, inkDistance, cover, finished, printedTraceStart, orderedInkStrokes } from '../src/traceCheck.js';
+import { evenly, inkShape, inkDistance, cover, finished, nearlyFinished, printedTraceStart, orderedInkStrokes } from '../src/traceCheck.js';
 
 // A dotted "L" in a 60 x 60 ink picture: a stick 4 pixels thick down from (20, 6) to (20, 50),
 // then along to (48, 50). Its middle line is what a child should trace.
@@ -87,4 +87,14 @@ test('Urdu hint follows the connected body first and lifts before the separate l
   assert.ok(Math.hypot(strokes[0].at(-1)[0] - 85, strokes[0].at(-1)[1] - 55) < 5);
   assert.ok(strokes[1].every(point => Math.hypot(point[0] - 60, point[1] - 50) < 5), 'separate dot is last');
   for (const stroke of strokes) for (const point of evenly(stroke, 1)) assert.ok(inkDistance(shape, point) <= Math.max(1, shape.half * .35));
+});
+
+test('on lifting the finger, a letter mostly written is finished; one missing a whole part is not', () => {
+  // the L gone over with short gaps all along (3 pixels missed in every 10): most of it done
+  const gappy = new Uint8Array(ink.middle.length);
+  evenly([[20, 7], [20, 50], [48, 50]], 1).filter((_, k) => k % 10 >= 3).forEach(q => cover(ink, gappy, q, 1.5));
+  assert.ok(!finished(ink, gappy), 'not by the strict test');
+  assert.ok(nearlyFinished(ink, gappy), 'but by the easy one');
+  // the stick without its foot
+  assert.ok(!nearlyFinished(ink, trace([20, 7], [20, 50])));
 });

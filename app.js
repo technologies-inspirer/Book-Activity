@@ -2,7 +2,7 @@ import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
-import { evenly, inkShape, inkDistance, cover, finished, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
+import { evenly, inkShape, inkDistance, cover, finished, nearlyFinished, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
 import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from './src/colourFill.js';
 import bookColourRegions from './books/colour-regions.json';
 import { englishLessons } from './src/englishLessons.js';
@@ -991,8 +991,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     function paintAt(t, p, c) {
       const s = t.shape, [x0, y0, w, h] = inkRect(t, c), sx = w / s.w, sy = h / s.h;
       const q = [(p[0] - x0) / sx, (p[1] - y0) / sy];
-      if (inkDistance(s, q) > Math.max(s.half * 3, s.h * .1)) return;      // too far from the letter to count
-      const r = Math.max(s.half * 2.2, s.h * .07);
+      if (inkDistance(s, q) > Math.max(s.half * 4, s.h * .14)) return;     // too far from the letter to count
+      const r = Math.max(s.half * 3, s.h * .1);                          // a wide brush, so small hands get it all
       lx.save();
       lx.beginPath();
       lx.ellipse(p[0], p[1], r * sx, r * sy, 0, 0, Math.PI * 2);
@@ -1013,7 +1013,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (!painting) return;
       const { t } = painting;
       painting = null;
-      if (!t.done && finished(t.shape, t.covered)) complete(t, c);
+      // on lifting the finger the test is easier: a letter mostly written is finished and its gaps filled in
+      if (!t.done && nearlyFinished(t.shape, t.covered)) complete(t, c);
       saveLetters();
       scheduleHint();
     }

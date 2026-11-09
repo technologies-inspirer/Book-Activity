@@ -150,10 +150,15 @@ export function cover(ink, covered, q, r) {
 
 // Finished: nearly all of the middle gone over, and no stretch longer than about one dot left
 // (maxGap is a share of the ink picture's height).
-export function finished(ink, covered, maxGap = .08) {
+// missShare: how much of the middle may be left (the rest is filled in for the child).
+export function finished(ink, covered, maxGap = .08, missShare = .05) {
   const missed = ink.middle.filter((_, k) => !covered[k]);
-  return missed.length <= ink.middle.length * .05 && longestGap(missed, ink.step || 3) / ink.h <= maxGap;
+  return missed.length <= ink.middle.length * missShare && longestGap(missed, ink.step || 3) / ink.h <= maxGap;
 }
+
+// The easier test used when the child lifts their finger: most of the letter gone over, and no whole part of it
+// left out (a 'u' without its stick is not finished; one with a few gaps is, and the gaps are filled in).
+export const nearlyFinished = (ink, covered) => finished(ink, covered, .2, .25);
 // Group missed points that touch (within two grid steps) and give the size of the biggest group.
 function longestGap(points, step) {
   const seen = new Uint8Array(points.length), near = (step * 2.1) ** 2;
