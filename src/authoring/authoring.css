@@ -98,3 +98,19 @@
   .pdf-page-thumbnails img { height: 90px; }
   .pdf-page-navigation .portal-secondary { font-size: .75rem; padding: 7px 10px; }
 }
+@media (max-width: 1023px) {
+  .pdf-authoring-page :is(button, .pdf-upload-label) { min-height: 44px; }
+  .pdf-editor-layout > * { min-width: 0; }
+  .pdf-page-thumbnails { overscroll-behavior: contain; }
+  .pdf-save-actions { width: 100%; }
+  .pdf-save-actions > button { flex: 1 1 150px; }
+  .existing-preview-heading { flex-wrap: wrap; }
+}
+@media (max-width: 599px) {
+  .pdf-upload-actions { width: 100%; }
+  .pdf-upload-actions > * { flex: 1 1 140px; text-align: center; }
+  .pdf-page-navigation { gap: 8px; }
+  .pdf-activity-form { padding: 16px 12px; }
+  .pdf-draw-tools { gap: 8px; }
+  .draft-reader-adminbar > label { flex-wrap: wrap; }
+}

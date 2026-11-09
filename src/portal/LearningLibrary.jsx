@@ -6,7 +6,10 @@ import { EmptyState } from './Shared.jsx';
 import { LibraryBookIcon } from './LibraryIcons.jsx';
 import { LearningIllustration } from './LearningIllustration.jsx';
 import { LearningLandscape, LearningScenery } from './LearningScenery.jsx';
-import classSelectionTemplate from '../../assets/class-selection-template.png';
+import classSelectionTemplate from '../../assets/class-selection-company-books.jpeg';
+import subjectSelectionTemplate from '../../assets/subject-selection-company-books.jpeg';
+import mathsSelectionTemplate from '../../assets/subject-maths-two-hands.png';
+import computerBookCover from '../../assets/subject-computer-book-behind-laptop.png';
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
   const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
@@ -32,7 +35,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
   }, [segments.join('/')]);
 
   return (
-    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")` }}>
+    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--subject-template': `url("${subjectSelectionTemplate}")`, '--maths-template': `url("${mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")` }}>
       <LearningScenery />
       <div className="library-navigation"><a className="library-back-link" href={backHref}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg><span>{step === 0 ? 'Back to dashboard' : step === 1 ? 'Back to classes' : 'Back to subjects'}</span></a></div>
       <header className="library-heading portal-panel">
@@ -70,7 +73,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
           </section>}
           {step === 1 ? (
             subjectOptions.length ? <section className="library-choice-grid library-subject-grid" aria-label="Select your subject">
-              {subjectOptions.map((subject, index) => <a className={`library-choice-card library-subject-card library-class-card ${['class-play-group', 'class-prep', 'class-nursery'][index % 3]}`} key={subject.id} href={libraryLink(selectedClass.id, selectedSeries.id, subject.id)}><span className="library-class-art" aria-hidden="true" /><h2>{subject.name}</h2><p>{selectedSeries.name}</p></a>)}
+              {subjectOptions.map(subject => <a className={`library-choice-card library-subject-card library-class-card subject-${subject.id}`} key={subject.id} href={libraryLink(selectedClass.id, selectedSeries.id, subject.id)}><span className={['english', 'maths', 'urdu', 'computer'].includes(subject.id) ? 'library-subject-art' : 'library-subject-fallback'} aria-hidden="true">{!['english', 'maths', 'urdu', 'computer'].includes(subject.id) && <LibraryBookIcon />}</span><h2>{subject.name}</h2><p>{selectedSeries.name}</p></a>)}
             </section> : <EmptyState title={assignedBooks.length ? 'No books available for this selection' : 'No books assigned'}>{assignedBooks.length ? `There are no assigned ${selectedSeries.name} books for ${selectedClass.name}. Choose another series or class.` : 'Contact your administrator to assign books to your demo library.'}</EmptyState>
           ) : (
             <section className="library-results" aria-label={`${selectedSubject.name} books`}>

@@ -109,3 +109,25 @@
 @media (prefers-reduced-motion: reduce) {
   .english-activity, .english-letter { transition: none; }
 }
+@media (max-width: 1023px) {
+  .english-reader-layout, .english-lesson-grid > * { min-width: 0; }
+  .english-reader-dock { max-width: 100%; }
+  .english-reader-dock button, .english-word-list button, .english-back, .english-letter { min-height: 44px; }
+  .english-lesson-top { flex-wrap: wrap; }
+  .english-lesson-heading, .english-activity-copy { overflow-wrap: anywhere; }
+}
+@media (max-width: 599px) {
+  .english-reader-layout { padding: 8px 6px; }
+  .english-lesson { padding-inline: 4px; }
+  .english-reader-dock button { flex: 1 1 42%; justify-content: center; font-size: 12px; }
+  .english-activity { padding: 12px 10px; }
+  .english-drawing-card .tools { border-radius: 14px; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .english-learning .english-reader-layout { padding-top: 6px; gap: 8px; }
+  .english-learning .english-reader-dock { padding: 3px; gap: 2px; flex-shrink: 0; }
+  .english-learning .english-reader-dock button { padding: 5px 8px; min-height: 36px; }
+  .english-learning .rbar { min-height: 48px; }
+  .english-learning .rstage { min-height: 0; padding-block: 6px; }
+  .english-learning .book { width: min(100%, calc((100dvh - 170px) * var(--ratio) * 2)); }
+}
