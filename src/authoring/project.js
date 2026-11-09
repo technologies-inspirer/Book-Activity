@@ -5,6 +5,7 @@ export const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
 export const MAX_DRAFT_BYTES = 200 * 1024 * 1024;
 export const MAX_PAGES = 200;
 export const activityTypes = [
+  { id: 'link', name: 'Web link', help: 'Link this page to an online lesson or resource.' },
   { id: 'audio', name: 'Audio', accept: '.mp3,.wav,.ogg,.m4a,audio/*', help: 'Upload a recorded lesson, pronunciation or read-aloud.' },
   { id: 'video', name: 'Video', accept: '.mp4,.webm,video/mp4,video/webm', help: 'Upload an MP4/WebM video or add a YouTube link.' },
   { id: 'story', name: 'Story / Narration', accept: '.mp3,.wav,.ogg,.m4a,audio/*', help: 'Add story text and an optional recording.' },
@@ -45,6 +46,12 @@ export function validateActivity(input) {
   if (input.media && ['tracing', 'colouring'].includes(input.type) && !/^image\/(png|jpeg|webp)$/.test(input.media.type)) throw new Error('Choose a PNG, JPG or WebP image.');
   const activity = { id: input.id || crypto.randomUUID(), type: input.type, title, text, sourceName: String(input.sourceName || ''), media: input.media || null };
   if (input.type === 'video') activity.youtubeUrl = input.media ? '' : input.youtubeUrl.trim();
+  if (input.type === 'link') {
+    let url;
+    try { url = new URL(String(input.url || '')); } catch { throw new Error('Enter a valid HTTP or HTTPS link.'); }
+    if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) throw new Error('Enter a valid HTTP or HTTPS link without login credentials.');
+    activity.url = url.href;
+  }
   if (input.type === 'game') activity.game = parseGame(input.game);
   if (['tracing', 'colouring'].includes(input.type)) {
     if (!validateArea(input.area)) throw new Error('The drawing area must stay inside the page (0–100%).');
@@ -54,6 +61,14 @@ export function validateActivity(input) {
   return activity;
 }
 export const draftBytes = draft => draft?.pages.reduce((total, page) => total + page.image.size + page.thumbnail.size + page.activities.reduce((size, item) => size + (item.media?.size || 0), 0), 0) || 0;
+
+export function updateDraftPage(draft, number, patch) {
+  if (!draft?.pages.some(page => page.number === number)) throw new Error('This page is no longer in the draft.');
+  const updated = { ...draft, pages: draft.pages.map(page => page.number === number ? { ...page, ...patch } : page) };
+  if (updated.pages.reduce((count, page) => count + page.activities.length, 0) > 1000) throw new Error('A book can contain up to 1,000 activities.');
+  if (draftBytes(updated) > MAX_DRAFT_BYTES) throw new Error('The book and its activities must stay below 200 MB.');
+  return updated;
+}
 
 export function deleteDraftPage(draft, number) {
   if (!draft?.pages.some(page => page.number === number)) throw new Error('This page is no longer in the draft.');
