@@ -19,7 +19,7 @@ test('school selections filter class and subject choices without changing global
 
 test('the learning catalogue covers all original book IDs without changing their data', () => {
   assert.deepEqual(Object.keys(learningBookMetadata).sort(), books.map(book => book.id).sort());
-  assert.equal(getLearningBooks(books).length, 8);
+  assert.equal(getLearningBooks(books).length, 9);
   for (const metadata of Object.values(learningBookMetadata)) {
     assert.ok(learningClasses.some(item => item.id === metadata.classId));
     assert.ok(learningSubjects.some(item => item.id === metadata.subjectId));
@@ -74,6 +74,6 @@ test('class assignments merge subject rows and update navigation without copying
   assert.ok(!getLearningSubjects(books, custom, { classId: 'play-group', seriesId: 'stemford' }, overrides).some(s => s.id === 'english'));
   assert.ok(getLearningSubjects(books, custom, { classId: 'prep', seriesId: 'stemford' }, overrides).some(s => s.id === 'english'));
   assert.deepEqual(getLearningBooks(books, { classId: 'prep', seriesId: 'stemford', subjectId: 'english' }), []);
-  assert.equal(getLearningBooks(books).length, 8);
+  assert.equal(getLearningBooks(books).length, 9);
   assert.deepEqual(getLearningSubjects([], [], { classId: 'play-group', seriesId: 'stemford' }), [], 'Unassigned original books remain hidden');
 });

@@ -5,14 +5,15 @@ import { setDrawingCursor } from './src/drawingCursors.js';
 import { evenly, inkShape, inkDistance, cover, finished, nearlyFinished, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
 import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from './src/colourFill.js';
 import bookColourRegions from './books/colour-regions.json';
+import reviewedPagePalettes from './books/colour-palettes.json';
 import { englishLessons } from './src/englishLessons.js';
 import './src/englishLearning.css';
 
 const drawings = {};
 const traced = {};                           // page -> the letters traced on it (their stars stay when it reopens)
-const brush = { color: '#e63946', size: 12, erase: false };
+const brush = { color: '#e63946', size: 60, erase: false };
 const PALETTE = ['#e63946', '#f4a261', '#4aa3df'];   // the usual colours, when a page names none of its own
-const SIZES = [[12, 11], [26, 18]];                  // crayon sizes: [width on the page, dot shown on its button]
+const SIZES = [[12, 10, 'Small'], [60, 24, 'Large']]; // page width, button dot, accessible label
 
 export function mountBookActivityApp(app, { intro = false, onPositionChange, libraryHref, activityPreview, onPreviewClose, readerBook, readerOptions = {} } = {}) {
   const loading = createLoadingScope();
@@ -294,7 +295,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     storyEl = el('div', { class: 'story' },
       el('div', { class: 'story-card' },
         el('button', { class: 'modal-x', title: 'Close', onclick: closeStory, html: I.x }),
-        el('h3', {}, st.title), stage, caption,
+        el('h3', { dir: st.ur || book.rtl ? 'rtl' : null }, st.title), stage, caption,
         el('div', { class: 'story-bar' },
           el('button', { class: 'story-ctl', title: 'Back', onclick: () => show(at - 1), html: I.left }),
           pauseBtn,
@@ -373,8 +374,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
   function openGame(book, idx, g) {
     closeGame(); closeMenu();
-    const pg = pageOf(book, idx), ratio = book.ratio || 0.75, c = g.crop;
+    const pg = pageOf(book, idx), ratio = book.ratio || 0.75;
     const order = g.targets.slice().sort(() => Math.random() - 0.5);
+    let c = order[0].view || g.crop;
     let round = 0, stars = 0, busy = false;
 
     const prompt = el('div', { class: 'game-prompt', dir: g.ur ? 'rtl' : null });
@@ -383,17 +385,22 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const starsEl = el('div', { class: 'game-stars' });
     const scoreEl = el('div', { class: 'game-score' });
     const showScore = () => {
-      starsEl.replaceChildren(...order.map((_, k) => el('span', { class: k < stars ? 'on' : '' }, k < stars ? '⭐' : '☆')));
-      scoreEl.textContent = `Score: ${stars} / ${order.length}`;
+      starsEl.replaceChildren(...(order.length > 10
+        ? [el('span', { class: 'on', dir: 'ltr' }, `⭐ ${stars} / ${order.length}`)]
+        : order.map((_, k) => el('span', { class: k < stars ? 'on' : '' }, k < stars ? '⭐' : '☆'))));
+      scoreEl.dir = g.ur ? 'rtl' : 'ltr';
+      scoreEl.replaceChildren(g.ur ? 'درست جواب: ' : 'Score: ', el('bdi', { dir: 'ltr' }, `${stars} / ${order.length}`));
     };
     // Show only the cropped part of the page; targets are placed relative to that crop.
     const pic = el('img', { src: pg.img, alt: '', draggable: 'false',
       style: `width:${100 / c.w * 100}%;left:${-c.x / c.w * 100}%;top:${-c.y / c.h * 100}%` });
-    const scene = el('div', { class: 'game-scene', style: `aspect-ratio:${(c.w * ratio) / c.h}` }, pic);
+    const scene = el('div', { class: 'game-scene', style: `--game-aspect:${(c.w * ratio) / c.h};aspect-ratio:${(c.w * ratio) / c.h}` }, pic);
+    const hitButtons = [];
     g.targets.forEach(t => {
       const b = el('button', { class: 'game-hit', 'aria-label': t.name,
         style: `left:${(t.x - c.x) / c.w * 100}%;top:${(t.y - c.y) / c.h * 100}%;width:${t.w / c.w * 100}%;height:${t.h / c.h * 100}%` });
       b.addEventListener('click', () => pick(t, b));
+      hitButtons.push([t, b]);
       scene.append(b);
     });
     const again = el('button', { class: 'fx-btn listen', hidden: true, html: '<b>↻</b><span>Play again</span>', onclick: () => openGame(book, idx, g) });
@@ -408,7 +415,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     const ask = () => {
       const t = order[round];
-      prompt.innerHTML = g.ur ? `سوال ${round + 1} / ${order.length}: <b>${t.name}</b> کہاں ہے؟ اس پر ٹیپ کریں!` : `Question ${round + 1} of ${order.length}: Can you find the <b>${t.name}</b>? Tap it!`;
+      c = t.view || g.crop;
+      const aspect = (c.w * ratio) / c.h;
+      scene.style.setProperty('--game-aspect', aspect);
+      scene.style.aspectRatio = aspect;
+      pic.style.cssText = `width:${100 / c.w * 100}%;left:${-c.x / c.w * 100}%;top:${-c.y / c.h * 100}%`;
+      for (const [item, button] of hitButtons) {
+        button.hidden = item.x < c.x || item.y < c.y || item.x + item.w > c.x + c.w + .01 || item.y + item.h > c.y + c.h + .01;
+        button.style.cssText = `left:${(item.x-c.x)/c.w*100}%;top:${(item.y-c.y)/c.h*100}%;width:${item.w/c.w*100}%;height:${item.h/c.h*100}%`;
+      }
+      prompt.innerHTML = g.ur ? `سوال <bdi dir="ltr">${round + 1} / ${order.length}</bdi>: <b>${t.name}</b> کہاں ہے؟ اس پر ٹیپ کریں!` : `Question ${round + 1} of ${order.length}: Can you find the <b>${t.name}</b>? Tap it!`;
       speak(g.title, g.ur ? `${t.name} کہاں ہے؟ اس پر ٹیپ کریں!` : `Can you find the ${t.name}? Tap it!`, null, said);
     };
     const pick = (t, b) => {
@@ -435,7 +451,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       speak(g.title, g.ur ? `شاباش! ${t.say}` + (done ? ` آپ نے ${order.length} میں سے ${stars} ستارے جیتے۔ بہت خوب!` : '')
         : `Yes! ${t.say}` + (done ? ` You got ${stars} out of ${order.length} stars. Well done!` : ''), next, said);
       if (!done) schedule(next, 3500);
-      if (done) { prompt.innerHTML = g.ur ? `<b>سب مل گئے! 🎉 ${stars} / ${order.length} ستارے</b>` : `<b>You found them all! 🎉 ${stars} / ${order.length} stars</b>`; again.hidden = false; }
+      if (done) { prompt.innerHTML = g.ur ? `<b>سب مل گئے! 🎉 <bdi dir="ltr">${stars} / ${order.length}</bdi> ستارے</b>` : `<b>You found them all! 🎉 ${stars} / ${order.length} stars</b>`; again.hidden = false; }
     };
     ask();
   }
@@ -632,13 +648,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const checker = fill ? traceChecker(book, fillAct, sheet, score, key) : null;
     // Colouring the picture: the colours on offer, and what to show when the child picks the wrong one for a part
     // (a red strawberry coloured blue): a note by their finger, the right colour's button glows, and a voice.
-    // Only the colours the page needs are offered: the ones the book's activity names (a sketch with black outlines:
-    // grapes are green, purple and brown), or else the ones the page picture shows (red-outlined strawberries, the
-    // blue hint in a big 9), found once the picture has loaded. A page with neither keeps the usual three.
-    // Only unreviewed pages may add a missing colour from the picture; reviewed lists stay fixed.
-    // (named: the activity's own list. shown: the colour "Show me how" paints the picture with, like the yellow
-    // duck; the page's other colours, like its big red letter to colour, are read from the picture as well.)
-    const named = fillAct?.colours || [];
+    // Bundled pages use the reviewed task palette, never colours sampled from decoration.
+    // Imported/custom pages retain their authored palette and image fallback.
+    const pageReview = reviewedPagePalettes.books[book.id]?.[idx + 1];
+    const named = pageReview
+      ? pageReview.colours.map(name => reviewedPagePalettes.colours[name])
+      : fillAct?.colours || [];
     const shown = [...new Set((fillAct?.steps || []).flatMap(s => s.marks).filter(m => m.scribble).map(m => m.scribble))];
     const palette = [...(named.length ? named : shown.length ? shown : PALETTE)];
     if (book.rtl) warmUp(palette.map(c => `${colourName(c).ur} رنگ لگائیں۔`));
@@ -760,7 +775,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     for (let i = 0; i < part.length; i++) if (part[i]) mask.data[i * 4 + 3] = 255;
     ox.putImageData(mask, 0, 0);
     const want = partColour(px.data, px.w, px.h, core);
-    return { mask: out, required: selected?.colour || (!want && componentColourRegion(core, px.w, px.h, regions)?.colour), want };
+    // Reviewed parts take priority over a neighbouring outline's colour: a vase's red
+    // outer border must not make its blue neck or teal body accept red paint.
+    return { mask: out, required: selected?.colour || componentColourRegion(core, px.w, px.h, regions)?.colour, want };
   }
 
   // The canvas keeps a fixed resolution tied to the zone, so drawings survive resizes and page turns.
@@ -1512,7 +1529,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
   function drawTools(onClear, only) {
     const colors = only?.length ? only : [...PALETTE];
-    if (!SIZES.some(([s]) => s === brush.size)) brush.size = SIZES[0][0];
+    if (!SIZES.some(([s]) => s === brush.size)) brush.size = SIZES.at(-1)[0];
     if (!colors.includes(brush.color)) brush.color = colors[0];
     const wrap = el('div', { class: 'tools', hidden: true }, el('span', { class: 'tools-lbl' }, 'Colour & write'));
     const sync = () => {
@@ -1523,13 +1540,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           (b.dataset.c && !brush.erase && b.dataset.c === brush.color) ||
           (b.dataset.s && +b.dataset.s === brush.size) ||
           (b.dataset.e && brush.erase)));
+        if (b.dataset.s) b.setAttribute('aria-pressed', String(+b.dataset.s === brush.size));
       });
     };
     const swatch = c => el('button', { class: 'sw', style: `--c:${c}`, 'data-c': c, title: 'Colour', onclick: () => { brush.color = c; brush.erase = false; sync(); } });
     colors.forEach(c => wrap.append(swatch(c)));
     const sep = el('i', { class: 'sep' });
     wrap.append(sep);
-    SIZES.forEach(([s, px]) => wrap.append(el('button', { class: 'sz', 'data-s': s, title: 'Brush size', onclick: () => { brush.size = s; sync(); } }, el('i', { style: `--s:${px}px` }))));
+    SIZES.forEach(([s, px, label]) => wrap.append(el('button', { class: 'sz', 'data-s': s, title: `${label} brush`, 'aria-label': `${label} brush`, onclick: () => { brush.size = s; sync(); } }, el('i', { style: `--s:${px}px` }))));
     wrap.append(el('i', { class: 'sep' }),
       el('button', { class: 'txt', 'data-e': 1, onclick: () => { brush.erase = !brush.erase; sync(); } }, 'Eraser'),
       el('button', { class: 'txt', onclick: onClear }, 'Clear'));

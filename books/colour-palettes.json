@@ -1,140 +1,5229 @@
 {
   "colours": {
-    "red": "#e63946", "green": "#43aa8b", "dark green": "#2d6a4f",
-    "yellow": "#f9c74f", "orange": "#f4a261", "blue": "#4aa3df",
-    "light blue": "#90e0ef", "pink": "#ff8fab", "magenta": "#ce79b5",
-    "purple": "#7b5ea7", "brown": "#8d5524", "light brown": "#d4a373",
-    "grey": "#9aa5b1", "black": "#222222", "teal": "#00aaa0"
+    "red": "#e63946",
+    "green": "#43aa8b",
+    "dark green": "#2d6a4f",
+    "yellow": "#f9c74f",
+    "orange": "#f4a261",
+    "blue": "#4aa3df",
+    "light blue": "#90e0ef",
+    "pink": "#ff8fab",
+    "magenta": "#ce79b5",
+    "purple": "#7b5ea7",
+    "brown": "#8d5524",
+    "light brown": "#d4a373",
+    "grey": "#9aa5b1",
+    "black": "#222222",
+    "teal": "#00aaa0",
+    "leaf green": "#4caf50"
   },
   "books": {
-    "new-stemford-english-3": {
-      "6": { "picture": "apple and leaf; red letter", "colours": ["red", "green"] },
-      "8": { "picture": "red letter; printed skipping boy", "colours": ["red"] },
-      "10": { "picture": "decorated cake; red letter", "colours": ["pink", "yellow", "brown", "red"] },
-      "12": { "picture": "duck and beak; red letter", "colours": ["yellow", "orange", "red"] },
-      "18": { "picture": "elephant; red letter", "colours": ["grey", "red"] },
-      "20": { "picture": "blue fingerprints; red letter", "colours": ["blue", "red"] },
-      "22": { "picture": "grapes, leaves and stalk; red letter", "colours": ["green", "purple", "brown", "red"] },
-      "24": { "picture": "handprint and grass; red letter", "colours": ["yellow", "green", "red"] },
-      "28": { "picture": "blue ice blocks; red letter", "colours": ["light blue", "red"] },
-      "30": { "picture": "jug; red letter", "colours": ["blue", "red"] },
-      "32": { "picture": "kangaroo and belly; red letter", "colours": ["brown", "light brown", "red"] },
-      "34": { "picture": "leaf; red letter", "colours": ["green", "red"] },
-      "40": { "picture": "monkey, face and branch; red letter", "colours": ["brown", "light brown", "green", "red"] },
-      "42": { "picture": "nest and leafy twig; red letter", "colours": ["brown", "green", "red"] },
-      "44": { "picture": "orange and leaf; red letter", "colours": ["orange", "green", "red"] },
-      "46": { "picture": "parrot and beak; red letter", "colours": ["green", "red", "yellow"] },
-      "50": { "picture": "quail and beak; red letter", "colours": ["brown", "yellow", "red"] },
-      "52": { "picture": "rabbit and inner ears; red letter", "colours": ["light brown", "pink", "red"] },
-      "54": { "picture": "snake and belly; red letter", "colours": ["green", "yellow", "red"] },
-      "56": { "picture": "turtle and shell; red letter", "colours": ["green", "brown", "red"] },
-      "62": { "picture": "umbrella panels in different colours and beach ball; red letter", "colours": ["red", "yellow", "blue", "green", "orange"] },
-      "64": { "picture": "vase with red, blue, pink, black, brown and teal outlines; red letter", "colours": ["red", "blue", "pink", "black", "brown", "teal"] },
-      "66": { "picture": "window frame, panes and curtains; red letter", "colours": ["light blue", "brown", "pink", "red"] },
-      "68": { "picture": "multicoloured xylophone; red letter", "colours": ["orange", "red", "yellow", "green", "blue", "purple"] },
-      "72": { "picture": "partly coloured yacht and sky; red letter", "colours": ["blue", "red", "yellow", "green"] },
-      "74": { "picture": "zebra stripes and pink muzzle; red letter", "colours": ["black", "pink", "red"] }
-    },
     "maxford-global-qaida-3-english": {
-      "12": { "picture": "apple and leaf", "colours": ["red", "green"] },
-      "16": { "picture": "balloons: instruction asks for different colours", "colours": ["red", "yellow", "blue", "green", "orange", "purple"] },
-      "20": { "picture": "cap", "colours": ["blue"] },
-      "24": { "picture": "duck and beak", "colours": ["yellow", "orange"] },
-      "32": { "picture": "elephant", "colours": ["grey"] },
-      "36": { "picture": "blue fingerprints", "colours": ["blue"] },
-      "40": { "picture": "grapes, leaves and stalk", "colours": ["green", "purple", "brown"] },
-      "44": { "picture": "handprint and grass", "colours": ["yellow", "green"] },
-      "50": { "picture": "blue ice blocks", "colours": ["light blue"] },
-      "54": { "picture": "jug", "colours": ["blue"] },
-      "58": { "picture": "kangaroo and belly", "colours": ["brown", "light brown"] },
-      "62": { "picture": "leaf", "colours": ["green"] },
-      "70": { "picture": "monkey, face and leafy branch", "colours": ["brown", "light brown", "green"] },
-      "74": { "picture": "nest and leafy twig", "colours": ["brown", "green"] },
-      "78": { "picture": "orange and leaf", "colours": ["orange", "green"] },
-      "82": { "picture": "parrot and beak", "colours": ["green", "red", "yellow"] },
-      "88": { "picture": "quail and beak", "colours": ["brown", "yellow"] },
-      "92": { "picture": "rabbit and inner ears", "colours": ["light brown", "pink"] },
-      "96": { "picture": "snake and belly", "colours": ["green", "yellow"] },
-      "100": { "picture": "turtle and shell", "colours": ["green", "brown"] },
-      "108": { "picture": "umbrella panels: instruction asks for different colours", "colours": ["red", "yellow", "blue", "green", "orange"] },
-      "112": { "picture": "vase with red, blue, pink, black, brown and teal outlines", "colours": ["red", "blue", "pink", "black", "brown", "teal"] },
-      "116": { "picture": "window frame, panes and curtains", "colours": ["light blue", "brown", "pink"] },
-      "120": { "picture": "multicoloured xylophone", "colours": ["orange", "red", "yellow", "green", "blue", "purple"] },
-      "126": { "picture": "partly coloured yacht and sky", "colours": ["blue", "red", "yellow", "green"] },
-      "130": { "picture": "zebra stripes and muzzle", "colours": ["black", "pink"] }
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "Trace lines and colour the outlined house",
+        "colours": [
+          "red",
+          "brown",
+          "yellow",
+          "blue"
+        ]
+      },
+      "8": {
+        "picture": "Trace lines and colour the well stones and roof",
+        "colours": [
+          "grey",
+          "blue"
+        ]
+      },
+      "9": {
+        "picture": "Trace the orange curved-line practice",
+        "colours": [
+          "orange"
+        ]
+      },
+      "10": {
+        "picture": "Trace loops and curves on the blue practice page",
+        "colours": [
+          "blue"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "apple and leaf",
+        "colours": [
+          "red",
+          "green"
+        ]
+      },
+      "13": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "balloons: instruction asks for different colours",
+        "colours": [
+          "red",
+          "yellow",
+          "blue",
+          "green",
+          "orange",
+          "purple"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "cap",
+        "colours": [
+          "blue"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "duck and beak",
+        "colours": [
+          "yellow",
+          "orange"
+        ]
+      },
+      "25": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "Colour apple, ball and cap using the nearby examples",
+        "colours": [
+          "red",
+          "green",
+          "blue",
+          "yellow"
+        ]
+      },
+      "28": {
+        "picture": "Colour the selected beginning-sound letters and circle pictures",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "elephant",
+        "colours": [
+          "grey"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "blue fingerprints",
+        "colours": [
+          "blue"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "grapes, leaves and stalk",
+        "colours": [
+          "green",
+          "purple",
+          "brown"
+        ]
+      },
+      "41": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "handprint and grass",
+        "colours": [
+          "yellow",
+          "green"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "Colour only the f pictures: envelope, fish and fan",
+        "colours": [
+          "blue",
+          "orange"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "blue ice blocks",
+        "colours": [
+          "light blue"
+        ]
+      },
+      "51": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "jug",
+        "colours": [
+          "blue"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "kangaroo and belly",
+        "colours": [
+          "brown",
+          "light brown"
+        ]
+      },
+      "59": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "leaf",
+        "colours": [
+          "green"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "Trace and colour the blue-outlined igloo",
+        "colours": [
+          "light blue"
+        ]
+      },
+      "67": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "68": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "70": {
+        "picture": "monkey, face and leafy branch",
+        "colours": [
+          "brown",
+          "light brown",
+          "green"
+        ]
+      },
+      "71": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "73": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "74": {
+        "picture": "nest and leafy twig",
+        "colours": [
+          "brown",
+          "green"
+        ]
+      },
+      "75": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "76": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "77": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "78": {
+        "picture": "orange and leaf",
+        "colours": [
+          "orange",
+          "green"
+        ]
+      },
+      "79": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "80": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "81": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "82": {
+        "picture": "parrot and beak",
+        "colours": [
+          "green",
+          "red",
+          "yellow"
+        ]
+      },
+      "83": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "84": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "85": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "86": {
+        "picture": "Colour the selected beginning-sound letters and circle pictures",
+        "colours": [
+          "black"
+        ]
+      },
+      "87": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "88": {
+        "picture": "quail and beak",
+        "colours": [
+          "brown",
+          "yellow"
+        ]
+      },
+      "89": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "90": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "91": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "92": {
+        "picture": "rabbit and inner ears",
+        "colours": [
+          "light brown",
+          "pink"
+        ]
+      },
+      "93": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "94": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "95": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "96": {
+        "picture": "snake and belly",
+        "colours": [
+          "green",
+          "yellow"
+        ]
+      },
+      "97": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "98": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "99": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "100": {
+        "picture": "turtle and shell",
+        "colours": [
+          "green",
+          "brown"
+        ]
+      },
+      "101": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "102": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "103": {
+        "picture": "Colour only the s pictures: snake and sun",
+        "colours": [
+          "green",
+          "yellow"
+        ]
+      },
+      "104": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "105": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "106": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "107": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "108": {
+        "picture": "umbrella panels: instruction asks for different colours",
+        "colours": [
+          "red",
+          "yellow",
+          "blue",
+          "green",
+          "orange"
+        ]
+      },
+      "109": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "110": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "111": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "112": {
+        "picture": "vase with red, blue, pink, black, brown and teal outlines",
+        "colours": [
+          "red",
+          "blue",
+          "pink",
+          "black",
+          "brown",
+          "teal"
+        ]
+      },
+      "113": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "114": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "115": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "116": {
+        "picture": "window frame, panes and curtains",
+        "colours": [
+          "light blue",
+          "brown",
+          "pink"
+        ]
+      },
+      "117": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "118": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "119": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "120": {
+        "picture": "multicoloured xylophone",
+        "colours": [
+          "orange",
+          "red",
+          "yellow",
+          "green",
+          "blue",
+          "purple"
+        ]
+      },
+      "121": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "122": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "123": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "124": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "125": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "126": {
+        "picture": "partly coloured yacht and sky",
+        "colours": [
+          "blue",
+          "red",
+          "yellow",
+          "green"
+        ]
+      },
+      "127": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "128": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "129": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "130": {
+        "picture": "zebra stripes and muzzle",
+        "colours": [
+          "black",
+          "pink"
+        ]
+      },
+      "131": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "132": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "133": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "134": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "135": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
     },
-    "stemford-urdu-3": {
-      "6": { "picture": "grapes, leaf and stalk", "colours": ["green", "purple", "brown"] },
-      "8": { "picture": "mango and stalk; yellow hint", "colours": ["yellow", "orange", "green"] },
-      "12": { "picture": "duck and beak", "colours": ["yellow", "orange"] },
-      "14": { "picture": "leaf with green hint", "colours": ["green", "dark green"] },
-      "16": { "picture": "butterfly: yellow, blue and red paper hints", "colours": ["yellow", "blue", "red"] },
-      "18": { "picture": "tomato and leaves", "colours": ["red", "green"] },
-      "20": { "picture": "basket with brown texture", "colours": ["brown", "light brown"] },
-      "24": { "picture": "jug with blue hint", "colours": ["blue", "light blue"] },
-      "26": { "picture": "crescent moon", "colours": ["yellow"] },
-      "28": { "picture": "plate", "colours": ["blue", "yellow"] },
-      "30": { "picture": "envelope", "colours": ["yellow", "brown"] },
-      "34": { "picture": "tree, leaves and trunk", "colours": ["green", "brown"] },
-      "36": { "picture": "gift box and ribbon", "colours": ["red", "yellow", "blue"] },
-      "38": { "picture": "baskets of grain", "colours": ["brown", "light brown", "yellow"] },
-      "40": { "picture": "green and yellow rickshaw", "colours": ["green", "yellow", "black"] },
-      "42": { "picture": "mountains and snow", "colours": ["grey", "brown", "light blue"] },
-      "44": { "picture": "zebra stripes", "colours": ["black"] },
-      "46": { "picture": "window frame, panes and view", "colours": ["blue", "brown", "green"] },
-      "50": { "picture": "sun and rays with yellow hint", "colours": ["yellow", "orange"] },
-      "52": { "picture": "lion, mane and face", "colours": ["orange", "yellow", "brown"] },
-      "54": { "picture": "ewer and decoration", "colours": ["brown", "orange"] },
-      "56": { "picture": "man, face, beard and clothes", "colours": ["light brown", "grey", "blue"] },
-      "60": { "picture": "aeroplane and windows", "colours": ["grey", "blue"] },
-      "62": { "picture": "utensils", "colours": ["grey", "blue"] },
-      "64": { "picture": "bird and beak", "colours": ["brown", "yellow"] },
-      "66": { "picture": "ball with yellow hint", "colours": ["red", "yellow"] },
-      "70": { "picture": "frock and trim", "colours": ["pink", "purple"] },
-      "72": { "picture": "scissors: handles and blades", "colours": ["red", "grey"] },
-      "74": { "picture": "banana and stalk", "colours": ["yellow", "green"] },
-      "76": { "picture": "carrot and leaves", "colours": ["orange", "green"] },
-      "78": { "picture": "patterned spinning top", "colours": ["red", "yellow", "blue"] },
-      "80": { "picture": "orange and leaves", "colours": ["orange", "green"] },
-      "84": { "picture": "coconut and shell", "colours": ["brown", "light brown"] },
-      "86": { "picture": "uniform and buttons", "colours": ["blue", "grey"] },
-      "88": { "picture": "writing only, no colouring picture", "colours": ["black"] },
-      "90": { "picture": "tea and cup", "colours": ["brown", "blue"] },
-      "92": { "picture": "cart, wheels and donkey", "colours": ["brown", "grey", "yellow"] }
-    },
-    "stemford-maths-3": {
-      "7": { "picture": "aeroplane: orange outline, yellow wing hint", "colours": ["orange", "yellow"] },
-      "10": { "picture": "butterflies: green, yellow and red hints", "colours": ["green", "yellow", "red"] },
-      "13": { "picture": "fish: orange, blue and green hints; magenta number", "colours": ["orange", "blue", "green", "magenta"] },
-      "16": { "picture": "red apples and green leaves; yellow number", "colours": ["red", "green", "yellow"] },
-      "21": { "picture": "flowers with five differently coloured outlines", "colours": ["pink", "green", "yellow", "orange", "blue"] },
-      "25": { "picture": "strawberries and leaves; pink number", "colours": ["red", "green", "pink"] },
-      "29": { "picture": "mushrooms: red tops and yellow stems; blue number", "colours": ["red", "yellow", "blue"] },
-      "32": { "picture": "red stars", "colours": ["red"] },
-      "35": { "picture": "balls with blue, green, red and orange outlines", "colours": ["blue", "green", "red", "orange"] },
-      "41": { "picture": "trace zero and tick empty basket", "colours": ["black"] },
-      "43": { "picture": "green leaves", "colours": ["green"] },
-      "47": { "picture": "pears and number with magenta colour hint", "colours": ["magenta"] },
-      "49": { "picture": "light blue balloons", "colours": ["light blue"] },
-      "51": { "picture": "yellow bananas", "colours": ["yellow"] },
-      "53": { "picture": "pink caps", "colours": ["pink"] },
-      "55": { "picture": "blue balls", "colours": ["blue"] },
-      "59": { "picture": "red doughnuts", "colours": ["red"] },
-      "61": { "picture": "cupcakes with yellow cases and coloured sprinkles", "colours": ["yellow", "orange", "pink", "blue"] },
-      "63": { "picture": "light blue mugs", "colours": ["light blue"] },
-      "65": { "picture": "green stars", "colours": ["green"] },
-      "67": { "picture": "purple sweets", "colours": ["purple"] }
-    },
-    "stemford-series-computer-book-0-curve": {
-      "4": { "picture": "encircle answers, no colouring task", "colours": ["red"] },
-      "5": { "picture": "trace letters, no colouring task", "colours": ["black"] },
-      "6": { "picture": "CPU case: grey reference picture", "colours": ["grey"] },
-      "7": { "picture": "tick answers, no colouring task", "colours": ["red"] },
-      "8": { "picture": "match letters, no colouring task", "colours": ["red"] },
-      "9": { "picture": "match pictures, no colouring task", "colours": ["red"] }
+    "new-stemford-english-3": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "apple and leaf; red letter",
+        "colours": [
+          "red",
+          "green"
+        ]
+      },
+      "7": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "8": {
+        "picture": "red letter; printed skipping boy",
+        "colours": [
+          "red"
+        ]
+      },
+      "9": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "10": {
+        "picture": "decorated cake; red letter",
+        "colours": [
+          "pink",
+          "yellow",
+          "brown",
+          "red"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "duck and beak; red letter",
+        "colours": [
+          "yellow",
+          "orange",
+          "red"
+        ]
+      },
+      "13": {
+        "picture": "Colour a–d and the apple; match and write letters",
+        "colours": [
+          "red",
+          "blue",
+          "orange",
+          "green"
+        ]
+      },
+      "14": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "elephant; red letter",
+        "colours": [
+          "grey",
+          "red"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "blue fingerprints; red letter",
+        "colours": [
+          "blue",
+          "red"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "grapes, leaves and stalk; red letter",
+        "colours": [
+          "green",
+          "purple",
+          "brown",
+          "red"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "handprint and grass; red letter",
+        "colours": [
+          "yellow",
+          "green",
+          "red"
+        ]
+      },
+      "25": {
+        "picture": "Colour e–h, the fish and the hat",
+        "colours": [
+          "red",
+          "blue",
+          "orange",
+          "green",
+          "brown"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "28": {
+        "picture": "blue ice blocks; red letter",
+        "colours": [
+          "light blue",
+          "red"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "jug; red letter",
+        "colours": [
+          "blue",
+          "red"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "kangaroo and belly; red letter",
+        "colours": [
+          "brown",
+          "light brown",
+          "red"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "leaf; red letter",
+        "colours": [
+          "green",
+          "red"
+        ]
+      },
+      "35": {
+        "picture": "Colour i–l and the lemon with its leaf",
+        "colours": [
+          "red",
+          "blue",
+          "orange",
+          "green",
+          "yellow"
+        ]
+      },
+      "36": {
+        "picture": "Trace and colour the igloo using its printed blue outline",
+        "colours": [
+          "light blue"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "monkey, face and branch; red letter",
+        "colours": [
+          "brown",
+          "light brown",
+          "green",
+          "red"
+        ]
+      },
+      "41": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "nest and leafy twig; red letter",
+        "colours": [
+          "brown",
+          "green",
+          "red"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "orange and leaf; red letter",
+        "colours": [
+          "orange",
+          "green",
+          "red"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "parrot and beak; red letter",
+        "colours": [
+          "green",
+          "red",
+          "yellow"
+        ]
+      },
+      "47": {
+        "picture": "Colour m–p and the orange with its leaf",
+        "colours": [
+          "red",
+          "blue",
+          "orange",
+          "green"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "quail and beak; red letter",
+        "colours": [
+          "brown",
+          "yellow",
+          "red"
+        ]
+      },
+      "51": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "rabbit and inner ears; red letter",
+        "colours": [
+          "light brown",
+          "pink",
+          "red"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "snake and belly; red letter",
+        "colours": [
+          "green",
+          "yellow",
+          "red"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "turtle and shell; red letter",
+        "colours": [
+          "green",
+          "brown",
+          "red"
+        ]
+      },
+      "57": {
+        "picture": "Colour q–t; colour the tomato red and its leaves green",
+        "colours": [
+          "red",
+          "blue",
+          "orange",
+          "green"
+        ]
+      },
+      "58": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "Trace and colour the snake; green body and red mouth hint",
+        "colours": [
+          "green",
+          "red"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "umbrella panels in different colours and beach ball; red letter",
+        "colours": [
+          "red",
+          "yellow",
+          "blue",
+          "green",
+          "orange"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "vase with red, blue, pink, black, brown and teal outlines; red letter",
+        "colours": [
+          "red",
+          "blue",
+          "pink",
+          "black",
+          "brown",
+          "teal"
+        ]
+      },
+      "65": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "window frame, panes and curtains; red letter",
+        "colours": [
+          "light blue",
+          "brown",
+          "pink",
+          "red"
+        ]
+      },
+      "67": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "68": {
+        "picture": "multicoloured xylophone; red letter",
+        "colours": [
+          "orange",
+          "red",
+          "yellow",
+          "green",
+          "blue",
+          "purple"
+        ]
+      },
+      "69": {
+        "picture": "Colour u–x and the xylophone bars and wooden beaters",
+        "colours": [
+          "red",
+          "blue",
+          "orange",
+          "green",
+          "yellow",
+          "purple",
+          "brown"
+        ]
+      },
+      "70": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "71": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "partly coloured yacht and sky; red letter",
+        "colours": [
+          "blue",
+          "red",
+          "yellow",
+          "green"
+        ]
+      },
+      "73": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "74": {
+        "picture": "zebra stripes and pink muzzle; red letter",
+        "colours": [
+          "black",
+          "pink",
+          "red"
+        ]
+      },
+      "75": {
+        "picture": "Colour y and z and the yacht using the preceding yacht example",
+        "colours": [
+          "red",
+          "blue",
+          "yellow"
+        ]
+      },
+      "76": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "77": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "78": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "79": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "80": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "81": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "82": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
     },
     "stemford-computer-book-1": {
-      "14": { "picture": "written exercise, no colouring task", "colours": ["black"] }
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "8": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "9": {
+        "picture": "Draw and colour a computer system",
+        "colours": [
+          "black",
+          "grey",
+          "blue"
+        ]
+      },
+      "10": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "written exercise, no colouring task",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "Draw and colour monitor, mouse and CPU",
+        "colours": [
+          "black",
+          "grey",
+          "blue"
+        ]
+      },
+      "16": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "Draw and colour one use of a computer",
+        "colours": [
+          "black",
+          "grey",
+          "blue",
+          "brown",
+          "light brown",
+          "green",
+          "red"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "28": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "Trace and colour computer mouse and real mouse",
+        "colours": [
+          "grey",
+          "black",
+          "brown",
+          "pink"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "Draw and colour the Tux penguin mascot",
+        "colours": [
+          "black",
+          "yellow",
+          "orange",
+          "red"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "51": {
+        "picture": "Draw route arrows and recreate the red grid pattern",
+        "colours": [
+          "black",
+          "red"
+        ]
+      },
+      "52": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "Draw and colour your house",
+        "colours": [
+          "black",
+          "red",
+          "brown",
+          "blue",
+          "green",
+          "yellow"
+        ]
+      },
+      "59": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "Draw smart devices for the AI in My Life poster",
+        "colours": [
+          "black",
+          "grey",
+          "blue",
+          "green",
+          "red",
+          "yellow"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
+    },
+    "stemford-english-1": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "Draw your family",
+        "colours": [
+          "black",
+          "brown",
+          "light brown",
+          "pink",
+          "red",
+          "blue",
+          "green",
+          "yellow"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "8": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "9": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "10": {
+        "picture": "Draw an activity with your family",
+        "colours": [
+          "black",
+          "brown",
+          "light brown",
+          "pink",
+          "red",
+          "blue",
+          "green",
+          "yellow"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "Colour the outlined objects chosen by the teacher",
+        "colours": [
+          "red",
+          "blue",
+          "yellow",
+          "green",
+          "purple",
+          "brown",
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "Colour the house and garden scene using favourite colours",
+        "colours": [
+          "red",
+          "blue",
+          "green",
+          "yellow",
+          "brown",
+          "pink",
+          "orange"
+        ]
+      },
+      "28": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "Trace and colour the mosque using the printed example",
+        "colours": [
+          "green",
+          "grey",
+          "yellow",
+          "brown"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "Draw things seen in a park",
+        "colours": [
+          "black",
+          "green",
+          "brown",
+          "red",
+          "blue",
+          "yellow",
+          "pink"
+        ]
+      },
+      "51": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "Colour favourite activities with friends",
+        "colours": [
+          "red",
+          "blue",
+          "green",
+          "yellow",
+          "light brown",
+          "brown",
+          "black",
+          "orange"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "Draw faces in your social circle",
+        "colours": [
+          "black",
+          "brown",
+          "light brown",
+          "pink",
+          "red",
+          "blue",
+          "green",
+          "yellow"
+        ]
+      },
+      "59": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "67": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "68": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "70": {
+        "picture": "Colour the fruits that grow on trees",
+        "colours": [
+          "red",
+          "green",
+          "yellow",
+          "orange",
+          "pink",
+          "brown"
+        ]
+      },
+      "71": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "73": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "74": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "75": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "76": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "77": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "78": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "79": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "80": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "81": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "82": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "83": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "84": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "85": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "86": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "87": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "88": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "89": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "90": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "91": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "92": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "93": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "94": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "95": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "96": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "97": {
+        "picture": "Colour only jungle animals: lion, monkey and deer",
+        "colours": [
+          "brown",
+          "light brown",
+          "yellow",
+          "black"
+        ]
+      },
+      "98": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "99": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "100": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "101": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "102": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "103": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "104": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "105": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "106": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "107": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "108": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "109": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "110": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "111": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "112": {
+        "picture": "Draw your chosen pet for the pet care plan",
+        "colours": [
+          "black",
+          "brown",
+          "light brown",
+          "grey",
+          "pink",
+          "green",
+          "blue",
+          "red",
+          "yellow"
+        ]
+      }
+    },
+    "stemford-maths-3": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "aeroplane: orange outline, yellow wing hint",
+        "colours": [
+          "orange",
+          "yellow"
+        ]
+      },
+      "8": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "9": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "10": {
+        "picture": "butterflies: green, yellow and red hints",
+        "colours": [
+          "green",
+          "yellow",
+          "red"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "fish: orange, blue and green hints; magenta number",
+        "colours": [
+          "orange",
+          "blue",
+          "green",
+          "magenta"
+        ]
+      },
+      "14": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "red apples and green leaves; yellow number",
+        "colours": [
+          "red",
+          "green",
+          "yellow"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "Colour five flowers and the teal number 5",
+        "colours": [
+          "pink",
+          "green",
+          "yellow",
+          "orange",
+          "blue",
+          "teal"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "strawberries and leaves; pink number",
+        "colours": [
+          "red",
+          "green",
+          "pink"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "Trace and colour the circle red as instructed",
+        "colours": [
+          "red"
+        ]
+      },
+      "28": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "mushrooms: red tops and yellow stems; blue number",
+        "colours": [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      },
+      "30": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "red stars",
+        "colours": [
+          "red"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "balls with blue, green, red and orange outlines",
+        "colours": [
+          "blue",
+          "green",
+          "red",
+          "orange"
+        ]
+      },
+      "36": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "Trace and colour the square blue as instructed",
+        "colours": [
+          "blue"
+        ]
+      },
+      "40": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "trace zero and tick empty basket",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "green leaves",
+        "colours": [
+          "green"
+        ]
+      },
+      "44": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "pears and number with magenta colour hint",
+        "colours": [
+          "magenta"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "light blue balloons",
+        "colours": [
+          "light blue"
+        ]
+      },
+      "50": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "51": {
+        "picture": "yellow bananas",
+        "colours": [
+          "yellow"
+        ]
+      },
+      "52": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "pink caps",
+        "colours": [
+          "pink"
+        ]
+      },
+      "54": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "blue balls",
+        "colours": [
+          "blue"
+        ]
+      },
+      "56": {
+        "picture": "Follow and colour numbers 1 to 15 using the yellow starting example",
+        "colours": [
+          "yellow"
+        ]
+      },
+      "57": {
+        "picture": "Trace and colour the rectangle yellow as instructed",
+        "colours": [
+          "yellow"
+        ]
+      },
+      "58": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "red doughnuts",
+        "colours": [
+          "red"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "cupcakes with yellow cases and coloured sprinkles",
+        "colours": [
+          "yellow",
+          "orange",
+          "pink",
+          "blue"
+        ]
+      },
+      "62": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "63": {
+        "picture": "light blue mugs",
+        "colours": [
+          "light blue"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "green stars",
+        "colours": [
+          "green"
+        ]
+      },
+      "66": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "67": {
+        "picture": "purple sweets",
+        "colours": [
+          "purple"
+        ]
+      },
+      "68": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "Trace and colour the triangle green as instructed",
+        "colours": [
+          "green"
+        ]
+      },
+      "70": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "71": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
+    },
+    "stemford-science-1": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "8": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "9": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "10": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "Draw your own face and label its parts",
+        "colours": [
+          "black",
+          "brown",
+          "light brown",
+          "pink"
+        ]
+      },
+      "14": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "28": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "Draw your breakfast: open food drawing",
+        "colours": [
+          "red",
+          "green",
+          "yellow",
+          "orange",
+          "brown",
+          "light brown",
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "51": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "67": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "68": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "70": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "71": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
+    },
+    "stemford-series-computer-book-0-curve": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "encircle answers, no colouring task",
+        "colours": [
+          "red"
+        ]
+      },
+      "5": {
+        "picture": "trace letters, no colouring task",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "Colour only the CPU using the example",
+        "colours": [
+          "grey",
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "tick answers, no colouring task",
+        "colours": [
+          "red"
+        ]
+      },
+      "8": {
+        "picture": "match letters, no colouring task",
+        "colours": [
+          "red"
+        ]
+      },
+      "9": {
+        "picture": "match pictures, no colouring task",
+        "colours": [
+          "red"
+        ]
+      },
+      "10": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "Colour the game console and headphones",
+        "colours": [
+          "grey",
+          "black",
+          "blue"
+        ]
+      },
+      "16": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "Colour the laptop using the example",
+        "colours": [
+          "grey",
+          "black",
+          "blue"
+        ]
+      },
+      "20": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "Colour only the optical drive",
+        "colours": [
+          "grey",
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "Colour the correct first letters",
+        "colours": [
+          "black"
+        ]
+      },
+      "28": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "33": {
+        "picture": "Colour the speakers and tablet",
+        "colours": [
+          "black",
+          "grey",
+          "blue"
+        ]
+      },
+      "34": {
+        "picture": "Colour the UPS and its green power button",
+        "colours": [
+          "black",
+          "grey",
+          "green"
+        ]
+      },
+      "35": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "Trace and colour the WhatsApp logo green",
+        "colours": [
+          "green"
+        ]
+      },
+      "37": {
+        "picture": "Colour the Xbox and its green details",
+        "colours": [
+          "black",
+          "grey",
+          "green"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "Colour only the Zoom logo",
+        "colours": [
+          "blue"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "51": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
+    },
+    "stemford-urdu-3": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "grapes, leaf and stalk",
+        "colours": [
+          "green",
+          "purple",
+          "brown"
+        ]
+      },
+      "7": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "8": {
+        "picture": "mango and stalk; yellow hint",
+        "colours": [
+          "yellow",
+          "orange",
+          "green"
+        ]
+      },
+      "9": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "10": {
+        "picture": "Colour potato and pomegranate; write beginning letters",
+        "colours": [
+          "light brown",
+          "red",
+          "green",
+          "black"
+        ]
+      },
+      "11": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "duck and beak",
+        "colours": [
+          "yellow",
+          "orange"
+        ]
+      },
+      "13": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "leaf with green hint",
+        "colours": [
+          "green",
+          "dark green"
+        ]
+      },
+      "15": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "butterfly: yellow, blue and red paper hints",
+        "colours": [
+          "yellow",
+          "blue",
+          "red"
+        ]
+      },
+      "17": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "tomato and leaves",
+        "colours": [
+          "red",
+          "green"
+        ]
+      },
+      "19": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "basket with brown texture",
+        "colours": [
+          "brown",
+          "light brown"
+        ]
+      },
+      "21": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "jug with blue hint",
+        "colours": [
+          "blue",
+          "light blue"
+        ]
+      },
+      "25": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "crescent moon",
+        "colours": [
+          "yellow"
+        ]
+      },
+      "27": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "28": {
+        "picture": "plate",
+        "colours": [
+          "blue",
+          "yellow"
+        ]
+      },
+      "29": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "envelope",
+        "colours": [
+          "yellow",
+          "brown"
+        ]
+      },
+      "31": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "33": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "tree, leaves and trunk",
+        "colours": [
+          "green",
+          "brown"
+        ]
+      },
+      "35": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "gift box and ribbon",
+        "colours": [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      },
+      "37": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "baskets of grain",
+        "colours": [
+          "brown",
+          "light brown",
+          "yellow"
+        ]
+      },
+      "39": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "green and yellow rickshaw",
+        "colours": [
+          "green",
+          "yellow",
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "mountains and snow",
+        "colours": [
+          "grey",
+          "brown",
+          "light blue"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "zebra stripes",
+        "colours": [
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "window frame, panes and view",
+        "colours": [
+          "blue",
+          "brown",
+          "green"
+        ]
+      },
+      "47": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "sun and rays with yellow hint",
+        "colours": [
+          "yellow",
+          "orange"
+        ]
+      },
+      "51": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "lion, mane and face",
+        "colours": [
+          "orange",
+          "yellow",
+          "brown"
+        ]
+      },
+      "53": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "ewer and decoration",
+        "colours": [
+          "brown",
+          "orange"
+        ]
+      },
+      "55": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "man, face, beard and clothes",
+        "colours": [
+          "light brown",
+          "grey",
+          "blue"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "Colour bicycle, chest, elderly man and well; write beginning letters",
+        "colours": [
+          "blue",
+          "grey",
+          "brown",
+          "light brown",
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "aeroplane and windows",
+        "colours": [
+          "grey",
+          "blue"
+        ]
+      },
+      "61": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "utensils",
+        "colours": [
+          "grey",
+          "blue"
+        ]
+      },
+      "63": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "bird and beak",
+        "colours": [
+          "brown",
+          "yellow"
+        ]
+      },
+      "65": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "ball with yellow hint",
+        "colours": [
+          "red",
+          "yellow"
+        ]
+      },
+      "67": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "68": {
+        "picture": "Colour aeroplane and utensils; write beginning letters",
+        "colours": [
+          "grey",
+          "blue",
+          "brown",
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "70": {
+        "picture": "frock and trim",
+        "colours": [
+          "pink",
+          "purple"
+        ]
+      },
+      "71": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "scissors: handles and blades",
+        "colours": [
+          "red",
+          "grey"
+        ]
+      },
+      "73": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "74": {
+        "picture": "banana and stalk",
+        "colours": [
+          "yellow",
+          "green"
+        ]
+      },
+      "75": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "76": {
+        "picture": "carrot and leaves",
+        "colours": [
+          "orange",
+          "green"
+        ]
+      },
+      "77": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "78": {
+        "picture": "patterned spinning top",
+        "colours": [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      },
+      "79": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "80": {
+        "picture": "orange and leaves",
+        "colours": [
+          "orange",
+          "green"
+        ]
+      },
+      "81": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "82": {
+        "picture": "Colour scissors and patterned spinning top; write beginning letters",
+        "colours": [
+          "grey",
+          "yellow",
+          "red",
+          "green",
+          "blue",
+          "black"
+        ]
+      },
+      "83": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "84": {
+        "picture": "coconut and shell",
+        "colours": [
+          "brown",
+          "light brown"
+        ]
+      },
+      "85": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "86": {
+        "picture": "uniform and buttons",
+        "colours": [
+          "blue",
+          "grey"
+        ]
+      },
+      "87": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "88": {
+        "picture": "writing only, no colouring picture",
+        "colours": [
+          "black"
+        ]
+      },
+      "89": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "90": {
+        "picture": "tea and cup",
+        "colours": [
+          "brown",
+          "blue"
+        ]
+      },
+      "91": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "92": {
+        "picture": "cart, wheels and donkey",
+        "colours": [
+          "brown",
+          "grey",
+          "yellow"
+        ]
+      },
+      "93": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "94": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "95": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "96": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      }
+    },
+    "stemford-urdu-4": {
+      "1": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "camel",
+        "colours": [
+          "light brown"
+        ]
+      },
+      "6": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "peach: orange skin, red blush, yellow flesh, brown stone and stem, green leaf",
+        "colours": [
+          "orange",
+          "yellow",
+          "brown",
+          "leaf green"
+        ]
+      },
+      "8": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "9": {
+        "picture": "cat: grey fur, pink nose and ears",
+        "colours": [
+          "grey",
+          "pink"
+        ]
+      },
+      "10": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "11": {
+        "picture": "onion: purple skin, light brown roots",
+        "colours": [
+          "purple",
+          "light brown"
+        ]
+      },
+      "12": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "watermelon: green and dark green rind, red flesh, black seeds",
+        "colours": [
+          "leaf green",
+          "dark green",
+          "red",
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "basket: orange plastic basket with pink handle, as on page 14",
+        "colours": [
+          "orange",
+          "pink"
+        ]
+      },
+      "16": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "fruit basket: brown basket, red apples, orange oranges, yellow and green pineapple, green and purple grapes",
+        "colours": [
+          "brown",
+          "red",
+          "orange",
+          "yellow",
+          "leaf green",
+          "purple"
+        ]
+      },
+      "18": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "Join the Urdu letters in sequence and colour the duck beak and feet",
+        "colours": [
+          "orange",
+          "yellow",
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "aeroplane: white and grey body, blue windows and tail",
+        "colours": [
+          "grey",
+          "blue",
+          "light blue"
+        ]
+      },
+      "22": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "sparrow: brown and light brown feathers, grey chest, yellow beak and feet",
+        "colours": [
+          "brown",
+          "light brown",
+          "grey",
+          "yellow"
+        ]
+      },
+      "24": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "barber: skin, brown hair, blue clothes, grey scissors",
+        "colours": [
+          "light brown",
+          "brown",
+          "blue",
+          "grey",
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "rabbit: light brown and grey fur, pink ears",
+        "colours": [
+          "light brown",
+          "grey",
+          "pink"
+        ]
+      },
+      "28": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "tree: green leaves, brown trunk",
+        "colours": [
+          "leaf green",
+          "brown"
+        ]
+      },
+      "30": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "doctor: skin, brown hair, blue shirt, grey stethoscope",
+        "colours": [
+          "light brown",
+          "brown",
+          "blue",
+          "grey"
+        ]
+      },
+      "32": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "33": {
+        "picture": "grain sacks: light brown and brown jute",
+        "colours": [
+          "light brown",
+          "brown"
+        ]
+      },
+      "34": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "bear: brown and light brown fur",
+        "colours": [
+          "brown",
+          "light brown"
+        ]
+      },
+      "36": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "37": {
+        "picture": "mountain: grey rock, white snow, brown and green ground",
+        "colours": [
+          "grey",
+          "brown",
+          "leaf green"
+        ]
+      },
+      "38": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "zebra: black stripes",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "hailstorm: grey clouds, light blue hail, brown house with red roof",
+        "colours": [
+          "grey",
+          "light blue",
+          "brown",
+          "red"
+        ]
+      },
+      "42": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "apple: red apple, brown stalk",
+        "colours": [
+          "red",
+          "brown"
+        ]
+      },
+      "46": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "lion: yellow body, orange and brown mane, pink cheeks",
+        "colours": [
+          "yellow",
+          "orange",
+          "brown",
+          "pink"
+        ]
+      },
+      "48": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "49": {
+        "picture": "pitcher: brass and clay colours",
+        "colours": [
+          "yellow",
+          "orange",
+          "brown"
+        ]
+      },
+      "50": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "51": {
+        "picture": "elderly man: skin, brown and grey clothes, brown chair",
+        "colours": [
+          "light brown",
+          "brown",
+          "grey",
+          "blue"
+        ]
+      },
+      "52": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "parrot: green feathers, red beak, yellow neck",
+        "colours": [
+          "leaf green",
+          "red",
+          "yellow"
+        ]
+      },
+      "54": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "clown: colourful clothes, red nose, orange hair",
+        "colours": [
+          "red",
+          "blue",
+          "yellow",
+          "leaf green",
+          "orange",
+          "light brown"
+        ]
+      },
+      "56": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "eagle: brown wings, white head, yellow beak and claws",
+        "colours": [
+          "brown",
+          "yellow",
+          "grey"
+        ]
+      },
+      "60": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "balloon: blue as on page 60, or red or yellow",
+        "colours": [
+          "blue",
+          "red",
+          "yellow"
+        ]
+      },
+      "62": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "63": {
+        "picture": "fountain: blue water, grey stone",
+        "colours": [
+          "blue",
+          "light blue",
+          "grey"
+        ]
+      },
+      "64": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "carpet: red, brown, yellow and green pattern",
+        "colours": [
+          "red",
+          "brown",
+          "yellow",
+          "leaf green"
+        ]
+      },
+      "66": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "67": {
+        "picture": "chair: brown wood",
+        "colours": [
+          "brown",
+          "light brown"
+        ]
+      },
+      "68": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "donkey: grey and brown",
+        "colours": [
+          "grey",
+          "brown"
+        ]
+      },
+      "70": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "71": {
+        "picture": "spinning top: red, green, yellow and blue stripes",
+        "colours": [
+          "red",
+          "leaf green",
+          "yellow",
+          "blue"
+        ]
+      },
+      "72": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "73": {
+        "picture": "fish: orange and yellow body, blue fins",
+        "colours": [
+          "orange",
+          "yellow",
+          "blue"
+        ]
+      },
+      "74": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "75": {
+        "picture": "coconut: brown shell, white inside, green leaves",
+        "colours": [
+          "brown",
+          "light brown",
+          "leaf green"
+        ]
+      },
+      "76": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "77": {
+        "picture": "van: blue and yellow body, grey wheels, as on page 76",
+        "colours": [
+          "blue",
+          "yellow",
+          "grey",
+          "black"
+        ]
+      },
+      "78": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "79": {
+        "picture": "elephant: grey with pink ears",
+        "colours": [
+          "grey",
+          "pink"
+        ]
+      },
+      "80": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "81": {
+        "picture": "cow: brown patches, pink nose and udder",
+        "colours": [
+          "brown",
+          "pink",
+          "black"
+        ]
+      },
+      "82": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "83": {
+        "picture": "horse cart: brown horse, red cart, grey wheels",
+        "colours": [
+          "brown",
+          "red",
+          "grey",
+          "light brown"
+        ]
+      },
+      "84": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "85": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "86": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "87": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "88": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "89": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "90": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "91": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "92": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "93": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "94": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "95": {
+        "picture": "No requested colouring: black pencil for reading notes, matching or writing",
+        "colours": [
+          "black"
+        ]
+      },
+      "96": {
+        "picture": "Read and write counting 1 to 10 and colour the outlined objects",
+        "colours": [
+          "brown",
+          "grey",
+          "green",
+          "blue",
+          "yellow",
+          "orange",
+          "pink",
+          "red",
+          "black"
+        ]
+      }
     }
   }
 }

@@ -75,11 +75,12 @@ test('deleting a draft page preserves other pages and activities and renumbers f
 test('only real bundled activities can be applied and exported as reusable references', async () => {
   const { buildExistingActivities, registerExistingActivities, applyExistingActivity, existingActivityKinds } = await import('../src/authoring/existingActivities.js');
   globalThis.window = {}; globalThis.localStorage = { getItem: () => null };
-  for (const file of ['data.js', 'books/library.js', 'books/zones.js', 'books/activities.js', 'books/audio-urdu3.js', 'books/activities-english3.js', 'books/activities-computer0.js', 'books/activities-maxford.js', 'books/activities-maths3.js', 'books/activities-urdu3.js']) await import('../' + file);
+  for (const file of ['data.js', 'books/library.js', 'books/zones.js', 'books/activities.js', 'books/audio-urdu3.js', 'books/activities-english3.js', 'books/activities-computer0.js', 'books/activities-maxford.js', 'books/activities-maths3.js', 'books/activities-urdu3.js', 'books/activities-urdu4.js']) await import('../' + file);
   const { books } = await import('../src/data/books.js');
   const catalogue = buildExistingActivities(books, window.RECORDED);
   registerExistingActivities(catalogue);
-  assert.equal(catalogue.filter(item => item.source === 'activity').length, 417);
+  assert.equal(catalogue.filter(item => item.source === 'activity').length, 549);
+  assert.equal(catalogue.filter(item => item.source === 'activity' && item.bookId === 'stemford-urdu-4').length, 132);
   assert.equal(new Set(catalogue.map(item => item.id)).size, catalogue.length);
   for (const kind of existingActivityKinds) assert.ok(catalogue.some(item => item.kind === kind.id), kind.name);
   const source = catalogue.find(item => item.kind === 'game');

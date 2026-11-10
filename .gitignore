@@ -7,3 +7,6 @@ tools/__pycache__/
 node_modules/
 .vite/
 dist/
+tmp/
+# Keep the publisher's original large PDF locally; generated reader pages are tracked.
+books/steamford-urdu 4+/*.pdf

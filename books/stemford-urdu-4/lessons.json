@@ -1,0 +1,446 @@
+[
+  {
+    "picturePage": 4,
+    "tracePage": 5,
+    "letter": "ا",
+    "name": "الف",
+    "words": [
+      "اخروٹ",
+      "امرود",
+      "انار"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 6,
+    "tracePage": 7,
+    "letter": "آ",
+    "name": "الف مد",
+    "words": [
+      "آڑو",
+      "آری",
+      "آم"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 8,
+    "tracePage": 9,
+    "letter": "ب",
+    "name": "بے",
+    "words": [
+      "بطخ",
+      "بادشاہ",
+      "بوتل"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 10,
+    "tracePage": 11,
+    "letter": "پ",
+    "name": "پے",
+    "words": [
+      "پرندہ",
+      "پنکھا",
+      "پنسل"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 12,
+    "tracePage": 13,
+    "letter": "ت",
+    "name": "تے",
+    "words": [
+      "تربوز",
+      "تتلی",
+      "تاج"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 14,
+    "tracePage": 15,
+    "letter": "ٹ",
+    "name": "ٹے",
+    "words": [
+      "ٹماٹر",
+      "ٹوکری",
+      "ٹرک"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 16,
+    "tracePage": 17,
+    "letter": "ث",
+    "name": "ثے",
+    "words": [
+      "ثاقب",
+      "ثابت",
+      "ثمر"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 20,
+    "tracePage": 21,
+    "letter": "ج",
+    "name": "جیم",
+    "words": [
+      "جہاز",
+      "جیپ",
+      "جلیبی"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 22,
+    "tracePage": 23,
+    "letter": "چ",
+    "name": "چے",
+    "words": [
+      "چڑیا",
+      "چابی",
+      "چوزہ"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 24,
+    "tracePage": 25,
+    "letter": "ح",
+    "name": "بڑی حے",
+    "words": [
+      "حلوا",
+      "حلوائی",
+      "حوض"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 26,
+    "tracePage": 27,
+    "letter": "خ",
+    "name": "خے",
+    "words": [
+      "خرگوش",
+      "خط",
+      "خربوزہ"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 28,
+    "tracePage": 29,
+    "letter": "د",
+    "name": "دال",
+    "words": [
+      "درخت",
+      "دانت",
+      "دوات"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 30,
+    "tracePage": 31,
+    "letter": "ڈ",
+    "name": "ڈال",
+    "words": [
+      "ڈول",
+      "ڈبا",
+      "ڈاکٹر"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 32,
+    "tracePage": 33,
+    "letter": "ذ",
+    "name": "ذال",
+    "words": [
+      "ذائقہ",
+      "ذخیرہ",
+      "ذرات"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 34,
+    "tracePage": 35,
+    "letter": "ر",
+    "name": "رے",
+    "words": [
+      "روٹی",
+      "رکشا",
+      "ریچھ"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 36,
+    "tracePage": 37,
+    "letter": "ڑ",
+    "name": "ڑے",
+    "words": [
+      "گاڑی",
+      "گڑیا",
+      "پہاڑ"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 38,
+    "tracePage": 39,
+    "letter": "ز",
+    "name": "زے",
+    "words": [
+      "زیور",
+      "زردی",
+      "زنجیر"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 40,
+    "tracePage": 41,
+    "letter": "ژ",
+    "name": "ژے",
+    "words": [
+      "ژالہ باری",
+      "اژدہا",
+      "ٹیلی ویژن"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 44,
+    "tracePage": 45,
+    "letter": "س",
+    "name": "سین",
+    "words": [
+      "سکول",
+      "سورج",
+      "سیب"
+    ],
+    "tracingMarks": 9
+  },
+  {
+    "picturePage": 46,
+    "tracePage": 47,
+    "letter": "ش",
+    "name": "شین",
+    "words": [
+      "شیر",
+      "شلجم",
+      "شربت"
+    ],
+    "tracingMarks": 9
+  },
+  {
+    "picturePage": 48,
+    "tracePage": 49,
+    "letter": "ص",
+    "name": "صاد",
+    "words": [
+      "صفحہ",
+      "صندوق",
+      "صوفہ"
+    ],
+    "tracingMarks": 9
+  },
+  {
+    "picturePage": 50,
+    "tracePage": 51,
+    "letter": "ض",
+    "name": "ضاد",
+    "words": [
+      "ضرب",
+      "ضیافت",
+      "ضعیف"
+    ],
+    "tracingMarks": 9
+  },
+  {
+    "picturePage": 52,
+    "tracePage": 53,
+    "letter": "ط",
+    "name": "طوئے",
+    "words": [
+      "طشتری",
+      "طوطا",
+      "طیارہ"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 54,
+    "tracePage": 55,
+    "letter": "ظ",
+    "name": "ظوئے",
+    "words": [
+      "ظریف",
+      "ظروف",
+      "ظل"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 58,
+    "tracePage": 59,
+    "letter": "ع",
+    "name": "عین",
+    "words": [
+      "عقاب",
+      "عورت",
+      "عینک"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 60,
+    "tracePage": 61,
+    "letter": "غ",
+    "name": "غین",
+    "words": [
+      "غالیچہ",
+      "غار",
+      "غبارہ"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 62,
+    "tracePage": 63,
+    "letter": "ف",
+    "name": "فے",
+    "words": [
+      "فراک",
+      "فوارہ",
+      "فوجی"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 64,
+    "tracePage": 65,
+    "letter": "ق",
+    "name": "قاف",
+    "words": [
+      "قرآن",
+      "قلم",
+      "قمیص"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 66,
+    "tracePage": 67,
+    "letter": "ک",
+    "name": "کاف",
+    "words": [
+      "کشتی",
+      "کیلا",
+      "کوا"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 68,
+    "tracePage": 69,
+    "letter": "گ",
+    "name": "گاف",
+    "words": [
+      "گائے",
+      "گیند",
+      "گاجر"
+    ],
+    "tracingMarks": 9
+  },
+  {
+    "picturePage": 70,
+    "tracePage": 71,
+    "letter": "ل",
+    "name": "لام",
+    "words": [
+      "لومڑی",
+      "لیموں",
+      "لٹو"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 72,
+    "tracePage": 73,
+    "letter": "م",
+    "name": "میم",
+    "words": [
+      "مگرمچھ",
+      "مور",
+      "مرغی"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 74,
+    "tracePage": 75,
+    "letter": "ن",
+    "name": "نون",
+    "words": [
+      "ناریل",
+      "نل",
+      "ناشپاتی"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 76,
+    "tracePage": 77,
+    "letter": "و",
+    "name": "واؤ",
+    "words": [
+      "وادی",
+      "ویگن",
+      "ورق"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 78,
+    "tracePage": 79,
+    "letter": "ہ",
+    "name": "ہے",
+    "words": [
+      "ہار",
+      "ہاتھی",
+      "ہرن"
+    ],
+    "tracingMarks": 18
+  },
+  {
+    "picturePage": 80,
+    "tracePage": 81,
+    "letter": "ء",
+    "name": "ہمزہ",
+    "words": [
+      "مٹھائی",
+      "گائے",
+      "آئینہ"
+    ],
+    "tracingMarks": 12
+  },
+  {
+    "picturePage": 82,
+    "tracePage": 83,
+    "letter": "ی، ے",
+    "name": "چھوٹی یے اور بڑی یے",
+    "words": [
+      "یاقوت",
+      "یاک",
+      "یکہ"
+    ],
+    "tracingMarks": 24
+  }
+]

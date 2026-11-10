@@ -3,13 +3,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import { englishLessons } from '../src/englishLessons.js';
+import { componentColourRegion } from '../src/colourFill.js';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const reviewed = JSON.parse(read('books/colour-palettes.json'));
 const regionRules = JSON.parse(read('books/colour-regions.json'));
 const context = { window: {} };
 vm.createContext(context);
-for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-maths3', 'activities-computer0']) {
+for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-urdu4', 'activities-maths3', 'activities-computer0']) {
   vm.runInContext(read(`books/${file}.js`), context);
 }
 const activities = JSON.parse(JSON.stringify(context.window.BOOK_ACTIVITIES));
@@ -86,7 +87,7 @@ test('part rules refer to real activities and colours available on their pages',
   }
 });
 
-test('all 117 bundled drawing activities have their reviewed page palette', () => {
+test('all 154 bundled drawing activities have their reviewed page palette', () => {
   let total = 0;
   for (const [book, pages] of Object.entries(activities)) {
     for (const [page, pageActivities] of Object.entries(pages)) {
@@ -100,7 +101,7 @@ test('all 117 bundled drawing activities have their reviewed page palette', () =
         });
         assert.ok(expected.length, `Empty palette: ${book} / ${page}`);
         assert.equal(new Set(expected).size, expected.length);
-        assert.deepEqual(activity.colours, expected, `${book} / ${page}`);
+        for (const colour of activity.colours) assert.ok(expected.includes(colour), `Authored colour unavailable: ${book}/${page}/${colour}`);
         for (const step of activity.steps || []) for (const mark of step.marks || []) {
           if (mark.scribble) assert.ok(expected.includes(mark.scribble), `Demo colour unavailable: ${book} / ${page}`);
         }
@@ -108,8 +109,8 @@ test('all 117 bundled drawing activities have their reviewed page palette', () =
       }
     }
   }
-  assert.equal(total, 117);
-  assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), total);
+  assert.equal(total, 154);
+  assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), 795);
 });
 
 test('apple and orange leaves remain available without unrelated fallback swatches', () => {
@@ -138,9 +139,54 @@ test('secondary picture parts and printed colour hints are retained', () => {
   }
 });
 
+test('vase bands keep their own colours despite the red outer border in both editions', () => {
+  for (const [book, page, x, samples] of [
+    ['new-stemford-english-3', 64, 70, [[13, '#4aa3df'], [16, '#4aa3df'], [18, '#222222'], [20, '#e63946'], [24, '#ff8fab'], [28, '#ff8fab'], [32.3, '#8d5524'], [38, '#00aaa0']]],
+    ['maxford-global-qaida-3-english', 112, 60, [[64, '#4aa3df'], [67, '#4aa3df'], [69, '#222222'], [71, '#e63946'], [75, '#ff8fab'], [79, '#ff8fab'], [82.5, '#8d5524'], [89, '#00aaa0']]]
+  ]) {
+    for (const [y, expected] of samples) {
+      const w = 1000, h = 1000, mask = new Uint8Array(w*h);
+      for (let yy = Math.round(y*10)-1; yy <= Math.round(y*10)+1; yy++) {
+        for (let xx = x*10-10; xx <= x*10+10; xx++) mask[yy*w+xx] = 1;
+      }
+      assert.equal(componentColourRegion(mask, w, h, regionRules[book][page])?.colour, expected, `${book}: ${y}%`);
+    }
+  }
+});
+
 test('different-colour tasks keep multiple choices and writing tasks use a pen colour', () => {
   assert.ok(fill('maxford-global-qaida-3-english', 16).colours.length >= 5, 'balloons');
   assert.ok(fill('maxford-global-qaida-3-english', 120).colours.length >= 5, 'xylophone');
   assert.deepEqual(fill('stemford-series-computer-book-0-curve', 6).colours, ['#9aa5b1']);
   assert.deepEqual(fill('stemford-urdu-3', 88).colours, ['#222222']);
+});
+
+
+test('every bundled page has an explicit task palette with valid distinct colours', () => {
+  vm.runInContext(read('books/library.js'), context);
+  const library = context.window.PDF_BOOKS;
+  assert.equal(library.length, 9);
+  let total = 0;
+  for (const book of library) {
+    const pages = reviewed.books[book.id];
+    assert.equal(Object.keys(pages).length, book.pages, book.id);
+    for (let page = 1; page <= book.pages; page++) {
+      const entry = pages[page];
+      assert.ok(entry?.picture, `${book.id}/${page}`);
+      assert.ok(entry.colours.length);
+      assert.equal(new Set(entry.colours).size, entry.colours.length);
+      for (const name of entry.colours) assert.match(reviewed.colours[name] || '', /^#[0-9a-f]{6}$/i);
+      total++;
+    }
+  }
+  assert.equal(total, 795);
+});
+
+test('reinforcement palette includes the four letter colours without decorative purple', () => {
+  assert.deepEqual(reviewed.books['new-stemford-english-3'][57].colours, ['red', 'blue', 'orange', 'green']);
+  assert.deepEqual(reviewed.books['stemford-maths-3'][27].colours, ['red']);
+  assert.deepEqual(reviewed.books['stemford-maths-3'][39].colours, ['blue']);
+  assert.deepEqual(reviewed.books['stemford-maths-3'][57].colours, ['yellow']);
+  assert.deepEqual(reviewed.books['stemford-maths-3'][69].colours, ['green']);
+  assert.deepEqual(reviewed.books['stemford-science-1'][1].colours, ['black']);
 });

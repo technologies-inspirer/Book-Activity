@@ -17,8 +17,10 @@ import numpy as np
 
 from ink import PAD, make_ink
 from book_colours import page_colours
+from urdu_alif import alif_ink as written_alif
 
 BOOK = 'stemford-urdu-3'
+RATIO = .7222   # page width / height
 VIDEO_DIR = 'videos/stemford-urdu-3/'
 
 # picture page, letter, its name, folder name, the book's sentence, the three pictures from right to left,
@@ -256,6 +258,12 @@ def trace_page(page, name, folder):
                 box = [round(x, 2), b[1], round(w, 2), h]
                 pb = [round(x - w * PAD, 2), round(b[1] - h * PAD, 2), round(w * (1 + 2 * PAD), 2), round(h * (1 + 2 * PAD), 2)]
                 m = {'glyph': 'ur', 'box': box, 'ink': {'src': ref['ink']['src'], 'box': pb}}
+                if name == 'الف':
+                    # the publisher's written alif (tools/urdu_alif.py), as in Urdu 4+, not the big hollow stick
+                    src = 'books/%s/ink/p%03d_%d_%d_alif.png' % (BOOK, page, round(b[0] * 10), round(b[1] * 10))
+                    box, pb = written_alif(src, b, RATIO)
+                    out.append({'glyph': 'ur', 'box': box, 'ink': {'src': src, 'box': pb}})   # traced and checked as this alif
+                    continue
                 src, db = make_ink(BOOK, page, b)
                 if cv2.imread(src, cv2.IMREAD_UNCHANGED)[..., 3].mean() > 6:
                     m['dots'] = {'src': src, 'box': db}
