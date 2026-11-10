@@ -14,7 +14,8 @@
     "light brown": "#d4a373",
     "grey": "#9aa5b1",
     "black": "#222222",
-    "teal": "#00aaa0"
+    "teal": "#00aaa0",
+    "leaf green": "#4caf50"
   },
   "books": {
     "maxford-global-qaida-3-english": {
@@ -4585,9 +4586,7 @@
       "5": {
         "picture": "camel",
         "colours": [
-          "light brown",
-          "brown",
-          "black"
+          "light brown"
         ]
       },
       "6": {
@@ -4597,12 +4596,12 @@
         ]
       },
       "7": {
-        "picture": "peach and leaf",
+        "picture": "peach: orange skin, red blush, yellow flesh, brown stone and stem, green leaf",
         "colours": [
           "orange",
-          "pink",
-          "green",
-          "black"
+          "yellow",
+          "brown",
+          "leaf green"
         ]
       },
       "8": {
@@ -4612,11 +4611,10 @@
         ]
       },
       "9": {
-        "picture": "cat",
+        "picture": "cat: grey fur, pink nose and ears",
         "colours": [
           "grey",
-          "pink",
-          "black"
+          "pink"
         ]
       },
       "10": {
@@ -4626,11 +4624,10 @@
         ]
       },
       "11": {
-        "picture": "onion",
+        "picture": "onion: purple skin, light brown roots",
         "colours": [
           "purple",
-          "green",
-          "black"
+          "light brown"
         ]
       },
       "12": {
@@ -4640,9 +4637,10 @@
         ]
       },
       "13": {
-        "picture": "watermelon",
+        "picture": "watermelon: green and dark green rind, red flesh, black seeds",
         "colours": [
-          "green",
+          "leaf green",
+          "dark green",
           "red",
           "black"
         ]
@@ -4654,11 +4652,10 @@
         ]
       },
       "15": {
-        "picture": "basket",
+        "picture": "basket: orange plastic basket with pink handle, as on page 14",
         "colours": [
-          "brown",
-          "light brown",
-          "black"
+          "orange",
+          "pink"
         ]
       },
       "16": {
@@ -4668,14 +4665,14 @@
         ]
       },
       "17": {
-        "picture": "fruit basket",
+        "picture": "fruit basket: brown basket, red apples, orange oranges, yellow and green pineapple, green and purple grapes",
         "colours": [
           "brown",
           "red",
           "orange",
           "yellow",
-          "green",
-          "black"
+          "leaf green",
+          "purple"
         ]
       },
       "18": {
@@ -4699,11 +4696,11 @@
         ]
       },
       "21": {
-        "picture": "airplane",
+        "picture": "aeroplane: white and grey body, blue windows and tail",
         "colours": [
           "grey",
           "blue",
-          "black"
+          "light blue"
         ]
       },
       "22": {
@@ -4713,12 +4710,12 @@
         ]
       },
       "23": {
-        "picture": "bird",
+        "picture": "sparrow: brown and light brown feathers, grey chest, yellow beak and feet",
         "colours": [
-          "yellow",
-          "orange",
           "brown",
-          "black"
+          "light brown",
+          "grey",
+          "yellow"
         ]
       },
       "24": {
@@ -4728,12 +4725,12 @@
         ]
       },
       "25": {
-        "picture": "gardener",
+        "picture": "barber: skin, brown hair, blue clothes, grey scissors",
         "colours": [
-          "green",
-          "brown",
           "light brown",
+          "brown",
           "blue",
+          "grey",
           "black"
         ]
       },
@@ -4744,12 +4741,11 @@
         ]
       },
       "27": {
-        "picture": "rabbit",
+        "picture": "rabbit: light brown and grey fur, pink ears",
         "colours": [
           "light brown",
           "grey",
-          "pink",
-          "black"
+          "pink"
         ]
       },
       "28": {
@@ -4759,11 +4755,10 @@
         ]
       },
       "29": {
-        "picture": "tree",
+        "picture": "tree: green leaves, brown trunk",
         "colours": [
-          "green",
-          "brown",
-          "black"
+          "leaf green",
+          "brown"
         ]
       },
       "30": {
@@ -4773,12 +4768,12 @@
         ]
       },
       "31": {
-        "picture": "doctor",
+        "picture": "doctor: skin, brown hair, blue shirt, grey stethoscope",
         "colours": [
           "light brown",
-          "grey",
+          "brown",
           "blue",
-          "black"
+          "grey"
         ]
       },
       "32": {
@@ -4788,11 +4783,10 @@
         ]
       },
       "33": {
-        "picture": "grain",
+        "picture": "grain sacks: light brown and brown jute",
         "colours": [
           "light brown",
-          "brown",
-          "black"
+          "brown"
         ]
       },
       "34": {
@@ -4802,11 +4796,10 @@
         ]
       },
       "35": {
-        "picture": "bear",
+        "picture": "bear: brown and light brown fur",
         "colours": [
           "brown",
-          "light brown",
-          "black"
+          "light brown"
         ]
       },
       "36": {
@@ -4816,12 +4809,11 @@
         ]
       },
       "37": {
-        "picture": "mountain",
+        "picture": "mountain: grey rock, white snow, brown and green ground",
         "colours": [
           "grey",
-          "blue",
           "brown",
-          "black"
+          "leaf green"
         ]
       },
       "38": {
@@ -4831,7 +4823,7 @@
         ]
       },
       "39": {
-        "picture": "zebra stripes",
+        "picture": "zebra: black stripes",
         "colours": [
           "black"
         ]
@@ -4843,12 +4835,12 @@
         ]
       },
       "41": {
-        "picture": "hailstorm",
+        "picture": "hailstorm: grey clouds, light blue hail, brown house with red roof",
         "colours": [
           "grey",
           "light blue",
-          "blue",
-          "black"
+          "brown",
+          "red"
         ]
       },
       "42": {
@@ -4870,11 +4862,10 @@
         ]
       },
       "45": {
-        "picture": "apple and leaf",
+        "picture": "apple: red apple, brown stalk",
         "colours": [
           "red",
-          "green",
-          "black"
+          "brown"
         ]
       },
       "46": {
@@ -4884,12 +4875,12 @@
         ]
       },
       "47": {
-        "picture": "lion",
+        "picture": "lion: yellow body, orange and brown mane, pink cheeks",
         "colours": [
           "yellow",
+          "orange",
           "brown",
-          "light brown",
-          "black"
+          "pink"
         ]
       },
       "48": {
@@ -4899,11 +4890,11 @@
         ]
       },
       "49": {
-        "picture": "pitcher",
+        "picture": "pitcher: brass and clay colours",
         "colours": [
-          "teal",
-          "blue",
-          "black"
+          "yellow",
+          "orange",
+          "brown"
         ]
       },
       "50": {
@@ -4913,12 +4904,12 @@
         ]
       },
       "51": {
-        "picture": "elderly man",
+        "picture": "elderly man: skin, brown and grey clothes, brown chair",
         "colours": [
-          "brown",
           "light brown",
+          "brown",
           "grey",
-          "black"
+          "blue"
         ]
       },
       "52": {
@@ -4928,12 +4919,11 @@
         ]
       },
       "53": {
-        "picture": "parrot",
+        "picture": "parrot: green feathers, red beak, yellow neck",
         "colours": [
-          "green",
+          "leaf green",
           "red",
-          "yellow",
-          "black"
+          "yellow"
         ]
       },
       "54": {
@@ -4943,14 +4933,14 @@
         ]
       },
       "55": {
-        "picture": "clown",
+        "picture": "clown: colourful clothes, red nose, orange hair",
         "colours": [
           "red",
           "blue",
           "yellow",
-          "green",
-          "light brown",
-          "black"
+          "leaf green",
+          "orange",
+          "light brown"
         ]
       },
       "56": {
@@ -4972,12 +4962,11 @@
         ]
       },
       "59": {
-        "picture": "eagle",
+        "picture": "eagle: brown wings, white head, yellow beak and claws",
         "colours": [
           "brown",
           "yellow",
-          "grey",
-          "black"
+          "grey"
         ]
       },
       "60": {
@@ -4987,10 +4976,11 @@
         ]
       },
       "61": {
-        "picture": "balloon",
+        "picture": "balloon: blue as on page 60, or red or yellow",
         "colours": [
           "blue",
-          "black"
+          "red",
+          "yellow"
         ]
       },
       "62": {
@@ -5000,11 +4990,11 @@
         ]
       },
       "63": {
-        "picture": "fountain",
+        "picture": "fountain: blue water, grey stone",
         "colours": [
           "blue",
-          "grey",
-          "black"
+          "light blue",
+          "grey"
         ]
       },
       "64": {
@@ -5014,12 +5004,12 @@
         ]
       },
       "65": {
-        "picture": "prayer mat",
+        "picture": "carpet: red, brown, yellow and green pattern",
         "colours": [
-          "green",
+          "red",
           "brown",
           "yellow",
-          "black"
+          "leaf green"
         ]
       },
       "66": {
@@ -5029,11 +5019,10 @@
         ]
       },
       "67": {
-        "picture": "chair",
+        "picture": "chair: brown wood",
         "colours": [
           "brown",
-          "light brown",
-          "black"
+          "light brown"
         ]
       },
       "68": {
@@ -5043,11 +5032,10 @@
         ]
       },
       "69": {
-        "picture": "donkey",
+        "picture": "donkey: grey and brown",
         "colours": [
           "grey",
-          "brown",
-          "black"
+          "brown"
         ]
       },
       "70": {
@@ -5057,13 +5045,12 @@
         ]
       },
       "71": {
-        "picture": "spinning top",
+        "picture": "spinning top: red, green, yellow and blue stripes",
         "colours": [
           "red",
-          "green",
+          "leaf green",
           "yellow",
-          "blue",
-          "black"
+          "blue"
         ]
       },
       "72": {
@@ -5073,11 +5060,11 @@
         ]
       },
       "73": {
-        "picture": "fish",
+        "picture": "fish: orange and yellow body, blue fins",
         "colours": [
-          "blue",
           "orange",
-          "black"
+          "yellow",
+          "blue"
         ]
       },
       "74": {
@@ -5087,11 +5074,11 @@
         ]
       },
       "75": {
-        "picture": "walnut",
+        "picture": "coconut: brown shell, white inside, green leaves",
         "colours": [
           "brown",
           "light brown",
-          "black"
+          "leaf green"
         ]
       },
       "76": {
@@ -5101,9 +5088,10 @@
         ]
       },
       "77": {
-        "picture": "van",
+        "picture": "van: blue and yellow body, grey wheels, as on page 76",
         "colours": [
           "blue",
+          "yellow",
           "grey",
           "black"
         ]
@@ -5115,11 +5103,10 @@
         ]
       },
       "79": {
-        "picture": "elephant",
+        "picture": "elephant: grey with pink ears",
         "colours": [
           "grey",
-          "pink",
-          "black"
+          "pink"
         ]
       },
       "80": {
@@ -5129,10 +5116,10 @@
         ]
       },
       "81": {
-        "picture": "cow",
+        "picture": "cow: brown patches, pink nose and udder",
         "colours": [
           "brown",
-          "light brown",
+          "pink",
           "black"
         ]
       },
@@ -5143,11 +5130,12 @@
         ]
       },
       "83": {
-        "picture": "horse cart",
+        "picture": "horse cart: brown horse, red cart, grey wheels",
         "colours": [
           "brown",
+          "red",
           "grey",
-          "black"
+          "light brown"
         ]
       },
       "84": {

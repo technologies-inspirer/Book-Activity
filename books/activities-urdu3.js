@@ -132,81 +132,54 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       87.12,
+       87.22,
        39.83,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_876_398_alif.png",
        "box": [
-        86.68,
+        86.83,
         37.79,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_876_398.png",
-       "box": [
-        87.43,
-        37.79,
-        1.16,
-        12.26
+        2.37,
+        12.25
        ]
       }
      },
      {
       "glyph": "ur",
       "box": [
-       68.88,
+       68.97,
        39.83,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_694_398_alif.png",
        "box": [
-        68.44,
+        68.58,
         37.79,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_694_398.png",
-       "box": [
-        69.19,
-        37.79,
-        1.16,
-        12.26
+        2.37,
+        12.25
        ]
       }
      },
      {
       "glyph": "ur",
       "box": [
-       50.69,
+       50.78,
        39.83,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_512_398_alif.png",
        "box": [
-        50.25,
+        50.38,
         37.79,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_512_398.png",
-       "box": [
-        50.94,
-        37.79,
-        1.27,
-        12.26
+        2.37,
+        12.25
        ]
       }
      }
@@ -218,26 +191,17 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       87.12,
-       50.33,
-       1.77,
+       87.21,
+       50.34,
+       1.59,
        8.22
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_876_503_alif.png",
        "box": [
-        86.68,
-        48.28,
-        2.66,
-        12.33
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_876_503.png",
-       "box": [
-        87.43,
-        48.28,
-        1.16,
+        86.81,
+        48.29,
+        2.39,
         12.33
        ]
       }
@@ -245,26 +209,17 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       68.88,
-       50.33,
-       1.77,
+       68.97,
+       50.34,
+       1.59,
        8.22
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_694_503_alif.png",
        "box": [
-        68.44,
-        48.28,
-        2.66,
-        12.33
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_694_503.png",
-       "box": [
-        69.19,
-        48.28,
-        1.16,
+        68.57,
+        48.29,
+        2.39,
         12.33
        ]
       }
@@ -272,26 +227,17 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       50.69,
-       50.33,
-       1.77,
+       50.78,
+       50.34,
+       1.59,
        8.22
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_512_503_alif.png",
        "box": [
-        50.25,
-        48.28,
-        2.66,
-        12.33
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_512_503.png",
-       "box": [
-        50.94,
-        48.28,
-        1.27,
+        50.38,
+        48.29,
+        2.39,
         12.33
        ]
       }
@@ -299,26 +245,17 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       32.5,
-       50.33,
-       1.77,
+       32.59,
+       50.34,
+       1.59,
        8.22
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_330_503_alif.png",
        "box": [
-        32.06,
-        48.28,
-        2.66,
-        12.33
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_330_503.png",
-       "box": [
-        32.81,
-        48.28,
-        1.16,
+        32.19,
+        48.29,
+        2.39,
         12.33
        ]
       }
@@ -326,26 +263,17 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       14.27,
-       50.33,
-       1.77,
+       14.36,
+       50.34,
+       1.59,
        8.22
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_148_503_alif.png",
        "box": [
-        13.83,
-        48.28,
-        2.66,
-        12.33
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_148_503.png",
-       "box": [
-        14.58,
-        48.28,
-        1.16,
+        13.96,
+        48.29,
+        2.39,
         12.33
        ]
       }
@@ -358,135 +286,90 @@ window.BOOK_ACTIVITIES['stemford-urdu-3'] = {
      {
       "glyph": "ur",
       "box": [
-       87.12,
+       87.22,
        60.89,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_876_609_alif.png",
        "box": [
-        86.68,
+        86.83,
         58.85,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_876_609.png",
-       "box": [
-        87.43,
-        58.85,
-        1.16,
-        12.26
+        2.37,
+        12.25
        ]
       }
      },
      {
       "glyph": "ur",
       "box": [
-       68.88,
+       68.97,
        60.89,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_694_609_alif.png",
        "box": [
-        68.44,
+        68.58,
         58.85,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_694_609.png",
-       "box": [
-        69.19,
-        58.85,
-        1.16,
-        12.26
+        2.37,
+        12.25
        ]
       }
      },
      {
       "glyph": "ur",
       "box": [
-       50.69,
+       50.78,
        60.89,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_512_609_alif.png",
        "box": [
-        50.25,
+        50.38,
         58.85,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_512_609.png",
-       "box": [
-        50.94,
-        58.85,
-        1.27,
-        12.26
+        2.37,
+        12.25
        ]
       }
      },
      {
       "glyph": "ur",
       "box": [
-       32.5,
+       32.59,
        60.89,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_330_609_alif.png",
        "box": [
-        32.06,
+        32.2,
         58.85,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_330_609.png",
-       "box": [
-        32.81,
-        58.85,
-        1.16,
-        12.26
+        2.37,
+        12.25
        ]
       }
      },
      {
       "glyph": "ur",
       "box": [
-       14.27,
+       14.36,
        60.89,
-       1.76,
+       1.58,
        8.17
       ],
       "ink": {
-       "src": "books/stemford-urdu-3/ink/p006_big0.png",
+       "src": "books/stemford-urdu-3/ink/p006_148_609_alif.png",
        "box": [
-        13.83,
+        13.96,
         58.85,
-        2.64,
-        12.26
-       ]
-      },
-      "dots": {
-       "src": "books/stemford-urdu-3/ink/p006_148_609.png",
-       "box": [
-        14.58,
-        58.85,
-        1.16,
-        12.26
+        2.37,
+        12.25
        ]
       }
      }

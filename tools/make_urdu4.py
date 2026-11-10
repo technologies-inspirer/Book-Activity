@@ -9,6 +9,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 from ink import make_ink
+from urdu_alif import alif_ink as written_alif
 from book_colours import page_colours
 
 BOOK = 'stemford-urdu-4'
@@ -83,9 +84,10 @@ def video_buttons(char, name):
     if char not in VIDEOS:
         return []
     story_id, vocab_id = VIDEOS[char][:2]
-    return [{'type': 'videos', 'label': label, 'icon': icon, 'title': f'{label}: حرف {name}', 'button': {'x': 11.5, 'y': y},
-             'videos': [{'title': f'{label}: حرف {name}', 'src': f'https://youtu.be/{vid}'}]}
-            for label, icon, y, vid in [('کہانی', '🎬', 36, story_id), ('ذخیرہ الفاظ', '🔤', 42, vocab_id)]]
+    # Same buttons as Urdu 3+: the game first, then Story and Vocabulary.
+    return [{'type': 'videos', 'label': label, 'icon': icon, 'title': f'{label}: {name}', 'button': {'x': 11.5, 'y': y},
+             'videos': [{'title': label, 'src': f'https://youtu.be/{vid}'}]}
+            for label, icon, y, vid in [('Story', '📖', 33, story_id), ('Vocabulary', '🔤', 38, vocab_id)]]
 
 def scene(page, text, cx=50, cy=46, width=95):
     return {'page': page, 'from': {'cx': cx, 'cy': cy, 'w': width},
@@ -97,7 +99,7 @@ def story(page, title, scenes):
 
 def game(title, targets, crop=None):
     return {'type': 'game', 'ur': True, 'label': 'کھیلیں', 'title': title,
-            'button': {'x': 13, 'y': 30}, 'crop': crop or {'x': 3, 'y': 69, 'w': 94, 'h': 16},
+            'button': {'x': 13, 'y': 24}, 'crop': crop or {'x': 3, 'y': 69, 'w': 94, 'h': 16},
             'targets': targets}
 
 def target(name, x, y, w, h, say=None):
@@ -110,9 +112,11 @@ def picture(page, char, name, words):
     scenes += [scene(page, f'{word}۔ اس لفظ میں حرف {name} تلاش کریں۔', x + w/2, 76, 34)
                for word, (x, w) in zip(words, spots)]
     scenes.append(scene(page, '، '.join(words) + '۔ شاباش! اب تصویروں والا کھیل کھیلیں۔', 50, 76, 98))
-    return video_buttons(char, name) + [story(page, f'حرف {name} — {char}', scenes),
-            game('تصویر پہچانیں اور صحیح تصویر پر ٹیپ کریں۔',
-                 [target(word, x, 69.5, w, 14.5) for word, (x, w) in zip(words, spots)])]
+    videos = video_buttons(char, name)
+    play = game('تصویر پہچانیں اور صحیح تصویر پر ٹیپ کریں۔',
+                [target(word, x, 69.5, w, 14.5) for word, (x, w) in zip(words, spots)])
+    play['button'] = {'x': 11.5, 'y': 28}
+    return videos + [play, story(page, f'حرف {name} — {char}', scenes)]
 
 def trace_rows(image):
     """Separate the three practice rows; do not include colouring art or word puzzles."""
@@ -152,6 +156,17 @@ def trace_rows(image):
         raise ValueError(f'Expected 3 tracing rows, found {len(rows)}')
     return rows
 
+RATIO = .7222   # page width / height
+
+
+def alif_ink(page, box):
+    """The printed alif is a thin dotted stick; colour the publisher's written alif over it instead.
+    Returns (mark box, src, ink box)."""
+    src = f'books/{BOOK}/ink/p{page:03d}_{round(box[0] * 10)}_{round(box[1] * 10)}.png'
+    lb, pb = written_alif(str(ROOT / src), box, RATIO)
+    return lb, src, pb
+
+
 def tracing(page, char, name):
     image = cv2.imread(f'books/{BOOK}/p{page:03d}.jpg')
     rows = trace_rows(image)
@@ -159,6 +174,10 @@ def tracing(page, char, name):
     for index, row in enumerate(rows):
         marks = []
         for box in row:
+            if char == 'ا':
+                box, src, padded = alif_ink(page, box)
+                marks.append({'glyph': 'ur', 'box': box, 'ink': {'src': src, 'box': padded}})
+                continue
             src, padded = make_ink(BOOK, page, box)
             if not np.any(cv2.imread(src, cv2.IMREAD_UNCHANGED)[..., 3]):
                 raise ValueError(f'Empty ink on page {page}: {box}')
@@ -169,7 +188,7 @@ def tracing(page, char, name):
         steps.append({'say': say, 'marks': marks})
     act = {'type': 'fill', 'title': f'{name} لکھیں اور رنگ بھریں', 'steps': steps, 'colours': page_colours(BOOK, page)}
     if char in VIDEOS:
-        act['video'] = {'title': f'حرف {name} لکھنا سیکھیں', 'src': f'https://youtu.be/{VIDEOS[char][2]}'}
+        act['video'] = {'title': f'How to write {name}', 'src': f'https://youtu.be/{VIDEOS[char][2]}'}
     return act
 
 def revision(page, title, items):
@@ -299,21 +318,20 @@ def main():
                         'tracingMarks': sum(len(s['marks']) for s in acts[page+1]['steps'])})
         print(f'Built Urdu lesson on pages {page}/{page+1}', flush=True)
     acts.update(extras())
-    assert sorted(acts) == list(range(4, 97)), 'Every instructional page must have activities'
+    assert sorted(acts) == list(range(4, 97)), 'Every instructional page must be reviewed'
+    # The authored "سیکھیں" animations are not shown (as in Urdu 3+): the publisher's videos teach each letter.
+    for page in list(acts):
+        if isinstance(acts[page], list):
+            acts[page] = [entry for entry in acts[page] if entry['type'] != 'story']
+        if not acts[page] or (isinstance(acts[page], dict) and acts[page]['type'] == 'story'):
+            del acts[page]
     source = '// Generated by tools/make_urdu4.py from the reviewed Urdu 4+ pages.\n'
     source += f"window.BOOK_ACTIVITIES['{BOOK}'] = " + json.dumps(dict(sorted(acts.items())), ensure_ascii=False, indent=1) + ';\n'
     (ROOT / 'books/activities-urdu4.js').write_text(source, encoding='utf-8', newline='\n')
     (ROOT / f'books/{BOOK}/lessons.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    # The PDF has no OCR layer. Listen uses explicitly authored activity narration.
-    texts = []
-    for page in range(1, 97):
-        entries = acts.get(page, [])
-        entries = entries if isinstance(entries, list) else [entries]
-        narration = [s['text'] for entry in entries if entry['type'] == 'story' for s in entry['scenes']]
-        if not narration:
-            narration = [s['say'] for entry in entries if entry['type'] == 'fill' for s in entry['steps']]
-        texts.append([[0, 0, 100, 100, ' '.join(narration)]] if narration else [])
-    (ROOT / f'books/{BOOK}/text.json').write_text(json.dumps(texts, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+    # The PDF has no text layer and, as in Urdu 3+, no home-made narration is read aloud: no Listen button.
+    texts = [[] for _ in range(96)]
+    (ROOT / f'books/{BOOK}/text.json').write_text(json.dumps(texts, indent=1) + '\n', encoding='utf-8')
     print(f'{len(acts)} instructional pages; {len(LESSONS)} Urdu lessons', flush=True)
 
 if __name__ == '__main__':

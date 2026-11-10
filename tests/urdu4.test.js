@@ -28,6 +28,21 @@ test('Urdu 4+ is a complete RTL book assigned to Nursery / Stemford / Urdu', () 
   for (let page = 1; page <= 96; page++) assert.ok(exists(`${book.dir}/p${String(page).padStart(3, '0')}.jpg`));
 });
 
+test('printed QR codes open the videos they lead to, on the right pages', () => {
+  const pages = Object.keys(book.qr).map(Number);
+  assert.equal(pages.length, 45);
+  assert.ok(!pages.includes(1), 'The cover QR leads to no video');
+  for (const page of [4, 6, 30, 60, 82, 85, 88, 91, 96]) assert.ok(pages.includes(page), `Page ${page}`);
+  for (const [page, item] of Object.entries(book.qr)) {
+    within(item.box);
+    assert.ok(item.box[0] < 20 && item.box[1] < 10, `QR on page ${page} is in the top-left corner`);
+    assert.match(item.url, /^https:\/\/o2o\.to\/i\/\w+$/);
+    assert.ok(item.videos.length >= 1);
+    for (const video of item.videos) assert.match(video.id, /^[\w-]{11}$/);
+  }
+  assert.equal(book.qr[4].videos[0].id, 'Y0WQFJp_-Pk');
+});
+
 test('Story, Vocabulary and Formation videos are linked for the 21 letters the publisher supplied', () => {
   const youtube = /^https:\/\/youtu\.be\/[\w-]{11}$/;
   const withVideos = lessons.filter(lesson => [].concat(activities[lesson.picturePage]).some(item => item.type === 'videos'));
@@ -36,7 +51,9 @@ test('Story, Vocabulary and Formation videos are linked for the 21 letters the p
     const picture = [].concat(activities[lesson.picturePage]).filter(item => item.type === 'videos');
     const formation = activities[lesson.tracePage].video;
     if (!withVideos.includes(lesson)) { assert.equal(picture.length, 0); assert.equal(formation, undefined); continue; }
-    assert.deepEqual(picture.map(item => item.label), ['کہانی', 'ذخیرہ الفاظ']);
+    // the same buttons as Urdu 3+: Story and Vocabulary, then the game (shown above them on the page)
+    assert.deepEqual([].concat(activities[lesson.picturePage]).map(item => item.label), ['Story', 'Vocabulary', 'کھیلیں']);
+    assert.equal(formation.title, `How to write ${lesson.name}`);
     for (const item of picture) assert.match(item.videos[0].src, youtube);
     assert.match(formation.src, youtube);
   }
@@ -44,10 +61,11 @@ test('Story, Vocabulary and Formation videos are linked for the 21 letters the p
   assert.equal(activities[5].video.src, 'https://youtu.be/U84ZPPlDU_o');
 });
 
-test('all 93 instructional pages have usable activities', () => {
-  assert.deepEqual(Object.keys(activities).map(Number), Array.from({ length: 93 }, (_, index) => index+4));
+test('instructional pages have usable activities, without home-made story animations', () => {
+  // Pages 88-90 only had an authored story; like Urdu 3+, those are not shown (Listen still reads them).
+  assert.deepEqual(Object.keys(activities).map(Number), Array.from({ length: 93 }, (_, index) => index+4).filter(page => page < 88 || page > 90));
   for (const [page, entries] of Object.entries(activities)) for (const activity of [].concat(entries)) {
-    assert.ok(['story', 'game', 'fill', 'videos'].includes(activity.type), `Page ${page}`);
+    assert.ok(['game', 'fill', 'videos'].includes(activity.type), `Page ${page}`);
     assert.match(activity.title, /[\u0600-\u06ff]/);
     if (activity.type === 'game') {
       assert.equal(activity.ur, true);
@@ -60,13 +78,6 @@ test('all 93 instructional pages have usable activities', () => {
           within([t.view.x, t.view.y, t.view.w, t.view.h]);
           within([t.x, t.y, t.w, t.h], [t.view.x, t.view.y, t.view.w, t.view.h]);
         }
-      }
-    }
-    if (activity.type === 'story') for (const scene of activity.scenes) {
-      assert.equal(scene.page, Number(page));
-      assert.match(scene.text, /[\u0600-\u06ff]/);
-      for (const frame of [scene.from, scene.to]) {
-        assert.ok(frame.cx >= 0 && frame.cx <= 100 && frame.cy >= 0 && frame.cy <= 100 && frame.w > 0 && frame.w <= 100);
       }
     }
   }
@@ -96,18 +107,17 @@ test('37 Urdu lessons use this book’s vocabulary and three tracing rows from r
 });
 
 test('the ending lessons teach the actual vowel word pages and one-to-ten counting', () => {
-  for (const [page, expected] of [[92, 'الف'], [93, 'واؤ'], [94, 'چھوٹی یے'], [95, 'بڑی یے']]) {
-    assert.ok(activities[page][0].title.includes(expected));
-    assert.equal(activities[page].find(item => item.type === 'game').targets.length, 30);
+  // the first word of each printed table: alif, wao, choti ye and bari ye
+  for (const [page, first] of [[92, 'باپ'], [93, 'اور'], [94, 'چابی'], [95, 'گاتے']]) {
+    const targets = activities[page].find(item => item.type === 'game').targets;
+    assert.equal(targets.length, 30);
+    assert.equal(targets[0].name, first);
   }
   assert.equal(activities[96].find(item => item.type === 'game').targets.length, 10);
 });
 
-test('Listen has authored Urdu text for each instructional page of the raster-only PDF', () => {
+test('like Urdu 3+, no home-made narration is read aloud (no Listen text)', () => {
   const narration = JSON.parse(read('books/stemford-urdu-4/text.json'));
   assert.equal(narration.length, 96);
-  assert.deepEqual(narration.slice(0, 3), [[], [], []]);
-  for (let page = 4; page <= 96; page++) {
-    assert.match(narration[page-1].map(block => block[4]).join(' '), /[\u0600-\u06ff]/);
-  }
+  assert.ok(narration.every(page => page.length === 0));
 });
