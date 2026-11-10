@@ -54,6 +54,39 @@ LESSONS = [
     (82, 'ی، ے', 'چھوٹی یے اور بڑی یے', ['یاقوت', 'یاک', 'یکہ']),
 ]
 
+# Publisher's YouTube videos per letter: (story, vocabulary, formation). Letters without videos are left out.
+VIDEOS = {
+    'ا': ('p890xf02Sdw', 'ApONzwuN4jQ', 'U84ZPPlDU_o'),
+    'ب': ('zwJQirFa9iA', '-clmWFDSMGI', 'q21C5FGSBzk'),
+    'پ': ('c7TjPpzGNyE', 'qrN42NMMr9E', 'oE3BJGfmE9w'),
+    'ت': ('WDzGAVDDJMY', 'VBuCRb1uY9k', 'MHr7xTBwjhU'),
+    'ٹ': ('KMxw8lWbkSI', 'KU8gThAZ4SE', 'xFUZepzODkE'),
+    'ث': ('hz7mpvnBA8M', 'L_IZawGubO4', 'rxj0PxL-JzM'),
+    'ج': ('43D7rNlJhGM', 'SC5VMk2-S1Q', 'uTVfpgnQyiU'),
+    'چ': ('rIe5J9RIR_s', '2R90mQFr22U', 'ekcXj3ZtOWs'),
+    'ح': ('RkeOtYjO7O0', '5unj1t0_URI', 'j335OrUfaZM'),
+    'خ': ('L0Tn4o_WrP4', '07yEbN-WAhc', 'TknwzTUubVw'),
+    'د': ('AM6n-vyqMns', 'GolipZTvyFs', 'uE5ED3y1Jvg'),
+    'ذ': ('-Hysfqzxs9Q', 'AY-rODlnT_w', 'Ymvf1XjKWos'),
+    'ر': ('O17gklFfvz8', '1BF4hnqaLt8', 'sxJp3BJ5lBE'),
+    'ژ': ('se1KfoVGRGE', 'WY_JFX_LorI', 'JKkY8PjsWOs'),
+    'س': ('vD_ZkW-bxgo', 'AIfORr510fQ', 'IBg7cDztEfs'),
+    'ش': ('PtjQXUV8zks', 'UxKqYx06UdI', 'Ja5K3-sesEM'),
+    'ص': ('iZWrnQayshY', 'ZSB-dinBevI', 'o0TBHdyRNQA'),
+    'ض': ('5RnfvuX-1uc', 'm3xjrwM1Gzc', '0mxkIxjeYxQ'),
+    'ط': ('SH8nHVUTB9Q', 'bv9XQFSUN30', 'XtdEyCYZupg'),
+    'ظ': ('o17nojyaW5U', 'trvNteMGYP4', 'ooJMVeWJH9E'),
+    'ع': ('ZPeEt9RER2Q', 'o5qv7kocUvY', '3mHr28TG-YA'),
+}
+
+def video_buttons(char, name):
+    if char not in VIDEOS:
+        return []
+    story_id, vocab_id = VIDEOS[char][:2]
+    return [{'type': 'videos', 'label': label, 'icon': icon, 'title': f'{label}: حرف {name}', 'button': {'x': 11.5, 'y': y},
+             'videos': [{'title': f'{label}: حرف {name}', 'src': f'https://youtu.be/{vid}'}]}
+            for label, icon, y, vid in [('کہانی', '🎬', 36, story_id), ('ذخیرہ الفاظ', '🔤', 42, vocab_id)]]
+
 def scene(page, text, cx=50, cy=46, width=95):
     return {'page': page, 'from': {'cx': cx, 'cy': cy, 'w': width},
             'to': {'cx': cx, 'cy': cy, 'w': round(width * .92, 2)}, 'text': text}
@@ -77,7 +110,7 @@ def picture(page, char, name, words):
     scenes += [scene(page, f'{word}۔ اس لفظ میں حرف {name} تلاش کریں۔', x + w/2, 76, 34)
                for word, (x, w) in zip(words, spots)]
     scenes.append(scene(page, '، '.join(words) + '۔ شاباش! اب تصویروں والا کھیل کھیلیں۔', 50, 76, 98))
-    return [story(page, f'حرف {name} — {char}', scenes),
+    return video_buttons(char, name) + [story(page, f'حرف {name} — {char}', scenes),
             game('تصویر پہچانیں اور صحیح تصویر پر ٹیپ کریں۔',
                  [target(word, x, 69.5, w, 14.5) for word, (x, w) in zip(words, spots)])]
 
@@ -119,7 +152,7 @@ def trace_rows(image):
         raise ValueError(f'Expected 3 tracing rows, found {len(rows)}')
     return rows
 
-def tracing(page, name):
+def tracing(page, char, name):
     image = cv2.imread(f'books/{BOOK}/p{page:03d}.jpg')
     rows = trace_rows(image)
     steps = []
@@ -134,7 +167,10 @@ def tracing(page, name):
         if index == 2:
             say += ' شاباش! اب تصویر میں رنگ بھریں۔'
         steps.append({'say': say, 'marks': marks})
-    return {'type': 'fill', 'title': f'{name} لکھیں اور رنگ بھریں', 'steps': steps, 'colours': page_colours(BOOK, page)}
+    act = {'type': 'fill', 'title': f'{name} لکھیں اور رنگ بھریں', 'steps': steps, 'colours': page_colours(BOOK, page)}
+    if char in VIDEOS:
+        act['video'] = {'title': f'حرف {name} لکھنا سیکھیں', 'src': f'https://youtu.be/{VIDEOS[char][2]}'}
+    return act
 
 def revision(page, title, items):
     # Items are (caption, x, y, width, height), reviewed against the real page.
@@ -258,7 +294,7 @@ def main():
     summary = []
     for page, char, name, words in LESSONS:
         acts[page] = picture(page, char, name, words)
-        acts[page+1] = tracing(page+1, name)
+        acts[page+1] = tracing(page+1, char, name)
         summary.append({'picturePage': page, 'tracePage': page+1, 'letter': char, 'name': name, 'words': words,
                         'tracingMarks': sum(len(s['marks']) for s in acts[page+1]['steps'])})
         print(f'Built Urdu lesson on pages {page}/{page+1}', flush=True)

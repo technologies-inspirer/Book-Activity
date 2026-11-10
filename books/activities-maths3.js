@@ -1824,7 +1824,8 @@ window.BOOK_ACTIVITIES['stemford-maths-3'] = {
    "#43aa8b",
    "#f9c74f",
    "#f4a261",
-   "#4aa3df"
+   "#4aa3df",
+   "#00aaa0"
   ]
  },
  "24": [

@@ -28,10 +28,26 @@ test('Urdu 4+ is a complete RTL book assigned to Nursery / Stemford / Urdu', () 
   for (let page = 1; page <= 96; page++) assert.ok(exists(`${book.dir}/p${String(page).padStart(3, '0')}.jpg`));
 });
 
-test('all 93 instructional pages have usable activities, with no borrowed video links', () => {
+test('Story, Vocabulary and Formation videos are linked for the 21 letters the publisher supplied', () => {
+  const youtube = /^https:\/\/youtu\.be\/[\w-]{11}$/;
+  const withVideos = lessons.filter(lesson => [].concat(activities[lesson.picturePage]).some(item => item.type === 'videos'));
+  assert.deepEqual(withVideos.map(lesson => lesson.letter).join(''), 'ابپتٹثجچحخدذرژسشصضطظع');
+  for (const lesson of lessons) {
+    const picture = [].concat(activities[lesson.picturePage]).filter(item => item.type === 'videos');
+    const formation = activities[lesson.tracePage].video;
+    if (!withVideos.includes(lesson)) { assert.equal(picture.length, 0); assert.equal(formation, undefined); continue; }
+    assert.deepEqual(picture.map(item => item.label), ['کہانی', 'ذخیرہ الفاظ']);
+    for (const item of picture) assert.match(item.videos[0].src, youtube);
+    assert.match(formation.src, youtube);
+  }
+  assert.equal(activities[4][0].videos[0].src, 'https://youtu.be/p890xf02Sdw');
+  assert.equal(activities[5].video.src, 'https://youtu.be/U84ZPPlDU_o');
+});
+
+test('all 93 instructional pages have usable activities', () => {
   assert.deepEqual(Object.keys(activities).map(Number), Array.from({ length: 93 }, (_, index) => index+4));
   for (const [page, entries] of Object.entries(activities)) for (const activity of [].concat(entries)) {
-    assert.ok(['story', 'game', 'fill'].includes(activity.type), `Page ${page}`);
+    assert.ok(['story', 'game', 'fill', 'videos'].includes(activity.type), `Page ${page}`);
     assert.match(activity.title, /[\u0600-\u06ff]/);
     if (activity.type === 'game') {
       assert.equal(activity.ur, true);

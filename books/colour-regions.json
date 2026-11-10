@@ -65,6 +65,14 @@
       {"part":"shell","colour":"#8d5524","componentBox":[61,14,31,19]},
       {"part":"turtle","colour":"#43aa8b","componentBox":[50,8,47,35]}
     ],
+    "64": [
+      {"part":"blue neck","colour":"#4aa3df","componentBox":[56,10.9,30,6.7]},
+      {"part":"black neck stripe","colour":"#222222","componentBox":[56,17.6,30,0.8]},
+      {"part":"red shoulder","colour":"#e63946","componentBox":[56,18.4,30,3.5]},
+      {"part":"pink bands and waves","colour":"#ff8fab","componentBox":[56,21.9,30,9.9]},
+      {"part":"brown stripe","colour":"#8d5524","componentBox":[56,31.8,30,1.0]},
+      {"part":"teal lower body","colour":"#00aaa0","componentBox":[56,32.8,30,11.0]}
+    ],
     "66": [
       {"part":"left curtain","colour":"#ff8fab","componentBox":[53,11,12,31]},
       {"part":"right curtain","colour":"#ff8fab","componentBox":[81,11,13,31]},
@@ -78,6 +86,14 @@
     ]
   },
   "maxford-global-qaida-3-english": {
+    "112": [
+      {"part":"blue neck","colour":"#4aa3df","componentBox":[47,62.4,26,6.1]},
+      {"part":"black neck stripe","colour":"#222222","componentBox":[47,68.5,26,0.9]},
+      {"part":"red shoulder","colour":"#e63946","componentBox":[47,69.4,26,3.3]},
+      {"part":"pink bands and waves","colour":"#ff8fab","componentBox":[47,72.7,26,9.3]},
+      {"part":"brown stripe","colour":"#8d5524","componentBox":[47,82.0,26,0.9]},
+      {"part":"teal lower body","colour":"#00aaa0","componentBox":[47,82.9,26,10.3]}
+    ],
     "12": [
       {"part":"leaf","colour":"#43aa8b","seed":[81,66.5],"cut":[[76.6,66.5],[76.15,68.2]]},
       {"part":"apple","colour":"#e63946","seed":[74,81]}

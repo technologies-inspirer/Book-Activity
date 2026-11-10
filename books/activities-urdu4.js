@@ -2,6 +2,38 @@
 window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  "4": [
   {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف الف",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف الف",
+     "src": "https://youtu.be/p890xf02Sdw"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف الف",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف الف",
+     "src": "https://youtu.be/ApONzwuN4jQ"
+    }
+   ]
+  },
+  {
    "type": "story",
    "ur": true,
    "label": "سیکھیں",
@@ -381,7 +413,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#d4a373",
    "#8d5524",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف الف لکھنا سیکھیں",
+   "src": "https://youtu.be/U84ZPPlDU_o"
+  }
  },
  "6": [
   {
@@ -768,6 +804,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
   ]
  },
  "8": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف بے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف بے",
+     "src": "https://youtu.be/zwJQirFa9iA"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف بے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف بے",
+     "src": "https://youtu.be/-clmWFDSMGI"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -1256,9 +1324,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#9aa5b1",
    "#ff8fab",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف بے لکھنا سیکھیں",
+   "src": "https://youtu.be/q21C5FGSBzk"
+  }
  },
  "10": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف پے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف پے",
+     "src": "https://youtu.be/c7TjPpzGNyE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف پے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف پے",
+     "src": "https://youtu.be/qrN42NMMr9E"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -1747,9 +1851,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#7b5ea7",
    "#43aa8b",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف پے لکھنا سیکھیں",
+   "src": "https://youtu.be/oE3BJGfmE9w"
+  }
  },
  "12": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف تے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف تے",
+     "src": "https://youtu.be/WDzGAVDDJMY"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف تے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف تے",
+     "src": "https://youtu.be/VBuCRb1uY9k"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -2238,9 +2378,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#43aa8b",
    "#e63946",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف تے لکھنا سیکھیں",
+   "src": "https://youtu.be/MHr7xTBwjhU"
+  }
  },
  "14": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف ٹے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف ٹے",
+     "src": "https://youtu.be/KMxw8lWbkSI"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف ٹے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف ٹے",
+     "src": "https://youtu.be/KU8gThAZ4SE"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -2729,9 +2905,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#8d5524",
    "#d4a373",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف ٹے لکھنا سیکھیں",
+   "src": "https://youtu.be/xFUZepzODkE"
+  }
  },
  "16": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف ثے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف ثے",
+     "src": "https://youtu.be/hz7mpvnBA8M"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف ثے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف ثے",
+     "src": "https://youtu.be/L_IZawGubO4"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -3223,7 +3435,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#f9c74f",
    "#43aa8b",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف ثے لکھنا سیکھیں",
+   "src": "https://youtu.be/rxj0PxL-JzM"
+  }
  },
  "18": [
   {
@@ -3628,6 +3844,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
   }
  ],
  "20": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف جیم",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف جیم",
+     "src": "https://youtu.be/43D7rNlJhGM"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف جیم",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف جیم",
+     "src": "https://youtu.be/SC5VMk2-S1Q"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -4116,9 +4364,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#9aa5b1",
    "#4aa3df",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف جیم لکھنا سیکھیں",
+   "src": "https://youtu.be/uTVfpgnQyiU"
+  }
  },
  "22": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف چے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف چے",
+     "src": "https://youtu.be/rIe5J9RIR_s"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف چے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف چے",
+     "src": "https://youtu.be/2R90mQFr22U"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -4608,9 +4892,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#f4a261",
    "#8d5524",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف چے لکھنا سیکھیں",
+   "src": "https://youtu.be/ekcXj3ZtOWs"
+  }
  },
  "24": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف بڑی حے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف بڑی حے",
+     "src": "https://youtu.be/RkeOtYjO7O0"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف بڑی حے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف بڑی حے",
+     "src": "https://youtu.be/5unj1t0_URI"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -5101,9 +5421,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#d4a373",
    "#4aa3df",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف بڑی حے لکھنا سیکھیں",
+   "src": "https://youtu.be/j335OrUfaZM"
+  }
  },
  "26": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف خے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف خے",
+     "src": "https://youtu.be/L0Tn4o_WrP4"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف خے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف خے",
+     "src": "https://youtu.be/07yEbN-WAhc"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -5593,9 +5949,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#9aa5b1",
    "#ff8fab",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف خے لکھنا سیکھیں",
+   "src": "https://youtu.be/TknwzTUubVw"
+  }
  },
  "28": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف دال",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف دال",
+     "src": "https://youtu.be/AM6n-vyqMns"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف دال",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف دال",
+     "src": "https://youtu.be/GolipZTvyFs"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -5976,7 +6368,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#43aa8b",
    "#8d5524",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف دال لکھنا سیکھیں",
+   "src": "https://youtu.be/uE5ED3y1Jvg"
+  }
  },
  "30": [
   {
@@ -6364,6 +6760,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  },
  "32": [
   {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف ذال",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف ذال",
+     "src": "https://youtu.be/-Hysfqzxs9Q"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف ذال",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف ذال",
+     "src": "https://youtu.be/AY-rODlnT_w"
+    }
+   ]
+  },
+  {
    "type": "story",
    "ur": true,
    "label": "سیکھیں",
@@ -6743,9 +7171,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#d4a373",
    "#8d5524",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف ذال لکھنا سیکھیں",
+   "src": "https://youtu.be/Ymvf1XjKWos"
+  }
  },
  "34": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف رے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف رے",
+     "src": "https://youtu.be/O17gklFfvz8"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف رے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف رے",
+     "src": "https://youtu.be/1BF4hnqaLt8"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -7126,7 +7590,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#8d5524",
    "#d4a373",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف رے لکھنا سیکھیں",
+   "src": "https://youtu.be/sxJp3BJ5lBE"
+  }
  },
  "36": [
   {
@@ -7895,6 +8363,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  },
  "40": [
   {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف ژے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف ژے",
+     "src": "https://youtu.be/se1KfoVGRGE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف ژے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف ژے",
+     "src": "https://youtu.be/WY_JFX_LorI"
+    }
+   ]
+  },
+  {
    "type": "story",
    "ur": true,
    "label": "سیکھیں",
@@ -8275,7 +8775,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#90e0ef",
    "#4aa3df",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف ژے لکھنا سیکھیں",
+   "src": "https://youtu.be/JKkY8PjsWOs"
+  }
  },
  "42": [
   {
@@ -8877,6 +9381,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  ],
  "44": [
   {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف سین",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف سین",
+     "src": "https://youtu.be/vD_ZkW-bxgo"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف سین",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف سین",
+     "src": "https://youtu.be/AIfORr510fQ"
+    }
+   ]
+  },
+  {
    "type": "story",
    "ur": true,
    "label": "سیکھیں",
@@ -9202,9 +9738,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#e63946",
    "#43aa8b",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف سین لکھنا سیکھیں",
+   "src": "https://youtu.be/IBg7cDztEfs"
+  }
  },
  "46": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف شین",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف شین",
+     "src": "https://youtu.be/PtjQXUV8zks"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف شین",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف شین",
+     "src": "https://youtu.be/UxKqYx06UdI"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -9532,9 +10104,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#8d5524",
    "#d4a373",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف شین لکھنا سیکھیں",
+   "src": "https://youtu.be/Ja5K3-sesEM"
+  }
  },
  "48": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف صاد",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف صاد",
+     "src": "https://youtu.be/iZWrnQayshY"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف صاد",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف صاد",
+     "src": "https://youtu.be/ZSB-dinBevI"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -9861,9 +10469,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#00aaa0",
    "#4aa3df",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف صاد لکھنا سیکھیں",
+   "src": "https://youtu.be/o0TBHdyRNQA"
+  }
  },
  "50": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف ضاد",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف ضاد",
+     "src": "https://youtu.be/5RnfvuX-1uc"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف ضاد",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف ضاد",
+     "src": "https://youtu.be/m3xjrwM1Gzc"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -10191,9 +10835,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#d4a373",
    "#9aa5b1",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف ضاد لکھنا سیکھیں",
+   "src": "https://youtu.be/0mxkIxjeYxQ"
+  }
  },
  "52": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف طوئے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف طوئے",
+     "src": "https://youtu.be/SH8nHVUTB9Q"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف طوئے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف طوئے",
+     "src": "https://youtu.be/bv9XQFSUN30"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -10575,9 +11255,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#e63946",
    "#f9c74f",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف طوئے لکھنا سیکھیں",
+   "src": "https://youtu.be/XtdEyCYZupg"
+  }
  },
  "54": [
+  {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف ظوئے",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف ظوئے",
+     "src": "https://youtu.be/o17nojyaW5U"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف ظوئے",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف ظوئے",
+     "src": "https://youtu.be/trvNteMGYP4"
+    }
+   ]
+  },
   {
    "type": "story",
    "ur": true,
@@ -10961,7 +11677,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#43aa8b",
    "#d4a373",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف ظوئے لکھنا سیکھیں",
+   "src": "https://youtu.be/ooJMVeWJH9E"
+  }
  },
  "56": [
   {
@@ -11731,6 +12451,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  ],
  "58": [
   {
+   "type": "videos",
+   "label": "کہانی",
+   "icon": "🎬",
+   "title": "کہانی: حرف عین",
+   "button": {
+    "x": 11.5,
+    "y": 36
+   },
+   "videos": [
+    {
+     "title": "کہانی: حرف عین",
+     "src": "https://youtu.be/ZPeEt9RER2Q"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "ذخیرہ الفاظ",
+   "icon": "🔤",
+   "title": "ذخیرہ الفاظ: حرف عین",
+   "button": {
+    "x": 11.5,
+    "y": 42
+   },
+   "videos": [
+    {
+     "title": "ذخیرہ الفاظ: حرف عین",
+     "src": "https://youtu.be/o5qv7kocUvY"
+    }
+   ]
+  },
+  {
    "type": "story",
    "ur": true,
    "label": "سیکھیں",
@@ -12219,7 +12971,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#f9c74f",
    "#9aa5b1",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "حرف عین لکھنا سیکھیں",
+   "src": "https://youtu.be/3mHr28TG-YA"
+  }
  },
  "60": [
   {
