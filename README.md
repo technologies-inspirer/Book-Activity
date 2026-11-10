@@ -85,6 +85,8 @@ Demo checks cover credential validation, user creation, assignments, disable/ena
 
 ## Before updating the live website
 
+The PDF & Activities editor includes a Customize Page action in the uploaded-book reader. It opens page thumbnails, book title/class/series/subject settings, page narration, and per-page activity management. Admins can upload audio, video, tracing/colouring images and game JSON, add YouTube or HTTP(S) resource links, and reuse bundled activities. Added activities can be previewed, edited or removed; detected video links can be edited or removed. Update retains the current session snapshot and exports a draft ZIP, including media and catalogue settings. This editor does not publish uploads to other users: shared publication still requires a backend, persistent file storage, authentication and assignment APIs.
+
 Run the build, check and preview commands above, then test:
 
 - Both series, shelf scrolling, the logo/resources links, book previews and cover opening/closing.

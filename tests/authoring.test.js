@@ -1,8 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { deleteDraftPage, parseGame, validateActivity, validateArea, validYoutube, draftBytes, MAX_MEDIA_BYTES } from '../src/authoring/project.js';
+import { deleteDraftPage, parseGame, validateActivity, validateArea, validYoutube, draftBytes, updateDraftPage, MAX_MEDIA_BYTES, MAX_DRAFT_BYTES } from '../src/authoring/project.js';
 
 const game = { crop: { x: 0, y: 0, w: 100, h: 100 }, targets: [{ name: 'Apple', x: 10, y: 20, w: 20, h: 20 }] };
+
+test('page web links allow lessons but reject scripts and credentials', () => {
+  assert.equal(validateActivity({ type: 'link', title: 'Lesson', url: 'https://lesson.example/page?a=1' }).url, 'https://lesson.example/page?a=1');
+  for (const url of ['javascript:alert(1)', 'data:text/html,test', 'file:///lesson', 'https://user:secret@lesson.example', 'not a link']) {
+    assert.throws(() => validateActivity({ type: 'link', title: 'Lesson', url }), /HTTP/);
+  }
+});
+
+test('page edits preserve the saved version and enforce media and activity limits', () => {
+  const page = { number: 1, image: new Blob(['page']), thumbnail: new Blob(['thumb']), activities: [] };
+  const original = { id: 'draft', pages: [page, { ...page, number: 2 }] };
+  const activity = validateActivity({ type: 'link', title: 'Lesson', url: 'https://lesson.example' });
+  const edited = updateDraftPage(original, 1, { activities: [activity], text: 'Read this page' });
+  assert.equal(original.pages[0].activities.length, 0);
+  assert.equal(edited.pages[0].activities[0].url, 'https://lesson.example/');
+  assert.equal(edited.pages[1], original.pages[1]);
+  assert.throws(() => updateDraftPage(original, 3, {}), /no longer/);
+  assert.throws(() => updateDraftPage(original, 1, { activities: Array(1001).fill(activity) }), /1,000/);
+  assert.throws(() => updateDraftPage(original, 1, { activities: [{ ...activity, media: { size: MAX_DRAFT_BYTES } }] }), /200 MB/);
+});
 test('game uploads retain the existing crop and target format while rejecting invalid geometry', () => {
   assert.equal(parseGame(JSON.stringify(game)).targets[0].name, 'Apple');
   assert.throws(() => parseGame({ ...game, targets: [{ ...game.targets[0], x: 95 }] }), /target/);

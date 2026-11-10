@@ -59,6 +59,7 @@ function UploadedActivityPreview({ activity, page, onClose }) {
   return <Modal title={activity.title} onClose={onClose}>
     <div className="pdf-activity-preview">
       {activity.text && <p className="pdf-preview-text">{activity.text}</p>}
+      {activity.type === 'link' && <p><a className="portal-primary" href={activity.url} target="_blank" rel="noopener noreferrer">Open linked resource</a></p>}
       {['audio', 'story'].includes(activity.type) && activity.media && <audio ref={mediaRef} src={url || undefined} controls preload="metadata" />}
       {activity.type === 'video' && (activity.media ? <video ref={mediaRef} src={url || undefined} controls preload="metadata" playsInline /> : <p><a className="portal-primary" href={activity.youtubeUrl} target="_blank" rel="noopener noreferrer">Open YouTube video</a></p>)}
       {['tracing', 'colouring'].includes(activity.type) && <DrawingPreview activity={activity} page={page} />}
