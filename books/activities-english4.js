@@ -185,6 +185,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital A and small a.",
+     "marks": [
+      {
+       "glyph": "A",
+       "box": [
+        11.923,
+        38.944,
+        12.923,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p007_model_0.png",
+        "box": [
+         8.692,
+         36.111,
+         19.385,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "a",
+       "box": [
+        26.077,
+        43.944,
+        9.692,
+        6.611
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p007_model_1.png",
+        "box": [
+         23.692,
+         42.333,
+         14.462,
+         9.833
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital A and small a.",
      "marks": [
       {
@@ -653,6 +694,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital B and small b.",
+     "marks": [
+      {
+       "glyph": "B",
+       "box": [
+        14.0,
+        38.944,
+        8.923,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p009_model_0.png",
+        "box": [
+         11.769,
+         36.111,
+         13.385,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "b",
+       "box": [
+        26.077,
+        38.833,
+        6.846,
+        11.722
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p009_model_1.png",
+        "box": [
+         24.385,
+         35.944,
+         10.231,
+         17.5
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital B and small b.",
      "marks": [
       {
@@ -1119,6 +1201,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital C and small c.",
+     "marks": [
+      {
+       "glyph": "C",
+       "box": [
+        12.308,
+        39.056,
+        11.923,
+        11.333
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p011_model_0.png",
+        "box": [
+         9.385,
+         36.222,
+         17.769,
+         17.0
+        ]
+       }
+      },
+      {
+       "glyph": "c",
+       "box": [
+        26.923,
+        44.0,
+        7.462,
+        6.556
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p011_model_1.png",
+        "box": [
+         25.077,
+         42.389,
+         11.154,
+         9.778
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital C and small c.",
      "marks": [
       {
@@ -1584,6 +1707,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital D and small d.",
+     "marks": [
+      {
+       "glyph": "D",
+       "box": [
+        12.462,
+        38.944,
+        11.0,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p013_model_0.png",
+        "box": [
+         9.769,
+         36.111,
+         16.385,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "d",
+       "box": [
+        24.692,
+        38.833,
+        9.769,
+        11.611
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p013_model_1.png",
+        "box": [
+         22.308,
+         35.944,
+         14.538,
+         17.389
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital D and small d.",
      "marks": [
@@ -2561,6 +2725,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital E and small e.",
+     "marks": [
+      {
+       "glyph": "E",
+       "box": [
+        14.615,
+        38.944,
+        9.154,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p018_model_0.png",
+        "box": [
+         12.385,
+         36.111,
+         13.615,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "e",
+       "box": [
+        25.538,
+        43.944,
+        6.769,
+        6.611
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p018_model_1.png",
+        "box": [
+         23.846,
+         42.333,
+         10.154,
+         9.833
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital E and small e.",
      "marks": [
       {
@@ -3026,6 +3231,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital F and small f.",
+     "marks": [
+      {
+       "glyph": "F",
+       "box": [
+        14.615,
+        38.944,
+        9.154,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p020_model_0.png",
+        "box": [
+         12.385,
+         36.111,
+         13.615,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "f",
+       "box": [
+        24.846,
+        38.833,
+        7.462,
+        11.611
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p020_model_1.png",
+        "box": [
+         23.0,
+         35.944,
+         11.154,
+         17.389
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital F and small f.",
      "marks": [
@@ -3493,6 +3739,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital G and small g.",
+     "marks": [
+      {
+       "glyph": "G",
+       "box": [
+        11.308,
+        38.833,
+        13.0,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p022_model_0.png",
+        "box": [
+         8.077,
+         36.0,
+         19.462,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "g",
+       "box": [
+        27.231,
+        44.0,
+        7.0,
+        11.222
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p022_model_1.png",
+        "box": [
+         25.538,
+         41.222,
+         10.385,
+         16.778
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital G and small g.",
      "marks": [
       {
@@ -3958,6 +4245,48 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital H and small h.",
+     "marks": [
+      {
+       "glyph": "H",
+       "box": [
+        12.154,
+        38.944,
+        11.385,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p024_model_0.png",
+        "box": [
+         9.308,
+         36.111,
+         17.077,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "h",
+       "box": [
+        26.462,
+        39.0,
+        9.385,
+        11.222
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p024_model_1.png",
+        "box": [
+         24.154,
+         36.222,
+         14.0,
+         16.778
+        ]
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
+      }
+     ]
+    },
+    {
      "say": "Trace capital H and small h.",
      "marks": [
       {
@@ -3994,7 +4323,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4030,7 +4360,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       }
      ]
     },
@@ -4071,7 +4402,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4107,7 +4439,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4143,7 +4476,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       }
      ]
     },
@@ -4184,7 +4518,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4220,7 +4555,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4256,7 +4592,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4292,7 +4629,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.077,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       },
       {
        "glyph": "H",
@@ -4328,7 +4666,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          6.0,
          7.056
         ]
-       }
+       },
+       "pen": "M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88"
       }
      ]
     }
@@ -4895,6 +5234,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital I and small i.",
+     "marks": [
+      {
+       "glyph": "I",
+       "box": [
+        19.077,
+        38.944,
+        1.077,
+        11.333
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p029_model_0.png",
+        "box": [
+         18.846,
+         36.111,
+         1.538,
+         17.0
+        ]
+       }
+      },
+      {
+       "glyph": "i",
+       "box": [
+        24.231,
+        43.889,
+        3.615,
+        6.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p029_model_1.png",
+        "box": [
+         23.385,
+         42.278,
+         5.308,
+         9.667
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital I and small i.",
      "marks": [
       {
@@ -5370,6 +5750,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital J and small j.",
+     "marks": [
+      {
+       "glyph": "J",
+       "box": [
+        16.615,
+        38.889,
+        8.769,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p031_model_0.png",
+        "box": [
+         14.462,
+         36.056,
+         13.077,
+         17.111
+        ]
+       }
+      },
+      {
+       "glyph": "j",
+       "box": [
+        23.154,
+        43.778,
+        7.077,
+        11.333
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p031_model_1.png",
+        "box": [
+         21.385,
+         40.944,
+         10.615,
+         17.0
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital J and small j.",
      "marks": [
@@ -5848,6 +6269,48 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital K and small k.",
+     "marks": [
+      {
+       "glyph": "K",
+       "box": [
+        13.615,
+        38.944,
+        9.538,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p033_model_0.png",
+        "box": [
+         11.231,
+         36.111,
+         14.308,
+         17.111
+        ]
+       }
+      },
+      {
+       "glyph": "k",
+       "box": [
+        25.462,
+        38.944,
+        7.692,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p033_model_1.png",
+        "box": [
+         23.538,
+         36.111,
+         11.538,
+         17.111
+        ]
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
+      }
+     ]
+    },
+    {
      "say": "Trace capital K and small k.",
      "marks": [
       {
@@ -5884,7 +6347,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.056
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -5920,7 +6384,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.056
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       }
      ]
     },
@@ -5961,7 +6426,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.111
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -5997,7 +6463,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.056
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -6033,7 +6500,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.111
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       }
      ]
     },
@@ -6074,7 +6542,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.111
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -6110,7 +6579,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.692,
          7.111
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -6146,7 +6616,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.111
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -6182,7 +6653,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.056
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       },
       {
        "glyph": "K",
@@ -6218,7 +6690,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          4.615,
          7.111
         ]
-       }
+       },
+       "pen": "M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86"
       }
      ]
     }
@@ -6313,6 +6786,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital L and small l.",
+     "marks": [
+      {
+       "glyph": "L",
+       "box": [
+        16.0,
+        38.944,
+        9.769,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p035_model_0.png",
+        "box": [
+         13.615,
+         36.111,
+         14.538,
+         17.111
+        ]
+       }
+      },
+      {
+       "glyph": "l",
+       "box": [
+        27.231,
+        39.0,
+        3.692,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p035_model_1.png",
+        "box": [
+         26.308,
+         36.167,
+         5.538,
+         17.056
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital L and small l.",
      "marks": [
@@ -7226,6 +7740,48 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital M and small m.",
+     "marks": [
+      {
+       "glyph": "M",
+       "box": [
+        9.923,
+        39.056,
+        13.308,
+        11.278
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p040_model_0.png",
+        "box": [
+         6.615,
+         36.278,
+         19.923,
+         16.833
+        ]
+       }
+      },
+      {
+       "glyph": "m",
+       "box": [
+        23.769,
+        44.111,
+        14.0,
+        6.333
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p040_model_1.png",
+        "box": [
+         20.308,
+         42.556,
+         20.923,
+         9.444
+        ]
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
+      }
+     ]
+    },
+    {
      "say": "Trace capital M and small m.",
      "marks": [
       {
@@ -7262,7 +7818,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       },
       {
        "glyph": "M",
@@ -7298,7 +7855,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       }
      ]
     },
@@ -7339,7 +7897,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       },
       {
        "glyph": "M",
@@ -7375,7 +7934,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       },
       {
        "glyph": "M",
@@ -7411,7 +7971,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       }
      ]
     },
@@ -7452,7 +8013,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       },
       {
        "glyph": "M",
@@ -7488,7 +8050,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       },
       {
        "glyph": "M",
@@ -7524,7 +8087,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       },
       {
        "glyph": "M",
@@ -7560,7 +8124,8 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
          9.231,
          4.056
         ]
-       }
+       },
+       "pen": "M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78"
       }
      ]
     }
@@ -7655,6 +8220,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital N and small n.",
+     "marks": [
+      {
+       "glyph": "N",
+       "box": [
+        12.615,
+        39.056,
+        11.615,
+        11.278
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p042_model_0.png",
+        "box": [
+         9.769,
+         36.278,
+         17.308,
+         16.833
+        ]
+       }
+      },
+      {
+       "glyph": "n",
+       "box": [
+        26.308,
+        44.0,
+        9.231,
+        6.611
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p042_model_1.png",
+        "box": [
+         24.0,
+         42.389,
+         13.846,
+         9.833
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital N and small n.",
      "marks": [
@@ -8122,6 +8728,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital O and small o.",
+     "marks": [
+      {
+       "glyph": "O",
+       "box": [
+        12.923,
+        39.056,
+        13.077,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p044_model_0.png",
+        "box": [
+         9.692,
+         36.222,
+         19.538,
+         17.111
+        ]
+       }
+      },
+      {
+       "glyph": "o",
+       "box": [
+        26.923,
+        44.0,
+        6.385,
+        6.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p044_model_1.png",
+        "box": [
+         25.385,
+         42.389,
+         9.462,
+         9.667
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital O and small o.",
      "marks": [
       {
@@ -8587,6 +9234,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital P and small p.",
+     "marks": [
+      {
+       "glyph": "P",
+       "box": [
+        15.154,
+        39.056,
+        9.308,
+        11.333
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p046_model_0.png",
+        "box": [
+         12.846,
+         36.222,
+         13.923,
+         17.0
+        ]
+       }
+      },
+      {
+       "glyph": "p",
+       "box": [
+        25.923,
+        44.0,
+        6.769,
+        11.111
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p046_model_1.png",
+        "box": [
+         24.231,
+         41.222,
+         10.154,
+         16.667
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital P and small p.",
      "marks": [
@@ -9502,6 +10190,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital Q and small q.",
+     "marks": [
+      {
+       "glyph": "Q",
+       "box": [
+        11.923,
+        39.056,
+        13.0,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p051_model_0.png",
+        "box": [
+         8.692,
+         36.222,
+         19.462,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "q",
+       "box": [
+        25.923,
+        44.0,
+        10.0,
+        11.111
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p051_model_1.png",
+        "box": [
+         23.462,
+         41.222,
+         14.923,
+         16.667
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital Q and small q.",
      "marks": [
       {
@@ -9967,6 +10696,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital R and small r.",
+     "marks": [
+      {
+       "glyph": "R",
+       "box": [
+        13.692,
+        38.944,
+        9.462,
+        11.556
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p053_model_0.png",
+        "box": [
+         11.385,
+         36.056,
+         14.077,
+         17.333
+        ]
+       }
+      },
+      {
+       "glyph": "r",
+       "box": [
+        25.923,
+        44.0,
+        7.385,
+        6.5
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p053_model_1.png",
+        "box": [
+         24.077,
+         42.389,
+         11.077,
+         9.722
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital R and small r.",
      "marks": [
@@ -10435,6 +11205,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital S and small s.",
+     "marks": [
+      {
+       "glyph": "S",
+       "box": [
+        14.769,
+        39.056,
+        9.385,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p055_model_0.png",
+        "box": [
+         12.462,
+         36.222,
+         14.0,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "s",
+       "box": [
+        25.923,
+        44.0,
+        5.385,
+        6.5
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p055_model_1.png",
+        "box": [
+         24.615,
+         42.389,
+         8.0,
+         9.722
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital S and small s.",
      "marks": [
       {
@@ -10901,6 +11712,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital T and small t.",
+     "marks": [
+      {
+       "glyph": "T",
+       "box": [
+        12.0,
+        39.056,
+        12.692,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p057_model_0.png",
+        "box": [
+         8.846,
+         36.222,
+         19.0,
+         17.111
+        ]
+       }
+      },
+      {
+       "glyph": "t",
+       "box": [
+        25.923,
+        40.778,
+        6.154,
+        9.833
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p057_model_1.png",
+        "box": [
+         24.385,
+         38.333,
+         9.231,
+         14.722
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital T and small t.",
      "marks": [
@@ -11369,6 +12221,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital U and small u.",
+     "marks": [
+      {
+       "glyph": "U",
+       "box": [
+        11.923,
+        39.111,
+        11.923,
+        11.333
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p059_model_0.png",
+        "box": [
+         9.0,
+         36.278,
+         17.769,
+         17.0
+        ]
+       }
+      },
+      {
+       "glyph": "u",
+       "box": [
+        25.846,
+        44.0,
+        9.615,
+        6.611
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p059_model_1.png",
+        "box": [
+         23.462,
+         42.389,
+         14.385,
+         9.833
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital U and small u.",
      "marks": [
@@ -12235,6 +13128,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital V and small v.",
+     "marks": [
+      {
+       "glyph": "V",
+       "box": [
+        11.923,
+        38.944,
+        14.077,
+        11.556
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p064_model_0.png",
+        "box": [
+         8.462,
+         36.056,
+         21.0,
+         17.333
+        ]
+       }
+      },
+      {
+       "glyph": "v",
+       "box": [
+        25.923,
+        44.0,
+        8.077,
+        6.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p064_model_1.png",
+        "box": [
+         23.923,
+         42.389,
+         12.077,
+         9.667
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital V and small v.",
      "marks": [
       {
@@ -12702,6 +13636,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital W and small w.",
+     "marks": [
+      {
+       "glyph": "W",
+       "box": [
+        10.154,
+        39.056,
+        19.923,
+        11.5
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p066_model_0.png",
+        "box": [
+         5.231,
+         36.222,
+         29.769,
+         17.167
+        ]
+       }
+      },
+      {
+       "glyph": "w",
+       "box": [
+        28.0,
+        44.0,
+        11.615,
+        6.5
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p066_model_1.png",
+        "box": [
+         25.154,
+         42.389,
+         17.308,
+         9.722
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital W and small w.",
      "marks": [
       {
@@ -13135,6 +14110,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital X and small x.",
+     "marks": [
+      {
+       "glyph": "X",
+       "box": [
+        12.615,
+        39.056,
+        11.615,
+        11.444
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p068_model_0.png",
+        "box": [
+         9.769,
+         36.222,
+         17.308,
+         17.111
+        ]
+       }
+      },
+      {
+       "glyph": "x",
+       "box": [
+        26.308,
+        44.0,
+        6.538,
+        6.5
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p068_model_1.png",
+        "box": [
+         24.692,
+         42.389,
+         9.769,
+         9.722
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital X and small x.",
      "marks": [
@@ -13603,6 +14619,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
    ],
    "steps": [
     {
+     "say": "Follow the arrows on the big capital Y and small y.",
+     "marks": [
+      {
+       "glyph": "Y",
+       "box": [
+        12.615,
+        39.056,
+        11.615,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p070_model_0.png",
+        "box": [
+         9.769,
+         36.222,
+         17.308,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "y",
+       "box": [
+        24.538,
+        44.0,
+        7.0,
+        11.111
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p070_model_1.png",
+        "box": [
+         22.846,
+         41.222,
+         10.385,
+         16.667
+        ]
+       }
+      }
+     ]
+    },
+    {
      "say": "Trace capital Y and small y.",
      "marks": [
       {
@@ -14066,6 +15123,47 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
     "#222222"
    ],
    "steps": [
+    {
+     "say": "Follow the arrows on the big capital Z and small z.",
+     "marks": [
+      {
+       "glyph": "Z",
+       "box": [
+        12.615,
+        39.111,
+        11.692,
+        11.389
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p072_model_0.png",
+        "box": [
+         9.692,
+         36.278,
+         17.538,
+         17.056
+        ]
+       }
+      },
+      {
+       "glyph": "z",
+       "box": [
+        26.308,
+        44.0,
+        6.462,
+        6.5
+       ],
+       "ink": {
+        "src": "books/stemford-english-4/ink/p072_model_1.png",
+        "box": [
+         24.692,
+         42.389,
+         9.692,
+         9.722
+        ]
+       }
+      }
+     ]
+    },
     {
      "say": "Trace capital Z and small z.",
      "marks": [

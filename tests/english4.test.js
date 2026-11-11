@@ -56,10 +56,12 @@ test('each alphabet lesson uses its own vocabulary pictures and three rows of re
     assert.ok(!activities[p+1].some(a=>a.type==='story'));
     assert.match(activities[p+1].find(a=>a.type==='fill').video.src,/^https:\/\/youtu\.be\/[\w-]{11}$/);
     const trace = activities[p+1].find(a=>a.type==='fill');
-    assert.equal(trace.steps.length,3);
+    assert.equal(trace.steps.length,4);
+    assert.equal(trace.steps[0].marks.length,2, 'the big model capital and small letter come first');
+    assert.ok(trace.steps[0].marks.every(m=>m.ink.src.includes('_model_') && m.box[3]>5));
     assert.deepEqual(trace.colours,palettes.books[book.id][p+1].colours.map(c=>palettes.colours[c]));
     const marks = trace.steps.flatMap(s=>s.marks);
-    assert.ok([18,20].includes(marks.length));
+    assert.ok([20,22].includes(marks.length));
     for (const [k,m] of marks.entries()) {
       assert.equal(m.glyph,k%2===0?letter.toUpperCase():letter);
       within(m.box);within(m.ink.box);
@@ -71,7 +73,7 @@ test('each alphabet lesson uses its own vocabulary pictures and three rows of re
       masks++;
     }
   }
-  assert.ok(masks>=510);
+  assert.ok(masks>=562);
 });
 
 test('every traced letter has pen strokes, and capitals are not cut off at the top rule', () => {
@@ -83,7 +85,7 @@ test('every traced letter has pen strokes, and capitals are not cut off at the t
     if (m.glyph === m.glyph.toUpperCase()) assert.ok(m.box[3] > 4.5, `page ${p+1}: ${m.glyph} is cut off (${m.box[3]})`);
   }
   for (const p of [29,31]) for (const m of activities[p].find(a=>a.type==='fill').steps.flatMap(s=>s.marks))
-    if (m.glyph === 'i' || m.glyph === 'j') assert.match(m.pen, /^M/);
+    if ((m.glyph === 'i' || m.glyph === 'j') && !m.ink.src.includes('_model_')) assert.match(m.pen, /^M/);   // the dotted rows
 });
 
 test('each colouring picture names what it shows and uses its real colours', () => {

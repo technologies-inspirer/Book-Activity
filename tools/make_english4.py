@@ -194,7 +194,47 @@ def trace_marks(page,letter):
             marks.append(mark)
     return marks
 
-SMALL_PENS={'i':'M.1 .26V.82C.12 .98 .5 1 .95 .8M.1 0V.04',
+def model_marks(page,letter):
+    """The big outlined model letters at the left of the writing grid, as two traceable marks.
+
+    The letter is drawn as a thin outline with a dashed guide inside. The space between the outlines
+    (the letter's body) is a thin enclosed region; the empty inside of A, O or e is wider or smaller, so
+    each letter is the largest thin region. The crop ends before the solid black model in row one.
+    """
+    im=cv2.imread(str(ROOT/f'books/{BOOK}/p{page:03}.jpg'));h,w=im.shape[:2]
+    y0,y1,x0=int(h*.375),int(h*.555),int(w*.095)
+    x1=int(w*(.40 if page in (40,66) else .372))   # the M m and W w cells are wider
+    c=im[y0:y1,x0:x1];g=cv2.cvtColor(c,cv2.COLOR_BGR2GRAY);sat=c.max(2).astype(int)-c.min(2)
+    outline=cv2.dilate(((g<215)&(sat<40)).astype(np.uint8),np.ones((2,2),np.uint8))
+    n,lab,st,_=cv2.connectedComponentsWithStats(1-outline,connectivity=4)
+    dt=cv2.distanceTransform(1-outline,cv2.DIST_L2,3)
+    thin=[i for i in range(1,n) if st[i][4]>300 and st[i][0]>0 and st[i][1]>0
+          and st[i][0]+st[i][2]<c.shape[1] and st[i][1]+st[i][3]<c.shape[0] and dt[lab==i].max()<=12]
+    bodies=sorted(sorted(thin,key=lambda i:-st[i][4])[:2],key=lambda i:st[i][0])
+    if len(bodies)!=2: raise ValueError(f'Page {page}: expected two model letters, got {len(bodies)}')
+    marks=[]
+    for k,i in enumerate(bodies):
+        x,y,bw,bh,_=st[i]
+        body=(lab[y:y+bh,x:x+bw]==i).astype(np.uint8)
+        # fill the little gaps the dashed guide left inside the body
+        body=cv2.morphologyEx(body,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(7,7)))
+        px,py=bw//4,bh//4
+        line=np.zeros((bh+2*py,bw+2*px),np.float32);line[py:py+bh,px:px+bw]=body
+        line=cv2.GaussianBlur(line,(3,3),0)
+        rgba=np.zeros(line.shape+(4,),np.uint8);rgba[:,:,:3]=(111,47,214);rgba[:,:,3]=np.clip(line*255,0,255).astype(np.uint8)
+        path=f'books/{BOOK}/ink/p{page:03}_model_{k}.png';cv2.imwrite(str(ROOT/path),rgba)
+        box=[(x0+x)/w*100,(y0+y)/h*100,bw/w*100,bh/h*100]
+        padded=[box[0]-px/w*100,box[1]-py/h*100,rgba.shape[1]/w*100,rgba.shape[0]/h*100]
+        mark={'glyph':letter.upper() if k==0 else letter,'box':[round(v,3) for v in box],
+              'ink':{'src':path,'box':[round(v,3) for v in padded]}}
+        if k and letter in SMALL_PENS and letter not in 'ij': mark['pen']=SMALL_PENS[letter]   # the big i and j keep their dot outside the box
+        marks.append(mark)
+    return marks
+
+SMALL_PENS={'h':'M.05 0V1M.05 .62C.15 .38 .62 .36 .66 .58V.88C.68 1 .85 1 .97 .88',
+            'k':'M.07 0V1M.68 .42L.1 .64M.14 .64L.6 .95C.7 1 .85 1 .97 .86',
+            'm':'M.03 0V1M.03 .3C.1 -.04 .4 -.04 .42 .3V1M.42 .3C.48 -.04 .76 -.04 .78 .3V.84C.8 1 .92 1 1 .78',   # legs sit further in than in GLYPHS
+            'i':'M.1 .26V.82C.12 .98 .5 1 .95 .8M.1 0V.04',
             'j':'M.92 .17V.78C.92 1.02 .3 1.04 .02 .9M.92 0V.03'}
 
 def main():
@@ -211,7 +251,8 @@ def main():
         marks=trace_marks(tracepage,letter)
         picture,colours=PICTURES[letter]
         reviewed[str(tracepage)]={'picture':picture,'colours':[c.replace('_',' ') for c in colours.split()]}
-        steps=[{'say':f'Trace capital {letter.upper()} and small {letter}.','marks':marks[:4]},
+        steps=[{'say':f'Follow the arrows on the big capital {letter.upper()} and small {letter}.','marks':model_marks(tracepage,letter)},
+               {'say':f'Trace capital {letter.upper()} and small {letter}.','marks':marks[:4]},
                {'say':'Trace the next row from left to right.','marks':marks[4:10]},
                {'say':'Finish the last row. Now colour the picture and complete the printed exercise.','marks':marks[10:]}]
         acts[tracepage]=[{'type':'fill','title':f'Trace and colour {letter.upper()}{letter}',

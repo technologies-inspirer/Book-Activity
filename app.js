@@ -996,10 +996,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       circle.addEventListener('pointerdown', e => {
         e.preventDefault(); e.stopPropagation();
         const c = canvas();
-        if (!c || t.done) return;
-        pick(t);
+        if (!c) return;
+        // Small letters sit close together, so a circle can cover the edge of the letter being written
+        // (the top of H's right stem lies under h's circle). There, keep writing that letter.
+        const p = toCanvas(e, c), keep = active && !active.done && active !== t && letterAt(p, c) === active;
+        if (!keep && t.done) return;
+        if (!keep) pick(t);
         circle.setPointerCapture?.(e.pointerId);
-        begin(t, toCanvas(e, c), c);
+        begin(keep ? active : t, p, c);
       });
       circle.addEventListener('pointermove', e => { const c = canvas(); if (painting && c) paintTo(toCanvas(e, c), c); });
       circle.addEventListener('pointerup', () => { const c = canvas(); if (c) up(c); });
@@ -1050,8 +1054,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     function paintTo(p, c) {
       const { t, last } = painting, [, , w] = inkRect(t, c);
-      evenly([last, p], Math.max(2, w / t.shape.w * t.shape.half)).slice(1).forEach(q => paintAt(t, q, c));
-      painting.last = p;
+      // A slow finger moves less than a step per event: keep the last painted point, so the small moves add up
+      // (moving it on every event lost them, and a slowly traced line stayed uncoloured).
+      const steps = evenly([last, p], Math.max(2, w / t.shape.w * t.shape.half)).slice(1);
+      steps.forEach(q => paintAt(t, q, c));
+      if (steps.length) painting.last = steps[steps.length - 1];
       if (finished(t.shape, t.covered)) complete(t, c);
     }
 
