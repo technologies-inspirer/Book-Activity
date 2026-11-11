@@ -78,6 +78,18 @@ VIDEOS = {
     'ط': ('SH8nHVUTB9Q', 'bv9XQFSUN30', 'XtdEyCYZupg'),
     'ظ': ('o17nojyaW5U', 'trvNteMGYP4', 'ooJMVeWJH9E'),
     'ع': ('ZPeEt9RER2Q', 'o5qv7kocUvY', '3mHr28TG-YA'),
+    'غ': ('PG_1t7cSIBw', None, None),
+    'ف': ('6xphuRx2OuE', 'X0OQClqt71Q', '_ETgCf6Zlks'),
+    'ق': ('f_RcxiSmVs4', 'A-gdUFEwrt0', 'EEjqDMyQfxo'),
+    'ک': ('yprkkiLIx00', 't3b3CUrE_08', 'Qu5xaOB7R4w'),
+    'گ': ('kfFdqOYPnDo', 'gJyq89bB9Jc', '-C-kWcofpUY'),
+    'ل': ('yv-g92r0nfQ', 'IwTTZf604Jw', '6AlD-aoEqI4'),
+    'م': ('X4aJCPrshcE', 'snrObn-OCIE', 'UXVkw0bC56U'),
+    'ن': ('mMMqEMUczPE', None, None),
+    'و': ('PRfd1P3LFug', '8bjq7pRpnM0', 'yEszu4a1hao'),
+    'ہ': ('uniPXUfy9FY', '_106fyzQSXY', '-hMoADTZSw4'),
+    'ء': ('bQeh-ibmJ7A', 'kb5z4hSP_U0', 'wnLwvApseok'),
+    'ی، ے': ('A42ILLwPM6s', 'Tk75DfX9GIw', '3KE0FXCWbeM'),
 }
 
 def video_buttons(char, name):
@@ -87,7 +99,7 @@ def video_buttons(char, name):
     # Same buttons as Urdu 3+: the game first, then Story and Vocabulary.
     return [{'type': 'videos', 'label': label, 'icon': icon, 'title': f'{label}: {name}', 'button': {'x': 11.5, 'y': y},
              'videos': [{'title': label, 'src': f'https://youtu.be/{vid}'}]}
-            for label, icon, y, vid in [('Story', '📖', 33, story_id), ('Vocabulary', '🔤', 38, vocab_id)]]
+            for label, icon, y, vid in [('Story', '📖', 33, story_id), ('Vocabulary', '🔤', 38, vocab_id)] if vid]
 
 def scene(page, text, cx=50, cy=46, width=95):
     return {'page': page, 'from': {'cx': cx, 'cy': cy, 'w': width},
@@ -187,7 +199,7 @@ def tracing(page, char, name):
             say += ' شاباش! اب تصویر میں رنگ بھریں۔'
         steps.append({'say': say, 'marks': marks})
     act = {'type': 'fill', 'title': f'{name} لکھیں اور رنگ بھریں', 'steps': steps, 'colours': page_colours(BOOK, page)}
-    if char in VIDEOS:
+    if char in VIDEOS and VIDEOS[char][2]:
         act['video'] = {'title': f'How to write {name}', 'src': f'https://youtu.be/{VIDEOS[char][2]}'}
     return act
 

@@ -9638,6 +9638,22 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  },
  "60": [
   {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: غین",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/PG_1t7cSIBw"
+    }
+   ]
+  },
+  {
    "type": "game",
    "ur": true,
    "label": "کھیلیں",
@@ -10032,6 +10048,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  },
  "62": [
   {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: فے",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/6xphuRx2OuE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: فے",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/X0OQClqt71Q"
+    }
+   ]
+  },
+  {
    "type": "game",
    "ur": true,
    "label": "کھیلیں",
@@ -10422,9 +10470,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#4aa3df",
    "#90e0ef",
    "#9aa5b1"
-  ]
+  ],
+  "video": {
+   "title": "How to write فے",
+   "src": "https://youtu.be/_ETgCf6Zlks"
+  }
  },
  "64": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: قاف",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/f_RcxiSmVs4"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: قاف",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/A-gdUFEwrt0"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -10817,9 +10901,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#8d5524",
    "#f9c74f",
    "#4caf50"
-  ]
+  ],
+  "video": {
+   "title": "How to write قاف",
+   "src": "https://youtu.be/EEjqDMyQfxo"
+  }
  },
  "66": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: کاف",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/yprkkiLIx00"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: کاف",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/t3b3CUrE_08"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -11210,9 +11330,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
   "colours": [
    "#8d5524",
    "#d4a373"
-  ]
+  ],
+  "video": {
+   "title": "How to write کاف",
+   "src": "https://youtu.be/Qu5xaOB7R4w"
+  }
  },
  "68": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: گاف",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/kfFdqOYPnDo"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: گاف",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/gJyq89bB9Jc"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -11441,9 +11597,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
   "colours": [
    "#9aa5b1",
    "#8d5524"
-  ]
+  ],
+  "video": {
+   "title": "How to write گاف",
+   "src": "https://youtu.be/-C-kWcofpUY"
+  }
  },
  "70": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: لام",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/yv-g92r0nfQ"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: لام",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/IwTTZf604Jw"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -11836,9 +12028,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#4caf50",
    "#f9c74f",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write لام",
+   "src": "https://youtu.be/6AlD-aoEqI4"
+  }
  },
  "72": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: میم",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/X4aJCPrshcE"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: میم",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/snrObn-OCIE"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -12230,9 +12458,29 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#f4a261",
    "#f9c74f",
    "#4aa3df"
-  ]
+  ],
+  "video": {
+   "title": "How to write میم",
+   "src": "https://youtu.be/UXVkw0bC56U"
+  }
  },
  "74": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: نون",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/mMMqEMUczPE"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -12628,6 +12876,38 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
  },
  "76": [
   {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: واؤ",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/PRfd1P3LFug"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: واؤ",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/8bjq7pRpnM0"
+    }
+   ]
+  },
+  {
    "type": "game",
    "ur": true,
    "label": "کھیلیں",
@@ -12911,9 +13191,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#f9c74f",
    "#9aa5b1",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "How to write واؤ",
+   "src": "https://youtu.be/yEszu4a1hao"
+  }
  },
  "78": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ہے",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/uniPXUfy9FY"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ہے",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/_106fyzQSXY"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -13304,9 +13620,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
   "colours": [
    "#9aa5b1",
    "#ff8fab"
-  ]
+  ],
+  "video": {
+   "title": "How to write ہے",
+   "src": "https://youtu.be/-hMoADTZSw4"
+  }
  },
  "80": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: ہمزہ",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/bQeh-ibmJ7A"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: ہمزہ",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/kb5z4hSP_U0"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -13590,9 +13942,45 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#8d5524",
    "#ff8fab",
    "#222222"
-  ]
+  ],
+  "video": {
+   "title": "How to write ہمزہ",
+   "src": "https://youtu.be/wnLwvApseok"
+  }
  },
  "82": [
+  {
+   "type": "videos",
+   "label": "Story",
+   "icon": "📖",
+   "title": "Story: چھوٹی یے اور بڑی یے",
+   "button": {
+    "x": 11.5,
+    "y": 33
+   },
+   "videos": [
+    {
+     "title": "Story",
+     "src": "https://youtu.be/A42ILLwPM6s"
+    }
+   ]
+  },
+  {
+   "type": "videos",
+   "label": "Vocabulary",
+   "icon": "🔤",
+   "title": "Vocabulary: چھوٹی یے اور بڑی یے",
+   "button": {
+    "x": 11.5,
+    "y": 38
+   },
+   "videos": [
+    {
+     "title": "Vocabulary",
+     "src": "https://youtu.be/Tk75DfX9GIw"
+    }
+   ]
+  },
   {
    "type": "game",
    "ur": true,
@@ -14093,7 +14481,11 @@ window.BOOK_ACTIVITIES['stemford-urdu-4'] = {
    "#e63946",
    "#9aa5b1",
    "#d4a373"
-  ]
+  ],
+  "video": {
+   "title": "How to write چھوٹی یے اور بڑی یے",
+   "src": "https://youtu.be/3KE0FXCWbeM"
+  }
  },
  "84": [
   {

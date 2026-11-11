@@ -707,7 +707,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       return hex;
     };
     const regions = fillAct?.colourRegions || bookColourRegions[book.id]?.[idx + 1] || [];
-    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, regions, wrong: wrongColour, add: addColour });
+    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, regions, wrong: wrongColour, add: addColour, reviewedOnly: fillAct?.drawingMode === 'regions' });
     sheet.prepend(img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));
 
@@ -786,9 +786,25 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     return px;
   }
-  function colourArea(img, fx, fy, regions) {
+  function colourArea(img, fx, fy, regions, reviewedOnly = false) {
     const px = pixelsOf(img);
     if (!px) return null;
+    // Dotted pre-writing outlines are open to a flood fill. Their reviewed object
+    // boundaries supply the clip instead; one stroke stays in its starting object.
+    if (reviewedOnly) {
+      const selected = colourRegionAt(regions, fx * 100, fy * 100);
+      if (!selected) return { mask: null, want: null, paper: true };
+      const out = document.createElement('canvas');
+      out.width = px.w; out.height = px.h;
+      const ox = out.getContext('2d'), mask = ox.createImageData(px.w, px.h);
+      for (let i = 0; i < px.w * px.h; i++) {
+        if (colourRegionAt(regions, (i % px.w) / px.w * 100, Math.floor(i / px.w) / px.h * 100) !== selected) continue;
+        // Preserve the coloured scenery outside the white exercise silhouettes.
+        if (Math.min(px.data[i * 4], px.data[i * 4 + 1], px.data[i * 4 + 2]) > 215) mask.data[i * 4 + 3] = 255;
+      }
+      ox.putImageData(mask, 0, 0);
+      return { mask: out, required: selected.colour, want: null };
+    }
     const cuts = (regions || []).map(region => region.cut).filter(Boolean);
     const core = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0, cuts });
     if (!core) return null;
@@ -867,7 +883,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       e.preventDefault();
       const p = pos(e), mode = watch ? watch.down(p, c, brush.erase) : 'free';
       if (mode === 'block') return;
-      const area = mode === 'free' && !brush.erase && page ? colourArea(page.img, p[0] / c.width, p[1] / c.height, page.regions) : null;
+      const area = mode === 'free' && !brush.erase && page ? colourArea(page.img, p[0] / c.width, p[1] / c.height, page.regions, page.reviewedOnly) : null;
       // the paper round the pictures is not coloured (nor anything while the page picture is still loading)
       if (mode === 'free' && !brush.erase && page && (!area || area.paper)) return;
       // the colour the book shows for this part: one on offer, or else it is offered now

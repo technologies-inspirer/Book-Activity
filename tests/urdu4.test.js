@@ -43,22 +43,30 @@ test('printed QR codes open the videos they lead to, on the right pages', () => 
   assert.equal(book.qr[4].videos[0].id, 'Y0WQFJp_-Pk');
 });
 
-test('Story, Vocabulary and Formation videos are linked for the 21 letters the publisher supplied', () => {
+test('Story, Vocabulary and Formation videos are linked for all 33 supplied lessons, including partially supplied lessons', () => {
   const youtube = /^https:\/\/youtu\.be\/[\w-]{11}$/;
   const withVideos = lessons.filter(lesson => [].concat(activities[lesson.picturePage]).some(item => item.type === 'videos'));
-  assert.deepEqual(withVideos.map(lesson => lesson.letter).join(''), 'ابپتٹثجچحخدذرژسشصضطظع');
+  assert.deepEqual(withVideos.map(lesson => lesson.letter).join(''), 'ابپتٹثجچحخدذرژسشصضطظعغفقکگلمنوہءی، ے');
   for (const lesson of lessons) {
     const picture = [].concat(activities[lesson.picturePage]).filter(item => item.type === 'videos');
     const formation = activities[lesson.tracePage].video;
     if (!withVideos.includes(lesson)) { assert.equal(picture.length, 0); assert.equal(formation, undefined); continue; }
     // the same buttons as Urdu 3+: Story and Vocabulary, then the game (shown above them on the page)
-    assert.deepEqual([].concat(activities[lesson.picturePage]).map(item => item.label), ['Story', 'Vocabulary', 'کھیلیں']);
+    const partial = ['\u063a', '\u0646'].includes(lesson.letter);
+    assert.deepEqual([].concat(activities[lesson.picturePage]).map(item => item.label), partial ? ['Story', '\u06a9\u06be\u06cc\u0644\u06cc\u06ba'] : ['Story', 'Vocabulary', '\u06a9\u06be\u06cc\u0644\u06cc\u06ba']);
+    if (partial) { assert.equal(formation, undefined); continue; }
     assert.equal(formation.title, `How to write ${lesson.name}`);
     for (const item of picture) assert.match(item.videos[0].src, youtube);
     assert.match(formation.src, youtube);
   }
   assert.equal(activities[4][0].videos[0].src, 'https://youtu.be/p890xf02Sdw');
   assert.equal(activities[5].video.src, 'https://youtu.be/U84ZPPlDU_o');
+  assert.equal(activities[60][0].videos[0].src, 'https://youtu.be/PG_1t7cSIBw');
+  assert.equal(activities[61].video, undefined);
+  assert.equal(activities[74][0].videos[0].src, 'https://youtu.be/mMMqEMUczPE');
+  assert.equal(activities[75].video, undefined);
+  assert.equal(activities[82][1].videos[0].src, 'https://youtu.be/Tk75DfX9GIw');
+  assert.equal(activities[83].video.src, 'https://youtu.be/3KE0FXCWbeM');
 });
 
 test('instructional pages have usable activities, without home-made story animations', () => {

@@ -31,6 +31,7 @@ window.BOOK_ACTIVITIES['stemford-english-4'] = {
   {
    "type": "fill",
    "title": "Trace the house",
+   "drawingMode": "regions",
    "colours": [
     "#e63946",
     "#8d5524",

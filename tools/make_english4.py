@@ -263,7 +263,7 @@ def main():
     # The printed pre-writing page: trace the house and write your own name.
     reviewed['5']={'picture':'Trace and colour the house, cloud and grass','colours':['red','brown','blue','green','black']}
     acts[5]=[story(5,'Pre-writing skills','Trace and colour the house. My name is Asim. What is your name? Write your name in the box.',button={'x':3,'y':3}),
-             {'type':'fill','title':'Trace the house','colours':[palettes['colours'][c] for c in reviewed['5']['colours']],
+             {'type':'fill','title':'Trace the house','drawingMode':'regions','colours':[palettes['colours'][c] for c in reviewed['5']['colours']],
               'steps':[{'say':'Trace the roof.','marks':[{'line':[29,39,61.3,20.5]},{'line':[61.3,20.5,94,39]},{'line':[94,39,29,39]}]},
                        {'say':'Trace the walls. Then colour the house and write your own name.','marks':[{'line':[33.5,39,33.5,66]},{'line':[33.5,66,89.5,66]},{'line':[89.5,66,89.5,39]}]}]}]
     # Reviewed exercise pages; prompts come directly from each printed page.

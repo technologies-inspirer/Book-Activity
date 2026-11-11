@@ -71,7 +71,8 @@ test('part rules refer to real activities and colours available on their pages',
     const activity = fill(book, page);
     assert.ok(activity, `${book} / ${page}`);
     for (const region of regions) {
-      assert.ok(activity.colours.includes(region.colour), `Unavailable part colour: ${book} / ${page} / ${region.part}`);
+      if (!region.colour) assert.equal(activity.drawingMode, 'regions', 'Only reviewed drawing boundaries may omit a required colour');
+      else assert.ok(activity.colours.includes(region.colour), `Unavailable part colour: ${book} / ${page} / ${region.part}`);
       const box = region.box || region.componentBox;
       if (box) {
         const [x, y, w, h] = box;
