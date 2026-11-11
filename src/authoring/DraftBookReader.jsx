@@ -34,6 +34,7 @@ export function DraftBookReader(props) {
       <span className="portal-pill">{dirty ? 'Unsaved changes' : 'Saved'}</span>
       <label>Selected page<select aria-label="Selected book page" value={selected} disabled={!!busy} onChange={event => controller.current?.goToPage(Number(event.target.value))}>{draft.pages.map(page => <option key={page.number} value={page.number}>{page.number}</option>)}</select></label>
       <button className="portal-secondary pdf-danger" disabled={!!busy} onClick={props.onDelete}>Delete Page</button>
+      <button className="portal-secondary" disabled={!!busy} onClick={props.onCustomize}>Customize Page</button>
       <span className="draft-reader-spacer" />
       <button className="portal-primary" disabled={!!busy || !dirty} onClick={props.onUpdate}>Update</button>
       <button className="portal-secondary" disabled={!!busy} onClick={props.onCancel}>Cancel</button>
