@@ -525,7 +525,33 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     x: 'M.08 .04L.92 .96M.92 .04L.08 .96',
     y: 'M.14 .04V.32C.14 .6 .74 .6 .78 .32M.8 .04V.8C.8 1 .3 1.02 .12 .86',
     z: 'M.1 .06H.9L.08 .94H.94',
-    B: 'M.18 0V1M.18 0H.55C.88 0 .88 .48 .55 .48H.18M.55 .48C.95 .48 .95 1 .55 1H.18',
+    // Capital letters, in the stroke order printed in Stemford English 4+ (the numbered model letters)
+    A: 'M.5 0L.02 1M.5 0L.98 1M.22 .6H.78',
+    B: 'M.06 0V1M.06 0H.55C.92 0 .92 .48 .55 .48H.06M.55 .48C1 .48 1 1 .55 1H.06',
+    C: 'M.94 .16C.8 -.04 .04 -.06 .02 .5C0 1.06 .8 1.04 .96 .82',
+    D: 'M.06 0V1M.06 0H.4C1.15 0 1.15 1 .4 1H.06',
+    E: 'M.06 0V1M.06 0H.95M.06 .5H.8M.06 1H.95',
+    F: 'M.08 0V1M.08 0H.95M.08 .48H.8',
+    G: 'M.92 .14C.76 -.04 .04 -.06 .02 .5C0 1.04 .8 1.06 .9 .6M.52 .47H.92V1',
+    H: 'M.06 0V1M.94 0V1M.06 .48H.94',
+    I: 'M.5 0V1',
+    J: 'M.9 0V.62C.9 1.04 .12 1.04 .02 .72',
+    K: 'M.06 0V1M.94 0L.08 .55M.3 .41L.96 1',
+    L: 'M.06 0V1H.96',
+    M: 'M.04 0V1M.04 0L.5 .88L.96 0V1',
+    N: 'M.06 0V1M.06 0L.94 1M.94 0V1',
+    O: 'M.5 0C-.16 0 -.16 1 .5 1C1.16 1 1.16 0 .5 0',
+    P: 'M.06 0V1M.06 0H.5C1.1 0 1.1 .56 .5 .56H.06',
+    Q: 'M.48 0C-.14 0 -.14 .96 .48 .96C1.06 .96 1.06 0 .48 0M.62 .76L.98 1',
+    R: 'M.06 0V1M.06 0H.5C1.04 0 1.04 .52 .5 .52H.06M.5 .52L.96 1',
+    S: 'M.92 .14C.78 -.04 .1 -.04 .1 .25C.1 .5 .9 .46 .92 .74C.94 1.04 .2 1.06 .04 .84',
+    T: 'M.5 0V1M.02 0H.98',
+    U: 'M.06 0V.6C.06 1.12 .94 1.12 .94 .6V0',
+    V: 'M.02 0L.5 1L.98 0',
+    W: 'M.02 0L.25 1L.5 0L.75 1L.98 0',
+    X: 'M.04 0L.96 1M.96 0L.04 1',
+    Y: 'M.04 0L.54 .5M.96 0L.12 1',
+    Z: 'M.04 0H.96L.04 1H.96',
     // Urdu letters: the pen sweeps the letter's own ink from right to left, line by line
     ur: 'M1 0H0V.3H1V.6H0V.9H1',
     // numbers, written the way the maths books teach them
@@ -540,6 +566,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     8: 'M.5 .48C.12 .42 .12 .02 .5 .02C.88 .02 .88 .42 .5 .48C.06 .54 .06 .98 .5 .98C.94 .98 .94 .54 .5 .48',
     9: 'M.92 .3C.9 .02 .1 .02 .1 .3C.1 .56 .8 .6 .92 .3V.98'
   };
+
+  // A mark's pen path: its own (where a book prints the letter differently, e.g. the dot of i inside the box), else GLYPHS.
+  const penOf = m => m.pen || GLYPHS[m.glyph];
 
   // A GLYPHS path as its pen strokes, in order: lists of points (0..1 of the letter box), close together.
   const glyphCache = new Map();
@@ -579,7 +608,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     if (m.glyph) {
       // box = [x, y, w, h] in % of the page, measured from the dotted letter (tools/find_glyphs.py)
-      const [x, y, w, h] = m.box, d = GLYPHS[m.glyph];
+      const [x, y, w, h] = m.box, d = penOf(m);
       const [sx, sy] = d.match(/^M([-\d.]+) ([-\d.]+)/).slice(1).map(Number);
       m.px = x + sx * w; m.py = y + sy * h;
       if (m.ink) {
@@ -948,7 +977,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // Urdu uses the book's printed start-dot. Latin letters retain their known pen-stroke start.
     function startOf(t) {
       if (t.startInk) return t.startInk;
-      const s = t.shape, g = t.m.glyph !== 'ur' && GLYPHS[t.m.glyph];
+      const s = t.shape, g = t.m.glyph !== 'ur' && penOf(t.m);
       let far;
       if (g) {
         const [u, v] = g.match(/^M([-\d.]+) ([-\d.]+)/).slice(1).map(Number);
@@ -1086,7 +1115,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     //   Urdu: from the printed start-dot, following connected ink, then lifting for separate letter dots.
     function pathOf(t) {
       if (t.path) return t.path;
-      const s = t.shape, g = t.m.glyph !== 'ur' && GLYPHS[t.m.glyph];
+      const s = t.shape, g = t.m.glyph !== 'ur' && penOf(t.m);
       const nearest = q => { let b = s.middle[0], d = Infinity; s.middle.forEach(m => { const e = (m[0] - q[0]) ** 2 + (m[1] - q[1]) ** 2; if (e < d) { d = e; b = m; } }); return [b, Math.sqrt(d)]; };
       let strokes;
       if (g) {
@@ -1963,6 +1992,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   if (readerBook) {
     selectedReaderPage = clamp(selectedReaderPage, 1, readerBook.pages.length);
     showReader(readerBook, Math.floor((selectedReaderPage - 1) / 2), false);
+    // Fetch YouTube's player in the background while the child reads, so the first video starts sooner.
+    if (location.protocol !== 'file:') schedule(() => loadYouTube().catch(() => {}), 1500);
     readerOptions.onReady?.({ getSelectedPage: () => selectedReaderPage, goToPage: number => { if (!R?.busy) { selectedReaderPage = clamp(number, 1, readerBook.pages.length); R.show(Math.floor((selectedReaderPage - 1) / 2)); } } });
   } else if (activityPreview) {
     const { book: original, pageIndex, activity, videos } = activityPreview;

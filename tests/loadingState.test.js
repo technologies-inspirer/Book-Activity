@@ -33,11 +33,14 @@ test('reader loading ends on image errors, playback, detachment and scope dispos
   image.dispatchEvent(new Event('error')); t.mock.timers.tick(3000);
   assert.equal(loadingState.snapshot(), null);
   const video = Object.assign(new EventTarget(), { tagName: 'VIDEO', paused: false, readyState: 0, isConnected: true });
+  // a short stall shows no loader; a longer one does, and it goes the moment the video plays
   scope.media(video); video.dispatchEvent(new Event('waiting')); t.mock.timers.tick(200);
-  assert.equal(loadingState.snapshot(), 'Buffering video...');
-  video.dispatchEvent(new Event('playing')); t.mock.timers.tick(3000);
   assert.equal(loadingState.snapshot(), null);
-  video.dispatchEvent(new Event('waiting')); t.mock.timers.tick(200);
+  t.mock.timers.tick(300);
+  assert.equal(loadingState.snapshot(), 'Buffering video...');
+  video.dispatchEvent(new Event('playing'));
+  assert.equal(loadingState.snapshot(), null);
+  video.dispatchEvent(new Event('waiting')); t.mock.timers.tick(500);
   video.isConnected = false; notify();
   assert.equal(loadingState.snapshot(), null);
   scope.begin('PDF'); t.mock.timers.tick(200); scope.dispose();

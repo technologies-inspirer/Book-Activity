@@ -10,7 +10,7 @@ for (const file of [
   'data.js', 'books/library.js', 'books/zones.js', 'books/activities.js',
   'books/audio-urdu3.js', 'books/activities-english3.js',
   'books/activities-computer0.js', 'books/activities-maxford.js',
-  'books/activities-maths3.js', 'books/activities-urdu3.js', 'books/activities-urdu4.js'
+  'books/activities-maths3.js', 'books/activities-urdu3.js', 'books/activities-urdu4.js', 'books/activities-english4.js'
 ]) await import(new URL(`../${file}`, import.meta.url));
 
 const originalDemoIds = window.DEMO_BOOKS.map(book => book.id);

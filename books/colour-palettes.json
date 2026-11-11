@@ -5224,6 +5224,566 @@
           "black"
         ]
       }
+    },
+    "stemford-english-4": {
+      "1": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "2": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "3": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "4": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "5": {
+        "picture": "Trace and colour the house, cloud and grass",
+        "colours": [
+          "red",
+          "brown",
+          "blue",
+          "green",
+          "black"
+        ]
+      },
+      "6": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "7": {
+        "picture": "alligator: green body, yellow eyes and belly",
+        "colours": [
+          "green",
+          "yellow",
+          "black"
+        ]
+      },
+      "8": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "9": {
+        "picture": "butterfly: bright wings in yellow, orange, pink and blue",
+        "colours": [
+          "yellow",
+          "orange",
+          "pink",
+          "blue",
+          "black"
+        ]
+      },
+      "10": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "11": {
+        "picture": "cat: orange fur, pink nose",
+        "colours": [
+          "orange",
+          "pink",
+          "black"
+        ]
+      },
+      "12": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "13": {
+        "picture": "duck: yellow body, orange beak",
+        "colours": [
+          "yellow",
+          "orange",
+          "black"
+        ]
+      },
+      "14": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "15": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "16": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "17": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "18": {
+        "picture": "elephant: grey body, pink ears",
+        "colours": [
+          "grey",
+          "pink",
+          "black"
+        ]
+      },
+      "19": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "20": {
+        "picture": "Pakistan flag: dark green and white, brown pole",
+        "colours": [
+          "dark green",
+          "brown",
+          "black"
+        ]
+      },
+      "21": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "22": {
+        "picture": "goat: brown and light brown coat",
+        "colours": [
+          "brown",
+          "light brown",
+          "black"
+        ]
+      },
+      "23": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "24": {
+        "picture": "horse: brown coat",
+        "colours": [
+          "brown",
+          "black"
+        ]
+      },
+      "25": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "26": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "27": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "28": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "29": {
+        "picture": "insect: green body, light blue wings, pink legs",
+        "colours": [
+          "green",
+          "light blue",
+          "pink",
+          "black"
+        ]
+      },
+      "30": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "31": {
+        "picture": "jug: blue",
+        "colours": [
+          "blue",
+          "light blue",
+          "black"
+        ]
+      },
+      "32": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "33": {
+        "picture": "kangaroo: brown and light brown, pink ears",
+        "colours": [
+          "brown",
+          "light brown",
+          "pink",
+          "black"
+        ]
+      },
+      "34": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "35": {
+        "picture": "lotus: pink flower, green leaf",
+        "colours": [
+          "pink",
+          "green",
+          "black"
+        ]
+      },
+      "36": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "37": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "38": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "39": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "40": {
+        "picture": "monkey: brown fur, light brown face",
+        "colours": [
+          "brown",
+          "light brown",
+          "black"
+        ]
+      },
+      "41": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "42": {
+        "picture": "nest: brown twigs, green leaves",
+        "colours": [
+          "brown",
+          "green",
+          "black"
+        ]
+      },
+      "43": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "44": {
+        "picture": "oranges: orange fruit, green leaves",
+        "colours": [
+          "orange",
+          "green",
+          "black"
+        ]
+      },
+      "45": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "46": {
+        "picture": "parrot: green feathers, red beak",
+        "colours": [
+          "green",
+          "red",
+          "black"
+        ]
+      },
+      "47": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "48": {
+        "picture": "Colour the O objects: octopus, orange, ox and onion",
+        "colours": [
+          "purple",
+          "orange",
+          "brown",
+          "pink",
+          "green"
+        ]
+      },
+      "49": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "50": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "51": {
+        "picture": "queen: yellow crown with blue and red jewels, light brown face",
+        "colours": [
+          "yellow",
+          "blue",
+          "red",
+          "light brown",
+          "black"
+        ]
+      },
+      "52": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "53": {
+        "picture": "rabbit: light brown fur, pink nose",
+        "colours": [
+          "light brown",
+          "pink",
+          "black"
+        ]
+      },
+      "54": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "55": {
+        "picture": "swan: white feathers shaded grey, orange beak, light blue water",
+        "colours": [
+          "grey",
+          "orange",
+          "light blue",
+          "black"
+        ]
+      },
+      "56": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "57": {
+        "picture": "tent: yellow and orange, green grass",
+        "colours": [
+          "yellow",
+          "orange",
+          "green",
+          "black"
+        ]
+      },
+      "58": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "59": {
+        "picture": "umbrella: red, blue, yellow and green",
+        "colours": [
+          "red",
+          "blue",
+          "yellow",
+          "green",
+          "black"
+        ]
+      },
+      "60": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "61": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "62": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "63": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "64": {
+        "picture": "van: blue body, yellow lights, grey wheels",
+        "colours": [
+          "blue",
+          "yellow",
+          "grey",
+          "black"
+        ]
+      },
+      "65": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "66": {
+        "picture": "well: grey stones, brown wood, blue bucket",
+        "colours": [
+          "grey",
+          "brown",
+          "blue",
+          "black"
+        ]
+      },
+      "67": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "68": {
+        "picture": "xylophone: a different colour for each bar",
+        "colours": [
+          "red",
+          "blue",
+          "green",
+          "yellow",
+          "orange",
+          "brown",
+          "black"
+        ]
+      },
+      "69": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "70": {
+        "picture": "yacht: red and yellow sails, blue water",
+        "colours": [
+          "red",
+          "blue",
+          "yellow",
+          "black"
+        ]
+      },
+      "71": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "72": {
+        "picture": "zebra: black stripes",
+        "colours": [
+          "black"
+        ]
+      },
+      "73": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "74": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "75": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "76": {
+        "picture": "Printed vowel colour code",
+        "colours": [
+          "yellow",
+          "green",
+          "brown",
+          "blue",
+          "red"
+        ]
+      },
+      "77": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "78": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "79": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      },
+      "80": {
+        "picture": "Reading, matching or writing: black pencil",
+        "colours": [
+          "black"
+        ]
+      }
     }
   }
 }

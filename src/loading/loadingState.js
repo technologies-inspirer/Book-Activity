@@ -34,14 +34,17 @@ export function beginLoading(label = 'Loading...', delay = 200, { minimum = 3000
   };
 }
 
+const VIDEO = { delay: 500, minimum: 0 };
+
 // Reader-owned work must never leave a loader behind after navigation or closing media.
 export function createLoadingScope() {
   const tasks = new Set();
   const bindings = new Map();
   let disposed = false;
-  function begin(label) {
+  // Video: a short stall shows no loader, and the loader goes the moment the video plays.
+  function begin(label, { delay = 200, minimum } = /video/i.test(label) ? VIDEO : {}) {
     if (disposed) return () => {};
-    const end = beginLoading(label, 200, { onRelease: () => tasks.delete(finish) });
+    const end = beginLoading(label, delay, { minimum, onRelease: () => tasks.delete(finish) });
     const finish = immediate => end(immediate);
     tasks.add(finish);
     return finish;
