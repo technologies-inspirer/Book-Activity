@@ -244,6 +244,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   // The publisher's own video files, with a choice between them when there are several.
   function openVideos(title, vids, start = 0) {
     stopSpeak(); closeMenu();
+    if (!vids?.length) {
+      modal(el('div', { class: 'modal-card' }, el('h3', {}, title),
+        el('p', {}, 'This video will be available soon.')));
+      return;
+    }
     const player = el('video', { controls: true, autoplay: true, playsinline: true, class: 'own-video' });
     // the publisher's videos on YouTube play in YouTube's player; '#t=a,b' keeps to that part of the video
     const yt = el('div', { class: 'yt-box', hidden: true });
@@ -794,13 +799,25 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (reviewedOnly) {
       const selected = colourRegionAt(regions, fx * 100, fy * 100);
       if (!selected) return { mask: null, want: null, paper: true };
+      let object = null;
+      if (selected.surface === 'object') {
+        object = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0 });
+        if (!object) return { mask: null, want: null, paper: true };
+        // The white page around a closed picture is not part of that picture.
+        // Reject a flood which reaches outside its reviewed object boundary.
+        for (let i = 0; i < object.length; i++) if (object[i] &&
+          colourRegionAt([selected], (i % px.w) / px.w * 100, Math.floor(i / px.w) / px.h * 100) !== selected)
+          return { mask: null, want: null, paper: true };
+        object = spread(object, px.w, px.h, 1);
+      }
       const out = document.createElement('canvas');
       out.width = px.w; out.height = px.h;
       const ox = out.getContext('2d'), mask = ox.createImageData(px.w, px.h);
       for (let i = 0; i < px.w * px.h; i++) {
         if (colourRegionAt(regions, (i % px.w) / px.w * 100, Math.floor(i / px.w) / px.h * 100) !== selected) continue;
+        if (object && !object[i]) continue;
         // Preserve the coloured scenery outside the white exercise silhouettes.
-        if (Math.min(px.data[i * 4], px.data[i * 4 + 1], px.data[i * 4 + 2]) > 215) mask.data[i * 4 + 3] = 255;
+        if (selected.surface === 'all' || Math.min(px.data[i * 4], px.data[i * 4 + 1], px.data[i * 4 + 2]) > 215) mask.data[i * 4 + 3] = 255;
       }
       ox.putImageData(mask, 0, 0);
       return { mask: out, required: selected.colour, want: null };

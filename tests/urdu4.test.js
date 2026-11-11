@@ -22,7 +22,7 @@ test('Urdu 4+ is a complete RTL book assigned to Nursery / Stemford / Urdu', () 
   assert.equal(book.rtl, true);
   assert.equal(book.pages, 96);
   assert.deepEqual(getLearningBooks(library, { classId: 'nursery', seriesId: 'stemford', subjectId: 'urdu' }), [book]);
-  assert.deepEqual(getLearningSubjects(library, [], { classId: 'nursery', seriesId: 'stemford' }), [{ id: 'english', name: 'English' }, { id: 'urdu', name: 'Urdu' }]);
+  assert.deepEqual(getLearningSubjects(library, [], { classId: 'nursery', seriesId: 'stemford' }), [{ id: 'english', name: 'English' }, { id: 'maths', name: 'Maths' }, { id: 'urdu', name: 'Urdu' }]);
   assert.equal(getLearningBooks(library, { classId: 'play-group', subjectId: 'urdu' }).some(item => item.id === book.id), false);
   assert.ok(exists(`${book.dir}/cover.jpg`));
   for (let page = 1; page <= 96; page++) assert.ok(exists(`${book.dir}/p${String(page).padStart(3, '0')}.jpg`));

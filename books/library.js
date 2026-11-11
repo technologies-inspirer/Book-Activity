@@ -5102,5 +5102,722 @@ window.PDF_BOOKS = [
     "title": "STEMFORD English 4+ 36"
    }
   }
+ },
+ {
+  "id": "stemford-maths-4",
+  "title": "Stemford Maths 4+",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-maths-4",
+  "pages": 72,
+  "ratio": 0.7222,
+  "c1": "#cdc6bb",
+  "c2": "#79756e",
+  "rtl": false,
+  "qr": {
+   "5": {
+    "url": "https://o2o.to/i/DWJ8L9NGPXZR",
+    "box": [
+     37.0,
+     5.61,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "E_KZ7-Xa4EI",
+      "title": "Math for Kids 4+ | Comparison of Sizes | Big, Small, Tall & Short | Fo"
+     },
+     {
+      "id": "S7kphbo3Kw8",
+      "title": "Math for Kids 4+ | Comparison of Sizes Teacher Guide"
+     },
+     {
+      "id": "rupXXO4HJlY",
+      "title": "Math for Kids 4+ | Comparison of Sizes Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 01"
+   },
+   "6": {
+    "url": "https://o2o.to/i/GE49AWL16JD5",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "XW0O4OQqD0s",
+      "title": "Math for Kids 4+ | Lecture 2 | Number 1 | Basic Math Learning | For St"
+     },
+     {
+      "id": "mv6SlzhIPgI",
+      "title": "Math for Kids 4+ | Lecture 2 | Number 1 | Teacher Guide"
+     },
+     {
+      "id": "qtl7-5FY1-I",
+      "title": "Math for Kids 4+ | Lecture 2 | Number 1 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 02"
+   },
+   "8": {
+    "url": "https://o2o.to/i/CZ79SHXWOY5J",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "cMeuF1ImyPM",
+      "title": "Math for Kids 4+ | Lecture 3 | Number 2 | Fun Learning For Students"
+     },
+     {
+      "id": "GhWK2xM9lbE",
+      "title": "Math for Kids 4+ | Lecture 3 | Number 2 | Teacher Guide"
+     },
+     {
+      "id": "3D6vCrnJ4os",
+      "title": "Math for Kids 4+ | Lecture 3 | Number 2 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 03"
+   },
+   "10": {
+    "url": "https://o2o.to/i/MXNQZYRJWL7O",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "tUVic7OY4w8",
+      "title": "Math for Kids 4+ | Lecture 4 | Number 3 | Fun Learning For Students"
+     },
+     {
+      "id": "ZhsMWRidcWA",
+      "title": "Math for Kids 4+ | Lecture 4 | Number 3 | Teacher Guide"
+     },
+     {
+      "id": "Crg9-22JP-s",
+      "title": "Math for Kids 4+ | Lecture 4 | Number 3 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 04"
+   },
+   "12": {
+    "url": "https://o2o.to/i/9SN7VHYWKT43",
+    "box": [
+     85.23,
+     5.56,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "XYcY5Qayrl8",
+      "title": "Math for Kids 4+ | Lecture 5 | Number 4 | Fun Learning For Students"
+     },
+     {
+      "id": "PdIZu9xQCo0",
+      "title": "Math for Kids 4+ | Lecture 5 | Number 4 | Teacher Guide"
+     },
+     {
+      "id": "HXuDgMtUSiM",
+      "title": "Math for Kids 4+ | Lecture 5 | Number 4 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 05"
+   },
+   "14": {
+    "url": "https://o2o.to/i/9WBDGN08AI74",
+    "box": [
+     85.23,
+     5.56,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "4tSVYNZatSc",
+      "title": "Math for Kids 4+ | Lecture 6 | Number 5 | Fun Learning for Students"
+     },
+     {
+      "id": "ij3PDigmQF4",
+      "title": "Math for Kids 4+ | Lecture 6 | Number 5 | Teacher Guide"
+     },
+     {
+      "id": "y-1lc71s_Fw",
+      "title": "Math for Kids 4+ | Lecture 6 | Number 5 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 06"
+   },
+   "18": {
+    "url": "https://o2o.to/i/DFBSZK49MEA1",
+    "box": [
+     37.15,
+     5.0,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "LmvBx0HPoTg",
+      "title": "Math for Kids 4+ | Lecture 7 | Comparing Heights | Fun Learning For St"
+     },
+     {
+      "id": "BEPjBiMWE80",
+      "title": "Math for Kids 4+ | Lecture 7 | Comparing Heights | Teacher Guide"
+     },
+     {
+      "id": "ERw4Garwky8",
+      "title": "Math for Kids 4+ | Lecture 7 | Comparing Heights | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 07"
+   },
+   "19": {
+    "url": "https://o2o.to/i/UYLGKRC0P6A4",
+    "box": [
+     37.38,
+     5.44,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "6oFHFd_iUzQ",
+      "title": "Math 3+ Kids | Long and Short | Learning for Students"
+     },
+     {
+      "id": "8hJ-UMxwTlE",
+      "title": "Math 3 Plus Kids Learning | Comparison Long and Short | Easy Learning "
+     }
+    ],
+    "title": "STEMFORD Math 4+ 08"
+   },
+   "20": {
+    "url": "https://o2o.to/i/JFLXRWHYVA47",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "aRXj38bdizA",
+      "title": "Math for Kids 4+ | Lecture 9 | Number 6 | Fun Learning For Students"
+     },
+     {
+      "id": "ZMEYLefhPLg",
+      "title": "Math for Kids 4+ | Lecture 9 | Number 6 | Teacher Guide"
+     },
+     {
+      "id": "wNPR1l70onk",
+      "title": "Math for Kids 4+ | Lecture 9 | Number 6 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 09"
+   },
+   "22": {
+    "url": "https://o2o.to/i/IF9X35YUCQNL",
+    "box": [
+     85.23,
+     5.56,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "lPZJDI3C0Mw",
+      "title": "Math for Kids 4+ | Lecture 10 | Number 7 | Fun Learning For Students"
+     },
+     {
+      "id": "RNwFWP9VRZM",
+      "title": "Math for Kids 4+ | Lecture 10 | Number 7 | Teacher Guide"
+     },
+     {
+      "id": "1nsYh0MHYpg",
+      "title": "Math for Kids 4+ | Lecture 10 | Number 7 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 10"
+   },
+   "24": {
+    "url": "https://o2o.to/i/0JB21TUA38ZI",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "1KeXrCgsdNc",
+      "title": "Math for Kids 4+ | Lecture 11 | Number 8 | Fun Learning For Students"
+     },
+     {
+      "id": "ovWNZbG1wPo",
+      "title": "Math for Kids 4+ | Lecture 11 | Number 8 | Teacher Guide"
+     },
+     {
+      "id": "KDGvO5muU5s",
+      "title": "Math for Kids 4+ | Lecture 11 | Number 8 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 11"
+   },
+   "26": {
+    "url": "https://o2o.to/i/RIKOS8JGVZB2",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "LtWEUz7ZDAw",
+      "title": "Math for Kids 4+ | Lecture 12 | Number 9 | Fun Learning For Students"
+     },
+     {
+      "id": "oYZSxkr-xTU",
+      "title": "Math for Kids 4+ | Lecture 12 | Number 9 | Teacher Guide"
+     },
+     {
+      "id": "-ZF4r0PeYzw",
+      "title": "Math for Kids 4+ | Lecture 12 | Number 9 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 12"
+   },
+   "28": {
+    "url": "https://o2o.to/i/A7MTO0ZICP8K",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "CdC-iso7ByQ",
+      "title": "Math for Kids 4+ | Lecture 13 | Number 0 | Fun Learning For Students"
+     },
+     {
+      "id": "1NkfE_nvyaw",
+      "title": "Math for Kids 4+ | Lecture 13 | Number 0 | Teacher Guide"
+     },
+     {
+      "id": "0whPEe1_bB0",
+      "title": "Math for Kids 4+ | Lecture 13 | Number 0 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 13"
+   },
+   "30": {
+    "url": "https://o2o.to/i/QE642DOZB0LI",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "RJfgj5mRRP0",
+      "title": "Math for Kids 4+ | Lecture 14 | Number 10 | Fun Learning For Students"
+     },
+     {
+      "id": "LQxfjLtAfm8",
+      "title": "Math for Kids 4+ | Lecture 14 | Number 10 | Teacher Guide"
+     },
+     {
+      "id": "wrl4kJzdens",
+      "title": "Math for Kids 4+ | Lecture 14 | Number 10 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 14"
+   },
+   "36": {
+    "url": "https://o2o.to/i/ZUH0WEPRT32Q",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.28
+    ],
+    "videos": [
+     {
+      "id": "dG_lUOunbmI",
+      "title": "Math for Kids 4+ | Lecture 15 | Number 11 | Fun Learning For Students"
+     },
+     {
+      "id": "196yAyFr7bE",
+      "title": "Math for Kids 4+ | Lecture 15 | Number 11 | Teacher Guide"
+     },
+     {
+      "id": "eWa7hRowpiQ",
+      "title": "Math for Kids 4+ | Lecture 15 | Number 11 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 15"
+   },
+   "38": {
+    "url": "https://o2o.to/i/KLJCBW2TUNAV",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "3YTv6h4NZuQ",
+      "title": "Math for Kids 4+ | Lecture 16 | Number 12 | Fun Learning For Students"
+     },
+     {
+      "id": "hLV1ZKQ6D9I",
+      "title": "Math for Kids 4+ | Lecture 16 | Number 12 | Teacher Guide"
+     },
+     {
+      "id": "lwOau0vQ4Xg",
+      "title": "Math for Kids 4+ | Lecture 16 | Number 12 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 16"
+   },
+   "40": {
+    "url": "https://o2o.to/i/RSDINXOA0BHM",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "FQWZfoQApj4",
+      "title": "Math for Kids 4+ | Lecture 17 | Number 13 | Fun Learning For Students"
+     },
+     {
+      "id": "AFhL8hCeVQY",
+      "title": "Math for Kids 4+ | Lecture 17 | Number 13 | Teacher Guide"
+     },
+     {
+      "id": "ypsyG_WZxSg",
+      "title": "Math for Kids 4+ | Lecture 17 | Number 13 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 17"
+   },
+   "42": {
+    "url": "https://o2o.to/i/GE3FO7KWHXDU",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.28
+    ],
+    "videos": [
+     {
+      "id": "D3w6XtDARLo",
+      "title": "Math for Kids 4+ | Lecture 18 | Number 14 | Fun Learning For Students"
+     },
+     {
+      "id": "3Z8Hg9txgFY",
+      "title": "Math for Kids 4+ | Lecture 18 | Number 14 | Teacher Guide"
+     },
+     {
+      "id": "do5Pd8GA2nk",
+      "title": "Math for Kids 4+ | Lecture 18 | Number 14 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 18"
+   },
+   "44": {
+    "url": "https://o2o.to/i/C9Z42VUK0JXG",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "7g6U05jWEtA",
+      "title": "Math for Kids 4+ | Lecture 19 | Number 15 | Fun Learning For Students"
+     },
+     {
+      "id": "8tXc2_oWGKc",
+      "title": "Math for Kids 4+ | Lecture 19 | Number 15 | Teacher Guide"
+     },
+     {
+      "id": "dM6p-C-0ObM",
+      "title": "Math for Kids 4+ | Lecture 19 | Number 15 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 19"
+   },
+   "47": {
+    "url": "https://o2o.to/i/2Q51C8I7FP4G",
+    "box": [
+     84.38,
+     17.17,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "W1-a3F-HcSI",
+      "title": "Math for Kids 4+ | Few and Many | Fun Learning For Students"
+     },
+     {
+      "id": "EiV-vUtRDyQ",
+      "title": "Math for Kids 4+ | Few and Many | Teacher Guide"
+     },
+     {
+      "id": "ZJ2DZ8GCp90",
+      "title": "Math for Kids 4+ | Few and Many | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 20"
+   },
+   "48": {
+    "url": "https://o2o.to/i/NXCAVUYIOKP9",
+    "box": [
+     85.23,
+     5.56,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "qCcFqLN6aWQ",
+      "title": "Math for Kids 4+ | Lecture 21 | Number 16 | Fun Learning for Students"
+     },
+     {
+      "id": "_n1hEgQOXWQ",
+      "title": "Math for Kids 4+ | Lecture 21 | Number 16 | Teacher Guide"
+     },
+     {
+      "id": "791XY5NxBgk",
+      "title": "Math for Kids 4+ | Lecture 21 | Number 16 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 21"
+   },
+   "50": {
+    "url": "https://o2o.to/i/UYVKA4J0NMZR",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "44z6881Eylk",
+      "title": "Math for Kids 4+ | Lecture 22 | Number 17 | Fun Learning for Students"
+     },
+     {
+      "id": "OVLgiovecpY",
+      "title": "Math for Kids 4+ | Lecture 22 | Number 17 | Teacher Guide"
+     },
+     {
+      "id": "LTKSvhpknhg",
+      "title": "Math for Kids 4+ | Lecture 22 | Number 17 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 22"
+   },
+   "52": {
+    "url": "https://o2o.to/i/8EYRAXC9HZ7K",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "iXAZSX4m_BE",
+      "title": "Math for Kids 4+ | Lecture 23 | Number 18 | Fun Learning for Students"
+     },
+     {
+      "id": "y7hMlzIzHd0",
+      "title": "Math for Kids 4+ | Lecture 23 | Number 18 | Teacher Guide"
+     },
+     {
+      "id": "MwdKpal1vAQ",
+      "title": "Math for Kids 4+ | Lecture 23 | Number 18 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 23"
+   },
+   "54": {
+    "url": "https://o2o.to/i/1FP9C3ZQ76UD",
+    "box": [
+     85.23,
+     5.5,
+     7.15,
+     5.22
+    ],
+    "videos": [
+     {
+      "id": "Fm7khIG2oXo",
+      "title": "Math for Kids 4+ | Lecture 24 | Number 19 | Fun Learning For Students"
+     },
+     {
+      "id": "zh1r4Xz30yw",
+      "title": "Math for Kids 4+ | Lecture 24 | Number 19 | Teacher Guide"
+     },
+     {
+      "id": "59ytlcmEuIQ",
+      "title": "Math for Kids 4+ | Lecture 24 | Number 19 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 24"
+   },
+   "56": {
+    "url": "https://o2o.to/i/Q2RM364FVICJ",
+    "box": [
+     85.23,
+     5.56,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "hPSocgImkao",
+      "title": "Math for Kids 4+ | Lecture 25 | Number 20 | Fun Learning for Students"
+     },
+     {
+      "id": "sVRokG_klnU",
+      "title": "Math for Kids 4+ | Lecture 25 | Number 20 | Teacher Guide"
+     },
+     {
+      "id": "NPwptnFot7k",
+      "title": "Math for Kids 4+ | Lecture 25 | Number 20 | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 25"
+   },
+   "58": {
+    "url": "https://o2o.to/i/PCEBYOKU80WI",
+    "box": [
+     84.38,
+     6.83,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "t_v1_8MV--0",
+      "title": "Math for Kids 4+ | Lecture 26 | Colors | Fun Learning for Students"
+     },
+     {
+      "id": "xisLWMp2H9o",
+      "title": "Math for Kids 4+ | Lecture 26 | Colors | Teacher Guide"
+     },
+     {
+      "id": "SLV-KNLjXQ4",
+      "title": "Math for Kids 4+ | Lecture 26 | Colors | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 26"
+   },
+   "66": {
+    "url": "https://o2o.to/i/DAIFL0VH62WG",
+    "box": [
+     84.38,
+     6.83,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "Rxb4xSgHN_o",
+      "title": "Learn Shapes for Kids | Fun  Explanation for kids"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 27"
+   },
+   "67": {
+    "url": "https://o2o.to/i/A1KWHCP7UO4L",
+    "box": [
+     84.38,
+     6.83,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "gstlEmTA7Gw",
+      "title": "Math for Kids 4+ | Lecture 28 | Addition and Subtraction | Fun Learnin"
+     },
+     {
+      "id": "qYr46beXDPs",
+      "title": "Math for Kids 4+ | Lecture 28 | Addition and Subtraction | Teacher Gui"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 28"
+   },
+   "71": {
+    "url": "https://o2o.to/i/35E6LNZOUV7M",
+    "box": [
+     84.38,
+     6.83,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "BUUR3YF1SH8",
+      "title": "Math for Kids 4+ | Lecture 29 | Time and Money | Fun Learning for Stud"
+     },
+     {
+      "id": "yZWl4wYUA8I",
+      "title": "Math for Kids 4+ | Lecture 29 | Time and Money | Fun Learning | Teache"
+     },
+     {
+      "id": "Ee04OB10eAU",
+      "title": "Math for Kids 4+ | Lecture 29 | Time and Money | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 29"
+   },
+   "72": {
+    "url": "https://o2o.to/i/GSV5X08WOU72",
+    "box": [
+     84.38,
+     6.83,
+     7.15,
+     5.17
+    ],
+    "videos": [
+     {
+      "id": "BUUR3YF1SH8",
+      "title": "Math for Kids 4+ | Lecture 29 | Time and Money | Fun Learning for Stud"
+     },
+     {
+      "id": "I3dxG6xDV-w",
+      "title": "Math for Kids 4+ | Lecture 28 | Time and Money | Teacher Guide"
+     },
+     {
+      "id": "Ee04OB10eAU",
+      "title": "Math for Kids 4+ | Lecture 29 | Time and Money | Parents Guide"
+     }
+    ],
+    "title": "STEMFORD Math 4+ 30"
+   }
+  }
  }
 ];

@@ -11,3 +11,5 @@ tmp/
 # Keep the publisher's original large PDF locally; generated reader pages are tracked.
 books/steamford-urdu 4+/*.pdf
 books/stemford-english-4+/*.pdf
+
+books/stemford-math-4/*.pdf

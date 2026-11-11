@@ -18,6 +18,7 @@ export const learningSubjects = [
 export const learningBookMetadata = {
   'maxford-global-qaida-3-english': { classId: 'play-group', seriesId: 'maxford', subjectId: 'english' },
   'new-stemford-english-3': { classId: 'play-group', seriesId: 'stemford', subjectId: 'english' },
+  'stemford-maths-4': { classId: 'nursery', seriesId: 'stemford', subjectId: 'maths' },
   'stemford-maths-3': { classId: 'play-group', seriesId: 'stemford', subjectId: 'maths' },
   'stemford-urdu-3': { classId: 'play-group', seriesId: 'stemford', subjectId: 'urdu' },
   'stemford-english-4': { classId: 'nursery', seriesId: 'stemford', subjectId: 'english' },

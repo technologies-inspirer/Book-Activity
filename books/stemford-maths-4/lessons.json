@@ -1,0 +1,128 @@
+[
+ {
+  "number": 1,
+  "picturePage": 6,
+  "tracePage": 7,
+  "objects": "lion"
+ },
+ {
+  "number": 2,
+  "picturePage": 8,
+  "tracePage": 9,
+  "objects": "ducks"
+ },
+ {
+  "number": 3,
+  "picturePage": 10,
+  "tracePage": 11,
+  "objects": "horses"
+ },
+ {
+  "number": 4,
+  "picturePage": 12,
+  "tracePage": 13,
+  "objects": "pandas"
+ },
+ {
+  "number": 5,
+  "picturePage": 14,
+  "tracePage": 15,
+  "objects": "balls"
+ },
+ {
+  "number": 6,
+  "picturePage": 20,
+  "tracePage": 21,
+  "objects": "cups"
+ },
+ {
+  "number": 7,
+  "picturePage": 22,
+  "tracePage": 23,
+  "objects": "birds"
+ },
+ {
+  "number": 8,
+  "picturePage": 24,
+  "tracePage": 25,
+  "objects": "cats"
+ },
+ {
+  "number": 9,
+  "picturePage": 26,
+  "tracePage": 27,
+  "objects": "balloons"
+ },
+ {
+  "number": 0,
+  "picturePage": 28,
+  "tracePage": null,
+  "objects": "empty basket"
+ },
+ {
+  "number": 10,
+  "picturePage": 30,
+  "tracePage": 31,
+  "objects": "ladybugs"
+ },
+ {
+  "number": 11,
+  "picturePage": 36,
+  "tracePage": 37,
+  "objects": "vases"
+ },
+ {
+  "number": 12,
+  "picturePage": 38,
+  "tracePage": 39,
+  "objects": "oranges"
+ },
+ {
+  "number": 13,
+  "picturePage": 40,
+  "tracePage": 41,
+  "objects": "strawberries"
+ },
+ {
+  "number": 14,
+  "picturePage": 42,
+  "tracePage": 43,
+  "objects": "almonds"
+ },
+ {
+  "number": 15,
+  "picturePage": 44,
+  "tracePage": 45,
+  "objects": "squirrels"
+ },
+ {
+  "number": 16,
+  "picturePage": 48,
+  "tracePage": 49,
+  "objects": "caps"
+ },
+ {
+  "number": 17,
+  "picturePage": 50,
+  "tracePage": 51,
+  "objects": "books"
+ },
+ {
+  "number": 18,
+  "picturePage": 52,
+  "tracePage": 53,
+  "objects": "keys"
+ },
+ {
+  "number": 19,
+  "picturePage": 54,
+  "tracePage": 55,
+  "objects": "fish"
+ },
+ {
+  "number": 20,
+  "picturePage": 56,
+  "tracePage": 57,
+  "objects": "eggs"
+ }
+]
