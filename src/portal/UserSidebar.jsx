@@ -25,7 +25,7 @@ export function UserSidebar({ page, onClose, sidebarRef, closeRef, mobile }) {
         <SignOut />
       </nav>
       <div className="sidebar-foot">
-        <span className="portal-pill">Reader demo</span>
+        <span className="portal-pill">Young reader</span>
         <p>{account.name}</p>
       </div>
     </aside>

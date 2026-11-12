@@ -14,7 +14,7 @@ export function UserDashboard() {
       <LearningScenery />
       <section className="user-welcome">
         <div>
-          <p className="portal-eyebrow">Hello, {account.name}!</p>
+          <p className="portal-eyebrow">Welcome to Javed Publishers!</p>
           <h1>A new day.<br />A new discovery.</h1>
           <p>Choose your class, explore a series and subject, and open your next book.</p>
         </div>

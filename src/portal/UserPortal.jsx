@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from 'react';
-import { DemoNotice } from './Shared.jsx';
 import { ResourceLibrary } from './ResourceLibrary.jsx';
 import { DashboardAmbient } from './DashboardAmbient.jsx';
 import { ProfilePage } from './ProfilePage.jsx';
@@ -43,7 +42,7 @@ export function UserPortal({ page = 'books', libraryRoute = [], onBookOpen }) {
           <UserDashboard />}
 
       </main>
-      <DemoNotice />
+      <footer className="demo-notice user-footer"><span className="demo-dot" />Javed Publishers <span>Interactive digital books for curious young minds.</span></footer>
       </div>
     </div>
   );

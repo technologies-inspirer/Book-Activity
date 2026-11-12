@@ -554,6 +554,8 @@ img.ink { pointer-events: none; }
 /* ---------- fill pages: show me how / do it myself ---------- */
 .fx-page .ink { pointer-events: none; }
 .fx-page.pen .ink { pointer-events: auto; }
+/* in pen mode the whole page shows the pencil (set from JS in the chosen colour), start dots included */
+.fx-page.pen, .fx-page.pen .trace-start { cursor: var(--draw-cursor, crosshair); }
 .fx-btn.how { background: linear-gradient(135deg, #7b5ea7, #4aa3df); color: #fff; }
 .fx-btn.self { background: linear-gradient(135deg, #43aa8b, #2bb673); color: #fff; }
 .demo { position: absolute; inset: 0; pointer-events: none; z-index: 2; }

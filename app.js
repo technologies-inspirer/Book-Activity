@@ -755,6 +755,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     focusEl = el('div', { class: 'fx' }, sheet, panel);
     focusEl.addEventListener('pointerdown', e => { if (e.target === focusEl) closeFocus(); });
     document.body.append(focusEl);
+    tools.sync();                      // the pencil cursor (in the chosen colour) now that the page is on screen
 
     // Fit the whole page on screen, then grow it out of the page that was clicked.
     const fit = () => {
@@ -853,7 +854,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   // Reviewed picture parts also require their assigned colour; only unreviewed palettes may add a swatch.
   function inkCanvas(book, z, key, watch, page) {
     const c = el('canvas', { class: 'ink' });
-    setDrawingCursor(c, brush.erase);
+    setDrawingCursor(c, brush.erase, brush.color);
     c.width = Math.round(z.w * 12);
     c.height = Math.round(z.h * 12 / (book.ratio || 0.75));
     const ctx = c.getContext('2d');
@@ -1642,8 +1643,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     if (!colors.includes(brush.color)) brush.color = colors[0];
     const wrap = el('div', { class: 'tools', hidden: true }, el('span', { class: 'tools-lbl' }, 'Colour & write'));
     const sync = () => {
-      app.querySelectorAll('canvas.ink').forEach(canvas => setDrawingCursor(canvas, brush.erase));
-      focusEl?.querySelectorAll('canvas.ink').forEach(canvas => setDrawingCursor(canvas, brush.erase));
+      app.querySelectorAll('canvas.ink').forEach(canvas => setDrawingCursor(canvas, brush.erase, brush.color));
+      focusEl?.querySelectorAll('canvas.ink').forEach(canvas => setDrawingCursor(canvas, brush.erase, brush.color));
       wrap.querySelectorAll('button').forEach(b => {
         b.classList.toggle('on', !!(
           (b.dataset.c && !brush.erase && b.dataset.c === brush.color) ||

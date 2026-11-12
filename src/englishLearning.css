@@ -5,16 +5,24 @@
 .english-learning .r-pages { color: #658080; }
 .english-reader-layout { flex: 1; display: flex; min-height: 0; padding: 20px 22px 0; gap: 20px; }
 .english-reader-center { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
-.english-letter-rail { width: 91px; flex: none; display: flex; flex-direction: column; min-height: 0; padding: 12px 8px; gap: 6px; background: #fffdf7; border: 1px solid #e0e7dc; border-radius: 24px; overflow-y: auto; scrollbar-width: thin; }
-.english-letter-rail > small { text-align: center; color: #7c8e82; font-size: 10px; letter-spacing: .15em; font-weight: 800; margin: 0 0 6px; }
-.english-letter { flex: 1 0 37px; min-height: 37px; border: 1px solid transparent; border-radius: 12px; color: #315d59; background: #edf2e8; display: flex; align-items: center; justify-content: center; gap: 4px; transition: background .15s, transform .15s; }
+.english-letter-rail { width: 91px; flex: none; display: flex; flex-direction: column; min-height: 0; padding: 12px 8px; gap: 7px; background: linear-gradient(180deg, #fffdf7, #fff7e8); border: 1px solid #f0e4c8; border-radius: 24px; overflow-y: auto; scrollbar-width: thin; box-shadow: 0 6px 18px #254d460f; }
+.english-letter-rail > small { align-self: center; color: #996108; background: #fff1cc; border-radius: 99px; padding: 3px 9px; font-size: 10px; letter-spacing: .12em; font-weight: 800; margin: 0 0 4px; white-space: nowrap; }
+/* each letter / number is a crayon-coloured tile; the six colours repeat down the rail */
+.english-letter { --tile: #d9efe9; --tile-ink: #0b625e; --tile-solid: #0b625e; flex: 1 0 37px; min-height: 37px; border: 0; border-radius: 12px; color: var(--tile-ink); background: var(--tile); box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--tile-solid) 28%, transparent); display: flex; align-items: center; justify-content: center; gap: 4px; transition: background .15s, transform .15s, box-shadow .15s; }
+.english-letter:nth-of-type(6n+1) { --tile: #ffe4ec; --tile-ink: #b23a5e; --tile-solid: #d6456c; }
+.english-letter:nth-of-type(6n+2) { --tile: #fff0c7; --tile-ink: #8a5a00; --tile-solid: #c77a00; }
+.english-letter:nth-of-type(6n+3) { --tile: #dcf5e8; --tile-ink: #17704f; --tile-solid: #1f8a63; }
+.english-letter:nth-of-type(6n+4) { --tile: #dcefff; --tile-ink: #1b6a9c; --tile-solid: #1f7fb8; }
+.english-letter:nth-of-type(6n+5) { --tile: #ece4ff; --tile-ink: #5d43a0; --tile-solid: #7457b8; }
+.english-letter:nth-of-type(6n) { --tile: #d9efe9; --tile-ink: #0b625e; --tile-solid: #0b625e; }
 .english-letter b { font: 800 22px/1 var(--display); }
-.english-letter span { font-size: 15px; font-weight: 700; opacity: .65; }
+.english-letter span { font-size: 15px; font-weight: 700; opacity: .7; }
 /* a long name (Urdu "بڑی حے", "جیم") wraps in a smaller Urdu-friendly font */
 .english-letter.long { padding: 3px 2px; }
 .english-letter.long b { font: 700 15px/1.5 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif; white-space: normal; text-align: center; }
-.english-letter:hover { background: #d8e8d5; transform: translateY(-1px); }
-.english-letter[aria-current="true"] { color: white; background: #11665f; box-shadow: 0 4px 10px #11665f25; }
+.english-letter:hover { background: color-mix(in srgb, var(--tile) 70%, var(--tile-solid) 30%); transform: translateY(-2px) rotate(-2deg); }
+.english-letter[aria-current="true"] { color: white; background: var(--tile-solid); box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--tile-solid), 0 6px 14px color-mix(in srgb, var(--tile-solid) 40%, transparent); transform: scale(1.05); }
+@media (prefers-reduced-motion: reduce) { .english-letter, .english-letter:hover { transition: none; transform: none; } }
 .english-learning button:focus-visible { outline: 3px solid #e9ae35; outline-offset: 3px; }
 .english-learning .rstage { padding: 16px 0; }
 .english-learning .rstage .nav { background: #e2ebe0; color: #2c665f; width: 38px; height: 38px; }

@@ -106,7 +106,7 @@ export function createDemoStore(bookIds, seriesStorage = null) {
     currentId: null,
     accounts: [
       { id: 'demo-admin', name: 'Amina — Demo Admin', email: DEMO_CREDENTIALS.admin.email, role: 'admin', enabled: true, allBooks: true, bookIds: [], expires: '' },
-      { id: 'demo-reader', name: 'Sana — Demo Reader', email: DEMO_CREDENTIALS.user.email, role: 'user', enabled: true, allBooks: true, bookIds: [], expires: '' },
+      { id: 'demo-reader', name: 'Sana Ahmed', email: DEMO_CREDENTIALS.user.email, role: 'user', enabled: true, allBooks: true, bookIds: [], expires: '' },
       { id: 'demo-disabled', name: 'Ali — Sample Account', email: 'ali@javed.example', role: 'user', enabled: false, allBooks: false, bookIds: [], expires: '' }
     ],
     progress: {}

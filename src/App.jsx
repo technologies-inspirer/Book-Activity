@@ -9,7 +9,7 @@ import { isExpired } from './portal/demoStore.js';
 import { LoginPage } from './portal/LoginPage.jsx';
 import { AdminPortal } from './portal/AdminPortal.jsx';
 import { UserPortal } from './portal/UserPortal.jsx';
-import { DemoNotice, SignOut } from './portal/Shared.jsx';
+import { SignOut } from './portal/Shared.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
 import { GlobalLoader } from './loading/LoadingScreen.jsx';
 import './portal/portal.css';
@@ -54,18 +54,18 @@ function AppRoutes() {
     return <LoginPage />;
   }
   if (account && (!account.enabled || isExpired(account))) {
-    return <div className="portal"><SiteHeader /><main className="user-main"><section className="portal-panel"><h1>Demo access unavailable</h1><p>This demo account is disabled or its access has expired. Contact the demo administrator.</p><SignOut /></section></main><DemoNotice /></div>;
+    return <div className="portal"><SiteHeader /><main className="user-main"><section className="portal-panel"><h1>Access unavailable</h1><p>This account is disabled or its access has expired. Please contact your administrator.</p><SignOut /></section></main></div>;
   }
   if (route.type === 'admin' || route.type === 'user') {
     if (account.role !== (route.type === 'admin' ? 'admin' : 'user')) {
-      return <div className="portal"><main className="user-main"><section className="portal-panel"><h1>Choose your demo workspace</h1><p>This page belongs to the other fictional demo role. These UI checks do not provide real security.</p><a className="portal-primary" href={`#/${account.role === 'admin' ? 'admin' : 'user'}`}>Open my workspace</a> <SignOut /></section></main><DemoNotice /></div>;
+      return <div className="portal"><main className="user-main"><section className="portal-panel"><h1>Choose your workspace</h1><p>This page belongs to a different account type.</p><a className="portal-primary" href={`#/${account.role === 'admin' ? 'admin' : 'user'}`}>Open my workspace</a> <SignOut /></section></main></div>;
     }
     return route.type === 'admin'
       ? <AdminPortal page={route.page} segments={route.segments} onBookOpen={() => setIntroNext(true)} />
       : <UserPortal page={route.page} libraryRoute={route.segments} onBookOpen={() => setIntroNext(true)} />;
   }
   if (account?.role === 'user' && route.book && !assignedBooks.some(book => book.id === route.book.id)) {
-    return <div className="portal"><SiteHeader /><main className="user-main"><section className="portal-panel"><h1>This book isn’t in your demo library</h1><p>Ask the demo administrator to assign it. This is only a frontend demonstration of access filtering.</p><a className="portal-primary" href="#/user">Back to My Books</a></section></main><DemoNotice /></div>;
+    return <div className="portal"><SiteHeader /><main className="user-main"><section className="portal-panel"><h1>This book isn’t in your library yet</h1><p>Ask your administrator to add it to your library.</p><a className="portal-primary" href="#/user">Back to My Books</a></section></main></div>;
   }
 
   if (route.type === 'reader') {
