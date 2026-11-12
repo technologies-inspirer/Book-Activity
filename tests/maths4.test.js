@@ -27,18 +27,30 @@ test('Maths 4+ imports the supplied 72 pages and belongs to Nursery / Stemford /
  assert.deepEqual(Object.keys(acts).map(Number),Array.from({length:69},(_,i)=>i+4));
 });
 
-test('Story buttons are present, safe to open, and wait for the supplied YouTube links without AI stories',()=>{
- assert.deepEqual(JSON.parse(read('books/maths4-videos.json')),{});
- let pending=0;
- for(const entries of Object.values(acts))for(const a of entries){
+test('numbers 1-20 have the publisher Story, Vocabulary and Formation videos and no AI stories',()=>{
+ const supplied=JSON.parse(read('books/maths4-videos.json'));
+ const links=new Set(Object.values(supplied).flatMap(Object.values));
+ const used=[];
+ for(const [p,entries] of Object.entries(acts))for(const a of entries){
   assert.notEqual(a.type,'story');assert.ok(!a.scenes);
-  if(a.type==='videos'){
-   assert.equal(a.label,'Story');assert.equal(a.pending,true);assert.deepEqual(a.videos,[]);pending++;
-  }
+  if(a.type==='videos'){assert.ok(links.has(a.videos[0].src),`page ${p}: unsupplied video`);used.push(a.videos[0].src);}
   assert.ok(!a.video,'No borrowed formation videos');
  }
- assert.equal(pending,34);
- for(const l of lessons)assert.ok(acts[l.picturePage].some(a=>a.type==='videos'&&a.label==='Story'));
+ assert.equal(used.length,60);assert.equal(new Set(used).size,60,'each link used once');
+ for(const l of lessons)if(l.number){
+  assert.deepEqual(acts[l.picturePage].filter(a=>a.type==='videos').map(a=>a.videos[0].src),[supplied[l.number].Story,supplied[l.number].Vocabulary],`number ${l.number}`);
+  assert.equal(acts[l.tracePage].find(a=>a.type==='videos').videos[0].src,supplied[l.number].Formation,`number ${l.number}`);
+ }
+ // the number pages keep tracing and bead colouring, without a game on the empty bead circles
+ for(const l of lessons)assert.ok(!acts[l.picturePage].some(a=>a.type==='game'));
+});
+
+test('every button sits on the page, clear of the QR code',()=>{
+ const scanned=JSON.parse(read(`${book.dir}/qr.json`));
+ for(const [p,entries] of Object.entries(acts))for(const a of entries)if(a.button){
+  const {x,y}=a.button;assert.ok(x>=0&&y>=0&&x+17<=100&&y+4.8<=100,`page ${p}`);
+  const q=scanned[p]?.box;if(q)assert.ok(x+17<=q[0]||q[0]+q[2]<=x||y+4.8<=q[1]||q[1]+q[3]<=y,`page ${p}: button on the QR code`);
+ }
 });
 
 test('printed Maths 4+ QR codes open their own publisher videos on all 30 lesson pages',()=>{

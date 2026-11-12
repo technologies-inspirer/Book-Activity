@@ -1033,10 +1033,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         // Small letters sit close together, so a circle can cover the edge of the letter being written
         // (the top of H's right stem lies under h's circle). There, keep writing that letter.
         const p = toCanvas(e, c), keep = active && !active.done && active !== t && letterAt(p, c) === active;
-        if (!keep && t.done) return;
-        if (!keep) pick(t);
+        // Circles can overlap too (the top of the 1 in "17" lies under the 7's circle): start the letter
+        // whose start point is nearest the finger, not whichever circle happens to be on top.
+        const near = keep ? active : targets.filter(o => o.circle && !o.done).reduce((best, o) => {
+          const r = o.circle.getBoundingClientRect(), d = Math.hypot(r.left + r.width / 2 - e.clientX, r.top + r.height / 2 - e.clientY);
+          return !best || d < best.d ? { o, d } : best;
+        }, null)?.o || t;
+        if (near.done) return;
+        if (!keep) pick(near);
         circle.setPointerCapture?.(e.pointerId);
-        begin(keep ? active : t, p, c);
+        begin(near, p, c);
       });
       circle.addEventListener('pointermove', e => { const c = canvas(); if (painting && c) paintTo(toCanvas(e, c), c); });
       circle.addEventListener('pointerup', () => { const c = canvas(); if (c) up(c); });
