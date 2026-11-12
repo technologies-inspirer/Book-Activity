@@ -62,8 +62,27 @@ test('English letter explorer connects all 26 letters to their real lesson and t
   assert.equal(lessons[0].lessonVideo.id, '7hpynjvzeS0');
   assert.equal(lessons[1].lessonVideo.id, '4msW4WKxoQM');
   assert.equal(lessons[25].page, 73);
-  assert.deepEqual(englishLessons({ ...book, id: 'stemford-maths-3' }), []);
   assert.deepEqual(englishLessons({ ...book, id: 'maxford-global-qaida-3-english' }), []);
+});
+
+test('the other books find their letter and number pages from the publisher video titles', () => {
+  const lessonsOf = id => {
+    const metadata = context.window.PDF_BOOKS.find(book => book.id === id);
+    return englishLessons({ id, pages: Array.from({ length: metadata.pages }, (_, index) => ({ acts: [].concat(activities[id][index + 1] || []), qr: metadata.qr?.[index + 1] })) });
+  };
+  const summary = id => lessonsOf(id).map(lesson => `${lesson.name}@${lesson.page}`);
+  assert.deepEqual(summary('stemford-english-4').slice(0, 5), ['Aa@6', 'Bb@8', 'Cc@10', 'Dd@12', 'Ee@17']);
+  assert.equal(lessonsOf('stemford-english-4').length, 26);
+  assert.deepEqual(summary('stemford-maths-4').slice(0, 3), ['1@6', '2@8', '3@10']);
+  assert.equal(lessonsOf('stemford-maths-4').length, 20);
+  assert.equal(lessonsOf('stemford-maths-3').length, 20);
+  assert.equal(lessonsOf('stemford-series-computer-book-0-curve')[0].name, 'Aa');
+  assert.equal(lessonsOf('stemford-urdu-4')[1].name, 'بے');
+  assert.ok(lessonsOf('stemford-urdu-3').length > 30);
+  // Maths 4's Formation video is on the writing page after the number's picture page
+  assert.ok(lessonsOf('stemford-maths-4')[0].videos.some(video => video.label === 'Formation'));
+  for (const id of ['stemford-english-4', 'stemford-maths-4', 'stemford-urdu-4', 'stemford-series-computer-book-0-curve'])
+    for (const lesson of lessonsOf(id)) assert.ok(lesson.lessonVideo?.id, `${id} ${lesson.name}`);
 });
 
 test('part rules refer to real activities and colours available on their pages', () => {

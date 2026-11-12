@@ -10,6 +10,9 @@
 .english-letter { flex: 1 0 37px; min-height: 37px; border: 1px solid transparent; border-radius: 12px; color: #315d59; background: #edf2e8; display: flex; align-items: center; justify-content: center; gap: 4px; transition: background .15s, transform .15s; }
 .english-letter b { font: 800 22px/1 var(--display); }
 .english-letter span { font-size: 15px; font-weight: 700; opacity: .65; }
+/* a long name (Urdu "بڑی حے", "جیم") wraps in a smaller Urdu-friendly font */
+.english-letter.long { padding: 3px 2px; }
+.english-letter.long b { font: 700 15px/1.5 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif; white-space: normal; text-align: center; }
 .english-letter:hover { background: #d8e8d5; transform: translateY(-1px); }
 .english-letter[aria-current="true"] { color: white; background: #11665f; box-shadow: 0 4px 10px #11665f25; }
 .english-learning button:focus-visible { outline: 3px solid #e9ae35; outline-offset: 3px; }
@@ -25,6 +28,14 @@
 .english-reader-dock button:first-child { background: #11665f; color: white; }
 .english-reader-dock button:hover { background: #e8eddf; color: #154f48; }
 .english-reader-dock svg { width: 18px; height: 18px; fill: currentColor; }
+/* the big Activity button sits at the top of the open book, across the spine, in light cheerful colours */
+.book-activity { position: absolute; left: 50%; top: -24px; transform: translateX(-50%) translateZ(5px); z-index: 30; display: flex; align-items: center; gap: 10px; padding: 12px 30px; border: 3px solid #fff; border-radius: 999px; background: linear-gradient(90deg, #fff3a6, #ffd6e7 50%, #c9f0ff); color: #1d5f8a; font-size: 20px; font-weight: 800; box-shadow: 0 6px 18px rgba(255, 140, 180, .45); cursor: pointer; animation: book-activity-bob 2.4s ease-in-out infinite; }
+.book-activity[hidden], .book.closed .book-activity { display: none; }
+.book-activity:hover { animation: none; transform: translateX(-50%) translateZ(5px) scale(1.07); }
+.book-activity svg { width: 24px; height: 24px; fill: #ff6f91; }
+@keyframes book-activity-bob { 0%, 100% { transform: translateX(-50%) translateZ(5px); } 50% { transform: translateX(-50%) translateZ(5px) translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { .book-activity { animation: none; } }
+@media (max-width: 820px) { .book-activity { font-size: 15px; padding: 8px 18px; } .book-activity svg { width: 18px; height: 18px; } }
 .english-lesson { min-height: 0; flex: 1; overflow: auto; padding: 2px 16px 22px; }
 .english-lesson[hidden] { display: none; }
 .english-lesson-open .rstage, .english-lesson-open .reader-mobile-actions, .english-lesson-open .rfoot { display: none; }

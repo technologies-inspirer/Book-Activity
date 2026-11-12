@@ -1,6 +1,8 @@
 const books = window.DEMO_BOOKS;
 
-books.unshift(...(window.PDF_BOOKS || []).map(book => ({
+// Add each PDF book once, even if this module runs again (e.g. a dev-server hot reload).
+const known = new Set(books.map(book => book.id));
+books.unshift(...(window.PDF_BOOKS || []).filter(book => !known.has(book.id)).map(book => ({
   id: book.id,
   title: book.title,
   author: book.author || 'Imported from PDF',
@@ -11,6 +13,8 @@ books.unshift(...(window.PDF_BOOKS || []).map(book => ({
   ratio: book.ratio,
   dir: book.dir,
   cover: `${book.dir}/cover.jpg`,
+  // page 1 is not the cover (e.g. English 4+ starts with the credits page), so the opening shows cover.jpg
+  frontCover: !!book.frontCover,
   pages: Array.from({ length: book.pages }, (_, index) => ({
     img: `${book.dir}/p${String(index + 1).padStart(3, '0')}.jpg`,
     qr: book.qr?.[index + 1],

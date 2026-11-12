@@ -81,4 +81,53 @@
       { say: 'And desktop goes with desktop. Well done! Now it is your turn.', marks: [{ line: [36.5, 76.5, 66.5, 46.5] }] }
     ] }
   };
+
+  // The publisher's YouTube videos, as in English 3+ and 4+.
+  const book = window.BOOK_ACTIVITIES['stemford-series-computer-book-0-curve'];
+  const video = (label, icon, title, id, button) =>
+    ({ type: 'videos', label, icon, title, button, videos: [{ title, src: 'https://youtu.be/' + id }] });
+  const add = (p, ...acts) => { book[p] = [...[].concat(book[p] || []), ...acts]; };
+  // Letter pages: Vocabulary and Formation sit below the magnifier, beside the monitor.
+  // null: no link yet (Jj formation), or the list gave another video's link (Pp vocabulary is Oo formation).
+  const LETTERS = {
+    A: [4, '3gZWKnCFu5U', '-0rCSiONGag'], B: [5, 'bsn-05NVmCw', 'SyacLCHRKIM'], C: [6, 'zewbAm8qX-c', 'cS3BQ7u6zWE'],
+    D: [7, 's0xT31qDpw0', 'EpOQH4P-pBM'], E: [10, '3TEABoKHj3g', 'tzoGN8jvkiQ'], F: [11, 'jEh9T4EOaBU', 'VC9UFdGpxi0'],
+    G: [12, 'OU3MOt3pdh0', 'Na18EkeC_VI'], H: [13, 'QR3ha_FRc8A', 'l7ZzJZTKBu0'], I: [16, 'hqXN_2t4Ivw', 'sivmAXfeuc4'],
+    J: [17, 'DYx1SJowcEI', null], K: [18, 'TS6wok-LxqY', 'z8DGfcuJH4c'], L: [19, 'U1Ae6u1OW-0', 'fs05KJOvz6w'],
+    M: [22, 'W37jk_KxGHM', 'hAKcCUL6Az8'], N: [23, 'yr6_KujKI8w', 'NTR6LOxO3tg'], O: [24, 'DQTgku6LOBY', '9u2oskAsl4M'],
+    P: [25, null, 'mo7ZDEQRXYM'], Q: [28, 'MmO0LgvC8KY', 'VO41enJIJNE'], R: [29, 'nHci_HMXQLU', 'l0YhtgDmx_A'],
+    S: [30, 'BeCB9VDmzNQ', 'wrCJx-r_LI4'], T: [31, '9kghJNQ5z2w', 'UPGNHx56VkM'], U: [34, 'uFiAdcMbqtg', 'XMrxnuj4vk8'],
+    V: [35, 'sPTlac6ys6A', '0MIFkQim-9g'], W: [36, 'WpmwtPoubmo', 'SUDlfbOlCE8'], X: [37, 'rx8tNrmQDN4', '9u2zpHZMUH8'],
+    Y: [40, 'A0JICgzGkso', 'c6RWmmOz1ro'], Z: [41, 'ehdPWMpuFMs', 'r6ktPgtbHSw']
+  };
+  for (const [L, [p, vocab, formation]] of Object.entries(LETTERS)) {
+    const l = L + L.toLowerCase();
+    // the publisher's video replaces the home-made "Learn" story; the game moves under the robot
+    if (book[p]) book[p] = [].concat(book[p]).filter(a => a.type !== 'story')
+      .map(a => (a.type === 'game' ? { ...a, button: { x: 2, y: 33 } } : a));
+    if (vocab) add(p, video('Vocabulary', '🔤', 'Vocabulary ' + l, vocab, { x: 70, y: 31 }));
+    if (formation) add(p, video('Formation', '✏️', 'How to write ' + l, formation, { x: 70, y: 35.5 }));
+  }
+  // Revision and lesson pages: one button at the top left.
+  const PAGES = [
+    [8, 'Revision', 'Revision A and B', 'Hz5F3Vjv_tw'], [9, 'Revision', 'Revision C and D', '1KlyEOVoi38'],
+    [20, 'Revision', 'Revision I and J', 'YmpXQEYlYpU'], [21, 'Revision', 'Revision K and L', 'OD6YylBVCbw'],
+    [26, 'Revision', 'Revision M and N', 'RCWNZK4_cD8'], [27, 'Revision', 'Revision O and P', 'Cx5HSpvYPPo'],
+    [32, 'Revision', 'Revision Q and R', 'kJEXYBHpPBE'], [33, 'Revision', 'Revision S and T', '_N6wc4X7kOA'],
+    [38, 'Revision', 'Revision U and V', 'HjN5i17tpVU'], [39, 'Revision', 'Revision W and X', 'zogQAGqNARk'],
+    [42, 'Revision', 'Revision Y and Z', 'IAEa_d5iArY'],
+    [43, 'Video', 'AI and Digital Learning', 'h2pLnsTCxa0'], [44, 'Video', 'Learning Games', 'a9WQ3FETJaA'],
+    [45, 'Revision', 'Revision', '-xvkKrgeFwA'], [46, 'Video', 'The World Around Us', 'qYWXlM_PfW0'],
+    [47, 'Revision', 'Revision', 'SPnpAdM_OLI'], [48, 'Revision', 'Revision', 'IrbF4vmDiY4'],
+    [49, 'Video', 'Machines in our World', 'S5xiQ_SskGU'], [50, 'Video', 'Machines that Run on Electricity', 'A-QrSYJWkO0'],
+    // the list gave the electricity video for fuel too, so page 51 waits for its own link
+    [52, 'Revision', 'Revision', 'X7jSWpj2QQU'], [53, 'Video', 'Mobile Phone', 'Ar2pGYXjyJY'],
+    [54, 'Video', 'Tech Tools and Toys', 'UeM8FyrrTko'], [56, 'Revision', 'Tech Tools and Toys Revision', 'dkVfaHuRmLU'],
+    [57, 'Video', 'Artificial Intelligence Devices', 'i6w7ASGf3Yw'], [58, 'Video', 'AI in Navigation and Travel', 'QJHzjSElAqA'],
+    [59, 'Video', 'AI in Security and Surveillance', 'DsfYYqrSdmA'], [60, 'Video', 'Explore Computers', 'Mp4ZtHlKKNM'],
+    [61, 'Video', 'Storage Devices', 'Zm6eK7Hz67Q'], [62, 'Video', 'Computer Desktop', 'Fjz0UcSREU8'],
+    [63, 'Video', 'Computer Safety', 'AvY3K-vUgIY'], [64, 'Video', 'Daily Use of AI', 'jRjiVaIAj7E'],
+    [65, 'Revision', 'Daily Use of AI Revision', 'GK1iGUoRpXQ']
+  ];
+  for (const [p, label, title, id] of PAGES) add(p, video(label, label === 'Revision' ? '🔁' : '▶️', title, id, { x: 2, y: 2 }));
 })();

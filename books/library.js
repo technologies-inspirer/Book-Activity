@@ -1128,6 +1128,7 @@ window.PDF_BOOKS = [
   "ratio": 0.7222,
   "c1": "#ccc6ba",
   "c2": "#78746d",
+  "frontCover": true,
   "qr": {
    "5": {
     "url": "https://o2o.to/i/HUDSA73KXWIE",
@@ -2298,6 +2299,7 @@ window.PDF_BOOKS = [
   "c1": "#d1ccbf",
   "c2": "#7b7870",
   "rtl": true,
+  "frontCover": true,
   "qr": {
    "5": {
     "url": "https://o2o.to/i/KAO6WH79TGYR",
@@ -3195,6 +3197,7 @@ window.PDF_BOOKS = [
   "c1": "#d0cbbd",
   "c2": "#7a776f",
   "rtl": true,
+  "frontCover": true,
   "qr": {
    "4": {
     "url": "https://o2o.to/i/6VZYQ5WB1OUF",
@@ -4244,6 +4247,7 @@ window.PDF_BOOKS = [
   "c1": "#cdc6bb",
   "c2": "#79756e",
   "rtl": false,
+  "frontCover": true,
   "qr": {
    "6": {
     "url": "https://o2o.to/i/R98BPF5ALVG7",
