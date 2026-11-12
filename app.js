@@ -1033,10 +1033,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         // Small letters sit close together, so a circle can cover the edge of the letter being written
         // (the top of H's right stem lies under h's circle). There, keep writing that letter.
         const p = toCanvas(e, c), keep = active && !active.done && active !== t && letterAt(p, c) === active;
-        if (!keep && t.done) return;
-        if (!keep) pick(t);
+        // Circles can overlap too (the top of the 1 in "17" lies under the 7's circle): start the letter
+        // whose start point is nearest the finger, not whichever circle happens to be on top.
+        const near = keep ? active : targets.filter(o => o.circle && !o.done).reduce((best, o) => {
+          const r = o.circle.getBoundingClientRect(), d = Math.hypot(r.left + r.width / 2 - e.clientX, r.top + r.height / 2 - e.clientY);
+          return !best || d < best.d ? { o, d } : best;
+        }, null)?.o || t;
+        if (near.done) return;
+        if (!keep) pick(near);
         circle.setPointerCapture?.(e.pointerId);
-        begin(keep ? active : t, p, c);
+        begin(near, p, c);
       });
       circle.addEventListener('pointermove', e => { const c = canvas(); if (painting && c) paintTo(toCanvas(e, c), c); });
       circle.addEventListener('pointerup', () => { const c = canvas(); if (c) up(c); });
@@ -1315,12 +1321,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       stopLessonVideo();
       lessonView.hidden = true;
       root.classList.remove('english-lesson-open');
-      root.querySelector(`.english-letter[data-letter="${currentLesson?.letter}"]`)?.focus();
+      letterButtons.find(button => button.dataset.letter === currentLesson?.key)?.focus();
     };
+    // "Letter" or "Number", and whether the words in a lesson begin with it
+    const kindOf = lesson => lesson.kind || 'Letter', isLetter = lesson => kindOf(lesson) === 'Letter';
+    const lessonCount = lessons.length;
     const rail = (items, label) => el('nav', { class: 'english-letter-rail', 'aria-label': label },
       el('small', {}, label), items.map(lesson => {
-        const button = el('button', { class: 'english-letter', 'data-letter': lesson.letter, 'aria-label': `Learn letter ${lesson.letter}`, onclick: () => selectLesson(lesson) },
-          el('b', {}, lesson.letter.toUpperCase()), el('span', {}, lesson.letter));
+        // a letter opens its page in the book; the Activity button on that page opens the letter lesson
+        const button = el('button', { class: 'english-letter' + (lesson.big.length > 2 ? ' long' : ''), 'data-letter': lesson.key, 'aria-label': `Open ${kindOf(lesson).toLowerCase()} ${lesson.name} page`, onclick: () => { if (!R?.busy) leafTo(Math.floor((lesson.page - 1) / 2)); } },
+          el('b', {}, lesson.big), lesson.small && el('span', {}, lesson.small));
         letterButtons.push(button);
         return button;
       }));
@@ -1332,17 +1342,17 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const video = videoFor(lesson, label);
       if (video?.videos?.length) openVideos(video.title, video.videos);
       else if (lesson.story) openStory(book, lesson.page - 1, lesson.story);
-      else speak(`Letter ${lesson.letter}`, `${lesson.letter.toUpperCase()}. ${lesson.words.map(word => `${word} begins with ${lesson.letter}.`).join(' ')}`);
+      else speak(`${kindOf(lesson)} ${lesson.name}`, `${lesson.name}. ${lesson.words.map(word => isLetter(lesson) ? `${word} begins with ${lesson.small || lesson.name}.` : `${word}.`).join(' ')}`);
     }
     function openDrawing(lesson) {
-      const key = `${book.id}:letter:${lesson.letter}:drawing`, previousBrush = { ...brush };
+      const key = `${book.id}:letter:${lesson.key}:drawing`, previousBrush = { ...brush };
       const board = el('div', { class: 'english-drawing-board' });
       const createCanvas = () => inkCanvas({ ...book, ratio: 1 }, { w: 100, h: 70 }, key);
       const drawingTools = drawTools(() => { delete drawings[key]; board.replaceChildren(createCanvas()); }, ['#e63946', '#f9c74f', '#43aa8b', '#4aa3df', '#7b5ea7', '#222222']);
       drawingTools.hidden = false;
       board.append(createCanvas());
-      modal(el('div', { class: 'modal-card english-drawing-card' }, el('h3', {}, `Draw with ${lesson.letter.toUpperCase()}${lesson.letter}`),
-        el('p', {}, `Can you draw ${lesson.words[0] ? `a picture of ${lesson.words[0]}` : `something beginning with ${lesson.letter}`}? Pick a colour and make it yours.`), board, drawingTools),
+      modal(el('div', { class: 'modal-card english-drawing-card' }, el('h3', {}, `Draw with ${lesson.name}`),
+        el('p', {}, `Can you draw ${lesson.words[0] ? `a picture of ${lesson.words[0]}` : isLetter(lesson) ? `something beginning with ${lesson.name}` : `${lesson.name} things`}? Pick a colour and make it yours.`), board, drawingTools),
       () => Object.assign(brush, previousBrush));
     }
     function selectLesson(lesson) {
@@ -1352,25 +1362,28 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       currentLesson = lesson;
       root.classList.add('english-lesson-open');
       lessonView.hidden = false;
-      letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === lesson.letter)));
+      letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === lesson.key)));
       const trace = () => openFocus(book, lesson.tracePage - 1, right.querySelector('.page'), true);
+      const kind = kindOf(lesson), letter = isLetter(lesson);
       const activities = el('div', { class: 'english-lesson-actions' },
-        action('Listen & learn', `Hear the sound and discover ${lesson.letter} words.`, I.speaker, ['#e6edcf', '#658334'], () => watchLesson(lesson, 'vocabulary')),
-        lesson.game && action('Find the pictures', `Look for ${lesson.words.slice(0, 2).join(', ')} and more.`, '&#10022;', ['#fff0c4', '#b78322'], () => openGame(book, lesson.page - 1, lesson.game)),
-        lesson.trace && action(`Trace ${lesson.letter.toUpperCase()}${lesson.letter}`, 'Follow the dots, then colour the picture.', I.pen, ['#deedf3', '#427f94'], trace),
+        videoFor(lesson, 'story') && action('Story', `Watch the story of ${lesson.name}.`, I.play, ['#ffe3ec', '#c2456f'], () => watchLesson(lesson, 'story')),
+        action('Listen & learn', letter ? `Hear the sound and discover ${lesson.name} words.` : `Hear and learn the number ${lesson.name}.`, I.speaker, ['#e6edcf', '#658334'], () => watchLesson(lesson, 'vocabulary')),
+        videoFor(lesson, 'formation') && action(`How to write ${lesson.name}`, 'Watch how it is written, step by step.', I.pen, ['#e4e9fb', '#4b5fb0'], () => watchLesson(lesson, 'formation')),
+        lesson.game && action('Find the pictures', lesson.words.length ? `Look for ${lesson.words.slice(0, 2).join(', ')} and more.` : 'Find the right pictures on the page.', '&#10022;', ['#fff0c4', '#b78322'], () => openGame(book, ((book.pages[lesson.page - 1]?.acts || []).includes(lesson.game) ? lesson.page : lesson.tracePage) - 1, lesson.game)),
+        lesson.trace && action(`Trace ${lesson.name}`, 'Follow the dots, then colour the picture.', I.pen, ['#deedf3', '#427f94'], trace),
         action('Drawing time', 'A fresh canvas for your own ideas.', I.pen, ['#f7e3dc', '#b76b4b'], () => openDrawing(lesson)),
         videoFor(lesson, 'phonic poem') && action('Phonic poem', 'Listen, repeat and sing along.', I.play, ['#ece3f3', '#8a63a0'], () => watchLesson(lesson, 'phonic poem')));
       lessonView.replaceChildren(
-        el('div', { class: 'english-lesson-top' }, el('button', { class: 'english-back', onclick: closeLesson, html: I.left + '<span>Back to book</span>' }), el('span', {}, 'ENGLISH / LETTER EXPLORER')),
-        el('div', { class: 'english-lesson-heading' }, el('small', {}, `LETTER ${lesson.letter.toUpperCase()} / ${lessons.indexOf(lesson) + 1} OF 26`),
-          el('h1', { tabindex: '-1' }, `A little adventure with ${lesson.letter.toUpperCase()}${lesson.letter}`), el('p', {}, 'Watch a story. Find a picture. Make your mark.')),
+        el('div', { class: 'english-lesson-top' }, el('button', { class: 'english-back', onclick: closeLesson, html: I.left + '<span>Back to book</span>' }), el('span', {}, `${(lesson.subject || 'English').toUpperCase()} / ${kind.toUpperCase()} EXPLORER`)),
+        el('div', { class: 'english-lesson-heading' }, el('small', {}, `${kind.toUpperCase()} ${lesson.name} / ${lessons.indexOf(lesson) + 1} OF ${lessonCount}`),
+          el('h1', { tabindex: '-1' }, `A little adventure with ${lesson.name}`), el('p', {}, 'Watch a story. Find a picture. Make your mark.')),
         el('div', { class: 'english-lesson-grid' }, el('div', {},
           lesson.lessonVideo
             ? el('div', { class: 'english-lesson-video' },
-              el('iframe', { src: `https://www.youtube.com/embed/${lesson.lessonVideo.id}?rel=0&playsinline=1`, title: lesson.lessonVideo.title || `Letter ${lesson.letter} lesson video`, allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share', allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin' }),
-              el('p', {}, `Letter ${lesson.letter.toUpperCase()} · Watch the full lesson`))
-            : el('div', { class: 'english-video-unavailable' }, el('b', {}, `Letter ${lesson.letter.toUpperCase()}${lesson.letter}`), el('p', {}, 'The QR lesson video is not available for this letter yet.')),
-          el('div', { class: 'english-word-list', 'aria-label': 'Listen to a word' }, lesson.words.map(word => el('button', { onclick: () => speak(word, `${word}. ${word} begins with ${lesson.letter}.`) }, word)))),
+              el('iframe', { src: `https://www.youtube.com/embed/${lesson.lessonVideo.id}?rel=0&playsinline=1`, title: lesson.lessonVideo.title || `${kind} ${lesson.name} lesson video`, allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share', allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin' }),
+              el('p', {}, `${kind} ${lesson.name} · Watch the full lesson`))
+            : el('div', { class: 'english-video-unavailable' }, el('b', {}, `${kind} ${lesson.name}`), el('p', {}, `The lesson video is not available for this ${kind.toLowerCase()} yet.`)),
+          el('div', { class: 'english-word-list', 'aria-label': 'Listen to a word' }, lesson.words.map(word => el('button', { onclick: () => speak(word, letter ? `${word}. ${word} begins with ${lesson.small || lesson.name}.` : `${word}.`) }, word)))),
         el('div', {}, activities, el('p', { class: 'english-lesson-note' }, 'Explore at your own pace. A little practice, every day.'))));
       lessonView.scrollTop = 0;
       lessonView.querySelector('h1')?.focus({ preventScroll: true });
@@ -1380,6 +1393,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // Urdu books open from the right: the earlier page of a spread is on the right, and pages turn the other way.
     const rtl = !!book.rtl, L = s => s * 2 + (rtl ? 1 : 0), Rt = s => s * 2 + (rtl ? 0 : 1);
     const bookEl = el('div', { class: 'book' + (rtl ? ' rtl' : ''), style: `--ratio:${ratio};aspect-ratio:${ratio * 2};--c1:${book.c2 || '#1f2d3d'}` }, left, right);
+    // English 3+: a big Activity button at the foot of a letter's pages opens that letter's lesson
+    const activityBtn = lessons.length && el('button', { class: 'book-activity', hidden: true, onclick: () => { if (!R?.busy) selectLesson(currentLesson); }, html: I.play + '<span>Activity</span>' });
+    if (activityBtn) bookEl.append(activityBtn);
     const label = el('span', { class: 'r-pages' });
     const mobileActions = el('div', { class: 'reader-mobile-actions', role: 'toolbar', 'aria-label': 'Page activities' });
     const slider = el('input', { type: 'range', min: 0, max: spreads - 1, step: 1, 'aria-label': 'Go to pages', oninput: e => show(+e.target.value) });
@@ -1401,14 +1417,18 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     });
 
     const stage = el('div', { class: 'rstage' }, prev, el('div', { class: 'book-wrap' }, bookEl), next);
-    const englishLayout = lessons.length && el('div', { class: 'english-reader-layout' }, rail(lessons.slice(0, 13), 'A – M'),
+    // Two side rails split the lessons in half, each titled with its first and last (A – M, N – Z, 1 – 10 ...).
+    // An Urdu book reads from the right, so its first half is on the right.
+    const half = Math.ceil(lessons.length / 2), railOf = list => list.length && rail(list, `${list[0].big} – ${list[list.length - 1].big}`);
+    const [firstRail, secondRail] = rtl ? [railOf(lessons.slice(half)), railOf(lessons.slice(0, half))] : [railOf(lessons.slice(0, half)), railOf(lessons.slice(half))];
+    const englishLayout = lessons.length && el('div', { class: 'english-reader-layout' }, firstRail,
       el('div', { class: 'english-reader-center' }, stage, lessonView,
         el('div', { class: 'english-reader-dock', role: 'toolbar', 'aria-label': 'Letter activities' },
-          el('button', { onclick: () => selectLesson(currentLesson), html: I.speaker + '<span>Letter lesson</span>' }),
+          el('button', { onclick: () => selectLesson(currentLesson), html: I.speaker + `<span>${kindOf(lessons[0] || {})} lesson</span>` }),
           el('button', { onclick: () => watchLesson(currentLesson), html: I.play + '<span>Story</span>' }),
           el('button', { onclick: () => { selectLesson(currentLesson); openFocus(book, currentLesson.tracePage - 1, right.querySelector('.page'), true); }, html: I.pen + '<span>Trace & colour</span>' }),
           el('button', { onclick: () => openDrawing(currentLesson), html: I.pen + '<span>Drawing pad</span>' }))),
-      rail(lessons.slice(13), 'N – Z'));
+      secondRail);
     const root = el('div', { class: 'reader' + (lessons.length ? ' english-learning' : '') },
       el('div', { class: 'rbar' },
         readerBook ? el('button', { class: 'btn ghost', onclick: () => readerOptions.onClose?.(), html: I.left + '<span>Back to upload</span>' }) : el('a', { class: 'btn ghost', href: libraryHref || `#/series/${seriesOf(book).id}`, html: I.left + '<span>Library</span>' }),
@@ -1427,8 +1447,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       label.textContent = (a === b ? `Page ${a}` : `Pages ${a}–${b}`) + ` of ${book.pages.length}`;
       slider.value = s;
       if (lessons.length) {
-        currentLesson = lessons.find(lesson => Math.floor((lesson.page - 1) / 2) === s) || currentLesson;
-        letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === currentLesson.letter)));
+        const spreadOf = page => Math.floor((page - 1) / 2);
+        const here = lessons.find(lesson => spreadOf(lesson.page) === s) || lessons.find(lesson => spreadOf(lesson.tracePage) === s);
+        currentLesson = here || currentLesson;
+        activityBtn.hidden = !here || editMode;
+        if (here) activityBtn.setAttribute('aria-label', `Activity for letter ${here.letter.toUpperCase()}${here.letter}`);
+        letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === currentLesson.key)));
       }
       (rtl ? next : prev).disabled = s === 0;
       (rtl ? prev : next).disabled = s >= spreads - 1;
@@ -1529,9 +1553,25 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       }, 830);
     }
 
+    // Go to spread t with one page turn, like opening the book at a chapter.
+    function leafTo(t) {
+      t = clamp(t, 0, spreads - 1);
+      if (R.busy || t === R.spread) return;
+      if (Math.abs(t - R.spread) === 1) return flip(t - R.spread);
+      stopLessonVideo(); lessonView.hidden = true; root.classList.remove('english-lesson-open');
+      closeFocus(false); closeGame(); closeStory(); closeModal();
+      if (activityBtn) activityBtn.hidden = true;  // back when the letter's page is reached (after)
+      // Only one sheet is seen turning: the pages before it are skipped, and it lands on the letter's page.
+      const dir = Math.sign(t - R.spread);
+      R.spread = t - dir;
+      left.replaceChildren(renderPage(book, L(R.spread), false));
+      right.replaceChildren(renderPage(book, Rt(R.spread), false));
+      flip(dir);
+    }
+
     // The front cover as a sheet hinged on the spine: cover outside, the current left page inside.
     function coverSheet() {
-      const src = book.pages[0]?.img || book.cover;
+      const src = (book.frontCover && book.cover) || book.pages[0]?.img || book.cover;
       const cover = el('div', { class: 'page cover-pg ' + (rtl ? 'left' : 'right'), style: `--c1:${book.c1 || '#34495e'};--c2:${book.c2 || '#1f2d3d'}` },
         src ? el('img', { class: 'page-bg', src, alt: '' }) : coverFace(book));
       return el('div', { class: 'flipper cover-sheet no-anim ' + (rtl ? 'back' : 'fwd') },

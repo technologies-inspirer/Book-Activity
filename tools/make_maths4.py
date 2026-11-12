@@ -62,16 +62,63 @@ def cut_ink(page,box,glyph,dotted=False):
         a,b,c,d=max(0,x0),max(0,y0),min(w,x1),min(h,y1)
         crop[b-y0:d-y0,a-x0:c-x0]=im[b:d,a:c]
         grey=cv2.cvtColor(crop,cv2.COLOR_BGR2GRAY)
-        mask=((grey<(210 if dotted else 235))&(crop.max(axis=2).astype(int)-crop.min(axis=2)<35)).astype('uint8')
+        # the tracks' dashes are mid grey (about 150); the white channel's soft edges are lighter
+        mask=((grey<(210 if dotted else 185))&((grey>110) if glyph=='line' else True)&(crop.max(axis=2).astype(int)-crop.min(axis=2)<35)).astype('uint8')
         inner=np.zeros_like(mask);py=int(mask.shape[0]/6);px=int(mask.shape[1]/6)
         inner[py:mask.shape[0]-py,px:mask.shape[1]-px]=1;mask*=inner
         mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(13,13)))
+        line_path=None
+        if glyph=='line':
+            # The pre-writing tracks are dashed with wide gaps. Follow the dashes and draw one clean,
+            # even line through them: it is both the ink to colour and the pen's path.
+            mask,line_path=track_line(mask,inner)
         mask=cv2.dilate(mask,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
         rgba=np.zeros((*mask.shape,4),np.uint8);rgba[:,:,:3]=(111,47,214);rgba[:,:,3]=mask*255
         cv2.imwrite(src,rgba)
     alpha=cv2.imread(src,cv2.IMREAD_UNCHANGED)[...,3]
     assert np.count_nonzero(alpha)>15,(page,box,glyph)
-    return {'glyph':glyph,'box':box,'ink':{'src':src,'box':padded}}
+    mark={'glyph':glyph,'box':box,'ink':{'src':src,'box':padded}}
+    if glyph=='line':mark['pen']=line_path
+    # This book prints an open 4: down and across, then the long stick (not the slanted closed 4).
+    if glyph=='4':mark['pen']='M.08 0V.66H.98M.72 0V1'
+    return mark
+
+def track_line(mask,inner):
+    """A dashed pre-writing track as one even line, and its pen path in the track's box (0..1).
+
+    A standing track goes top to bottom. Any other track (straight, zigzag, arches) is followed left to
+    right: in each column the dash nearest the previous point, so the line runs on over the gaps.
+    """
+    ys_,xs_=np.flatnonzero(inner.any(axis=1)),np.flatnonzero(inner.any(axis=0))
+    y0,y1,x0,x1=ys_[0],ys_[-1]+1,xs_[0],xs_[-1]+1
+    dash=mask[y0:y1,x0:x1]>0;bh,bw=dash.shape
+    # the printed line's thickness: the commonest height of a dash in a column
+    runs=[]
+    for x in range(bw):
+        r=np.flatnonzero(dash[:,x])
+        if len(r):runs+=[len(g) for g in np.split(r,np.flatnonzero(np.diff(r)>1)+1)]
+    thick=max(6,int(np.median(runs)*1.5)) if runs else 8
+    out=np.zeros(mask.shape,np.uint8)
+    if bh>bw:
+        x=int(np.argmax(dash.sum(axis=0)));top,bottom=np.flatnonzero(dash[:,x-2:x+3].any(axis=1))[[0,-1]]
+        cv2.line(out,(x0+x,y0+top),(x0+x,y0+bottom),1,thick)
+        return out,f'M{x/(bw-1):.3f} {top/(bh-1):.3f}V{bottom/(bh-1):.3f}'
+    # Followed from the right end, where no arrow is printed, then turned round to run left to right.
+    pts=[];prev=None
+    for x in range(bw-1,-1,-1):
+        r=np.flatnonzero(dash[:,x])
+        if not len(r):continue
+        groups=np.split(r,np.flatnonzero(np.diff(r)>1)+1)
+        g=max(groups,key=len) if prev is None else min(groups,key=lambda g:abs(g.mean()-prev))
+        prev=g.mean();pts.append((x,prev))
+    pts.reverse()
+    # smooth out the dashes' ragged edges
+    ys=np.array([y for _,y in pts]);k=max(1,bw//120)
+    ys=np.convolve(np.pad(ys,k,mode='edge'),np.ones(2*k+1)/(2*k+1),mode='valid')
+    pts=[(x,y) for (x,_),y in zip(pts,ys)]
+    pts=pts[::max(1,len(pts)//160)]+[pts[-1]]
+    cv2.polylines(out,[np.array([(x0+x,int(y0+y)) for x,y in pts],np.int32)],False,1,thick,cv2.LINE_AA)
+    return out,'M'+'L'.join(f'{x/(bw-1):.3f} {y/(bh-1):.3f}' for x,y in pts)
 
 def digits_in(page,box,value):
     """Read connected runs of the book's printed grey dotted digits, not invented fonts."""
@@ -92,16 +139,40 @@ def digits_in(page,box,value):
     cols=np.flatnonzero(mask.sum(axis=0)>2)
     # Tens/units are printed in separate equal-width cells. Group each
     # digit's fragments inside its own cell (4 often has separated columns).
-    runs=[]
-    for k in range(len(str(value))):
-        part=[v for v in cols if k*mask.shape[1]/len(str(value)) <= v < (k+1)*mask.shape[1]/len(str(value))]
-        assert part,(page,box,value,k)
-        runs.append(part)
+    # Split at the widest empty gaps between the digits ("10" shares one cell, so halves would cut the 0).
+    n=len(str(value));gaps=sorted(range(1,len(cols)),key=lambda i:cols[i]-cols[i-1])[-(n-1):] if n>1 else []
+    cuts=[0]+sorted(gaps)+[len(cols)]
+    runs=[list(cols[a:b]) for a,b in zip(cuts,cuts[1:])]
+    assert len(runs)==n and all(runs),(page,box,value)
     out=[]
     for digit,run in zip(str(value),runs):
         xx0,xx1=run[0],run[-1]+1;ys=np.flatnonzero(mask[:,xx0:xx1].any(axis=1))
+        # A bare dotted 1 is only a few pixels wide; the reader cannot follow a letter that thin,
+        # so give it room around the stick (at least 30% of its height).
+        need=int((ys[-1]-ys[0]+1)*.3)-(xx1-xx0)
+        if digit=='1' and need>0:xx0=max(0,xx0-need//2);xx1=min(mask.shape[1],xx1+need-need//2)
         b=[round((x0+xx0)/w*100,3),round((y0+ys[0])/h*100,3),round((xx1-xx0)/w*100,3),round((ys[-1]-ys[0]+1)/h*100,3)]
-        out.append(cut_ink(page,b,digit,dotted=True))
+        mark=cut_ink(page,b,digit,dotted=True)
+        if digit=='1':
+            # The printed 1 is a stick with a small flag at its top left; its box is not centred on the stick.
+            part=mask[ys[0]:ys[-1]+1,xx0:xx1];bw_,bh_=part.shape[1],part.shape[0]
+            stick=int(np.argmax(part.sum(axis=0)));u=stick/max(1,bw_-1)
+            top=part[:max(1,bh_//4)];cols=np.flatnonzero(top.any(axis=0))
+            if len(cols) and cols[0]<stick-bw_*.2:
+                tip=cols[0];v=np.flatnonzero(top[:,tip])[0]/max(1,bh_-1)
+                mark['pen']=f'M{tip/max(1,bw_-1):.2f} {v:.2f}L{u:.2f} 0V1'
+            else:mark['pen']=f'M{u:.2f} 0V1'
+        elif digit in '47':
+            # Measured from the printed dots: where the 4's bar and sticks are, where the 7's slant ends.
+            part=mask[ys[0]:ys[-1]+1,xx0:xx1];bw_,bh_=part.shape[1]-1 or 1,part.shape[0]-1 or 1
+            if digit=='4':
+                bar=int(np.argmax(part.sum(axis=1)));stick=int(np.argmax(part.sum(axis=0)))
+                left=np.flatnonzero(part[:max(1,bar//2)].any(axis=0))[0]
+                mark['pen']=f'M{left/bw_:.2f} 0V{bar/bh_:.2f}H1M{stick/bw_:.2f} 0V1'
+            else:
+                end=np.flatnonzero(part[-max(1,part.shape[0]//8):].any(axis=0))[0]
+                mark['pen']=f'M0 .03H1L{end/bw_:.2f} 1'
+        out.append(mark)
     return out
 
 def header_digits(page,value):
@@ -161,6 +232,47 @@ def answer_boxes(page):
         out.append(rect('answer frame',[round(x/w*100,3),round(y/h*100,3),round(bw/w*100,3),round(bh/h*100,3)],all_surface=True))
     return out
 
+# A button's size in % of the page: the game pill is about 17% of the page wide and 6% of its width tall.
+BUTTON_W,BUTTON_H=17,4.8
+
+def clear_spot(page,crop,taken):
+    """The blank white place nearest the top right of an exercise for its button.
+
+    A button must not cover the book's words or pictures (the old fixed places sat on the learning
+    outcomes and on the exercise headings), nor the Watch-this button of the QR code.
+    """
+    im=cv2.imread(str(ROOT/f'books/{BOOK}/p{page:03}.jpg'));h,w=im.shape[:2]
+    # Paper only: any print, even a thin letter, plus a little room around it, is not blank.
+    ink=(im.min(axis=2)<=232).astype(np.uint8)
+    ink=cv2.dilate(ink,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(int(w*.012)|1,int(w*.012)|1)))
+    blank=(1-ink).astype(np.int32)
+    # number of blank pixels in any rectangle, from a summed table
+    table=np.pad(blank.cumsum(0).cumsum(1),((1,0),(1,0)))
+    bw,bh=int(BUTTON_W/100*w),int(BUTTON_H/100*h)
+    want=((crop[0]+crop[2]-BUTTON_W)/100*w,(crop[1]-BUTTON_H-.5)/100*h)
+    best=None
+    for y in range(int(h*.005),h-bh,max(2,h//200)):
+        for x in range(int(w*.01),w-bw-int(w*.01),max(2,w//200)):
+            if any(x<tx+tw and tx<x+bw and y<ty+th and ty<y+bh for tx,ty,tw,th in taken):continue
+            free=table[y+bh,x+bw]-table[y,x+bw]-table[y+bh,x]+table[y,x]
+            # Full-page pictures have no blank paper: there, the emptiest spot wins.
+            d=(x-want[0])**2+(y-want[1])**2
+            key=(-int(free>=bw*bh),-free if free<bw*bh else 0,d)
+            if best is None or key<best[0]:best=(key,x,y)
+    assert best,(page,'no blank place for a button')
+    _,x,y=best
+    taken.append((x,y,bw,bh))
+    return {'x':round(x/w*100,1),'y':round(y/h*100,1)}
+
+def qr_taken(page):
+    """The QR code and its Watch-this button (placed as app.js places them), in pixels of the page."""
+    qr=read(f'books/{BOOK}/qr.json').get(str(page))
+    if not qr:return []
+    im=cv2.imread(str(ROOT/f'books/{BOOK}/p{page:03}.jpg'));h,w=im.shape[:2]
+    x,y,bw,bh=qr['box']
+    watch=[x+bw+1.2,y+bh/2-3,20,6] if x+bw+20<100 else [x+bw/2-10,y+bh+2.4,20,6]
+    return [tuple(int(v/100*(w if i%2==0 else h)) for i,v in enumerate(r)) for r in ([x-1,y-1,bw+2,bh+2],watch)]
+
 def main():
     palette=read('books/colour-palettes.json');regions=read('books/colour-regions.json')
     colours=palette['colours'];pages={str(p):{'picture':'Writing and answers: black pencil','colours':['black']} for p in range(1,73)}
@@ -172,10 +284,12 @@ def main():
     def fill(page,title,steps=None):
         return {'type':'fill','title':title,'drawingMode':'regions','colours':[colours[c] for c in pages[str(page)]['colours']],
                 'steps':steps or [{'say':'Complete the printed exercise. Write your answers in the spaces provided.','marks':[]}]}
-    def story_button(page,title):
-        link=videos.get(str(page),{}).get('Story')
-        return {'type':'videos','label':'Story','icon':'\U0001f4d6','title':'Story: '+title,'button':{'x':5,'y':21},
-                'pending':not bool(link),'videos':[{'title':'Story','src':link}] if link else []}
+    def number_videos(n,kinds):
+        # Publisher links from books/maths4-videos.json, keyed by number; no link, no button.
+        icons={'Story':'\U0001f4d6','Vocabulary':'\U0001f524','Formation':'✏️'}
+        links=videos.get(str(n),{})
+        return [{'type':'videos','label':k,'icon':icons[k],'title':f'{k}: Number {n}','button':{'x':5,'y':21},
+                 'videos':[{'title':k,'src':links[k]}]} for k in kinds if links.get(k)]
     # Number picture pages: trace the large number and colour exactly N beads.
     for n,(p,thing) in NUMBERS.items():
         theme=THEMES[n];set_palette(p,theme+' black',f'Trace {n} and colour {n} beads')
@@ -188,9 +302,8 @@ def main():
         areas[str(p)]=[rect('bead '+str(i+1),[x-2.9,y-2.2,5.8,4.4],colours[theme]) for i,(x,y) in enumerate(centres)]
         steps=[{'say':f'Trace the number {n}.','marks':marks}]
         if n:steps.append({'say':f'Colour {n} beads. Count as you colour.', 'marks':[{'scribble':colours[theme],'cx':x,'cy':y,'rx':1.9,'ry':1.25} for x,y in centres[:n]]})
-        acts[p]=[story_button(p,f'Number {n}'),fill(p,f'Trace {n} and count the beads',steps)]
-        # A separate count game highlights the printed bead positions; no AI story.
-        acts[p].append(make_game('Count the beads',[(f'bead {i+1}',x-2.4,y-1.8,4.8,3.6) for i,(x,y) in enumerate(centres[:max(1,n)])],button={'x':63,'y':72}))
+        # Tracing and colouring the beads is the activity; a game on empty bead circles taught nothing.
+        acts[p]=[*number_videos(n,['Story','Vocabulary']),fill(p,f'Trace {n} and count the beads',steps)]
         summary.append({'number':n,'picturePage':p,'tracePage':None if n==0 else p+1,'objects':thing})
         if n==0:
             # Zero's writing exercise is on the picture page itself.
@@ -200,7 +313,10 @@ def main():
             continue
         q=p+1;boxes,small,top,bottom=worksheet_grid(q,n);areas[str(q)]=boxes
         set_palette(q,'black',f'Trace and write {n}; complete the printed counting exercise')
-        acts[q]=[fill(q,f'Trace and write {n}',[{'say':f'Trace the printed number {n}. Then write more numbers in the empty cells.','marks':small}])]
+        formation=number_videos(n,['Formation'])
+        # In the blank strip just above the tracing grid.
+        for a in formation:a['button']={'x':40,'y':round(max(.2,top-BUTTON_H-.3),1)}
+        acts[q]=[*formation,fill(q,f'Trace and write {n}',[{'say':f'Trace the printed number {n}. Then write more numbers in the empty cells.','marks':small}])]
         # The object-counting answer area is separate from the tracing grid.
         if n>=11:
             areas[str(q)]+=[rect('count answer',[58,55,33,8],all_surface=True)]
@@ -262,7 +378,6 @@ def main():
         if p==58:set_palette(p,'red yellow blue green black','Use the four printed colour codes')
         if p==66:set_palette(p,'blue yellow green red black','Square blue, circle yellow, triangle green, rectangle red')
         areas[str(p)]=bounds;acts[p]=[fill(p,title),make_game(title,items)]
-        if p in CONCEPTS:acts[p].insert(0,story_button(p,title))
     # The colour-code shapes have individual boundaries and required colours.
     areas['66']=[rect('matching exercise',[7,19,87,34],all_surface=True)]
     for x,y,w,h in [(33.7+i*4,71.2,3,2.2) for i in range(6)]:
@@ -301,7 +416,7 @@ def main():
         areas['34'].append(rect('write '+str(n),[x-1,y-1,10.7,7.7],all_surface=True))
     marks+=digits_in(34,[73.7,74,17.5,6],10)
     areas['34'] += [rect('tens and units cell',[73+i*10,y,9,5.7],all_surface=True) for i in (0,1) for y in (74,81,87.5)]
-    acts[34][1]['steps']=[{'say':'Count the units and trace one to nine. Ten units make one ten. Trace ten.','marks':marks}]
+    next(a for a in acts[34] if a['type']=='fill')['steps']=[{'say':'Count the units and trace one to nine. Ten units make one ten. Trace ten.','marks':marks}]
     # Numbers 21-50: ten printed two-digit pairs per page, two rows of five.
     for p,first in [(61,21),(62,31),(63,41)]:
         marks=[];items=[];areas[str(p)]=[]
@@ -314,7 +429,9 @@ def main():
     # Tens page: the four printed model pairs 20, 30, 40, 50.
     areas['64']=[];marks=[];items=[]
     for i,n in enumerate((20,30,40,50)):
-        x=7.5+i*23;marks+=digits_in(64,[x,42,20,7],n)
+        x=7.5+i*23
+        # the tens and the units digit each in its own printed cell (the pairs are not evenly spaced)
+        for k,digit in enumerate(str(n)):marks+=digits_in(64,[7.1+i*22.55+k*8.75+.6,42,7.5,7],int(digit))
         areas['64'].append(rect(str(n)+' column',[x,42,20,51],all_surface=True));items.append((str(n),x,13,20,36))
     acts[64]=[fill(64,'Trace the tens',[{'say':'Trace twenty, thirty, forty and fifty.','marks':marks}]),make_game('Find the tens',items)]
     # Fifty printed 51-100 cells, left-to-right rows, ending with 100.
@@ -334,6 +451,14 @@ def main():
     for p,entries in acts.items():
         for a in entries:
             if a['type']=='fill':a['colours']=[colours[c] for c in pages[str(p)]['colours']]
+    # Every button goes on blank paper beside its exercise.
+    for p,entries in acts.items():
+        taken=qr_taken(p)
+        for a in entries:
+            if a['type']=='game':a['button']=clear_spot(p,[a['crop'][k] for k in 'xywh'],taken)
+            # Story and Vocabulary stack at the top left of the big picture, as in English 4+.
+            elif a.get('label') in ('Story','Vocabulary'):a['button']={'x':2,'y':23 if a['label']=='Story' else 28.5}
+            elif a.get('label')=='Formation':pass
     palette['books'][BOOK]=pages;regions[BOOK]=areas
     (ROOT/'books/colour-palettes.json').write_text(json.dumps(palette,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     # Keep other books' authored region formatting and only replace this book's block.
@@ -346,12 +471,12 @@ def main():
         _,length=json.JSONDecoder().raw_decode(original[value_start:])
         value=json.dumps(areas,ensure_ascii=False,indent=2).replace('\n','\n  ')
         region_path.write_text(original[:value_start]+value+original[value_start+length:],encoding='utf-8')
-    source='// Generated by tools/make_maths4.py; no AI stories or borrowed videos.\n'
+    source='// Generated by tools/make_maths4.py; publisher videos from books/maths4-videos.json, no AI stories.\n'
     source+=f"window.BOOK_ACTIVITIES = window.BOOK_ACTIVITIES || {{}};\nwindow.BOOK_ACTIVITIES['{BOOK}'] = "+json.dumps(dict(sorted(acts.items())),ensure_ascii=False,indent=1)+';\n'
     (ROOT/'books/activities-maths4.js').write_text(source,encoding='utf-8')
     write(f'books/{BOOK}/text.json',[[] for _ in range(72)])
     write(f'books/{BOOK}/lessons.json',summary)
-    print(f'Maths 4+: {len(acts)} instructional pages, {sum(len(a) for a in acts.values())} activities; all stories await supplied links.')
+    print(f'Maths 4+: {len(acts)} instructional pages, {sum(len(a) for a in acts.values())} activities.')
 
 if __name__=='__main__':main()
 
