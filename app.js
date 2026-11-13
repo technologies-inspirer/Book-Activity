@@ -212,6 +212,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       (pg.acts || []).forEach(a => {
         if (a.type === 'game') node.append(gameButton(book, idx, a, live));
         if (a.type === 'story' || a.type === 'videos') node.append(storyButton(book, idx, a, live));
+        if (a.type === 'question') node.append(questionButton(book, idx, a, live));
       });
       if (live) {
         node.classList.add('zoomable');
@@ -239,6 +240,327 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const btn = el('button', { class: 'story-btn', style: `left:${a.button.x}%;top:${a.button.y}%`, html: `<b>${a.icon || '📖'}</b><span>${a.label || 'Story time'}</span>` });
     if (live) btn.addEventListener('click', e => { e.stopPropagation(); if (!editMode) a.type === 'videos' ? openVideos(a.title, a.videos) : openStory(book, idx, a); });
     return btn;
+  }
+
+  /* ---------- exercise questions: each question of a practice page opens on its own ----------
+     { type: 'question', kind: 'colour' | 'write' | 'match' | 'choose', title, say?, button: {x, y}, crop: {x, y, w, h},
+       dots?: [{ id, x, y }], lines?: [{ x, y, w, h }], options?: [{ x, y, w, h, correct }], hint?: {x, y},
+       sample?: { page, x, y, w, h } }  (positions in % of the page). A choose question rings each right answer tapped. A colour or write question opens its part of
+     the page with the pencil and colours; a match question puts a dot by each thing, and the child draws a line
+     from a dot to the dot of its pair (the same id). */
+  const QUESTION_ICON = { colour: '🖍️', write: '✏️', match: '🔗', choose: '⭕', tick: '☑️' };
+  const QUESTION_LABEL = { colour: 'Colour', write: 'Write', match: 'Match', choose: 'Circle', tick: 'Checklist' };
+  const QUESTION_LABEL_UR = { colour: 'رنگ بھریں', write: 'لکھیں', match: 'ملائیں', choose: 'دائرہ', tick: 'چیک لسٹ' };
+  const ticked = new Map();   // checklist answers, kept while the book is open
+  // what the question window tells the child, in the book's language
+  const QSAY = {
+    en: { again: 'Try again!', lines: 'Write on the lines!', inside: 'Colour inside a picture!', matched: 'Well done! You matched them all.',
+      found: 'Well done! You found them all.', use: (names, name) => [`Use ${names} for the ${name}!`, `Use ${names} for the ${name}. Look at the small picture.`], or: ' or ', like: 'Like this' },
+    ur: { again: 'دوبارہ کوشش کریں!', lines: 'لکیروں کے اندر لکھیں!', inside: 'تصویر کے اندر رنگ بھریں!', matched: 'شاباش! آپ نے سب ملا لیا۔',
+      found: 'شاباش! آپ نے سب ڈھونڈ لیا۔', use: names => [`${names} رنگ لگائیں!`, `یہاں ${names} رنگ لگائیں۔ چھوٹی تصویر دیکھیں۔`], or: ' یا ', like: 'ایسے' }
+  };
+  function questionButton(book, idx, q, live) {
+    const btn = el('button', { class: 'story-btn question-btn', style: `left:${q.button.x}%;top:${q.button.y}%`, 'aria-label': q.title,
+      html: `<b>${QUESTION_ICON[q.kind] || '✏️'}</b><span>${q.label || (book.rtl ? QUESTION_LABEL_UR : QUESTION_LABEL)[q.kind] || 'Do it'}</span>` });
+    if (live) btn.addEventListener('click', e => { e.stopPropagation(); if (!editMode) openQuestion(book, idx, q); });
+    return btn;
+  }
+
+  // A Play game's target of this name: its picture (the word printed under it left out) as a sample crop.
+  function sampleOf(book, word) {
+    for (let i = 0; i < book.pages.length; i++) for (const a of book.pages[i].acts || []) {
+      const t = a.type === 'game' && a.targets.find(t => t.name.toLowerCase() === word.toLowerCase());
+      if (t) return { page: i + 1, x: t.x + 1, y: t.y + t.h * .15, w: Math.max(4, t.w - 2), h: t.h * .63 };   // no heading strip above, no word below
+    }
+    return null;
+  }
+
+  function openQuestion(book, idx, q) {
+    stopSpeak(); closeMenu();
+    const pg = pageOf(book, idx), ratio = book.ratio || 0.75, c = q.crop, ur = !!book.rtl, T = QSAY[ur ? 'ur' : 'en'];
+    const praise = () => (ur ? PRAISE.ur : PRAISE.en)[Math.floor(Math.random() * (ur ? PRAISE.ur : PRAISE.en).length)];
+    const at = (x, y) => `left:${(x - c.x) / c.w * 100}%;top:${(y - c.y) / c.h * 100}%`;
+    const pic = el('img', { src: pg.img, alt: '', draggable: 'false',
+      style: `width:${100 / c.w * 100}%;left:${-c.x / c.w * 100}%;top:${-c.y / c.h * 100}%` });
+    const scene = el('div', { class: 'game-scene question-scene', style: `--game-aspect:${(c.w * ratio) / c.h};aspect-ratio:${(c.w * ratio) / c.h}` }, pic);
+    // printed parts that only half fit (a checklist corner) are covered with paper white
+    (q.hide || []).forEach(h => scene.append(el('div', { class: 'game-hide', 'aria-hidden': 'true',
+      style: `position:absolute;background:#fff;${at(h.x, h.y)};width:${h.w / c.w * 100}%;height:${h.h / c.h * 100}%` })));
+    const said = el('div', { class: 'game-said', dir: ur ? 'rtl' : null });
+    const parts = [el('h3', { dir: ur ? 'rtl' : null }, q.title), scene];
+    const previousBrush = { ...brush };
+    if (q.kind === 'match') {
+      // the lines are drawn in the scene's own 0-100 space, so they keep their place at any size
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 'match-lines'); svg.setAttribute('viewBox', '0 0 100 100'); svg.setAttribute('preserveAspectRatio', 'none');
+      scene.append(svg);
+      const line = (a, b, cls) => {
+        const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        [['x1', a[0]], ['y1', a[1]], ['x2', b[0]], ['y2', b[1]]].forEach(([k, v]) => l.setAttribute(k, v));
+        l.setAttribute('class', cls); l.setAttribute('vector-effect', 'non-scaling-stroke');
+        svg.append(l); return l;
+      };
+      const local = d => [(d.x - c.x) / c.w * 100, (d.y - c.y) / c.h * 100];
+      const pairs = new Set(q.dots.map(d => d.id)).size, joined = new Set();
+      const dots = q.dots.map(d => {
+        const b = el('button', { class: 'match-dot', style: at(d.x, d.y), 'aria-label': `Dot ${d.id}` });
+        b.dot = d; scene.append(b); return b;
+      });
+      let from = null, live = null;
+      const point = e => { const r = scene.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100]; };
+      scene.addEventListener('pointerdown', e => {
+        const b = e.target.closest('.match-dot');
+        if (!b || b.classList.contains('done')) return;
+        e.preventDefault();
+        scene.setPointerCapture(e.pointerId);
+        from = b; b.classList.add('on');
+        live = line(local(b.dot), local(b.dot), 'drawing');
+      });
+      scene.addEventListener('pointermove', e => {
+        if (!live) return;
+        const p = point(e);
+        live.setAttribute('x2', p[0]); live.setAttribute('y2', p[1]);
+      });
+      const finish = e => {
+        if (!from) return;
+        const p = point(e), start = from;
+        from.classList.remove('on'); from = null;
+        // the nearest dot under the finger, within reach
+        const near = dots.map(b => { const q2 = local(b.dot); return { b, d: Math.hypot((q2[0] - p[0]) / 100 * c.w * ratio, (q2[1] - p[1]) / 100 * c.h) }; })
+          .filter(o => o.b !== start).sort((a, b) => a.d - b.d)[0];
+        live.remove(); live = null;
+        if (!near || near.d > 4) return;
+        const end = near.b;
+        if (end.dot.id === start.dot.id && !end.classList.contains('done')) {
+          line(local(start.dot), local(end.dot), 'joined');
+          // every dot of that pair is done (a letter may have a dot on each side)
+          dots.forEach(b => { if (b.dot.id === start.dot.id) b.classList.add('done'); }); joined.add(start.dot.id);
+          if (joined.size === pairs) { chime('done'); said.textContent = ur ? ALL_DONE.ur : ALL_DONE.en; speak('', T.matched, null, el('div')); }
+          else { chime('good'); said.textContent = praise(); }
+        } else {
+          chime('tick'); said.textContent = T.again;
+          const wrong = line(local(start.dot), local(end.dot), 'wrong');
+          schedule(() => wrong.remove(), 700);
+        }
+      };
+      scene.addEventListener('pointerup', finish);
+      scene.addEventListener('pointercancel', () => { live?.remove(); live = null; from?.classList.remove('on'); from = null; });
+      parts.push(said);
+    } else if (q.kind === 'tick') {
+      // a checklist: Yes or No in each row (one of the two), and the teacher's stars
+      const key = `${book.id}:${idx}:tick`, state = ticked.get(key) || { rows: {}, stars: 0 };
+      ticked.set(key, state);
+      const area = ([x, y, w, h], cls, label) => el('button', { class: cls, 'aria-label': label,
+        style: `${at(x, y)};width:${w / c.w * 100}%;height:${h / c.h * 100}%` });
+      const done = () => {
+        if (Object.keys(state.rows).length < q.rows.length) return;
+        chime('done'); said.textContent = ur ? 'چیک لسٹ مکمل! 🎉' : 'Checklist complete! 🎉';
+      };
+      q.rows.forEach((row, i) => {
+        const yes = area(row.yes, 'tick-box', ur ? 'جی ہاں' : 'Yes'), no = area(row.no, 'tick-box', ur ? 'جی نہیں' : 'No');
+        const show = () => { yes.classList.toggle('on', state.rows[i] === 'yes'); no.classList.toggle('on', state.rows[i] === 'no'); };
+        [[yes, 'yes'], [no, 'no']].forEach(([b, v]) => b.addEventListener('click', () => {
+          state.rows[i] = state.rows[i] === v ? undefined : v;
+          if (!state.rows[i]) delete state.rows[i];
+          show(); chime('tick'); done();
+        }));
+        show(); scene.append(yes, no);
+      });
+      const stars = (q.stars || []).map((st, i) => {
+        const b = area(st, 'tick-star', `${i + 1}`);
+        b.addEventListener('click', () => { state.stars = state.stars === i + 1 ? i : i + 1; stars.forEach((sb, k) => sb.classList.toggle('on', k < state.stars)); chime('good'); });
+        scene.append(b); return b;
+      });
+      stars.forEach((sb, k) => sb.classList.toggle('on', k < state.stars));
+      parts.push(said);
+    } else if (q.kind === 'choose') {
+      // circle the right one: a tap on a right answer rings it; all of them rung finishes the question
+      const right = q.options.filter(o => o.correct).length;
+      let found = 0;
+      q.options.forEach(o => {
+        const b = el('button', { class: 'choose-hit', 'aria-label': o.label || 'answer',
+          style: `${at(o.x, o.y)};width:${o.w / c.w * 100}%;height:${o.h / c.h * 100}%` });
+        b.addEventListener('click', () => {
+          if (b.classList.contains('ringed')) return;
+          if (o.correct) {
+            b.classList.add('ringed'); found++;
+            if (found === right) { chime('done'); said.textContent = ur ? ALL_DONE.ur : ALL_DONE.en; speak('', T.found, null, el('div')); }
+            else { chime('good'); said.textContent = praise(); }
+          } else {
+            chime('tick'); said.textContent = T.again;
+            b.classList.add('wrong'); schedule(() => b.classList.remove('wrong'), 600);
+          }
+        });
+        scene.append(b);
+      });
+      parts.push(said);
+    } else {
+      // colour and write: the pencil works on this question's part of the page, kept apart from the rest.
+      // Colour stays inside the part of the picture where the stroke began (as on the page); writing stays on the
+      // question's lines (q.lines), and going outside them is told to the child.
+      const key = `${book.id}:${idx}:question:${c.x},${c.y}`;
+      const write = q.kind === 'write';
+      let warnedAt = 0;
+      const tell = (text, spoken = text) => {
+        scene.classList.add('q-warn');
+        schedule(() => scene.classList.remove('q-warn'), 700);
+        chime('tick'); said.textContent = text;
+        if (Date.now() - warnedAt < 2500) return;
+        warnedAt = Date.now();
+        speak('', spoken, null, el('div'));
+      };
+      // Writing lines: the mask the pencil stays inside. A line box drawn over the printed picture beside it is
+      // narrowed to the ruled part (columns that are mostly picture are left out), once the page picture is read.
+      const limit = write && q.lines?.length ? document.createElement('canvas') : null;
+      if (limit) {
+        limit.width = Math.round(c.w * 12); limit.height = Math.round(c.h * 12 / ratio);
+        const draw = () => {
+          const lx = limit.getContext('2d', { willReadFrequently: true }), px = pixelsOf(pic);
+          lx.clearRect(0, 0, limit.width, limit.height); lx.fillStyle = '#000';
+          scene.querySelectorAll('.q-line').forEach(n => n.remove());
+          q.lines.forEach(r0 => {
+            let r = { ...r0 };
+            if (px) {
+              const col = x => {   // share of a column of the box that is printed picture, not paper or a ruled line
+                const cx = Math.round(x / 100 * px.w), y0 = Math.round(r0.y / 100 * px.h), y1 = Math.round((r0.y + r0.h) / 100 * px.h);
+                let n = 0;
+                for (let y = y0; y < y1; y++) { const i = (y * px.w + cx) * 4; if (Math.min(px.data[i], px.data[i + 1], px.data[i + 2]) < 225) n++; }
+                return n / Math.max(1, y1 - y0);
+              };
+              let x0 = r0.x, x1 = r0.x + r0.w;
+              while (x0 < x1 - 3 && col(x0) > .3) x0 += .25;
+              while (x1 > x0 + 3 && col(x1) > .3) x1 -= .25;
+              // and widened along the ruled lines where the measured box stopped short of their ends
+              const ruled = x => { const v = col(x); return v > .015 && v <= .3; };
+              while (x1 < Math.min(99, r0.x + r0.w + 15) && ruled(x1 + .25)) x1 += .25;
+              while (x0 > Math.max(1, r0.x - 6) && ruled(x0 - .25)) x0 -= .25;
+              r = { ...r0, x: x0 + .3, w: x1 - x0 - .6 };
+            }
+            lx.fillRect((r.x - c.x) / c.w * limit.width, (r.y - c.y) / c.h * limit.height, r.w / c.w * limit.width, r.h / c.h * limit.height);
+            scene.append(el('div', { class: 'q-line', style: `${at(r.x, r.y)};width:${r.w / c.w * 100}%;height:${r.h / c.h * 100}%` }));
+          });
+        };
+        draw();
+        if (!pic.complete) pic.addEventListener('load', draw, { once: true });
+      }
+      // Colouring: q.parts are the pictures (or parts of one) to colour, each with the colours it may have; the
+      // small coloured pictures (samples) show them, and a wrong colour is told, not drawn. A stroke colours the
+      // whole part it starts in, up to its outline, so the lines inside it (a leaf's veins) do not stop it; a part
+      // of pieces (a ball's stripes) is coloured a piece at a time. Shapes are read from the page picture at its
+      // full size, so the colour meets the outline cleanly.
+      const partsOf = (q.parts || []).map(p => ({ ...p, colours: p.colours || (p.colour ? [p.colour] : []) }));
+      const WALL = 2;   // the outline is thickened by this many pixels while searching, so a hairline gap does not leak
+      const boxOf = (p, hp) => {
+        const x0 = Math.max(0, Math.floor(p.box.x / 100 * hp.w)), y0 = Math.max(0, Math.floor(p.box.y / 100 * hp.h));
+        const x1 = Math.min(hp.w - 1, Math.ceil((p.box.x + p.box.w) / 100 * hp.w)), y1 = Math.min(hp.h - 1, Math.ceil((p.box.y + p.box.h) / 100 * hp.h));
+        const bw = x1 - x0 + 1, bh = y1 - y0 + 1, wall = new Uint8Array(bw * bh);
+        for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
+          const i = ((y0 + y) * hp.w + x0 + x) * 4;
+          if (Math.min(hp.data[i], hp.data[i + 1], hp.data[i + 2]) > 200) continue;
+          for (let dy = -WALL; dy <= WALL; dy++) for (let dx = -WALL; dx <= WALL; dx++) {
+            const xx = x + dx, yy = y + dy;
+            if (xx >= 0 && yy >= 0 && xx < bw && yy < bh) wall[yy * bw + xx] = 1;
+          }
+        }
+        return { x0, y0, bw, bh, wall };
+      };
+      // fill the open (not wall) pixels reached from the seeds; then widen the result by WALL, back to the line
+      const flood = (b, seeds, widen) => {
+        const got = new Uint8Array(b.bw * b.bh), stack = [];
+        const add = k => { if (!got[k] && !b.wall[k]) { got[k] = 1; stack.push(k); } };
+        seeds.forEach(add);
+        while (stack.length) {
+          const k = stack.pop(), x = k % b.bw;
+          if (x > 0) add(k - 1); if (x < b.bw - 1) add(k + 1); if (k >= b.bw) add(k - b.bw); if (k < b.bw * (b.bh - 1)) add(k + b.bw);
+        }
+        for (let pass = 0; pass < widen; pass++) {
+          const grow = got.slice();
+          for (let k = 0; k < got.length; k++) if (got[k]) { const x = k % b.bw; if (x > 0) grow[k - 1] = 1; if (x < b.bw - 1) grow[k + 1] = 1; if (k >= b.bw) grow[k - b.bw] = 1; if (k < b.bw * (b.bh - 1)) grow[k + b.bw] = 1; }
+          got.set(grow);
+        }
+        return got;
+      };
+      const maskOf = (hp, b, on) => {
+        const out = document.createElement('canvas');
+        out.width = hp.w; out.height = hp.h;
+        const ox = out.getContext('2d'), img = ox.createImageData(b.bw, b.bh);
+        for (let k = 0; k < on.length; k++) if (on[k]) img.data[k * 4 + 3] = 255;
+        ox.putImageData(img, b.x0, b.y0);
+        return out;
+      };
+      const shapes = new Map();
+      const shapeOf = p => {
+        if (shapes.has(p)) return shapes.get(p);
+        const hp = fullPixelsOf(pic);
+        if (!hp) return null;
+        const b = boxOf(p, hp), edge = [];
+        for (let x = 0; x < b.bw; x++) edge.push(x, (b.bh - 1) * b.bw + x);
+        for (let y = 0; y < b.bh; y++) edge.push(y * b.bw, y * b.bw + b.bw - 1);
+        const outside = flood(b, edge, WALL + 1), inside = outside.map(v => 1 - v);   // the part: all the box but the paper round it (and the line's soft outer edge)
+        const at2 = (fx, fy) => { const x = Math.round(fx / 100 * hp.w) - b.x0, y = Math.round(fy / 100 * hp.h) - b.y0; return x >= 0 && y >= 0 && x < b.bw && y < b.bh ? y * b.bw + x : -1; };
+        const shape = { hp, b, inside, canvas: maskOf(hp, b, inside), has: (fx, fy) => { const k = at2(fx, fy); return k >= 0 && !!inside[k]; }, at: at2 };
+        shapes.set(p, shape);
+        return shape;
+      };
+      // the part under the touch: the first one whose own shape (not just its box) is there
+      const pick = (x, y) => {
+        // q.skip: printed answer boxes inside a picture's area are for writing, not colouring
+        if ((q.skip || []).some(r => x >= r.x && y >= r.y && x <= r.x + r.w && y <= r.y + r.h)) return null;
+        for (const p of partsOf) {
+          if (x < p.box.x || y < p.box.y || x > p.box.x + p.box.w || y > p.box.y + p.box.h) continue;
+          const shape = shapeOf(p);
+          if (!shape?.has(x, y)) continue;
+          if (p.pieces) {
+            // the piece under the touch, up to its lines; p.seeds give each piece the colour the sample shows there
+            const k = shape.at(x, y), piece = flood(shape.b, [k], WALL);
+            if (!piece.some(v => v)) return null;
+            const seed = (p.seeds || []).find(sd => { const j = shape.at(sd.x, sd.y); return j >= 0 && piece[j]; });
+            return { mask: maskOf(shape.hp, shape.b, piece), allowed: seed ? [seed.colour] : p.colours, name: seed ? `${p.part} stripe` : p.part };
+          }
+          return { mask: shape.canvas, allowed: p.colours, name: p.part };
+        }
+        return null;
+      };
+      const names = list => list.map(colour => colourName(colour)[ur ? 'ur' : 'en']).join(T.or);
+      const surface = write ? { crop: c, limit, outside: () => tell(T.lines) }
+        : partsOf.length ? { img: pic, crop: c, pick, miss: () => tell(T.inside),
+          wrongAll: (allowed, name) => tell(...T.use(names(allowed), name)) }
+        : { img: pic, crop: c };
+      const canvasFor = () => inkCanvas(book, { w: c.w, h: c.h }, key, null, surface);
+      let canvas = canvasFor();
+      scene.append(canvas);
+      // where to start: a pencil bobs there until the child starts
+      if (q.hint) {
+        const hint = el('div', { class: 'q-hint', style: at(q.hint.x, q.hint.y), 'aria-hidden': 'true' }, write ? '✏️' : '🖍️');
+        scene.append(hint);
+        scene.addEventListener('pointerdown', () => hint.remove(), { once: true });
+      }
+      // only the colours this question needs: black to write with, or the colours of its pictures
+      const needed = write ? ['#222222'] : [...new Set(partsOf.flatMap(p => [...p.colours, ...(p.seeds || []).map(sd => sd.colour)]))];
+      const tools = drawTools(() => { delete drawings[key]; const fresh = canvasFor(); canvas.replaceWith(fresh); canvas = fresh; },
+        needed.length ? needed : ['#222222', '#e63946', '#f4a261', '#f9c74f', '#43aa8b', '#4aa3df', '#7b5ea7', '#ff8fab', '#8d5524']);
+      tools.hidden = false;
+      if (ur) { tools.dir = 'rtl'; tools.querySelector('.tools-lbl').textContent = write ? 'پنسل' : 'رنگ'; tools.querySelectorAll('.txt').forEach((b, i) => { b.textContent = i ? 'مٹائیں سب' : 'ربڑ'; }); }
+      // writing is the thin black pencil, colouring a broad colour
+      if (write) { brush.color = '#222222'; brush.size = 7; } else { brush.color = needed[0] || '#e63946'; brush.size = SIZES.at(-1)[0]; }
+      brush.erase = false; tools.sync();
+      // small coloured pictures from the book show how each should look: q.samples (words of the book's own Play
+      // games) or q.sample ({ page, x, y, w, h } or { word })
+      const samples = [...(q.samples || []).map(word => ({ word })), ...(q.sample ? [q.sample] : [])]
+        .map(sm => sm.word ? (s2 => s2 && { ...s2, word: sm.word })(sampleOf(book, sm.word)) : sm).filter(Boolean);
+      if (samples.length) {
+        parts[0] = el('div', { class: 'q-head' }, parts[0], el('div', { class: 'q-samples' }, ...samples.map(sc => {
+          const sp = pageOf(book, sc.page - 1);
+          return el('figure', { class: 'q-sample' },
+            el('div', { class: 'q-sample-pic', style: `aspect-ratio:${(sc.w * ratio) / sc.h}` },
+              el('img', { src: sp.img, alt: '', style: `width:${100 / sc.w * 100}%;left:${-sc.x / sc.w * 100}%;top:${-sc.y / sc.h * 100}%` })),
+            el('figcaption', { dir: ur ? 'rtl' : null }, sc.word || T.like));
+        })));
+      }
+      parts.push(said, tools);
+    }
+    modal(el('div', { class: 'modal-card question-card' }, ...parts), () => Object.assign(brush, previousBrush));
+    speak('', q.say || q.title, null, el('div'));
   }
 
   // The publisher's own video files, with a choice between them when there are several.
@@ -400,6 +722,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const pic = el('img', { src: pg.img, alt: '', draggable: 'false',
       style: `width:${100 / c.w * 100}%;left:${-c.x / c.w * 100}%;top:${-c.y / c.h * 100}%` });
     const scene = el('div', { class: 'game-scene', style: `--game-aspect:${(c.w * ratio) / c.h};aspect-ratio:${(c.w * ratio) / c.h}` }, pic);
+    // printed parts that only half fit in the crop (a heading strip) are covered with paper white
+    (g.hide || []).forEach(h => scene.append(el('div', { class: 'game-hide', 'aria-hidden': 'true',
+      style: `position:absolute;background:#fff;left:${(h.x - c.x) / c.w * 100}%;top:${(h.y - c.y) / c.h * 100}%;width:${h.w / c.w * 100}%;height:${h.h / c.h * 100}%` })));
     const hitButtons = [];
     g.targets.forEach(t => {
       const b = el('button', { class: 'game-hit', 'aria-label': t.name,
@@ -792,6 +1117,21 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     return px;
   }
+  // The page picture at its own full size, for the exercise questions' clean colouring edges.
+  const fullPixels = new Map();
+  function fullPixelsOf(img) {
+    if (!img.complete || !img.naturalWidth) return null;
+    let px = fullPixels.get(img.src);
+    if (!px) {
+      const w = img.naturalWidth, h = img.naturalHeight, cv = document.createElement('canvas');
+      cv.width = w; cv.height = h;
+      const cx = cv.getContext('2d', { willReadFrequently: true });
+      cx.drawImage(img, 0, 0);
+      try { px = { w, h, data: cx.getImageData(0, 0, w, h).data }; } catch { return null; }
+      fullPixels.set(img.src, px);
+    }
+    return px;
+  }
   function colourArea(img, fx, fy, regions, reviewedOnly = false) {
     const px = pixelsOf(img);
     if (!px) return null;
@@ -864,6 +1204,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       im.src = drawings[key];
     }
     let last = null, inside = null;           // inside: the part of the picture this stroke may colour
+    // page.crop: this canvas covers only that part of the page (% of the page), as in an exercise question.
+    // page.limit: a mask of this canvas's own size; writing stays inside it, and page.outside() is told when the
+    // pencil starts or goes outside (the lines a question is written on).
+    const crop = page?.crop, cx0 = crop ? crop.x / 100 : 0, cy0 = crop ? crop.y / 100 : 0, cw = crop ? crop.w / 100 : 1, ch = crop ? crop.h / 100 : 1;
+    const limitAt = p => { const l = page?.limit; if (!l) return true; const d = l.getContext('2d').getImageData(Math.floor(p[0]), Math.floor(p[1]), 1, 1).data; return d[3] > 0; };
     const pos = e => {
       const r = c.getBoundingClientRect();
       return [(e.clientX - r.left) / r.width * c.width, (e.clientY - r.top) / r.height * c.height];
@@ -884,8 +1229,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       scratch.width = w; scratch.height = h;          // also clears it
       line(sx, [a[0] - x0, a[1] - y0], [b[0] - x0, b[1] - y0]);
       sx.globalCompositeOperation = 'destination-in';
-      const k = inside.width / c.width;
-      sx.drawImage(inside, x0 * k, y0 * k, w * k, h * k, 0, 0, w, h);
+      // a picture part's mask covers the whole page while this canvas may be only a part of it (page.crop);
+      // the limit mask is this canvas's own size
+      const isLimit = inside === page?.limit, kx = inside.width * (isLimit ? 1 : cw) / c.width, ky = inside.height * (isLimit ? 1 : ch) / c.height;
+      const ox = isLimit ? 0 : inside.width * cx0, oy = isLimit ? 0 : inside.height * cy0;
+      sx.drawImage(inside, ox + x0 * kx, oy + y0 * ky, w * kx, h * ky, 0, 0, w, h);
       ctx.drawImage(scratch, x0, y0);
     };
     let own = false;
@@ -901,21 +1249,30 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       e.preventDefault();
       const p = pos(e), mode = watch ? watch.down(p, c, brush.erase) : 'free';
       if (mode === 'block') return;
-      const area = mode === 'free' && !brush.erase && page ? colourArea(page.img, p[0] / c.width, p[1] / c.height, page.regions, page.reviewedOnly) : null;
+      if (page?.limit && !brush.erase && !limitAt(p)) { page.outside?.(p); return; }
+      let area;
+      if (page?.pick && !brush.erase) {
+        // an exercise question's parts: the whole part, in one of its own colours
+        const hit = page.pick((cx0 + p[0] / c.width * cw) * 100, (cy0 + p[1] / c.height * ch) * 100);
+        if (!hit) { page.miss?.(); return; }
+        if (hit.allowed?.length && !hit.allowed.some(colour => colour.toLowerCase() === brush.color.toLowerCase())) { page.wrongAll?.(hit.allowed, hit.name); return; }
+        area = { mask: hit.mask };
+      } else area = mode === 'free' && !brush.erase && page?.img ? colourArea(page.img, cx0 + p[0] / c.width * cw, cy0 + p[1] / c.height * ch, page.regions, page.reviewedOnly) : null;
       // the paper round the pictures is not coloured (nor anything while the page picture is still loading)
-      if (mode === 'free' && !brush.erase && page && (!area || area.paper)) return;
+      if (mode === 'free' && !brush.erase && page?.img && !page.pick && (!area || area.paper)) return;
       // the colour the book shows for this part: one on offer, or else it is offered now
       const right = area?.required || (area?.want && page.palette ? requiredSwatch(area.want, page.palette) || page.add?.(hexOf(area.want)) || null : null);
       if (right && right.toLowerCase() !== brush.color.toLowerCase()) { page.wrong?.(right, [p[0] / c.width, p[1] / c.height]); return; }
       c.setPointerCapture(e.pointerId);
       last = p;
       own = mode === 'own';
-      inside = area?.mask || null;
+      inside = area?.mask || (brush.erase ? null : page?.limit) || null;
       if (!own) seg(last, [last[0] + 0.1, last[1] + 0.1]);
     });
     c.addEventListener('pointermove', e => {
       if (!last) return;
       const p = pos(e);
+      if (page?.limit && !brush.erase && !limitAt(p)) page.outside?.(p);
       if (own) watch.move(p, c); else seg(last, p);
       last = p;
     });

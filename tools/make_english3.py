@@ -231,6 +231,8 @@ def game_for(L, words):
     return {
         'type': 'game', 'title': f'Find the {L} words!', 'button': {'x': 32, 'y': 62},
         'crop': {'x': 5, 'y': 63, 'w': 90, 'h': 21},
+        # the '/a/ as in...' strip only half fits in the crop, so the game covers it
+        'hide': [{'x': 5, 'y': 62.5, 'w': 26, 'h': 5.4}],
         'targets': [{'name': word, 'x': a, 'y': 65, 'w': b - a, 'h': 19, 'say': f'{word[0].upper() + word[1:]} begins with {L}.'}
                     for (a, b), word in zip(THIRDS, words)]}
 

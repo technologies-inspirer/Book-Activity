@@ -21,7 +21,11 @@ async function startApp() {
     import('../books/activities-urdu3.js'),
     import('../books/activities-urdu4.js'),
     import('../books/activities-english4.js'),
-    import('../books/activities-maths4.js')
+    import('../books/activities-maths4.js'),
+    import('../books/activities-english5.js'),
+    import('../books/game-crops.js'),
+    import('../books/questions.js'),
+    import('../books/checklists.js')
   ]);
   const { App } = await import('./App.jsx');
   await minimumStartup;

@@ -22,6 +22,7 @@ export const learningBookMetadata = {
   'stemford-maths-3': { classId: 'play-group', seriesId: 'stemford', subjectId: 'maths' },
   'stemford-urdu-3': { classId: 'play-group', seriesId: 'stemford', subjectId: 'urdu' },
   'stemford-english-4': { classId: 'nursery', seriesId: 'stemford', subjectId: 'english' },
+  'stemford-english-5': { classId: 'prep', seriesId: 'stemford', subjectId: 'english' },
   'stemford-urdu-4': { classId: 'nursery', seriesId: 'stemford', subjectId: 'urdu' },
   'stemford-series-computer-book-0-curve': { classId: 'play-group', seriesId: 'stemford', subjectId: 'computer' },
   'stemford-computer-book-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'computer' },

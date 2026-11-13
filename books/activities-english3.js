@@ -62,6 +62,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "apple",
@@ -362,6 +370,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "banana",
@@ -649,6 +665,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "car",
@@ -951,6 +975,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "dog",
@@ -1252,6 +1284,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "envelope",
@@ -1552,6 +1592,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "fish",
@@ -1840,6 +1888,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "guava",
@@ -2142,6 +2198,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "hat",
@@ -2431,6 +2495,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "insect",
@@ -2731,6 +2803,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "jar",
@@ -3031,6 +3111,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "key",
@@ -3332,6 +3420,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "lemon",
@@ -3632,6 +3728,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "map",
@@ -3934,6 +4038,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "nest",
@@ -4235,6 +4347,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "orange",
@@ -4536,6 +4656,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "pear",
@@ -4837,6 +4965,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "quill",
@@ -5138,6 +5274,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "ring",
@@ -5439,6 +5583,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "sunflower",
@@ -5740,6 +5892,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "turtle",
@@ -6041,6 +6201,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "urn",
@@ -6344,6 +6512,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "vest",
@@ -6648,6 +6824,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "watch",
@@ -6950,6 +7134,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "X-ray",
@@ -7254,6 +7446,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "yarn",
@@ -7544,6 +7744,14 @@ Object.assign(window.BOOK_ACTIVITIES['new-stemford-english-3'], {
     "w": 90,
     "h": 21
    },
+   "hide": [
+    {
+     "x": 5,
+     "y": 62.5,
+     "w": 26,
+     "h": 5.4
+    }
+   ],
    "targets": [
     {
      "name": "zip",
