@@ -1891,6 +1891,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       R.busy = true;
       stopSpeak(); closeMenu();
       pageSound();
+      // the Activity button is not shown while a page turns over it; it comes back on the new pages (after)
+      if (activityBtn) activityBtn.hidden = true;
       // fwd: the right-hand sheet turns over to the left (going on in an English book, back in an Urdu one)
       const fwd = (dir > 0) !== rtl;
       const sheet = el('div', { class: 'flipper ' + (fwd ? 'fwd' : 'back') },

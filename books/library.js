@@ -5834,6 +5834,7 @@ window.PDF_BOOKS = [
   "c1": "#cdc6bb",
   "c2": "#79756e",
   "rtl": false,
+  "frontCover": true,
   "qr": {
    "4": {
     "url": "https://o2o.to/i/8EJAVKTU4XFN",
