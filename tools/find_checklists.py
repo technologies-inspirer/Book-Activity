@@ -13,7 +13,8 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 BOOKS = {'new-stemford-english-3': False, 'stemford-urdu-3': True, 'stemford-urdu-4': True, 'stemford-english-4': False,
-         'stemford-maths-3': False, 'stemford-maths-4': False, 'stemford-series-computer-book-0-curve': False}
+         'stemford-maths-3': False, 'stemford-maths-4': False, 'stemford-series-computer-book-0-curve': False,
+         'maxford-global-qaida-3-english': False}
 
 def white_parts(im, y_from):
     """White components (boxes, stars) below y_from (% of the page): [x, y, w, h] in % of the page."""
@@ -23,20 +24,26 @@ def white_parts(im, y_from):
     n, _, stats, _ = cv2.connectedComponentsWithStats(white, connectivity=4)
     return [[x / w * 100, y / h * 100, bw / w * 100, bh / h * 100] for x, y, bw, bh, _ in stats[1:]]
 
-def yellowish(im, r):
+def yellowish(im, r, blue_limit=200, below=False):
     """True when the ring round a box is the checklist's yellow panel."""
     h, w = im.shape[:2]
     x0, y0, x1, y1 = [int(v) for v in (r[0] / 100 * w - 6, r[1] / 100 * h - 6, (r[0] + r[2]) / 100 * w + 6, (r[1] + r[3]) / 100 * h + 6)]
+    # Maxford's first answer row touches its green/red headings; inspect below the box there.
+    if below:
+        y0 = int((r[1] + r[3]) / 100 * h)
     ring = im[max(0, y0):y1, max(0, x0):x1].reshape(-1, 3).astype(int)
     b, g, rr = ring[:, 0], ring[:, 1], ring[:, 2]
-    return ((rr > 220) & (g > 190) & (b < 200)).mean() > .25
+    return ((rr > 220) & (g > 190) & (b < blue_limit)).mean() > .25
 
 def find(book, page, urdu):
     im = cv2.imread(str(ROOT / f'books/{book}/p{page:03}.jpg'))
     if im is None:
         return None
     parts = white_parts(im, 60)
-    boxes = [r for r in parts if 3.5 < r[2] < 11 and 1.6 < r[3] < 4.5 and yellowish(im, r)]
+    maxford = book == 'maxford-global-qaida-3-english'
+    # Maxford has smaller boxes on a paler yellow panel. Keep the other editions' thresholds unchanged.
+    boxes = [r for r in parts if 2 < r[2] < 3.2 and 1.3 < r[3] < 2.1 and yellowish(im, r, 220, below=True)] if maxford else [
+        r for r in parts if 3.5 < r[2] < 11 and 1.6 < r[3] < 4.5 and yellowish(im, r)]
     if len(boxes) < 8:
         return None
     # two columns of boxes, rows paired by height
@@ -69,7 +76,12 @@ def find(book, page, urdu):
         stars = [[round(v, 2) for v in s] for s in stars] if len(stars) == 5 else []
     top = min(r[1] for r in left + right)
     end = (max(s[1] + s[3] for s in stars) if stars else bottom) + 1.5
-    return {'rows': yes_no, 'stars': stars, 'crop': [3, round(top - 5, 2), 94, round(end - top + 5, 2)]}
+    heading = 3.8 if maxford else 5
+    result = {'rows': yes_no, 'stars': stars, 'crop': [3, round(top - heading, 2), 94, round(end - top + heading, 2)]}
+    if maxford:
+        # Beside the banner, clear of the pictures above and the Yes/No headings on the right.
+        result['button'] = {'x': 60, 'y': round(top - heading, 2)}
+    return result
 
 def main():
     out, count = {}, 0

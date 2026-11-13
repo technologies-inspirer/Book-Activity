@@ -650,10 +650,7 @@ img.ink { pointer-events: none; }
 .match-dot.on { background: #4aa3df; box-shadow: 0 0 0 4px #4aa3df; }
 .match-dot.done { background: #2a9d8f; box-shadow: 0 0 0 2px #2a9d8f; animation: none; cursor: default; }
 @keyframes dot-pulse { 50% { transform: scale(1.18); } }
-.tick-box, .tick-star { position: absolute; z-index: 2; border: 0; padding: 0; background: transparent; cursor: pointer; border-radius: 6px; }
-.tick-box:hover { background: #2a9d8f1a; }
-.tick-box.on::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #2a9d8f; font: 900 26px/1 var(--display); }
-.tick-star.on::after { content: '★'; position: absolute; inset: -10%; display: grid; place-items: center; color: #f4b400; font-size: 28px; line-height: 1; }
+.game-said.question-alert { color: #92212c; background: #fff0f1; border: 2px solid #dc5260; border-radius: 12px; padding: 10px 14px; font-weight: 800; overflow-wrap: anywhere; }
 .choose-hit { position: absolute; border: 0; background: transparent; border-radius: 50%; cursor: pointer; padding: 0; z-index: 2; }
 .choose-hit.ringed { box-shadow: 0 0 0 4px #2a9d8f; background: #2a9d8f1a; }
 .choose-hit.wrong { box-shadow: 0 0 0 4px #e63946; animation: shake .4s; }

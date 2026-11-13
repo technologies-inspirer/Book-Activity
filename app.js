@@ -248,10 +248,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
        sample?: { page, x, y, w, h } }  (positions in % of the page). A choose question rings each right answer tapped. A colour or write question opens its part of
      the page with the pencil and colours; a match question puts a dot by each thing, and the child draws a line
      from a dot to the dot of its pair (the same id). */
-  const QUESTION_ICON = { colour: '🖍️', write: '✏️', match: '🔗', choose: '⭕', tick: '☑️' };
-  const QUESTION_LABEL = { colour: 'Colour', write: 'Write', match: 'Match', choose: 'Circle', tick: 'Checklist' };
-  const QUESTION_LABEL_UR = { colour: 'رنگ بھریں', write: 'لکھیں', match: 'ملائیں', choose: 'دائرہ', tick: 'چیک لسٹ' };
-  const ticked = new Map();   // checklist answers, kept while the book is open
+  const QUESTION_ICON = { colour: '🖍️', write: '✏️', match: '🔗', choose: '⭕' };
+  const QUESTION_LABEL = { colour: 'Colour', write: 'Write', match: 'Match', choose: 'Circle' };
+  const QUESTION_LABEL_UR = { colour: 'رنگ بھریں', write: 'لکھیں', match: 'ملائیں', choose: 'دائرہ' };
   // what the question window tells the child, in the book's language
   const QSAY = {
     en: { again: 'Try again!', lines: 'Write on the lines!', inside: 'Colour inside a picture!', matched: 'Well done! You matched them all.',
@@ -286,7 +285,21 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // printed parts that only half fit (a checklist corner) are covered with paper white
     (q.hide || []).forEach(h => scene.append(el('div', { class: 'game-hide', 'aria-hidden': 'true',
       style: `position:absolute;background:#fff;${at(h.x, h.y)};width:${h.w / c.w * 100}%;height:${h.h / c.h * 100}%` })));
-    const said = el('div', { class: 'game-said', dir: ur ? 'rtl' : null });
+    const said = el('div', { class: 'game-said', dir: ur ? 'rtl' : null, role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
+    const feedback = (message, warning = false) => {
+      said.classList.toggle('question-alert', warning);
+      said.setAttribute('role', warning ? 'alert' : 'status');
+      said.setAttribute('aria-live', warning ? 'assertive' : 'polite');
+      said.textContent = message;
+    };
+    let warnedAt = 0;
+    const warn = (message, spoken = message) => {
+      feedback(message, true);
+      chime('tick');
+      if (Date.now() - warnedAt < 2500) return;
+      warnedAt = Date.now();
+      speak('', spoken, null, el('div'));
+    };
     const parts = [el('h3', { dir: ur ? 'rtl' : null }, q.title), scene];
     const previousBrush = { ...brush };
     if (q.kind === 'match') {
@@ -335,43 +348,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           line(local(start.dot), local(end.dot), 'joined');
           // every dot of that pair is done (a letter may have a dot on each side)
           dots.forEach(b => { if (b.dot.id === start.dot.id) b.classList.add('done'); }); joined.add(start.dot.id);
-          if (joined.size === pairs) { chime('done'); said.textContent = ur ? ALL_DONE.ur : ALL_DONE.en; speak('', T.matched, null, el('div')); }
-          else { chime('good'); said.textContent = praise(); }
+          if (joined.size === pairs) { chime('done'); feedback(ur ? ALL_DONE.ur : ALL_DONE.en); speak('', T.matched, null, el('div')); }
+          else { chime('good'); feedback(praise()); }
         } else {
-          chime('tick'); said.textContent = T.again;
+          warn(T.again);
           const wrong = line(local(start.dot), local(end.dot), 'wrong');
           schedule(() => wrong.remove(), 700);
         }
       };
       scene.addEventListener('pointerup', finish);
       scene.addEventListener('pointercancel', () => { live?.remove(); live = null; from?.classList.remove('on'); from = null; });
-      parts.push(said);
-    } else if (q.kind === 'tick') {
-      // a checklist: Yes or No in each row (one of the two), and the teacher's stars
-      const key = `${book.id}:${idx}:tick`, state = ticked.get(key) || { rows: {}, stars: 0 };
-      ticked.set(key, state);
-      const area = ([x, y, w, h], cls, label) => el('button', { class: cls, 'aria-label': label,
-        style: `${at(x, y)};width:${w / c.w * 100}%;height:${h / c.h * 100}%` });
-      const done = () => {
-        if (Object.keys(state.rows).length < q.rows.length) return;
-        chime('done'); said.textContent = ur ? 'چیک لسٹ مکمل! 🎉' : 'Checklist complete! 🎉';
-      };
-      q.rows.forEach((row, i) => {
-        const yes = area(row.yes, 'tick-box', ur ? 'جی ہاں' : 'Yes'), no = area(row.no, 'tick-box', ur ? 'جی نہیں' : 'No');
-        const show = () => { yes.classList.toggle('on', state.rows[i] === 'yes'); no.classList.toggle('on', state.rows[i] === 'no'); };
-        [[yes, 'yes'], [no, 'no']].forEach(([b, v]) => b.addEventListener('click', () => {
-          state.rows[i] = state.rows[i] === v ? undefined : v;
-          if (!state.rows[i]) delete state.rows[i];
-          show(); chime('tick'); done();
-        }));
-        show(); scene.append(yes, no);
-      });
-      const stars = (q.stars || []).map((st, i) => {
-        const b = area(st, 'tick-star', `${i + 1}`);
-        b.addEventListener('click', () => { state.stars = state.stars === i + 1 ? i : i + 1; stars.forEach((sb, k) => sb.classList.toggle('on', k < state.stars)); chime('good'); });
-        scene.append(b); return b;
-      });
-      stars.forEach((sb, k) => sb.classList.toggle('on', k < state.stars));
       parts.push(said);
     } else if (q.kind === 'choose') {
       // circle the right one: a tap on a right answer rings it; all of them rung finishes the question
@@ -384,10 +370,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           if (b.classList.contains('ringed')) return;
           if (o.correct) {
             b.classList.add('ringed'); found++;
-            if (found === right) { chime('done'); said.textContent = ur ? ALL_DONE.ur : ALL_DONE.en; speak('', T.found, null, el('div')); }
-            else { chime('good'); said.textContent = praise(); }
+            if (found === right) { chime('done'); feedback(ur ? ALL_DONE.ur : ALL_DONE.en); speak('', T.found, null, el('div')); }
+            else { chime('good'); feedback(praise()); }
           } else {
-            chime('tick'); said.textContent = T.again;
+            warn(T.again);
             b.classList.add('wrong'); schedule(() => b.classList.remove('wrong'), 600);
           }
         });
@@ -400,14 +386,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       // question's lines (q.lines), and going outside them is told to the child.
       const key = `${book.id}:${idx}:question:${c.x},${c.y}`;
       const write = q.kind === 'write';
-      let warnedAt = 0;
       const tell = (text, spoken = text) => {
         scene.classList.add('q-warn');
         schedule(() => scene.classList.remove('q-warn'), 700);
-        chime('tick'); said.textContent = text;
-        if (Date.now() - warnedAt < 2500) return;
-        warnedAt = Date.now();
-        speak('', spoken, null, el('div'));
+        warn(text, spoken);
       };
       // Writing lines: the mask the pencil stays inside. A line box drawn over the printed picture beside it is
       // narrowed to the ruled part (columns that are mostly picture are left out), once the page picture is read.
@@ -497,6 +479,18 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         for (let x = 0; x < b.bw; x++) edge.push(x, (b.bh - 1) * b.bw + x);
         for (let y = 0; y < b.bh; y++) edge.push(y * b.bw, y * b.bw + b.bw - 1);
         const outside = flood(b, edge, WALL + 1), inside = outside.map(v => 1 - v);   // the part: all the box but the paper round it (and the line's soft outer edge)
+        // Explicit guides for dotted shapes: the gaps in a dashed outline cannot hold a flood fill.
+        // Their measured box follows the printed guide; inset the mask to keep ink inside its edge.
+        if (['ellipse', 'rectangle', 'triangle'].includes(p.outline)) {
+          const inset = WALL + 1, width = b.bw - 1 - 2 * inset, height = b.bh - 1 - 2 * inset;
+          for (let y = 0; y < b.bh; y++) for (let x = 0; x < b.bw; x++) {
+            const nx = (x - inset) / width, ny = (y - inset) / height;
+            const inBox = nx >= 0 && nx <= 1 && ny >= 0 && ny <= 1;
+            inside[y * b.bw + x] = inBox && (p.outline === 'ellipse'
+              ? (2 * nx - 1) ** 2 + (2 * ny - 1) ** 2 <= 1
+              : p.outline === 'triangle' ? Math.abs(2 * nx - 1) <= ny : true) ? 1 : 0;
+          }
+        }
         const at2 = (fx, fy) => { const x = Math.round(fx / 100 * hp.w) - b.x0, y = Math.round(fy / 100 * hp.h) - b.y0; return x >= 0 && y >= 0 && x < b.bw && y < b.bh ? y * b.bw + x : -1; };
         const shape = { hp, b, inside, canvas: maskOf(hp, b, inside), has: (fx, fy) => { const k = at2(fx, fy); return k >= 0 && !!inside[k]; }, at: at2 };
         shapes.set(p, shape);
@@ -545,8 +539,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (write) { brush.color = '#222222'; brush.size = 7; } else { brush.color = needed[0] || '#e63946'; brush.size = SIZES.at(-1)[0]; }
       brush.erase = false; tools.sync();
       // small coloured pictures from the book show how each should look: q.samples (words of the book's own Play
-      // games) or q.sample ({ page, x, y, w, h } or { word })
-      const samples = [...(q.samples || []).map(word => ({ word })), ...(q.sample ? [q.sample] : [])]
+      // games or explicit { page, x, y, w, h } crops) or q.sample (one crop or { word }).
+      const samples = [...(q.samples || []).map(sample => typeof sample === 'string' ? { word: sample } : sample), ...(q.sample ? [q.sample] : [])]
         .map(sm => sm.word ? (s2 => s2 && { ...s2, word: sm.word })(sampleOf(book, sm.word)) : sm).filter(Boolean);
       if (samples.length) {
         parts[0] = el('div', { class: 'q-head' }, parts[0], el('div', { class: 'q-samples' }, ...samples.map(sc => {
@@ -708,7 +702,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     const prompt = el('div', { class: 'game-prompt', dir: g.ur ? 'rtl' : null });
     // what is being said shows inside the card, so nothing covers the stars and score
-    const said = el('div', { class: 'game-said', dir: g.ur ? 'rtl' : null });
+    const said = el('div', { class: 'game-said', dir: g.ur ? 'rtl' : null, role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
     const starsEl = el('div', { class: 'game-stars' });
     const scoreEl = el('div', { class: 'game-score' });
     const showScore = () => {
@@ -761,10 +755,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (busy || round >= order.length) return;
       if (t !== order[round]) {
         b.classList.remove('no'); b.offsetWidth; b.classList.add('no');
+        said.classList.add('question-alert'); said.setAttribute('role', 'alert'); said.setAttribute('aria-live', 'assertive');
         speak(g.title, g.ur ? `یہ ${t.name} ہے۔ دوبارہ کوشش کریں!` : `That is the ${t.name}. Try again!`, null, said);
         return;
       }
       busy = true;
+      said.classList.remove('question-alert'); said.setAttribute('role', 'status'); said.setAttribute('aria-live', 'polite');
       b.classList.add('yes');
       stars++;
       round++;

@@ -10,7 +10,7 @@ for (const file of [
   'data.js', 'books/library.js', 'books/zones.js', 'books/activities.js',
   'books/audio-urdu3.js', 'books/activities-english3.js',
   'books/activities-computer0.js', 'books/activities-maxford.js',
-  'books/activities-maths3.js', 'books/activities-urdu3.js', 'books/activities-urdu4.js', 'books/activities-english4.js', 'books/activities-maths4.js', 'books/activities-english5.js', 'books/game-crops.js', 'books/questions.js', 'books/checklists.js'
+  'books/activities-maths3.js', 'books/activities-urdu3.js', 'books/activities-urdu4.js', 'books/activities-english4.js', 'books/activities-maths4.js', 'books/activities-english5.js', 'books/game-crops.js', 'books/questions.js'
 ]) await import(new URL(`../${file}`, import.meta.url));
 
 const originalDemoIds = window.DEMO_BOOKS.map(book => book.id);
@@ -44,8 +44,7 @@ for (const book of books) {
     assert.equal(book.pages.length, original.pages);
     book.pages.forEach((page, index) => {
       // the reader applies the reviewed game fixes of books/game-crops.js and changes nothing else
-      // (the printed checklists, books/checklists.js, are added as questions too)
-      assert.deepEqual(page.acts.filter(act => act.kind !== 'tick'), [].concat(window.BOOK_ACTIVITIES?.[book.id]?.[index + 1] || [])
+      assert.deepEqual(page.acts, [].concat(window.BOOK_ACTIVITIES?.[book.id]?.[index + 1] || [])
         .map((act, i) => { const fix = window.GAME_FIXES?.[book.id]?.[index + 1]?.[i]; return fix && act.type === 'game' ? { ...act, ...fix } : act; })
         .concat(window.BOOK_QUESTIONS?.[book.id]?.[index + 1] || []));
       assert.deepEqual(page.zones, window.BOOK_ZONES?.[book.id]?.[index + 1] || []);

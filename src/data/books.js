@@ -1,14 +1,5 @@
 const books = window.DEMO_BOOKS;
 
-// A page's printed checklist (found by tools/find_checklists.py) as a question to tick, its button by its banner.
-function checklist(book, page) {
-  const c = window.BOOK_CHECKLISTS?.[book.id]?.[page];
-  if (!c) return [];
-  const [x, y, w, h] = c.crop, top = y + 5;
-  return [{ type: 'question', kind: 'tick', title: book.rtl ? 'چیک لسٹ' : 'Checklist', button: book.rtl ? { x: 60, y: top - 6.2 } : { x: 19, y: top - 5.6 },
-    crop: { x, y, w, h }, rows: c.rows, stars: c.stars }];
-}
-
 // Add each PDF book once, even if this module runs again (e.g. a dev-server hot reload).
 const known = new Set(books.map(book => book.id));
 books.unshift(...(window.PDF_BOOKS || []).filter(book => !known.has(book.id)).map(book => ({
@@ -31,7 +22,7 @@ books.unshift(...(window.PDF_BOOKS || []).filter(book => !known.has(book.id)).ma
     acts: [].concat(window.BOOK_ACTIVITIES?.[book.id]?.[index + 1] || []).map((act, i) => {
       const fix = window.GAME_FIXES?.[book.id]?.[index + 1]?.[i];
       return fix && act.type === 'game' ? { ...act, ...fix } : act;
-    }).concat(window.BOOK_QUESTIONS?.[book.id]?.[index + 1] || [], checklist(book, index + 1)),   // exercise questions (books/questions.js, books/checklists.js)
+    }).concat(window.BOOK_QUESTIONS?.[book.id]?.[index + 1] || []),   // exercise questions (books/questions.js)
     zones: window.BOOK_ZONES?.[book.id]?.[index + 1] || []
   }))
 })));

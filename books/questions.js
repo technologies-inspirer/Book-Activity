@@ -140,6 +140,111 @@
       81: [Q('write', 'Help the bee find the flower by following the letters from a to z.', 'Start at a. Draw a line through the letters in order, from a to z, to the flower.',
         [33, 10.5], box(5, 13, 90, 80), { label: 'Draw', hint: { x: 21, y: 21 }, lines: rects([[5, 14, 90, 78]]) })]
     },
+    // Maths 3+ practice questions, reviewed against this edition's printed pages.
+    'stemford-maths-3': (() => {
+      const W = (title, button, crop, lines, say = title) => Q('write', title, say, button, crop,
+        { hint: { x: lines[0][0] + lines[0][2] / 2, y: lines[0][1] + lines[0][3] / 2 }, lines: rects(lines) });
+      const pick = (title, say, button, crop, options) => Q('choose', title, say, button, crop,
+        { options: options.map(([x, y, w, h, correct, label]) => ({ x, y, w, h, correct, label })) });
+      const topCounts = (twoHands = false) => [
+        W('Count and write.', [33, 1], box(5, 9.3, 46.5, 17), [[41.5, 17.7, 7, 4.8]], 'Count the coloured dots and write their number.'),
+        W('Count the pointed fingers.', [78, 1], box(53.5, 5.5, 42, 23.7), [[twoHands ? 85.2 : 80.5, 17.2, 6.7, 4.5]], 'Count the pointed fingers and write their number.')
+      ];
+      const groupChoice = (n, button, crop, options) => pick(`Find and circle the groups of '${n}' objects.`,
+        `Count each group. Tap every group with ${n} objects.`, button, crop, options);
+      const cross = (n, what, top, bottom, numberBox) => W(`Trace, count and cross out '${n}' ${what}.`, [0.4, top + 3],
+        box(4, top + 3.1, 91, bottom - top - 3.1), [numberBox, [17, top + 6, 74, bottom - top - 7]],
+        `Trace ${n}. Count and cross out ${n} ${what}.`);
+      const shapes = (page, name, colour, bounds, model, y) => [
+        W(`Trace the ${name}s.`, [57, y], box(8, y + 5.3, 84, 88.5 - y - 5.3), bounds,
+          `Trace each dotted ${name}, starting at the dot.`),
+        Q('colour', `Colour the ${name}s ${colour === C.red ? 'red' : colour === C.blue ? 'blue' : colour === C.yellow ? 'yellow' : 'green'}.`,
+          `Colour inside each ${name} like the sample.`, [77, y], box(8, y + 5.3, 84, 88.5 - y - 5.3),
+          { hint: { x: bounds[0][0] + bounds[0][2] / 2, y: bounds[0][1] + bounds[0][3] / 2 },
+            parts: bounds.map((b, i) => ({ ...part(`${name} ${i + 1}`, b, colour), outline: name === 'circle' ? 'ellipse' : name === 'triangle' ? 'triangle' : 'rectangle' })),
+            samples: bounds.map(() => ({ page, ...model })) })
+      ];
+      const whatComes = (last = false) => {
+        const beforeY = last ? [16.4, 25] : [16.8, 25.7];
+        const afterY = last ? [39, 49.8] : [40.2, 51.1];
+        const betweenY = last ? [66.7, 80.0] : [71, 84.2];
+        const before = beforeY.flatMap(y => [11.5, 42.5, 74].map(x => [x, y, 5.5, 4.4]));
+        const after = afterY.flatMap(y => [17.4, 51, 85.4].map(x => [x, y, 5.6, 4.2]));
+        const between = betweenY.flatMap(y => [15.6, 48.2, 80.2].map(x => [x, y, 5.5, 4.2]));
+        if (last) { between.pop(); between.push([72, 80.2, 5.4, 4.2], [87.7, 80.2, 5.4, 4.2]); }
+        return [W('Write the number that comes before.', [78, 6], box(7, 14, 85, last ? 17 : 17.8), before),
+          W('Write the number that comes after.', [78, last ? 31.5 : 33.5], box(7, last ? 36 : 37, 86, last ? 19.5 : 20), after),
+          W('Write the number that comes in between.', [78, last ? 56 : 59.6], box(4, last ? 62 : 67, 92, last ? 27 : 27), between)];
+      };
+      const mazeRoute = [[3,1],[4,1],[4,2],[4,3],[3,3],[3,4],[2,4],[1,4],[1,5],[1,6],[2,6],[2,5],[3,5],[3,6],[4,6]];
+      return {
+        4: [W('Trace.', [30, 7], box(4, 13, 92, 77), [[23,20.4,52,2.4],[23,30.5,52,5],[23,43,52,5],[23,59,52,6],[23,76,52,6]],
+          'Start at each animal and trace the dotted path to its home.')],
+        5: [W("Write 'b' for the big and 's' for the small one.", [78, 51.2], box(9, 56, 80, 34),
+          [[32.4,79.9,6.4,4.4],[80.1,73.9,6.4,4.5]])],
+        8: [...topCounts(), W('Count and trace.', [76,29.5], box(8,35,79,27), [[13,45.9,9.3,6.1]], 'Count the pineapple and trace one.'),
+          W('Count and write.', [76,63], box(9,67,80,27), [[76.2,78,9,6.1]], 'Count the sun and write one.')],
+        11: [...topCounts(), W('Count and trace.', [76,29.5], box(8,35,79,27), [[13,45.9,9.3,6.1]], 'Count the cars and trace two.'),
+          W('Count and write.', [76,63], box(9,67,80,27), [[76.2,78,9,6.1]], 'Count the trees and write their number.')],
+        14: [...topCounts(), cross(3,'butterflies',32,59,[8,43.3,9,6]),
+          W('Count and write.', [76,65.5], box(9,70,85,23.5), [[81.4,75.8,9.3,6.0]], 'Count the balls and write their number.')],
+        17: [...topCounts(), cross(4,'birds',32,62,[7,46,9,6]),
+          groupChoice(4,[0.4,68],box(5,68,90,25.5), [[20,71,10,11,false,'one chick'],[48,70,42,10,true,'four trees'],
+            [8,82,31,10,true,'four doughnuts'],[56,83,30,9,false,'three balls']])],
+        18: [W('Tick the long vehicle and encircle the short one.', [78,50.5], box(6,54,86,35),
+          [[28,56.7,4.3,4.3],[77.6,54.3,4.3,4.3]], 'Tick the circle above the long bus, then ring the circle above the short car.')],
+        19: [W("Write 't' for the tall animal and 's' for the short one.", [78,51], box(34,51,38,39),
+          [[39.2,62.2,6.1,4.4],[60.5,81.9,6,4.4]])],
+        22: [...topCounts(), cross(5,'balls',32,61.5,[8,47,9,6]),
+          W('Count and write.', [76,64], box(10,69,82,24), [[81.1,79,9.5,6]], 'Count the pears and write their number.')],
+        23: [W('Count and write.', [77,5], box(10,11,84,28), [[40.3,19.7,9.2,4.1],[83.5,19.8,9.5,4.2],[40.3,34.2,9.2,4.2],[83.5,34.4,9.5,4.1]]),
+          Q('match','Count the objects and match them with the correct number.','Join each number to the group with that many objects.',
+            [38,43.5],box(10,43.4,84,30),{dots:[{id:'3',x:31,y:48.5},{id:'4',x:31,y:58.5},{id:'1',x:31,y:68.5},
+              {id:'1',x:69,y:49.5},{id:'3',x:69,y:59.5},{id:'4',x:69,y:69.5}]})],
+        26: [...topCounts(true), groupChoice(6,[37,44],box(6,35,88,26), [[15,36,18,11,true,'six oranges'],[59,37,27,10,false,'four ice creams'],
+          [15,50,18,9,false,'five strawberries'],[59,49,23,11,true,'six cupcakes']]),cross(6,'trees',65,94,[7,80.2,9,6])],
+        27: shapes(27,'circle',C.red,[[13.4,74.7,17.8,12.3],[41.8,74.7,17.8,12.3],[70.3,74.7,17.8,12.3]],box(3,0,93,44),69),
+        30: [...topCounts(true), W('Count and write.',[76,29.5],box(11,34,80,29),[[77.3,45,9.4,5.8]],'Count the seven chicks and write the number.'),
+          groupChoice(7,[77,94],box(6,68,89,25.5),[[8,70,41,9,true,'seven biscuits'],[55,70,34,9,false,'five strawberries'],
+            [8,82,29,11,false,'four oranges'],[54,81,38,12,true,'seven balls']])],
+        33: [...topCounts(true),groupChoice(8,[77,94],box(6,35,88,26.8),[[10,37,36,9,false,'four doughnuts'],[54,36,39,11,true,'eight ice creams'],
+          [8,50,35,10,true,'eight strawberries'],[51,50,41,10,false,'six pineapples']]),cross(8,'objects',65,94,[7,80.2,9,6])],
+        36: [...topCounts(true),W('Count and write.',[76,29.5],box(11,34,80,27),[[77.2,44.8,9.5,6]],'Count the carrots and write nine.'),
+          groupChoice(9,[77,94],box(6,68,89,26),[[8,70,38,10,true,'nine cupcakes'],[56,70,38,8,false,'six biscuits'],
+            [9,85,39,9,false,'five balls'],[58,81,35,12,true,'nine cherries']])],
+        37: [W("Write 'h' for the heavy and 'l' for the light one.",[77,55],box(4,57,89,33),[[13.2,59.7,6.2,4.4],[81.3,82.7,6,4.4]])],
+        38: [pick('Tick the object that is different.','Tap the ball that is different.',[77,50],box(6,54,88,17),
+          [[9,56,15,13,false,'ball one'],[26,56,15,13,true,'different ball'],[41,56,15,13,false,'ball three'],[58,54,15,13,false,'ball four'],[76,56,15,13,false,'ball five']]),
+          pick('Tick the objects that are same.','Tap the two ducks that are the same.',[77,70],box(6,73,88,20),
+            [[9,74,18,16,true,'first duck'],[32,75,17,15,false,'chick'],[48,74,18,16,true,'second duck'],[70,73,22,17,false,'hen']])],
+        39: shapes(39,'square',C.blue,[[13.7,73.2,18.3,13.5],[39.8,73.2,18.3,13.5],[65.9,73.2,18.3,13.5]],box(3,0,93,42),66.3),
+        41: [W('Trace and write.',[77,2],box(5,8,88,57),[[7.5,9.5,84,13.3],[7.5,23,84,9],[7.5,32.2,84,9],[7.5,41.5,84,9],[7.5,51,84,9]],'Trace zero and write more zeros in the empty cells.'),
+          pick("Tick the basket having '0' carrot.",'Tap the empty basket with no carrots.',[77,66.2],box(7,71,85,19),
+            [[9,74,25,15,false,'one carrot'],[37,74,25,15,false,'two carrots'],[65,74,25,15,true,'zero carrots']])],
+        44: [pick('Count the objects and circle the correct numbers.','Count each group and tap its number.',[77,4.5],box(13,13,72,27),
+          [[40.8,14.5,5,5,false,'4 apples'],[40.8,20.5,5,5,true,'6 apples'],[78.4,14.5,5,5,true,'8 pears'],[78.4,20.5,5,5,false,'10 pears'],
+            [40.8,29,5,5,false,'9 stars'],[40.8,34.5,5,5,true,'7 stars'],[78.4,29,5,5,false,'5 flowers'],[78.4,34.5,5,5,true,'10 flowers']]),
+          W('Count the objects in the picture and write their numbers in the boxes.',[55,43.9],box(4,47.5,90,27.3),
+            [[87.3,49.1,4.9,3],[87.3,56.1,4.9,3],[87.3,62.4,4.9,3],[87.3,69.6,4.9,3]])],
+        45: whatComes(),
+        56: [Q('colour','Help the baby fish to reach its mother by colouring the numbers in sequence from 1 to 15.',
+          'Start at one and colour the path through two, three, up to fifteen. Use yellow like the starting square.',[77,3],box(8,22,86,49.5),
+          {hint:{x:19,y:43},parts:mazeRoute.map(([row,col],i)=>part(String(i+1),[13.6+(col-1)*11.76-.3,23.4+(row-1)*7.89-.3,12.36,8.49],C.yellow)),
+            samples:[{page:56,...box(14,40,11,6.8)}]})],
+        57: shapes(57,'rectangle',C.yellow,[[12.8,76.3,29.8,10.4],[52.1,76.3,29.8,10.4]],box(3,0,93,45),69),
+        68: [pick('Count the objects and tick the relevant number.','Count the caps and bananas. Tap the correct number for each.',[77,4.5],box(9,12,81,29),
+          [[15,34.3,5.1,5,false,'19 caps'],[22,34.3,5.1,5,false,'16 caps'],[29,34.3,5.1,5,true,'20 caps'],[36,34.3,5.1,5,false,'13 caps'],
+            [59,34.3,5.1,5,false,'15 bananas'],[66,34.3,5.1,5,false,'17 bananas'],[73,34.3,5.1,5,true,'16 bananas'],[80,34.3,5.1,5,false,'18 bananas']]),
+          W('Write the missing numbers.',[77,42],box(4,47,90,24.5),[[31.6,50.4,9.3,5.6],[61.8,50.4,9.3,5.6],[13.6,63.2,9.3,5.6],[43.6,63.2,9.3,5.6],[58.6,63.2,9.3,5.6]])],
+        69: shapes(69,'triangle',C.green,[[12.8,74.1,19.7,13.8],[39.4,74.1,19.7,13.8],[65.8,74.1,19.7,13.8]],box(3,0,93,46),68.5),
+        70: [Q('match','Match each object with another object of the same colour.','Join each picture to the picture of the same colour.',[77,3.5],box(7,14,88,73),
+          {dots:[{id:'yellow',x:34,y:23},{id:'red',x:34,y:41},{id:'green',x:34,y:60},{id:'orange',x:34,y:79},
+            {id:'red',x:69,y:23},{id:'orange',x:69,y:41},{id:'yellow',x:69,y:60},{id:'green',x:69,y:79}]})],
+        71: [W('Trace and write.',[77,5.6],box(8,12,86,79),Array.from({length:10},(_,i)=>[11,12.8+i*7.92,37,6.3]).concat(Array.from({length:10},(_,i)=>[55.4,12.8+i*7.92,38,6.3])),
+          'Trace the numbers from one to twenty and write each number in the empty boxes beside it.')],
+        72: whatComes(true)
+      };
+    })(),
     'stemford-urdu-3': {
       10: [urduCircle('تصاویر کی ابتدائی آواز کے گرد دائرہ لگائیں۔', [30, 11.8], box(8, 15.5, 84, 21.5),
           [[17, 33.5, false, 'آ'], [28, 33.5, true, 'ا'], [45, 33.5, true, 'آ'], [56, 33.5, false, 'ا'], [73.5, 33.5, false, 'آ'], [84, 33.5, true, 'ا']]),
