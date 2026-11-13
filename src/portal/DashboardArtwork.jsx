@@ -13,5 +13,5 @@ const regions = {
 
 export function DashboardArtwork({ variant }) {
   const [, , width, height] = regions[variant].split(' ').map(Number);
-  return <svg className={`dashboard-artwork dashboard-artwork-${variant}`} viewBox={regions[variant]} width={width} height={height} preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false"><image href={artwork} x="0" y="0" width="1672" height="941" /></svg>;
+  return <svg className={`dashboard-artwork dashboard-artwork-${variant}`} viewBox={regions[variant]} width={width} height={height} preserveAspectRatio={variant === 'landscape' ? 'xMidYMin slice' : 'xMidYMid meet'} fill="none" aria-hidden="true" focusable="false"><image href={artwork} x="0" y="0" width="1672" height="941" /></svg>;
 }
