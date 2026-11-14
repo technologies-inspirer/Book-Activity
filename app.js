@@ -7,6 +7,8 @@ import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, 
 import bookColourRegions from './books/colour-regions.json';
 import reviewedPagePalettes from './books/colour-palettes.json';
 import { englishLessons } from './src/englishLessons.js';
+import { bookRhymes, rhymeSpread } from './src/data/bookRhymes.js';
+import { createLessonHistory } from './src/readerLessonHistory.js';
 import './src/englishLearning.css';
 
 const drawings = {};
@@ -49,6 +51,17 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   let focusEl = null;                        // the zoomed-in page, if one is open
   let focusResizeCleanup = null;
   let introNext = intro;                     // play the cover opening when the reader appears
+  const lessonHistory = createLessonHistory({
+    history,
+    onReturn: entry => {
+      if (R?.book.id !== entry.bookId) return;
+      R.closeLesson(true);
+      const page = Number(entry.readerHash.split('/read/')[1]);
+      if (Number.isInteger(page) && page > 0) R.show(Math.floor((page - 1) / 2));
+    },
+    onRestore: entry => R?.book.id === entry.bookId && R.restoreLesson?.(entry.lessonKey)
+  });
+  const onLessonPopState = () => lessonHistory.pop();
 
   const I = {
     speaker: '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
@@ -1692,15 +1705,51 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const spreads = Math.ceil(book.pages.length / 2);
     const ratio = book.ratio || 0.75;
     const lessons = !readerBook ? englishLessons(book) : [];
+    const rhymes = !readerBook ? bookRhymes(book) : [];
+    const urduDock = book.id === 'stemford-urdu-3';
     let currentLesson = lessons[0];
     const lessonView = el('section', { class: 'english-lesson', hidden: true, 'aria-label': 'Letter learning' });
     const letterButtons = [];
     const stopLessonVideo = () => lessonView.querySelectorAll('iframe').forEach(frame => frame.remove());
-    const closeLesson = () => {
+    function openRhymes(event) {
+      if (R?.book !== book || R.busy) return;
+      const trigger = event.currentTarget;
+      const headingId = `rhymes-${book.id}`;
+      const pageNumber = number => urduDock ? String(number).replace(/\d/g, digit => '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]) : String(number);
+      const list = el('div', { class: 'rhyme-list' }, rhymes.map(rhyme => {
+        const current = rhymeSpread(rhyme.page) === R.spread;
+        return el('button', { type: 'button', class: 'rhyme-choice', 'aria-current': current ? 'page' : null, onclick: () => {
+          if (R?.book !== book || R.busy) return;
+          modalEl?.close();
+          stopLessonVideo(); lessonView.hidden = true; root.classList.remove('english-lesson-open');
+          leafTo(rhymeSpread(rhyme.page));
+        } }, el('span', { class: 'rhyme-note', 'aria-hidden': 'true' }, el('img', { src: book.pages[rhyme.page - 1].img, alt: '', loading: 'lazy' })),
+        el('span', { class: 'rhyme-copy' }, el('b', {}, rhyme.title),
+          el('small', {}, `${urduDock ? 'صفحہ' : 'Page'} ${pageNumber(rhyme.printedPage)}`)),
+        current && el('span', { class: 'rhyme-current' }, urduDock ? 'کھلا ہے' : 'Open'));
+      }));
+      const card = el('div', { class: 'modal-card rhyme-popup', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': headingId, dir: urduDock ? 'rtl' : 'ltr', lang: urduDock ? 'ur' : 'en', tabindex: '-1' },
+        el('h3', { id: headingId }, urduDock ? 'نظمیں' : 'Rhymes'),
+        el('p', { class: 'rhyme-intro' }, urduDock ? 'نظم منتخب کریں، کتاب اسی صفحے پر کھل جائے گی۔' : 'Choose a rhyme to open its page in the book.'), list);
+      card.addEventListener('keydown', event => {
+        if (event.key !== 'Tab') return;
+        const controls = [...card.querySelectorAll('button')];
+        const first = controls[0], last = controls.at(-1);
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === card)) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      });
+      modal(card, () => trigger.isConnected && trigger.focus({ preventScroll: true }));
+      const close = card.querySelector('.modal-x');
+      close.setAttribute('aria-label', urduDock ? 'بند کریں' : 'Close rhymes');
+      close.title = urduDock ? 'بند کریں' : 'Close rhymes';
+      list.querySelector('button')?.focus({ preventScroll: true });
+    }
+    const closeLesson = (fromHistory = false) => {
       stopLessonVideo();
       lessonView.hidden = true;
       root.classList.remove('english-lesson-open');
       letterButtons.find(button => button.dataset.letter === currentLesson?.key)?.focus();
+      if (fromHistory !== true) lessonHistory.close();
     };
     // "Letter" or "Number", and whether the words in a lesson begin with it
     const kindOf = lesson => lesson.kind || 'Letter', isLetter = lesson => kindOf(lesson) === 'Letter';
@@ -1734,13 +1783,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         el('p', {}, `Can you draw ${lesson.words[0] ? `a picture of ${lesson.words[0]}` : isLetter(lesson) ? `something beginning with ${lesson.name}` : `${lesson.name} things`}? Pick a colour and make it yours.`), board, drawingTools),
       () => Object.assign(brush, previousBrush));
     }
-    function selectLesson(lesson) {
+    function selectLesson(lesson, fromHistory = false) {
       if (R?.busy) return;
       if (editMode) { editMode = false; root.classList.remove('edit'); editBtn.classList.remove('on'); }
       show(Math.floor((lesson.page - 1) / 2));
       currentLesson = lesson;
       root.classList.add('english-lesson-open');
       lessonView.hidden = false;
+      if (!fromHistory && !readerBook) lessonHistory.open(book.id, lesson.key, link(book, Math.floor((lesson.page - 1) / 2) * 2 + 1));
       letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === lesson.key)));
       const trace = () => openFocus(book, lesson.tracePage - 1, right.querySelector('.page'), true);
       const kind = kindOf(lesson), letter = isLetter(lesson);
@@ -1802,11 +1852,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const [firstRail, secondRail] = rtl ? [railOf(lessons.slice(half)), railOf(lessons.slice(0, half))] : [railOf(lessons.slice(0, half)), railOf(lessons.slice(half))];
     const englishLayout = lessons.length && el('div', { class: 'english-reader-layout' }, firstRail,
       el('div', { class: 'english-reader-center' }, stage, lessonView,
-        el('div', { class: 'english-reader-dock', role: 'toolbar', 'aria-label': 'Letter activities' },
-          el('button', { onclick: () => selectLesson(currentLesson), html: I.speaker + `<span>${kindOf(lessons[0] || {})} lesson</span>` }),
-          el('button', { onclick: () => watchLesson(currentLesson), html: I.play + '<span>Story</span>' }),
-          el('button', { onclick: () => { selectLesson(currentLesson); openFocus(book, currentLesson.tracePage - 1, right.querySelector('.page'), true); }, html: I.pen + '<span>Trace & colour</span>' }),
-          el('button', { onclick: () => openDrawing(currentLesson), html: I.pen + '<span>Drawing pad</span>' }))),
+        el('div', { class: 'english-reader-dock', role: 'toolbar', 'aria-label': urduDock ? 'حروف کی سرگرمیاں' : 'Letter activities', dir: urduDock ? 'rtl' : null, lang: urduDock ? 'ur' : null },
+          el('button', { onclick: () => selectLesson(currentLesson), html: I.speaker + `<span>${urduDock ? 'حرف کا سبق' : `${kindOf(lessons[0] || {})} lesson`}</span>` }),
+          el('button', { onclick: () => watchLesson(currentLesson), html: I.play + `<span>${urduDock ? 'کہانی' : 'Story'}</span>` }),
+          el('button', { onclick: () => { selectLesson(currentLesson); openFocus(book, currentLesson.tracePage - 1, right.querySelector('.page'), true); }, html: I.pen + `<span>${urduDock ? 'لکھائی اور رنگ' : 'Trace & colour'}</span>` }),
+          el('button', { onclick: () => openDrawing(currentLesson), html: I.pen + `<span>${urduDock ? 'تصویر بنائیں' : 'Drawing pad'}</span>` }),
+          rhymes.length > 0 && el('button', { type: 'button', class: 'reader-rhymes-button', lang: 'en', dir: 'ltr', 'aria-haspopup': 'dialog', onclick: openRhymes }, el('span', { 'aria-hidden': 'true' }, '♫'), el('span', {}, 'Rhymes')))),
       secondRail);
     const root = el('div', { class: 'reader' + (lessons.length ? ' english-learning' : '') },
       el('div', { class: 'rbar' },
@@ -1865,7 +1916,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         onPositionChange?.(book.id, selectedReaderPage);
       } else {
         const h = parseHash();
-        if (!(h.video && Math.floor((h.page - 1) / 2) === s)) history.replaceState(null, '', link(book, a));
+        if (!(h.video && Math.floor((h.page - 1) / 2) === s)) history.replaceState(history.state, '', link(book, a));
         onPositionChange?.(book.id, a);
       }
       // Fetch the neighbouring spreads now so the next page turn has its pictures ready.
@@ -1982,6 +2033,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     function closeBook() {
       if (R.busy) return;
+      if (!lessonView.hidden) { closeLesson(); return; }
       R.busy = true;
       stopSpeak(); closeMenu();
       pageSound('book-open');
@@ -2000,6 +2052,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
     if (rtl) slider.style.direction = 'rtl';
     R = { book, root, spread: 0, busy: false, rtl, show, flip, close: closeBook, closeLesson,
+      restoreLesson: key => { const lesson = lessons.find(item => item.key === key); if (!lesson || R.busy) return false; selectLesson(lesson, true); return true; },
       stepLesson: direction => selectLesson(lessons[clamp(lessons.indexOf(currentLesson) + direction, 0, lessons.length - 1)]) };
     show(startSpread);
     if (intro) openBook();
@@ -2471,13 +2524,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     previewObserver.observe(document.body, { childList: true, subtree: true });
   } else {
     window.addEventListener('hashchange', route);
+    window.addEventListener('popstate', onLessonPopState);
     route();
+    lessonHistory.pop();
   }
 
   return () => {
     previewObserver?.disconnect();
     loading.dispose();
     window.removeEventListener('hashchange', route);
+    window.removeEventListener('popstate', onLessonPopState);
     document.removeEventListener('pointerdown', onDocumentPointerDown);
     document.removeEventListener('keydown', onDocumentKeyDown);
     clearTimeout(toastTimer);
