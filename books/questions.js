@@ -18,6 +18,8 @@
   const part = (name, [x, y, w, h], colours, dot) => ({ part: name, box: box(x, y, w, h), colours: [].concat(colours || []), ...(dot ? { dot: { x: dot[0], y: dot[1] } } : {}) });
   // a picture made of separate pieces, each coloured on its own (a ball's stripes, an umbrella's panels, a bus's windows)
   const pieces = (...args) => ({ ...part(...args), pieces: true });
+  // an outline letter: only its band is coloured, never the paper inside it (the hole of a, b, d, e, o)
+  const letterPart = (...args) => ({ ...part(...args), letter: true });
   // the four letters of a reinforcement page are coloured like their outlines: red, blue, orange, green
   const LETTER_BOXES = [[8.6, 14.2, 18.2, 14.8], [30.4, 14.2, 18.4, 14.8], [52.4, 14.2, 18.2, 14.8], [74.2, 14.2, 18.2, 14.8]];   // inside each frame
   const OUTLINE = [C.red, C.blue, C.orange, C.green];
@@ -25,7 +27,7 @@
   // English 3+ reinforcement page: colour the letters, write them, colour the picture beginning with a letter
   const colourAndWrite = (letters, button = [66, 8.6]) => [
     Q('colour', 'Colour the given letters.', `Colour inside each letter with the colour of its box.`, button, box(5, 12.8, 90, 17.7),
-      { hint: { x: 17, y: 22 }, parts: letters.map((l, i) => part(l, l === 'j' ? [...LETTER_BOXES[i].slice(0, 3), 15.4] : LETTER_BOXES[i], OUTLINE[i], [LETTER_BOXES[i][0] + 3, LETTER_BOXES[i][1] + 3])) }),   // j's hook reaches lower
+      { hint: { x: 17, y: 22 }, parts: letters.map((l, i) => letterPart(l, l === 'j' ? [...LETTER_BOXES[i].slice(0, 3), 15.4] : LETTER_BOXES[i], OUTLINE[i], [LETTER_BOXES[i][0] + 3, LETTER_BOXES[i][1] + 3])) }),   // j's hook reaches lower
     Q('write', 'Write the given letters.', `Write ${letters.join(', ')} on the lines.`, [83, button[1]], box(5, 29.8, 90, 9.6),
       { hint: { x: 9, y: 33 }, lines: LETTER_LINES })
   ];
@@ -117,7 +119,7 @@
         [63, 3.8], box(5, 8, 90, 33)),
         initialLetters([15, 46], box(5, 48.5, 90, 23), [[13, 50.5, 18, 7.5], [46, 50.5, 17.5, 7.5], [77, 50.5, 17, 7.5], [13, 62.8, 18, 8], [46, 62.8, 17.5, 8], [77, 62.8, 17, 8]])],
       75: [Q('colour', 'Colour the given letters.', 'Colour inside each letter with the colour of its box.', [66, 7.8], box(25, 12, 50, 18),
-          { hint: { x: 38, y: 20 }, parts: [part('y', [29.5, 13.5, 18.5, 14.5], C.red, [31, 15]), part('z', [51.5, 13.5, 18.5, 14.5], C.blue, [53, 15])] }),
+          { hint: { x: 38, y: 20 }, parts: [letterPart('y', [29.5, 13.5, 18.5, 14.5], C.red, [31, 15]), letterPart('z', [51.5, 13.5, 18.5, 14.5], C.blue, [53, 15])] }),
         Q('write', 'Write the given letters.', 'Write y and z on the lines.', [83, 7.8], box(25, 29.5, 50, 9.5), { hint: { x: 30, y: 32 }, lines: rects([[27.5, 30, 21.5, 8.5], [49.5, 30, 22, 8.5]]) }),
         colourPicture('y', true, [pieces('yacht', [10.5, 45, 33, 23.2], [C.blue, C.red, C.brown, C.yellow], [27, 45.5]), pieces('bus', [53.5, 45, 37, 23.4], [C.blue, C.yellow, C.red], [53, 69.5])], [],
           box(5, 44, 90, 25.5), [2, 48.5]),

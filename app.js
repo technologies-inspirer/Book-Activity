@@ -478,7 +478,32 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         const b = boxOf(p, hp), edge = [];
         for (let x = 0; x < b.bw; x++) edge.push(x, (b.bh - 1) * b.bw + x);
         for (let y = 0; y < b.bh; y++) edge.push(y * b.bw, y * b.bw + b.bw - 1);
-        const outside = flood(b, edge, WALL + 1), inside = outside.map(v => 1 - v);   // the part: all the box but the paper round it (and the line's soft outer edge)
+        const outside = flood(b, edge, WALL + 1), inside0 = outside.map(v => 1 - v);   // the part: all the box but the paper round it (and the line's soft outer edge)
+        // a letter (p.letter) is only its band between the outlines: the paper inside it (the hole of a, b, d, e, o)
+        // is not reached from the paper round it, but is never next to it either, so it is left out
+        let inside = inside0;
+        if (p.letter) {
+          const near = outside.slice();
+          for (let pass = 0; pass < WALL * 2 + 4; pass++) {
+            const grow = near.slice();
+            for (let k = 0; k < near.length; k++) if (near[k]) { const x = k % b.bw; if (x > 0) grow[k - 1] = 1; if (x < b.bw - 1) grow[k + 1] = 1; if (k >= b.bw) grow[k - b.bw] = 1; if (k < b.bw * (b.bh - 1)) grow[k + b.bw] = 1; }
+            near.set(grow);
+          }
+          const band = new Uint8Array(inside0.length), stack = [];
+          const add = k => { if (inside0[k] && !band[k] && !b.wall[k]) { band[k] = 1; stack.push(k); } };
+          for (let k = 0; k < inside0.length; k++) if (near[k]) add(k);
+          while (stack.length) {
+            const k = stack.pop(), x = k % b.bw;
+            if (x > 0) add(k - 1); if (x < b.bw - 1) add(k + 1); if (k >= b.bw) add(k - b.bw); if (k < b.bw * (b.bh - 1)) add(k + b.bw);
+          }
+          // back up to the outline round the band, as for any part
+          for (let pass = 0; pass < WALL + 1; pass++) {
+            const grow = band.slice();
+            for (let k = 0; k < band.length; k++) if (band[k]) { const x = k % b.bw; if (x > 0 && inside0[k - 1]) grow[k - 1] = 1; if (x < b.bw - 1 && inside0[k + 1]) grow[k + 1] = 1; if (k >= b.bw && inside0[k - b.bw]) grow[k - b.bw] = 1; if (k < b.bw * (b.bh - 1) && inside0[k + b.bw]) grow[k + b.bw] = 1; }
+            band.set(grow);
+          }
+          inside = band;
+        }
         // Explicit guides for dotted shapes: the gaps in a dashed outline cannot hold a flood fill.
         // Their measured box follows the printed guide; inset the mask to keep ink inside its edge.
         if (['ellipse', 'rectangle', 'triangle'].includes(p.outline)) {
