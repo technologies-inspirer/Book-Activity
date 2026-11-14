@@ -8,7 +8,8 @@ const VIDEO_LESSON_BOOKS = {
   'stemford-maths-3': { subject: 'Maths', kind: 'Number' },
   'stemford-maths-4': { subject: 'Maths', kind: 'Number' },
   'stemford-urdu-3': { subject: 'Urdu', kind: 'Letter' },
-  'stemford-urdu-4': { subject: 'Urdu', kind: 'Letter' }
+  'stemford-urdu-4': { subject: 'Urdu', kind: 'Letter' },
+  'stemford-urdu-5': { subject: 'Urdu', kind: 'Letter' }
 };
 
 const acts = (book, page) => book.pages[page - 1]?.acts || [];

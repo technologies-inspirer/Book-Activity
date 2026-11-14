@@ -17,7 +17,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ['activities', 'activities-english3', 'activities-english4', 'activities-english5', 'activities-maths3', 'activities-maths4',
-         'activities-urdu3', 'activities-urdu4', 'activities-computer0', 'activities-maxford']
+         'activities-urdu3', 'activities-urdu4', 'activities-computer0', 'activities-maxford', 'activities-urdu5']
 OUTSIDE, INSIDE, MARGIN = 4.0, 40.0, 1.5     # how far (% of the page) an edge may move out, or in (never past the tapped pictures)
 
 def cells(*rows):

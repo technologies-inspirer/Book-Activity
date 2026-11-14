@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const context = { window: { BOOK_ACTIVITIES: {} } };
 vm.createContext(context);
 for (const file of ['activities', 'activities-english3', 'activities-english4', 'activities-english5', 'activities-maths3', 'activities-maths4',
-  'activities-urdu3', 'activities-urdu4', 'activities-computer0', 'activities-maxford', 'game-crops']) {
+  'activities-urdu3', 'activities-urdu4', 'activities-computer0', 'activities-maxford', 'activities-urdu5', 'game-crops']) {
   vm.runInContext(readFileSync(new URL(`../books/${file}.js`, import.meta.url), 'utf8'), context);
 }
 const { BOOK_ACTIVITIES: acts, GAME_FIXES: fixes } = JSON.parse(JSON.stringify(context.window));

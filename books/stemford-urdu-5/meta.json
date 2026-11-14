@@ -1,0 +1,12 @@
+{
+  "id": "stemford-urdu-5",
+  "title": "Stemford Urdu 5+",
+  "author": "Javed Publishers",
+  "frontCover": true,
+  "dir": "books/stemford-urdu-5",
+  "pages": 80,
+  "ratio": 0.7222,
+  "c1": "#d1cbbe",
+  "c2": "#7b7770",
+  "rtl": true
+}
