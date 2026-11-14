@@ -47,3 +47,33 @@ test('Urdu 5+ exercise questions: every button on the page, every choice and mat
   const p71 = questions[71].find(q => q.kind === 'choose').options.filter(o => o.correct).map(o => o.label);
   assert.deepEqual(p71, ['ہے', 'ہیں', 'ہیں', 'ہیں', 'ہیں']);
 });
+
+test('Urdu 5+ question views keep all answer controls inside their crop', () => {
+  const contains = (outer, inner) => inner.x >= outer.x - .01 && inner.y >= outer.y - .01
+    && inner.x + (inner.w || 0) <= outer.x + outer.w + .01
+    && inner.y + (inner.h || 0) <= outer.y + outer.h + .01;
+  for (const [page, list] of Object.entries(questions)) for (const q of list) {
+    assert.ok(contains({ x: 0, y: 0, w: 100, h: 100 }, q.crop), `page ${page}: crop`);
+    for (const r of [...(q.lines || []), ...(q.options || []), ...(q.dots || [])]) {
+      assert.ok(contains(q.crop, r), `page ${page}: answer outside crop`);
+    }
+  }
+});
+
+test('Urdu 5+ story exercises omit the illustration and craft task without hiding the answer boxes', () => {
+  const overlaps = (a, b) => Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) > .001
+    && Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) > .001;
+  for (let page = 8; page <= 24; page++) {
+    const q = questions[page][0];
+    assert.ok(q.crop.y >= 50 && q.crop.y + q.crop.h < 87, `page ${page}: illustration/teacher notes`);
+    assert.ok(q.hide.length > 0, `page ${page}: hide the craft instructions`);
+    for (const r of q.lines) for (const hidden of q.hide) {
+      assert.ok(!overlaps(r, hidden), `page ${page}: writing over hidden craft area`);
+    }
+  }
+  const q12 = questions[12][0];
+  assert.ok(q12.crop.y > 53.3, 'page 12: no strip of the swing illustration');
+  assert.ok(q12.crop.y + q12.crop.h > 82.7, 'page 12: keep the final answer row');
+  const lastBox = { x: 43.1, y: 75.3, w: 5.8, h: 4.6 };
+  assert.ok(!questions[17][0].hide.some(r => overlaps(r, lastBox)), 'page 17: craft cover must not touch the answer beside it');
+});
