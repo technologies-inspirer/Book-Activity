@@ -8031,5 +8031,594 @@ window.PDF_BOOKS = [
     "title": "STEMFORD Urdu 5+  -51"
    }
   }
+ },
+ {
+  "id": "stemford-maths-5",
+  "title": "Stemford Maths 5+",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-maths-5",
+  "pages": 80,
+  "ratio": 0.7222,
+  "c1": "#cdc6bb",
+  "c2": "#79756e",
+  "rtl": false,
+  "qr": {
+   "4": {
+    "url": "https://o2o.to/i/VCGHNA76YMWU",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Numbers 0–9 and 10–19",
+    "videos": [
+     {
+      "id": "tXbGxu00eN0",
+      "title": "Student"
+     },
+     {
+      "id": "5YCS8p0Wqg8",
+      "title": "Teacher"
+     },
+     {
+      "id": "Hp2wFHb5zEY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "8": {
+    "url": "https://o2o.to/i/PXJHC9S0YE3D",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Greater and smaller numbers",
+    "videos": [
+     {
+      "id": "bdp6FyCds64",
+      "title": "Student"
+     },
+     {
+      "id": "11M4mHY4gfU",
+      "title": "Teacher"
+     },
+     {
+      "id": "BNk8sg74pB0",
+      "title": "Parents"
+     }
+    ]
+   },
+   "9": {
+    "url": "https://o2o.to/i/2DY9REF0GIQ3",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Numbers 20–29 and 30–39",
+    "videos": [
+     {
+      "id": "JyXQF4EZti4",
+      "title": "Student"
+     },
+     {
+      "id": "tpKjCUByD1w",
+      "title": "Teacher"
+     },
+     {
+      "id": "rIv583TldSU",
+      "title": "Parents"
+     }
+    ]
+   },
+   "11": {
+    "url": "https://o2o.to/i/EKD1GN09ZSBJ",
+    "box": [
+     78.88,
+     5.53,
+     5.69,
+     4.11
+    ],
+    "title": "Comparing numbers",
+    "videos": [
+     {
+      "id": "hKXz2Z3DuAY",
+      "title": "Student"
+     },
+     {
+      "id": "hYofK4lwQM8",
+      "title": "Teacher"
+     },
+     {
+      "id": "EmWAqXj_uyY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://o2o.to/i/JPBTL1259OCX",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Ascending and descending order",
+    "videos": [
+     {
+      "id": "eBlbncaEMDI",
+      "title": "Student"
+     },
+     {
+      "id": "pWRhjLBMMwk",
+      "title": "Teacher"
+     },
+     {
+      "id": "dqrDH_yL9Hs",
+      "title": "Parents"
+     }
+    ]
+   },
+   "15": {
+    "url": "https://o2o.to/i/XNUQBALSCV08",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Even and odd, numbers 40–49 and revision",
+    "videos": [
+     {
+      "id": "sMphlOIykfs",
+      "title": "Student"
+     },
+     {
+      "id": "sTNzh0xuwVw",
+      "title": "Teacher"
+     },
+     {
+      "id": "1DhUiKInSRY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://o2o.to/i/YW2SU751K0M3",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Forward and backward counting",
+    "videos": [
+     {
+      "id": "t7W-obalOdg",
+      "title": "Student"
+     },
+     {
+      "id": "yAxNOBIVL4A",
+      "title": "Teacher"
+     },
+     {
+      "id": "wPJBF0Ka-8w",
+      "title": "Parents"
+     }
+    ]
+   },
+   "22": {
+    "url": "https://o2o.to/i/0IYSD6P5A84N",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Positions",
+    "videos": [
+     {
+      "id": "mnDklbEqCZ0",
+      "title": "Student"
+     },
+     {
+      "id": "o7af4wLi9U4",
+      "title": "Teacher"
+     },
+     {
+      "id": "8NtkrIjQ_q0",
+      "title": "Parents"
+     }
+    ]
+   },
+   "23": {
+    "url": "https://o2o.to/i/QR02X1BTGIWK",
+    "box": [
+     65.15,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Left and right",
+    "videos": [
+     {
+      "id": "bD4xHzqhU4A",
+      "title": "Student"
+     },
+     {
+      "id": "IPn5hOtvLuE",
+      "title": "Teacher"
+     },
+     {
+      "id": "GZDza26aYeE",
+      "title": "Parents"
+     }
+    ]
+   },
+   "24": {
+    "url": "https://o2o.to/i/OJ5U7I3CPGZ9",
+    "box": [
+     77.04,
+     5.36,
+     5.69,
+     4.11
+    ],
+    "title": "Before, after and between",
+    "videos": [
+     {
+      "id": "VXB-h0ZyF5M",
+      "title": "Student"
+     },
+     {
+      "id": "-bNYO7_2cco",
+      "title": "Teacher"
+     },
+     {
+      "id": "BCr0N59oQWQ",
+      "title": "Parents"
+     }
+    ]
+   },
+   "25": {
+    "url": "https://o2o.to/i/WHCY7U5ID20O",
+    "box": [
+     71.77,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Numbers 50–99",
+    "videos": [
+     {
+      "id": "2lxv2eZDhmg",
+      "title": "Student"
+     },
+     {
+      "id": "9ZgZ5cFreL8",
+      "title": "Teacher"
+     },
+     {
+      "id": "JyHLRxXcy9o",
+      "title": "Parents"
+     }
+    ]
+   },
+   "34": {
+    "url": "https://o2o.to/i/48JQ1OI3Z92H",
+    "box": [
+     72.38,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Number 100",
+    "videos": [
+     {
+      "id": "NENNrROJtOU",
+      "title": "Student"
+     },
+     {
+      "id": "SpDy4tzTmkY",
+      "title": "Teacher"
+     },
+     {
+      "id": "xGJbaK6QUno",
+      "title": "Parents"
+     }
+    ]
+   },
+   "38": {
+    "url": "https://o2o.to/i/DV04O6Z51WS9",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Addition",
+    "videos": [
+     {
+      "id": "YreXvbPLSAE",
+      "title": "Student"
+     },
+     {
+      "id": "HSjXTbtR5po",
+      "title": "Teacher"
+     },
+     {
+      "id": "21js1lUguGc",
+      "title": "Parents"
+     }
+    ]
+   },
+   "46": {
+    "url": "https://o2o.to/i/RMDPS9JA7THG",
+    "box": [
+     57.23,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Shapes and patterns",
+    "videos": [
+     {
+      "id": "ThCwYHlJXSE",
+      "title": "Student"
+     },
+     {
+      "id": "yh0cndfnbAc",
+      "title": "Teacher"
+     },
+     {
+      "id": "ZdaR1qTGTrE",
+      "title": "Parents"
+     }
+    ]
+   },
+   "49": {
+    "url": "https://o2o.to/i/OMYS4356EXDG",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Position numbers",
+    "videos": [
+     {
+      "id": "es_y-EngB08",
+      "title": "Student"
+     },
+     {
+      "id": "vwljyU2kVXI",
+      "title": "Teacher"
+     },
+     {
+      "id": "vgQ8v7L32Uk",
+      "title": "Parents"
+     }
+    ]
+   },
+   "54": {
+    "url": "https://o2o.to/i/XU25S1D340AC",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "One more and one less",
+    "videos": [
+     {
+      "id": "80OC-Rgzgak",
+      "title": "Student"
+     },
+     {
+      "id": "iO8Jludpv60",
+      "title": "Teacher"
+     },
+     {
+      "id": "WGv8O8gaKEw",
+      "title": "Parents"
+     }
+    ]
+   },
+   "55": {
+    "url": "https://o2o.to/i/Z8OG54NWYACH",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Comparison of sizes, lengths and weights",
+    "videos": [
+     {
+      "id": "iscCZ2KUV4A",
+      "title": "Student"
+     },
+     {
+      "id": "srP_F5D-ong",
+      "title": "Teacher"
+     },
+     {
+      "id": "xtCEhzSrHpY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "57": {
+    "url": "https://o2o.to/i/75LXANWU320V",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Comparison of heights",
+    "videos": [
+     {
+      "id": "TgJTTDY8WO8",
+      "title": "Student"
+     },
+     {
+      "id": "yiCnoseUeIc",
+      "title": "Teacher"
+     },
+     {
+      "id": "FV1GTZSUxDI",
+      "title": "Parents"
+     }
+    ]
+   },
+   "60": {
+    "url": "https://o2o.to/i/3RUXTP1E2LSN",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Subtraction",
+    "videos": [
+     {
+      "id": "sxIUslJbrDM",
+      "title": "Student"
+     },
+     {
+      "id": "wU8fYEmp_tk",
+      "title": "Teacher"
+     },
+     {
+      "id": "wWynQB2wn6o",
+      "title": "Parents"
+     }
+    ]
+   },
+   "68": {
+    "url": "https://o2o.to/i/8YHO6W5SP94I",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Adding or subtracting zero",
+    "videos": [
+     {
+      "id": "0nT4RHZA5QE",
+      "title": "Student"
+     },
+     {
+      "id": "8IMyVU4sz6Q",
+      "title": "Teacher"
+     },
+     {
+      "id": "PfS-v6UgY0Q",
+      "title": "Parents"
+     }
+    ]
+   },
+   "69": {
+    "url": "https://o2o.to/i/Y2PXKSZRFNCE",
+    "box": [
+     81.31,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Measurement: length, weight and height",
+    "videos": [
+     {
+      "id": "fjkaG808-g8",
+      "title": "Student"
+     },
+     {
+      "id": "fWMyFbdGAiQ",
+      "title": "Teacher"
+     },
+     {
+      "id": "EwgCNj8qzB8",
+      "title": "Parents"
+     }
+    ]
+   },
+   "73": {
+    "url": "https://o2o.to/i/3UEX5N674MDG",
+    "box": [
+     78.85,
+     5.5,
+     5.69,
+     4.11
+    ],
+    "title": "Capacity and comparing quantity",
+    "videos": [
+     {
+      "id": "enu143ldLTc",
+      "title": "Student"
+     },
+     {
+      "id": "RThgZMfPpbc",
+      "title": "Teacher"
+     },
+     {
+      "id": "gciWBlCRdzY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "75": {
+    "url": "https://o2o.to/i/37ZSF98BJI6R",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Time",
+    "videos": [
+     {
+      "id": "xd5VV1PmxfQ",
+      "title": "Student"
+     },
+     {
+      "id": "SAgnCyzAok0",
+      "title": "Teacher"
+     },
+     {
+      "id": "iqhm9tqHSyI",
+      "title": "Parents"
+     }
+    ]
+   },
+   "79": {
+    "url": "https://o2o.to/i/2D7IU3FSB8OR",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Money",
+    "videos": [
+     {
+      "id": "u_-IIRKDpzs",
+      "title": "Student"
+     },
+     {
+      "id": "GC0la1ZfLpY",
+      "title": "Teacher"
+     },
+     {
+      "id": "YPr3F7kztLw",
+      "title": "Parents"
+     }
+    ]
+   }
+  }
  }
 ];
