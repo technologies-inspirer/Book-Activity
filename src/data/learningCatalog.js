@@ -2,8 +2,8 @@
 // The publisher's 3+ age group belongs to Play Group, not Class 3.
 export const learningClasses = [
   { id: 'play-group', name: 'Play Group' },
-  { id: 'prep', name: 'Prep' },
   { id: 'nursery', name: 'Nursery' },
+  { id: 'prep', name: 'Prep' },
   ...Array.from({ length: 8 }, (_, index) => ({ id: `class-${index + 1}`, name: `Class ${index + 1}` }))
 ];
 

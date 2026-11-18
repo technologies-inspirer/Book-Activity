@@ -49,6 +49,8 @@ test('class, series and subject filters combine and respect the assigned input c
 
 test('class options and selection links support the complete navigation flow', () => {
   assert.equal(learningClasses.length, 11);
+  // youngest first: Play Group (3+), Nursery (4+), Prep (5+)
+  assert.deepEqual(learningClasses.slice(0, 3).map(item => item.id), ['play-group', 'nursery', 'prep']);
   assert.equal(libraryLink(), '#/user/library');
   assert.equal(libraryLink('play-group', 'stemford'), '#/user/library/play-group/stemford');
   assert.equal(libraryLink('class-1', 'stemford', 'science'), '#/user/library/class-1/stemford/science');
