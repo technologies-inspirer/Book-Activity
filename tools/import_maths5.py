@@ -24,9 +24,11 @@ def main():
                 print(f'Imported {index+1}/{len(doc)} Maths 5+ pages', flush=True)
         first = doc[0]
         zoom = COVER_WIDTH / first.rect.width
-        first.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False).save(out / 'cover.jpg', jpg_quality=85)
+        # the publisher's own cover (cover.jpg) is kept; page 1 of this PDF is the credits page
+        if not (out / 'cover.jpg').exists():
+            first.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), alpha=False).save(out / 'cover.jpg', jpg_quality=85)
         c1, c2 = cover_colours(first)
-        meta = {'id': BOOK, 'title': 'Stemford Maths 5+', 'author': 'Javed Publishers',
+        meta = {'id': BOOK, 'title': 'Stemford Maths 5+', 'author': 'Javed Publishers', 'frontCover': True,
                 'dir': f'books/{BOOK}', 'pages': len(doc),
                 'ratio': round(first.rect.width / first.rect.height, 4), 'c1': c1, 'c2': c2, 'rtl': False}
     (out / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
