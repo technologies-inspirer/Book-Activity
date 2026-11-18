@@ -26,10 +26,18 @@ test('all 72 supplied Maths 5+ links keep their topic and Student / Teacher / Pa
  assert.equal(Object.keys(topics).length,24);const supplied=new Set(),used=new Set(),pages=new Set();
  for(const t of Object.values(topics))for(const role of ['Student','Teacher','Parents']){assert.match(t[role],/^https:\/\/youtu\.be\/[\w-]{11}$/);supplied.add(t[role]);}
  assert.equal(supplied.size,72);
- for(const t of Object.values(topics))for(const p of t.pages){assert.ok(!pages.has(p),'Ambiguous video topic');pages.add(p);const a=acts[p].filter(a=>a.type==='videos');assert.equal(a.length,1);assert.equal(a[0].title,t.title);assert.deepEqual(a[0].videos,['Student','Teacher','Parents'].map(title=>({title,src:t[title]})));a[0].videos.forEach(v=>used.add(v.src));}
+ for(const t of Object.values(topics))for(const p of t.pages){assert.ok(!pages.has(p),'Ambiguous video topic');pages.add(p);const a=acts[p].filter(a=>a.type==='videos');assert.equal(a.length,1);assert.equal(a[0].title,t.title);const lessons=(t.lessons||[]).filter(l=>l.pages.includes(p)).map(l=>({title:l.title,src:l.src}));assert.deepEqual(a[0].videos,[...lessons,...['Student','Teacher','Parents'].map(title=>({title,src:t[title]}))]);a[0].videos.slice(lessons.length).forEach(v=>used.add(v.src));}
  assert.deepEqual(used,supplied);assert.equal(topics.money.Student,'https://youtu.be/u_-IIRKDpzs');
  for(const p of [50,51,52,53,59,77,78])assert.ok(!acts[p].some(a=>a.type==='videos'),'No borrowed unrelated videos');
  for(const a of Object.values(acts).flat()){assert.ok(!a.scenes);assert.ok(!['story','tick'].includes(a.type));}
+});
+
+test('the 13 pending lesson videos sit on their own pages, first in the Videos list',()=>{
+ const lessons=Object.values(topics).flatMap(t=>t.lessons||[]);
+ assert.equal(lessons.length,13);assert.equal(new Set(lessons.map(l=>l.src)).size,13);
+ const at=Object.fromEntries(lessons.flatMap(l=>l.pages.map(p=>[p,l.title])));
+ assert.deepEqual(at,{19:'Forward and Backward Counting',20:'Forward and Backward Counting',21:'Forward and Backward Counting',36:'Forward and Backward Counting',37:'Forward and Backward Counting',39:'Addition with Fingers',40:'Addition on Number Line',41:'Addition with Objects',42:'Horizontal and Vertical Addition',43:'Addition in Columns',45:'Word Problems',61:'Subtraction with Fingers',62:'Subtraction Using Number Line',63:'Subtraction with Objects',65:'Horizontal and Vertical Subtraction',66:'Subtraction in Columns',67:'Word Problems'});
+ for(const l of lessons){assert.match(l.src,/^https:\/\/youtu\.be\/[\w-]{11}$/);for(const p of l.pages)assert.equal(acts[p].find(a=>a.type==='videos').videos[0].src,l.src);}
 });
 
 test('the printed lesson QR buttons open exactly the supplied role videos',()=>{

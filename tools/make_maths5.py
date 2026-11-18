@@ -129,9 +129,11 @@ def main():
         def place(): return {'x':next(header),'y':.55}
         if page in by_page:
             t=by_page[page]
+            # Publisher-supplied lesson videos for this exact page come first, then the topic's role videos.
+            lessons=[{'title':l['title'],'src':l['src']} for l in t.get('lessons',[]) if page in l['pages']]
             entries.append({'type':'videos','label':'Videos','title':t['title'],
                             'button':place(),
-                            'videos':[{'title':role,'src':t[role]} for role in ('Student','Teacher','Parents')]})
+                            'videos':lessons+[{'title':role,'src':t[role]} for role in ('Student','Teacher','Parents')]})
         if page in games:
             a=games[page];a['button']=place();entries.append(a)
         parts=[];colours=[C['black']]

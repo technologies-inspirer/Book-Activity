@@ -73,7 +73,20 @@
   ],
   "Student": "https://youtu.be/t7W-obalOdg",
   "Teacher": "https://youtu.be/yAxNOBIVL4A",
-  "Parents": "https://youtu.be/wPJBF0Ka-8w"
+  "Parents": "https://youtu.be/wPJBF0Ka-8w",
+  "lessons": [
+   {
+    "title": "Forward and Backward Counting",
+    "pages": [
+     19,
+     20,
+     21,
+     36,
+     37
+    ],
+    "src": "https://youtu.be/rrDKtVM2R-8"
+   }
+  ]
  },
  "position": {
   "title": "Positions",
@@ -134,7 +147,51 @@
   ],
   "Student": "https://youtu.be/YreXvbPLSAE",
   "Teacher": "https://youtu.be/HSjXTbtR5po",
-  "Parents": "https://youtu.be/21js1lUguGc"
+  "Parents": "https://youtu.be/21js1lUguGc",
+  "lessons": [
+   {
+    "title": "Addition with Fingers",
+    "pages": [
+     39
+    ],
+    "src": "https://youtu.be/ot8M6oh389c"
+   },
+   {
+    "title": "Addition on Number Line",
+    "pages": [
+     40
+    ],
+    "src": "https://youtu.be/vH3QsqjIaDw"
+   },
+   {
+    "title": "Addition with Objects",
+    "pages": [
+     41
+    ],
+    "src": "https://youtu.be/-W9DvkGbCy4"
+   },
+   {
+    "title": "Horizontal and Vertical Addition",
+    "pages": [
+     42
+    ],
+    "src": "https://youtu.be/dc0QK-IJd3M"
+   },
+   {
+    "title": "Addition in Columns",
+    "pages": [
+     43
+    ],
+    "src": "https://youtu.be/uome3RAoYeM"
+   },
+   {
+    "title": "Word Problems",
+    "pages": [
+     45
+    ],
+    "src": "https://youtu.be/B3BhJwesgD4"
+   }
+  ]
  },
  "number-100": {
   "title": "Number 100",
@@ -208,7 +265,51 @@
   ],
   "Student": "https://youtu.be/sxIUslJbrDM",
   "Teacher": "https://youtu.be/wU8fYEmp_tk",
-  "Parents": "https://youtu.be/wWynQB2wn6o"
+  "Parents": "https://youtu.be/wWynQB2wn6o",
+  "lessons": [
+   {
+    "title": "Subtraction with Fingers",
+    "pages": [
+     61
+    ],
+    "src": "https://youtu.be/mlYjf7YZOdg"
+   },
+   {
+    "title": "Subtraction Using Number Line",
+    "pages": [
+     62
+    ],
+    "src": "https://youtu.be/MhPDLMzy5vA"
+   },
+   {
+    "title": "Subtraction with Objects",
+    "pages": [
+     63
+    ],
+    "src": "https://youtu.be/BPJYkyiMDuo"
+   },
+   {
+    "title": "Horizontal and Vertical Subtraction",
+    "pages": [
+     65
+    ],
+    "src": "https://youtu.be/XH5qf0PUhbM"
+   },
+   {
+    "title": "Subtraction in Columns",
+    "pages": [
+     66
+    ],
+    "src": "https://youtu.be/u_o6BbPAUmA"
+   },
+   {
+    "title": "Word Problems",
+    "pages": [
+     67
+    ],
+    "src": "https://youtu.be/-H_BekKnOJA"
+   }
+  ]
  },
  "zero-operations": {
   "title": "Adding or subtracting zero",

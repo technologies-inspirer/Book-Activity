@@ -671,6 +671,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Forward and Backward Counting",
+     "src": "https://youtu.be/rrDKtVM2R-8"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/t7W-obalOdg"
     },
@@ -729,6 +733,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Forward and Backward Counting",
+     "src": "https://youtu.be/rrDKtVM2R-8"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/t7W-obalOdg"
     },
@@ -767,6 +775,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Forward and Backward Counting",
+     "src": "https://youtu.be/rrDKtVM2R-8"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/t7W-obalOdg"
@@ -1376,6 +1388,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Forward and Backward Counting",
+     "src": "https://youtu.be/rrDKtVM2R-8"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/t7W-obalOdg"
     },
@@ -1414,6 +1430,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Forward and Backward Counting",
+     "src": "https://youtu.be/rrDKtVM2R-8"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/t7W-obalOdg"
@@ -1493,6 +1513,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Addition with Fingers",
+     "src": "https://youtu.be/ot8M6oh389c"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/YreXvbPLSAE"
     },
@@ -1533,6 +1557,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Addition on Number Line",
+     "src": "https://youtu.be/vH3QsqjIaDw"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/YreXvbPLSAE"
     },
@@ -1571,6 +1599,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Addition with Objects",
+     "src": "https://youtu.be/-W9DvkGbCy4"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/YreXvbPLSAE"
@@ -1611,6 +1643,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Horizontal and Vertical Addition",
+     "src": "https://youtu.be/dc0QK-IJd3M"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/YreXvbPLSAE"
     },
@@ -1649,6 +1685,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Addition in Columns",
+     "src": "https://youtu.be/uome3RAoYeM"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/YreXvbPLSAE"
@@ -1727,6 +1767,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Word Problems",
+     "src": "https://youtu.be/B3BhJwesgD4"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/YreXvbPLSAE"
@@ -2481,6 +2525,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Subtraction with Fingers",
+     "src": "https://youtu.be/mlYjf7YZOdg"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/sxIUslJbrDM"
     },
@@ -2520,6 +2568,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Subtraction Using Number Line",
+     "src": "https://youtu.be/MhPDLMzy5vA"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/sxIUslJbrDM"
     },
@@ -2558,6 +2610,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Subtraction with Objects",
+     "src": "https://youtu.be/BPJYkyiMDuo"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/sxIUslJbrDM"
@@ -2637,6 +2693,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Horizontal and Vertical Subtraction",
+     "src": "https://youtu.be/XH5qf0PUhbM"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/sxIUslJbrDM"
     },
@@ -2676,6 +2736,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
    },
    "videos": [
     {
+     "title": "Subtraction in Columns",
+     "src": "https://youtu.be/u_o6BbPAUmA"
+    },
+    {
      "title": "Student",
      "src": "https://youtu.be/sxIUslJbrDM"
     },
@@ -2714,6 +2778,10 @@ window.BOOK_ACTIVITIES["stemford-maths-5"] = {
     "y": 0.55
    },
    "videos": [
+    {
+     "title": "Word Problems",
+     "src": "https://youtu.be/-H_BekKnOJA"
+    },
     {
      "title": "Student",
      "src": "https://youtu.be/sxIUslJbrDM"
