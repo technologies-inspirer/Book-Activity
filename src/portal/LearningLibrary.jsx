@@ -8,8 +8,18 @@ import { LearningIllustration } from './LearningIllustration.jsx';
 import { LearningLandscape, LearningScenery } from './LearningScenery.jsx';
 import classSelectionTemplate from '../../assets/class-selection-company-books.jpeg';
 import subjectSelectionTemplate from '../../assets/subject-selection-company-books.jpeg';
+import subjectSelectionNursery from '../../assets/subject-selection-company-books-nursery.jpeg';
+import subjectSelectionPrep from '../../assets/subject-selection-company-books-prep.jpeg';
 import mathsSelectionTemplate from '../../assets/subject-maths-two-hands.png';
+import mathsSelectionNursery from '../../assets/subject-maths-two-hands-nursery.png';
+import mathsSelectionPrep from '../../assets/subject-maths-two-hands-prep.png';
 import computerBookCover from '../../assets/subject-computer-book-behind-laptop.png';
+
+// The books drawn on the subject cards carry the class's age: Play Group 3, Nursery 4, Prep 5.
+const subjectArtByClass = {
+  nursery: { subjects: subjectSelectionNursery, maths: mathsSelectionNursery },
+  prep: { subjects: subjectSelectionPrep, maths: mathsSelectionPrep }
+};
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
   const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
@@ -35,7 +45,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
   }, [segments.join('/')]);
 
   return (
-    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--subject-template': `url("${subjectSelectionTemplate}")`, '--maths-template': `url("${mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")` }}>
+    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")` }}>
       <LearningScenery />
       <div className="library-navigation"><a className="library-back-link" href={backHref}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg><span>{step === 0 ? 'Back to dashboard' : step === 1 ? 'Back to classes' : 'Back to subjects'}</span></a></div>
       <header className="library-heading portal-panel">
