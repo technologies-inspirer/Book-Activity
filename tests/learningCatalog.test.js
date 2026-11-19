@@ -19,7 +19,7 @@ test('school selections filter class and subject choices without changing global
 
 test('the learning catalogue covers all original book IDs without changing their data', () => {
   assert.deepEqual(Object.keys(learningBookMetadata).sort(), books.map(book => book.id).sort());
-  assert.equal(getLearningBooks(books).length, 15);
+  assert.equal(getLearningBooks(books).length, 12); // 15 books, 3 kept but hidden from the library
   for (const metadata of Object.values(learningBookMetadata)) {
     assert.ok(learningClasses.some(item => item.id === metadata.classId));
     assert.ok(learningSubjects.some(item => item.id === metadata.subjectId));
@@ -33,7 +33,9 @@ test('3+ books are Play Group and Book 1 titles are Class 1', () => {
   for (const id of ['new-stemford-english-3', 'stemford-maths-3', 'stemford-urdu-3', 'maxford-global-qaida-3-english']) {
     assert.ok(playGroup.some(book => book.id === id));
   }
-  assert.equal(getLearningBooks(books, { classId: 'class-1' }).length, 4);
+  // Class 1 lists only Urdu 1; English 1, Computer 1 and Science 1 stay in the project but hidden
+  assert.deepEqual(getLearningBooks(books, { classId: 'class-1' }).map(book => book.id), ['stemford-urdu-1']);
+  for (const id of ['stemford-computer-book-1', 'stemford-english-1', 'stemford-science-1']) assert.ok(books.some(book => book.id === id), `${id} still in the project`);
   assert.deepEqual(getLearningBooks(books, { classId: 'class-3' }), []);
 });
 
@@ -76,6 +78,6 @@ test('class assignments merge subject rows and update navigation without copying
   assert.ok(!getLearningSubjects(books, custom, { classId: 'play-group', seriesId: 'stemford' }, overrides).some(s => s.id === 'english'));
   assert.ok(getLearningSubjects(books, custom, { classId: 'prep', seriesId: 'stemford' }, overrides).some(s => s.id === 'english'));
   assert.deepEqual(getLearningBooks(books, { classId: 'prep', seriesId: 'stemford', subjectId: 'english' }).map(book => book.id), ['stemford-english-5']);
-  assert.equal(getLearningBooks(books).length, 15);
+  assert.equal(getLearningBooks(books).length, 12);
   assert.deepEqual(getLearningSubjects([], [], { classId: 'play-group', seriesId: 'stemford' }), [], 'Unassigned original books remain hidden');
 });

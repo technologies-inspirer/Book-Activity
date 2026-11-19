@@ -33,6 +33,10 @@ export const learningBookMetadata = {
   'stemford-urdu-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'urdu' }
 };
 
+// Kept in the project but not shown in the reader's library (the publisher wants Class 1 to list
+// only Urdu 1 for now). Remove an ID here to show that book again.
+export const hiddenFromLibrary = new Set(['stemford-computer-book-1', 'stemford-english-1', 'stemford-science-1']);
+
 // Schools without explicit class selections retain their existing library access.
 export function schoolAllowsSelection(account, selection) {
   if (account?.role === 'admin' || !Array.isArray(account?.schoolAssignments)) return true;
@@ -42,7 +46,7 @@ export function schoolAllowsSelection(account, selection) {
 export function getLearningBooks(books, selection = {}) {
   return books.filter(book => {
     const metadata = learningBookMetadata[book.id];
-    return metadata && ['classId', 'seriesId', 'subjectId'].every(key => !selection[key] || selection[key] === metadata[key]);
+    return metadata && !hiddenFromLibrary.has(book.id) && ['classId', 'seriesId', 'subjectId'].every(key => !selection[key] || selection[key] === metadata[key]);
   });
 }
 
