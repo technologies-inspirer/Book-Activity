@@ -572,7 +572,7 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 .library-class-art { display: block; width: 100%; aspect-ratio: 448 / 205; background-image: var(--class-template); background-size: 357.143% auto; background-position: 8.07% 62.84%; mix-blend-mode: multiply; }
 .class-prep .library-class-art { background-position-x: 50.1%; }
 .class-nursery .library-class-art { background-position-x: 91.9%; }
-:is(.library-class-selection, .library-subject-selection, .library-open-selection) .class-class-1 { --class-border: #8fd36b; --class-fill: #eaf8df; --class-label: #3f9e4d; }
+:is(.library-class-selection, .library-subject-selection, .library-open-selection) .class-class-1 { --class-border: #7cc4e8; --class-fill: #e3f3fb; --class-label: #2f80c9; }
 .class-class-1 .library-class-art { background-image: var(--class-1-art); background-size: cover; background-position: center; }
 .library-subject-art { display: block; width: 100%; aspect-ratio: 374 / 214; background-image: var(--subject-template); background-size: 427.807% auto; background-position: 2.45% 69.5%; }
 .subject-maths .library-subject-art { background-image: var(--maths-template); background-size: 428.4% auto; background-position: 34.24% 69.74%; }
