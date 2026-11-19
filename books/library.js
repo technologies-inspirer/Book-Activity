@@ -8621,5 +8621,16 @@ window.PDF_BOOKS = [
     ]
    }
   }
+ },
+ {
+  "id": "stemford-urdu-1",
+  "title": "Stemford Urdu 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-urdu-1",
+  "pages": 120,
+  "ratio": 0.7222,
+  "c1": "#cbc8c2",
+  "c2": "#777672",
+  "rtl": true
  }
 ];

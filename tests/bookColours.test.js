@@ -132,7 +132,7 @@ test('all 470 bundled drawing activities have their reviewed page palette', () =
   // 250 before English 5+, whose 77 exercise pages each have a write-and-colour activity
   // + Urdu 5+'s 77 exercise pages
   assert.equal(total, 470); // + Maths 5+'s 66 bounded drawing activities
-  assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), 1187);
+  assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), 1307);
 });
 
 test('apple and orange leaves remain available without unrelated fallback swatches', () => {
@@ -187,7 +187,7 @@ test('different-colour tasks keep multiple choices and writing tasks use a pen c
 test('every bundled page has an explicit task palette with valid distinct colours', () => {
   vm.runInContext(read('books/library.js'), context);
   const library = context.window.PDF_BOOKS;
-  assert.equal(library.length, 14);
+  assert.equal(library.length, 15);
   let total = 0;
   for (const book of library) {
     const pages = reviewed.books[book.id];
@@ -201,7 +201,7 @@ test('every bundled page has an explicit task palette with valid distinct colour
       total++;
     }
   }
-  assert.equal(total, 1187); // + Maths 5+'s 80 pages
+  assert.equal(total, 1307); // + Maths 5+'s 80 pages, + Urdu 1's 120 pages
 });
 
 test('reinforcement palette includes the four letter colours without decorative purple', () => {

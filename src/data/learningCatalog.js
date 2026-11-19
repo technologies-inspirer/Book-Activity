@@ -29,7 +29,8 @@ export const learningBookMetadata = {
   'stemford-series-computer-book-0-curve': { classId: 'play-group', seriesId: 'stemford', subjectId: 'computer' },
   'stemford-computer-book-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'computer' },
   'stemford-english-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'english' },
-  'stemford-science-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'science' }
+  'stemford-science-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'science' },
+  'stemford-urdu-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'urdu' }
 };
 
 // Schools without explicit class selections retain their existing library access.
