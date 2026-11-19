@@ -8631,6 +8631,416 @@ window.PDF_BOOKS = [
   "ratio": 0.7222,
   "c1": "#cbc8c2",
   "c2": "#777672",
-  "rtl": true
+  "rtl": true,
+  "qr": {
+   "4": {
+    "url": "https://javedpublishers.com/part1-chapter-1/",
+    "box": [
+     9.85,
+     5.61,
+     8.31,
+     6.0
+    ],
+    "title": "Part1: Chapter 1",
+    "videos": [
+     {
+      "id": "gsyZgZUBtr8",
+      "title": "Urdu Class 1: Halki Awazon Wale Huroof e Tehji | Learn Urdu Phonics (Page 4-7)"
+     },
+     {
+      "id": "-m1rUPbXFRw",
+      "title": "Urdu Class 1: Halki Awazon Wale Huroof e Tehji | A Guide for Parents (Page 4-7)"
+     },
+     {
+      "id": "Q6sNahmL7kc",
+      "title": "Urdu Class 1: Mukammal Huroof e Tehji | Page 8 to 10 | For Students"
+     }
+    ]
+   },
+   "8": {
+    "url": "https://javedpublishers.com/part1-chapter-2/",
+    "box": [
+     9.92,
+     6.22,
+     8.08,
+     5.89
+    ],
+    "title": "Part1: Chapter 2",
+    "videos": [
+     {
+      "id": "7EUsnkottDc",
+      "title": "Urdu 1: Huroof e Tehji Ki Chand Chhoti Ashkaal Mashq | Urdu Lesson for Students"
+     },
+     {
+      "id": "Q6sNahmL7kc",
+      "title": "Urdu Class 1: Mukammal Huroof e Tehji | Page 8 to 10 | For Students"
+     },
+     {
+      "id": "_r6Xwja_GEo",
+      "title": "Urdu 1: Huroof e Tehji Ki Chand Chhoti Ashkaal Mashq | Parent's Guide to Urdu Learning"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://javedpublishers.com/part1-chapter-3/",
+    "box": [
+     9.92,
+     5.72,
+     8.0,
+     5.78
+    ],
+    "title": "Part1: Chapter 3",
+    "videos": [
+     {
+      "id": "8gT7RhQV6X4",
+      "title": "Urdu 1: Arkan o Alfaz Sazi Page No 13 to 15 | Urdu Lesson for Students"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://javedpublishers.com/part1-chapter-4/",
+    "box": [
+     9.85,
+     5.72,
+     8.15,
+     5.83
+    ],
+    "title": "Part1: Chapter 4",
+    "videos": [
+     {
+      "id": "ndDZjmUm5_Q",
+      "title": "Urdu Class 1: Airaab Wao Aur Yaye Ki Iqsam | Learn Urdu Grammar (Page 19-22)"
+     },
+     {
+      "id": "pePqx4YUkM0",
+      "title": "Urdu Class 1: Wao Ki Iqsam | Pages 23-25 | Video for Students"
+     }
+    ]
+   },
+   "26": {
+    "url": "https://javedpublishers.com/part1-chapter-5/",
+    "box": [
+     9.92,
+     5.72,
+     8.0,
+     5.78
+    ],
+    "title": "Part1: Chapter 5",
+    "videos": [
+     {
+      "id": "Ka-FT27cvHk",
+      "title": "Urdu Class 1: Saada Jumlay aur Basri Alfaaz | Pages 26-27 | Video for Students"
+     },
+     {
+      "id": "tZ9qsZMyYSc",
+      "title": "Urdu Class 1: Saada Jumlay aur Basri Alfaaz ki Mashaq | Pages 27-28 | Video for Students"
+     }
+    ]
+   },
+   "29": {
+    "url": "https://javedpublishers.com/part2-chapter-1-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Urdu Class 1 Stemford Series – STEM International",
+    "videos": [
+     {
+      "id": "NXiUwQ8FIVc",
+      "title": "Urdu Class 1: Mera Khuda - Hamd | A Guide for Students"
+     }
+    ]
+   },
+   "36": {
+    "url": "https://javedpublishers.com/part2-chapter-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 2",
+    "videos": [
+     {
+      "id": "YhiLxe4CjGM",
+      "title": "Urdu Class 1: Pyaaray Nabi Khātim al Nabiyyin | Naat (Pages 36-38) Video for Students"
+     },
+     {
+      "id": "2_ZWCBKQI80",
+      "title": "Urdu Class 1 | Pyaaray Nabi Khātim al Nabiyyin Naat | Pages 38-41"
+     }
+    ]
+   },
+   "42": {
+    "url": "https://javedpublishers.com/part2-chapter-3/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 3",
+    "videos": [
+     {
+      "id": "LtPdAGSZKR4",
+      "title": "Urdu Class 1 | Sabaq No. 3: Aakhri Rasool ﷺ | Pages 42-43"
+     },
+     {
+      "id": "S9pNbdoJHnA",
+      "title": "Urdu Class 1 | Sabaq No. 3: Aakhri Rasool Khatam un Nabiyeen ﷺ | Mashaq"
+     }
+    ]
+   },
+   "49": {
+    "url": "https://javedpublishers.com/part2-chapter-4/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 4",
+    "videos": [
+     {
+      "id": "SLgkDmwl-yo",
+      "title": "Urdu Class 1 | Sabaq 4 - Main Aur Mera Ghar Mashaq | Pages 51-54"
+     },
+     {
+      "id": "cs72O7vucMA",
+      "title": "Urdu Class 1 | Sabaq 4 - Main Aur Mera Ghar | Pages 49-51"
+     }
+    ]
+   },
+   "55": {
+    "url": "https://javedpublishers.com/part2-chapter-5/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 5",
+    "videos": [
+     {
+      "id": "P7l9Szq_J7w",
+      "title": "Urdu Class 1 | Sabaq No. 5 | Haye! Mera Daant | Pages 55-57"
+     },
+     {
+      "id": "NIxxw-yVL44",
+      "title": "Urdu Class 1 | Sabaq No. 5 | Haye! Mera Daant (Mashaq) | Pages 57-59"
+     }
+    ]
+   },
+   "60": {
+    "url": "https://javedpublishers.com/part2-chapter-6/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 6",
+    "videos": [
+     {
+      "id": "6-9Y57aDA9Y",
+      "title": "Urdu Class 1 | Sabaq No. 6 | Guftagu ke Aadaab | Pages 61-62"
+     },
+     {
+      "id": "rqi0JDkqPD8",
+      "title": "Urdu Class 1 | Sabaq No. 6 | Guftagu ke Aadaab (Mashaq) | Pages 61-65"
+     }
+    ]
+   },
+   "66": {
+    "url": "https://javedpublishers.com/part2-chapter-7/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 7",
+    "videos": [
+     {
+      "id": "rbWRwJ8qZ44",
+      "title": "Urdu Class 1 | Sabaq No. 7 | Qaumi Shaayar | Pages 66-68"
+     },
+     {
+      "id": "kcKydjYvZM8",
+      "title": "Urdu Class 1 | Lesson 7 | Pages 69-72 | Easy & Fun Learning"
+     }
+    ]
+   },
+   "73": {
+    "url": "https://javedpublishers.com/part2-jahiza-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Jahiza 2",
+    "videos": [
+     {
+      "id": "ZPb0Opyw8Mg",
+      "title": "Urdu Class 1 | Jaiza No. 2 | Pages 73-74"
+     }
+    ]
+   },
+   "82": {
+    "url": "https://javedpublishers.com/part3-chapter-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 2",
+    "videos": [
+     {
+      "id": "AeBifsKnjgU",
+      "title": "Urdu Class 1 | Lesson 9 Reading | Pages 82-84 | Fun Learning"
+     },
+     {
+      "id": "6OoxLGWWHbo",
+      "title": "Urdu Class 1 | Lesson 9 Exercise | Pages 85-86 | Fun Learning"
+     }
+    ]
+   },
+   "87": {
+    "url": "https://javedpublishers.com/part3-chapter-3/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 3",
+    "videos": [
+     {
+      "id": "H3L4pXY32OE",
+      "title": "Urdu 1 | Chapter 10: Kheyal Rakhain | Complete Lesson for Beginners"
+     }
+    ]
+   },
+   "93": {
+    "url": "https://javedpublishers.com/part3-chapter-4/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 4",
+    "videos": [
+     {
+      "id": "r1J11l6yKYo",
+      "title": "Urdu Class 1 | Lesson 11 Reading | Pages 93-95 | Fun Learning"
+     },
+     {
+      "id": "__Z_oj0SOA8",
+      "title": "Urdu Class 1 | Lesson 11 Exercise | Pages 95-97 | Fun Learning"
+     }
+    ]
+   },
+   "98": {
+    "url": "https://javedpublishers.com/%d8%b3%d8%a8%d9%82-%d9%86%d9%85%d8%a8%d8%b1-12-%d8%b1%d8%a7%d8%ac%d8%a7-%d9%85%d8%ad%d9%85%d8%af-%d8%b3%d8%b1%d9%88%d8%b1-%d8%b4%db%81%db%8c%d8%af/",
+    "box": [
+     9.5,
+     5.47,
+     8.73,
+     6.31
+    ],
+    "title": "سبق نمبر 12: راجا محمد سرور (شہید)",
+    "videos": [
+     {
+      "id": "BHZPBj-GsPY",
+      "title": "Urdu Class 1 | Lesson 12 Reading | Pages 98-100 | Fun Learning"
+     },
+     {
+      "id": "diUXLNa6-h0",
+      "title": "Urdu Class 1 | Lesson 12 Exercise | Pages 100-101 | Fun Learning"
+     }
+    ]
+   },
+   "102": {
+    "url": "https://javedpublishers.com/part3-chapter-5/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 5",
+    "videos": [
+     {
+      "id": "BHZPBj-GsPY",
+      "title": "Urdu Class 1 | Lesson 12 Reading | Pages 98-100 | Fun Learning"
+     },
+     {
+      "id": "diUXLNa6-h0",
+      "title": "Urdu Class 1 | Lesson 12 Exercise | Pages 100-101 | Fun Learning"
+     }
+    ]
+   },
+   "108": {
+    "url": "https://javedpublishers.com/part3-chapter-6/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 6",
+    "videos": [
+     {
+      "id": "aZXZW3NuCHk",
+      "title": "Urdu Class 1 | Lesson 14 Reading | Pages 108-110 | Fun Learning"
+     },
+     {
+      "id": "0AsjkOJ9DgM",
+      "title": "Urdu Class 1 | Lesson 14 Exercise | Pages 111-113 | Fun Learning"
+     }
+    ]
+   },
+   "114": {
+    "url": "https://javedpublishers.com/part3-chapter-7/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 7",
+    "videos": [
+     {
+      "id": "-uVmi9-mguQ",
+      "title": "Urdu Class 1 | Lesson 15 Reading | Pages 114-116 | Fun Learning"
+     },
+     {
+      "id": "TpcCkCtlzlc",
+      "title": "Urdu Class 1 | Lesson 15 Exercise | Pages 117-118 | Fun Learning"
+     }
+    ]
+   },
+   "119": {
+    "url": "https://javedpublishers.com/part3-jahiza-3-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "part3-jahiza-3-2",
+    "videos": [
+     {
+      "id": "Uy7RA2X8RP0",
+      "title": "Urdu Class 1 | AA Series | Jaiza No. 3 | Naat Poem & Review Activities"
+     }
+    ]
+   }
+  }
  }
 ];

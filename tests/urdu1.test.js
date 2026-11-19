@@ -19,6 +19,18 @@ test('Urdu 1 is a 120-page right-to-left Class 1 Urdu book', () => {
   assert.ok(existsSync(new URL('../books/stemford-urdu-1/cover.jpg', import.meta.url)));
 });
 
-test('Urdu 1 has no invented video links while its QR pages carry no videos', () => {
-  assert.ok(!book.qr || Object.values(book.qr).every(item => Array.isArray(item.videos) && item.videos.length));
+test('Urdu 1 QR buttons open exactly the videos on the pages its printed QR codes open', () => {
+  const supplied = JSON.parse(readFileSync(new URL('../books/urdu1-videos.json', import.meta.url), 'utf8'));
+  const printed = JSON.parse(readFileSync(new URL('../books/stemford-urdu-1/qr.json', import.meta.url), 'utf8'));
+  assert.equal(Object.keys(printed).length, 22);
+  assert.equal(Object.keys(book.qr).length, 21);
+  assert.ok(!book.qr['75'], 'page 75: its publisher page has no video yet');
+  for (const [page, item] of Object.entries(book.qr)) {
+    assert.equal(item.url, supplied[page].source, `page ${page} QR`);
+    assert.deepEqual(JSON.parse(JSON.stringify(item.videos)), supplied[page].videos.map(({ id, title }) => ({ id, title })));
+    for (const video of item.videos) assert.match(video.id, /^[\w-]{11}$/);
+    const [x, y, w, h] = item.box;
+    assert.ok(x >= 0 && y >= 0 && w > 0 && h > 0 && x + w <= 100 && y + h <= 100, `page ${page} box`);
+  }
+  assert.equal(Object.values(book.qr).reduce((n, item) => n + item.videos.length, 0), 39);
 });
