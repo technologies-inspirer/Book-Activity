@@ -7,7 +7,27 @@ import { learningBookMetadata } from '../src/data/learningCatalog.js';
 const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(readFileSync(new URL('../books/library.js', import.meta.url), 'utf8'), context);
+vm.runInContext(readFileSync(new URL('../books/activities-urdu1.js', import.meta.url), 'utf8'), context);
 const book = context.window.PDF_BOOKS.find(item => item.id === 'stemford-urdu-1');
+const acts = JSON.parse(JSON.stringify(context.window.BOOK_ACTIVITIES['stemford-urdu-1']));
+
+test('Urdu 1 picture pages have tap-the-picture games and every lesson page can be written on and coloured', () => {
+  const games = Object.entries(acts).flatMap(([page, list]) => list.filter(a => a.type === 'game').map(game => ({ page: +page, ...game })));
+  assert.deepEqual(games.map(game => game.page), [4, 5, 6, 7, 28]);
+  assert.deepEqual(games.map(game => game.targets.length), [10, 14, 14, 15, 5]);
+  for (const game of games) {
+    assert.equal(game.ur, true);
+    const { x, y, w, h } = game.crop;
+    for (const t of game.targets) {
+      assert.ok(t.name && t.say === t.name, `page ${game.page} target name`);
+      assert.ok(t.x >= x && t.y >= y && t.x + t.w <= x + w && t.y + t.h <= y + h, `page ${game.page}: ${t.name} inside the game view`);
+    }
+    assert.ok(game.button.x >= 0 && game.button.x <= 100 && game.button.y >= 0 && game.button.y <= 100);
+  }
+  for (let page = 4; page <= 120; page++) assert.ok(acts[page].some(a => a.type === 'fill'), `page ${page} write and colour`);
+  assert.ok(!acts[1] && !acts[2] && !acts[3], 'title and contents pages stay plain');
+  assert.ok(Object.values(acts).flat().every(a => !['story', 'tick'].includes(a.type)), 'no AI stories or checklists');
+});
 
 test('Urdu 1 is a 120-page right-to-left Class 1 Urdu book', () => {
   assert.ok(book, 'registered in the library');

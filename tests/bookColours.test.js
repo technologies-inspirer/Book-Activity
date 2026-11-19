@@ -10,7 +10,7 @@ const reviewed = JSON.parse(read('books/colour-palettes.json'));
 const regionRules = JSON.parse(read('books/colour-regions.json'));
 const context = { window: {} };
 vm.createContext(context);
-for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-urdu4', 'activities-maths3', 'activities-computer0', 'activities-english4', 'activities-maths4', 'activities-maths5', 'activities-english5', 'activities-urdu5']) {
+for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-urdu4', 'activities-maths3', 'activities-computer0', 'activities-english4', 'activities-maths4', 'activities-maths5', 'activities-english5', 'activities-urdu5', 'activities-urdu1']) {
   vm.runInContext(read(`books/${file}.js`), context);
 }
 const activities = JSON.parse(JSON.stringify(context.window.BOOK_ACTIVITIES));
@@ -107,7 +107,7 @@ test('part rules refer to real activities and colours available on their pages',
   }
 });
 
-test('all 470 bundled drawing activities have their reviewed page palette', () => {
+test('all 587 bundled drawing activities have their reviewed page palette', () => {
   let total = 0;
   for (const [book, pages] of Object.entries(activities)) {
     for (const [page, pageActivities] of Object.entries(pages)) {
@@ -131,7 +131,7 @@ test('all 470 bundled drawing activities have their reviewed page palette', () =
   }
   // 250 before English 5+, whose 77 exercise pages each have a write-and-colour activity
   // + Urdu 5+'s 77 exercise pages
-  assert.equal(total, 470); // + Maths 5+'s 66 bounded drawing activities
+  assert.equal(total, 587); // + Maths 5+'s 66 bounded drawing activities, + Urdu 1's 117 write-and-colour pages
   assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), 1307);
 });
 
