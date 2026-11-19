@@ -7,5 +7,6 @@
   "ratio": 0.7222,
   "c1": "#cbc8c2",
   "c2": "#777672",
-  "rtl": true
+  "rtl": true,
+  "frontCover": true
 }

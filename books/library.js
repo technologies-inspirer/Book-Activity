@@ -8632,6 +8632,7 @@ window.PDF_BOOKS = [
   "c1": "#cbc8c2",
   "c2": "#777672",
   "rtl": true,
+  "frontCover": true,
   "qr": {
    "4": {
     "url": "https://javedpublishers.com/part1-chapter-1/",
