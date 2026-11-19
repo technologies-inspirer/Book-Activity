@@ -13,17 +13,24 @@ import subjectSelectionPrep from '../../assets/subject-selection-company-books-p
 import mathsSelectionTemplate from '../../assets/subject-maths-two-hands.png';
 import mathsSelectionNursery from '../../assets/subject-maths-two-hands-nursery.png';
 import mathsSelectionPrep from '../../assets/subject-maths-two-hands-prep.png';
+import subjectSelectionClass1 from '../../assets/subject-selection-company-books-class-1.jpeg';
+import mathsSelectionClass1 from '../../assets/subject-maths-two-hands-class-1.png';
+import class1CardArt from '../../assets/class-1-card-art.jpeg';
 import computerBookCover from '../../assets/subject-computer-book-behind-laptop.png';
 
-// The books drawn on the subject cards carry the class's age: Play Group 3, Nursery 4, Prep 5.
+// Classes shown on the "Select Class" step, in order.
+const libraryClassIds =['play-group', 'nursery', 'prep', 'class-1'];
+
+// The books drawn on the subject cards carry the class's age: Play Group 3, Nursery 4, Prep 5, Class 1.
 const subjectArtByClass = {
   nursery: { subjects: subjectSelectionNursery, maths: mathsSelectionNursery },
-  prep: { subjects: subjectSelectionPrep, maths: mathsSelectionPrep }
+  prep: { subjects: subjectSelectionPrep, maths: mathsSelectionPrep },
+  'class-1': { subjects: subjectSelectionClass1, maths: mathsSelectionClass1 }
 };
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
   const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
-  const classes = learningClasses.filter(item => ['play-group', 'nursery', 'prep'].includes(item.id) && schoolAllowsSelection(account, { classId: item.id }));
+  const classes = learningClasses.filter(item => libraryClassIds.includes(item.id) && schoolAllowsSelection(account, { classId: item.id }));
   const titleRef = useRef(null);
   const selectedClass = classes.find(item => item.id === segments[0]);
   const classBooks = selectedClass ? getLearningBooks(assignedBooks, { classId: selectedClass.id }) : [];
@@ -45,7 +52,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
   }, [segments.join('/')]);
 
   return (
-    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")` }}>
+    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--class-1-art': `url("${class1CardArt}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")` }}>
       <LearningScenery />
       <div className="library-navigation"><a className="library-back-link" href={backHref}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg><span>{step === 0 ? 'Back to dashboard' : step === 1 ? 'Back to classes' : 'Back to subjects'}</span></a></div>
       <header className="library-heading portal-panel">
