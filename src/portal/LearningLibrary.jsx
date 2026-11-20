@@ -23,6 +23,8 @@ import subjectSelectionClass2 from '../../assets/subject-selection-company-books
 import class2CardArt from '../../assets/class-2-card-art.jpeg';
 import mathsSelectionClass2 from '../../assets/subject-maths-two-hands-class-2.png';
 import computerBookCover from '../../assets/subject-computer-book-behind-laptop.png';
+import computerBookCoverClass2 from '../../assets/subject-computer-book-behind-laptop-class-2.png';
+import socialSelectionClass2 from '../../assets/subject-selection-company-books-class-2-social.jpeg';
 
 // Classes shown on the "Select Class" step, in order.
 const libraryClassIds =['play-group', 'nursery', 'prep', 'class-1', 'class-2'];
@@ -34,8 +36,9 @@ const subjectArtByClass = {
   // Social Studies and Science: the English card's children holding Social Education 1 / Science 1 (the publisher's front covers);
   // Islamiat: the Urdu card's girl holding Islamiat 1 on a green background
   'class-1': { subjects: subjectSelectionClass1, maths: mathsSelectionClass1, social: socialSelectionClass1, science: scienceSelectionClass1, islamiat: islamiatSelectionClass1 },
-  // Class 2: the English card's children holding English 2, the Maths card's boy holding Count Up 2
-  'class-2': { subjects: subjectSelectionClass2, maths: mathsSelectionClass2 }
+  // Class 2: the English card's children holding English 2, the Maths card's boy holding Count Up 2,
+  // Keypad 2 (Computer Book 2) behind the laptop, Social Education 2
+  'class-2': { subjects: subjectSelectionClass2, maths: mathsSelectionClass2, computer: computerBookCoverClass2, social: socialSelectionClass2 }
 };
 const subjectsWithArt = ['english', 'maths', 'urdu', 'computer', 'social-studies', 'science', 'islamiat'];
 
@@ -63,7 +66,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
   }, [segments.join('/')]);
 
   return (
-    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--class-1-art': `url("${class1CardArt}")`, '--class-2-art': `url("${class2CardArt}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")`, '--social-template': `url("${subjectArtByClass[selectedClass?.id]?.social || subjectSelectionTemplate}")`, '--science-template': `url("${subjectArtByClass[selectedClass?.id]?.science || subjectSelectionTemplate}")`, '--islamiat-template': `url("${subjectArtByClass[selectedClass?.id]?.islamiat || subjectSelectionTemplate}")` }}>
+    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--class-1-art': `url("${class1CardArt}")`, '--class-2-art': `url("${class2CardArt}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${subjectArtByClass[selectedClass?.id]?.computer || computerBookCover}")`, '--social-template': `url("${subjectArtByClass[selectedClass?.id]?.social || subjectSelectionTemplate}")`, '--science-template': `url("${subjectArtByClass[selectedClass?.id]?.science || subjectSelectionTemplate}")`, '--islamiat-template': `url("${subjectArtByClass[selectedClass?.id]?.islamiat || subjectSelectionTemplate}")` }}>
       <LearningScenery />
       <div className="library-navigation"><a className="library-back-link" href={backHref}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg><span>{step === 0 ? 'Back to dashboard' : step === 1 ? 'Back to classes' : 'Back to subjects'}</span></a></div>
       <header className="library-heading portal-panel">

@@ -33,6 +33,8 @@ async function startApp() {
     import('../books/activities-isl1.js'),
     import('../books/activities-eng2.js'),
     import('../books/activities-maths2.js'),
+    import('../books/activities-comp2.js'),
+    import('../books/activities-sst2.js'),
     import('../books/game-crops.js'),
     import('../books/questions.js')
   ]);

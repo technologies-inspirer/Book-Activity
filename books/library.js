@@ -10551,5 +10551,237 @@ window.PDF_BOOKS = [
     ]
    }
   }
+ },
+ {
+  "id": "stemford-computer-2",
+  "title": "Stemford Computer 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-computer-2",
+  "pages": 62,
+  "ratio": 0.7222,
+  "c1": "#96a279",
+  "c2": "#585f47",
+  "frontCover": true
+ },
+ {
+  "id": "stemford-social-studies-2",
+  "title": "Stemford Social Studies 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-social-studies-2",
+  "pages": 72,
+  "ratio": 0.7222,
+  "c1": "#bfb3c0",
+  "c2": "#706971",
+  "frontCover": true,
+  "qr": {
+   "4": {
+    "url": "https://javedpublishers.com/01-13/",
+    "box": [
+     80.38,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 1",
+    "videos": [
+     {
+      "id": "r1Fa9wwdtPM",
+      "title": "Our Country Pakistan 🇵🇰 | Social Studies Class 2 | Chapter 1 Full Lesson"
+     },
+     {
+      "id": "WLReu3X0b_4",
+      "title": "Our Country Pakistan 🇵🇰 | Social Studies Class 2 | Chapter 1 Exercise Solution"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://javedpublishers.com/02-13/",
+    "box": [
+     81.15,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 2",
+    "videos": [
+     {
+      "id": "T8DOXZXOw7k",
+      "title": "Social study 2 | Chapter 2: Our Flag (Pages 13-16) – Learn About Our National Flag!"
+     },
+     {
+      "id": "jpD79l4f7P4",
+      "title": "Chapter 2: Our Flag Exercise | Pages 17-18 | Easy English Learning"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://javedpublishers.com/03-13/",
+    "box": [
+     81.15,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 3",
+    "videos": [
+     {
+      "id": "ko5hohgZf-A",
+      "title": "Title: Social Study 2 - Unit 3, Lesson 1 | Pages 19-21"
+     },
+     {
+      "id": "EOvfQoHh7MU",
+      "title": "Title: Social Study 2 - Unit 3, Lesson 2 | Pages 22-24"
+     },
+     {
+      "id": "boV3ZJpoqUE",
+      "title": "Title: Social Study 2 - Unit 3, Lesson 3 | Pages 24-26 | Exercise"
+     }
+    ]
+   },
+   "27": {
+    "url": "https://javedpublishers.com/04-13/",
+    "box": [
+     81.62,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 4",
+    "videos": [
+     {
+      "id": "icsbyFGUQRk",
+      "title": "Title: Social Study 2 - Unit 4, Lesson 1 | Pages 27-31"
+     },
+     {
+      "id": "3SR7I8KmbZg",
+      "title": "Title: Social Study 2 - Unit 4, Lesson 2 | Exercise (Pages 32-33)"
+     },
+     {
+      "id": "omql_a7oq54",
+      "title": "Title: Social Studies 2 | Unit 4, Lecture 2 | Exercise (Pages 31-32)"
+     }
+    ]
+   },
+   "34": {
+    "url": "https://javedpublishers.com/05-13/",
+    "box": [
+     80.54,
+     8.11,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 5",
+    "videos": [
+     {
+      "id": "NTDbbBZkEoQ",
+      "title": "Title: Social Studies 2 | Unit 5, Lecture 1 | Pages 34-36"
+     },
+     {
+      "id": "exh9X_W65CY",
+      "title": "Title: 📚 Social Studies 2 | Unit 5 Lesson 2 | Exercise | Pages 37-38"
+     }
+    ]
+   },
+   "39": {
+    "url": "https://javedpublishers.com/06-13/",
+    "box": [
+     82.0,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 6",
+    "videos": [
+     {
+      "id": "o74M0l4lZdk",
+      "title": "Title: 🏫 Social Studies 2 | Unit 6 Lesson 1 | Reading & Explanation | Pages 39–43"
+     },
+     {
+      "id": "Lh1OACjxwbI",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 6 Lesson 2 | Exercise | Pages 43–44"
+     }
+    ]
+   },
+   "45": {
+    "url": "https://javedpublishers.com/07-13/",
+    "box": [
+     81.38,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 7",
+    "videos": [
+     {
+      "id": "5QVvhyn-lbk",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 7 Lesson 1 | Reading & Explanation | Pages 45–48"
+     },
+     {
+      "id": "C-67nn7H3Nw",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 7 Lesson 2 | Exercise Solution | Pages 50–51"
+     }
+    ]
+   },
+   "52": {
+    "url": "https://javedpublishers.com/08-13/",
+    "box": [
+     82.38,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 8",
+    "videos": [
+     {
+      "id": "Fu8ehfddqns",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 8 Lesson 1 | Full Lesson Explanation | Pages 52–56"
+     },
+     {
+      "id": "T1u2twUxBh4",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 8 Lesson 2 | Exercise Solution | Pages 56–57"
+     }
+    ]
+   },
+   "58": {
+    "url": "https://javedpublishers.com/09-13/",
+    "box": [
+     81.85,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 9",
+    "videos": [
+     {
+      "id": "Ns0czd69_TE",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 9 Lesson 1 | Full Reading & Explanation | Pages 58–62"
+     },
+     {
+      "id": "VCpbdy11KLs",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 9 Lesson 2 | Exercise with Explanation | Pages 62–63"
+     }
+    ]
+   },
+   "64": {
+    "url": "https://javedpublishers.com/10-25/",
+    "box": [
+     81.54,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 10",
+    "videos": [
+     {
+      "id": "FDLBnCC-2t4",
+      "title": "Title: Social Studies 2 | Unit 10 Lesson 1 | Pages 64-69 | Full Explanation"
+     },
+     {
+      "id": "H2M9NJg82Jg",
+      "title": "Title: Social Studies 2 | Unit 10 Lesson 2 | Pages 70-72 | Exercise Explained"
+     }
+    ]
+   }
+  }
  }
 ];

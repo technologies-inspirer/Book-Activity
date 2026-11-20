@@ -37,7 +37,9 @@ export const learningBookMetadata = {
   'stemford-maths-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'maths' },
   'stemford-islamiat-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'islamiat' },
   'stemford-english-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'english' },
-  'stemford-maths-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'maths' }
+  'stemford-maths-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'maths' },
+  'stemford-computer-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'computer' },
+  'stemford-social-studies-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'social-studies' }
 };
 
 // Kept in the project but not shown in the reader's library (the publisher adds Class 1 books one by one:
