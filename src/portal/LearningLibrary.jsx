@@ -15,18 +15,29 @@ import mathsSelectionNursery from '../../assets/subject-maths-two-hands-nursery.
 import mathsSelectionPrep from '../../assets/subject-maths-two-hands-prep.png';
 import subjectSelectionClass1 from '../../assets/subject-selection-company-books-class-1.jpeg';
 import mathsSelectionClass1 from '../../assets/subject-maths-two-hands-class-1.png';
+import socialSelectionClass1 from '../../assets/subject-selection-company-books-class-1-social.jpeg';
+import scienceSelectionClass1 from '../../assets/subject-selection-company-books-class-1-science.jpeg';
+import islamiatSelectionClass1 from '../../assets/subject-selection-company-books-class-1-islamiat.jpeg';
 import class1CardArt from '../../assets/class-1-card-art.jpeg';
+import subjectSelectionClass2 from '../../assets/subject-selection-company-books-class-2.jpeg';
+import class2CardArt from '../../assets/class-2-card-art.jpeg';
+import mathsSelectionClass2 from '../../assets/subject-maths-two-hands-class-2.png';
 import computerBookCover from '../../assets/subject-computer-book-behind-laptop.png';
 
 // Classes shown on the "Select Class" step, in order.
-const libraryClassIds =['play-group', 'nursery', 'prep', 'class-1'];
+const libraryClassIds =['play-group', 'nursery', 'prep', 'class-1', 'class-2'];
 
-// The books drawn on the subject cards carry the class's age: Play Group 3, Nursery 4, Prep 5, Class 1.
+// The books drawn on the subject cards carry the class's age: Play Group 3, Nursery 4, Prep 5, Class 1, Class 2.
 const subjectArtByClass = {
   nursery: { subjects: subjectSelectionNursery, maths: mathsSelectionNursery },
   prep: { subjects: subjectSelectionPrep, maths: mathsSelectionPrep },
-  'class-1': { subjects: subjectSelectionClass1, maths: mathsSelectionClass1 }
+  // Social Studies and Science: the English card's children holding Social Education 1 / Science 1 (the publisher's front covers);
+  // Islamiat: the Urdu card's girl holding Islamiat 1 on a green background
+  'class-1': { subjects: subjectSelectionClass1, maths: mathsSelectionClass1, social: socialSelectionClass1, science: scienceSelectionClass1, islamiat: islamiatSelectionClass1 },
+  // Class 2: the English card's children holding English 2, the Maths card's boy holding Count Up 2
+  'class-2': { subjects: subjectSelectionClass2, maths: mathsSelectionClass2 }
 };
+const subjectsWithArt = ['english', 'maths', 'urdu', 'computer', 'social-studies', 'science', 'islamiat'];
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
   const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
@@ -52,7 +63,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
   }, [segments.join('/')]);
 
   return (
-    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--class-1-art': `url("${class1CardArt}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")` }}>
+    <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--class-1-art': `url("${class1CardArt}")`, '--class-2-art': `url("${class2CardArt}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${computerBookCover}")`, '--social-template': `url("${subjectArtByClass[selectedClass?.id]?.social || subjectSelectionTemplate}")`, '--science-template': `url("${subjectArtByClass[selectedClass?.id]?.science || subjectSelectionTemplate}")`, '--islamiat-template': `url("${subjectArtByClass[selectedClass?.id]?.islamiat || subjectSelectionTemplate}")` }}>
       <LearningScenery />
       <div className="library-navigation"><a className="library-back-link" href={backHref}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m10 5-7 7 7 7M3 12h18" /></svg><span>{step === 0 ? 'Back to dashboard' : step === 1 ? 'Back to classes' : 'Back to subjects'}</span></a></div>
       <header className="library-heading portal-panel">
@@ -90,7 +101,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
           </section>}
           {step === 1 ? (
             subjectOptions.length ? <section className="library-choice-grid library-subject-grid" aria-label="Select your subject">
-              {subjectOptions.map(subject => <a className={`library-choice-card library-subject-card library-class-card subject-${subject.id}`} key={subject.id} href={libraryLink(selectedClass.id, selectedSeries.id, subject.id)}><span className={['english', 'maths', 'urdu', 'computer'].includes(subject.id) ? 'library-subject-art' : 'library-subject-fallback'} aria-hidden="true">{!['english', 'maths', 'urdu', 'computer'].includes(subject.id) && <LibraryBookIcon />}</span><h2>{subject.name}</h2><p>{selectedSeries.name}</p></a>)}
+              {subjectOptions.map(subject => <a className={`library-choice-card library-subject-card library-class-card subject-${subject.id}`} key={subject.id} href={libraryLink(selectedClass.id, selectedSeries.id, subject.id)}><span className={subjectsWithArt.includes(subject.id) ? 'library-subject-art' : 'library-subject-fallback'} aria-hidden="true">{!subjectsWithArt.includes(subject.id) && <LibraryBookIcon />}</span><h2>{subject.name}</h2><p>{selectedSeries.name}</p></a>)}
             </section> : <EmptyState title={assignedBooks.length ? 'No books available for this selection' : 'No books assigned'}>{assignedBooks.length ? `There are no assigned ${selectedSeries.name} books for ${selectedClass.name}. Choose another series or class.` : 'Contact your administrator to assign books to your demo library.'}</EmptyState>
           ) : (
             <section className="library-results" aria-label={`${selectedSubject.name} books`}>

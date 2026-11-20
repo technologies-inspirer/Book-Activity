@@ -26,6 +26,13 @@ async function startApp() {
     import('../books/activities-english5.js'),
     import('../books/activities-urdu5.js'),
     import('../books/activities-urdu1.js'),
+    import('../books/activities-sst1.js'),
+    import('../books/activities-sci1.js'),
+    import('../books/activities-maths1.js'),
+    import('../books/activities-eng1.js'),
+    import('../books/activities-isl1.js'),
+    import('../books/activities-eng2.js'),
+    import('../books/activities-maths2.js'),
     import('../books/game-crops.js'),
     import('../books/questions.js')
   ]);

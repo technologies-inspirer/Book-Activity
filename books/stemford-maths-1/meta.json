@@ -1,0 +1,11 @@
+{
+  "id": "stemford-maths-1",
+  "title": "Stemford Maths 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-maths-1",
+  "pages": 128,
+  "ratio": 0.7222,
+  "c1": "#c6c6c8",
+  "c2": "#747576",
+  "frontCover": true
+}

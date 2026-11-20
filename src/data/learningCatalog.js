@@ -12,7 +12,9 @@ export const learningSubjects = [
   { id: 'urdu', name: 'Urdu' },
   { id: 'maths', name: 'Maths' },
   { id: 'computer', name: 'Computer' },
-  { id: 'science', name: 'Science' }
+  { id: 'science', name: 'Science' },
+  { id: 'social-studies', name: 'Social Studies' },
+  { id: 'islamiat', name: 'Islamiat' }
 ];
 
 export const learningBookMetadata = {
@@ -30,12 +32,17 @@ export const learningBookMetadata = {
   'stemford-computer-book-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'computer' },
   'stemford-english-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'english' },
   'stemford-science-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'science' },
-  'stemford-urdu-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'urdu' }
+  'stemford-urdu-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'urdu' },
+  'stemford-social-studies-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'social-studies' },
+  'stemford-maths-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'maths' },
+  'stemford-islamiat-1': { classId: 'class-1', seriesId: 'stemford', subjectId: 'islamiat' },
+  'stemford-english-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'english' },
+  'stemford-maths-2': { classId: 'class-2', seriesId: 'stemford', subjectId: 'maths' }
 };
 
-// Kept in the project but not shown in the reader's library (the publisher wants Class 1 to list
-// only Urdu 1 for now). Remove an ID here to show that book again.
-export const hiddenFromLibrary = new Set(['stemford-computer-book-1', 'stemford-english-1', 'stemford-science-1']);
+// Kept in the project but not shown in the reader's library (the publisher adds Class 1 books one by one:
+// Urdu 1, Social Studies 1, Science 1, Maths 1, English 1 and Islamiat 1 so far). Remove an ID here to show that book again.
+export const hiddenFromLibrary = new Set(['stemford-computer-book-1']);
 
 // Schools without explicit class selections retain their existing library access.
 export function schoolAllowsSelection(account, selection) {

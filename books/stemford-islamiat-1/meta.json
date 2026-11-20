@@ -1,0 +1,12 @@
+{
+  "id": "stemford-islamiat-1",
+  "title": "Stemford Islamiat 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-islamiat-1",
+  "pages": 56,
+  "ratio": 0.7222,
+  "c1": "#c1bbb3",
+  "c2": "#726e69",
+  "rtl": true,
+  "frontCover": true
+}

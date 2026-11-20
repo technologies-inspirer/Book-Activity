@@ -10,7 +10,7 @@ const reviewed = JSON.parse(read('books/colour-palettes.json'));
 const regionRules = JSON.parse(read('books/colour-regions.json'));
 const context = { window: {} };
 vm.createContext(context);
-for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-urdu4', 'activities-maths3', 'activities-computer0', 'activities-english4', 'activities-maths4', 'activities-maths5', 'activities-english5', 'activities-urdu5', 'activities-urdu1']) {
+for (const file of ['activities', 'activities-english3', 'activities-maxford', 'activities-urdu3', 'activities-urdu4', 'activities-maths3', 'activities-computer0', 'activities-english4', 'activities-maths4', 'activities-maths5', 'activities-english5', 'activities-urdu5', 'activities-urdu1', 'activities-sst1', 'activities-sci1', 'activities-maths1', 'activities-eng1', 'activities-isl1', 'activities-eng2', 'activities-maths2']) {
   vm.runInContext(read(`books/${file}.js`), context);
 }
 const activities = JSON.parse(JSON.stringify(context.window.BOOK_ACTIVITIES));
@@ -107,7 +107,7 @@ test('part rules refer to real activities and colours available on their pages',
   }
 });
 
-test('all 587 bundled drawing activities have their reviewed page palette', () => {
+test('all 1239 bundled drawing activities have their reviewed page palette', () => {
   let total = 0;
   for (const [book, pages] of Object.entries(activities)) {
     for (const [page, pageActivities] of Object.entries(pages)) {
@@ -131,8 +131,8 @@ test('all 587 bundled drawing activities have their reviewed page palette', () =
   }
   // 250 before English 5+, whose 77 exercise pages each have a write-and-colour activity
   // + Urdu 5+'s 77 exercise pages
-  assert.equal(total, 587); // + Maths 5+'s 66 bounded drawing activities, + Urdu 1's 117 write-and-colour pages
-  assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), 1307);
+  assert.equal(total, 1239); // + Maths 5+'s 66 bounded drawing activities, + Urdu 1's 117 write-and-colour pages, + Social Studies 1's 61, + Science 1's 69, + Maths 1's 126, + English 1's 109, + Islamiat 1's 52, + English 2's 109, + Maths 2's 126
+  assert.equal(Object.values(reviewed.books).reduce((n, pages) => n + Object.keys(pages).length, 0), 1795);
 });
 
 test('apple and orange leaves remain available without unrelated fallback swatches', () => {
@@ -187,7 +187,7 @@ test('different-colour tasks keep multiple choices and writing tasks use a pen c
 test('every bundled page has an explicit task palette with valid distinct colours', () => {
   vm.runInContext(read('books/library.js'), context);
   const library = context.window.PDF_BOOKS;
-  assert.equal(library.length, 15);
+  assert.equal(library.length, 20);
   let total = 0;
   for (const book of library) {
     const pages = reviewed.books[book.id];
@@ -201,7 +201,7 @@ test('every bundled page has an explicit task palette with valid distinct colour
       total++;
     }
   }
-  assert.equal(total, 1307); // + Maths 5+'s 80 pages, + Urdu 1's 120 pages
+  assert.equal(total, 1795); // + Maths 5+'s 80 pages, + Urdu 1's 120 pages, + Social Studies 1's 64 pages, + Maths 1's 128 pages, + Islamiat 1's 56 pages, + English 2's 112 pages, + Maths 2's 128 pages
 });
 
 test('reinforcement palette includes the four letter colours without decorative purple', () => {

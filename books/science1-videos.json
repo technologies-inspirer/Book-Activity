@@ -1,0 +1,168 @@
+{
+ "_about": "Videos shown on the publisher pages that the printed Science 1 QR codes open (javedpublishers.com redirects to stemintpublishingco.com; read on 2026-11-20 with a mobile browser). The printed QR codes of chapters 6, 7 and 8 open each other's pages (page 49 -> Chapter 7, page 55 -> Chapter 8, page 64 -> Chapter 6), so each chapter gets the videos of its own publisher page (\"videosFrom\").",
+ "4": {
+  "source": "https://javedpublishers.com/1-12/",
+  "title": "Chapter 1",
+  "videos": [
+   {
+    "id": "R6abR20NjAA",
+    "title": "My Body - Science Class 1 | Chapter 1 | Educational Video for Kids"
+   },
+   {
+    "id": "lQb8ejG_oGY",
+    "title": "My Body - Science Class 1 | Chapter 1 | Teaching Instructions for Educators"
+   },
+   {
+    "id": "pNUa-SfiWeY",
+    "title": "My Body - Science Class 1 | Chapter 1 | Parent's Guide to Supporting Learning"
+   }
+  ]
+ },
+ "14": {
+  "source": "https://javedpublishers.com/2-12/",
+  "title": "Chapter 2",
+  "videos": [
+   {
+    "id": "EEvlqB5CaHM",
+    "title": "Our Senses - Science 1 | Chapter 2 | Interactive Learning for Students"
+   },
+   {
+    "id": "tzEiH8HVh-Y",
+    "title": "SCIENCE 1 Chapter 2: Our Senses - Teacher's Guide"
+   },
+   {
+    "id": "nWxi9KR4xV4",
+    "title": "SCIENCE 1 Chapter 2: Our Senses - Parent's Guide"
+   }
+  ]
+ },
+ "25": {
+  "source": "https://javedpublishers.com/3-12/",
+  "title": "Chapter 3",
+  "videos": [
+   {
+    "id": "y9HKQ0Yae3Q",
+    "title": "Science 1 | Chapter 3"
+   },
+   {
+    "id": "XvRJmIeFjeQ",
+    "title": "Science 1 | Chapter 3 Video for Teacher"
+   },
+   {
+    "id": "Mrw8Gg85mr4",
+    "title": "Science 1 | Chapter 3 Video for Parents"
+   },
+   {
+    "id": "-S5IeaPdJxE",
+    "title": "Science 1 | Chapter 3 Exercise"
+   }
+  ]
+ },
+ "32": {
+  "source": "https://javedpublishers.com/4-12/",
+  "title": "Chapter 4",
+  "videos": [
+   {
+    "id": "pzx2QJoehZo",
+    "title": "Science 1 Chap 4 for Students"
+   },
+   {
+    "id": "DqVOHLSXcrc",
+    "title": "Plants | Science Class 1 | Chapter 4 Exercise | Questions and Answers for Kids"
+   }
+  ]
+ },
+ "41": {
+  "source": "https://javedpublishers.com/5-12/",
+  "title": "Chapter 5",
+  "videos": [
+   {
+    "id": "blm8X9yrQ7I",
+    "title": "Science 1 | Chap 5 students"
+   },
+   {
+    "id": "l-jeTVDCWTU",
+    "title": "Science 1 | Chap 5 teacher"
+   },
+   {
+    "id": "gF_BMB8bo-s",
+    "title": "Science 1 | Chap 5 Parents"
+   },
+   {
+    "id": "YaLPMouxIUg",
+    "title": "Science 1 | Chap 5 Exercise"
+   }
+  ]
+ },
+ "49": {
+  "source": "https://javedpublishers.com/7-13/",
+  "title": "Chapter 6",
+  "videos": [
+   {
+    "id": "jNtflzaq_co",
+    "title": "Science 1 | Chap 6 Students"
+   },
+   {
+    "id": "o16o-qmoRug",
+    "title": "Science 1 | Chapter 6 Teacher"
+   },
+   {
+    "id": "caWgvAhY7o0",
+    "title": "Science 1 | Chap 6 Parents"
+   }
+  ],
+  "videosFrom": "https://javedpublishers.com/6-12/"
+ },
+ "55": {
+  "source": "https://javedpublishers.com/8-12/",
+  "title": "Chapter 7",
+  "videos": [
+   {
+    "id": "--_WuVG45FI",
+    "title": "Science Grade 1 | Chapter 7 (Pages 55-63) – Fun and Easy Learning!"
+   }
+  ],
+  "videosFrom": "https://javedpublishers.com/7-13/"
+ },
+ "64": {
+  "source": "https://javedpublishers.com/6-12/",
+  "title": "Chapter 8",
+  "videos": [
+   {
+    "id": "yR5wAONmd64",
+    "title": "Science 1 | Chap 8 Students"
+   },
+   {
+    "id": "cyHpy7sMUBA",
+    "title": "Science 1 | Chap 8 Teacher"
+   },
+   {
+    "id": "D2JgbrpTZh8",
+    "title": "Science 1 | Chap 8 Parents"
+   },
+   {
+    "id": "Lfz5UCB9qok",
+    "title": "Science 1 | Chap 8 Exercise"
+   }
+  ],
+  "videosFrom": "https://javedpublishers.com/8-12/"
+ },
+ "69": {
+  "source": "https://javedpublishers.com/9-12/",
+  "title": "Chapter 9",
+  "videos": [
+   {
+    "id": "QP0GA-HK2r4",
+    "title": "Science 1 | Chapter 9 Students"
+   },
+   {
+    "id": "fy8hLym9N1A",
+    "title": "Science 1 | Chapter 9 Parents"
+   },
+   {
+    "id": "edF_9Op9owA",
+    "title": "Science 1 | Chap 9 Exercise"
+   }
+  ]
+ }
+}
