@@ -5,5 +5,6 @@
   "pages": 72,
   "ratio": 0.7222,
   "c1": "#cac2bb",
-  "c2": "#77726e"
+  "c2": "#77726e",
+  "frontCover": true
 }

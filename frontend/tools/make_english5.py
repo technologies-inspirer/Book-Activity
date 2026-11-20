@@ -24,13 +24,19 @@ VIDEOS = {
     42: ("Use of 'a' and 'an'", 'YzW_P64sa58'), 44: ('Naming Words', '-5a6sZHJdh0'),
     48: ("Use of 'This is a/an' and 'That is a/an'", 'BU2EUicNajo'), 50: ("Use of 'These are' and 'Those are'", 'bmi9xQXq0ck'),
     52: ("Use of 'It' and 'Its'", '5Ca72kVImxs'), 53: ("Use of 'I' and 'My'", 'cZQlv0-8hgE'),
+    46: ('Gender', 'qggK6gyPu5w'),
     54: ("Use of 'He/His' and 'She/Her'", '8n25Pg77MAw'),
     # 56 They/Their and We/Our: the supplied link is the same video as 'These are / Those are' (page 50), so it waits for its own link
+    57: ("Use of 'Is', 'Am' and 'Are'", 'MmQUP1RBZrA'), 58: ("Use of 'Was' and 'Were'", '9I_cnqE2SyY'),
+    59: ("Use of 'The'", 'aVrJp-Okngo'),
     63: ("Use of 'Where' and 'When'", '7Q3KgjMRwrc'), 64: ("Use of 'Yes' and 'No'", 'Xx2I9LF5DF0'),
-    65: ('Opposite Words', 'bS3hf5M0P6g'), 67: ('Position Words', 'mXWc501-6vc'), 68: ('Sentence', 'YusfUPebRS8'),
-    73: ('Story Time', '0uOV35lGOX0'),
+    65: ('Opposite Words', 'bS3hf5M0P6g'), 66: ('Directions', 'BNey8GaUQMg'), 67: ('Position Words', 'mXWc501-6vc'),
+    68: ('Sentence', 'YusfUPebRS8'), 70: ('Capitalization', 'lg1u-2zgjmI'), 72: ('More About Me', 'yfpXiF_ip4E'),
+    73: ('Story Time', '0uOV35lGOX0'), 77: ('Character Sketch', 'fzGuKWGtmww'),
 }
 FIRST_PAGE = 4   # pages 1-3 are the credits, contents and about-the-book pages
+# Lesson buttons checked by eye where the automatic blank-paper search lands on printed text or a paste-in box.
+VIDEO_BUTTON_AT = {66: {'x': 45, 'y': 1}, 77: {'x': 42, 'y': 0.3}}
 
 def row(names, y, h, x0=5, x1=95):
     """Equal picture cells across a row, each with its printed word underneath."""
@@ -99,7 +105,7 @@ def main():
             title, vid = VIDEOS[page]
             # beside the topic heading at the top of the page, on blank paper
             entries.append({'type': 'videos', 'label': 'Lesson', 'icon': '▶️', 'title': title,
-                            'button': m4.clear_spot(page, [0, 6.5, 62, 4], taken),
+                            'button': VIDEO_BUTTON_AT.get(page) or m4.clear_spot(page, [0, 6.5, 62, 4], taken),
                             'videos': [{'title': title, 'src': 'https://youtu.be/' + vid}]})
         if page in GAMES:
             entries.append(make_game(page, *GAMES[page], taken))

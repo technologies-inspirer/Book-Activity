@@ -2705,6 +2705,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
  ],
  "46": [
   {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Gender",
+   "button": {
+    "x": 45.3,
+    "y": 53.5
+   },
+   "videos": [
+    {
+     "title": "Gender",
+     "src": "https://youtu.be/qggK6gyPu5w"
+    }
+   ]
+  },
+  {
    "type": "game",
    "title": "Find the boy and the girl",
    "button": {
@@ -3542,6 +3558,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
  ],
  "57": [
   {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Use of 'Is', 'Am' and 'Are'",
+   "button": {
+    "x": 44.8,
+    "y": 21.0
+   },
+   "videos": [
+    {
+     "title": "Use of 'Is', 'Am' and 'Are'",
+     "src": "https://youtu.be/MmQUP1RBZrA"
+    }
+   ]
+  },
+  {
    "type": "fill",
    "title": "Write and colour",
    "colours": [
@@ -3565,6 +3597,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
  ],
  "58": [
   {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Use of 'Was' and 'Were'",
+   "button": {
+    "x": 55.9,
+    "y": 5.0
+   },
+   "videos": [
+    {
+     "title": "Use of 'Was' and 'Were'",
+     "src": "https://youtu.be/9I_cnqE2SyY"
+    }
+   ]
+  },
+  {
    "type": "fill",
    "title": "Write and colour",
    "colours": [
@@ -3587,6 +3635,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
   }
  ],
  "59": [
+  {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Use of 'The'",
+   "button": {
+    "x": 40.7,
+    "y": 0.5
+   },
+   "videos": [
+    {
+     "title": "Use of 'The'",
+     "src": "https://youtu.be/aVrJp-Okngo"
+    }
+   ]
+  },
   {
    "type": "fill",
    "title": "Write and colour",
@@ -3981,6 +4045,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
  ],
  "66": [
   {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Directions",
+   "button": {
+    "x": 45,
+    "y": 1
+   },
+   "videos": [
+    {
+     "title": "Directions",
+     "src": "https://youtu.be/BNey8GaUQMg"
+    }
+   ]
+  },
+  {
    "type": "fill",
    "title": "Write and colour",
    "colours": [
@@ -4169,6 +4249,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
  ],
  "70": [
   {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Capitalization",
+   "button": {
+    "x": 44.8,
+    "y": 1.0
+   },
+   "videos": [
+    {
+     "title": "Capitalization",
+     "src": "https://youtu.be/lg1u-2zgjmI"
+    }
+   ]
+  },
+  {
    "type": "fill",
    "title": "Write and colour",
    "colours": [
@@ -4214,6 +4310,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
   }
  ],
  "72": [
+  {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "More About Me",
+   "button": {
+    "x": 44.8,
+    "y": 1.0
+   },
+   "videos": [
+    {
+     "title": "More About Me",
+     "src": "https://youtu.be/yfpXiF_ip4E"
+    }
+   ]
+  },
   {
    "type": "fill",
    "title": "Write and colour",
@@ -4345,6 +4457,22 @@ window.BOOK_ACTIVITIES['stemford-english-5'] = {
   }
  ],
  "77": [
+  {
+   "type": "videos",
+   "label": "Lesson",
+   "icon": "▶️",
+   "title": "Character Sketch",
+   "button": {
+    "x": 42,
+    "y": 0.3
+   },
+   "videos": [
+    {
+     "title": "Character Sketch",
+     "src": "https://youtu.be/fzGuKWGtmww"
+    }
+   ]
+  },
   {
    "type": "fill",
    "title": "Write and colour",

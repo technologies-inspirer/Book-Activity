@@ -1,0 +1,11 @@
+{
+  "id": "stemford-english-2",
+  "title": "Stemford English 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-english-2",
+  "pages": 112,
+  "ratio": 0.7222,
+  "c1": "#d1bbb6",
+  "c2": "#7b6e6b",
+  "frontCover": true
+}

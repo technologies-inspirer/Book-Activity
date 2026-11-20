@@ -1118,7 +1118,8 @@ window.PDF_BOOKS = [
     ],
     "title": ""
    }
-  }
+  },
+  "frontCover": true
  },
  {
   "id": "stemford-maths-3",
@@ -1808,59 +1809,60 @@ window.PDF_BOOKS = [
    "4": {
     "url": "https://javedpublishers.com/1-12/",
     "box": [
-     83.3,
-     11.1,
-     5.1,
-     3.7
+     83.38,
+     11.11,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 1",
     "videos": [
      {
       "id": "R6abR20NjAA",
-      "title": "\"My Body - Science Class 1 | Chapter 1 | Educational Video for Kids\""
+      "title": "My Body - Science Class 1 | Chapter 1 | Educational Video for Kids"
      },
      {
       "id": "lQb8ejG_oGY",
-      "title": "\"My Body - Science Class 1 | Chapter 1 | Teaching Instructions for Edu"
+      "title": "My Body - Science Class 1 | Chapter 1 | Teaching Instructions for Educators"
      },
      {
       "id": "pNUa-SfiWeY",
-      "title": "\"My Body - Science Class 1 | Chapter 1 | Parent's Guide to Supporting "
+      "title": "My Body - Science Class 1 | Chapter 1 | Parent's Guide to Supporting Learning"
      }
-    ],
-    "title": ""
+    ]
    },
    "14": {
     "url": "https://javedpublishers.com/2-12/",
     "box": [
-     83.8,
+     83.85,
      11.0,
-     5.1,
-     3.7
+     5.15,
+     3.72
     ],
+    "title": "Chapter 2",
     "videos": [
      {
       "id": "EEvlqB5CaHM",
-      "title": "\"Our Senses - Science 1 | Chapter 2 | Interactive Learning for Student"
+      "title": "Our Senses - Science 1 | Chapter 2 | Interactive Learning for Students"
      },
      {
       "id": "tzEiH8HVh-Y",
-      "title": "\"SCIENCE 1 Chapter 2: Our Senses - Teacher's Guide\""
+      "title": "SCIENCE 1 Chapter 2: Our Senses - Teacher's Guide"
      },
      {
       "id": "nWxi9KR4xV4",
-      "title": "\"SCIENCE 1 Chapter 2: Our Senses - Parent's Guide\""
+      "title": "SCIENCE 1 Chapter 2: Our Senses - Parent's Guide"
      }
-    ],
-    "title": ""
+    ]
    },
    "25": {
     "url": "https://javedpublishers.com/3-12/",
     "box": [
-     83.2,
-     12.9,
-     5.1,
-     3.7
+     83.23,
+     12.94,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 3",
     "videos": [
      {
       "id": "y9HKQ0Yae3Q",
@@ -1878,17 +1880,17 @@ window.PDF_BOOKS = [
       "id": "-S5IeaPdJxE",
       "title": "Science 1 | Chapter 3 Exercise"
      }
-    ],
-    "title": ""
+    ]
    },
    "32": {
     "url": "https://javedpublishers.com/4-12/",
     "box": [
-     84.2,
-     12.9,
-     5.1,
-     3.7
+     84.23,
+     12.94,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 4",
     "videos": [
      {
       "id": "pzx2QJoehZo",
@@ -1896,19 +1898,19 @@ window.PDF_BOOKS = [
      },
      {
       "id": "DqVOHLSXcrc",
-      "title": "Plants | Science Class 1 | Chapter 4 Exercise | Questions and Answers "
+      "title": "Plants | Science Class 1 | Chapter 4 Exercise | Questions and Answers for Kids"
      }
-    ],
-    "title": ""
+    ]
    },
    "41": {
     "url": "https://javedpublishers.com/5-12/",
     "box": [
-     83.5,
-     12.9,
-     5.1,
-     3.7
+     83.54,
+     12.94,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 5",
     "videos": [
      {
       "id": "blm8X9yrQ7I",
@@ -1926,33 +1928,57 @@ window.PDF_BOOKS = [
       "id": "YaLPMouxIUg",
       "title": "Science 1 | Chap 5 Exercise"
      }
-    ],
-    "title": ""
+    ]
    },
    "49": {
     "url": "https://javedpublishers.com/7-13/",
     "box": [
-     83.1,
-     12.9,
-     5.1,
-     3.7
+     83.15,
+     12.94,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 6",
+    "videos": [
+     {
+      "id": "jNtflzaq_co",
+      "title": "Science 1 | Chap 6 Students"
+     },
+     {
+      "id": "o16o-qmoRug",
+      "title": "Science 1 | Chapter 6 Teacher"
+     },
+     {
+      "id": "caWgvAhY7o0",
+      "title": "Science 1 | Chap 6 Parents"
+     }
+    ]
+   },
+   "55": {
+    "url": "https://javedpublishers.com/8-12/",
+    "box": [
+     83.62,
+     12.94,
+     5.15,
+     3.72
+    ],
+    "title": "Chapter 7",
     "videos": [
      {
       "id": "--_WuVG45FI",
       "title": "Science Grade 1 | Chapter 7 (Pages 55-63) – Fun and Easy Learning!"
      }
-    ],
-    "title": ""
+    ]
    },
-   "55": {
-    "url": "https://javedpublishers.com/8-12/",
+   "64": {
+    "url": "https://javedpublishers.com/6-12/",
     "box": [
-     83.6,
-     12.9,
-     5.1,
-     3.7
+     84.62,
+     12.94,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 8",
     "videos": [
      {
       "id": "yR5wAONmd64",
@@ -1970,41 +1996,17 @@ window.PDF_BOOKS = [
       "id": "Lfz5UCB9qok",
       "title": "Science 1 | Chap 8 Exercise"
      }
-    ],
-    "title": ""
-   },
-   "64": {
-    "url": "https://javedpublishers.com/6-12/",
-    "box": [
-     84.6,
-     12.9,
-     5.1,
-     3.7
-    ],
-    "videos": [
-     {
-      "id": "jNtflzaq_co",
-      "title": "Science 1 | Chap 6 Students"
-     },
-     {
-      "id": "o16o-qmoRug",
-      "title": "Science 1 | Chapter 6 Teacher"
-     },
-     {
-      "id": "caWgvAhY7o0",
-      "title": "Science 1 | Chap 6 Parents"
-     }
-    ],
-    "title": ""
+    ]
    },
    "69": {
     "url": "https://javedpublishers.com/9-12/",
     "box": [
-     82.6,
-     12.9,
-     5.1,
-     3.7
+     82.62,
+     12.94,
+     5.15,
+     3.72
     ],
+    "title": "Chapter 9",
     "videos": [
      {
       "id": "QP0GA-HK2r4",
@@ -2018,10 +2020,10 @@ window.PDF_BOOKS = [
       "id": "edF_9Op9owA",
       "title": "Science 1 | Chap 9 Exercise"
      }
-    ],
-    "title": ""
+    ]
    }
-  }
+  },
+  "frontCover": true
  },
  {
   "id": "stemford-series-computer-book-0-curve",
@@ -8029,6 +8031,2756 @@ window.PDF_BOOKS = [
      }
     ],
     "title": "STEMFORD Urdu 5+  -51"
+   }
+  }
+ },
+ {
+  "id": "stemford-maths-5",
+  "title": "Stemford Maths 5+",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-maths-5",
+  "pages": 80,
+  "ratio": 0.7222,
+  "c1": "#cdc6bb",
+  "c2": "#79756e",
+  "rtl": false,
+  "frontCover": true,
+  "qr": {
+   "4": {
+    "url": "https://o2o.to/i/VCGHNA76YMWU",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Numbers 0–9 and 10–19",
+    "videos": [
+     {
+      "id": "tXbGxu00eN0",
+      "title": "Student"
+     },
+     {
+      "id": "5YCS8p0Wqg8",
+      "title": "Teacher"
+     },
+     {
+      "id": "Hp2wFHb5zEY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "8": {
+    "url": "https://o2o.to/i/PXJHC9S0YE3D",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Greater and smaller numbers",
+    "videos": [
+     {
+      "id": "bdp6FyCds64",
+      "title": "Student"
+     },
+     {
+      "id": "11M4mHY4gfU",
+      "title": "Teacher"
+     },
+     {
+      "id": "BNk8sg74pB0",
+      "title": "Parents"
+     }
+    ]
+   },
+   "9": {
+    "url": "https://o2o.to/i/2DY9REF0GIQ3",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Numbers 20–29 and 30–39",
+    "videos": [
+     {
+      "id": "JyXQF4EZti4",
+      "title": "Student"
+     },
+     {
+      "id": "tpKjCUByD1w",
+      "title": "Teacher"
+     },
+     {
+      "id": "rIv583TldSU",
+      "title": "Parents"
+     }
+    ]
+   },
+   "11": {
+    "url": "https://o2o.to/i/EKD1GN09ZSBJ",
+    "box": [
+     78.88,
+     5.53,
+     5.69,
+     4.11
+    ],
+    "title": "Comparing numbers",
+    "videos": [
+     {
+      "id": "hKXz2Z3DuAY",
+      "title": "Student"
+     },
+     {
+      "id": "hYofK4lwQM8",
+      "title": "Teacher"
+     },
+     {
+      "id": "EmWAqXj_uyY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://o2o.to/i/JPBTL1259OCX",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Ascending and descending order",
+    "videos": [
+     {
+      "id": "eBlbncaEMDI",
+      "title": "Student"
+     },
+     {
+      "id": "pWRhjLBMMwk",
+      "title": "Teacher"
+     },
+     {
+      "id": "dqrDH_yL9Hs",
+      "title": "Parents"
+     }
+    ]
+   },
+   "15": {
+    "url": "https://o2o.to/i/XNUQBALSCV08",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Even and odd, numbers 40–49 and revision",
+    "videos": [
+     {
+      "id": "sMphlOIykfs",
+      "title": "Student"
+     },
+     {
+      "id": "sTNzh0xuwVw",
+      "title": "Teacher"
+     },
+     {
+      "id": "1DhUiKInSRY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://o2o.to/i/YW2SU751K0M3",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Forward and backward counting",
+    "videos": [
+     {
+      "id": "t7W-obalOdg",
+      "title": "Student"
+     },
+     {
+      "id": "yAxNOBIVL4A",
+      "title": "Teacher"
+     },
+     {
+      "id": "wPJBF0Ka-8w",
+      "title": "Parents"
+     }
+    ]
+   },
+   "22": {
+    "url": "https://o2o.to/i/0IYSD6P5A84N",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Positions",
+    "videos": [
+     {
+      "id": "mnDklbEqCZ0",
+      "title": "Student"
+     },
+     {
+      "id": "o7af4wLi9U4",
+      "title": "Teacher"
+     },
+     {
+      "id": "8NtkrIjQ_q0",
+      "title": "Parents"
+     }
+    ]
+   },
+   "23": {
+    "url": "https://o2o.to/i/QR02X1BTGIWK",
+    "box": [
+     65.15,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Left and right",
+    "videos": [
+     {
+      "id": "bD4xHzqhU4A",
+      "title": "Student"
+     },
+     {
+      "id": "IPn5hOtvLuE",
+      "title": "Teacher"
+     },
+     {
+      "id": "GZDza26aYeE",
+      "title": "Parents"
+     }
+    ]
+   },
+   "24": {
+    "url": "https://o2o.to/i/OJ5U7I3CPGZ9",
+    "box": [
+     77.04,
+     5.36,
+     5.69,
+     4.11
+    ],
+    "title": "Before, after and between",
+    "videos": [
+     {
+      "id": "VXB-h0ZyF5M",
+      "title": "Student"
+     },
+     {
+      "id": "-bNYO7_2cco",
+      "title": "Teacher"
+     },
+     {
+      "id": "BCr0N59oQWQ",
+      "title": "Parents"
+     }
+    ]
+   },
+   "25": {
+    "url": "https://o2o.to/i/WHCY7U5ID20O",
+    "box": [
+     71.77,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Numbers 50–99",
+    "videos": [
+     {
+      "id": "2lxv2eZDhmg",
+      "title": "Student"
+     },
+     {
+      "id": "9ZgZ5cFreL8",
+      "title": "Teacher"
+     },
+     {
+      "id": "JyHLRxXcy9o",
+      "title": "Parents"
+     }
+    ]
+   },
+   "34": {
+    "url": "https://o2o.to/i/48JQ1OI3Z92H",
+    "box": [
+     72.38,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Number 100",
+    "videos": [
+     {
+      "id": "NENNrROJtOU",
+      "title": "Student"
+     },
+     {
+      "id": "SpDy4tzTmkY",
+      "title": "Teacher"
+     },
+     {
+      "id": "xGJbaK6QUno",
+      "title": "Parents"
+     }
+    ]
+   },
+   "38": {
+    "url": "https://o2o.to/i/DV04O6Z51WS9",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Addition",
+    "videos": [
+     {
+      "id": "YreXvbPLSAE",
+      "title": "Student"
+     },
+     {
+      "id": "HSjXTbtR5po",
+      "title": "Teacher"
+     },
+     {
+      "id": "21js1lUguGc",
+      "title": "Parents"
+     }
+    ]
+   },
+   "46": {
+    "url": "https://o2o.to/i/RMDPS9JA7THG",
+    "box": [
+     57.23,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Shapes and patterns",
+    "videos": [
+     {
+      "id": "ThCwYHlJXSE",
+      "title": "Student"
+     },
+     {
+      "id": "yh0cndfnbAc",
+      "title": "Teacher"
+     },
+     {
+      "id": "ZdaR1qTGTrE",
+      "title": "Parents"
+     }
+    ]
+   },
+   "49": {
+    "url": "https://o2o.to/i/OMYS4356EXDG",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Position numbers",
+    "videos": [
+     {
+      "id": "es_y-EngB08",
+      "title": "Student"
+     },
+     {
+      "id": "vwljyU2kVXI",
+      "title": "Teacher"
+     },
+     {
+      "id": "vgQ8v7L32Uk",
+      "title": "Parents"
+     }
+    ]
+   },
+   "54": {
+    "url": "https://o2o.to/i/XU25S1D340AC",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "One more and one less",
+    "videos": [
+     {
+      "id": "80OC-Rgzgak",
+      "title": "Student"
+     },
+     {
+      "id": "iO8Jludpv60",
+      "title": "Teacher"
+     },
+     {
+      "id": "WGv8O8gaKEw",
+      "title": "Parents"
+     }
+    ]
+   },
+   "55": {
+    "url": "https://o2o.to/i/Z8OG54NWYACH",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Comparison of sizes, lengths and weights",
+    "videos": [
+     {
+      "id": "iscCZ2KUV4A",
+      "title": "Student"
+     },
+     {
+      "id": "srP_F5D-ong",
+      "title": "Teacher"
+     },
+     {
+      "id": "xtCEhzSrHpY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "57": {
+    "url": "https://o2o.to/i/75LXANWU320V",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Comparison of heights",
+    "videos": [
+     {
+      "id": "TgJTTDY8WO8",
+      "title": "Student"
+     },
+     {
+      "id": "yiCnoseUeIc",
+      "title": "Teacher"
+     },
+     {
+      "id": "FV1GTZSUxDI",
+      "title": "Parents"
+     }
+    ]
+   },
+   "60": {
+    "url": "https://o2o.to/i/3RUXTP1E2LSN",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Subtraction",
+    "videos": [
+     {
+      "id": "sxIUslJbrDM",
+      "title": "Student"
+     },
+     {
+      "id": "wU8fYEmp_tk",
+      "title": "Teacher"
+     },
+     {
+      "id": "wWynQB2wn6o",
+      "title": "Parents"
+     }
+    ]
+   },
+   "68": {
+    "url": "https://o2o.to/i/8YHO6W5SP94I",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Adding or subtracting zero",
+    "videos": [
+     {
+      "id": "0nT4RHZA5QE",
+      "title": "Student"
+     },
+     {
+      "id": "8IMyVU4sz6Q",
+      "title": "Teacher"
+     },
+     {
+      "id": "PfS-v6UgY0Q",
+      "title": "Parents"
+     }
+    ]
+   },
+   "69": {
+    "url": "https://o2o.to/i/Y2PXKSZRFNCE",
+    "box": [
+     81.31,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Measurement: length, weight and height",
+    "videos": [
+     {
+      "id": "fjkaG808-g8",
+      "title": "Student"
+     },
+     {
+      "id": "fWMyFbdGAiQ",
+      "title": "Teacher"
+     },
+     {
+      "id": "EwgCNj8qzB8",
+      "title": "Parents"
+     }
+    ]
+   },
+   "73": {
+    "url": "https://o2o.to/i/3UEX5N674MDG",
+    "box": [
+     78.85,
+     5.5,
+     5.69,
+     4.11
+    ],
+    "title": "Capacity and comparing quantity",
+    "videos": [
+     {
+      "id": "enu143ldLTc",
+      "title": "Student"
+     },
+     {
+      "id": "RThgZMfPpbc",
+      "title": "Teacher"
+     },
+     {
+      "id": "gciWBlCRdzY",
+      "title": "Parents"
+     }
+    ]
+   },
+   "75": {
+    "url": "https://o2o.to/i/37ZSF98BJI6R",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Time",
+    "videos": [
+     {
+      "id": "xd5VV1PmxfQ",
+      "title": "Student"
+     },
+     {
+      "id": "SAgnCyzAok0",
+      "title": "Teacher"
+     },
+     {
+      "id": "iqhm9tqHSyI",
+      "title": "Parents"
+     }
+    ]
+   },
+   "79": {
+    "url": "https://o2o.to/i/2D7IU3FSB8OR",
+    "box": [
+     78.85,
+     5.56,
+     5.69,
+     4.11
+    ],
+    "title": "Money",
+    "videos": [
+     {
+      "id": "u_-IIRKDpzs",
+      "title": "Student"
+     },
+     {
+      "id": "GC0la1ZfLpY",
+      "title": "Teacher"
+     },
+     {
+      "id": "YPr3F7kztLw",
+      "title": "Parents"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "stemford-urdu-1",
+  "title": "Stemford Urdu 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-urdu-1",
+  "pages": 120,
+  "ratio": 0.7222,
+  "c1": "#cbc8c2",
+  "c2": "#777672",
+  "rtl": true,
+  "frontCover": true,
+  "qr": {
+   "4": {
+    "url": "https://javedpublishers.com/part1-chapter-1/",
+    "box": [
+     9.85,
+     5.61,
+     8.31,
+     6.0
+    ],
+    "title": "Part1: Chapter 1",
+    "videos": [
+     {
+      "id": "gsyZgZUBtr8",
+      "title": "Urdu Class 1: Halki Awazon Wale Huroof e Tehji | Learn Urdu Phonics (Page 4-7)"
+     },
+     {
+      "id": "-m1rUPbXFRw",
+      "title": "Urdu Class 1: Halki Awazon Wale Huroof e Tehji | A Guide for Parents (Page 4-7)"
+     },
+     {
+      "id": "Q6sNahmL7kc",
+      "title": "Urdu Class 1: Mukammal Huroof e Tehji | Page 8 to 10 | For Students"
+     }
+    ]
+   },
+   "8": {
+    "url": "https://javedpublishers.com/part1-chapter-2/",
+    "box": [
+     9.92,
+     6.22,
+     8.08,
+     5.89
+    ],
+    "title": "Part1: Chapter 2",
+    "videos": [
+     {
+      "id": "7EUsnkottDc",
+      "title": "Urdu 1: Huroof e Tehji Ki Chand Chhoti Ashkaal Mashq | Urdu Lesson for Students"
+     },
+     {
+      "id": "Q6sNahmL7kc",
+      "title": "Urdu Class 1: Mukammal Huroof e Tehji | Page 8 to 10 | For Students"
+     },
+     {
+      "id": "_r6Xwja_GEo",
+      "title": "Urdu 1: Huroof e Tehji Ki Chand Chhoti Ashkaal Mashq | Parent's Guide to Urdu Learning"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://javedpublishers.com/part1-chapter-3/",
+    "box": [
+     9.92,
+     5.72,
+     8.0,
+     5.78
+    ],
+    "title": "Part1: Chapter 3",
+    "videos": [
+     {
+      "id": "8gT7RhQV6X4",
+      "title": "Urdu 1: Arkan o Alfaz Sazi Page No 13 to 15 | Urdu Lesson for Students"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://javedpublishers.com/part1-chapter-4/",
+    "box": [
+     9.85,
+     5.72,
+     8.15,
+     5.83
+    ],
+    "title": "Part1: Chapter 4",
+    "videos": [
+     {
+      "id": "ndDZjmUm5_Q",
+      "title": "Urdu Class 1: Airaab Wao Aur Yaye Ki Iqsam | Learn Urdu Grammar (Page 19-22)"
+     },
+     {
+      "id": "pePqx4YUkM0",
+      "title": "Urdu Class 1: Wao Ki Iqsam | Pages 23-25 | Video for Students"
+     }
+    ]
+   },
+   "26": {
+    "url": "https://javedpublishers.com/part1-chapter-5/",
+    "box": [
+     9.92,
+     5.72,
+     8.0,
+     5.78
+    ],
+    "title": "Part1: Chapter 5",
+    "videos": [
+     {
+      "id": "Ka-FT27cvHk",
+      "title": "Urdu Class 1: Saada Jumlay aur Basri Alfaaz | Pages 26-27 | Video for Students"
+     },
+     {
+      "id": "tZ9qsZMyYSc",
+      "title": "Urdu Class 1: Saada Jumlay aur Basri Alfaaz ki Mashaq | Pages 27-28 | Video for Students"
+     }
+    ]
+   },
+   "29": {
+    "url": "https://javedpublishers.com/part2-chapter-1-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Urdu Class 1 Stemford Series – STEM International",
+    "videos": [
+     {
+      "id": "NXiUwQ8FIVc",
+      "title": "Urdu Class 1: Mera Khuda - Hamd | A Guide for Students"
+     }
+    ]
+   },
+   "36": {
+    "url": "https://javedpublishers.com/part2-chapter-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 2",
+    "videos": [
+     {
+      "id": "YhiLxe4CjGM",
+      "title": "Urdu Class 1: Pyaaray Nabi Khātim al Nabiyyin | Naat (Pages 36-38) Video for Students"
+     },
+     {
+      "id": "2_ZWCBKQI80",
+      "title": "Urdu Class 1 | Pyaaray Nabi Khātim al Nabiyyin Naat | Pages 38-41"
+     }
+    ]
+   },
+   "42": {
+    "url": "https://javedpublishers.com/part2-chapter-3/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 3",
+    "videos": [
+     {
+      "id": "LtPdAGSZKR4",
+      "title": "Urdu Class 1 | Sabaq No. 3: Aakhri Rasool ﷺ | Pages 42-43"
+     },
+     {
+      "id": "S9pNbdoJHnA",
+      "title": "Urdu Class 1 | Sabaq No. 3: Aakhri Rasool Khatam un Nabiyeen ﷺ | Mashaq"
+     }
+    ]
+   },
+   "49": {
+    "url": "https://javedpublishers.com/part2-chapter-4/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 4",
+    "videos": [
+     {
+      "id": "SLgkDmwl-yo",
+      "title": "Urdu Class 1 | Sabaq 4 - Main Aur Mera Ghar Mashaq | Pages 51-54"
+     },
+     {
+      "id": "cs72O7vucMA",
+      "title": "Urdu Class 1 | Sabaq 4 - Main Aur Mera Ghar | Pages 49-51"
+     }
+    ]
+   },
+   "55": {
+    "url": "https://javedpublishers.com/part2-chapter-5/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 5",
+    "videos": [
+     {
+      "id": "P7l9Szq_J7w",
+      "title": "Urdu Class 1 | Sabaq No. 5 | Haye! Mera Daant | Pages 55-57"
+     },
+     {
+      "id": "NIxxw-yVL44",
+      "title": "Urdu Class 1 | Sabaq No. 5 | Haye! Mera Daant (Mashaq) | Pages 57-59"
+     }
+    ]
+   },
+   "60": {
+    "url": "https://javedpublishers.com/part2-chapter-6/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 6",
+    "videos": [
+     {
+      "id": "6-9Y57aDA9Y",
+      "title": "Urdu Class 1 | Sabaq No. 6 | Guftagu ke Aadaab | Pages 61-62"
+     },
+     {
+      "id": "rqi0JDkqPD8",
+      "title": "Urdu Class 1 | Sabaq No. 6 | Guftagu ke Aadaab (Mashaq) | Pages 61-65"
+     }
+    ]
+   },
+   "66": {
+    "url": "https://javedpublishers.com/part2-chapter-7/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Chapter 7",
+    "videos": [
+     {
+      "id": "rbWRwJ8qZ44",
+      "title": "Urdu Class 1 | Sabaq No. 7 | Qaumi Shaayar | Pages 66-68"
+     },
+     {
+      "id": "kcKydjYvZM8",
+      "title": "Urdu Class 1 | Lesson 7 | Pages 69-72 | Easy & Fun Learning"
+     }
+    ]
+   },
+   "73": {
+    "url": "https://javedpublishers.com/part2-jahiza-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part2: Jahiza 2",
+    "videos": [
+     {
+      "id": "ZPb0Opyw8Mg",
+      "title": "Urdu Class 1 | Jaiza No. 2 | Pages 73-74"
+     }
+    ]
+   },
+   "82": {
+    "url": "https://javedpublishers.com/part3-chapter-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 2",
+    "videos": [
+     {
+      "id": "AeBifsKnjgU",
+      "title": "Urdu Class 1 | Lesson 9 Reading | Pages 82-84 | Fun Learning"
+     },
+     {
+      "id": "6OoxLGWWHbo",
+      "title": "Urdu Class 1 | Lesson 9 Exercise | Pages 85-86 | Fun Learning"
+     }
+    ]
+   },
+   "87": {
+    "url": "https://javedpublishers.com/part3-chapter-3/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 3",
+    "videos": [
+     {
+      "id": "H3L4pXY32OE",
+      "title": "Urdu 1 | Chapter 10: Kheyal Rakhain | Complete Lesson for Beginners"
+     }
+    ]
+   },
+   "93": {
+    "url": "https://javedpublishers.com/part3-chapter-4/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 4",
+    "videos": [
+     {
+      "id": "r1J11l6yKYo",
+      "title": "Urdu Class 1 | Lesson 11 Reading | Pages 93-95 | Fun Learning"
+     },
+     {
+      "id": "__Z_oj0SOA8",
+      "title": "Urdu Class 1 | Lesson 11 Exercise | Pages 95-97 | Fun Learning"
+     }
+    ]
+   },
+   "98": {
+    "url": "https://javedpublishers.com/%d8%b3%d8%a8%d9%82-%d9%86%d9%85%d8%a8%d8%b1-12-%d8%b1%d8%a7%d8%ac%d8%a7-%d9%85%d8%ad%d9%85%d8%af-%d8%b3%d8%b1%d9%88%d8%b1-%d8%b4%db%81%db%8c%d8%af/",
+    "box": [
+     9.5,
+     5.47,
+     8.73,
+     6.31
+    ],
+    "title": "سبق نمبر 12: راجا محمد سرور (شہید)",
+    "videos": [
+     {
+      "id": "BHZPBj-GsPY",
+      "title": "Urdu Class 1 | Lesson 12 Reading | Pages 98-100 | Fun Learning"
+     },
+     {
+      "id": "diUXLNa6-h0",
+      "title": "Urdu Class 1 | Lesson 12 Exercise | Pages 100-101 | Fun Learning"
+     }
+    ]
+   },
+   "102": {
+    "url": "https://javedpublishers.com/part3-chapter-5/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 5",
+    "videos": [
+     {
+      "id": "BHZPBj-GsPY",
+      "title": "Urdu Class 1 | Lesson 12 Reading | Pages 98-100 | Fun Learning"
+     },
+     {
+      "id": "diUXLNa6-h0",
+      "title": "Urdu Class 1 | Lesson 12 Exercise | Pages 100-101 | Fun Learning"
+     }
+    ]
+   },
+   "108": {
+    "url": "https://javedpublishers.com/part3-chapter-6/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 6",
+    "videos": [
+     {
+      "id": "aZXZW3NuCHk",
+      "title": "Urdu Class 1 | Lesson 14 Reading | Pages 108-110 | Fun Learning"
+     },
+     {
+      "id": "0AsjkOJ9DgM",
+      "title": "Urdu Class 1 | Lesson 14 Exercise | Pages 111-113 | Fun Learning"
+     }
+    ]
+   },
+   "114": {
+    "url": "https://javedpublishers.com/part3-chapter-7/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "Part3: Chapter 7",
+    "videos": [
+     {
+      "id": "-uVmi9-mguQ",
+      "title": "Urdu Class 1 | Lesson 15 Reading | Pages 114-116 | Fun Learning"
+     },
+     {
+      "id": "TpcCkCtlzlc",
+      "title": "Urdu Class 1 | Lesson 15 Exercise | Pages 117-118 | Fun Learning"
+     }
+    ]
+   },
+   "119": {
+    "url": "https://javedpublishers.com/part3-jahiza-3-2/",
+    "box": [
+     9.46,
+     5.5,
+     8.77,
+     6.33
+    ],
+    "title": "part3-jahiza-3-2",
+    "videos": [
+     {
+      "id": "Uy7RA2X8RP0",
+      "title": "Urdu Class 1 | AA Series | Jaiza No. 3 | Naat Poem & Review Activities"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "stemford-social-studies-1",
+  "title": "Stemford Social Studies 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-social-studies-1",
+  "pages": 64,
+  "ratio": 0.7222,
+  "c1": "#cab9ac",
+  "c2": "#776d65",
+  "qr": {
+   "4": {
+    "url": "https://javedpublishers.com/01-9/",
+    "box": [
+     80.85,
+     8.0,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 1",
+    "videos": [
+     {
+      "id": "Hu7dN5AE2FE",
+      "title": "Social Studies 1: Chapter 1 - Myself | Video Lecture for Students"
+     },
+     {
+      "id": "yX91c4cnkw0",
+      "title": "Social Studies 1: Chapter 1 - Myself | Teacher's Guide"
+     },
+     {
+      "id": "b2ParJc6onU",
+      "title": "Social Studies 1: Chapter 1 - Myself | Parent's Guide"
+     },
+     {
+      "id": "p2vkJxIFOHU",
+      "title": "Social Studies 1: Chapter 1 - Myself | Exercise Solutions"
+     }
+    ]
+   },
+   "8": {
+    "url": "https://javedpublishers.com/02-9/",
+    "box": [
+     82.0,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 2",
+    "videos": [
+     {
+      "id": "CKP205gTO0E",
+      "title": "Social Studies Class 1 | Unit 2 Reading | Easy Learning"
+     },
+     {
+      "id": "VLQC6rnsI6o",
+      "title": "Social Studies Class 1 | Unit 2 Exercise | Fun Learning"
+     }
+    ]
+   },
+   "14": {
+    "url": "https://javedpublishers.com/03-9/",
+    "box": [
+     81.69,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 3",
+    "videos": [
+     {
+      "id": "QSXa65IDipI",
+      "title": "Social Studies Class 1 | Unit 3 Exercise | Fun Learning"
+     }
+    ]
+   },
+   "20": {
+    "url": "https://javedpublishers.com/04-9/",
+    "box": [
+     81.31,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 4",
+    "videos": [
+     {
+      "id": "qz3r7OK05FI",
+      "title": "Social Study 1 | Unit 4 | Lecture 1 | Introduction & Key Concepts"
+     },
+     {
+      "id": "MKT5m5MB0rM",
+      "title": "Social Study 1 | Unit 4 | Lecture 2 | Easy Learning for Students"
+     }
+    ]
+   },
+   "26": {
+    "url": "https://javedpublishers.com/05-9/",
+    "box": [
+     82.08,
+     8.0,
+     5.85,
+     4.22
+    ],
+    "title": "Chapter 5",
+    "videos": [
+     {
+      "id": "_K99qYLtyKU",
+      "title": "Social Study 1 | Unit 5 | Lecture 1 | Introduction & Key Concepts for Students"
+     },
+     {
+      "id": "bcydMqf2qnM",
+      "title": "Social Study 1 | Unit 5 | Lecture 2 | Engaging Learning for Students"
+     }
+    ]
+   },
+   "31": {
+    "url": "https://javedpublishers.com/06-9/",
+    "box": [
+     81.31,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 6",
+    "videos": [
+     {
+      "id": "ZEdnrvq122M",
+      "title": "Social Study 1 | Unit 6 | Lecture 1 | Introduction & Key Concepts"
+     },
+     {
+      "id": "BdlOxjN9k3g",
+      "title": "Social Study 1 | Unit 6 | Lecture 2 | Interactive Learning for Students"
+     }
+    ]
+   },
+   "38": {
+    "url": "https://javedpublishers.com/07-9/",
+    "box": [
+     81.31,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 7",
+    "videos": [
+     {
+      "id": "IZTdNSRIt4Y",
+      "title": "Social Study 1 | Unit 7 | Lecture 1 | Introduction & Key Concepts"
+     },
+     {
+      "id": "GgF59Hmkik0",
+      "title": "Social Study 1 | Unit 7 | Lecture 2 | Engaging Learning for Students"
+     }
+    ]
+   },
+   "43": {
+    "url": "https://javedpublishers.com/08-9/",
+    "box": [
+     81.77,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 8",
+    "videos": [
+     {
+      "id": "bdWKLtNoYdc",
+      "title": "Let's Read Together | Social Studies Class 1 | Unit 8"
+     },
+     {
+      "id": "7VStfaGbsfA",
+      "title": "Unit 8 Exercise | Social Studies Class 1 | Fun Learning"
+     }
+    ]
+   },
+   "50": {
+    "url": "https://javedpublishers.com/09-9/",
+    "box": [
+     82.0,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 9",
+    "videos": [
+     {
+      "id": "erODEuuqJ9c",
+      "title": "Let's Read Together | Social Studies Class 1 | Unit 9"
+     },
+     {
+      "id": "Yp4kXz6PfdI",
+      "title": "Unit 9 Exercise | Social Studies Class 1 | Fun Learning"
+     }
+    ]
+   },
+   "55": {
+    "url": "https://javedpublishers.com/10-19/",
+    "box": [
+     81.85,
+     7.94,
+     6.0,
+     4.33
+    ],
+    "title": "Chapter 10",
+    "videos": [
+     {
+      "id": "Sp8os8ka-Ac",
+      "title": "Let's Read Together | Social Studies Class 1 | Unit 10"
+     },
+     {
+      "id": "hFlVBWNeGtw",
+      "title": "Unit 10 Exercise | Social Studies Class 1 | Fun Learning"
+     }
+    ]
+   },
+   "60": {
+    "url": "https://javedpublishers.com/11-18/",
+    "box": [
+     80.69,
+     7.89,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 11",
+    "videos": [
+     {
+      "id": "-HKuycPbYNo",
+      "title": "Let's Read Together | Social Studies Class 1 | Unit 11"
+     },
+     {
+      "id": "RW6gx_-21Ps",
+      "title": "Unit 11 Exercise | Social Studies Class 1 | Fun Learning"
+     }
+    ]
+   }
+  },
+  "frontCover": true
+ },
+ {
+  "id": "stemford-maths-1",
+  "title": "Stemford Maths 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-maths-1",
+  "pages": 128,
+  "ratio": 0.7222,
+  "c1": "#c6c6c8",
+  "c2": "#747576",
+  "frontCover": true,
+  "qr": {
+   "9": {
+    "url": "https://javedpublishers.com/2-16/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 9",
+    "videos": [
+     {
+      "id": "sdyy32LkBH8",
+      "title": "Title: Unit 1 Exercise | Math Grade 1 | Pages 09-10"
+     },
+     {
+      "id": "sdscLe4dfCo",
+      "title": "Math 1: Whole Numbers - Teacher's Instructions"
+     },
+     {
+      "id": "AdEAG9cX5f4",
+      "title": "Math 1: Whole Numbers - A Guide for Parents"
+     }
+    ]
+   },
+   "11": {
+    "url": "https://javedpublishers.com/3-16/",
+    "box": [
+     83.38,
+     55.5,
+     6.23,
+     4.5
+    ],
+    "title": "Page 11",
+    "videos": [
+     {
+      "id": "3tPkn6gjOfI",
+      "title": "Math 1 | Counting Forward & Backward | Page 11-12"
+     }
+    ]
+   },
+   "12": {
+    "url": "https://javedpublishers.com/4-16/",
+    "box": [
+     84.85,
+     5.94,
+     6.23,
+     4.5
+    ],
+    "title": "Page 12",
+    "videos": [
+     {
+      "id": "BdtrIUfyCkc",
+      "title": "Math 1 | Comparing Same | Page 13-16"
+     }
+    ]
+   },
+   "17": {
+    "url": "https://javedpublishers.com/5-16/",
+    "box": [
+     78.08,
+     5.33,
+     6.27,
+     4.53
+    ],
+    "title": "Page 17",
+    "videos": [
+     {
+      "id": "OqVjlUFp4j8",
+      "title": "Math 1 - Whole Numbers | Pages 17–20 | Counting, Comparing & Writing Numbers | Easy Lesson for Kids"
+     }
+    ]
+   },
+   "25": {
+    "url": "https://javedpublishers.com/9-15/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 25",
+    "videos": [
+     {
+      "id": "7tE5_ldwd9Q",
+      "title": "Title: Math 1 - Counting with Number Lines 🧮 | Pages 26-28"
+     }
+    ]
+   },
+   "28": {
+    "url": "https://javedpublishers.com/10-26/",
+    "box": [
+     83.62,
+     29.89,
+     6.23,
+     4.44
+    ],
+    "title": "Page 28",
+    "videos": [
+     {
+      "id": "LTBLGFlrMQY",
+      "title": "Title: Math 1 - Understanding Place Value 🧮 | Pages 29-31"
+     }
+    ]
+   },
+   "32": {
+    "url": "https://javedpublishers.com/11-24/",
+    "box": [
+     42.92,
+     7.22,
+     6.23,
+     4.5
+    ],
+    "title": "Page 32",
+    "videos": [
+     {
+      "id": "twQbTG8GkFU",
+      "title": "Title: Math 1 - Numbers 21 to 30 🧮 | Pages 33-41"
+     }
+    ]
+   },
+   "41": {
+    "url": "https://javedpublishers.com/12-23/",
+    "box": [
+     84.85,
+     8.28,
+     6.27,
+     4.53
+    ],
+    "title": "Page 41",
+    "videos": [
+     {
+      "id": "nuaBdfB52aI",
+      "title": "Title: Forward & Backward Counting (99-0) | Math Grade 1 | Pages 42-44"
+     },
+     {
+      "id": "7ZnnuyC-PU4",
+      "title": "Math 1 | Forward and Backward Counting (0 to 99) | Fun Learning for Kids\" page 42 to 44"
+     }
+    ]
+   },
+   "44": {
+    "url": "https://javedpublishers.com/13-23/",
+    "box": [
+     83.15,
+     8.28,
+     6.27,
+     4.53
+    ],
+    "title": "Page 44",
+    "videos": [
+     {
+      "id": "6QKiMkpgYRI",
+      "title": "Math 1 | Before, After, and Between | Fun Number Learning for Kids"
+     }
+    ]
+   },
+   "45": {
+    "url": "https://javedpublishers.com/14-22/",
+    "box": [
+     84.08,
+     6.83,
+     6.23,
+     4.5
+    ],
+    "title": "Page 45",
+    "videos": [
+     {
+      "id": "ytqlVUWCwdA",
+      "title": "Title: Comparing 2-Digit Numbers | Math Grade 1 | Page 46"
+     }
+    ]
+   },
+   "46": {
+    "url": "https://javedpublishers.com/15-20/",
+    "box": [
+     81.54,
+     23.44,
+     6.23,
+     4.5
+    ],
+    "title": "Page 46",
+    "videos": [
+     {
+      "id": "aGU22YwUOV0",
+      "title": "Title: Ascending & Descending Order (0-99) | Math Grade 1 | Page 47"
+     }
+    ]
+   },
+   "47": {
+    "url": "https://javedpublishers.com/16-20/",
+    "box": [
+     84.0,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 47",
+    "videos": [
+     {
+      "id": "KvZGxuAF0Kk",
+      "title": "Title: Recognizing 100 as a 3-Digit Number | Math Grade 1 | Pages 48-50"
+     }
+    ]
+   },
+   "50": {
+    "url": "https://javedpublishers.com/17-20/",
+    "box": [
+     84.08,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 50",
+    "videos": [
+     {
+      "id": "09w3jWg9wkE",
+      "title": "Title: Ordinal Numbers | Math Grade 1 | Pages 51-52"
+     }
+    ]
+   },
+   "56": {
+    "url": "https://javedpublishers.com/19-18/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 56",
+    "videos": [
+     {
+      "id": "P6FKEyNtFvs",
+      "title": "Title: Math 1: Adding Two Single-Digit Numbers (Sums Up to 9) | Pages 56-57"
+     }
+    ]
+   },
+   "58": {
+    "url": "https://javedpublishers.com/20-17/",
+    "box": [
+     83.69,
+     27.5,
+     6.23,
+     4.5
+    ],
+    "title": "Page 58",
+    "videos": [
+     {
+      "id": "UQ9HZfD-3-c",
+      "title": "Math Grade 1 | Addition by Counting Forward Up to 20 | Pages 58-61 | Easy Learning for Kids"
+     }
+    ]
+   },
+   "62": {
+    "url": "https://javedpublishers.com/21-17/",
+    "box": [
+     84.85,
+     7.83,
+     6.23,
+     4.5
+    ],
+    "title": "Page 62",
+    "videos": [
+     {
+      "id": "E2deS0WNVME",
+      "title": "Title: Addition of 2-Digit & 1-Digit Numbers | Math Grade 1 | Pages 62-63"
+     }
+    ]
+   },
+   "64": {
+    "url": "https://javedpublishers.com/22-14/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 64",
+    "videos": [
+     {
+      "id": "cNcrGnL9G8U",
+      "title": "Title: Finding the Unknown Number | Math Grade 1 | Pages 64-65"
+     }
+    ]
+   },
+   "66": {
+    "url": "https://javedpublishers.com/24-13/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 66",
+    "videos": [
+     {
+      "id": "7IyI6Uon8pQ",
+      "title": "Title: Addition of Three 1-Digit Numbers | Math Grade 1 | Pages 66-67"
+     }
+    ]
+   },
+   "68": {
+    "url": "https://javedpublishers.com/25-12/",
+    "box": [
+     84.85,
+     8.33,
+     6.23,
+     4.5
+    ],
+    "title": "Page 68",
+    "videos": [
+     {
+      "id": "E9PirQHP40s",
+      "title": "Title: Subtraction & Comparing Numbers | Math Grade 1 | Pages 70-71"
+     },
+     {
+      "id": "NHn_MzJzulE",
+      "title": "Title: Math 1 - Unit 2 Subtraction | Teacher’s Instructions | Page 70 ✏️➖"
+     }
+    ]
+   },
+   "70": {
+    "url": "https://javedpublishers.com/26-10/",
+    "box": [
+     81.0,
+     17.22,
+     6.23,
+     4.5
+    ],
+    "title": "Page 70",
+    "videos": [
+     {
+      "id": "PwBjxTWwMEc",
+      "title": "Math 1 - Chapter 2: Number Operations | Pages 72–74 | Addition & Subtraction Made Easy ➕"
+     }
+    ]
+   },
+   "73": {
+    "url": "https://javedpublishers.com/27-10/",
+    "box": [
+     80.69,
+     55.89,
+     6.15,
+     4.5
+    ],
+    "title": "Page 73",
+    "videos": [
+     {
+      "id": "PmceQi1jgkw",
+      "title": "Title: Math 1 - Subtraction Facts | Pages 75-76 🧮✨"
+     },
+     {
+      "id": "R0w3XrhHZEo",
+      "title": "Math Grade 1 | Subtraction Facts | Pages 75-76 | Easy and Fun Explanation for Kids"
+     }
+    ]
+   },
+   "75": {
+    "url": "https://javedpublishers.com/28-10/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 75",
+    "videos": [
+     {
+      "id": "pU4vlSYEqIs",
+      "title": "Title: Math 1 - Subtraction by Counting Backwards (Up to 20) 🧮 | Pages 77-80"
+     }
+    ]
+   },
+   "79": {
+    "url": "https://javedpublishers.com/29-10/",
+    "box": [
+     85.0,
+     5.83,
+     6.23,
+     4.5
+    ],
+    "title": "Page 79",
+    "videos": [
+     {
+      "id": "xRF4eVosjcY",
+      "title": "Title: Math 1 - Subtraction of 1-Digit Numbers from 2-Digit Numbers | Pages 81-83 🧮📉"
+     }
+    ]
+   },
+   "82": {
+    "url": "https://javedpublishers.com/30-10/",
+    "box": [
+     84.85,
+     8.25,
+     6.23,
+     4.53
+    ],
+    "title": "Page 82",
+    "videos": [
+     {
+      "id": "229aS_5n9NI",
+      "title": "Title: Math 1 - Finding the Unknown Numbers 🧩 | Pages 84-85"
+     }
+    ]
+   },
+   "85": {
+    "url": "https://javedpublishers.com/31-11/",
+    "box": [
+     84.85,
+     8.39,
+     6.15,
+     4.5
+    ],
+    "title": "Page 85",
+    "videos": [
+     {
+      "id": "pLaSKnidNrU",
+      "title": "Title: Math 1 - Measuring Length 📏 | Pages 87-88"
+     },
+     {
+      "id": "tQk6ptw2KbI",
+      "title": "Title: Math 1 - Unit 3 | Measuring Length | Teacher’s Instruction | Page 87 📏✏️"
+     }
+    ]
+   },
+   "88": {
+    "url": "https://javedpublishers.com/32-10/",
+    "box": [
+     84.85,
+     8.33,
+     6.23,
+     4.5
+    ],
+    "title": "Page 88",
+    "videos": [
+     {
+      "id": "CQCfDopNVeE",
+      "title": "Title: Math 1 - Tall, Taller, Tallest | Pages 89-90 📏🏢"
+     }
+    ]
+   },
+   "90": {
+    "url": "https://javedpublishers.com/33-10/",
+    "box": [
+     84.85,
+     5.83,
+     6.23,
+     4.5
+    ],
+    "title": "Page 90",
+    "videos": [
+     {
+      "id": "KuzI9wjU-Lo",
+      "title": "Title: Math 1 - Light, Lighter, Lightest 🏋️‍♂️ | Pages 91-92"
+     }
+    ]
+   },
+   "92": {
+    "url": "https://javedpublishers.com/34-10/",
+    "box": [
+     84.77,
+     8.39,
+     6.23,
+     4.5
+    ],
+    "title": "Page 92",
+    "videos": [
+     {
+      "id": "ojw296BS15A",
+      "title": "Title: Math 1 - Unit 4: Money for Teachers | Page 93 | Learn About Money 💰"
+     }
+    ]
+   },
+   "96": {
+    "url": "https://javedpublishers.com/36-9/",
+    "box": [
+     80.85,
+     37.5,
+     6.27,
+     4.53
+    ],
+    "title": "Page 96",
+    "videos": [
+     {
+      "id": "QJuFiw8LlpY",
+      "title": "Math Grade 1 | Exchanging Money & Equivalent Sets | Pages 97-99 | Easy Money Math for Kids"
+     }
+    ]
+   },
+   "99": {
+    "url": "https://javedpublishers.com/37-9/",
+    "box": [
+     84.85,
+     6.39,
+     6.23,
+     4.5
+    ],
+    "title": "Page 99",
+    "videos": [
+     {
+      "id": "la0dL1ZVGaY",
+      "title": "Math Grade 1 | Adding Money Using Prices | Pages 100-105 | Easy Explanation for Kids"
+     }
+    ]
+   },
+   "105": {
+    "url": "https://javedpublishers.com/38-7/",
+    "box": [
+     84.85,
+     8.28,
+     6.23,
+     4.5
+    ],
+    "title": "Page 105",
+    "videos": [
+     {
+      "id": "KY218o6yIbc",
+      "title": "Math Grade 1 | Unit 5: Telling Time | Pages 106-111 | Teacher’s Guide & Explanation"
+     }
+    ]
+   },
+   "111": {
+    "url": "https://javedpublishers.com/39-7/",
+    "box": [
+     80.46,
+     39.22,
+     6.23,
+     4.5
+    ],
+    "title": "Page 111",
+    "videos": [
+     {
+      "id": "ri2xNDJYmKM",
+      "title": "Math Grade 1 | Days of the Week | Pages 112-116 | Fun & Easy Learning for Kids"
+     }
+    ]
+   },
+   "116": {
+    "url": "https://javedpublishers.com/40-7/",
+    "box": [
+     84.77,
+     8.39,
+     6.23,
+     4.5
+    ],
+    "title": "Page 116",
+    "videos": [
+     {
+      "id": "deA769_MEHU",
+      "title": "Math Grade 1 | Unit 6: Geometry (Teacher’s Guide) | Pages 117-128 | How to Teach Shapes Easily"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "stemford-islamiat-1",
+  "title": "Stemford Islamiat 1",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-islamiat-1",
+  "pages": 56,
+  "ratio": 0.7222,
+  "c1": "#c1bbb3",
+  "c2": "#726e69",
+  "rtl": true,
+  "frontCover": true,
+  "qr": {
+   "5": {
+    "url": "https://o2o.to/i/J6DU2HAIOF1Q",
+    "box": [
+     9.46,
+     5.94,
+     9.46,
+     6.89
+    ],
+    "title": "Page 5",
+    "videos": [
+     {
+      "id": "E_PoD0V_3J8",
+      "title": "Islamiyat Class 1 | ناظرہ قرآن | Basic Quran Reading Lesson for Kids"
+     }
+    ]
+   },
+   "7": {
+    "url": "https://o2o.to/i/86AX2Q4DHS3I",
+    "box": [
+     9.46,
+     5.94,
+     9.46,
+     6.83
+    ],
+    "title": "Page 7",
+    "videos": [
+     {
+      "id": "rnpPQ5MQEPA",
+      "title": "Islamiyat Class 1 | حفظ و قرآن مجید | Basic Quran Learning for Kids"
+     }
+    ]
+   },
+   "9": {
+    "url": "https://o2o.to/i/2QPT75WCLXBR",
+    "box": [
+     9.46,
+     6.0,
+     9.46,
+     6.78
+    ],
+    "title": "Page 9",
+    "videos": [
+     {
+      "id": "nART45YOMt4",
+      "title": "Islamiyat Class 1 | حفظ و ترجمہ | Basic Islamic Learning for Kids"
+     }
+    ]
+   },
+   "11": {
+    "url": "https://o2o.to/i/YVL0C8PS7AFG",
+    "box": [
+     9.46,
+     5.94,
+     9.46,
+     6.83
+    ],
+    "title": "Page 11",
+    "videos": [
+     {
+      "id": "ZUlC6G9I9cI",
+      "title": "Islamiyat Class 1 | حدیث نبوی ﷺ | Basic Hadith Learning for Kids"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://o2o.to/i/28U6Q3CZIN9D",
+    "box": [
+     9.62,
+     6.17,
+     9.15,
+     6.61
+    ],
+    "title": "Page 13",
+    "videos": [
+     {
+      "id": "GIjLOh_WE5g",
+      "title": "Islamiyat Class 1 | دُعائیں (زبانی) | Daily Duas for Kids"
+     }
+    ]
+   },
+   "14": {
+    "url": "https://o2o.to/i/VZG57U3MT4L9",
+    "box": [
+     11.46,
+     10.28,
+     9.46,
+     6.78
+    ],
+    "title": "Page 14",
+    "videos": [
+     {
+      "id": "R-0rYMBCCFc",
+      "title": "Islamiyat Class 1 | سبق نمبر 1: توحید کا تعارف | Basic Islamic Studies for Kids"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://o2o.to/i/ST4PKIUJEH0B",
+    "box": [
+     11.54,
+     10.06,
+     9.31,
+     6.72
+    ],
+    "title": "Page 19",
+    "videos": [
+     {
+      "id": "imWMbIDJI2o",
+      "title": "Islamiyat Class 1 | سبق نمبر 2: نبوت و رسالت | Basic Islamic Learning for Kids"
+     }
+    ]
+   },
+   "23": {
+    "url": "https://o2o.to/i/MT1BC409K6WL",
+    "box": [
+     11.46,
+     10.22,
+     9.46,
+     6.83
+    ],
+    "title": "Page 23",
+    "videos": [
+     {
+      "id": "BR6KUiNCdYM",
+      "title": "Islamiyat Class 1 | باب دوم: سبق نمبر 1 مسجد و اذان | Basic Islamic Learning for Kids"
+     }
+    ]
+   },
+   "27": {
+    "url": "https://o2o.to/i/M8G4WSDT0L1P",
+    "box": [
+     11.46,
+     10.06,
+     9.46,
+     6.83
+    ],
+    "title": "Page 27",
+    "videos": [
+     {
+      "id": "LgWsjmDrV0A",
+      "title": "Islamiyat Class 1 | باب دوم: سبق نمبر 2 نماز | Basic Prayer Lesson for Kids"
+     }
+    ]
+   },
+   "31": {
+    "url": "https://o2o.to/i/UPVWY3BSLKN5",
+    "box": [
+     11.46,
+     10.22,
+     9.46,
+     6.83
+    ],
+    "title": "Page 31",
+    "videos": [
+     {
+      "id": "VFryoHw9jUw",
+      "title": "Islamiyat Class 1 | باب سوم: سبق نمبر 1 حضرت محمد ﷺ | Learning About the Last Prophet"
+     }
+    ]
+   },
+   "37": {
+    "url": "https://o2o.to/i/GNLK13QY6HUF",
+    "box": [
+     11.46,
+     10.22,
+     9.46,
+     6.83
+    ],
+    "title": "Page 37",
+    "videos": [
+     {
+      "id": "jhyKlCSF6_M",
+      "title": "Islamiyat Class 1 | باب سوم: سبق نمبر 2 حضرت محمد ﷺ کے اخلاق حسنہ | Learning About the Prophet’s"
+     }
+    ]
+   },
+   "42": {
+    "url": "https://o2o.to/i/DC52O08VUQI4",
+    "box": [
+     11.46,
+     10.22,
+     9.46,
+     6.89
+    ],
+    "title": "Page 42",
+    "videos": [
+     {
+      "id": "93k5-e1UKuQ",
+      "title": "Islamiyat Class 1 | باب چہارم: سبق نمبر 1 اچھے اخلاق | Learning Good Manners for Kids"
+     }
+    ]
+   },
+   "47": {
+    "url": "https://o2o.to/i/AJOPXETWRGH2",
+    "box": [
+     11.62,
+     10.33,
+     9.15,
+     6.61
+    ],
+    "title": "Page 47",
+    "videos": [
+     {
+      "id": "YpS5x5WkHzs",
+      "title": "Islamiyat Class 1 | باب چہارم: سبق نمبر 2 سَلام کرنا | Learning to Greet in Islam"
+     }
+    ]
+   },
+   "52": {
+    "url": "https://o2o.to/i/C4GSILFTBH51",
+    "box": [
+     11.46,
+     10.22,
+     9.46,
+     6.83
+    ],
+    "title": "Page 52",
+    "videos": [
+     {
+      "id": "lGVE4voUntM",
+      "title": "Islamiyat Class 1 | باب پنجم: سبق نمبر 1 انبیاء کرام ؑ کا تعارف | Introduction to the Prophets"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "stemford-english-2",
+  "title": "Stemford English 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-english-2",
+  "pages": 112,
+  "ratio": 0.7222,
+  "c1": "#d1bbb6",
+  "c2": "#7b6e6b",
+  "frontCover": true,
+  "qr": {
+   "4": {
+    "url": "https://javedpublishers.com/1-26/",
+    "box": [
+     79.92,
+     13.83,
+     9.54,
+     6.83
+    ],
+    "title": "Page 4",
+    "videos": [
+     {
+      "id": "Qu-Aj_XK768",
+      "title": "English Class 2 | Chapter 1: The Golden Sun | Page 4–6"
+     },
+     {
+      "id": "cSyTSlbo6L4",
+      "title": "English 2 - Unit 1 | Full Exercise Solution with Explanation | Grade 2 English"
+     }
+    ]
+   },
+   "10": {
+    "url": "https://javedpublishers.com/2-25/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 10",
+    "videos": [
+     {
+      "id": "STWLAZYNB7g",
+      "title": "English 2 | Chapter 2 | Hazrat Ali | Class 2 English Lesson"
+     },
+     {
+      "id": "cUzvODVI0Ro",
+      "title": "English 2 | Chapter 2 | Hazrat Ali | Exercise Part 1 | Class 2 English"
+     },
+     {
+      "id": "xr6y2fRzK3w",
+      "title": "English 2 | Chapter 2 | Hazrat Ali | Exercise Part 2 | Class 2 English"
+     }
+    ]
+   },
+   "20": {
+    "url": "https://javedpublishers.com/3-25/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 20",
+    "videos": [
+     {
+      "id": "y_eCLK_RTMA",
+      "title": "English 2 | Chapter 3 | Don’t Wake the Baby | Class 2 English Lesson"
+     },
+     {
+      "id": "-Cq1nTduJNk",
+      "title": "English 2 | Chapter 3 | Don’t Wake the Baby Exercise Part 1 | Class 2 English Lesson"
+     }
+    ]
+   },
+   "31": {
+    "url": "https://javedpublishers.com/4-25/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 31",
+    "videos": [
+     {
+      "id": "HrQ5E6til9A",
+      "title": "English 2 | Chapter 4 | Goodnight Tinku | Class 2 English Lesson"
+     },
+     {
+      "id": "OROWxLSrDyU",
+      "title": "English 2 | Chapter 4 | Goodnight Tinku Exercise Part 1 | Class 2 English"
+     }
+    ]
+   },
+   "44": {
+    "url": "https://javedpublishers.com/5-25/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 44",
+    "videos": [
+     {
+      "id": "-n6__42jdew",
+      "title": "English Grade 2 | Chapter 5: Yummy Food, Healthy Food | Pages 44–46 | Vocabulary & Reading Practice"
+     },
+     {
+      "id": "aq9FJm3W42U",
+      "title": "English Grade 2 | Chapter 5 Exercise: Yummy Food, Healthy Food | Pages 47–49 | Questions & Answers"
+     }
+    ]
+   },
+   "51": {
+    "url": "https://javedpublishers.com/6-24/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 51",
+    "videos": [
+     {
+      "id": "TX51IH3B1Qw",
+      "title": "English Grade 2 | Chapter 6: The Boy and the Drum | Pages 51–54 | Story Reading and Comprehension"
+     },
+     {
+      "id": "QILk2Zg9QWk",
+      "title": "English Grade 2 | Chapter 6 Exercise Part 1: The Boy and the Drum | Pages 55–58"
+     },
+     {
+      "id": "CBqYex8UDdY",
+      "title": "English Grade 2 | Chapter 6 Exercise Part 2: The Boy and the Drum | Pages 59–62"
+     }
+    ]
+   },
+   "63": {
+    "url": "https://javedpublishers.com/7-24/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 63",
+    "videos": [
+     {
+      "id": "oiNIurQJWg8",
+      "title": "English Grade 2 | Chapter 7: A Suitable Shell | Pages 63–66 | Story Reading and Vocabulary Practice"
+     },
+     {
+      "id": "oO8upKzCuyI",
+      "title": "English Grade 2 | Chapter 7 Exercise Part 1: A Suitable Shell | Pages 67–69 | Questions & Activities"
+     },
+     {
+      "id": "MWpezZBqS4o",
+      "title": "English Grade 2 | Chapter 7 Exercise Part 2: A Suitable Shell | Pages 70–72 | Questions & Activities"
+     }
+    ]
+   },
+   "73": {
+    "url": "https://javedpublishers.com/8-22/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 73",
+    "videos": [
+     {
+      "id": "4Kyg3zITzdQ",
+      "title": "English Grade 2 | Chapter 8: Nida and the Bloop | Pages 73–76 | Story Reading"
+     },
+     {
+      "id": "gs1mqvl2I6M",
+      "title": "English Grade 2 | Chapter 8 Exercise Part 1: Nida and the Bloop | Pages 76–79"
+     },
+     {
+      "id": "6Ap0r8jX7FA",
+      "title": "English Book 2 | Chapter 8 Exercise | Pages 80-82 | Complete Exercise Solution for Grade 2"
+     }
+    ]
+   },
+   "86": {
+    "url": "https://javedpublishers.com/9-21/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 86",
+    "videos": [
+     {
+      "id": "vC_DBAQItFs",
+      "title": "English Book 2 | Chapter 9 Lecture | Pages 86-88 | Detailed Explanation for Grade 2"
+     },
+     {
+      "id": "OOd2jpT8FrQ",
+      "title": "English Book 2 | Chapter 9 Exercise | Pages 89-91 | Complete Exercise Solutions for Grade 2"
+     }
+    ]
+   },
+   "92": {
+    "url": "https://javedpublishers.com/10-48/",
+    "box": [
+     80.0,
+     13.83,
+     9.38,
+     6.89
+    ],
+    "title": "Page 92",
+    "videos": [
+     {
+      "id": "VJfCpnRiIhs",
+      "title": "English Book 2 | Chapter 10 | Pages 92-95 | Full Lesson Explanation for Grade 2"
+     },
+     {
+      "id": "wpYTbjEQ_rE",
+      "title": "English Book 2 | Chapter 10 Exercise | Pages 96-97 | Complete Solutions for Grade 2"
+     }
+    ]
+   },
+   "103": {
+    "url": "https://javedpublishers.com/11-43/",
+    "box": [
+     79.92,
+     13.83,
+     9.46,
+     6.83
+    ],
+    "title": "Page 103",
+    "videos": [
+     {
+      "id": "hLIOhtCKxtE",
+      "title": "Class 2 | Chapter 11 | Pages 103-105 | Detailed Explanation and Lesson"
+     },
+     {
+      "id": "1rOtgOqlIQ0",
+      "title": "English Book 2 | Chapter 8 Exercise | Pages 82-85 | Complete Exercise Solution for Grade 2"
+     },
+     {
+      "id": "NqdyezhOWck",
+      "title": "English Book 2 | Chapter 11 Continued | Pages 109-112 | Full Lesson for Grade 2"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "stemford-maths-2",
+  "title": "Stemford Maths 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-maths-2",
+  "pages": 128,
+  "ratio": 0.7222,
+  "c1": "#d8d8d8",
+  "c2": "#7f7f7f",
+  "frontCover": true,
+  "qr": {
+   "3": {
+    "url": "https://javedpublishers.com/maths-2-chapter-1-whole-numbers/",
+    "box": [
+     84.77,
+     8.33,
+     6.27,
+     4.53
+    ],
+    "title": "Page 3",
+    "videos": [
+     {
+      "id": "9b8doYLjV4A",
+      "title": "AA Math 2 | Chapter 1 (a)"
+     },
+     {
+      "id": "3PnsKFECNUQ",
+      "title": "AA Math 2 | Chap 1 (c)"
+     },
+     {
+      "id": "EHey10uTGrg",
+      "title": "AA Math 2 | Chap 1 teachers"
+     },
+     {
+      "id": "LLqZQTC-Hcs",
+      "title": "AA Math 2 | Chap 1 Parents"
+     }
+    ]
+   },
+   "26": {
+    "url": "https://javedpublishers.com/22-24/",
+    "box": [
+     84.77,
+     8.33,
+     6.23,
+     4.5
+    ],
+    "title": "Page 26",
+    "videos": [
+     {
+      "id": "fkw1wMtojl0",
+      "title": "AA Math 2 | Chap 2 (a)"
+     }
+    ]
+   },
+   "41": {
+    "url": "https://javedpublishers.com/33-15/",
+    "box": [
+     84.85,
+     8.33,
+     6.23,
+     4.5
+    ],
+    "title": "Page 41",
+    "videos": [
+     {
+      "id": "VrNYbVFrV9k",
+      "title": "AA Math 2 | Chap 2 (b)"
+     }
+    ]
+   },
+   "58": {
+    "url": "https://javedpublishers.com/44-7/",
+    "box": [
+     84.85,
+     8.33,
+     6.23,
+     4.5
+    ],
+    "title": "Page 58",
+    "videos": [
+     {
+      "id": "851qk4e8C0Q",
+      "title": "AA Math 2 | Chapter 2 (c): Multiplication | Complete Lesson with Examples"
+     }
+    ]
+   },
+   "75": {
+    "url": "https://javedpublishers.com/55-4/",
+    "box": [
+     84.69,
+     8.28,
+     6.46,
+     4.67
+    ],
+    "title": "Page 75",
+    "videos": [
+     {
+      "id": "NChW9Jin0Z4",
+      "title": "AA Math 2 | Chapter 2 (Division)"
+     },
+     {
+      "id": "AitPnxVsdsM",
+      "title": "AA Math | Chapter 2 Parents"
+     },
+     {
+      "id": "gdWEQF_xMGo",
+      "title": "AA Math | Chapter 2 Teacher"
+     }
+    ]
+   },
+   "86": {
+    "url": "https://javedpublishers.com/66-2/",
+    "box": [
+     84.92,
+     8.44,
+     5.85,
+     4.22
+    ],
+    "title": "Page 86",
+    "videos": [
+     {
+      "id": "V10ggcdp6Eg",
+      "title": "AA Math 2 | Chap 3 Students"
+     },
+     {
+      "id": "Eawaht1f1Nk",
+      "title": "AA Math 2 | Chap 3 Teacher"
+     },
+     {
+      "id": "SNWBYJ2yVng",
+      "title": "AA Math 2 | Chap 3 Parents"
+     }
+    ]
+   },
+   "96": {
+    "url": "https://javedpublishers.com/77-2/",
+    "box": [
+     84.85,
+     8.39,
+     6.15,
+     4.44
+    ],
+    "title": "Page 96",
+    "videos": [
+     {
+      "id": "T6JDL-YU4vA",
+      "title": "AA Math 2 | Chapter 4 (a) Students"
+     },
+     {
+      "id": "htHePtNH7fE",
+      "title": "AA Math 2 | Chap 4 (b) Students"
+     },
+     {
+      "id": "4I4gm9E39wM",
+      "title": "AA Math 2 | Chapter 4 Teachers"
+     },
+     {
+      "id": "-pKcUmAy-AI",
+      "title": "AA Math 2 | Chapter 4 Parents"
+     }
+    ]
+   },
+   "108": {
+    "url": "https://javedpublishers.com/88-2/",
+    "box": [
+     85.0,
+     8.5,
+     5.81,
+     4.22
+    ],
+    "title": "Page 108",
+    "videos": [
+     {
+      "id": "X_CEcWl9_No",
+      "title": "AA Math 2 | Chap 5 Students"
+     },
+     {
+      "id": "BrQJ4D4Vy6g",
+      "title": "AA Math 2 | Chap 5 Teacher"
+     },
+     {
+      "id": "FH0GDd1TYXE",
+      "title": "AA Math 2 | Chap 5 Parents"
+     }
+    ]
+   },
+   "118": {
+    "url": "https://javedpublishers.com/99-2/",
+    "box": [
+     84.92,
+     8.39,
+     6.12,
+     4.42
+    ],
+    "title": "Page 118",
+    "videos": [
+     {
+      "id": "neCJEoO0uyw",
+      "title": "AA Math 2 | Chapter 6 Students"
+     },
+     {
+      "id": "m_7JxvbJiIg",
+      "title": "AA Math 2 | Chap 6 teachers"
+     },
+     {
+      "id": "V5EHgzegXrw",
+      "title": "AA Math 2 | Chap 6 Parents"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "stemford-computer-2",
+  "title": "Stemford Computer 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-computer-2",
+  "pages": 62,
+  "ratio": 0.7222,
+  "c1": "#96a279",
+  "c2": "#585f47",
+  "frontCover": true
+ },
+ {
+  "id": "stemford-social-studies-2",
+  "title": "Stemford Social Studies 2",
+  "author": "Javed Publishers",
+  "dir": "books/stemford-social-studies-2",
+  "pages": 72,
+  "ratio": 0.7222,
+  "c1": "#bfb3c0",
+  "c2": "#706971",
+  "frontCover": true,
+  "qr": {
+   "4": {
+    "url": "https://javedpublishers.com/01-13/",
+    "box": [
+     80.38,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 1",
+    "videos": [
+     {
+      "id": "r1Fa9wwdtPM",
+      "title": "Our Country Pakistan 🇵🇰 | Social Studies Class 2 | Chapter 1 Full Lesson"
+     },
+     {
+      "id": "WLReu3X0b_4",
+      "title": "Our Country Pakistan 🇵🇰 | Social Studies Class 2 | Chapter 1 Exercise Solution"
+     }
+    ]
+   },
+   "13": {
+    "url": "https://javedpublishers.com/02-13/",
+    "box": [
+     81.15,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 2",
+    "videos": [
+     {
+      "id": "T8DOXZXOw7k",
+      "title": "Social study 2 | Chapter 2: Our Flag (Pages 13-16) – Learn About Our National Flag!"
+     },
+     {
+      "id": "jpD79l4f7P4",
+      "title": "Chapter 2: Our Flag Exercise | Pages 17-18 | Easy English Learning"
+     }
+    ]
+   },
+   "19": {
+    "url": "https://javedpublishers.com/03-13/",
+    "box": [
+     81.15,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 3",
+    "videos": [
+     {
+      "id": "ko5hohgZf-A",
+      "title": "Title: Social Study 2 - Unit 3, Lesson 1 | Pages 19-21"
+     },
+     {
+      "id": "EOvfQoHh7MU",
+      "title": "Title: Social Study 2 - Unit 3, Lesson 2 | Pages 22-24"
+     },
+     {
+      "id": "boV3ZJpoqUE",
+      "title": "Title: Social Study 2 - Unit 3, Lesson 3 | Pages 24-26 | Exercise"
+     }
+    ]
+   },
+   "27": {
+    "url": "https://javedpublishers.com/04-13/",
+    "box": [
+     81.62,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 4",
+    "videos": [
+     {
+      "id": "icsbyFGUQRk",
+      "title": "Title: Social Study 2 - Unit 4, Lesson 1 | Pages 27-31"
+     },
+     {
+      "id": "3SR7I8KmbZg",
+      "title": "Title: Social Study 2 - Unit 4, Lesson 2 | Exercise (Pages 32-33)"
+     },
+     {
+      "id": "omql_a7oq54",
+      "title": "Title: Social Studies 2 | Unit 4, Lecture 2 | Exercise (Pages 31-32)"
+     }
+    ]
+   },
+   "34": {
+    "url": "https://javedpublishers.com/05-13/",
+    "box": [
+     80.54,
+     8.11,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 5",
+    "videos": [
+     {
+      "id": "NTDbbBZkEoQ",
+      "title": "Title: Social Studies 2 | Unit 5, Lecture 1 | Pages 34-36"
+     },
+     {
+      "id": "exh9X_W65CY",
+      "title": "Title: 📚 Social Studies 2 | Unit 5 Lesson 2 | Exercise | Pages 37-38"
+     }
+    ]
+   },
+   "39": {
+    "url": "https://javedpublishers.com/06-13/",
+    "box": [
+     82.0,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 6",
+    "videos": [
+     {
+      "id": "o74M0l4lZdk",
+      "title": "Title: 🏫 Social Studies 2 | Unit 6 Lesson 1 | Reading & Explanation | Pages 39–43"
+     },
+     {
+      "id": "Lh1OACjxwbI",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 6 Lesson 2 | Exercise | Pages 43–44"
+     }
+    ]
+   },
+   "45": {
+    "url": "https://javedpublishers.com/07-13/",
+    "box": [
+     81.38,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 7",
+    "videos": [
+     {
+      "id": "5QVvhyn-lbk",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 7 Lesson 1 | Reading & Explanation | Pages 45–48"
+     },
+     {
+      "id": "C-67nn7H3Nw",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 7 Lesson 2 | Exercise Solution | Pages 50–51"
+     }
+    ]
+   },
+   "52": {
+    "url": "https://javedpublishers.com/08-13/",
+    "box": [
+     82.38,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 8",
+    "videos": [
+     {
+      "id": "Fu8ehfddqns",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 8 Lesson 1 | Full Lesson Explanation | Pages 52–56"
+     },
+     {
+      "id": "T1u2twUxBh4",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 8 Lesson 2 | Exercise Solution | Pages 56–57"
+     }
+    ]
+   },
+   "58": {
+    "url": "https://javedpublishers.com/09-13/",
+    "box": [
+     81.85,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 9",
+    "videos": [
+     {
+      "id": "Ns0czd69_TE",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 9 Lesson 1 | Full Reading & Explanation | Pages 58–62"
+     },
+     {
+      "id": "VCpbdy11KLs",
+      "title": "🎓 Title: Social Studies Grade 2 | Unit 9 Lesson 2 | Exercise with Explanation | Pages 62–63"
+     }
+    ]
+   },
+   "64": {
+    "url": "https://javedpublishers.com/10-25/",
+    "box": [
+     81.54,
+     7.94,
+     6.08,
+     4.39
+    ],
+    "title": "Chapter 10",
+    "videos": [
+     {
+      "id": "FDLBnCC-2t4",
+      "title": "Title: Social Studies 2 | Unit 10 Lesson 1 | Pages 64-69 | Full Explanation"
+     },
+     {
+      "id": "H2M9NJg82Jg",
+      "title": "Title: Social Studies 2 | Unit 10 Lesson 2 | Pages 70-72 | Exercise Explained"
+     }
+    ]
    }
   }
  }

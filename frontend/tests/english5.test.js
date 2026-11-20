@@ -17,11 +17,14 @@ test('English 5+ is an 80-page Prep book', () => {
 
 test('English 5+ topic pages carry the publisher videos, each once, and no AI stories', () => {
   const videos = Object.entries(acts).flatMap(([page, list]) => list.filter(a => a.type === 'videos').map(a => ({ page: +page, ...a })));
-  assert.equal(videos.length, 34);
+  assert.equal(videos.length, 42);
   const ids = videos.map(v => v.videos[0].src);
   assert.equal(new Set(ids).size, ids.length, 'no video is linked twice');
   assert.equal(videos.find(v => v.page === 4).videos[0].src, 'https://youtu.be/JiRu-zpu2Co');
   assert.equal(videos.find(v => v.page === 73).videos[0].src, 'https://youtu.be/0uOV35lGOX0');
+  // the 8 pending videos supplied later, each on its contents-page topic
+  const pending = { 46: 'qggK6gyPu5w', 57: 'MmQUP1RBZrA', 58: '9I_cnqE2SyY', 59: 'aVrJp-Okngo', 66: 'BNey8GaUQMg', 70: 'lg1u-2zgjmI', 72: 'yfpXiF_ip4E', 77: 'fzGuKWGtmww' };
+  for (const [page, id] of Object.entries(pending)) assert.equal(videos.find(v => v.page === +page)?.videos[0].src, `https://youtu.be/${id}`, `page ${page}`);
   for (const v of videos) assert.ok(v.button.x >= 0 && v.button.y >= 0 && v.button.x + 17 <= 100 && v.button.y + 4.8 <= 100, `page ${v.page}`);
   assert.ok(!Object.values(acts).flat().some(a => a.type === 'story'));
 });
