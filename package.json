@@ -1,26 +1,10 @@
 {
-  "name": "book-activity",
+  "name": "book-activity-project",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "engines": { "node": ">=22.13.0" },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "prepare:pages": "npm run build && node tools/prepare-pages.mjs",
-    "check:pages": "node tools/check-pages.mjs",
-    "check": "node tools/check-migration.mjs",
-    "test": "node --test tests/demoStore.test.js tests/learningCatalog.test.js tests/loadingState.test.js tests/authoring.test.js tests/traceCheck.test.js tests/colourFill.test.js tests/bookColours.test.js tests/urdu4.test.js tests/english4.test.js tests/maths4.test.js tests/computer0.test.js tests/english5.test.js tests/gameCrops.test.js tests/urdu5.test.js tests/bookRhymes.test.js tests/readerLessonHistory.test.js"
-  },
-  "dependencies": {
-    "jszip": "^3.10.1",
-    "pdfjs-dist": "^6.4.299",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.4.1",
-    "vite": "^6.3.5"
+    "dev": "node scripts/dev.mjs",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev"
   }
 }

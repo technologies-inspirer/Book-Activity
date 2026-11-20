@@ -1,0 +1,105 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { once } from 'node:events';
+import { randomUUID } from 'node:crypto';
+import { app } from '../src/app.js';
+import { pool } from '../src/db/pool.js';
+import { hashPassword } from '../src/passwords.js';
+import { catalog } from '../src/catalog.js';
+import { digest } from '../src/auth.js';
+
+test('persistent account lifecycle, sessions, CSRF and protected book files', async () => {
+  const prefix = randomUUID();
+  app.set('trust proxy', 'loopback');
+  const testIp = `2001:db8:${prefix.slice(0, 4)}:${prefix.slice(4, 8)}::1`;
+  const adminEmail = `${prefix}-admin@example.test`;
+  const userEmail = `${prefix}-reader@example.test`;
+  const password = `Test-${randomUUID()}`;
+  const reset = `New-${randomUUID()}`;
+  const adminHash = await hashPassword(password);
+  const { rows: [admin] } = await pool.query("INSERT INTO users(name,email,password_hash,role) VALUES ('Test Admin',$1,$2,'admin') RETURNING id", [adminEmail, adminHash]);
+  const server = app.listen(0, '127.0.0.1');
+  await once(server, 'listening');
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const client = () => {
+    let cookie = '', csrfToken = '';
+    return async (path, method = 'GET', body, extraHeaders = {}) => {
+      const response = await fetch(base + path, { method, headers: { Cookie: cookie, 'X-Forwarded-For': testIp, ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}), 'X-CSRF-Token': csrfToken, ...extraHeaders }, ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
+      const setCookie = response.headers.get('set-cookie');
+      if (setCookie) cookie = setCookie.split(';')[0];
+      const type = response.headers.get('content-type') || '';
+      const data = type.includes('application/json') ? await response.json() : await response.arrayBuffer();
+      if (data.csrfToken) csrfToken = data.csrfToken;
+      return { response, data, status: response.status };
+    };
+  };
+  const adminCall = client(), reader = client(), anonymous = client();
+  const book = catalog[0], otherBook = catalog[1];
+  const file = `/api/files/${book.dir}/p001.jpg`;
+  let userId;
+  try {
+    assert.equal((await anonymous(file)).status, 401);
+    assert.equal((await anonymous(`/Book-Activity/${book.dir}/p001.jpg`)).status, 401);
+    assert.equal((await anonymous(`/Book-Activity/%62ooks/${book.id}/p001.jpg`)).status, 401);
+    assert.equal((await anonymous(`/Book-Activity/Books/${book.id}/p001.jpg`)).status, 401);
+    assert.equal((await anonymous(`/Book-Activity//books/${book.id}/p001.jpg`)).status, 401);
+    assert.equal((await anonymous(`/Book-Activity/.%2fbooks/${book.id}/p001.jpg`)).status, 401);
+    assert.equal((await adminCall('/api/auth/login', 'POST', { email: adminEmail, password: 'wrong-password' })).status, 401);
+    const login = await adminCall('/api/auth/login', 'POST', { email: adminEmail, password });
+    assert.equal(login.status, 200);
+    assert.match(login.response.headers.get('set-cookie'), /HttpOnly/i);
+    assert.match(login.response.headers.get('set-cookie'), /SameSite=Lax/i);
+    assert.equal(login.data.account.password_hash, undefined);
+    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password }, { 'X-CSRF-Token': '' })).status, 403);
+    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password }, { Origin: 'https://untrusted.example' })).status, 403);
+    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password: 'short' })).status, 400);
+    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password, role: 'admin' })).status, 400);
+    const created = await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password, allBooks: false, bookIds: [book.id], schoolProfile: { name: 'Test School', city: 'Karachi' } });
+    assert.equal(created.status, 201);
+    userId = created.data.account.id;
+    const { rows: [stored] } = await pool.query('SELECT password_hash FROM users WHERE id=$1', [userId]);
+    assert.notEqual(stored.password_hash, password);
+    assert.match(stored.password_hash, /^scrypt\$/);
+    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Duplicate', email: userEmail.toUpperCase(), password })).status, 409);
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password })).status, 200);
+    assert.equal((await reader('/api/auth/me')).data.account.id, userId);
+    assert.equal((await reader('/api/admin/users')).status, 403);
+    assert.equal((await reader('/api/me', 'PATCH', { role: 'admin' })).status, 400);
+    assert.equal((await reader(file)).status, 200);
+    assert.equal((await reader(`/api/files/${otherBook.dir}/p001.jpg`)).status, 403);
+    assert.equal((await reader(`/Book-Activity/${otherBook.dir}/p001.jpg`)).status, 403);
+    assert.equal((await reader('/api/me/progress', 'PUT', { bookId: book.id, page: 2 })).status, 200);
+    assert.deepEqual((await reader('/api/me/progress')).data.progress, { bookId: book.id, page: 2 });
+    assert.equal((await reader('/api/auth/logout', 'POST', {})).status, 200);
+    assert.equal((await reader('/api/auth/me')).status, 401);
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password })).status, 200);
+    assert.equal((await reader('/api/me/progress')).data.progress.page, 2);
+    assert.equal((await adminCall(`/api/admin/users/${userId}`, 'PATCH', { enabled: false })).status, 200);
+    assert.equal((await reader(file)).status, 401);
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password })).status, 401);
+    await adminCall(`/api/admin/users/${userId}`, 'PATCH', { enabled: true });
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password })).status, 200);
+    await adminCall(`/api/admin/users/${userId}/reset-password`, 'POST', { password: reset });
+    assert.equal((await reader('/api/auth/me')).status, 401);
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password })).status, 401);
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password: reset })).status, 200);
+    const another = client();
+    await another('/api/auth/login', 'POST', { email: userEmail, password: reset });
+    assert.equal((await reader('/api/me/password', 'POST', { current: 'incorrect', password })).status, 400);
+    assert.equal((await reader('/api/me/password', 'POST', { current: reset, password })).status, 200);
+    assert.equal((await another('/api/auth/me')).status, 401);
+    assert.equal((await reader('/api/auth/me')).status, 200);
+    await adminCall(`/api/admin/users/${userId}`, 'PATCH', { expiresAt: '2020-01-01T00:00:00Z' });
+    assert.equal((await reader('/api/auth/me')).status, 401);
+    assert.equal((await reader('/api/auth/login', 'POST', { email: userEmail, password })).status, 401);
+    for (let i = 0; i < 11; i++) {
+      const attempt = await anonymous('/api/auth/login', 'POST', { email: `${prefix}-absent@example.test`, password });
+      assert.equal(attempt.status, i < 10 ? 401 : 429);
+    }
+  } finally {
+    await pool.query('DELETE FROM users WHERE id=ANY($1::uuid[])', [[admin.id, ...(userId ? [userId] : [])]]);
+    await pool.query('DELETE FROM login_attempts WHERE key=ANY($1::text[])', [[digest(`ip:${testIp}`), ...[adminEmail, userEmail, `${prefix}-absent@example.test`].map(email => digest(`email:${email}`))]]);
+    await new Promise(resolve => server.close(resolve));
+    await pool.end();
+  }
+});

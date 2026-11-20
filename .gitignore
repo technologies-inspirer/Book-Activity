@@ -1,17 +1,21 @@
 # Lesson videos are too big for GitHub (2+ GB, some files over 100 MB); keep them on the PC / a drive.
-videos/**/*.mp4
-videos/**/*.mov
+frontend/videos/**/*.mp4
+frontend/videos/**/*.mov
 # local tool output
-tools/__pycache__/
+frontend/tools/__pycache__/
 .claude/
 node_modules/
 .vite/
 dist/
 tmp/
+.env
+.env.*
+!.env.example
+backend/.local/
 # Keep the publisher's original large PDF locally; generated reader pages are tracked.
-books/steamford-urdu 4+/*.pdf
-books/stemford-english-4+/*.pdf
+frontend/books/steamford-urdu 4+/*.pdf
+frontend/books/stemford-english-4+/*.pdf
 
-books/stemford-math-4/*.pdf
-books/stemford english 5+/*.pdf
-books/stemford urdu 5+/*.pdf
+frontend/books/stemford-math-4/*.pdf
+frontend/books/stemford english 5+/*.pdf
+frontend/books/stemford urdu 5+/*.pdf
