@@ -21,14 +21,14 @@ function CreateSeriesDialog({ onClose, onSaved }) {
     } catch (error) { setFeedback({ text: error.message, error: true }); } finally { setBusy(false); }
   }
 
-  return <Modal title="Add Series" onClose={onClose}>
+  return <Modal title="Add Series" onClose={() => { if (!busy) onClose(); }}>
       <form onSubmit={submit}>
         <Feedback message={feedback} />
         <label className="portal-field">Publisher<input value="Javed Publishers" readOnly /></label>
         <label className="portal-field">Series name<input name="name" value={name} onChange={event => setName(event.target.value)} required maxLength={100} placeholder="e.g. Bright Minds Series" /></label>
         <label className="portal-field">Description (optional)<textarea name="description" value={description} onChange={event => setDescription(event.target.value)} maxLength={500} rows={3} placeholder="A short introduction to this series" /></label>
         <p className="portal-muted small">New series start without books. Existing books stay in their current series.</p>
-        <div className="portal-actions"><button type="button" className="portal-secondary" onClick={onClose}>Cancel</button><button type="submit" className="portal-primary" disabled={busy}>{busy ? 'Saving...' : 'Create Series'}</button></div>
+        <div className="portal-actions"><button type="button" className="portal-secondary" disabled={busy} onClick={onClose}>Cancel</button><button type="submit" className="portal-primary" disabled={busy}>{busy ? 'Saving...' : 'Save Changes'}</button></div>
       </form>
   </Modal>;
 }

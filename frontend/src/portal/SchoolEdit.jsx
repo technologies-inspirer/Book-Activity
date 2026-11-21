@@ -103,7 +103,7 @@ function SchoolDetails({ account, creating = false }) {
       </div>
       <p className="school-edit-hint">{creating ? 'Use the school email and this password to sign in. Principal details are contact records. Only the selected book series will be available to this school.' : 'Principal details are contact records. School sign-in uses the school email.'} {account.principals?.length > 1 && `${account.principals.length - 1} additional principal contact(s) are kept; manage them through the Principals action.`}</p>
       <Feedback message={message} />
-      <div className="school-edit-actions"><a href="#/admin/schools" className="portal-secondary">Cancel</a><button className="portal-primary" type="submit" disabled={busy}>{busy ? 'Saving...' : creating ? 'Save' : 'Update'}</button></div>
+      <div className="school-edit-actions"><a href="#/admin/schools" className="portal-secondary">Cancel</a><button className="portal-primary" type="submit" disabled={busy}>{busy ? 'Saving...' : 'Save Changes'}</button></div>
     </section>
   </form>;
 }

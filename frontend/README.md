@@ -77,7 +77,7 @@ Vite proxies `/api` and book/media requests to Express during development. The p
 
 ## PDF authoring workflow
 
-The PDF & Activities editor includes a Customize Page action in the uploaded-book reader. It opens page thumbnails, book title/class/series/subject settings, page narration, and per-page activity management. Admins can upload audio, video, tracing/colouring images and game JSON, add YouTube or HTTP(S) resource links, and reuse bundled activities. Added activities can be previewed, edited or removed; detected video links can be edited or removed. Publish Book / Update Book saves the converted pages, media and template settings in PostgreSQL. Permitted school accounts can open the published book from the selected series, class and subject. Download Saved ZIP exports a backup.
+The PDF & Activities editor includes a Customize Page action in the uploaded-book reader. It opens page thumbnails, book title/class/series/subject settings, page narration, and per-page activity management. Admins can upload audio, video, tracing/colouring images and game JSON, add YouTube or HTTP(S) resource links, and reuse bundled activities. Added activities can be previewed, edited or removed; detected video links can be edited or removed. Save Changes saves the converted pages, media and template settings in PostgreSQL. Permitted school accounts can open the published book from the selected series, class and subject. Download Saved ZIP exports a backup.
 
 Run the build, check and preview commands above, then test:
 
@@ -111,7 +111,7 @@ The centered animated loading mascot appears during startup, visible reader-page
 
 PDF & Activities (`#/admin/pdf-activities`) converts a local PDF into JPEG pages and opens it immediately in the existing reader, with page turning, zoom, writing and extracted-text narration. Embedded lesson links provide videos; recognised original books reuse their original activities. Imported drafts retain linked activities. No series/activity-type setup picker is shown. See [PDF authoring](docs/pdf-authoring.md) for recognition rules and limits. Use **Node 22.13 or newer** with the commands above.
 
-PDF editor changes stay pending until **Publish Book / Update Book**, which persists the project in PostgreSQL. **Cancel** restores the last saved version. **Delete Page** removes a page and its activities from the working copy after confirmation; Update Book saves the remaining pages. A published book must retain at least one page. **Download Saved ZIP** exports the last saved version. Unsaved work remains in browser memory until published.
+PDF editor changes stay pending until **Save Changes**, which persists the project in PostgreSQL. **Cancel** restores the last saved version. **Delete Page** removes a page and its activities from the working copy after confirmation; Save Changes saves the remaining pages. A published book must retain at least one page. **Download Saved ZIP** exports the last saved version. Unsaved work remains in browser memory until published.
 
 PDF upload opens the book preview directly. Arbitrary PDFs cannot automatically supply missing games, answers, audio or story metadata. Existing content appears when recognised or already linked; original assets are reused. Update/Cancel/Delete Page remain available in the reader.
 

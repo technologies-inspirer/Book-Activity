@@ -21,15 +21,18 @@ export default function PdfAuthoring() {
   const [selected, setSelected] = useState(1);
   const [uploadSelection, setUploadSelection] = useState(() => ({ seriesId: draft?.seriesId || '', classId: draft?.classId || '', subjectId: draft?.subjectId || '' }));
   const [message, setMessage] = useState(null);
+  const [savedUploadSelection, setSavedUploadSelection] = useState(() => ({ seriesId: savedBookDraft?.seriesId || '', classId: savedBookDraft?.classId || '', subjectId: savedBookDraft?.subjectId || '' }));
   const [busy, setBusy] = useState('');
   const [progress, setProgress] = useState(null);
   const [preview, setPreview] = useState(null);
   const [deletePage, setDeletePage] = useState(null);
   const [readerOpen, setReaderOpen] = useState(!!draft);
   const [editing, setEditing] = useState(null);
+  const [editorRevision, setEditorRevision] = useState(0);
   const [activitySource, setActivitySource] = useState('upload');
   const editorRef = useRef(null);
   const dirty = draft !== savedBookDraft;
+  const uploadSelectionDirty = ['seriesId', 'classId', 'subjectId'].some(key => uploadSelection[key] !== savedUploadSelection[key]);
   const operation = useRef(null);
   const lastLoading = useRef(null);
   useEffect(() => () => {
@@ -94,7 +97,7 @@ export default function PdfAuthoring() {
       const converted = await convertPdf(file, { signal, lessonLinks, originalBooks: books, onProgress: value => { if (operation.current === active) setProgress(value); } });
       if (operation.current !== active || signal.aborted) return;
       setBookDraft({ ...converted, ...destination }); setSelected(1); setPreview(null); setEditing(null); setReaderOpen(false);
-      setMessage({ text: `${converted.pages.length} pages ready for ${destinationText}. Apply page activities, then click Publish Book.` });
+      setMessage({ text: `${converted.pages.length} pages ready for ${destinationText}. Apply page activities, then click Save Changes.` });
     });
   }
   async function readDraft(event) {
@@ -106,7 +109,7 @@ export default function PdfAuthoring() {
       const imported = await importProject(file, { signal });
       if (operation.current !== active || signal.aborted) return;
       setBookDraft({ ...imported, ...destination }); setSelected(1); setPreview(null); setEditing(null); setReaderOpen(false);
-      setMessage({ text: `Draft opened for ${destinationText}. Review activities, then click Publish Book.` });
+      setMessage({ text: `Draft opened for ${destinationText}. Review activities, then click Save Changes.` });
     });
   }
   async function downloadDraft() {
@@ -131,10 +134,14 @@ export default function PdfAuthoring() {
       const publishedId = await store.publishBook(blob, snapshot.publishedId);
       const saved = { ...snapshot, publishedId };
       setBookDraft(saved); setSavedBookDraft(saved);
+      const destination = { seriesId: saved.seriesId, classId: saved.classId, subjectId: saved.subjectId };
+      setUploadSelection(destination); setSavedUploadSelection(destination);
       setMessage({ text: 'Book published successfully. Pages and activities are saved in the database and available to permitted school accounts.' });
     });
   }
   function cancelEdits() {
+    setUploadSelection({ ...savedUploadSelection });
+    setEditorRevision(value => value + 1);
     setBookDraft(savedBookDraft); setSelected(1); setPreview(null); setEditing(null); setDeletePage(null); setReaderOpen(open => open && !!savedBookDraft);
     setMessage({ text: savedBookDraft ? 'Changes cancelled. Your last updated version has been restored.' : 'Upload cancelled. No book has been saved.' });
   }
@@ -142,12 +149,12 @@ export default function PdfAuthoring() {
     if (!deletePage || draft?.id !== deletePage.draftId) { setDeletePage(null); return; }
     const updated = deleteDraftPage(draft, deletePage.number);
     setBookDraft(updated); setSelected(Math.min(deletePage.number, updated?.pages.length || 1)); setPreview(null); setEditing(null); setDeletePage(null);
-    setMessage({ text: `Page ${deletePage.number} removed from the working copy. Click Update to save or Cancel to restore.` });
+    setMessage({ text: `Page ${deletePage.number} removed from the working copy. Click Save Changes to save or Cancel to restore.` });
   }
 
   return <div className="pdf-authoring-page">
     <a className="school-back" href="#/admin" aria-label="Back to dashboard">&#8592;</a>
-    <div className="portal-page-heading"><div><h1>PDF &amp; Activities</h1><p className="portal-muted">Choose its library location, upload a PDF, then add page activities.</p></div>{(draft || savedBookDraft || dirty) && <div className="pdf-save-actions"><span className="portal-pill" role="status">{dirty ? 'Unsaved changes' : 'Saved'}</span><button className="portal-primary" disabled={!!busy || !dirty} onClick={saveUpdate}>{draft?.publishedId ? 'Update Book' : 'Publish Book'}</button><button className="portal-secondary" disabled={!!busy} onClick={cancelEdits}>Cancel</button>{savedBookDraft && <button className="portal-secondary" disabled={!!busy} onClick={downloadDraft}>Download Saved ZIP</button>}</div>}</div>
+    <div className="portal-page-heading"><div><h1>PDF &amp; Activities</h1><p className="portal-muted">Choose its library location, upload a PDF, then add page activities.</p></div>{(draft || savedBookDraft || dirty || uploadSelectionDirty) && <div className="pdf-save-actions"><span className="portal-pill" role="status">{dirty || uploadSelectionDirty ? 'Unsaved changes' : 'Saved'}</span><button className="portal-primary" disabled={!!busy || !draft || !dirty} onClick={saveUpdate}>{busy ? 'Saving...' : 'Save Changes'}</button><button className="portal-secondary" disabled={!!busy} onClick={cancelEdits}>Cancel</button>{savedBookDraft && <button className="portal-secondary" disabled={!!busy} onClick={downloadDraft}>Download Saved ZIP</button>}</div>}</div>
     <Feedback message={message} />
     <section className="portal-panel pdf-upload-panel" aria-label="Choose PDF destination and upload">
       <div className="pdf-upload-intro"><h2>Choose where this book belongs</h2><p className="portal-muted">Select the series, class and subject first, then upload its PDF.</p></div>
@@ -159,14 +166,14 @@ export default function PdfAuthoring() {
       {uploadSeries && !uploadClasses.length && <p className="portal-muted small">This series has no assigned classes. Assign its classes from the sidebar first.</p>}
       {uploadClass && !uploadSubjects.length && <p className="portal-muted small">This class has no assigned subjects. Assign its subjects from the sidebar first.</p>}
       <div className={`pdf-destination-summary${uploadReady ? ' is-ready' : ''}`}><span>{uploadReady ? 'This PDF will belong to' : 'Complete the selection to upload'}</span><strong>{destinationText}</strong><p>{uploadReady ? 'After publishing, permitted school accounts will find this book here in their library.' : 'Upload becomes available after all three selections.'}</p></div>
-      <div className="pdf-upload-footer"><div><p className="portal-muted small">PDF limit: 50 MB / 200 pages.</p><p className="portal-muted small">Upload prepares the book for editing. Publish Book saves it to the selected location.</p></div><div className="pdf-upload-actions"><label className={`portal-primary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Upload PDF<input type="file" aria-label="Upload book PDF" accept=".pdf,application/pdf" disabled={!!busy || !uploadReady} onChange={readPdf} /></label><label className={`portal-secondary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Import Draft ZIP<input type="file" aria-label="Import draft ZIP" accept=".zip,application/zip" disabled={!!busy || !uploadReady} onChange={readDraft} /></label></div></div>
+      <div className="pdf-upload-footer"><div><p className="portal-muted small">PDF limit: 50 MB / 200 pages.</p><p className="portal-muted small">Upload prepares the book for editing. Click Save Changes to publish it to the selected location.</p></div><div className="pdf-upload-actions"><label className={`portal-primary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Upload PDF<input type="file" aria-label="Upload book PDF" accept=".pdf,application/pdf" disabled={!!busy || !uploadReady} onChange={readPdf} /></label><label className={`portal-secondary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Import Draft ZIP<input type="file" aria-label="Import draft ZIP" accept=".zip,application/zip" disabled={!!busy || !uploadReady} onChange={readDraft} /></label></div></div>
       {busy && <div className="pdf-conversion-status" role="status"><div><strong>{busy}</strong>{progress && <span>Page {progress.completed} of {progress.total}</span>}</div>{progress && <progress max={progress.total} value={progress.completed} />}<button className="portal-secondary" onClick={() => operation.current?.controller.abort()}>Cancel</button></div>}
     </section>
     {!!publishedBooks.length && <section className="portal-panel"><h2>Published Books</h2><div className="published-book-list">{publishedBooks.map(book => <article key={book.id}><img src={book.cover} alt="" /><div><strong>{book.title}</strong><p className="portal-muted small">{series.find(item => item.id === book.seriesId)?.name} / {learningClasses.find(item => item.id === book.classId)?.name} / {learningSubjects.find(item => item.id === book.subjectId)?.name}</p></div><a className="portal-secondary" href={`#/admin/published/${book.id}`}>Open / Edit</a></article>)}</div></section>}
     {draft ? <section className="portal-panel draft-uploaded-book">
       <button type="button" className="draft-cover-button" onClick={() => setReaderOpen(true)} aria-label={`Open ${draft.title}`}><BlobImage blob={draft.pages[0].image} alt={draft.title} /></button>
       <div><p className="portal-eyebrow">Your uploaded book</p><h2>{draft.title}</h2><p className="pdf-book-location">{series.find(item => item.id === draft.seriesId)?.name} / {learningClasses.find(item => item.id === draft.classId)?.name} / {getSubjectAssignments(customSubjects, subjectAssignments).find(item => item.seriesId === draft.seriesId && item.subjectId === draft.subjectId)?.name}</p><p className="portal-muted">{draft.pages.length} pages / {draft.originalBookId ? 'Original book activities detected' : `${activities} linked activities`} / {(draftBytes(draft) / 1024 / 1024).toFixed(1)} MB</p><button className="portal-primary" onClick={() => setReaderOpen(true)}>Open Book Preview</button><p className="portal-muted small">Page turning, zoom and writing work directly in the reader. Listen uses the PDF's text; videos and games appear when the book contains linked content.</p></div>
-    </section> : <section className="portal-empty"><h2>{dirty ? 'All pages removed' : 'Open your PDF as a book'}</h2><p>{dirty ? 'Click Update to confirm removal, or Cancel to restore your last saved version.' : 'Select a series, class and subject above, then upload its PDF.'}</p></section>}
+    </section> : <section className="portal-empty"><h2>{dirty ? 'All pages removed' : 'Open your PDF as a book'}</h2><p>{dirty ? 'Click Save Changes to confirm removal, or Cancel to restore your last saved version.' : 'Select a series, class and subject above, then upload its PDF.'}</p></section>}
     {draft && <section ref={editorRef} tabIndex={-1} className="pdf-customization" aria-label="Customize PDF pages" inert={!!busy}>
       <div className="portal-page-heading"><h2>Customize your book</h2><button className="portal-secondary" onClick={() => setReaderOpen(true)}>Preview reader</button></div>
       <div className="portal-panel pdf-book-details">
@@ -184,11 +191,11 @@ export default function PdfAuthoring() {
           <div className="portal-panel pdf-linked-activities"><h3>Page activities</h3>{!page.activities.length && <p className="portal-muted small">Add an upload, a link or an existing activity.</p>}{page.activities.map(activity => <div className="pdf-linked-activity" key={activity.id}><div><strong>{activity.title}</strong><small>{activity.type}</small></div><div className="portal-actions"><button className="pdf-text-button" onClick={() => setPreview(activity)}>Preview</button>{activity.type !== 'existing' && <button className="pdf-text-button" onClick={() => { setActivitySource('upload'); setEditing({ pageNumber: page.number, activity }); }}>Edit</button>}<button className="pdf-text-button" onClick={() => { changePage({ activities: page.activities.filter(item => item.id !== activity.id) }); setEditing(null); }}>Remove</button></div></div>)}</div>
           {!!page.embeddedVideos?.length && <div className="portal-panel pdf-linked-activities"><h3>Links detected in PDF</h3>{page.embeddedVideos.map((video, index) => <div className="pdf-linked-activity" key={`${video.url}-${index}`}><span>{video.title}<small>{video.url}</small></span><button className="pdf-text-button" onClick={() => { setActivitySource('upload'); setEditing({ pageNumber: page.number, embeddedIndex: index, activity: { id: crypto.randomUUID(), type: 'video', title: video.title, youtubeUrl: video.url } }); }}>Edit</button><button className="pdf-text-button" onClick={() => changePage({ embeddedVideos: page.embeddedVideos.filter((_, at) => at !== index) })}>Remove</button></div>)}</div>}
         </section>
-        <div><div className="portal-actions pdf-activity-tabs" role="group" aria-label="Activity source"><button className={activitySource === 'upload' ? 'portal-primary' : 'portal-secondary'} aria-pressed={activitySource === 'upload'} onClick={() => setActivitySource('upload')}>Page Templates</button><button className={activitySource === 'existing' ? 'portal-primary' : 'portal-secondary'} aria-pressed={activitySource === 'existing'} onClick={() => { setActivitySource('existing'); setEditing(null); }}>Existing activities</button></div>{activitySource === 'existing' ? <ActivityForm key={`${draft.id}-${page.number}`} pageNumber={page.number} appliedActivities={page.activities} onAdd={saveActivity} /> : <UploadedActivityForm key={`${draft.id}-${page.number}-${editing?.activity.id || 'new'}`} initial={editing?.pageNumber === page.number ? editing.activity : null} onSave={saveActivity} onCancel={() => setEditing(null)} />}</div>
+        <div><div className="portal-actions pdf-activity-tabs" role="group" aria-label="Activity source"><button className={activitySource === 'upload' ? 'portal-primary' : 'portal-secondary'} aria-pressed={activitySource === 'upload'} onClick={() => setActivitySource('upload')}>Page Templates</button><button className={activitySource === 'existing' ? 'portal-primary' : 'portal-secondary'} aria-pressed={activitySource === 'existing'} onClick={() => { setActivitySource('existing'); setEditing(null); }}>Existing activities</button></div>{activitySource === 'existing' ? <ActivityForm key={`${draft.id}-${page.number}-${editorRevision}`} pageNumber={page.number} appliedActivities={page.activities} onAdd={saveActivity} /> : <UploadedActivityForm key={`${draft.id}-${page.number}-${editing?.activity.id || 'new'}-${editorRevision}`} initial={editing?.pageNumber === page.number ? editing.activity : null} onSave={saveActivity} onCancel={() => setEditing(null)} />}</div>
       </div>
     </section>}
     {draft && readerOpen && <DraftBookReader draft={draft} selected={page.number} dirty={dirty} busy={busy} activityOpen={!!preview || !!deletePage} onSelect={setSelected} onClose={() => setReaderOpen(false)} onCustomize={customize} onActivity={(activity, number) => { setSelected(number); if (['qr', 'link'].includes(activity.type)) window.open(activity.url, '_blank', 'noopener,noreferrer'); else setPreview(activity); }} onDelete={() => setDeletePage({ draftId: draft.id, number: page.number, count: page.activities.length })} onUpdate={saveUpdate} onCancel={cancelEdits} onStop={() => operation.current?.controller.abort()} />}
     {preview && draft && <ActivityPreview key={preview.id} activity={preview} page={page} onClose={() => setPreview(null)} />}
-    {deletePage && <Modal title={`Delete page ${deletePage.number}?`} onClose={() => setDeletePage(null)}><p>This removes the page{deletePage.count ? ` and its ${deletePage.count} activities` : ''} from your working copy.</p><p className="portal-muted">Click Update afterwards to save the deletion. Cancel restores the last updated book.</p><div className="portal-actions"><button className="portal-secondary" onClick={() => setDeletePage(null)}>Keep Page</button><button className="portal-primary pdf-danger" onClick={confirmDelete}>Delete Page</button></div></Modal>}
+    {deletePage && <Modal title={`Delete page ${deletePage.number}?`} onClose={() => setDeletePage(null)}><p>This removes the page{deletePage.count ? ` and its ${deletePage.count} activities` : ''} from your working copy.</p><p className="portal-muted">Click Save Changes afterwards to save the deletion. Cancel restores the last updated book.</p><div className="portal-actions"><button className="portal-secondary" onClick={() => setDeletePage(null)}>Keep Page</button><button className="portal-primary pdf-danger" onClick={confirmDelete}>Delete Page</button></div></Modal>}
   </div>;
 }
