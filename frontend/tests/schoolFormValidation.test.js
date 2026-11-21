@@ -35,3 +35,7 @@ test('city choice, province, series and non-empty invalid expiry are checked', (
   const errors = validateSchoolForm(input);
   assert.ok(errors.state); assert.ok(errors.city); assert.ok(errors.expiry); assert.ok(errors.allowedSeriesIds);
 });
+
+test('class access can explicitly disable every class without requiring a series', () => {
+  assert.deepEqual(validateSchoolForm({ ...valid(), creating: false, allowedSeriesIds: [], schoolAssignments: [] }), {});
+});

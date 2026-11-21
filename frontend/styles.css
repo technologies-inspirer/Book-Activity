@@ -253,6 +253,8 @@ button { cursor: pointer; }
 .pv-actions a { color: var(--muted); }
 
 /* ---------- Reader ---------- */
+:fullscreen .reader .rbar,
+.reader:fullscreen .rbar { display: none; }
 .reader { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
 .rbar { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(0, 0, 0, .25); }
 .rbar .btn { padding: 8px 14px; font-size: 14px; }

@@ -1,5 +1,7 @@
 import { bookIds } from './catalog.js';
 import { fail } from './auth.js';
+import { learningClasses } from '../../frontend/src/data/learningCatalog.js';
+import { schoolSubjectChoices, subjectKey } from '../../frontend/src/data/schoolAccess.js';
 import { series } from '../../frontend/src/data/series.js';
 import { regionName } from '../../frontend/src/data/pakistanLocations.js';
 import { validateLocation } from './locations.js';
@@ -22,7 +24,7 @@ function profile(value) {
     return [key, value[key].trim()];
   }));
 }
-export function metadata(input, previous = {}, self = false, seriesChoices = series) {
+export function metadata(input, previous = {}, self = false, seriesChoices = series, learning = null) {
   const result = { ...previous };
   if ('schoolProfile' in input) {
     result.schoolProfile = { ...previous.schoolProfile, ...profile(input.schoolProfile) };
@@ -30,10 +32,28 @@ export function metadata(input, previous = {}, self = false, seriesChoices = ser
     validateLocation(result.schoolProfile, previous.schoolProfile);
   }
   if ('schoolLogo' in input) result.schoolLogo = image(input.schoolLogo);
+  if ('profileImage' in input) result.profileImage = image(input.profileImage);
   if (self) return result;
   if ('allowedSeriesIds' in input) {
     if (!Array.isArray(input.allowedSeriesIds) || input.allowedSeriesIds.some(id => !seriesChoices.some(item => item.id === id))) throw fail(400, 'Choose valid book series.');
     result.allowedSeriesIds = [...new Set(input.allowedSeriesIds)];
+  }
+  if ('schoolAssignments' in input) {
+    const selections = input.schoolAssignments;
+    if (!Array.isArray(selections) || selections.length > learningClasses.length || !learning) throw fail(400, 'Choose valid class permissions.');
+    const choices = schoolSubjectChoices(learning.customSubjects, learning.subjectAssignments, learning.seriesClasses);
+    const seen = new Set();
+    result.schoolAssignments = selections.map(row => {
+      if (!row || !learningClasses.some(item => item.id === row.classId) || seen.has(row.classId) || !Array.isArray(row.subjects) || row.subjects.length > 500) throw fail(400, 'Choose valid classes and subjects.');
+      seen.add(row.classId);
+      const subjects = new Map();
+      for (const subject of row.subjects) {
+        if (!subject || !choices.some(item => item.classId === row.classId && item.seriesId === subject.seriesId && item.subjectId === subject.subjectId)) throw fail(400, 'Assign only subjects available in this class and series.');
+        subjects.set(subjectKey(subject), { seriesId: subject.seriesId, subjectId: subject.subjectId });
+      }
+      return { classId: row.classId, subjects: [...subjects.values()] };
+    });
+    result.allowedSeriesIds = [...new Set(result.schoolAssignments.flatMap(row => row.subjects.map(subject => subject.seriesId)))];
   }
   if ('isHeadSchool' in input) {
     if (typeof input.isHeadSchool !== 'boolean') throw fail(400, 'Invalid school designation.');

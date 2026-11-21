@@ -71,6 +71,11 @@ test('admin catalog and published PDF projects persist and enforce school access
     assert.equal((await reader(`/files/${catalog[0].dir}/p001.jpg`)).status, 200, 'Reused original activities can load their source artwork');
     assert.equal((await reader('/me/progress', 'PUT', { bookId, page: 0 })).status, 200);
     assert.equal((await reader('/me/progress')).data.progress.bookId, bookId);
+    await admin(`/admin/users/${school.data.account.id}`, 'PATCH', { schoolAssignments: [{ classId: 'class-8', subjects: [{ seriesId, subjectId: 'geography' }] }] });
+    assert.equal((await reader(`/library/books/${bookId}/archive`)).status, 403);
+    assert.equal((await reader(`/library/books/${bookId}/cover`)).status, 403);
+    await admin(`/admin/users/${school.data.account.id}`, 'PATCH', { schoolAssignments: [{ classId: 'class-8', subjects: [{ seriesId, subjectId: 'history' }] }] });
+    assert.equal((await reader(`/library/books/${bookId}/archive`)).status, 200);
     manifest.title = 'Updated test book'; zip.file('project.json', JSON.stringify(manifest));
     assert.equal((await admin(`/admin/library/books/${bookId}`, 'PUT', await zip.generateAsync({ type: 'nodebuffer' }), true)).status, 200);
     assert.equal((await reader('/learning')).data.publishedBooks.find(book => book.id === bookId).title, 'Updated test book');

@@ -172,3 +172,36 @@
   .english-learning .rstage { min-height: 0; padding-block: 6px; }
   .english-learning .book { width: min(100%, calc((100dvh - 170px) * var(--ratio) * 2)); }
 }
+
+/* Clear lesson tabs, with a larger reading area and no change to page proportions. */
+.english-letter-rail { padding: 10px 7px; gap: 6px; border-radius: 18px; border-color: #dce6df; background: #fffef9; box-shadow: 0 5px 18px #234d3910; scrollbar-color: #b8cdc1 transparent; scrollbar-gutter: stable; }
+.english-letter-rail > small { position: sticky; top: -10px; z-index: 2; background: #edf4ef; color: #527363; border: 1px solid #dbe8df; padding: 5px 9px; font-size: 9px; letter-spacing: .1em; margin-bottom: 5px; }
+.english-letter-rail .english-letter { position: relative; flex: 1 0 34px; min-height: 34px; max-height: 48px; gap: 5px; padding: 5px 7px; border: 1px solid color-mix(in srgb, var(--tile-solid) 20%, transparent); border-radius: 10px; background: linear-gradient(145deg, #ffffff80, transparent), var(--tile); box-shadow: 0 2px 0 color-mix(in srgb, var(--tile-solid) 16%, transparent); cursor: pointer; }
+.english-letter-rail .english-letter:not(.long) b { font-size: 21px; letter-spacing: -.03em; }
+.english-letter-rail .english-letter span { font-size: 14px; opacity: .75; }
+.english-letter-rail .english-letter:hover { transform: none; background: color-mix(in srgb, var(--tile) 85%, var(--tile-solid)); border-color: var(--tile-solid); box-shadow: 0 3px 8px color-mix(in srgb, var(--tile-solid) 15%, transparent); }
+.english-letter-rail .english-letter[aria-current="true"] { transform: none; color: #fff; background: var(--tile-solid); border-color: var(--tile-solid); box-shadow: 0 3px 9px color-mix(in srgb, var(--tile-solid) 25%, transparent); }
+.english-letter-rail .english-letter[aria-current="true"]::before { content: ''; position: absolute; left: 3px; top: 25%; height: 50%; width: 3px; border-radius: 3px; background: #ffffffb3; }
+.english-letter-rail .english-letter[aria-current="true"] span { opacity: .9; }
+@media (min-width: 681px) and (min-height: 521px) {
+  .english-learning .rbar { min-height: 56px; padding-block: 8px; }
+  .english-learning .english-reader-layout { padding: 12px 16px 0; gap: 14px; }
+  .english-learning .english-letter-rail { width: 84px; }
+  .english-learning .rstage { padding: 10px 0; gap: 8px; }
+  .english-learning .book { width: min(100%, calc((100dvh - 190px) * var(--ratio) * 2)); }
+  .english-learning .english-reader-dock { padding: 7px; gap: 4px; border-radius: 14px; flex-shrink: 0; }
+  .english-learning .english-reader-dock button { padding: 9px 12px; }
+  .english-learning .rfoot { padding: 7px 20px; }
+}
+@media (min-width: 681px) and (max-width: 1050px) { .english-learning .english-letter-rail { width: 66px; padding-inline: 5px; } }
+@media (max-width: 680px) { .english-letter-rail { scrollbar-gutter: auto; padding: 6px; } .english-letter-rail .english-letter { flex: 0 0 44px; min-height: 40px; } }
+
+/* The active fill belongs to the visible lesson, never to hover or the last lesson. */
+.english-letter-rail .english-letter:not([aria-current="true"]) { background: #fff; border-color: #dce5df; color: #60756a; box-shadow: 0 1px 3px #274c3510; }
+.english-letter-rail .english-letter:not([aria-current="true"]):hover { transform: none; background: #f8faf8; border-color: #b2c6b9; box-shadow: 0 2px 5px #274c3514; }
+.english-reader-dock button:disabled { opacity: .4; cursor: default; }
+
+/* Keep page arrows above the book's 3D page layers. */
+.english-learning .english-reader-dock { margin-top: 14px; }
+.english-learning .rstage > .nav { position: relative; z-index: 40; flex-shrink: 0; }
+.english-learning .rstage > .nav:not(:disabled) { pointer-events: auto; cursor: pointer; opacity: 1; }

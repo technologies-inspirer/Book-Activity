@@ -24,6 +24,7 @@ export default function PdfAuthoring() {
   const [savedUploadSelection, setSavedUploadSelection] = useState(() => ({ seriesId: savedBookDraft?.seriesId || '', classId: savedBookDraft?.classId || '', subjectId: savedBookDraft?.subjectId || '' }));
   const [busy, setBusy] = useState('');
   const [progress, setProgress] = useState(null);
+  const [draggingPdf, setDraggingPdf] = useState(false);
   const [preview, setPreview] = useState(null);
   const [deletePage, setDeletePage] = useState(null);
   const [readerOpen, setReaderOpen] = useState(!!draft);
@@ -87,7 +88,8 @@ export default function PdfAuthoring() {
     }
   }
   async function readPdf(event) {
-    const file = event.target.files?.[0]; event.target.value = '';
+    const file = (event.dataTransfer || event.target).files?.[0];
+    if (event.target.type === 'file') event.target.value = '';
     if (!file) return;
     if (!uploadReady) { setMessage({ error: true, text: 'Select a series, class and subject before uploading a PDF.' }); return; }
     const destination = { ...uploadSelection };
@@ -157,23 +159,36 @@ export default function PdfAuthoring() {
     <div className="portal-page-heading"><div><h1>PDF &amp; Activities</h1><p className="portal-muted">Choose its library location, upload a PDF, then add page activities.</p></div>{(draft || savedBookDraft || dirty || uploadSelectionDirty) && <div className="pdf-save-actions"><span className="portal-pill" role="status">{dirty || uploadSelectionDirty ? 'Unsaved changes' : 'Saved'}</span><button className="portal-primary" disabled={!!busy || !draft || !dirty} onClick={saveUpdate}>{busy ? 'Saving...' : 'Save Changes'}</button><button className="portal-secondary" disabled={!!busy} onClick={cancelEdits}>Cancel</button>{savedBookDraft && <button className="portal-secondary" disabled={!!busy} onClick={downloadDraft}>Download Saved ZIP</button>}</div>}</div>
     <Feedback message={message} />
     <section className="portal-panel pdf-upload-panel" aria-label="Choose PDF destination and upload">
-      <div className="pdf-upload-intro"><h2>Choose where this book belongs</h2><p className="portal-muted">Select the series, class and subject first, then upload its PDF.</p></div>
-      <fieldset className="pdf-upload-destination" disabled={!!busy}><legend className="sr-only">Book destination</legend>
-        <label className="portal-field"><span>1. Series</span><select value={uploadSelection.seriesId} onChange={event => setUploadSelection({ seriesId: event.target.value, classId: '', subjectId: '' })}><option value="">Select series</option>{series.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
-        <label className="portal-field"><span>2. Class</span><select disabled={!uploadSeries} value={uploadSelection.classId} onChange={event => setUploadSelection({ ...uploadSelection, classId: event.target.value, subjectId: '' })}><option value="">Select class</option>{uploadClasses.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
-        <label className="portal-field"><span>3. Subject</span><select disabled={!uploadClass} value={uploadSelection.subjectId} onChange={event => setUploadSelection({ ...uploadSelection, subjectId: event.target.value })}><option value="">Select subject</option>{uploadSubjects.map(item => <option key={item.subjectId} value={item.subjectId}>{item.name}</option>)}</select></label>
-      </fieldset>
-      {uploadSeries && !uploadClasses.length && <p className="portal-muted small">This series has no assigned classes. Assign its classes from the sidebar first.</p>}
-      {uploadClass && !uploadSubjects.length && <p className="portal-muted small">This class has no assigned subjects. Assign its subjects from the sidebar first.</p>}
-      <div className={`pdf-destination-summary${uploadReady ? ' is-ready' : ''}`}><span>{uploadReady ? 'This PDF will belong to' : 'Complete the selection to upload'}</span><strong>{destinationText}</strong><p>{uploadReady ? 'After publishing, permitted school accounts will find this book here in their library.' : 'Upload becomes available after all three selections.'}</p></div>
-      <div className="pdf-upload-footer"><div><p className="portal-muted small">No PDF file-size limit. Up to 200 pages per book.</p><p className="portal-muted small">Upload prepares the book for editing. Click Save Changes to publish it to the selected location.</p></div><div className="pdf-upload-actions"><label className={`portal-primary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Upload PDF<input type="file" aria-label="Upload book PDF" accept=".pdf,application/pdf" disabled={!!busy || !uploadReady} onChange={readPdf} /></label><label className={`portal-secondary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Import Draft ZIP<input type="file" aria-label="Import draft ZIP" accept=".zip,application/zip" disabled={!!busy || !uploadReady} onChange={readDraft} /></label></div></div>
+      <div className="pdf-upload-intro"><div><h2>Add a book</h2><p className="portal-muted">Choose its place in the library, then add your PDF.</p></div><span className={`pdf-upload-status${uploadReady ? ' is-ready' : ''}`}><span aria-hidden="true" />{uploadReady ? 'Ready to upload' : 'Choose book location'}</span></div>
+      <div className="pdf-upload-workspace">
+        <div className="pdf-location-column"><h3>Book location</h3>
+          <fieldset className="pdf-upload-destination" disabled={!!busy}><legend className="sr-only">Book destination</legend>
+            <label className="portal-field"><span>Series</span><select value={uploadSelection.seriesId} onChange={event => setUploadSelection({ seriesId: event.target.value, classId: '', subjectId: '' })}><option value="">Select series</option>{series.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+            <label className="portal-field"><span>Class</span><select disabled={!uploadSeries} value={uploadSelection.classId} onChange={event => setUploadSelection({ ...uploadSelection, classId: event.target.value, subjectId: '' })}><option value="">Select class</option>{uploadClasses.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>
+            <label className="portal-field"><span>Subject</span><select disabled={!uploadClass} value={uploadSelection.subjectId} onChange={event => setUploadSelection({ ...uploadSelection, subjectId: event.target.value })}><option value="">Select subject</option>{uploadSubjects.map(item => <option key={item.subjectId} value={item.subjectId}>{item.name}</option>)}</select></label>
+          </fieldset>
+          {uploadSeries && !uploadClasses.length && <p className="portal-muted small">Assign classes to this series from the sidebar first.</p>}
+          {uploadClass && !uploadSubjects.length && <p className="portal-muted small">Assign subjects to this class from the sidebar first.</p>}
+        </div>
+        <div className="pdf-file-column">
+          <div className={`pdf-drop-area${uploadReady ? ' is-ready' : ''}${draggingPdf ? ' is-dragging' : ''}`} onDragOver={event => { event.preventDefault(); event.dataTransfer.dropEffect = uploadReady && !busy ? 'copy' : 'none'; if (uploadReady && !busy) setDraggingPdf(true); }} onDragLeave={event => { if (!event.currentTarget.contains(event.relatedTarget)) setDraggingPdf(false); }} onDrop={event => { event.preventDefault(); setDraggingPdf(false); if (!busy) readPdf(event); }}>
+            <span className="pdf-upload-document" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H5a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8Z M14 2v6h6 M12 17v-6 M9 14l3-3 3 3" /></svg></span>
+            <h3>{draggingPdf ? 'Drop your PDF here' : 'Upload your book PDF'}</h3>
+            <p>{uploadReady ? 'Drag a PDF here, or choose a file from your computer.' : 'Select a series, class and subject to get started.'}</p>
+            <label className={`portal-primary pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Choose PDF<input type="file" aria-label="Upload book PDF" accept=".pdf,application/pdf" disabled={!!busy || !uploadReady} onChange={readPdf} /></label>
+            <small>PDF format ? Up to 200 pages ? No file-size limit</small>
+          </div>
+          <div className="pdf-import-draft"><span>Continuing a saved project?</span><label className={`pdf-upload-label${busy || !uploadReady ? ' disabled' : ''}`} aria-disabled={!!busy || !uploadReady}>Import Draft ZIP<input type="file" aria-label="Import draft ZIP" accept=".zip,application/zip" disabled={!!busy || !uploadReady} onChange={readDraft} /></label></div>
+        </div>
+      </div>
+      <div className={`pdf-destination-summary${uploadReady ? ' is-ready' : ''}`}><div><span>Library destination</span><strong>{destinationText}</strong></div><p>{uploadReady ? 'Save Changes will publish your book here.' : 'Complete the three selections above.'}</p></div>
       {busy && <div className="pdf-conversion-status" role="status"><div><strong>{busy}</strong>{progress && <span>Page {progress.completed} of {progress.total}</span>}</div>{progress && <progress max={progress.total} value={progress.completed} />}<button className="portal-secondary" onClick={() => operation.current?.controller.abort()}>Cancel</button></div>}
     </section>
     {!!publishedBooks.length && <section className="portal-panel"><h2>Published Books</h2><div className="published-book-list">{publishedBooks.map(book => <article key={book.id}><img src={book.cover} alt="" /><div><strong>{book.title}</strong><p className="portal-muted small">{series.find(item => item.id === book.seriesId)?.name} / {learningClasses.find(item => item.id === book.classId)?.name} / {learningSubjects.find(item => item.id === book.subjectId)?.name}</p></div><a className="portal-secondary" href={`#/admin/published/${book.id}`}>Open / Edit</a></article>)}</div></section>}
     {draft ? <section className="portal-panel draft-uploaded-book">
       <button type="button" className="draft-cover-button" onClick={() => setReaderOpen(true)} aria-label={`Open ${draft.title}`}><BlobImage blob={draft.pages[0].image} alt={draft.title} /></button>
       <div><p className="portal-eyebrow">Your uploaded book</p><h2>{draft.title}</h2><p className="pdf-book-location">{series.find(item => item.id === draft.seriesId)?.name} / {learningClasses.find(item => item.id === draft.classId)?.name} / {getSubjectAssignments(customSubjects, subjectAssignments).find(item => item.seriesId === draft.seriesId && item.subjectId === draft.subjectId)?.name}</p><p className="portal-muted">{draft.pages.length} pages / {draft.originalBookId ? 'Original book activities detected' : `${activities} linked activities`} / {(draftBytes(draft) / 1024 / 1024).toFixed(1)} MB</p><button className="portal-primary" onClick={() => setReaderOpen(true)}>Open Book Preview</button><p className="portal-muted small">Page turning, zoom and writing work directly in the reader. Listen uses the PDF's text; videos and games appear when the book contains linked content.</p></div>
-    </section> : <section className="portal-empty"><h2>{dirty ? 'All pages removed' : 'Open your PDF as a book'}</h2><p>{dirty ? 'Click Save Changes to confirm removal, or Cancel to restore your last saved version.' : 'Select a series, class and subject above, then upload its PDF.'}</p></section>}
+    </section> : dirty ? <section className="portal-empty"><h2>{dirty ? 'All pages removed' : 'Open your PDF as a book'}</h2><p>{dirty ? 'Click Save Changes to confirm removal, or Cancel to restore your last saved version.' : 'Select a series, class and subject above, then upload its PDF.'}</p></section> : null}
     {draft && <section ref={editorRef} tabIndex={-1} className="pdf-customization" aria-label="Customize PDF pages" inert={!!busy}>
       <div className="portal-page-heading"><h2>Customize your book</h2><button className="portal-secondary" onClick={() => setReaderOpen(true)}>Preview reader</button></div>
       <div className="portal-panel pdf-book-details">

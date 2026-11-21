@@ -1,4 +1,3 @@
-import { books } from '../data/books.js';
 import { useDemo } from './DemoContext.jsx';
 import { availableBooks, isExpired } from './demoStore.js';
 
@@ -30,7 +29,7 @@ const shortcuts = [
 ];
 
 export function AdminDashboard() {
-  const { accounts, account } = useDemo();
+  const { accounts, account, allBooks: books } = useDemo();
   const users = accounts.filter(item => item.role === 'user');
   const active = users.filter(item => item.enabled && !isExpired(item)).length;
   const accesses = users.reduce((sum, item) => sum + availableBooks(item, books).length, 0);
@@ -56,11 +55,10 @@ export function AdminDashboard() {
     </section>
     <div className="admin-summary-grid" aria-label="Dashboard overview and shortcuts">
       <SummaryCard icon="users" count={users.length} label="Total Schools" detail={`${active} active ${active === 1 ? 'account' : 'accounts'}`} href="#/admin/schools" />
-      <SummaryCard icon="book" count={books.length} label="Total Books" detail="Existing collection" href="#/admin/books" warm />
+      <SummaryCard icon="book" count={books.length} label="Total Books" detail="Books in your library" href="#/admin/books" warm />
       <SummaryCard icon="access" count={accesses} label="Assigned Accesses" detail="Per user" href="#/admin/schools" />
       {shortcuts.map(([id, label, icon]) => <a key={id} href={`#/admin/${id}`} className="admin-summary-card admin-shortcut-card"><span className="admin-summary-icon"><DashboardIcon name={icon} /></span><span className="admin-summary-copy"><span>{label}</span><small className="admin-shortcut-status"><span aria-hidden="true">✓</span> Available</small></span></a>)}
+    <button type="button" className="admin-summary-card admin-export-card" onClick={exportUsers}><span className="admin-summary-icon"><DashboardIcon name="download" /></span><span className="admin-summary-copy"><span>Export Schools</span><small>Schools (.csv)</small></span><span className="admin-export-arrow" aria-hidden="true">↓</span></button>
     </div>
-    <div className="admin-export-row"><button type="button" className="admin-summary-card admin-export-card" onClick={exportUsers}><span className="admin-summary-icon"><DashboardIcon name="download" /></span><span className="admin-summary-copy"><span>Export Data</span><small>Schools (.csv)</small></span><span className="admin-export-arrow" aria-hidden="true">↓</span></button></div>
-    <p className="admin-dashboard-note">Your registered accounts and their current access. Assigned accesses count each active user’s books separately.</p>
   </div>;
 }

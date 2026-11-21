@@ -51,6 +51,13 @@ test('frontend store creates, edits and restores real accounts across reloads', 
     const readerReloaded = createPortalStore();
     await readerReloaded.initialize();
     assert.equal(readerReloaded.snapshot().accounts[0].name, 'Updated Reader');
+    const profileImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aC90AAAAASUVORK5CYII=';
+    await readerReloaded.updateProfile({ profileImage });
+    const photoReloaded = createPortalStore(); await photoReloaded.initialize();
+    assert.equal(photoReloaded.snapshot().accounts[0].profileImage, profileImage);
+    await assert.rejects(photoReloaded.updateProfile({ profileImage: 'data:image/svg+xml;base64,PHN2Zz4=' }), /PNG/);
+    await photoReloaded.updateProfile({ profileImage: '' });
+    assert.equal(photoReloaded.snapshot().accounts[0].profileImage, '');
     await readerReloaded.changePassword(password, 'Changed-Password-For-Test');
     await readerReloaded.signOut();
     await assert.rejects(readerReloaded.signIn(userEmail, password));

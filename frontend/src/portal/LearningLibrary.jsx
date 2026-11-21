@@ -4,8 +4,8 @@ import { learningClasses, getLearningSubjects, getLearningBooks, libraryLink, sc
 import { useDemo } from './DemoContext.jsx';
 import { BookTile } from './BookCollection.jsx';
 import { EmptyState } from './Shared.jsx';
-import { LibraryBookIcon } from './LibraryIcons.jsx';
 import { LearningIllustration } from './LearningIllustration.jsx';
+import { LibraryBookIcon } from './LibraryIcons.jsx';
 import { LearningLandscape, LearningScenery } from './LearningScenery.jsx';
 import classSelectionTemplate from '../../assets/class-selection-company-books.jpeg';
 import subjectSelectionTemplate from '../../assets/subject-selection-company-books.jpeg';

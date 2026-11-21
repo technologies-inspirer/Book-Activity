@@ -1,7 +1,7 @@
 import { pakistanRegions } from '../data/pakistanLocations.js';
 
 const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export function validateSchoolForm({ details, principal, password = '', creating = false, allowedSeriesIds }) {
+export function validateSchoolForm({ details, principal, password = '', creating = false, allowedSeriesIds, schoolAssignments }) {
   const errors = {};
   const required = (key, value, label, limit) => {
     if (typeof value !== 'string' || !value.trim()) errors[key] = `Please fill ${label}.`;
@@ -19,7 +19,7 @@ export function validateSchoolForm({ details, principal, password = '', creating
   }
   if (!errors['principal-email'] && !email.test(principal.email.trim())) errors['principal-email'] = 'Enter a valid principal email address.';
   if (creating) required('password', password, 'Password', 128);
-  if (!Array.isArray(allowedSeriesIds) || !allowedSeriesIds.length) errors.allowedSeriesIds = 'Please select at least one series.';
+  if (!Array.isArray(schoolAssignments) && (!Array.isArray(allowedSeriesIds) || !allowedSeriesIds.length)) errors.allowedSeriesIds = 'Please select at least one series.';
   if (details.expiry && !Number.isFinite(Date.parse(details.expiry))) errors.expiry = 'Enter a valid expiry date and time.';
   return errors;
 }

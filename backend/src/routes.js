@@ -61,7 +61,8 @@ async function insertAccount(client, input) {
   const { name, email } = identity(input);
   const passwordHash = await hashPassword(input.password);
   const access = permissions(input);
-  const extra = metadata(input, {}, false, allSeries(await learningState(client)));
+  const learning = await learningState(client);
+  const extra = metadata(input, {}, false, allSeries(learning), learning);
   const { rows: [user] } = await client.query("INSERT INTO users (name, email, password_hash, role, all_books, book_ids, expires_at, metadata) VALUES ($1, $2, $3, 'user', $4, $5, $6, $7) RETURNING *", [name, email, passwordHash, access.allBooks, access.bookIds, access.expiresAt, extra]);
   return publicUser(user);
 }
@@ -85,7 +86,8 @@ api.patch('/admin/users/:id', requireAdmin, validId, async (request, response) =
     if (!user) throw fail(404, 'User account not found.');
     const details = identity({ name: request.body.name ?? user.name, email: request.body.email ?? user.email });
     const access = permissions(request.body, user);
-    const extra = metadata(request.body, user.metadata, false, allSeries(await learningState(client)));
+    const learning = await learningState(client);
+    const extra = metadata(request.body, user.metadata, false, allSeries(learning), learning);
     if (request.body.isHeadSchool) await client.query("UPDATE users SET metadata=metadata || '{\"isHeadSchool\":false}'::jsonb WHERE role='user' AND id<>$1", [user.id]);
     const enabled = request.body.enabled ?? user.enabled;
     if (typeof enabled !== 'boolean') throw fail(400, 'Choose a valid account status.');
@@ -105,7 +107,7 @@ api.post('/admin/users/:id/reset-password', requireAdmin, validId, async (reques
   response.json({ ok: true });
 });
 api.patch('/me', async (request, response) => {
-  const allowed = ['name', 'email', 'schoolProfile', 'schoolLogo'];
+  const allowed = ['name', 'email', 'schoolProfile', 'schoolLogo', 'profileImage'];
   if (Object.keys(request.body).some(key => !allowed.includes(key))) throw fail(400, 'Only your profile details can be updated here.');
   const account = await transaction(async client => {
     const { rows: [user] } = await client.query('SELECT * FROM users WHERE id=$1 FOR UPDATE', [request.user.id]);

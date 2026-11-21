@@ -14,7 +14,7 @@ export function LearningScenery() {
 }
 
 export function LearningLandscape() {
-  return <svg className="learning-landscape" viewBox="0 0 1200 130" fill="none" aria-hidden="true" focusable="false">
+  return <svg className="learning-landscape" viewBox="0 0 1200 130" preserveAspectRatio="xMidYMax slice" fill="none" aria-hidden="true" focusable="false">
     <path d="M0 94Q110 33 282 98L383 130H0V94Z" fill="#d8edb4" />
     <path d="M1200 85Q1071 41 932 97L832 130h368V85Z" fill="#d8edb4" />
     <path d="M0 113q118-44 268 17H0v-17Zm1200-8q-120-32-242 25h242v-25Z" fill="#b9db91" />

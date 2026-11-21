@@ -3,6 +3,8 @@ import { useDemo } from './DemoContext.jsx';
 import { Feedback, PasswordField } from './Shared.jsx';
 import { PakistanLocationFields } from './PakistanLocationFields.jsx';
 import { SeriesAccessFields } from './SeriesAccessFields.jsx';
+import { SchoolClassAccess } from './SchoolClassAccess.jsx';
+import { schoolSubjectChoices, initialSchoolAssignments, assignedSeriesIds } from '../data/schoolAccess.js';
 import { allowedSeries } from '../data/seriesAccess.js';
 import { regionName } from '../data/pakistanLocations.js';
 import { validateSchoolForm } from './schoolFormValidation.js';
@@ -27,13 +29,15 @@ function SchoolDetails({ account, creating = false }) {
   const notify = useToast();
   const [details, setDetails] = useState(() => initialDetails(account));
   const [principal, setPrincipal] = useState(() => ({ ...emptyPrincipal(), ...account.principals?.[0] }));
-  const [allowedSeriesIds, setAllowedSeriesIds] = useState(() => allowedSeries(account, series).map(item => item.id));
+  const [seriesSelection, setAllowedSeriesIds] = useState(() => allowedSeries(account, series).map(item => item.id));
+  const allowedSeriesIds = seriesSelection;
+  const [savedProfile, setSavedProfile] = useState(() => ({ details: initialDetails(account), principal: { ...emptyPrincipal(), ...account.principals?.[0] }, seriesSelection }));
   const [message, setMessage] = useState(null);
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [touched, setTouched] = useState({});
-  const formErrors = validateSchoolForm({ details, principal, password, creating, allowedSeriesIds });
+  const formErrors = validateSchoolForm({ details, principal, password, creating, allowedSeriesIds, schoolAssignments: creating ? undefined : [] });
   const errors = Object.fromEntries(Object.entries(formErrors).filter(([key]) => submitted || touched[key]));
   const touch = key => setTouched(current => ({ ...current, [key]: true }));
   const set = (field, value) => setDetails(current => ({ ...current, [field]: value }));
@@ -63,11 +67,13 @@ function SchoolDetails({ account, creating = false }) {
         location.hash = '#/admin/schools';
         return;
       }
-      await store.updateSchool(account.id, {
-        name: details.name, email: details.email, schoolProfile: profile, principals, allowedSeriesIds,
-        access: { allBooks: true, bookIds: [], expires: expiry === editExpiry(account) ? account.expires : expiry.slice(0, 10), expiresAt: expiry === editExpiry(account) ? account.expiresAt || '' : expiry }
+      const updated = await store.updateSchool(account.id, {
+        name: details.name, email: details.email, schoolProfile: profile, principals,
+        access: { expires: expiry === editExpiry(account) ? account.expires : expiry.slice(0, 10), expiresAt: expiry === editExpiry(account) ? account.expiresAt || '' : expiry }
       });
-      setMessage({ text: 'School and principal details saved.' });
+      const saved = { details: initialDetails(updated), principal: { ...emptyPrincipal(), ...updated.principals?.[0] }, seriesSelection };
+      setSavedProfile(saved); setDetails(saved.details); setPrincipal(saved.principal);
+      setMessage({ text: 'School profile and principal details saved.' });
     } catch (error) { setMessage({ error: true, text: error.message }); } finally { setBusy(false); }
   }
   const field = (name, label, options = {}) => <label className="portal-field" htmlFor={`edit-school-${name}`}>
@@ -75,9 +81,9 @@ function SchoolDetails({ account, creating = false }) {
     {errors[name] && <span className="sr-only" id={`edit-school-${name}-error`}>{errors[name]}</span>}
   </label>;
 
-  return <form className="school-edit-details" onSubmit={save} aria-busy={busy} noValidate>
+  return <form className="school-edit-details" onSubmit={save} aria-busy={busy} noValidate><fieldset className="school-profile-fields" disabled={busy}>
     <section className="school-edit-section" aria-labelledby="school-edit-title">
-      <h1 id="school-edit-title">School</h1>
+      <h1 id="school-edit-title">School Profile</h1>
       <p className="school-edit-hint school-required-note">All fields are required except expiry.</p>
       <div className="school-edit-grid">
         {field('name', 'School Name', { required: true, maxLength: 150 })}
@@ -88,7 +94,7 @@ function SchoolDetails({ account, creating = false }) {
         <div>{field('expiry', 'Expiry Date & Time (optional)', { type: 'datetime-local', 'aria-describedby': 'school-edit-expiry-note' })}<p className="school-edit-hint" id="school-edit-expiry-note">Leave empty for no expiry. Access stops after this date and time, using your device's local time.</p></div>
       </div>
       <PakistanLocationFields value={details} onChange={setDetails} errors={errors} onBlurField={touch} />
-      <SeriesAccessFields choices={series} value={allowedSeriesIds} onChange={setAllowedSeriesIds} error={errors.allowedSeriesIds} onBlur={() => touch('allowedSeriesIds')} />
+      {creating && <SeriesAccessFields choices={series} value={allowedSeriesIds} onChange={setAllowedSeriesIds} error={errors.allowedSeriesIds} onBlur={() => touch('allowedSeriesIds')} />}
     </section>
     <section className="school-edit-section" aria-labelledby="school-edit-principal-title">
       <h2 id="school-edit-principal-title">Principal</h2>
@@ -103,8 +109,29 @@ function SchoolDetails({ account, creating = false }) {
       </div>
       <p className="school-edit-hint">{creating ? 'Use the school email and this password to sign in. Principal details are contact records. Only the selected book series will be available to this school.' : 'Principal details are contact records. School sign-in uses the school email.'} {account.principals?.length > 1 && `${account.principals.length - 1} additional principal contact(s) are kept; manage them through the Principals action.`}</p>
       <Feedback message={message} />
-      <div className="school-edit-actions"><a href="#/admin/schools" className="portal-secondary">Cancel</a><button className="portal-primary" type="submit" disabled={busy}>{busy ? 'Saving...' : 'Save Changes'}</button></div>
+      <div className="school-edit-actions"><button type="button" className="portal-secondary" onClick={() => { setDetails({ ...savedProfile.details }); setPrincipal({ ...savedProfile.principal }); setAllowedSeriesIds([...savedProfile.seriesSelection]); setPassword(''); setSubmitted(false); setTouched({}); setMessage(null); notify({ text: 'Profile changes cancelled.' }); }}>Cancel</button><button className="portal-primary" type="submit" disabled={busy}>{busy ? 'Saving...' : 'Save Changes'}</button></div>
     </section>
+  </fieldset></form>;
+}
+
+function SchoolPermissions({ account }) {
+  const { store, series, seriesClasses, customSubjects, subjectAssignments } = useDemo();
+  const choices = schoolSubjectChoices(customSubjects, subjectAssignments, seriesClasses);
+  const notify = useToast();
+  const [saved, setSaved] = useState(() => initialSchoolAssignments(account, choices, series));
+  const [value, setValue] = useState(() => structuredClone(saved));
+  const [busy, setBusy] = useState(false);
+  return <form className="school-permissions-form" aria-label="Class and subject permissions" aria-busy={busy} onSubmit={async event => {
+    event.preventDefault(); if (busy) return; setBusy(true);
+    try {
+      const updated = await store.updateSchool(account.id, { schoolAssignments: value, allowedSeriesIds: assignedSeriesIds(value), access: { allBooks: true, bookIds: [] } });
+      const next = structuredClone(updated.schoolAssignments);
+      setSaved(next); setValue(structuredClone(next));
+      notify({ text: 'Class and subject permissions saved.' });
+    } catch (error) { notify({ error: true, text: error.message }); } finally { setBusy(false); }
+  }}>
+    <SchoolClassAccess value={value} onChange={setValue} choices={choices} series={series} disabled={busy} />
+    <div className="school-edit-actions"><button type="button" className="portal-secondary" disabled={busy} onClick={() => { setValue(structuredClone(saved)); notify({ text: 'Class changes cancelled.' }); }}>Cancel</button><button type="submit" className="portal-primary" disabled={busy}>{busy ? 'Saving...' : 'Save Changes'}</button></div>
   </form>;
 }
 
@@ -113,7 +140,7 @@ export function SchoolEdit({ id }) {
   const account = accounts.find(item => item.id === id && item.role === 'user');
   return <div className="school-edit-page">
     <a className="school-back" href="#/admin/schools" aria-label="Back to School Register">&#8592;</a>
-    {account ? <><SchoolDetails key={`details/${id}`} account={account} /></> : <section className="portal-empty"><h1>School not found</h1><p>Return to School Register and select an existing account.</p><a href="#/admin/schools" className="portal-primary">School Register</a></section>}
+    {account ? <><SchoolDetails key={`details/${id}`} account={account} /><SchoolPermissions key={`permissions/${id}`} account={account} /></> : <section className="portal-empty"><h1>School not found</h1><p>Return to School Register and select an existing account.</p><a href="#/admin/schools" className="portal-primary">School Register</a></section>}
   </div>;
 }
 

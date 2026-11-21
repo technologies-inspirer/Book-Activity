@@ -8,6 +8,7 @@ import bookColourRegions from './books/colour-regions.json';
 import reviewedPagePalettes from './books/colour-palettes.json';
 import { englishLessons } from './src/englishLessons.js';
 import { bookRhymes, rhymeSpread } from './src/data/bookRhymes.js';
+import { lessonAtSpread, rhymeAtSpread } from './src/readerSelection.js';
 import { createLessonHistory } from './src/readerLessonHistory.js';
 import './src/englishLearning.css';
 
@@ -1716,6 +1717,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const rhymes = !readerBook ? bookRhymes(book) : [];
     const urduDock = book.id === 'stemford-urdu-3';
     let currentLesson = lessons[0];
+    let selectedRhyme = null;
     const lessonView = el('section', { class: 'english-lesson', hidden: true, 'aria-label': 'Letter learning' });
     const letterButtons = [];
     const stopLessonVideo = () => lessonView.querySelectorAll('iframe').forEach(frame => frame.remove());
@@ -1725,12 +1727,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const headingId = `rhymes-${book.id}`;
       const pageNumber = number => urduDock ? String(number).replace(/\d/g, digit => '۰۱۲۳۴۵۶۷۸۹'[Number(digit)]) : String(number);
       const list = el('div', { class: 'rhyme-list' }, rhymes.map(rhyme => {
-        const current = rhymeSpread(rhyme.page) === R.spread;
+        const current = rhyme === rhymeAtSpread(rhymes, R.spread, selectedRhyme);
         return el('button', { type: 'button', class: 'rhyme-choice', 'aria-current': current ? 'page' : null, onclick: () => {
           if (R?.book !== book || R.busy) return;
           modalEl?.close();
           stopLessonVideo(); lessonView.hidden = true; root.classList.remove('english-lesson-open');
-          leafTo(rhymeSpread(rhyme.page));
+          selectedRhyme = rhyme;
+          if (rhymeSpread(rhyme.page) === R.spread) after();
+          else leafTo(rhymeSpread(rhyme.page));
         } }, el('span', { class: 'rhyme-note', 'aria-hidden': 'true' }, el('img', { src: book.pages[rhyme.page - 1].img, alt: '', loading: 'lazy' })),
         el('span', { class: 'rhyme-copy' }, el('b', {}, rhyme.title),
           el('small', {}, `${urduDock ? 'صفحہ' : 'Page'} ${pageNumber(rhyme.printedPage)}`)),
@@ -1750,7 +1754,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const close = card.querySelector('.modal-x');
       close.setAttribute('aria-label', urduDock ? 'بند کریں' : 'Close rhymes');
       close.title = urduDock ? 'بند کریں' : 'Close rhymes';
-      list.querySelector('button')?.focus({ preventScroll: true });
+      (list.querySelector('[aria-current=page]') || list.querySelector('button'))?.focus({ preventScroll: true });
     }
     const closeLesson = (fromHistory = false) => {
       stopLessonVideo();
@@ -1765,7 +1769,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const rail = (items, label) => el('nav', { class: 'english-letter-rail', 'aria-label': label },
       el('small', {}, label), items.map(lesson => {
         // a letter opens its page in the book; the Activity button on that page opens the letter lesson
-        const button = el('button', { class: 'english-letter' + (lesson.big.length > 2 ? ' long' : ''), 'data-letter': lesson.key, 'aria-label': `Open ${kindOf(lesson).toLowerCase()} ${lesson.name} page`, onclick: () => { if (!R?.busy) leafTo(Math.floor((lesson.page - 1) / 2)); } },
+        const button = el('button', { class: 'english-letter' + (lesson.big.length > 2 ? ' long' : ''), 'data-letter': lesson.key, 'aria-label': `Open ${kindOf(lesson).toLowerCase()} ${lesson.name} page`, onclick: () => { if (R?.busy) return; selectedRhyme = null; const target = Math.floor((lesson.page - 1) / 2); if (target === R.spread) after(); else leafTo(target); } },
           el('b', {}, lesson.big), lesson.small && el('span', {}, lesson.small));
         letterButtons.push(button);
         return button;
@@ -1794,6 +1798,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     function selectLesson(lesson, fromHistory = false) {
       if (R?.busy) return;
       if (editMode) { editMode = false; root.classList.remove('edit'); editBtn.classList.remove('on'); }
+      selectedRhyme = null;
       show(Math.floor((lesson.page - 1) / 2));
       currentLesson = lesson;
       root.classList.add('english-lesson-open');
@@ -1837,8 +1842,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const mobileActions = el('div', { class: 'reader-mobile-actions', role: 'toolbar', 'aria-label': 'Page activities' });
     const slider = el('input', { type: 'range', min: 0, max: spreads - 1, step: 1, 'aria-label': 'Go to pages', oninput: e => show(+e.target.value) });
     // the button on the left goes back in a left-to-right book and forward in a right-to-left one
-    const prev = el('button', { class: 'nav prev', title: rtl ? 'Next pages' : 'Previous pages', html: I.left, onclick: () => flip(rtl ? 1 : -1) });
-    const next = el('button', { class: 'nav next', title: rtl ? 'Previous pages' : 'Next pages', html: I.right, onclick: () => flip(rtl ? -1 : 1) });
+    const prev = el('button', { type: 'button', 'aria-label': rtl ? 'Next pages' : 'Previous pages', class: 'nav prev', title: rtl ? 'Next pages' : 'Previous pages', html: I.left, onclick: () => flip(rtl ? 1 : -1) });
+    const next = el('button', { type: 'button', 'aria-label': rtl ? 'Previous pages' : 'Next pages', class: 'nav next', title: rtl ? 'Previous pages' : 'Next pages', html: I.right, onclick: () => flip(rtl ? -1 : 1) });
     const tools = drawTools(() => {
       [0, 1].forEach(k => (pageOf(book, R.spread * 2 + k)?.zones || []).forEach(z => delete drawings[`${book.id}:${R.spread * 2 + k}:${z.id}`]));
       show(R.spread);
@@ -1885,12 +1890,13 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       label.textContent = (a === b ? `Page ${a}` : `Pages ${a}–${b}`) + ` of ${book.pages.length}`;
       slider.value = s;
       if (lessons.length) {
-        const spreadOf = page => Math.floor((page - 1) / 2);
-        const here = lessons.find(lesson => spreadOf(lesson.page) === s) || lessons.find(lesson => spreadOf(lesson.tracePage) === s);
+        if (selectedRhyme && rhymeSpread(selectedRhyme.page) !== s) selectedRhyme = null;
+        const here = selectedRhyme ? null : lessonAtSpread(lessons, s);
         currentLesson = here || currentLesson;
         activityBtn.hidden = !here || editMode;
         if (here) activityBtn.setAttribute('aria-label', `Activity for letter ${here.letter.toUpperCase()}${here.letter}`);
-        letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === currentLesson.key)));
+        letterButtons.forEach(button => button.setAttribute('aria-current', String(button.dataset.letter === here?.key)));
+        root.querySelectorAll('.english-reader-dock > button:not(.reader-rhymes-button)').forEach(button => { button.disabled = editMode; });
       }
       (rtl ? next : prev).disabled = s === 0;
       (rtl ? prev : next).disabled = s >= spreads - 1;
@@ -1968,6 +1974,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     function flip(dir) {
       const s = R.spread, t = s + dir;
       if (R.busy || t < 0 || t >= spreads) return;
+      stopLessonVideo(); lessonView.hidden = true; root.classList.remove('english-lesson-open');
+      closeFocus(false); closeGame(); closeStory(); closeModal();
       R.busy = true;
       stopSpeak(); closeMenu();
       pageSound();
@@ -2493,6 +2501,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   };
   const onDocumentKeyDown = e => {
     if (readerBook && readerOptions.isBlocked?.()) return;
+    if (e.key === 'Escape' && document.fullscreenElement) { void document.exitFullscreen().catch(() => {}); return; }
     if (e.key === 'Escape') { if (modalEl) modalEl.close(); else if (storyEl) closeStory(); else if (gameEl) closeGame(); else if (focusEl) closeFocus(); else if (menu) closeMenu(); else if (R?.root.classList.contains('english-lesson-open')) R.closeLesson(); else stopSpeak(); return; }
     if (!R || modalEl || focusEl || storyEl || gameEl || /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
     if (R.root.classList.contains('english-lesson-open')) {

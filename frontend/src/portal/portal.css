@@ -850,8 +850,8 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 .learning-dashboard .resource-option-card:nth-child(4) .resource-option-status { background: linear-gradient(145deg, #00949b, #006270); }
 .learning-dashboard .resource-option-card > .dashboard-artwork { position: absolute; z-index: 0; right: 5px; bottom: 3px; width: 36%; max-width: 126px; mix-blend-mode: multiply; }
 .learning-dashboard .dashboard-artwork-landscape { width: calc(100% + 160px); max-width: none; margin: 14px -80px 0; }
-.learning-dashboard .learning-scene-side { top: 215px; left: -12px; width: 54px; opacity: .9; }
-.learning-dashboard .learning-scene-side.right { right: -12px; left: auto; top: 245px; }
+:is(.learning-dashboard, .learning-library) .learning-scene-side { top: 215px; left: -12px; width: 54px; opacity: .9; }
+:is(.learning-dashboard, .learning-library) .learning-scene-side.right { right: -12px; left: auto; top: 245px; }
 @media (max-width: 1100px) {
   .learning-dashboard { padding-inline: 10px; }
   .learning-dashboard .resource-option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -887,8 +887,8 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
   .learning-dashboard .resource-option-card > .dashboard-artwork { width: 35%; }
   .learning-dashboard .resource-option-card p { max-width: 90%; font-size: .8rem; }
   .learning-dashboard .dashboard-artwork-landscape { width: calc(100% + 32px); margin-inline: -16px; }
-  .learning-dashboard .learning-scene-side { width: 24px; left: -12px; opacity: .5; }
-  .learning-dashboard .learning-scene-side.right { right: -12px; }
+  :is(.learning-dashboard, .learning-library) .learning-scene-side { width: 24px; left: -12px; opacity: .5; }
+  :is(.learning-dashboard, .learning-library) .learning-scene-side.right { right: -12px; }
 }
 
 
@@ -905,8 +905,8 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 .learning-dashboard .resource-option-card > .dashboard-artwork { width: 39%; max-width: 136px; bottom: 0; right: 0; }
 .learning-dashboard .dashboard-artwork-school-management { clip-path: polygon(0 24%, 48% 24%, 48% 0, 76% 0, 76% 24%, 100% 24%, 100% 100%, 0 100%); }
 .learning-dashboard .resource-option-card p { margin-bottom: 20px; }
-/* The ambient layer fills the outer margins of the dashboard only. */
-.user-workspace:has(.learning-dashboard) { position: relative; isolation: isolate; }
+/* Shared animated side decorations for the dashboard and all library steps. */
+.user-workspace:has(:is(.learning-dashboard, .learning-library)) { position: relative; isolation: isolate; }
 .dashboard-ambient { position: absolute; inset: 80px 0 0; z-index: -1; pointer-events: none; user-select: none; overflow: hidden; }
 .dashboard-ambient-side { position: absolute; top: 0; bottom: 0; width: clamp(26px, calc((100vw - 1220px) / 2), 150px); }
 .dashboard-ambient-side.left { left: 0; }
@@ -921,8 +921,8 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 .dashboard-ambient-side.right .dashboard-floating-star { top: 55%; animation-delay: -3s; }
 .dashboard-ambient-side.right .dashboard-butterfly { top: 7%; animation-delay: -4s; }
 .dashboard-ambient-side.right .dashboard-drift-trail { top: 37%; transform: scaleX(-1); }
-.learning-dashboard .learning-scene-side { animation: dashboard-side-bob 9s ease-in-out infinite; }
-.learning-dashboard .learning-scene-side.right { animation: dashboard-side-bob-right 11s ease-in-out infinite; }
+:is(.learning-dashboard, .learning-library) .learning-scene-side { animation: dashboard-side-bob 9s ease-in-out infinite; }
+:is(.learning-dashboard, .learning-library) .learning-scene-side.right { animation: dashboard-side-bob-right 11s ease-in-out infinite; }
 @keyframes dashboard-cloud-drift { from { transform: translateX(-6px); } to { transform: translateX(10px); } }
 @keyframes dashboard-star-float { 0%,100% { transform: translateY(0) rotate(-7deg); } 50% { transform: translateY(-10px) rotate(7deg); } }
 @keyframes dashboard-butterfly-drift { 0%,100% { transform: translate(0, 0) rotate(-6deg); } 50% { transform: translate(8px, -16px) rotate(6deg); } }
@@ -944,7 +944,7 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
   .learning-dashboard .resource-option-card > .dashboard-artwork { width: 38%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .dashboard-ambient *, .learning-dashboard .learning-scene-side { animation: none !important; }
+  .dashboard-ambient *, :is(.learning-dashboard, .learning-library) .learning-scene-side { animation: none !important; }
 }
 
 /* Login on desktop screens: the whole page fits the window up to about 110% zoom, so no scrollbar on a
@@ -1113,3 +1113,263 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 .catalog-assignment-heading { align-items: flex-start; }
 .catalog-assignment-heading > div:first-child { flex: 1; min-width: min(100%, 240px); }
 .catalog-assignment-heading .catalog-top-actions { margin-top: 0; }
+
+.portal .admin-dashboard .admin-summary-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.portal .admin-dashboard .admin-summary-card { flex-direction: row; align-items: center; min-height: 88px; padding: 14px 16px; gap: 12px; }
+.admin-dashboard .admin-summary-copy { width: auto; }
+.admin-dashboard .admin-summary-copy > strong { font-size: 1.8rem; }
+.admin-dashboard .admin-summary-copy > span { font-size: .8rem; }
+.admin-dashboard .admin-summary-copy > small { font-size: .68rem; }
+.admin-dashboard .admin-export-row { width: min(100%, 300px); margin-top: 12px; }
+.portal .admin-dashboard .admin-export-card { width: 100%; min-height: 74px; }
+
+@media (max-width: 1100px) { .portal .admin-dashboard .admin-summary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .portal .admin-dashboard .admin-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .portal .admin-dashboard .admin-summary-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Compact desktop workspace at normal browser zoom. */
+.school-class-access { margin-top: 28px; }
+.school-profile-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.school-permissions-form { margin-top: 28px; border-top: 1px solid var(--portal-border); padding-top: 24px; }
+.school-permissions-form .school-class-access { margin-top: 0; }
+.school-permissions-form .school-edit-actions { margin-top: 20px; }
+.school-class-access h2 { margin: 0 0 14px; }
+.school-class-table-wrap, .school-subject-table-wrap { overflow-x: auto; }
+.portal .school-class-access table, .portal .school-subject-dialog table { width: 100%; border-collapse: collapse; font-size: .75rem; }
+.portal .school-class-access :is(th,td), .portal .school-subject-dialog :is(th,td) { padding: 10px 8px; border-bottom: 1px solid #e0e4e8; text-align: left; vertical-align: top; }
+.school-class-access tbody tr:nth-child(odd), .school-subject-dialog tbody tr:nth-child(odd) { background: #f0f1f2; }
+.school-class-access th:first-child { width: 110px; }
+.school-class-access td:last-child { width: 112px; white-space: nowrap; }
+.school-class-access td > label, .school-subject-dialog td label, .school-subject-dialog th label { display: flex; align-items: center; gap: 7px; font-weight: 400; }
+.portal .school-class-access input, .portal .school-subject-dialog input { width: 13px; height: 13px; padding: 0; flex-shrink: 0; margin: 2px 0 0; accent-color: #1671ef; }
+.school-subject-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.portal .school-subject-badge { display: inline-flex; align-items: center; gap: 4px; border: 0; border-radius: 4px; padding: 4px 6px; background: #1671ef; color: #fff; font-size: .65rem; font-weight: 600; line-height: 1.4; text-align: left; }
+.school-subject-badge > span:first-child { border: 1px solid #ffffffa0; border-radius: 50%; width: 11px; height: 11px; display: inline-grid; place-items: center; font-size: 8px; flex-shrink: 0; }
+.portal .school-subject-badge:hover { background: #0c58c3; }
+.portal .school-class-assign { padding: 3px 0; border: 0; background: transparent; color: #1668ce; font-size: .69rem; font-weight: 600; cursor: pointer; }
+.school-class-empty { color: #89929c; font-size: .7rem; }
+.portal-dialog:has(.school-subject-dialog) { max-width: 760px; }
+.school-subject-dialog .school-edit-hint { margin: 12px 0 8px; }
+.school-subject-series { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.portal .school-subject-series button { flex: 1 1 120px; border: 1px solid #c1ccd5; border-radius: 5px; padding: 7px 10px; background: #fff; color: #556571; font-size: .75rem; }
+.portal .school-subject-series button.selected { background: #e9f2ff; border-color: #1671ef; color: #1264d5; }
+.school-subject-table-wrap { max-height: 50vh; overflow: auto; }
+.school-subject-dialog thead { position: sticky; top: 0; background: #fff; z-index: 1; }
+.school-subject-dialog .portal-actions { margin-top: 18px; }
+@media (max-width: 600px) { .school-class-access table { min-width: 560px; } .school-subject-dialog table { min-width: 430px; } }
+@media (min-width: 1024px) {
+  .portal.admin-shell { grid-template-columns: 216px minmax(0, 1fr); }
+  .admin-shell .admin-sidebar { padding: 24px 14px 16px; }
+  .admin-shell .admin-brand .portal-logo img { width: 168px; }
+  .admin-shell .admin-brand > .portal-eyebrow { margin-top: 10px; font-size: .57rem; }
+  .admin-shell .admin-sidebar nav { margin-top: 24px; gap: 5px; }
+  .admin-shell .admin-sidebar nav :is(a,button) { padding: 10px 12px; gap: 10px; font-size: .79rem; }
+  .admin-shell .admin-sidebar nav a span { font-size: 1.05rem; }
+  .admin-shell .sidebar-foot { padding: 18px 10px 0; }
+  .admin-shell .sidebar-foot p { font-size: .77rem; margin-top: 12px; }
+  .admin-shell .portal-topline { padding: 14px 26px; font-size: .7rem; }
+  .admin-shell .admin-main { padding: 26px 26px 32px; }
+  .portal.admin-shell h1 { font-size: 1.75rem; }
+  .portal.admin-shell h2 { font-size: 1.25rem; }
+  .admin-shell .portal-panel { padding: 22px; border-radius: 16px; }
+  .admin-shell .portal-page-heading { margin-bottom: 14px; gap: 16px; }
+  .admin-shell .portal-field { margin: 16px 0; gap: 6px; font-size: .8rem; }
+  .portal.admin-shell .portal-field :is(input,select) { padding: 10px 12px; }
+  .portal.admin-shell .password-wrap input { padding-right: 66px; }
+  .portal.admin-shell :is(.portal-primary,.portal-secondary) { padding: 9px 14px; font-size: .8rem; gap: 10px; }
+  .admin-shell .portal-pill { padding: 4px 10px; font-size: .66rem; }
+  .admin-shell .admin-welcome-banner { padding: 20px 24px; margin-bottom: 16px; border-radius: 12px; }
+  .portal.admin-shell .admin-welcome-banner h1 { font-size: 1.5rem; margin-bottom: 7px; }
+  .admin-shell .admin-welcome-banner p { font-size: .73rem; }
+  .admin-shell .admin-welcome-banner > span { font-size: .65rem; }
+  .portal.admin-shell .admin-dashboard .admin-summary-grid { gap: 10px; }
+  .portal.admin-shell .admin-dashboard .admin-summary-card { min-height: 78px; padding: 12px; gap: 10px; }
+  .admin-shell .admin-dashboard .admin-summary-copy > strong { font-size: 1.55rem; }
+  .admin-shell .admin-dashboard .admin-summary-copy > span { font-size: .73rem; }
+  .admin-shell .admin-dashboard .admin-summary-copy > small { font-size: .63rem; }
+  .admin-shell .admin-summary-icon { width: 30px; height: 32px; }
+  .admin-shell .admin-summary-icon svg { width: 18px; height: 18px; }
+  .admin-shell .demo-notice { padding: 14px 20px; font-size: .66rem; }
+}
+
+/* Shared density for every admin page, independent of page-specific styles. */
+.user-company-logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+.user-company-logo img { width: 88px; height: 36px; object-fit: contain; }
+.user-account-menu { position: relative; flex-shrink: 0; }
+.portal .user-account-trigger { display: flex; align-items: center; gap: 10px; padding: 4px 8px; border: 0; border-radius: 10px; background: transparent; color: #28544b; cursor: pointer; text-align: left; }
+.portal .user-account-trigger:hover, .portal .user-account-trigger[aria-expanded="true"] { background: #edf5ef; }
+.user-account-avatar { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #e4eeea; color: #4a7968; overflow: hidden; flex-shrink: 0; }
+.user-account-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.user-account-avatar svg { width: 22px; height: 22px; }
+.user-account-trigger-copy { display: grid; gap: 2px; min-width: 0; }
+.user-account-trigger-copy strong { font-size: .75rem; font-weight: 600; }
+.user-account-trigger-copy > span { display: block; max-width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .68rem; color: #77837d; }
+.user-account-chevron { font-size: 17px; }
+.user-account-dropdown { position: absolute; top: calc(100% + 12px); right: 0; z-index: 70; width: min(260px, calc(100vw - 32px)); border: 1px solid #d5dadf; border-radius: 6px; background: #fff; color: #43514b; box-shadow: 0 8px 28px #123d3526; }
+.user-account-dropdown::before { content: ''; position: absolute; top: -6px; right: 22px; width: 10px; height: 10px; background: #fff; border-top: 1px solid #d5dadf; border-left: 1px solid #d5dadf; transform: rotate(45deg); }
+.user-account-identity { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 16px 12px; border-bottom: 2px solid #b4cbed; }
+.user-account-identity strong { max-width: 100%; overflow-wrap: anywhere; text-align: center; font-size: .82rem; }
+.user-account-identity > span:not(.user-account-avatar), .user-account-identity small { max-width: 100%; overflow-wrap: anywhere; color: #7c858e; font-size: .7rem; }
+.user-account-dropdown > a, .user-account-signout { display: flex; align-items: center; gap: 10px; padding: 10px 14px; color: #43514b; font-size: .76rem; border-bottom: 1px solid #e5e8eb; }
+.user-account-dropdown > a:hover, .user-account-signout:hover { background: #f1f5f8; }
+.user-account-dropdown svg { width: 17px; height: 17px; flex-shrink: 0; }
+.user-account-signout { padding: 0 14px; border: 0; border-radius: 0 0 6px 6px; }
+.user-account-signout .portal-signout { flex: 1; text-align: left; padding: 10px 0; font-size: .76rem; font-weight: 400; }
+.user-portal-shell .user-portal-header { position: relative; z-index: 35; }
+@media (max-width: 1023px) { .user-portal-shell .user-portal-header { position: sticky; } }
+.user-welcome-company { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.user-welcome-company img { width: 50px; height: 40px; object-fit: contain; }
+.user-welcome-company span { color: #307366; font-size: .75rem; font-weight: 600; }
+.portal .learning-dashboard .user-welcome .school-welcome-title { font-size: clamp(1.55rem, 2.5vw, 2.6rem); line-height: 1.2; overflow-wrap: anywhere; margin-bottom: 12px; }
+.user-profile-photo { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+.user-profile-photo > .user-account-avatar { width: 58px; height: 58px; }
+.user-profile-photo h2 { margin: 0 0 5px; font-size: 1rem; }
+.user-profile-photo p { margin: 0; color: var(--portal-muted); font-size: .75rem; }
+.user-profile-photo-actions { margin-left: auto; display: flex; gap: 8px; }
+.user-profile-photo-actions label { cursor: pointer; }
+.user-profile-photo-actions label:focus-within { outline: 2px solid #2b8163; outline-offset: 3px; }
+@media (max-width: 700px) { .user-portal-header .user-header-breadcrumb { display: none; } .user-account-trigger-copy > span { max-width: 145px; } .user-company-logo img { width: 68px; height: 30px; } .portal .user-account-trigger { gap: 6px; padding: 4px; } .user-profile-photo-actions { margin-left: 0; } }
+@media (max-width: 380px) { .user-account-trigger-copy > span { max-width: 105px; } .user-company-logo img { width: 50px; } }
+@media (min-width: 1024px) {
+  .admin-shell { --admin-title-size: 1.5rem; --admin-section-size: 1.1rem; --admin-body-size: .8rem; --admin-control-height: 38px; --admin-section-gap: 20px; }
+  .admin-shell :is(.admin-main,.portal-dialog) { font-size: var(--admin-body-size); }
+  .portal.admin-shell .admin-main h1 { font-size: var(--admin-title-size); line-height: 1.3; }
+  .portal.admin-shell .admin-main h2 { font-size: var(--admin-section-size); line-height: 1.4; }
+  .portal.admin-shell .admin-main h3 { font-size: .93rem; line-height: 1.4; }
+  .admin-shell .portal-page-heading .portal-muted { font-size: .78rem; }
+  .admin-shell :is(.portal-actions,.school-edit-actions) { gap: 8px; }
+  .portal.admin-shell :is(.portal-primary,.portal-secondary) { min-height: 36px; border-radius: 7px; }
+  .portal.admin-shell .portal-field { font-size: .78rem; gap: 6px; }
+  .portal.admin-shell .portal-field :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select) { min-height: var(--admin-control-height); padding: 8px 11px; font-size: .78rem; line-height: 1.5; }
+  .portal.admin-shell .portal-field .password-wrap input { padding-right: 66px; }
+  .portal.admin-shell .portal-field textarea { padding: 9px 11px; font: inherit; font-weight: 400; line-height: 1.5; }
+  .admin-shell :is(.school-edit-grid,.school-edit-location,.school-form-grid,.organization-details-grid,.organization-location-grid) { gap: 12px 16px; }
+  .portal.admin-shell .admin-main table :is(th,td) { font-size: .75rem; padding: 9px 10px; }
+  .portal.admin-shell :is(.school-edit-hint,.portal-muted.small) { font-size: .72rem; line-height: 1.55; }
+  .admin-shell .school-register-filters { margin-top: 18px; gap: 10px; }
+  .admin-shell .assignment-class-fieldset { padding: 14px; margin: 18px 0; }
+  .admin-shell .assignment-class-options label { font-size: .78rem; padding-block: 6px; }
+  .admin-shell .catalog-series-summary { margin-top: var(--admin-section-gap); gap: 12px; }
+  .admin-shell .catalog-series-summary article { padding: 14px; border-radius: 10px; }
+  .admin-shell .school-permissions-form { margin-top: var(--admin-section-gap); padding-top: var(--admin-section-gap); }
+  .admin-shell .organization-image-panel { min-height: 158px; padding: 20px 16px; gap: 16px; }
+  .admin-shell .portal-dialog { padding: 20px; border-radius: 12px; }
+  .admin-shell .portal-dialog-head h2 { font-size: var(--admin-section-size); }
+  .admin-shell .portal-book-grid { gap: 16px; }
+  .admin-shell .portal-cover-stage { height: 190px; padding: 22px 18px 14px; }
+  .admin-shell .portal-cover-stage .b3d { --w: 98px; --h: 138px; --d: 17px; }
+  .admin-shell .portal-book-caption { padding: 15px; }
+  .admin-shell .book-open-label { margin-top: 12px; padding-top: 10px; }
+}
+
+.portal .learning-dashboard .user-welcome { align-items: center; }
+.portal .learning-dashboard .user-welcome > .user-welcome-copy { width: 54%; max-width: 54%; text-align: center; }
+.portal .learning-dashboard .user-welcome .school-welcome-title { margin: 0; text-align: center; }
+@media (max-width: 700px) { .portal .learning-dashboard .user-welcome > .user-welcome-copy { width: 100%; max-width: 100%; } }
+
+/* Consistent user workspace sizing at 100% desktop zoom. */
+.user-portal-shell .user-workspace:has(.learning-library) { min-height: 100dvh; }
+.portal.user-portal-shell .user-workspace:has(.learning-library) .user-main { min-height: 0; padding-bottom: 10px; }
+.user-portal-shell .learning-library { margin-block: 0; }
+.user-portal-shell .learning-library > .learning-landscape { height: 44px; min-height: 0; margin-top: 10px; }
+.user-portal-shell .user-workspace:has(.learning-library) .user-footer { margin-top: 0; padding-block: 8px; }
+@media (min-width: 1024px) {
+  .portal.user-portal-shell .user-workspace:has(.learning-library) .user-main { padding-top: 12px; }
+  .user-portal-shell .learning-library .library-navigation { margin-bottom: 10px; }
+  .portal.user-portal-shell .learning-library .library-back-link { min-height: 34px; padding: 6px 12px; font-size: .74rem; }
+  .portal.user-portal-shell .learning-library .library-heading { min-height: 72px; padding: 12px 18px; margin-bottom: 12px; }
+  .user-portal-shell .learning-library .library-heading-icon { width: 44px; height: 44px; }
+  .user-portal-shell .learning-library .library-heading-icon svg { width: 32px; height: 32px; }
+  .portal.user-portal-shell .learning-library .library-progress { padding: 10px 16px; margin-bottom: 14px; }
+  .portal.user-portal-shell .learning-library .library-progress .library-steps { margin: 8px 0 0; padding: 0; min-height: 0; }
+  .user-portal-shell .learning-library .library-progress .library-step-number { width: 30px; height: 30px; font-size: .82rem; }
+  .user-portal-shell .learning-library .library-progress .library-steps li:not(:last-child)::after { top: 15px; }
+  .user-portal-shell .learning-library .library-progress small { font-size: .6rem; }
+  .portal.user-portal-shell .learning-library .library-class-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; padding: 0; }
+  .portal.user-portal-shell .learning-library .library-subject-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding: 0; }
+  .portal.user-portal-shell .learning-library .library-choice-card { min-height: 0; max-width: 210px; padding-top: 6px; padding-bottom: 10px; border-radius: 20px; }
+  .portal.user-portal-shell .learning-library .library-choice-card h2 { font-size: .9rem; padding: 5px 10px; margin-bottom: 5px; }
+  .portal.user-portal-shell .learning-library .library-choice-card p { font-size: .68rem; padding: 4px 10px; }
+  .portal.user-portal-shell .learning-library .library-series { margin: 0 0 14px; padding: 10px 14px; }
+  .portal.user-portal-shell .learning-library .library-series h2 { margin-bottom: 6px; font-size: .9rem; }
+  .portal.user-portal-shell .learning-library .library-results { margin: 0; }
+  .user-portal-shell .learning-library .library-results .portal-page-heading { margin-bottom: 12px; }
+  .portal.user-portal-shell .learning-library .portal-cover-stage { height: 166px; padding: 16px 14px 22px; }
+  .user-portal-shell .learning-library .portal-cover-stage .b3d { --w: 88px; --h: 124px; }
+  .portal.user-portal-shell .learning-library .portal-book-caption { padding: 14px; margin-top: -14px; border-radius: 24px 24px 0 0; }
+  .portal.user-portal-shell .learning-library .portal-book-caption h3 { font-size: .88rem; }
+  .portal.user-portal-shell .learning-library .book-open-label { margin-top: 10px; padding: 7px 10px; font-size: .76rem; }
+}
+@media (min-width: 1024px) {
+  .portal.user-portal-shell { --user-title-size: 1.6rem; --user-section-size: 1.15rem; --user-control-height: 38px; }
+  .portal.user-portal-shell .user-main { max-width: 1160px; padding: 20px 26px 28px; font-size: .82rem; }
+  .portal.user-portal-shell .user-workspace .user-portal-header { min-height: 54px; margin: 8px 24px 0; padding: 8px 14px; border-radius: 18px; }
+  .user-portal-shell .user-header-start { gap: 10px; }
+  .user-portal-shell .user-header-breadcrumb { font-size: .78rem; }
+  .user-portal-shell .user-sidebar-toggle { width: 36px; height: 36px; padding: 8px; }
+  .user-portal-shell .user-account-avatar { width: 32px; height: 32px; }
+  .portal.user-portal-shell .user-main h1 { font-size: var(--user-title-size); line-height: 1.3; }
+  .portal.user-portal-shell .user-main h2 { font-size: var(--user-section-size); line-height: 1.4; }
+  .portal.user-portal-shell .user-main h3 { font-size: .95rem; line-height: 1.4; }
+  .user-portal-shell .portal-panel { padding: 20px; border-radius: 14px; }
+  .user-portal-shell .portal-page-heading { margin-bottom: 16px; gap: 14px; }
+  .portal.user-portal-shell :is(.portal-primary,.portal-secondary) { min-height: 36px; padding: 8px 13px; font-size: .78rem; border-radius: 8px; gap: 8px; }
+  .user-portal-shell .portal-field { font-size: .78rem; margin: 15px 0; gap: 6px; }
+  .portal.user-portal-shell .portal-field :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select) { min-height: var(--user-control-height); padding: 8px 11px; font-size: .78rem; line-height: 1.5; }
+  .portal.user-portal-shell .portal-field .password-wrap input { padding-right: 66px; }
+  .user-portal-shell .portal-field textarea { padding: 9px 11px; font: inherit; font-weight: 400; line-height: 1.5; }
+  .user-portal-shell .profile-grid { gap: 18px; }
+  .user-portal-shell .user-profile-photo { padding: 16px 20px; gap: 12px; margin-bottom: 18px; }
+  .user-portal-shell .user-profile-photo > .user-account-avatar { width: 48px; height: 48px; }
+  .user-portal-shell .school-location-grid { gap: 14px; margin-top: 12px; }
+  .user-portal-shell .school-logo-panel { padding: 20px; }
+  .user-portal-shell .portal-dialog { padding: 20px; border-radius: 12px; font-size: .82rem; }
+  .portal.user-portal-shell .learning-dashboard .user-welcome { min-height: clamp(140px, 18vh, 176px); padding: 16px 26px; border-radius: 24px; }
+  .portal.user-portal-shell .learning-dashboard .user-welcome .school-welcome-title { font-size: clamp(1.45rem, 2.1vw, 2rem); }
+  .portal.user-portal-shell .learning-dashboard .learning-entry { min-height: 120px; margin-top: 16px; padding: 16px 22px; border-radius: 22px; gap: 18px; }
+  .portal.user-portal-shell .learning-entry-icon { width: 68px; height: 68px; border-radius: 20px; }
+  .portal.user-portal-shell .learning-entry-copy h2 { font-size: 1.65rem; }
+  .user-portal-shell .learning-entry-copy .portal-muted { font-size: .78rem; }
+  .user-portal-shell .learning-entry-count { font-size: .68rem; }
+  .portal.user-portal-shell .dashboard-resources { margin-top: 16px; }
+  .portal.user-portal-shell .resource-option-card { min-height: 152px; padding: 12px 15px 18px; border-radius: 20px; }
+  .portal.user-portal-shell .resource-option-icon { width: 36px; height: 36px; margin-bottom: 4px; }
+  .user-portal-shell .resource-option-card > .dashboard-artwork { width: 30%; max-width: 100px; }
+  .portal.user-portal-shell .resource-option-card p { margin-bottom: 14px; font-size: .7rem; }
+  .user-portal-shell .dashboard-artwork-landscape { max-height: 72px; }
+  .user-portal-shell .library-navigation { margin-bottom: 14px; }
+  .portal.user-portal-shell .library-heading { padding: 16px 20px; border-radius: 18px; }
+  .user-portal-shell .library-heading .learning-illustration { max-width: 100px; }
+  .portal.user-portal-shell .library-progress { padding: 14px 20px; margin-bottom: 18px; border-radius: 16px; }
+  .user-portal-shell .library-step-number { width: 36px; height: 36px; font-size: .95rem; }
+  .user-portal-shell .library-steps li:not(:last-child)::after { top: 18px; }
+  .user-portal-shell .library-step-label { font-size: .82rem; }
+  .portal.user-portal-shell .library-class-grid { gap: 18px; padding: 0; justify-items: center; }
+  .portal.user-portal-shell .library-choice-card { width: 100%; max-width: 245px; min-height: 150px; border-radius: 24px; }
+  .portal.user-portal-shell .library-choice-card h2 { font-size: 1rem; padding: 6px 10px; }
+  .user-portal-shell .library-series { margin-block: 16px; }
+  .portal.user-portal-shell .library-series-options a { padding: 7px 15px; font-size: .75rem; }
+  .user-portal-shell .portal-book-grid { gap: 16px; }
+  .user-portal-shell .portal-cover-stage { height: 190px; padding: 22px 18px 14px; }
+  .user-portal-shell .portal-cover-stage .b3d { --w: 98px; --h: 138px; --d: 17px; }
+  .user-portal-shell .portal-book-caption { padding: 15px; }
+  .user-portal-shell .resource-library-panel { border-radius: 18px; }
+  .user-portal-shell .resource-library-header { padding: 20px 22px; gap: 12px; }
+  .user-portal-shell .resource-library-heading-icon { width: 40px; height: 44px; border-radius: 10px; }
+  .user-portal-shell .resource-library-body { padding: 4px 22px 18px; }
+  .portal.user-portal-shell .class-resource-link { padding: 18px 10px; gap: 14px; border-radius: 12px; }
+  .user-portal-shell .class-resource-icon { width: 46px; height: 48px; border-radius: 12px; }
+  .user-portal-shell .class-resource-icon img { width: 34px; height: 34px; }
+  .user-portal-shell .class-resource-copy strong { font-size: .9rem; }
+  .user-portal-shell .user-footer { padding: 10px 20px; font-size: .66rem; }
+}
+
+/* Fill short library pages without leaving a blank strip below the artwork. */
+.user-portal-shell .user-workspace:has(.learning-library) .user-main { flex: 1; display: flex; flex-direction: column; }
+.user-portal-shell .learning-library { display: flex; flex-direction: column; flex: 1; width: 100%; min-height: 0; }
+.user-portal-shell .learning-library > :is(header,nav,section,.library-navigation) { flex-shrink: 0; }
+.user-portal-shell .learning-library > .learning-landscape { flex-shrink: 0; width: 100%; height: clamp(58px, 8vw, 100px); margin-top: auto; padding-top: 10px; }
+@media (min-width: 1024px) {
+  .portal.user-portal-shell .learning-library > .library-choice-grid,
+  .portal.user-portal-shell .learning-library > .library-results { margin-block: auto; padding-block: 12px; }
+}
