@@ -51,7 +51,7 @@ export async function readSchoolWorkbook(file) {
   if (!rows.length) throw new Error('Add at least one school below the column headings.');
   return rows.map((row, index) => {
     const [name, address, email, city, password] = columns.map(column => String(row[column] || '').trim());
-    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || password.length < 8) throw new Error(`Row ${index + 2}: enter a school name, valid email username and password of at least 8 characters.`);
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || (!password.length || password.length > 128)) throw new Error(`Row ${index + 2}: enter a school name, valid email username and non-empty password of up to 128 characters.`);
     return { name, email, password, schoolProfile: { name, address, city, email }, allBooks: true, bookIds: [], expires: '' };
   });
 }

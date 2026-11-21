@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { BookPreview } from './components/BookPreview.jsx';
 import { BookReader } from './components/BookReader.jsx';
 import { SeriesPage } from './components/SeriesPage.jsx';
@@ -14,6 +14,7 @@ import { SiteHeader } from './components/SiteHeader.jsx';
 import { GlobalLoader } from './loading/LoadingScreen.jsx';
 import './portal/portal.css';
 import './portal/mobile.css';
+const PublishedBookReader = lazy(() => import('./authoring/PublishedBookReader.jsx').then(module => ({ default: module.PublishedBookReader })));
 
 export function App() {
   return <DemoProvider><AppRoutes /><GlobalLoader /></DemoProvider>;
@@ -62,6 +63,7 @@ function AppRoutes() {
     if (account.role !== (route.type === 'admin' ? 'admin' : 'user')) {
       return <div className="portal"><main className="user-main"><section className="portal-panel"><h1>Choose your workspace</h1><p>This page belongs to a different account type.</p><a className="portal-primary" href={`#/${account.role === 'admin' ? 'admin' : 'user'}`}>Open my workspace</a> <SignOut /></section></main></div>;
     }
+    if (route.page === 'published') return <Suspense fallback={<div className="portal session-screen" role="status">Opening book...</div>}><PublishedBookReader key={route.segments[0]} id={route.segments[0]} /></Suspense>;
     return route.type === 'admin'
       ? <AdminPortal page={route.page} segments={route.segments} onBookOpen={() => setIntroNext(true)} />
       : <UserPortal page={route.page} libraryRoute={route.segments} onBookOpen={() => setIntroNext(true)} />;

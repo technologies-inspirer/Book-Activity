@@ -15,11 +15,12 @@
     "db:setup": "node scripts/setup-database.js",
     "db:migrate": "node scripts/migrate.js",
     "db:check": "node scripts/check-database.js",
-    "test:db": "node --test --test-concurrency=1 tests/database.test.js tests/auth.test.js tests/portal-store.test.js",
+    "test:db": "node --test --test-concurrency=1 tests/database.test.js tests/auth.test.js tests/portal-store.test.js tests/school-access.test.js tests/learning.test.js",
     "admin:create": "node scripts/create-admin.js"
   },
   "dependencies": {
     "express": "^5.3.0",
+    "jszip": "^3.10.1",
     "pg": "^8.23.1"
   }
 }

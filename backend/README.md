@@ -71,4 +71,23 @@ The frontend uses same-origin cookies, with Vite proxying requests to port 3001.
 
 Production: build `frontend/`, then run this backend. Open `http://127.0.0.1:3001/Book-Activity/` for local verification. With `NODE_ENV=production`, use HTTPS so the Secure cookie can be sent. `/api/files/...` and `/Book-Activity/books/...`, `/videos/...`, `/sounds/...` enforce server-side login. Book/video files also enforce the user's assigned book access. Existing external YouTube links remain external resources.
 
-`npm run test:db` runs database, authentication, access-control and frontend-store integration checks using temporary accounts that are removed afterwards. Run `npm test` from `frontend/` for the existing reader regression suite. Account and reading-position records are persisted; original drawing strokes and authoring drafts retain their existing browser-local behavior.
+`npm run test:db` runs database, authentication, access-control and frontend-store integration checks using temporary accounts that are removed afterwards. Run `npm test` from `frontend/` for the existing reader regression suite. Account and reading-position records are persisted; original drawing strokes and unpublished authoring drafts remain browser-local; published book projects are saved in PostgreSQL.
+
+## School location and series access
+
+School registration offers Pakistan as the country, with province/region choices and a searchable offline city/locality index. `GET /api/locations/cities?state=Punjab&q=Lahore` is admin-only and returns up to 60 matches plus the total match count. Location data attribution and regeneration instructions are in [data/README.md](data/README.md).
+
+Series permissions are stored as `users.metadata.allowedSeriesIds`. A missing value preserves legacy access; an explicit empty array grants no books. The server applies series restrictions on every protected book/video request and reading-position update. The frontend uses the same series registry (`frontend/src/data/series.js`); new registered series appear in the school selector. Existing individual-book restrictions still apply on the server, while saving the new school series form grants the selected full series. Readers cannot change their own series permissions.
+
+Passwords may be 1?128 characters, with whitespace-only passwords rejected. Password hashing, rate limiting, CSRF checks and session revocation are unchanged. The 8-character minimum has been removed from active forms, Excel import and backend account/password validation.
+
+
+## Series, classes, subjects and published PDFs
+
+Run `npm run db:migrate` after pulling these changes. The admin sidebar exposes Add Series, Assign Classes (Play Group, Nursery, Prep, Class 1-8), Assign Subjects (the nine predefined subjects, including History and Geography), and PDF & Activities. Existing series and assignments are retained. New series start without assigned classes; schools require the series in their Allowed Series selection.
+
+`portal_settings` key `learning-catalog` stores the shared catalog with transaction locking. `published_books` stores book metadata, a ZIP containing converted JPEG pages/media/template settings, a cover thumbnail and original activity dependencies. New tables are created by migrations 003 and 004. Include published_books and portal_settings in PostgreSQL backups.
+
+Authenticated `GET /api/learning` returns assignments and only the published books available to the current account. Admin catalog writes require CSRF tokens and administrator role. PDF publishing uses POST `/api/admin/library/books` or PUT `/api/admin/library/books/:id` with application/zip (up to 200 MB); all other write endpoints continue to require JSON. Covers and archives under `/api/library/books/:id/cover|archive` require a live permitted account. Reused original activities can load their source assets through the protected file service. Session expiry and school series restrictions still apply.
+
+PDF conversion runs in the browser (50 MB / 200-page input limit). Templates are applied per page: QR, link, video, audio, narration, question/answer, game, tracing and colouring, plus reusable existing activities. Position, size and button colour are included in the archive. Admins must supply content, answers and video links; the PDF cannot invent these. School catalog refreshes on focus and every 30 seconds. Unsaved editor work is not recovered after a browser refresh.

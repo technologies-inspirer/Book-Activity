@@ -4,9 +4,9 @@ import { useDemo } from './DemoContext.jsx';
 import { EmptyState } from './Shared.jsx';
 
 export function BookTile({ book, onBookOpen, showSeries = true }) {
-  const { series } = useDemo();
+  const { series, account } = useDemo();
   return (
-    <a className="portal-book-card" href={`#/book/${encodeURIComponent(book.id)}/read/1`} onClick={onBookOpen}>
+    <a className="portal-book-card" href={book.published ? `#/${account.role === 'admin' ? 'admin' : 'user'}/published/${book.id}` : `#/book/${encodeURIComponent(book.id)}/read/1`} onClick={onBookOpen}>
       <div className="portal-cover-stage"><Book3D book={book} /></div>
       <div className="portal-book-caption">
         {showSeries && <span className="portal-eyebrow">{series.find(item => item.of(book))?.name}</span>}
@@ -29,7 +29,7 @@ export function BookCollection({ books, onBookOpen, dropdownNavigation = false }
       const book = books.find(item => item.id === value.slice(5));
       if (!book) return;
       onBookOpen?.();
-      location.hash = `#/book/${encodeURIComponent(book.id)}/read/1`;
+      location.hash = book.published ? `#/admin/published/${book.id}` : `#/book/${encodeURIComponent(book.id)}/read/1`;
     } else {
       setFilter(value);
     }

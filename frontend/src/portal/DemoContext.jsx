@@ -3,6 +3,7 @@ import { books } from '../data/books.js';
 import { availableBooks } from './demoStore.js';
 import { createPortalStore } from './portalStore.js';
 import { series as originalSeries } from '../data/series.js';
+import { ToastProvider } from './ToastProvider.jsx';
 
 const DemoContext = createContext(null);
 export function DemoProvider({ children }) {
@@ -28,7 +29,7 @@ export function DemoProvider({ children }) {
     return () => clearInterval(timer);
   }, []);
   const account = state.accounts.find(value => value.id === state.currentId) || null;
-  const series = [...originalSeries, ...state.customSeries.map(item => ({ ...item, of: () => false }))];
-  return <DemoContext.Provider value={{ ...state, series, store, account, bookDraft, setBookDraft, savedBookDraft, setSavedBookDraft, assignedBooks: availableBooks(account, books) }}>{children}</DemoContext.Provider>;
+  const series = [...originalSeries, ...state.customSeries.map(item => ({ ...item, of: book => book.seriesId === item.id }))];
+  return <DemoContext.Provider value={{ ...state, series, store, account, bookDraft, setBookDraft, savedBookDraft, setSavedBookDraft, allBooks: [...books, ...state.publishedBooks], assignedBooks: availableBooks(account, [...books, ...state.publishedBooks]) }}><ToastProvider>{children}</ToastProvider></DemoContext.Provider>;
 }
 export const useDemo = () => useContext(DemoContext);

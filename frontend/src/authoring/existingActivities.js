@@ -10,7 +10,7 @@ export function buildExistingActivities(books, recordings = {}) {
   const entries = [];
   for (const book of books) book.pages.forEach((page, index) => {
     (page.acts || []).forEach((activity, activityIndex) => {
-      const kind = { videos: 'video', story: 'story', game: 'game', fill: 'fill' }[activity.type];
+      const kind = { videos: 'video', story: 'story', game: 'game', fill: 'fill', question: 'game' }[activity.type];
       if (!kind) return;
       const title = activity.title || activity.label || existingActivityKinds.find(item => item.id === kind).name;
       entries.push({ id: `activity:${book.id}/${index + 1}/${activityIndex}/${encodeURIComponent(title)}`, kind, title, bookId: book.id, bookTitle: book.title, pageNumber: index + 1, source: 'activity', activityIndex, image: page.img || book.cover });

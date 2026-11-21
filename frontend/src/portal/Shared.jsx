@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDemo } from './DemoContext.jsx';
 import { ResourceOptions } from './ResourceOptions.jsx';
+import { useToast } from './ToastProvider.jsx';
 
 export function DemoNotice() {
   return <div className="demo-notice"><span className="demo-dot" />Javed Publishers <span>Account access is managed by your administrator.</span></div>;
@@ -17,14 +18,18 @@ export function SignOut() {
     try { await store.signOut(); location.hash = '#/login'; }
     catch (error) { setError(error.message); }
     finally { setBusy(false); }
-  }}>{busy ? 'Signing out...' : 'Sign Out'}</button>{error && <span role="alert">{error}</span>}</>;
+  }}>{busy ? 'Signing out...' : 'Sign Out'}</button><Feedback message={error} /></>;
 }
 export function Feedback({ message }) {
-  return message ? <p className={`portal-feedback ${message.error ? 'error' : 'success'}`} role={message.error ? 'alert' : 'status'}>{message.text}</p> : null;
+  const notify = useToast();
+  useEffect(() => {
+    if (message) notify(typeof message === 'string' ? { error: true, text: message } : message);
+  }, [message, notify]);
+  return null;
 }
-export function PasswordField({ id, label = 'Password', value, onChange, autoComplete = 'new-password', minLength = 8 }) {
+export function PasswordField({ id, label = 'Password', value, onChange, autoComplete = 'new-password', minLength = 1, error, onBlur }) {
   const [show, setShow] = useState(false);
-  return <label className="portal-field" htmlFor={id}>{label}<span className="password-wrap"><input id={id} name={id} type={show ? 'text' : 'password'} value={value} onChange={event => onChange(event.target.value)} autoComplete={autoComplete} required minLength={minLength} /><button type="button" aria-label={`${show ? 'Hide' : 'Show'} ${label.toLowerCase()}`} aria-pressed={show} onClick={() => setShow(!show)}>{show ? 'Hide' : 'Show'}</button></span></label>;
+  return <label className="portal-field" htmlFor={id}>{label}<span className="password-wrap"><input id={id} name={id} type={show ? 'text' : 'password'} value={value} onChange={event => onChange(event.target.value)} onBlur={onBlur} autoComplete={autoComplete} required minLength={minLength} maxLength={128} aria-invalid={!!error} aria-describedby={error ? `${id}-error` : undefined} /><button type="button" aria-label={`${show ? 'Hide' : 'Show'} ${label.toLowerCase()}`} aria-pressed={show} onClick={() => setShow(!show)}>{show ? 'Hide' : 'Show'}</button></span>{error && <span className="sr-only" id={`${id}-error`}>{error}</span>}</label>;
 }
 export function EmptyState({ title, children }) {
   return <div className="portal-empty"><span aria-hidden="true">◇</span><h2>{title}</h2><p>{children}</p></div>;

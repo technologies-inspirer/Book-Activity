@@ -43,7 +43,8 @@ export function checkOrigin(request, _response, next) {
   if (['GET', 'HEAD', 'OPTIONS'].includes(request.method)) return next();
   const origins = (process.env.APP_ORIGINS || 'http://localhost:5173,http://127.0.0.1:5173,http://localhost:3001,http://127.0.0.1:3001').split(',').map(value => value.trim());
   if (request.get('sec-fetch-site') === 'cross-site' || (request.get('origin') && !origins.includes(request.get('origin')))) throw fail(403, 'Requests from this origin are not allowed.');
-  if (!request.is('application/json')) throw fail(415, 'Send requests as JSON.');
+  const bookUpload = ['POST', 'PUT'].includes(request.method) && /^\/(?:api\/)?admin\/library\/books(?:\/[a-f0-9-]{36})?$/.test(request.path) && request.is('application/zip');
+  if (!request.is('application/json') && !bookUpload) throw fail(415, 'Send requests as JSON.');
   next();
 }
 export function publicUser(row) {

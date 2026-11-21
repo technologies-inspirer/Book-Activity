@@ -1,3 +1,4 @@
+import { allowsBookSeries } from '../data/seriesAccess.js';
 // Fictional prototype accounts. Passwords and sessions never leave this module's memory.
 export const DEMO_CREDENTIALS = {
   admin: { email: 'admin@javed.example', password: 'AdminDemo!2026' },
@@ -9,7 +10,7 @@ export function localDate(date = new Date()) {
 }
 export const isExpired = account => account.expiresAt ? Date.parse(account.expiresAt) < Date.now() : !!account.expires && account.expires < localDate();
 export const availableBooks = (account, books) => !account || !account.enabled || isExpired(account)
-  ? [] : books.filter(book => (account.role === 'admin' || account.allBooks || account.bookIds.includes(book.id)) && schoolAllowsSelection(account, learningBookMetadata[book.id] || {}));
+  ? [] : books.filter(book => (account.role === 'admin' || account.allBooks || account.bookIds.includes(book.id)) && allowsBookSeries(account, book) && schoolAllowsSelection(account, (book.published ? book : learningBookMetadata[book.id]) || {}));
 
 const normalizeEmail = value => String(value || '').trim().toLowerCase();
 const validatePassword = value => {

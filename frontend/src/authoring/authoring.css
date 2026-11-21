@@ -35,6 +35,18 @@
 .portal .pdf-danger:hover { background: #ffe1dc; }
 .pdf-upload-panel > div:first-child { flex: 1; min-width: min(100%, 260px); }
 .pdf-upload-panel p { margin-bottom: 8px; }
+.pdf-upload-panel .pdf-upload-intro { flex: 0 0 100%; }
+.pdf-upload-destination { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: 0; margin: 0; border: 0; }
+.pdf-upload-destination .portal-field { margin: 0; }
+.pdf-upload-destination .portal-field > span { display: block; margin-bottom: 8px; }
+.pdf-destination-summary { flex: 0 0 100%; min-width: 0; padding: 18px 20px; border-radius: 12px; background: #f3f6f3; color: #60776b; }
+.pdf-destination-summary.is-ready { background: #eaf5ee; color: #246448; }
+.pdf-destination-summary > span { display: block; font-size: .76rem; margin-bottom: 6px; }
+.pdf-destination-summary strong { display: block; font-size: .95rem; overflow-wrap: anywhere; }
+.pdf-destination-summary p { font-size: .76rem; margin: 8px 0 0; }
+.pdf-upload-footer { flex: 0 0 100%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; }
+.pdf-book-location { color: var(--portal-accent-text); font-size: .85rem; font-weight: 600; }
+@media (max-width: 760px) { .pdf-upload-destination { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
 .pdf-upload-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .pdf-upload-label { position: relative; cursor: pointer; overflow: hidden; }
 .pdf-upload-label input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
@@ -126,3 +138,14 @@
   .pdf-draw-tools { gap: 8px; }
   .draft-reader-adminbar > label { flex-wrap: wrap; }
 }
+.pdf-layout-page { position: relative; }
+.pdf-layout-activity, .reader-activity-overlay { position: absolute; z-index: 8; display: flex; align-items: center; justify-content: center; gap: 4px; padding: 4px; border: 0; border-radius: 8px; color: #fff; font-size: clamp(8px, 1vw, 14px); line-height: 1.2; overflow: hidden; }
+.pdf-layout-activity { cursor: grab; touch-action: none; outline: 2px dashed #ffffffaa; outline-offset: -3px; }
+.pdf-layout-activity:active { cursor: grabbing; }
+.pdf-layout-activity.is-qr, .reader-activity-overlay.is-qr { flex-direction: column; }
+.pdf-layout-activity.is-qr img, .reader-activity-overlay.is-qr img { width: 100%; height: calc(100% - 18px); min-height: 0; object-fit: contain; }
+.pdf-layout-activity > span, .reader-activity-overlay > span { overflow-wrap: anywhere; }
+.published-book-list { display: grid; gap: 12px; }
+.published-book-list article { display: flex; gap: 16px; align-items: center; border-bottom: 1px solid #e3ebe5; padding: 12px 0; }
+.published-book-list img { width: 48px; height: 65px; object-fit: cover; border-radius: 4px; }
+.published-book-list article > div { flex: 1; min-width: 0; }

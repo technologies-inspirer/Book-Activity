@@ -1008,6 +1008,40 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 /* Login: the dashboard's clouds, stars and butterflies drift in the side margins, the books picture
    floats gently and the sign-in card rises in once. Calm, simple motion for young children. */
 .login-screen { position: relative; isolation: isolate; overflow-x: clip; }
+.portal .school-series-access { margin: 24px 0 0; border: 1px solid #dce9df; border-radius: 16px; background: #f7faf7; padding: 18px; }
+.school-series-access legend { font-size: .85rem; font-weight: 700; padding: 0 6px; color: #174f3a; }
+.school-series-access > p { margin: 0 0 14px; color: #65786c; font-size: .78rem; }
+.school-series-access > div { display: flex; flex-wrap: wrap; gap: 12px; }
+.school-series-access label { display: flex; align-items: center; gap: 10px; min-width: 190px; padding: 14px 16px; border: 1px solid #dce9df; border-radius: 12px; background: white; cursor: pointer; font-size: .82rem; }
+.school-series-access label.selected { color: #174f3a; background: #eaf4e9; border-color: #70a179; }
+.series-selection-mark { margin-left: auto; font-weight: 700; }
+.school-series-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.school-series-badges > span { background: #eaf4e9; color: #215938; border-radius: 20px; padding: 5px 9px; font-size: .72rem; white-space: nowrap; }
+.school-series-badges .no-series { background: #f4f1ed; color: #796b5f; }
+.city-select { position: relative; min-width: 0; }
+.city-select-input { display: flex; position: relative; }
+.portal .city-select-input input { width: 100%; padding-right: 35px; }
+.school-edit-page .school-edit-location select { margin-top: 5px; min-height: 36px; padding: 8px 10px; border-radius: 4px; font-size: .75rem; }
+.city-select-input > button { position: absolute; right: 3px; top: 3px; bottom: 3px; width: 30px; background: transparent; border: 0; color: #426c55; cursor: pointer; }
+.city-select-popup { position: absolute; top: 100%; left: 0; right: 0; z-index: 40; margin-top: 4px; border: 1px solid #cddfd1; border-radius: 12px; background: white; box-shadow: 0 12px 30px #173f3420; overflow: hidden; }
+.city-select-popup ul { list-style: none; padding: 5px; margin: 0; max-height: 230px; overflow-y: auto; }
+.city-select-popup button { display: block; width: 100%; padding: 9px 10px; text-align: left; border: 0; border-radius: 7px; background: white; color: #284637; cursor: pointer; font: inherit; font-size: .8rem; }
+.city-select-popup li[aria-selected="true"] button, .city-select-popup button:hover { background: #eaf4e9; }
+.city-select-popup p { padding: 9px 12px; margin: 0; background: #f5f8f5; color: #617265; font-size: .7rem; }
+/* School forms use soft field backgrounds instead of surrounding boxes and borders. */
+.portal .school-edit-page .school-edit-section { border: 0; box-shadow: none; background: transparent; padding: 12px 0 24px; }
+.portal .school-edit-page .portal-field :is(input,select) { border: 0; box-shadow: none; background-color: #edf3ef; }
+.portal .school-edit-page .portal-field :is(input,select):focus-visible { outline: 2px solid #77a18b; outline-offset: 2px; }
+.portal .school-edit-page .school-series-access { border: 0; box-shadow: none; background: transparent; padding: 0; }
+.school-edit-page .school-series-access label { border: 0; box-shadow: none; background: #edf3ef; }
+.school-edit-page .school-series-access label.selected { background: #dcecdf; }
+.school-edit-page .school-series-access legend { padding: 0; }
+.school-edit-page .city-select-popup { border: 0; }
+.portal .school-edit-page .portal-field :is(input,select)[aria-invalid="true"] { background-color: #fff0ee; outline: 2px solid #ce665d; outline-offset: 0; }
+.school-field-error { display: block; margin-top: 6px; color: #ae3027; font-size: .72rem; line-height: 1.5; font-weight: 500; }
+.school-series-access > .school-field-error { color: #ae3027; margin-top: 10px; }
+.school-validation-summary { margin: 0 0 18px; color: #ae3027; font-size: .83rem; line-height: 1.6; }
+.school-required-note { margin-bottom: 16px; }
 .secure-login-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 24px; padding: 16px; border-radius: 16px; background: #eef7f3; color: #175348; }
 .secure-login-note > span { font-size: 22px; }
 .secure-login-note strong { display: block; font-size: 14px; }
@@ -1034,3 +1068,44 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 @keyframes login-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes login-wiggle { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-2deg) scale(1.03); } 90% { transform: rotate(2deg) scale(1.03); } 95% { transform: rotate(-1deg); } }
 @media (prefers-reduced-motion: reduce) { .login-artwork img, .login-panel, .login-story h1 em { animation: none; } }
+
+.portal-toast-stack { position: fixed; top: 24px; right: 24px; z-index: 2147483647; width: min(390px, calc(100vw - 32px)); display: grid; gap: 12px; pointer-events: none; font-family: inherit; }
+.portal-toast { --toast-color: #237657; position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 18px 16px 21px; overflow: hidden; border: 1px solid #e1e9e4; border-radius: 14px; background: #fff; color: #24463a; box-shadow: 0 12px 40px #123b2526; pointer-events: auto; animation: portal-toast-enter .22s ease-out; }
+.portal-toast.is-error { --toast-color: #bd443b; border-color: #f0dcd8; }
+.portal-toast-icon { flex: 0 0 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #e8f4ed; color: var(--toast-color); font-size: 18px; font-weight: 700; }
+.portal-toast.is-error .portal-toast-icon { background: #fff0ed; }
+.portal-toast-content { flex: 1; min-width: 0; }
+.portal-toast-content strong { display: block; margin-bottom: 5px; font-size: 14px; color: var(--toast-color); }
+.portal-toast-content p { margin: 0; color: #41584d; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.portal-toast .portal-toast-close { border: 0; padding: 0; min-width: 24px; min-height: 24px; background: transparent; color: #6a7970; font-size: 22px; line-height: 1; cursor: pointer; }
+.portal-toast-close:focus-visible { outline: 2px solid var(--toast-color); outline-offset: 2px; }
+.portal-toast-progress { position: absolute; inset: auto 0 0; height: 3px; background: var(--toast-color); transform-origin: left; animation: portal-toast-countdown linear forwards; }
+@keyframes portal-toast-enter { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes portal-toast-countdown { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+@media (max-width: 600px) { .portal-toast-stack { top: 16px; right: 16px; } }
+@media (prefers-reduced-motion: reduce) { .portal-toast { animation: none; } .portal-toast-progress { animation-timing-function: steps(1, end); } }
+
+.catalog-assignment-panel .assignment-class-options { grid-template-columns: minmax(0, 1fr); }
+.catalog-series-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; margin-top: 28px; }
+.catalog-series-summary article { background: #f4f8f5; border-radius: 12px; padding: 16px; }
+.catalog-series-summary h3 { margin: 0 0 12px; }
+.catalog-series-summary .assignment-badges { flex-direction: row; flex-wrap: wrap; align-items: center; }
+
+/* Make hover, keyboard focus and selected choices easy to distinguish. */
+.portal a, .portal select, .portal .assignment-class-options label { transition: color .15s ease, background-color .15s ease, border-color .15s ease; }
+.portal :is(.admin-main, .user-main) a:not(.portal-primary):not(.portal-secondary):not(.portal-book-card):is(:hover, :focus-visible) { color: #08765f; }
+.portal .admin-sidebar nav a:is(:hover, :focus-visible) { background: #ffffff24; color: #fff; }
+.portal .admin-sidebar nav a.active { background: #ffffff30; color: #ffd174; box-shadow: inset 3px 0 #ffd174; }
+.portal .portal-field select:not(:disabled):not([aria-invalid="true"]):hover { border-color: #51a58b; background-color: #f0f8f3; }
+.portal .portal-field select:not(:disabled):not([aria-invalid="true"]):has(option:checked:not([value=""])) { color: #155e48; border-color: #79ae97; background-color: #eaf5ee; }
+.portal .portal-field select:not(:disabled):not([aria-invalid="true"]):focus { border-color: #25845f; background-color: #e0f1e7; outline: 2px solid #25845f; outline-offset: 2px; }
+.portal .portal-field select option { color: #24463a; background: #fff; }
+.portal .portal-field select option:checked { color: #155e48; background: #dcefe3; }
+.catalog-assignment-panel .assignment-class-options label { padding: 8px 10px; border-radius: 7px; cursor: pointer; }
+.catalog-assignment-panel fieldset:not(:disabled) .assignment-class-options label:hover { color: #155e48; background: #f0f7f2; }
+.catalog-assignment-panel .assignment-class-options label:has(input:checked) { color: #155e48; background: #e1f1e7; font-weight: 600; }
+.catalog-assignment-panel .assignment-class-options label:has(input:focus-visible) { outline: 2px solid #25845f; outline-offset: 2px; }
+.catalog-assignment-panel fieldset:disabled .assignment-class-options label { cursor: default; }
+.portal .library-series-options a:not(.selected):is(:hover, :focus-visible) { color: #155e48; border-color: #59a98a; background: #e0f1e7; }
+.portal .library-choice-card:is(:hover, :focus-visible) { border-color: #289471; box-shadow: 0 0 0 2px #28947133, 0 8px 24px #254d4618; }
+.portal .library-choice-card:is(:hover, :focus-visible) h2 { color: #08765f; }

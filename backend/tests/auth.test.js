@@ -52,7 +52,7 @@ test('persistent account lifecycle, sessions, CSRF and protected book files', as
     assert.equal(login.data.account.password_hash, undefined);
     assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password }, { 'X-CSRF-Token': '' })).status, 403);
     assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password }, { Origin: 'https://untrusted.example' })).status, 403);
-    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password: 'short' })).status, 400);
+    assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password: '' })).status, 400);
     assert.equal((await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password, role: 'admin' })).status, 400);
     const created = await adminCall('/api/admin/users', 'POST', { name: 'Reader', email: userEmail, password, allBooks: false, bookIds: [book.id], schoolProfile: { name: 'Test School', city: 'Karachi' } });
     assert.equal(created.status, 201);

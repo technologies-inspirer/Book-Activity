@@ -4,8 +4,8 @@ import { promisify } from 'node:util';
 const derive = promisify(scrypt);
 const options = { N: 32768, r: 8, p: 1, maxmem: 64 * 1024 * 1024 };
 export function validatePassword(password) {
-  if (typeof password !== 'string' || password.trim().length < 8 || password.length > 128) {
-    const error = new Error('Use a password between 8 and 128 characters.');
+  if (typeof password !== 'string' || !password.trim().length || password.length > 128) {
+    const error = new Error('Enter a password of up to 128 characters.');
     error.status = 400;
     throw error;
   }

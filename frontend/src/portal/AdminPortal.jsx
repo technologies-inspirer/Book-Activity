@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useMobileLayout, usePortalDrawer } from './usePortalDrawer.js';
 import { books } from '../data/books.js';
 import { BookCollection } from './BookCollection.jsx';
@@ -7,15 +7,24 @@ import { SchoolRegister } from './SchoolRegister.jsx';
 import { SchoolCreate, SchoolEdit } from './SchoolEdit.jsx';
 import { OrganizationProfile } from './OrganizationProfile.jsx';
 import { AdminDashboard } from './AdminDashboard.jsx';
+import { AddSeries } from './AddSeries.jsx';
+import { CatalogAssignments } from './CatalogAssignments.jsx';
+import { useDemo } from './DemoContext.jsx';
+const PdfAuthoring = lazy(() => import('../authoring/PdfAuthoring.jsx'));
 
 const links = [
   ['overview', 'Dashboard', '\u25eb'],
   ['schools', 'School Register', '\u2659'],
+  ['series', 'Add Series', '+'],
+  ['classes', 'Assign Classes', '\u25a6'],
+  ['subjects', 'Assign Subjects', '\u2637'],
+  ['pdf-activities', 'PDF & Activities', '\u25a7'],
   ['books', 'Series & Books', '\u25a4'],
   ['profile', 'My Profile', '\u25cb']
 ];
 
 export function AdminPortal({ page = 'overview', segments = [], onBookOpen }) {
+  const { allBooks } = useDemo();
   const [menuOpen, setMenuOpen] = useState(false);
   const mobile = useMobileLayout();
   const sidebarRef = useRef(null), closeRef = useRef(null), toggleRef = useRef(null);
@@ -66,14 +75,18 @@ export function AdminPortal({ page = 'overview', segments = [], onBookOpen }) {
         <main className="admin-main" id="admin-main" tabIndex="-1" key={selected}>
           {selected === 'overview' && <AdminDashboard />}
           {selected === 'schools' && (segments[0] === 'add' ? <SchoolCreate /> : segments[0] === 'edit' ? <SchoolEdit id={segments[1]} /> : <SchoolRegister />)}
+          {selected === 'series' && <AddSeries />}
+          {selected === 'classes' && <CatalogAssignments />}
+          {selected === 'subjects' && <CatalogAssignments subjects />}
+          {selected === 'pdf-activities' && <Suspense fallback={<p role="status">Opening PDF editor...</p>}><PdfAuthoring /></Suspense>}
           {selected === 'books' && (
             <>
               <div className="portal-page-heading">
                 <div><p className="portal-eyebrow">The original collection</p><h1>Series &amp; Books</h1></div>
-                <span className="portal-pill">{books.length} existing books</span>
+                <span className="portal-pill">{allBooks.length} books</span>
               </div>
               <p className="portal-muted">Explore the publisher&rsquo;s collection. Book files and activity data stay unchanged.</p>
-              <BookCollection books={books} onBookOpen={onBookOpen} dropdownNavigation />
+              <BookCollection books={allBooks} onBookOpen={onBookOpen} dropdownNavigation />
             </>
           )}
           {selected === 'resources' && <Resources />}

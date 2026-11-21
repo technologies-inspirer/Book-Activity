@@ -2,7 +2,7 @@ import { ResponsiveTable } from './ResponsiveTable.jsx';
 import { useState } from 'react';
 import { Feedback } from './Shared.jsx';
 
-export function CatalogPage({ title, description, fields, columns, rows, matches, onAdd, message, emptyText, children }) {
+export function CatalogPage({ title, description, fields, columns, rows, matches, onAdd, addLabel = 'Add', message, emptyText, children }) {
   const initial = Object.fromEntries(fields.map(field => [field.id, field.initial || '']));
   const [filters, setFilters] = useState(initial);
   const [applied, setApplied] = useState(initial);
@@ -14,7 +14,7 @@ export function CatalogPage({ title, description, fields, columns, rows, matches
   const shown = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   return <div className="assignment-page catalog-page">
     <a className="school-back" href="#/admin" aria-label="Back to dashboard">&#8592;</a>
-    <div className="portal-page-heading"><div><h1>{title}</h1><p className="portal-muted">{description}</p></div><button type="button" className="portal-primary" onClick={onAdd}>+ Add</button></div>
+    <div className="portal-page-heading"><div><h1>{title}</h1><p className="portal-muted">{description}</p></div><button type="button" className="portal-primary" onClick={onAdd}>+ {addLabel}</button></div>
     <Feedback message={message} />
     <form className="assignment-filters" onSubmit={event => { event.preventDefault(); setApplied({ ...filters }); setPage(1); }}>
       {fields.map(field => <label className="portal-field" key={field.id}>{field.label}{field.options ? <select name={field.id} value={filters[field.id]} onChange={event => setFilters({ ...filters, [field.id]: event.target.value })}><option value="">{field.placeholder}</option>{field.options.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select> : <input name={field.id} value={filters[field.id]} placeholder={field.placeholder} onChange={event => setFilters({ ...filters, [field.id]: event.target.value })} />}</label>)}
@@ -25,7 +25,7 @@ export function CatalogPage({ title, description, fields, columns, rows, matches
       {!shown.length && <tr><td colSpan={columns.length} className="assignment-no-results">{emptyText}</td></tr>}
     </tbody></table></ResponsiveTable>
     <div className="assignment-pagination"><div><button type="button" className="portal-secondary" disabled={currentPage === 1} onClick={() => setPage(currentPage - 1)}>Previous</button><span aria-live="polite">Page {currentPage} of {pages}</span><button type="button" className="portal-secondary" disabled={currentPage === pages} onClick={() => setPage(currentPage + 1)}>Next</button></div><label>Show<select aria-label="Rows per page" value={pageSize} onChange={event => { setPageSize(Number(event.target.value)); setPage(1); }}>{[10, 20, 50].map(size => <option key={size} value={size}>{size}</option>)}</select><span>{filtered.length} result{filtered.length === 1 ? '' : 's'}</span></label></div>
-    <p className="portal-muted small">Added series and subjects are saved in this browser when local storage is available.</p>
+    <p className="portal-muted small">Changes are saved in the database and shared with permitted school accounts.</p>
     {children}
   </div>;
 }

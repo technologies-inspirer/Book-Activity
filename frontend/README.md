@@ -66,7 +66,7 @@ The first administrator is created with `npm --prefix backend run admin:create`.
 
 - School Register creates permanent user accounts, imports Excel account lists, edits school/principal details, resets passwords, controls book access, and activates/deactivates accounts. There is no public signup. Principal records are contacts, not separate logins.
 - Accounts, expiry settings, profile changes, and the last reading position survive reloads. Session cookies are HttpOnly and backed by PostgreSQL. Disabling an account or resetting its password revokes its existing sessions.
-- The admin sidebar contains Dashboard, School Register, Series & Books, and My Profile. Series/subject creation, class assignment and PDF authoring are currently removed from admin navigation and routes.
+- The admin sidebar contains Dashboard, School Register, Add Series, Assign Classes, Assign Subjects, PDF & Activities, Series & Books, and My Profile. Catalog assignments and published book projects are shared through PostgreSQL.
 - All active users initially receive all existing books. Features allows the administrator to restrict books. User-facing class/subject navigation still organizes the existing library; it does not require admin assignment.
 - Sign out removes the server session. Users can change their own passwords from My Profile; an administrator can reset user passwords through School Register. Reset emails are not sent.
 - Authentication and account/progress state are verified through the backend integration tests, including `portal-store.test.js`, which exercises the actual frontend store against PostgreSQL.
@@ -75,9 +75,9 @@ The original drawing/colouring engine and its local browser storage remain uncha
 
 Vite proxies `/api` and book/media requests to Express during development. The production build must be served by Express at `/Book-Activity/` to enforce authentication on raw book files. Static-only GitHub Pages and Vite preview do not provide this access protection.
 
-## Historical PDF authoring workflow
+## PDF authoring workflow
 
-The PDF & Activities editor includes a Customize Page action in the uploaded-book reader. It opens page thumbnails, book title/class/series/subject settings, page narration, and per-page activity management. Admins can upload audio, video, tracing/colouring images and game JSON, add YouTube or HTTP(S) resource links, and reuse bundled activities. Added activities can be previewed, edited or removed; detected video links can be edited or removed. Update retains the current session snapshot and exports a draft ZIP, including media and catalogue settings. This editor does not publish uploads to other users: shared publication still requires a backend, persistent file storage, authentication and assignment APIs.
+The PDF & Activities editor includes a Customize Page action in the uploaded-book reader. It opens page thumbnails, book title/class/series/subject settings, page narration, and per-page activity management. Admins can upload audio, video, tracing/colouring images and game JSON, add YouTube or HTTP(S) resource links, and reuse bundled activities. Added activities can be previewed, edited or removed; detected video links can be edited or removed. Publish Book / Update Book saves the converted pages, media and template settings in PostgreSQL. Permitted school accounts can open the published book from the selected series, class and subject. Download Saved ZIP exports a backup.
 
 Run the build, check and preview commands above, then test:
 
@@ -111,7 +111,7 @@ The centered animated loading mascot appears during startup, visible reader-page
 
 PDF & Activities (`#/admin/pdf-activities`) converts a local PDF into JPEG pages and opens it immediately in the existing reader, with page turning, zoom, writing and extracted-text narration. Embedded lesson links provide videos; recognised original books reuse their original activities. Imported drafts retain linked activities. No series/activity-type setup picker is shown. See [PDF authoring](docs/pdf-authoring.md) for recognition rules and limits. Use **Node 22.13 or newer** with the commands above.
 
-PDF editor changes stay pending until **Update**, which saves a session version and downloads an updated ZIP. **Cancel** restores the last update (or clears an unsaved first upload). **Delete Page** removes a page and its activities from the working copy after confirmation; Update commits the deletion. **Download Saved ZIP** always exports the last updated version. There is no server upload or automatic reader publishing.
+PDF editor changes stay pending until **Publish Book / Update Book**, which persists the project in PostgreSQL. **Cancel** restores the last saved version. **Delete Page** removes a page and its activities from the working copy after confirmation; Update Book saves the remaining pages. A published book must retain at least one page. **Download Saved ZIP** exports the last saved version. Unsaved work remains in browser memory until published.
 
 PDF upload opens the book preview directly. Arbitrary PDFs cannot automatically supply missing games, answers, audio or story metadata. Existing content appears when recognised or already linked; original assets are reused. Update/Cancel/Delete Page remain available in the reader.
 
@@ -134,3 +134,11 @@ Admin and user portals now use mobile navigation drawers below 1024px, compact s
 Stemford Urdu 4+ (`stemford-urdu-4`) appears under **Nursery / StemFord Series / Urdu**. Its 96 PDF pages remain in source order; the RTL reader puts the first page on the right, advances with the left arrow, and reverses the cover animation and slider. Pages 4–96 have Urdu learning activities: 37 letter lessons with picture games, three rows of tracing per letter, revision, vowel/word-building exercises and counting. Page 85 teaches do-chashmi he combinations; pages 92–95 teach the actual alif, wao, choti ye and bari ye word tables. Tracing uses masks extracted from this book's dotted letters, in right-to-left order. Palettes are reviewed per colouring picture. As in Urdu 3+, no home-made story animations are shown; their text is used only for Listen, with available device Urdu speech. The publisher's YouTube videos are linked for 21 letters (ا to ع, without آ, ڈ, ڑ, ز): Story and Vocabulary buttons on each picture page and a Formation video on each tracing page. The links live in `VIDEOS` in `tools/make_urdu4.py`; the remaining letters get their buttons once their links are added there. The 45 printed QR codes that lead to videos (pages 4–96) also get a Watch video button with the publisher's student, teacher and parent videos, read from the PDF into `books/stemford-urdu-4/qr.json` with `tools/link_videos.py`.
 
 To rebuild Urdu 4+, run `python tools/import_urdu4.py` then `python tools/make_urdu4.py` from the project root with PyMuPDF, OpenCV and NumPy installed. The original PDF stays at `books/steamford-urdu 4+/` and is excluded from Git and production copying; the generated page images, tracing masks and activity metadata are included. Run `npm test`, `npm run prepare:pages`, and `npm run check` before publishing.
+
+## School Register selections
+
+The Add/Edit form uses Pakistan-only country selection, seven province/region choices, and a searchable city/locality picker backed by an offline GeoNames index. Selecting a different province clears the old city. Existing location details are retained until edited. The index and attribution are documented in `backend/data/README.md`.
+
+Allowed Series replaces School Modules in school forms and the Series Access action. The register shows series badges instead of Modules; Address and P.Count are removed from table columns, with address and principal contact data retained in the form/database. Series choices come from the current series registry rather than a hard-coded form list. Both client-side bookshelves and protected backend files enforce the selected series.
+
+School and password forms accept non-empty passwords without an eight-character minimum. The backend retains a 128-character maximum.

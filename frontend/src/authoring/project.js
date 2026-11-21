@@ -5,6 +5,8 @@ export const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
 export const MAX_DRAFT_BYTES = 200 * 1024 * 1024;
 export const MAX_PAGES = 200;
 export const activityTypes = [
+  { id: 'qr', name: 'Clickable QR Code', help: 'Create a scannable QR code that also opens your video or lesson when clicked.' },
+  { id: 'question', name: 'Question / Answer', help: 'Add a question with a model answer students can reveal.' },
   { id: 'link', name: 'Web link', help: 'Link this page to an online lesson or resource.' },
   { id: 'audio', name: 'Audio', accept: '.mp3,.wav,.ogg,.m4a,audio/*', help: 'Upload a recorded lesson, pronunciation or read-aloud.' },
   { id: 'video', name: 'Video', accept: '.mp4,.webm,video/mp4,video/webm', help: 'Upload an MP4/WebM video or add a YouTube link.' },
@@ -31,7 +33,7 @@ export function validYoutube(value) {
   try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) && /^(www\.|m\.)?(youtube\.com|youtu\.be)$/.test(url.hostname) && ((url.pathname === '/watch' && /^[\w-]{11}$/.test(url.searchParams.get('v') || '')) || /^\/(?:embed\/|shorts\/)?[\w-]{11}\/?$/.test(url.pathname)); } catch { return false; }
 }
 export function validateActivity(input) {
-  if (input.type === 'existing') return restoreExistingActivity(input);
+  if (input.type === 'existing') return { ...restoreExistingActivity(input), ...activityPresentation(input) };
   if (!activityTypes.some(type => type.id === input.type)) throw new Error('Choose an activity type.');
   const title = String(input.title || '').trim();
   if (!title || title.length > 120) throw new Error('Enter an activity title up to 120 characters.');
@@ -44,13 +46,22 @@ export function validateActivity(input) {
   if (input.media && ['audio', 'story'].includes(input.type) && !/^audio\//.test(input.media.type)) throw new Error('Choose a supported audio file.');
   if (input.media && input.type === 'video' && !/^video\/(mp4|webm)$/.test(input.media.type)) throw new Error('Choose an MP4 or WebM video.');
   if (input.media && ['tracing', 'colouring'].includes(input.type) && !/^image\/(png|jpeg|webp)$/.test(input.media.type)) throw new Error('Choose a PNG, JPG or WebP image.');
-  const activity = { id: input.id || crypto.randomUUID(), type: input.type, title, text, sourceName: String(input.sourceName || ''), media: input.media || null };
+  const activity = { ...activityPresentation(input), id: input.id || crypto.randomUUID(), type: input.type, title, text, sourceName: String(input.sourceName || ''), media: input.media || null };
   if (input.type === 'video') activity.youtubeUrl = input.media ? '' : input.youtubeUrl.trim();
-  if (input.type === 'link') {
+  if (['link', 'qr'].includes(input.type)) {
     let url;
     try { url = new URL(String(input.url || '')); } catch { throw new Error('Enter a valid HTTP or HTTPS link.'); }
     if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) throw new Error('Enter a valid HTTP or HTTPS link without login credentials.');
+    if (url.href.length > 2000) throw new Error('Keep links within 2,000 characters.');
     activity.url = url.href;
+    if (input.type === 'qr') {
+      if (typeof input.qrImage !== 'string' || input.qrImage.length > 100000 || !/^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(input.qrImage)) throw new Error('Generate a QR code for this link first.');
+      activity.qrImage = input.qrImage;
+    }
+  }
+  if (input.type === 'question') {
+    if (!text || typeof input.answer !== 'string' || !input.answer.trim() || input.answer.length > 4000) throw new Error('Enter a question and its answer (up to 4,000 characters).');
+    activity.answer = input.answer.trim();
   }
   if (input.type === 'game') activity.game = parseGame(input.game);
   if (['tracing', 'colouring'].includes(input.type)) {
@@ -75,4 +86,17 @@ export function deleteDraftPage(draft, number) {
   const remaining = draft.pages.filter(page => page.number !== number);
   if (!remaining.length) return null;
   return { ...draft, pages: remaining.map((page, index) => ({ ...page, sourcePageNumber: page.sourcePageNumber || page.number, number: index + 1 })) };
+}
+
+export function activityPresentation(input) {
+  const result = {};
+  if (input.placement) {
+    if (!validateArea(input.placement)) throw new Error('Keep the button position and size inside the page (0-100%).');
+    result.placement = Object.fromEntries(['x', 'y', 'w', 'h'].map(key => [key, input.placement[key]]));
+  }
+  if (input.buttonColour) {
+    if (!/^#[a-f0-9]{6}$/i.test(input.buttonColour)) throw new Error('Choose a valid button colour.');
+    result.buttonColour = input.buttonColour;
+  }
+  return result;
 }

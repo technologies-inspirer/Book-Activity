@@ -18,7 +18,7 @@ function toApi(input) {
 }
 
 export function createPortalStore() {
-  let state = { loading: true, bootError: '', currentId: null, accounts: [], customSeries: [], customSubjects: [], subjectAssignments: [], progress: {}, organizationProfile: defaults };
+  let state = { loading: true, bootError: '', currentId: null, accounts: [], customSeries: [], customSubjects: [], subjectAssignments: [], seriesClasses: [], publishedBooks: [], progress: {}, organizationProfile: defaults };
   let csrfToken = '';
   let progressTimer;
   let initializing;
@@ -29,10 +29,11 @@ export function createPortalStore() {
     let response;
     try {
       response = await fetch(`/api${path}`, {
-        method, credentials: 'same-origin', headers: { ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}), ...(method !== 'GET' && csrfToken ? { 'X-CSRF-Token': csrfToken } : {}) },
-        ...(body !== undefined ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(path === '/admin/users/import' ? 120000 : 30000)
+        method, credentials: 'same-origin', headers: { ...(body !== undefined ? { 'Content-Type': body instanceof Blob ? 'application/zip' : 'application/json' } : {}), ...(method !== 'GET' && csrfToken ? { 'X-CSRF-Token': csrfToken } : {}) },
+        ...(body !== undefined ? { body: body instanceof Blob ? body : JSON.stringify(body) } : {}), signal: AbortSignal.timeout((path === '/admin/users/import' || path.startsWith('/admin/library/')) ? 120000 : 30000)
       });
     } catch { throw new Error('Cannot reach the server. Please check your connection and try again.'); }
+    if (response.ok && response.headers.get('content-type')?.includes('application/zip')) return response.blob();
     let data;
     try { data = await response.json(); } catch { throw new Error('The server returned an unexpected response. Please try again.'); }
     if (!response.ok) {
@@ -48,17 +49,18 @@ export function createPortalStore() {
     return account;
   };
   async function hydrate(account) {
-    const [users, progress, organization] = await Promise.all([
+    const [users, progress, organization, learning] = await Promise.all([
       account.role === 'admin' ? request('/admin/users') : Promise.resolve({ accounts: [account] }),
-      request('/me/progress'), request('/organization')
+      request('/me/progress'), request('/organization'), request('/learning')
     ]);
-    publish({ accounts: users.accounts.map(fromApi), currentId: account.id, progress: progress.progress ? { [account.id]: progress.progress } : {}, organizationProfile: { ...defaults, ...organization.profile } });
+    publish({ ...learning, accounts: users.accounts.map(fromApi), currentId: account.id, progress: progress.progress ? { [account.id]: progress.progress } : {}, organizationProfile: { ...defaults, ...organization.profile } });
   }
   async function refresh() {
     const { account } = await request('/auth/me');
     if (state.currentId !== account.id) await hydrate(account);
     else {
       accept(account);
+      publish(await request('/learning'));
       if (account.role === 'admin') { const data = await request('/admin/users'); publish({ accounts: data.accounts.map(fromApi) }); }
     }
   }
@@ -74,6 +76,22 @@ export function createPortalStore() {
       return initializing;
     },
     refresh,
+    async createSeries(input) {
+      const result = await request('/admin/learning/series', { method: 'POST', body: input });
+      publish(result.state); return result.created;
+    },
+    async assignSeriesClasses(input) {
+      const result = await request('/admin/learning/classes', { method: 'POST', body: input }); publish(result.state);
+    },
+    async assignClassSubjects(input) {
+      const result = await request('/admin/learning/subjects', { method: 'POST', body: input }); publish(result.state);
+    },
+    async publishBook(archive, id) {
+      const result = await request(`/admin/library/books${id ? `/${id}` : ''}`, { method: id ? 'PUT' : 'POST', body: archive });
+      publish({ publishedBooks: result.publishedBooks }); return result.id;
+    },
+    loadPublishedBook(id) { return request(`/library/books/${id}/archive`); },
+    searchCities(state, query) { return request(`/locations/cities?state=${encodeURIComponent(state)}&q=${encodeURIComponent(query)}`); },
     async signIn(email, password) {
       const { account } = await request('/auth/login', { method: 'POST', body: { email, password } });
       await hydrate(account); return account.role;

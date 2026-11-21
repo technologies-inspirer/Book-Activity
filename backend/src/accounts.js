@@ -1,5 +1,8 @@
 import { bookIds } from './catalog.js';
 import { fail } from './auth.js';
+import { series } from '../../frontend/src/data/series.js';
+import { regionName } from '../../frontend/src/data/pakistanLocations.js';
+import { validateLocation } from './locations.js';
 
 export function identity(input) {
   const name = typeof input.name === 'string' ? input.name.trim() : '';
@@ -19,11 +22,19 @@ function profile(value) {
     return [key, value[key].trim()];
   }));
 }
-export function metadata(input, previous = {}, self = false) {
+export function metadata(input, previous = {}, self = false, seriesChoices = series) {
   const result = { ...previous };
-  if ('schoolProfile' in input) result.schoolProfile = { ...previous.schoolProfile, ...profile(input.schoolProfile) };
+  if ('schoolProfile' in input) {
+    result.schoolProfile = { ...previous.schoolProfile, ...profile(input.schoolProfile) };
+    if (result.schoolProfile.state) result.schoolProfile.state = regionName(result.schoolProfile.state);
+    validateLocation(result.schoolProfile, previous.schoolProfile);
+  }
   if ('schoolLogo' in input) result.schoolLogo = image(input.schoolLogo);
   if (self) return result;
+  if ('allowedSeriesIds' in input) {
+    if (!Array.isArray(input.allowedSeriesIds) || input.allowedSeriesIds.some(id => !seriesChoices.some(item => item.id === id))) throw fail(400, 'Choose valid book series.');
+    result.allowedSeriesIds = [...new Set(input.allowedSeriesIds)];
+  }
   if ('isHeadSchool' in input) {
     if (typeof input.isHeadSchool !== 'boolean') throw fail(400, 'Invalid school designation.');
     result.isHeadSchool = input.isHeadSchool;

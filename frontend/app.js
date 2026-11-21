@@ -211,7 +211,15 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const actions = el('div', { class: 'draft-reader-page-tools' });
       if (pg.text?.trim()) actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); speak(`Page ${idx + 1}`, pg.text); } }, 'Listen'));
       actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); brush.erase = false; openFocus(book, idx, node, true); } }, 'Write / Colour'));
-      (pg.linkedActivities || []).forEach(activity => actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); readerOptions.onActivity?.(activity, idx + 1); } }, activity.title)));
+      (pg.linkedActivities || []).forEach(activity => {
+        const open = e => { e.stopPropagation(); selectReaderPage(idx + 1); readerOptions.onActivity?.(activity, idx + 1); };
+        if (activity.placement) {
+          const p = activity.placement;
+          const overlay = el('button', { class: `reader-activity-overlay${activity.type === 'qr' ? ' is-qr' : ''}`, 'aria-label': activity.title, style: `left:${p.x}%;top:${p.y}%;width:${p.w}%;height:${p.h}%;background:${activity.buttonColour || '#0b625e'}`, onclick: open });
+          if (activity.type === 'qr') overlay.append(el('img', { src: activity.qrImage, alt: '' }));
+          overlay.append(el('span', {}, activity.title)); node.append(overlay);
+        } else actions.append(el('button', { class: 'draft-reader-tool', style: `background:${activity.buttonColour || '#0b625e'}`, onclick: open }, activity.title));
+      });
       node.append(actions);
     }
     (pg.zones || []).forEach(z => node.append(renderZone(book, idx, z, live)));
@@ -229,7 +237,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       });
       if (live) {
         node.classList.add('zoomable');
-        node.addEventListener('click', e => { if (!editMode && !e.target.closest('.zone, .vid-hot, .watch-btn, .game-btn, .story-btn, .draft-reader-page-tools')) openFocus(book, idx, node); });
+        node.addEventListener('click', e => { if (!editMode && !e.target.closest('.zone, .vid-hot, .watch-btn, .game-btn, .story-btn, .draft-reader-page-tools, .reader-activity-overlay')) openFocus(book, idx, node); });
       }
     }
     if (live) bindZoneDrawing(node, book, idx);
@@ -2515,6 +2523,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const book = { ...original, id: previewOwner, pages: original.pages.map((page, index) => index === pageIndex && activity?.type === 'fill' ? { ...page, qr: undefined, zones: [], acts: [activity] } : page) };
     if (videos) openVideos(activityPreview.title || 'Videos', videos);
     else if (activity.type === 'game') openGame(book, pageIndex, activity);
+    else if (activity.type === 'question') openQuestion(book, pageIndex, activity);
     else if (activity.type === 'story') openStory(book, pageIndex, activity);
     else if (activity.type === 'videos') openVideos(activity.title, activity.videos);
     else if (activity.type === 'fill') openFocus(book, pageIndex, app);

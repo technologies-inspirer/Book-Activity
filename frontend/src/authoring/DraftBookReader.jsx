@@ -31,6 +31,7 @@ export function DraftBookReader(props) {
   }, [selected]);
   return createPortal(<div className="portal draft-reader-overlay" aria-label="Uploaded book reader">
     <div className="draft-reader-adminbar">
+      {props.readOnly ? <><strong>{draft.title}</strong><span className="draft-reader-spacer" /><button className="portal-secondary" onClick={props.onClose}>Back to library</button>{props.onCustomize && <button className="portal-primary" onClick={props.onCustomize}>Edit Book</button>}</> : <>
       <span className="portal-pill">{dirty ? 'Unsaved changes' : 'Saved'}</span>
       <label>Selected page<select aria-label="Selected book page" value={selected} disabled={!!busy} onChange={event => controller.current?.goToPage(Number(event.target.value))}>{draft.pages.map(page => <option key={page.number} value={page.number}>{page.number}</option>)}</select></label>
       <button className="portal-secondary pdf-danger" disabled={!!busy} onClick={props.onDelete}>Delete Page</button>
@@ -39,6 +40,7 @@ export function DraftBookReader(props) {
       <button className="portal-primary" disabled={!!busy || !dirty} onClick={props.onUpdate}>Update</button>
       <button className="portal-secondary" disabled={!!busy} onClick={props.onCancel}>Cancel</button>
       {busy && <button className="portal-secondary" onClick={props.onStop}>Stop</button>}
+      </>}
     </div>
     <div ref={host} className="draft-reader-host" inert={!!busy} />
   </div>, document.body);

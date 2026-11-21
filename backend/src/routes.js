@@ -4,6 +4,9 @@ import { createSession, requireAuth, requireAdmin, requireCsrf, publicUser, csrf
 import { hashPassword, verifyPassword, dummyHash } from './passwords.js';
 import { identity, metadata, permissions, image } from './accounts.js';
 import { canRead, catalog } from './catalog.js';
+import { searchCities } from './locations.js';
+import { libraryRoutes } from './libraryRoutes.js';
+import { allSeries, learningState, publishedAllowed } from './learning.js';
 
 export const api = Router();
 api.use((_request, response, next) => { response.set('Cache-Control', 'no-store'); next(); });
@@ -41,8 +44,10 @@ api.post('/auth/login', async (request, response) => {
 });
 
 api.use(requireAuth);
+api.get('/locations/cities', requireAdmin, (request, response) => response.json(searchCities(request.query.state, request.query.q || '')));
 api.get('/auth/me', (request, response) => response.json({ account: publicUser(request.user), csrfToken: csrfFor(request.sessionToken) }));
 api.use((request, response, next) => ['GET', 'HEAD'].includes(request.method) ? next() : requireCsrf(request, response, next));
+api.use(libraryRoutes);
 api.post('/auth/logout', async (request, response) => {
   await pool.query('DELETE FROM sessions WHERE token_hash = $1', [digest(tokenFrom(request))]);
   clearSession(response); response.json({ ok: true });
@@ -56,7 +61,7 @@ async function insertAccount(client, input) {
   const { name, email } = identity(input);
   const passwordHash = await hashPassword(input.password);
   const access = permissions(input);
-  const extra = metadata(input);
+  const extra = metadata(input, {}, false, allSeries(await learningState(client)));
   const { rows: [user] } = await client.query("INSERT INTO users (name, email, password_hash, role, all_books, book_ids, expires_at, metadata) VALUES ($1, $2, $3, 'user', $4, $5, $6, $7) RETURNING *", [name, email, passwordHash, access.allBooks, access.bookIds, access.expiresAt, extra]);
   return publicUser(user);
 }
@@ -80,7 +85,7 @@ api.patch('/admin/users/:id', requireAdmin, validId, async (request, response) =
     if (!user) throw fail(404, 'User account not found.');
     const details = identity({ name: request.body.name ?? user.name, email: request.body.email ?? user.email });
     const access = permissions(request.body, user);
-    const extra = metadata(request.body, user.metadata);
+    const extra = metadata(request.body, user.metadata, false, allSeries(await learningState(client)));
     if (request.body.isHeadSchool) await client.query("UPDATE users SET metadata=metadata || '{\"isHeadSchool\":false}'::jsonb WHERE role='user' AND id<>$1", [user.id]);
     const enabled = request.body.enabled ?? user.enabled;
     if (typeof enabled !== 'boolean') throw fail(400, 'Choose a valid account status.');
@@ -125,12 +130,19 @@ api.post('/me/password', async (request, response) => {
 });
 api.get('/me/progress', async (request, response) => {
   const { rows: [progress] } = await pool.query('SELECT book_id AS "bookId", page FROM user_progress WHERE user_id=$1', [request.user.id]);
-  response.json({ progress: progress && canRead(request.user, progress.bookId) ? progress : null });
+  response.json({ progress: progress && await readableBook(request.user, progress.bookId) ? progress : null });
 });
+async function readableBook(user, id) {
+  const original = catalog.find(item => item.id === id);
+  if (original) return canRead(user, id) ? original : null;
+  if (!/^[a-f0-9-]{36}$/i.test(id || '')) return null;
+  const { rows: [book] } = await pool.query('SELECT id,series_id,class_id,subject_id,page_count FROM published_books WHERE id=$1', [id]);
+  return book && publishedAllowed(user, book) ? { ...book, pages: book.page_count } : null;
+}
 api.put('/me/progress', async (request, response) => {
   const { bookId, page } = request.body;
-  if (!canRead(request.user, bookId)) throw fail(403, 'This book is not in your library.');
-  const book = catalog.find(item => item.id === bookId);
+  const book = await readableBook(request.user, bookId);
+  if (!book) throw fail(403, 'This book is not in your library.');
   if (!Number.isInteger(page) || page < 0 || page >= book.pages) throw fail(400, 'Invalid book page.');
   await pool.query('INSERT INTO user_progress (user_id, book_id, page) VALUES ($1,$2,$3) ON CONFLICT (user_id) DO UPDATE SET book_id=$2,page=$3,updated_at=now()', [request.user.id, bookId, page]);
   response.json({ ok: true });

@@ -1,3 +1,4 @@
+import { allowedSeries } from '../data/seriesAccess.js';
 import { useEffect, useRef } from 'react';
 import { learningClasses, getLearningSubjects, getLearningBooks, libraryLink, schoolAllowsSelection } from '../data/learningCatalog.js';
 import { useDemo } from './DemoContext.jsx';
@@ -27,7 +28,7 @@ import computerBookCoverClass2 from '../../assets/subject-computer-book-behind-l
 import socialSelectionClass2 from '../../assets/subject-selection-company-books-class-2-social.jpeg';
 
 // Classes shown on the "Select Class" step, in order.
-const libraryClassIds =['play-group', 'nursery', 'prep', 'class-1', 'class-2'];
+// Class visibility is controlled by the administrator's series assignments.
 
 // The books drawn on the subject cards carry the class's age: Play Group 3, Nursery 4, Prep 5, Class 1, Class 2.
 const subjectArtByClass = {
@@ -43,12 +44,15 @@ const subjectArtByClass = {
 const subjectsWithArt = ['english', 'maths', 'urdu', 'computer', 'social-studies', 'science', 'islamiat'];
 
 export function LearningLibrary({ segments = [], onBookOpen }) {
-  const { account, assignedBooks, series, customSubjects, subjectAssignments } = useDemo();
-  const classes = learningClasses.filter(item => libraryClassIds.includes(item.id) && schoolAllowsSelection(account, { classId: item.id }));
+  const { account, assignedBooks, series: allSeries, customSubjects, subjectAssignments, seriesClasses } = useDemo();
+  const series = allowedSeries(account, allSeries);
+  const assignedClasses = item => series.some(s => seriesClasses.find(row => row.seriesId === s.id)?.classIds.includes(item.id));
+  const classes = learningClasses.filter(item => assignedClasses(item) && schoolAllowsSelection(account, { classId: item.id }));
   const titleRef = useRef(null);
   const selectedClass = classes.find(item => item.id === segments[0]);
   const classBooks = selectedClass ? getLearningBooks(assignedBooks, { classId: selectedClass.id }) : [];
-  const selectedSeries = series.find(item => item.id === segments[1]) || series.find(item => classBooks.some(item.of)) || series[0];
+  const classSeries = selectedClass ? series.filter(s => seriesClasses.find(row => row.seriesId === s.id)?.classIds.includes(selectedClass.id)) : series;
+  const selectedSeries = classSeries.find(item => item.id === segments[1]) || classSeries.find(item => classBooks.some(item.of)) || classSeries[0] || { id: '', name: '' };
   const selection = { classId: selectedClass?.id, seriesId: selectedSeries.id };
   const subjectOptions = selectedClass ? getLearningSubjects(classBooks, customSubjects, selection, subjectAssignments).filter(subject => schoolAllowsSelection(account, { ...selection, subjectId: subject.id })) : [];
   const selectedSubject = subjectOptions.find(item => item.id === segments[2]);
@@ -65,6 +69,7 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
     titleRef.current?.focus({ preventScroll: true });
   }, [segments.join('/')]);
 
+  if (!series.length) return <EmptyState title="No series assigned">Ask your administrator to allow a book series for this account.</EmptyState>;
   return (
     <div className={`learning-library ${step === 0 ? 'library-class-selection' : step === 1 ? 'library-subject-selection' : 'library-open-selection'}`} style={{ '--class-template': `url("${classSelectionTemplate}")`, '--class-1-art': `url("${class1CardArt}")`, '--class-2-art': `url("${class2CardArt}")`, '--subject-template': `url("${subjectArtByClass[selectedClass?.id]?.subjects || subjectSelectionTemplate}")`, '--maths-template': `url("${subjectArtByClass[selectedClass?.id]?.maths || mathsSelectionTemplate}")`, '--computer-cover': `url("${subjectArtByClass[selectedClass?.id]?.computer || computerBookCover}")`, '--social-template': `url("${subjectArtByClass[selectedClass?.id]?.social || subjectSelectionTemplate}")`, '--science-template': `url("${subjectArtByClass[selectedClass?.id]?.science || subjectSelectionTemplate}")`, '--islamiat-template': `url("${subjectArtByClass[selectedClass?.id]?.islamiat || subjectSelectionTemplate}")` }}>
       <LearningScenery />
@@ -87,25 +92,25 @@ export function LearningLibrary({ segments = [], onBookOpen }) {
         ))}
         </ol>
       </nav>
-      {step === 0 ? (assignedBooks.length ? (
+      {step === 0 ? (classes.length ? (
         <section aria-label="Select your class" className="library-choice-grid library-class-grid">
           {classes.map(item => {
             const count = getLearningBooks(assignedBooks, { classId: item.id }).length;
             return <a key={item.id} className={`library-choice-card library-class-card class-${item.id}`} href={libraryLink(item.id)}><span className="library-class-art" aria-hidden="true" /><h2>{item.name}</h2><p>{count ? `${count} book${count === 1 ? '' : 's'} available` : 'No books available'}</p></a>;
           })}
         </section>
-      ) : <EmptyState title="No books assigned">Contact your administrator to assign books to your demo library.</EmptyState>) : (
+      ) : <EmptyState title="No books assigned">Contact your administrator to assign classes and books to your library.</EmptyState>) : (
         <>
           {step === 1 && <section className="library-series" aria-label="Select series">
             <h2>Series</h2>
             <div className="library-series-options">
-              {series.map(item => <a key={item.id} href={libraryLink(selectedClass.id, item.id)} className={selectedSeries.id === item.id ? 'selected' : ''} aria-current={selectedSeries.id === item.id ? 'true' : undefined}>{item.name}</a>)}
+              {classSeries.map(item => <a key={item.id} href={libraryLink(selectedClass.id, item.id)} className={selectedSeries.id === item.id ? 'selected' : ''} aria-current={selectedSeries.id === item.id ? 'true' : undefined}>{item.name}</a>)}
             </div>
           </section>}
           {step === 1 ? (
             subjectOptions.length ? <section className="library-choice-grid library-subject-grid" aria-label="Select your subject">
               {subjectOptions.map(subject => <a className={`library-choice-card library-subject-card library-class-card subject-${subject.id}`} key={subject.id} href={libraryLink(selectedClass.id, selectedSeries.id, subject.id)}><span className={subjectsWithArt.includes(subject.id) ? 'library-subject-art' : 'library-subject-fallback'} aria-hidden="true">{!subjectsWithArt.includes(subject.id) && <LibraryBookIcon />}</span><h2>{subject.name}</h2><p>{selectedSeries.name}</p></a>)}
-            </section> : <EmptyState title={assignedBooks.length ? 'No books available for this selection' : 'No books assigned'}>{assignedBooks.length ? `There are no assigned ${selectedSeries.name} books for ${selectedClass.name}. Choose another series or class.` : 'Contact your administrator to assign books to your demo library.'}</EmptyState>
+            </section> : <EmptyState title={assignedBooks.length ? 'No books available for this selection' : 'No books assigned'}>{assignedBooks.length ? `There are no assigned ${selectedSeries.name} books for ${selectedClass.name}. Choose another series or class.` : 'Contact your administrator to assign classes and books to your library.'}</EmptyState>
           ) : (
             <section className="library-results" aria-label={`${selectedSubject.name} books`}>
               <div className="portal-page-heading"><h2>{selectedSubject.name} books</h2><span className="portal-pill">{selectedBooks.length} available</span></div>

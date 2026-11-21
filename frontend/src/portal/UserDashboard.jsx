@@ -40,7 +40,7 @@ export function UserDashboard() {
             <h2>{continuedBook.title}</h2>
             <p className="portal-muted">Page {position.page} of {continuedBook.pages.length} · This session</p>
           </div>
-          <a className="portal-primary" href={`#/book/${encodeURIComponent(continuedBook.id)}/read/${position.page}`}>Continue reading →</a>
+          <a className="portal-primary" href={continuedBook.published ? `#/user/published/${continuedBook.id}` : `#/book/${encodeURIComponent(continuedBook.id)}/read/${position.page}`}>Continue reading →</a>
         </section>
       )}
       <DashboardArtwork variant="landscape" />

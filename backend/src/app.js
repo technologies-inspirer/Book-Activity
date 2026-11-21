@@ -34,13 +34,13 @@ app.use('/api/files', ...protectedFiles);
 app.use('/api', api);
 
 // Production serves the build through Express so raw book/media URLs stay protected.
+const bookFileRouter = express.Router();
+bookFileRouter.use(...protectedFiles);
 app.use('/Book-Activity', (request, response, next) => {
   let path;
   try { path = posix.normalize(decodeURIComponent(request.path).replaceAll('\\', '/')); } catch { return next(Object.assign(new Error('Invalid file path.'), { status: 400 })); }
   if (/^\/+(books|videos|sounds)(\/|$)/i.test(path)) {
-    let index = 0;
-    const run = error => error ? next(error) : protectedFiles[index++]?.(request, response, run);
-    return run();
+    return bookFileRouter(request, response, next);
   }
   next();
 });
@@ -54,6 +54,6 @@ app.use((_request, response) => {
 app.use((error, _request, response, _next) => {
   const status = error.code === '23505' ? 409 : error.status || (['ECONNREFUSED', '57P01', '53300'].includes(error.code) ? 503 : 500);
   if (status >= 500) console.error(`Request failed (${error.code || 'internal error'}).`);
-  const message = status === 409 ? 'An account with this email already exists.' : status === 404 ? 'Resource not found.' : status >= 500 ? 'The service is temporarily unavailable. Please try again.' : error.type === 'entity.parse.failed' ? 'Send valid JSON request data.' : error.message;
+  const message = error.code === '23505' ? 'An account with this email already exists.' : status === 404 ? 'Resource not found.' : status >= 500 ? 'The service is temporarily unavailable. Please try again.' : error.type === 'entity.parse.failed' ? 'Send valid JSON request data.' : error.message;
   response.status(status).json({ error: message });
 });

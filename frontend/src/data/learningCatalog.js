@@ -14,7 +14,9 @@ export const learningSubjects = [
   { id: 'computer', name: 'Computer' },
   { id: 'science', name: 'Science' },
   { id: 'social-studies', name: 'Social Studies' },
-  { id: 'islamiat', name: 'Islamiat' }
+  { id: 'islamiat', name: 'Islamiat' },
+  { id: 'history', name: 'History' },
+  { id: 'geography', name: 'Geography' }
 ];
 
 export const learningBookMetadata = {
@@ -54,7 +56,7 @@ export function schoolAllowsSelection(account, selection) {
 
 export function getLearningBooks(books, selection = {}) {
   return books.filter(book => {
-    const metadata = learningBookMetadata[book.id];
+    const metadata = book.published ? book : learningBookMetadata[book.id];
     return metadata && !hiddenFromLibrary.has(book.id) && ['classId', 'seriesId', 'subjectId'].every(key => !selection[key] || selection[key] === metadata[key]);
   });
 }
