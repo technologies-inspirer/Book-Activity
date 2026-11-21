@@ -12,12 +12,12 @@ libraryRoutes.get('/learning', async (request, response) => response.json({ ...a
 for (const action of ['series', 'classes', 'subjects']) libraryRoutes.post(`/admin/learning/${action}`, requireAdmin, async (request, response) => response.status(action === 'series' ? 201 : 200).json(await saveLearning(action, request.body)));
 
 export async function validateArchive(buffer, state) {
-  if (!buffer?.length || buffer.length > 200 * 1024 * 1024) throw fail(400, 'Upload a book project below 200 MB.');
+  if (!buffer?.length) throw fail(400, 'Upload a non-empty book project.');
   let zip, data;
   try {
     zip = await JSZip.loadAsync(buffer);
     const entries = Object.values(zip.files).filter(item => !item.dir);
-    if (entries.length > 1500 || entries.reduce((size, item) => size + (item._data?.uncompressedSize || 0), 0) > 200 * 1024 * 1024) throw new Error();
+    if (entries.length > 1500) throw new Error();
     const manifest = zip.file('project.json');
     if (!manifest || manifest._data.uncompressedSize > 2 * 1024 * 1024) throw new Error();
     data = JSON.parse(await manifest.async('string'));
@@ -39,14 +39,14 @@ export async function validateArchive(buffer, state) {
   return { data, cover, sources };
 }
 
-libraryRoutes.post('/admin/library/books', requireAdmin, express.raw({ type: 'application/zip', limit: '200mb' }), async (request, response) => {
+libraryRoutes.post('/admin/library/books', requireAdmin, express.raw({ type: 'application/zip', limit: Infinity }), async (request, response) => {
   const state = await learningState();
   const { data, cover, sources } = await validateArchive(request.body, state);
   const id = randomUUID();
   await pool.query('INSERT INTO published_books(id,title,series_id,class_id,subject_id,page_count,archive,cover,source_book_ids) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)', [id, data.title.trim(), data.seriesId, data.classId, data.subjectId, data.pages.length, request.body, cover, sources]);
   response.status(201).json({ id, publishedBooks: await publishedSummaries(request.user) });
 });
-libraryRoutes.put('/admin/library/books/:id', requireAdmin, express.raw({ type: 'application/zip', limit: '200mb' }), async (request, response) => {
+libraryRoutes.put('/admin/library/books/:id', requireAdmin, express.raw({ type: 'application/zip', limit: Infinity }), async (request, response) => {
   if (!/^[a-f0-9-]{36}$/i.test(request.params.id)) throw fail(400, 'Invalid book ID.');
   const { data, cover, sources } = await validateArchive(request.body, await learningState());
   const result = await pool.query('UPDATE published_books SET title=$2,series_id=$3,class_id=$4,subject_id=$5,page_count=$6,archive=$7,cover=$8,source_book_ids=$9,updated_at=now() WHERE id=$1', [request.params.id, data.title.trim(), data.seriesId, data.classId, data.subjectId, data.pages.length, request.body, cover, sources]);

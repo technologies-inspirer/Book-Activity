@@ -9,6 +9,7 @@ import { existsSync } from 'node:fs';
 export const app = express();
 
 app.disable('x-powered-by');
+app.get('/', (_request, response) => response.redirect('/Book-Activity/'));
 app.use((_request, response, next) => {
   response.set('X-Content-Type-Options', 'nosniff');
   response.set('Referrer-Policy', 'same-origin');

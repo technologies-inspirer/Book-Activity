@@ -30,7 +30,7 @@ export function createPortalStore() {
     try {
       response = await fetch(`/api${path}`, {
         method, credentials: 'same-origin', headers: { ...(body !== undefined ? { 'Content-Type': body instanceof Blob ? 'application/zip' : 'application/json' } : {}), ...(method !== 'GET' && csrfToken ? { 'X-CSRF-Token': csrfToken } : {}) },
-        ...(body !== undefined ? { body: body instanceof Blob ? body : JSON.stringify(body) } : {}), signal: AbortSignal.timeout((path === '/admin/users/import' || path.startsWith('/admin/library/')) ? 120000 : 30000)
+        ...(body !== undefined ? { body: body instanceof Blob ? body : JSON.stringify(body) } : {}), signal: path.startsWith('/admin/library/') || path.startsWith('/library/books/') ? undefined : AbortSignal.timeout(path === '/admin/users/import' ? 120000 : 30000)
       });
     } catch { throw new Error('Cannot reach the server. Please check your connection and try again.'); }
     if (response.ok && response.headers.get('content-type')?.includes('application/zip')) return response.blob();

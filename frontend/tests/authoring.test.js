@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { deleteDraftPage, parseGame, validateActivity, validateArea, validYoutube, draftBytes, updateDraftPage, MAX_MEDIA_BYTES, MAX_DRAFT_BYTES } from '../src/authoring/project.js';
+import { deleteDraftPage, parseGame, validateActivity, validateArea, validYoutube, draftBytes, updateDraftPage, MAX_MEDIA_BYTES } from '../src/authoring/project.js';
 
 const game = { crop: { x: 0, y: 0, w: 100, h: 100 }, targets: [{ name: 'Apple', x: 10, y: 20, w: 20, h: 20 }] };
 
@@ -11,7 +11,7 @@ test('page web links allow lessons but reject scripts and credentials', () => {
   }
 });
 
-test('page edits preserve the saved version and enforce media and activity limits', () => {
+test('page edits preserve the saved version and enforce activity counts without limiting book size', () => {
   const page = { number: 1, image: new Blob(['page']), thumbnail: new Blob(['thumb']), activities: [] };
   const original = { id: 'draft', pages: [page, { ...page, number: 2 }] };
   const activity = validateActivity({ type: 'link', title: 'Lesson', url: 'https://lesson.example' });
@@ -21,7 +21,9 @@ test('page edits preserve the saved version and enforce media and activity limit
   assert.equal(edited.pages[1], original.pages[1]);
   assert.throws(() => updateDraftPage(original, 3, {}), /no longer/);
   assert.throws(() => updateDraftPage(original, 1, { activities: Array(1001).fill(activity) }), /1,000/);
-  assert.throws(() => updateDraftPage(original, 1, { activities: [{ ...activity, media: { size: MAX_DRAFT_BYTES } }] }), /200 MB/);
+  const largePage = { ...page, image: { size: 300 * 1024 * 1024 } };
+  const largeBook = updateDraftPage({ pages: [largePage] }, 1, { text: 'A large book' });
+  assert.ok(draftBytes(largeBook) > 200 * 1024 * 1024);
 });
 test('game uploads retain the existing crop and target format while rejecting invalid geometry', () => {
   assert.equal(parseGame(JSON.stringify(game)).targets[0].name, 'Apple');

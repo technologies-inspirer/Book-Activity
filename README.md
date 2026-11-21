@@ -38,3 +38,7 @@ To view the database in a desktop window, double-click `open-pgadmin.bat`. It op
 Run `npm --prefix backend run admin:create` once on a new installation. Generated credentials are saved in `backend/.local/admin-account.txt` and are not tracked by Git. Use My Profile to change the initial password. School Register creates the reader accounts; public signup is disabled. Previous demo credentials no longer work.
 
 For daily use, run `npm run dev` from the repository root, or double-click `start.bat`. It starts all required services together. `npm run dev:frontend` and `npm run dev:backend` remain available for advanced separate startup. Ctrl+C stops the app services launched by that command and leaves PostgreSQL data intact. Production uses the Express server and its compiled frontend at `/Book-Activity/`.
+
+## Ubuntu deployment pipeline
+
+See [deploy/README.md](deploy/README.md) for Docker, PostgreSQL persistence, HTTPS, GitHub CI, manually approved releases, office runner setup, backups and rollback. No workflow merges or pushes to main; live deployment is manual and disabled until the office VM is configured.

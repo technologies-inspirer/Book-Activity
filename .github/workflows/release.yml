@@ -1,0 +1,85 @@
+name: Build and deploy approved release
+# No push trigger: publishing and deployment require an explicit Run workflow action.
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Full 40-character commit SHA already merged into main
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: office-production
+  cancel-in-progress: false
+jobs:
+  approve-ref:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.validate.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - id: validate
+        env:
+          RELEASE_SHA: ${{ inputs.commit }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_SHA" =~ ^[a-f0-9]{40}$ ]]
+          git cat-file -e "$RELEASE_SHA^{commit}"
+          git merge-base --is-ancestor "$RELEASE_SHA" origin/main
+          echo "sha=$RELEASE_SHA" >> "$GITHUB_OUTPUT"
+  verify:
+    needs: approve-ref
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.approve-ref.outputs.sha }}
+  image:
+    needs: [approve-ref, verify]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.publish.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.approve-ref.outputs.sha }}
+      - id: name
+        env:
+          REPOSITORY: ${{ github.repository }}
+          RELEASE_SHA: ${{ needs.approve-ref.outputs.sha }}
+        run: echo "image=ghcr.io/${REPOSITORY,,}:$RELEASE_SHA" >> "$GITHUB_OUTPUT"
+      - name: Log in to GitHub Container Registry
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+      - uses: docker/setup-buildx-action@v3
+      - name: Build and publish verified image
+        id: publish
+        env:
+          IMAGE: ${{ steps.name.outputs.image }}
+        run: |
+          docker buildx build --tag "$IMAGE" --push --metadata-file image-metadata.json .
+          digest="$(python3 -c 'import json; print(json.load(open("image-metadata.json"))["containerimage.digest"])')"
+          echo "image=${IMAGE%:*}@$digest" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: [approve-ref, image]
+    # Off until the office VM, runner and environment have been configured.
+    if: vars.ENABLE_OFFICE_DEPLOYMENT == 'true'
+    runs-on: [self-hosted, Linux, X64, office-production]
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.approve-ref.outputs.sha }}
+          persist-credentials: false
+      - name: Deploy approved image
+        env:
+          APP_IMAGE: ${{ needs.image.outputs.image }}
+          DEPLOY_DIR: /srv/book-activity
+        run: bash deploy/release.sh "$APP_IMAGE"

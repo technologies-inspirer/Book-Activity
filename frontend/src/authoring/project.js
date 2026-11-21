@@ -1,8 +1,6 @@
 import { restoreExistingActivity } from './existingActivities.js';
 
-export const MAX_PDF_BYTES = 50 * 1024 * 1024;
 export const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
-export const MAX_DRAFT_BYTES = 200 * 1024 * 1024;
 export const MAX_PAGES = 200;
 export const activityTypes = [
   { id: 'qr', name: 'Clickable QR Code', help: 'Create a scannable QR code that also opens your video or lesson when clicked.' },
@@ -77,7 +75,6 @@ export function updateDraftPage(draft, number, patch) {
   if (!draft?.pages.some(page => page.number === number)) throw new Error('This page is no longer in the draft.');
   const updated = { ...draft, pages: draft.pages.map(page => page.number === number ? { ...page, ...patch } : page) };
   if (updated.pages.reduce((count, page) => count + page.activities.length, 0) > 1000) throw new Error('A book can contain up to 1,000 activities.');
-  if (draftBytes(updated) > MAX_DRAFT_BYTES) throw new Error('The book and its activities must stay below 200 MB.');
   return updated;
 }
 

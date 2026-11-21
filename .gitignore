@@ -21,3 +21,9 @@ frontend/books/stemford english 5+/*.pdf
 frontend/books/stemford urdu 5+/*.pdf
 frontend/books/stemford math 5+/*.pdf
 frontend/books/class 1/*.pdf
+
+# Deployment secrets, backups and release state stay on the Ubuntu host.
+deploy/backups/
+deploy/current-image
+deploy/previous-image
+deploy/videos/

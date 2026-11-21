@@ -1109,3 +1109,7 @@ a.resource-option-card .resource-option-status { color: var(--portal-accent-text
 .portal .library-series-options a:not(.selected):is(:hover, :focus-visible) { color: #155e48; border-color: #59a98a; background: #e0f1e7; }
 .portal .library-choice-card:is(:hover, :focus-visible) { border-color: #289471; box-shadow: 0 0 0 2px #28947133, 0 8px 24px #254d4618; }
 .portal .library-choice-card:is(:hover, :focus-visible) h2 { color: #08765f; }
+
+.catalog-assignment-heading { align-items: flex-start; }
+.catalog-assignment-heading > div:first-child { flex: 1; min-width: min(100%, 240px); }
+.catalog-assignment-heading .catalog-top-actions { margin-top: 0; }

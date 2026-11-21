@@ -7,9 +7,10 @@ if (!Number.isInteger(port) || port < 1 || port > 65535) {
   throw new Error('PORT must be an integer between 1 and 65535.');
 }
 
-const server = app.listen(port, '127.0.0.1', () => {
-  console.log(`Backend running at http://127.0.0.1:${port}`);
-  console.log(`Health check: http://127.0.0.1:${port}/api/health`);
+const host = process.env.HOST || '127.0.0.1';
+const server = app.listen(port, host, () => {
+  console.log(`Backend running at http://${host}:${port}`);
+  console.log(`Health check: http://${host}:${port}/api/health`);
 });
 
 server.on('error', error => {

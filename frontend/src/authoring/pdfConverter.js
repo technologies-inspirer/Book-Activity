@@ -1,6 +1,6 @@
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
-import { MAX_DRAFT_BYTES, MAX_PDF_BYTES, MAX_PAGES } from './project.js';
+import { MAX_PAGES } from './project.js';
 import { extractPdfContent, identifyOriginalBook } from './readerBook.js';
 
 GlobalWorkerOptions.workerSrc = workerUrl;
@@ -20,7 +20,7 @@ const checkAbort = signal => { if (signal.aborted) throw new DOMException('Conve
 const canvasBlob = canvas => new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Could not convert this page into an image.')), 'image/jpeg', .88));
 
 export async function convertPdf(file, { signal, onProgress, lessonLinks, originalBooks = [] }) {
-  if (!file || file.size > MAX_PDF_BYTES || !file.size) throw new Error('Choose a PDF smaller than 50 MB.');
+  if (!file?.size) throw new Error('Choose a non-empty PDF file.');
   if (!(await file.slice(0, 1024).text()).includes('%PDF-')) throw new Error('This file is not a valid PDF.');
   checkAbort(signal);
   const task = getDocument({ data: new Uint8Array(await file.arrayBuffer()), isEvalSupported: false, useWorkerFetch: false, BinaryDataFactory: LocalBinaryDataFactory, cMapPacked: true, enableXfa: false });
@@ -36,7 +36,6 @@ export async function convertPdf(file, { signal, onProgress, lessonLinks, origin
     checkAbort(signal);
     if (pdf.numPages > MAX_PAGES) throw new Error(`Choose a PDF with no more than ${MAX_PAGES} pages.`);
     const pages = [];
-    let bytes = 0;
     for (let number = 1; number <= pdf.numPages; number++) {
       checkAbort(signal);
       const page = await pdf.getPage(number);
@@ -51,8 +50,6 @@ export async function convertPdf(file, { signal, onProgress, lessonLinks, origin
       thumbnail.width = Math.max(1, Math.round(canvas.width / canvas.height * 180)); thumbnail.height = 180;
       thumbnail.getContext('2d').drawImage(canvas, 0, 0, thumbnail.width, thumbnail.height);
       const thumb = await canvasBlob(thumbnail);
-      bytes += image.size + thumb.size;
-      if (bytes > MAX_DRAFT_BYTES) throw new Error('Converted pages are too large. Split this PDF into smaller books.');
       pages.push({ number, image, thumbnail: thumb, width: canvas.width, height: canvas.height, activities: [], ...extracted });
       onProgress({ completed: number, total: pdf.numPages });
       page.cleanup();

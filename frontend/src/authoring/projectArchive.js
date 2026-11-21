@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import { MAX_DRAFT_BYTES, MAX_PAGES, validateActivity } from './project.js';
+import { MAX_PAGES, validateActivity } from './project.js';
 import { youtubeId } from './readerBook.js';
 
 const abort = signal => { if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError'); };
@@ -31,22 +31,19 @@ export async function exportProject(draft, { signal, onProgress } = {}) {
 }
 
 export async function importProject(file, { signal } = {}) {
-  if (!file?.size || file.size > MAX_DRAFT_BYTES) throw new Error('Choose a draft ZIP smaller than 200 MB.');
+  if (!file?.size) throw new Error('Choose a non-empty draft ZIP.');
   const zip = await JSZip.loadAsync(file);
   abort(signal);
   const entries = Object.values(zip.files).filter(entry => !entry.dir);
-  if (entries.length > 1500 || entries.reduce((size, entry) => size + (entry._data?.uncompressedSize || 0), 0) > MAX_DRAFT_BYTES) throw new Error('This draft contains too much uncompressed data.');
+  if (entries.length > 1500) throw new Error('This draft contains too many files.');
   const config = zip.file('project.json');
   if (!config || config._data?.uncompressedSize > 2 * 1024 * 1024) throw new Error('This ZIP does not contain a valid Book-Activity project.');
   const data = JSON.parse(await config.async('string'));
   if (data.format !== 'book-activity-draft' || data.version !== 1 || !Array.isArray(data.pages) || !data.pages.length || data.pages.length > MAX_PAGES || typeof data.title !== 'string' || data.title.length > 200) throw new Error('Unsupported or invalid draft project.');
-  let bytes = 0;
   const blob = async (path, type) => {
     abort(signal);
     if (!safePath(path) || !zip.file(path)) throw new Error('A page or activity file is missing from this draft.');
     const result = new Blob([await zip.file(path).async('uint8array')], { type });
-    bytes += result.size;
-    if (bytes > MAX_DRAFT_BYTES) throw new Error('This draft is too large to open.');
     return result;
   };
   const pages = [];

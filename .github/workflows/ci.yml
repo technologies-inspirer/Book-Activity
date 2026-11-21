@@ -1,0 +1,68 @@
+name: Project CI
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: book_activity_ci
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U ci -d book_activity_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql://ci_app:ci-app-only-password@127.0.0.1:5432/book_activity_ci
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            backend/package-lock.json
+      - run: npm ci --prefix frontend
+      - run: npm ci --prefix backend
+      - run: npm test --prefix frontend
+      - name: Create unprivileged test database role
+        run: |
+          docker exec '${{ job.services.postgres.id }}' psql -U ci -d book_activity_ci -v ON_ERROR_STOP=1 -c "CREATE ROLE ci_app LOGIN PASSWORD 'ci-app-only-password' NOSUPERUSER NOCREATEDB NOCREATEROLE" -c 'ALTER DATABASE book_activity_ci OWNER TO ci_app'
+      - run: npm run db:migrate --prefix backend
+      - run: npm run test:db --prefix backend
+      - name: Build production image
+        run: docker build --tag book-activity:ci .
+      - name: Smoke test production container
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run -d --name book-activity-ci --network host -e DATABASE_URL -e APP_ORIGINS=http://127.0.0.1:3001 book-activity:ci
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3001/api/health/db; then break; fi
+            sleep 2
+          done
+          curl --fail --silent http://127.0.0.1:3001/api/health/db
+          curl --fail --silent http://127.0.0.1:3001/Book-Activity/ | grep -q '<html'
+          test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:3001/api/learning)" = 401
+          test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:3001/Book-Activity/books/stemford-english-1/p001.jpg)" = 401
+      - name: Container logs
+        if: failure()
+        run: docker logs book-activity-ci || true
+      - name: Stop smoke test container
+        if: always()
+        run: docker rm -f book-activity-ci || true
