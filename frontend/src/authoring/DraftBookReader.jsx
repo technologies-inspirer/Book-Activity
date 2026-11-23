@@ -6,7 +6,7 @@ import { books } from '../data/books.js';
 
 export function DraftBookReader(props) {
   const { draft, selected, dirty, busy } = props;
-  const host = useRef(null), controller = useRef(null), latest = useRef(props);
+  const host = useRef(null), controller = useRef(null), latest = useRef(props), opened = useRef(false);
   latest.current = props;
   useEffect(() => {
     const urls = draft.pages.map(page => URL.createObjectURL(page.image));
@@ -16,12 +16,14 @@ export function DraftBookReader(props) {
       onPositionChange: (_id, number) => latest.current.onSelect(number),
       readerOptions: {
         initialPage: latest.current.selected,
+        animateOpen: !opened.current,
         onClose: () => latest.current.onClose(),
         onReady: value => { controller.current = value; },
         onActivity: (activity, number) => latest.current.onActivity(activity, number),
         isBlocked: () => !!latest.current.activityOpen
       }
     });
+    opened.current = true;
     const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { cleanup(); urls.forEach(url => URL.revokeObjectURL(url)); controller.current = null; document.body.style.overflow = overflow; };
@@ -34,8 +36,7 @@ export function DraftBookReader(props) {
       {props.readOnly ? <><strong>{draft.title}</strong><span className="draft-reader-spacer" /><button className="portal-secondary" onClick={props.onClose}>Back to library</button>{props.onCustomize && <button className="portal-primary" onClick={props.onCustomize}>Edit Book</button>}</> : <>
       <span className="portal-pill">{dirty ? 'Unsaved changes' : 'Saved'}</span>
       <label>Selected page<select aria-label="Selected book page" value={selected} disabled={!!busy} onChange={event => controller.current?.goToPage(Number(event.target.value))}>{draft.pages.map(page => <option key={page.number} value={page.number}>{page.number}</option>)}</select></label>
-      <button className="portal-secondary pdf-danger" disabled={!!busy} onClick={props.onDelete}>Delete Page</button>
-      <button className="portal-secondary" disabled={!!busy} onClick={props.onCustomize}>Customize Page</button>
+      <button className="portal-secondary" disabled={!!busy} onClick={props.onCustomize}>Customize Book</button>
       <span className="draft-reader-spacer" />
       <button className="portal-primary" disabled={!!busy || !dirty} onClick={props.onUpdate}>{busy ? 'Saving...' : 'Save Changes'}</button>
       <button className="portal-secondary" disabled={!!busy} onClick={props.onCancel}>Cancel</button>

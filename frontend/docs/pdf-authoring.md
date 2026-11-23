@@ -19,3 +19,12 @@ PDF uploads have no configured file-size limit; the 200-page limit remains. Conv
 Conversion uses [Mozilla PDF.js](https://mozilla.github.io/pdf.js/examples/) with locally bundled worker, fonts, character maps and image decoders under the Vite base path. No CDN or conversion server is needed. PDF and ZIP libraries load separately from the portal. Node 22.13 or newer is required.
 
 Before publishing, try Urdu/scanned PDFs and a larger book on school devices. Some original local lesson videos are absent from this checkout. YouTube playback and narration require suitable network/browser support.
+
+
+### Search, QR links and the book editor
+
+Use **Search books** to choose a series and class (subject and book name are optional), then click **Search**. Matching published books appear below with **Open** and **Edit**. **Upload new book** keeps uploading separate from the search results. Uploaded books use the same cover opening and page-turn animations as the existing reader.
+
+PDF conversion detects readable printed QR codes and keeps their page positions. For older uploads, opening the book in the editor scans the saved page images; save the book to persist these positions. In **Edit / Customize Book**, page thumbnails, the selected page and tools sit alongside one another. Choose a highlighted QR or its **Add link** action, enter button text, colour and an HTTP(S) destination, then save the activity and **Save Changes**. The original printed QR stays visible and becomes clickable after its destination is supplied. Its companion button uses a standard size and small icon; position can be moved without entering size values. A QR's encoded destination is not automatically substituted for the administrator's link.
+
+Readable QR codes are required for automatic positioning. A low-resolution or damaged code may not be found; a standard link button can still be added from Page Templates. Existing uploads are updated when their edited book is saved, without re-uploading its PDF. Download Saved ZIP also includes the detected QR positions and configured links.

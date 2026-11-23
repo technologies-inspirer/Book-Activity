@@ -1,3 +1,4 @@
+import { validatePrintedQrs } from './pageLinks.js';
 import { restoreExistingActivity } from './existingActivities.js';
 
 export const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
@@ -90,6 +91,12 @@ export function activityPresentation(input) {
   if (input.placement) {
     if (!validateArea(input.placement)) throw new Error('Keep the button position and size inside the page (0-100%).');
     result.placement = Object.fromEntries(['x', 'y', 'w', 'h'].map(key => [key, input.placement[key]]));
+  }
+  if (input.fixedButton) result.fixedButton = true;
+  if (input.qrAnchor) {
+    if (input.type !== 'link') throw new Error('A printed QR must open a web link.');
+    result.qrAnchor = validatePrintedQrs([input.qrAnchor])[0];
+    result.fixedButton = true;
   }
   if (input.buttonColour) {
     if (!/^#[a-f0-9]{6}$/i.test(input.buttonColour)) throw new Error('Choose a valid button colour.');

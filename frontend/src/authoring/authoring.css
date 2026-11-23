@@ -184,3 +184,26 @@
   .admin-shell .draft-cover-button img { width: 126px; height: 176px; }
   .admin-shell .published-book-list article { padding: 10px 0; gap: 12px; }
 }
+
+/* Uploaded books share one compact button format. Printed QR ink stays visible. */
+.pdf-layout-activity.is-standard, .reader-activity-overlay.is-standard { gap: .55em; border-radius: 999px; padding: .25em .65em; font-size: clamp(8px, 2.4cqw, 14px); font-weight: 700; line-height: 1.15; box-shadow: 0 2px 5px #173b3626; }
+.uploaded-button-icon { display: inline-flex; flex: 0 0 auto; width: 1em; height: 1em; }
+.uploaded-button-icon svg, svg.uploaded-button-icon { width: 1em; height: 1em; fill: currentColor; }
+.reader-activity-overlay.is-standard > span:last-child, .pdf-layout-activity.is-standard > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.printed-qr-hotspot, .pdf-qr-location { position: absolute; z-index: 9; display: block; padding: 0; background: transparent; border: 0; cursor: pointer; border-radius: 2px; }
+.printed-qr-hotspot:hover, .printed-qr-hotspot:focus-visible { outline: 2px solid #0b625e; outline-offset: 3px; background: #0b625e10; }
+.pdf-qr-location { outline: 2px dashed #0b625e; outline-offset: 2px; }
+.pdf-qr-location span { position: absolute; bottom: 100%; left: 0; white-space: nowrap; background: #0b625e; color: white; font-size: 10px; padding: 2px 5px; border-radius: 3px; }
+.pdf-workspace-tabs { margin: 16px 0; }
+.pdf-search-form { display: grid; gap: 16px; align-content: center; }
+.pdf-search-form button { justify-self: start; min-width: 120px; }
+.published-book-list article > .portal-actions { flex: 0 0 auto; }
+.pdf-customization { padding-bottom: 24px; }
+@media (min-width: 1024px) { .pdf-page-thumbnails { position: sticky; top: 15px; } }
+
+.pdf-layout-page { container-type: inline-size; }
+
+.pdf-customization-tools { display: grid; gap: 16px; }
+.pdf-customization-tools .pdf-linked-activities { margin-top: 0; }
+.pdf-customization-tools .pdf-linked-activities:has(.pdf-linked-activity) { max-height: 340px; overflow-y: auto; }
+.pdf-customization-tools .pdf-activity-tabs { margin-bottom: 0; }

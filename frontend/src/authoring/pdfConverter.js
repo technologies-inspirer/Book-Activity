@@ -1,3 +1,4 @@
+import { detectPrintedQrs } from './printedQr.js';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import { MAX_PAGES } from './project.js';
@@ -44,13 +45,14 @@ export async function convertPdf(file, { signal, onProgress, lessonLinks, origin
       canvas.width = Math.ceil(viewport.width); canvas.height = Math.ceil(viewport.height);
       await page.render({ canvasContext: canvas.getContext('2d'), viewport, background: '#ffffff' }).promise;
       checkAbort(signal);
+      const printedQrs = detectPrintedQrs(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height));
       const image = await canvasBlob(canvas);
       const [content, annotations] = await Promise.all([page.getTextContent(), page.getAnnotations({ intent: 'display' })]);
       const extracted = extractPdfContent(content, annotations, lessonLinks);
       thumbnail.width = Math.max(1, Math.round(canvas.width / canvas.height * 180)); thumbnail.height = 180;
       thumbnail.getContext('2d').drawImage(canvas, 0, 0, thumbnail.width, thumbnail.height);
       const thumb = await canvasBlob(thumbnail);
-      pages.push({ number, image, thumbnail: thumb, width: canvas.width, height: canvas.height, activities: [], ...extracted });
+      pages.push({ number, image, thumbnail: thumb, width: canvas.width, height: canvas.height, activities: [], printedQrs, qrScanned: true, ...extracted });
       onProgress({ completed: number, total: pdf.numPages });
       page.cleanup();
       await new Promise(resolve => setTimeout(resolve, 0));

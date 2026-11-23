@@ -78,7 +78,7 @@ export function AdminPortal({ page = 'overview', segments = [], onBookOpen }) {
           {selected === 'series' && <AddSeries />}
           {selected === 'classes' && <CatalogAssignments />}
           {selected === 'subjects' && <CatalogAssignments subjects />}
-          {selected === 'pdf-activities' && <Suspense fallback={<p role="status">Opening PDF editor...</p>}><PdfAuthoring /></Suspense>}
+          {selected === 'pdf-activities' && <Suspense fallback={<p role="status">Opening PDF editor...</p>}><PdfAuthoring editOnOpen={segments[0] === 'edit'} /></Suspense>}
           {selected === 'books' && (
             <>
               <div className="portal-page-heading">

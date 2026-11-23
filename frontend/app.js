@@ -1,3 +1,4 @@
+import { pageButtonPlacement } from './src/authoring/pageLinks.js';
 import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
@@ -212,11 +213,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const actions = el('div', { class: 'draft-reader-page-tools' });
       if (pg.text?.trim()) actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); speak(`Page ${idx + 1}`, pg.text); } }, 'Listen'));
       actions.append(el('button', { class: 'draft-reader-tool', onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); brush.erase = false; openFocus(book, idx, node, true); } }, 'Write / Colour'));
-      (pg.linkedActivities || []).forEach(activity => {
+      (pg.linkedActivities || []).forEach((activity, activityIndex) => {
         const open = e => { e.stopPropagation(); selectReaderPage(idx + 1); readerOptions.onActivity?.(activity, idx + 1); };
-        if (activity.placement) {
-          const p = activity.placement;
-          const overlay = el('button', { class: `reader-activity-overlay${activity.type === 'qr' ? ' is-qr' : ''}`, 'aria-label': activity.title, style: `left:${p.x}%;top:${p.y}%;width:${p.w}%;height:${p.h}%;background:${activity.buttonColour || '#0b625e'}`, onclick: open });
+        if (activity.qrAnchor) {
+          const p = activity.qrAnchor;
+          node.append(el('a', { class: 'printed-qr-hotspot', href: activity.url, target: '_blank', rel: 'noopener noreferrer', 'aria-label': activity.title, title: activity.title, style: `left:${p.x}%;top:${p.y}%;width:${p.w}%;height:${p.h}%`, onclick: e => { e.stopPropagation(); selectReaderPage(idx + 1); } }));
+        }
+        if (activity.placement || activity.fixedButton) {
+          const p = pageButtonPlacement(activity, activityIndex);
+          const overlay = el('button', { class: `reader-activity-overlay${activity.fixedButton ? ' is-standard' : ''}${activity.type === 'qr' ? ' is-qr' : ''}`, 'aria-label': activity.title, style: `left:${p.x}%;top:${p.y}%;width:${p.w}%;height:${p.h}%;background:${activity.buttonColour || '#0b625e'}`, onclick: open });
+          if (activity.fixedButton) overlay.append(el('span', { class: 'uploaded-button-icon', html: ['link', 'video'].includes(activity.type) ? I.play : I.pen }));
           if (activity.type === 'qr') overlay.append(el('img', { src: activity.qrImage, alt: '' }));
           overlay.append(el('span', {}, activity.title)); node.append(overlay);
         } else actions.append(el('button', { class: 'draft-reader-tool', style: `background:${activity.buttonColour || '#0b625e'}`, onclick: open }, activity.title));
@@ -2522,7 +2528,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
 
   if (readerBook) {
     selectedReaderPage = clamp(selectedReaderPage, 1, readerBook.pages.length);
-    showReader(readerBook, Math.floor((selectedReaderPage - 1) / 2), false);
+    showReader(readerBook, Math.floor((selectedReaderPage - 1) / 2), readerOptions.animateOpen !== false);
     // Fetch YouTube's player in the background while the child reads, so the first video starts sooner.
     if (location.protocol !== 'file:') schedule(() => loadYouTube().catch(() => {}), 1500);
     readerOptions.onReady?.({ getSelectedPage: () => selectedReaderPage, goToPage: number => { if (!R?.busy) { selectedReaderPage = clamp(number, 1, readerBook.pages.length); R.show(Math.floor((selectedReaderPage - 1) / 2)); } } });

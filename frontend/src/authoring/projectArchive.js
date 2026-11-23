@@ -1,3 +1,4 @@
+import { validatePrintedQrs } from './pageLinks.js';
 import JSZip from 'jszip';
 import { MAX_PAGES, validateActivity } from './project.js';
 import { youtubeId } from './readerBook.js';
@@ -20,7 +21,7 @@ export async function exportProject(draft, { signal, onProgress } = {}) {
       }
       return metadata;
     });
-    return { number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, text: page.text || '', embeddedVideos: page.embeddedVideos || [], imagePath: `${prefix}.jpg`, thumbnailPath: `${prefix}-thumbnail.jpg`, activities };
+    return { number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, printedQrs: validatePrintedQrs(page.printedQrs), qrScanned: page.qrScanned === true, text: page.text || '', embeddedVideos: page.embeddedVideos || [], imagePath: `${prefix}.jpg`, thumbnailPath: `${prefix}-thumbnail.jpg`, activities };
   });
   const manifest = JSON.stringify({ format: 'book-activity-draft', version: 1, title: draft.title, fileName: draft.fileName, originalBookId: draft.originalBookId || '', rtl: !!draft.rtl, seriesId: draft.seriesId, classId: draft.classId, subjectId: draft.subjectId, pages }, null, 2);
   if (new TextEncoder().encode(manifest).length > 2 * 1024 * 1024) throw new Error('Draft settings are too large. Split this book into smaller drafts.');
@@ -59,7 +60,7 @@ export async function importProject(file, { signal } = {}) {
     if (page.sourcePageNumber !== undefined && (!Number.isInteger(page.sourcePageNumber) || page.sourcePageNumber < 1 || page.sourcePageNumber > MAX_PAGES)) throw new Error('Invalid original page number in this draft.');
     if (page.text !== undefined && (typeof page.text !== 'string' || page.text.length > 4000)) throw new Error('Invalid page text in this draft.');
     if (page.embeddedVideos !== undefined && (!Array.isArray(page.embeddedVideos) || page.embeddedVideos.length > 20 || !page.embeddedVideos.every(video => youtubeId(video?.url) && typeof video.title === 'string' && video.title.length <= 200))) throw new Error('Invalid linked video in this draft.');
-    pages.push({ number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, text: page.text || '', embeddedVideos: page.embeddedVideos || [], image: await blob(page.imagePath, 'image/jpeg'), thumbnail: await blob(page.thumbnailPath, 'image/jpeg'), activities });
+    pages.push({ number: page.number, sourcePageNumber: page.sourcePageNumber || page.number, width: page.width, height: page.height, printedQrs: validatePrintedQrs(page.printedQrs), qrScanned: page.qrScanned === true, text: page.text || '', embeddedVideos: page.embeddedVideos || [], image: await blob(page.imagePath, 'image/jpeg'), thumbnail: await blob(page.thumbnailPath, 'image/jpeg'), activities });
   }
   abort(signal);
   if (data.originalBookId !== undefined && (typeof data.originalBookId !== 'string' || data.originalBookId.length > 200 || !/^[a-z0-9-]*$/.test(data.originalBookId))) throw new Error('Invalid original book reference.');

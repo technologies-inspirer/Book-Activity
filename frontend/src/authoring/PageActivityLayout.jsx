@@ -1,14 +1,16 @@
+import { pageButtonPlacement } from './pageLinks.js';
 import { useRef } from 'react';
 import { BlobImage } from './useBlobUrl.js';
 
-export function PageActivityLayout({ page, onChange }) {
+export function PageActivityLayout({ page, onChange, onSelectQr }) {
   const host = useRef(null);
   const drag = useRef(null);
   return <div className="pdf-page-image pdf-layout-page" ref={host}>
     <BlobImage blob={page.image} alt={`PDF page ${page.number}`} />
+    {(page.printedQrs || []).map((qr, index) => <button type="button" key={qr.id} className="pdf-qr-location" aria-label={`Configure printed QR ${index + 1}`} style={{ left: `${qr.x}%`, top: `${qr.y}%`, width: `${qr.w}%`, height: `${qr.h}%` }} onClick={() => onSelectQr(qr)}><span>QR {index + 1}</span></button>)}
     {page.activities.map((activity, index) => {
-      const p = activity.placement || { x: 4, y: Math.min(85, 5 + index * 12), w: 25, h: 10 };
-      return <button type="button" key={activity.id} className={`pdf-layout-activity${activity.type === 'qr' ? ' is-qr' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%`, width: `${p.w}%`, height: `${p.h}%`, background: activity.buttonColour || '#0b625e' }} aria-label={`Move ${activity.title}; use arrow keys for precise placement`} onPointerDown={event => {
+      const p = pageButtonPlacement(activity, index);
+      return <button type="button" key={activity.id} className={`pdf-layout-activity${activity.type === 'qr' ? ' is-qr' : ''}${activity.fixedButton ? ' is-standard' : ''}`} style={{ left: `${p.x}%`, top: `${p.y}%`, width: `${p.w}%`, height: `${p.h}%`, background: activity.buttonColour || '#0b625e' }} aria-label={`Move ${activity.title}; use arrow keys for precise placement`} onPointerDown={event => {
         event.currentTarget.setPointerCapture(event.pointerId);
         drag.current = { id: activity.id, startX: event.clientX, startY: event.clientY, placement: p };
       }} onPointerMove={event => {
@@ -23,7 +25,7 @@ export function PageActivityLayout({ page, onChange }) {
         if (!move) return;
         event.preventDefault();
         onChange(activity.id, { ...p, x: Math.max(0, Math.min(100 - p.w, p.x + move[0])), y: Math.max(0, Math.min(100 - p.h, p.y + move[1])) });
-      }}>{activity.type === 'qr' && <img src={activity.qrImage} alt="" />}<span>{activity.title}</span></button>;
+      }}>{activity.fixedButton && <svg className="uploaded-button-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>}{activity.type === 'qr' && <img src={activity.qrImage} alt="" />}<span>{activity.title}</span></button>;
     })}
   </div>;
 }

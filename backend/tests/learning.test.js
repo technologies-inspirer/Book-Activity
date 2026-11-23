@@ -59,6 +59,9 @@ test('admin catalog and published PDF projects persist and enforce school access
     const page = await readFile(new URL(`../../frontend/${catalog[0].dir}/cover.jpg`, import.meta.url));
     const zip = new JSZip(); zip.file('page.jpg', page);
     const manifest = { format: 'book-activity-draft', version: 1, title: 'Published test book', originalBookId: catalog[0].id, seriesId, classId: 'class-8', subjectId: 'history', pages: [{ number: 1, width: 600, height: 800, imagePath: 'page.jpg', thumbnailPath: 'page.jpg', activities: [] }] };
+    const qrAnchor = { id: 'qr-test', x: 10, y: 60, w: 12, h: 9 };
+    manifest.pages[0].printedQrs = [qrAnchor]; manifest.pages[0].qrScanned = true;
+    manifest.pages[0].activities = [{ id: 'lesson-test', type: 'link', title: 'Watch lesson', url: 'https://example.com/manual-lesson', buttonColour: '#195a73', fixedButton: true, qrAnchor }];
     zip.file('project.json', JSON.stringify(manifest));
     const archive = await zip.generateAsync({ type: 'nodebuffer' });
     assert.equal((await admin('/admin/library/books', 'POST', Buffer.from('bad zip'), true)).status, 400);
@@ -76,6 +79,13 @@ test('admin catalog and published PDF projects persist and enforce school access
     assert.equal((await reader(`/library/books/${bookId}/cover`)).status, 403);
     await admin(`/admin/users/${school.data.account.id}`, 'PATCH', { schoolAssignments: [{ classId: 'class-8', subjects: [{ seriesId, subjectId: 'history' }] }] });
     assert.equal((await reader(`/library/books/${bookId}/archive`)).status, 200);
+    const savedArchive = await JSZip.loadAsync((await reader(`/library/books/${bookId}/archive`)).data);
+    const savedManifest = JSON.parse(await savedArchive.file('project.json').async('string'));
+    assert.deepEqual(savedManifest.pages[0].printedQrs, [qrAnchor]);
+    assert.equal(savedManifest.pages[0].activities[0].url, 'https://example.com/manual-lesson');
+    const badLink = structuredClone(manifest); badLink.pages[0].activities[0].url = 'javascript:alert(1)';
+    zip.file('project.json', JSON.stringify(badLink));
+    assert.equal((await admin(`/admin/library/books/${bookId}`, 'PUT', await zip.generateAsync({ type: 'nodebuffer' }), true)).status, 400);
     manifest.title = 'Updated test book'; zip.file('project.json', JSON.stringify(manifest));
     assert.equal((await admin(`/admin/library/books/${bookId}`, 'PUT', await zip.generateAsync({ type: 'nodebuffer' }), true)).status, 200);
     assert.equal((await reader('/learning')).data.publishedBooks.find(book => book.id === bookId).title, 'Updated test book');

@@ -1,3 +1,4 @@
+import { validatePrintedQrs } from '../../frontend/src/data/printedQrPositions.js';
 import express, { Router } from 'express';
 import JSZip from 'jszip';
 import { randomUUID } from 'node:crypto';
@@ -28,6 +29,14 @@ export async function validateArchive(buffer, state) {
   const safe = path => typeof path === 'string' && /^[a-zA-Z0-9_./-]+$/.test(path) && !path.startsWith('/') && !path.split('/').includes('..') && zip.file(path);
   for (const [index, page] of data.pages.entries()) {
     if (page.number !== index + 1 || !Number.isInteger(page.width) || !Number.isInteger(page.height) || page.width < 1 || page.height < 1 || page.width > 4096 || page.height > 4096 || !safe(page.imagePath) || !safe(page.thumbnailPath) || !Array.isArray(page.activities) || (count += page.activities.length) > 1000) throw fail(400, 'Invalid page or activity data.');
+    try {
+      validatePrintedQrs(page.printedQrs);
+      for (const activity of page.activities) if (activity.qrAnchor) {
+        validatePrintedQrs([activity.qrAnchor]);
+        const url = new URL(activity.url);
+        if (activity.type !== 'link' || !['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.href.length > 2000) throw new Error();
+      }
+    } catch { throw fail(400, 'Invalid printed QR position or link.'); }
     for (const activity of page.activities) if (activity.mediaPath && !safe(activity.mediaPath)) throw fail(400, 'An activity file is missing.');
   }
   const first = zip.file(data.pages[0].thumbnailPath);
