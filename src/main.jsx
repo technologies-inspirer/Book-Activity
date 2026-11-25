@@ -10,6 +10,8 @@ import './theme.css';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<LoadingScreen />);
+// installable as a tablet app (manifest.webmanifest, sw.js)
+import('./installApp.js').then(module => module.startInstallApp()).catch(error => console.warn('App install unavailable.', error));
 
 async function startApp() {
   const minimumStartup = new Promise(resolve => setTimeout(resolve, 1000));   // the owl shows briefly, not for long

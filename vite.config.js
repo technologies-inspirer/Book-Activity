@@ -47,6 +47,10 @@ export default defineConfig({
           });
           }
         }
+        // the tablet-app files sit beside index.html (GitHub Pages serves them from the repository root)
+        for (const file of ['manifest.webmanifest', 'sw.js']) {
+          if (existsSync(resolve(projectRoot, file))) cpSync(resolve(projectRoot, file), resolve(outputDir, file));
+        }
       }
     }
   ],

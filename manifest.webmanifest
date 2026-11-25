@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "Javed Publishers — Interactive Books",
+  "short_name": "Javed Books",
+  "description": "Interactive books for Play Group, Nursery and Prep: the publisher's videos, picture games, tracing and colouring.",
+  "lang": "en",
+  "start_url": "./#/login",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "background_color": "#fff7e8",
+  "theme_color": "#004344",
+  "categories": ["education", "books", "kids"],
+  "icons": [
+    { "src": "assets/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/app-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

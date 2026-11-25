@@ -114,3 +114,17 @@ body { background: var(--theme-bg); color: var(--theme-text); }
 .story-dots button { background: #bad6cc; }
 .story-dots button.on { background: var(--theme-teal); }
 .story-end { background: #fbf8f1eb; }
+
+/* "Install app" offer (src/installApp.js): a small bar at the bottom, above everything, until installed or closed */
+.install-app {
+  position: fixed; z-index: 2147483000; left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); translate: -50% 0;
+  display: flex; align-items: center; gap: 12px; width: min(560px, calc(100vw - 24px)); padding: 10px 10px 10px 12px;
+  border: 1px solid #d8e6dc; border-radius: 20px; background: #fffdf7; color: var(--theme-text);
+  box-shadow: 0 10px 30px #0f3b3a33; font: 700 14px/1.35 var(--ui, system-ui, sans-serif);
+}
+.install-app img { width: 44px; height: 44px; flex: none; border-radius: 12px; }
+.install-app span { flex: 1; min-width: 0; }
+.install-app-go { flex: none; min-height: 44px; padding: 0 18px; border: 0; border-radius: 14px; background: var(--theme-teal); color: #fff; font: inherit; cursor: pointer; }
+.install-app-close { flex: none; width: 40px; height: 40px; border: 0; border-radius: 12px; background: transparent; color: var(--theme-muted); font-size: 24px; line-height: 1; cursor: pointer; }
+.install-app-close:hover { background: #eef4ee; }
+@media (max-width: 480px) { .install-app { font-size: 13px; } .install-app-go { padding: 0 12px; } }
