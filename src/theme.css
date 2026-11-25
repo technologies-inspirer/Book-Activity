@@ -127,4 +127,9 @@ body { background: var(--theme-bg); color: var(--theme-text); }
 .install-app-go { flex: none; min-height: 44px; padding: 0 18px; border: 0; border-radius: 14px; background: var(--theme-teal); color: #fff; font: inherit; cursor: pointer; }
 .install-app-close { flex: none; width: 40px; height: 40px; border: 0; border-radius: 12px; background: transparent; color: var(--theme-muted); font-size: 24px; line-height: 1; cursor: pointer; }
 .install-app-close:hover { background: #eef4ee; }
-@media (max-width: 480px) { .install-app { font-size: 13px; } .install-app-go { padding: 0 12px; } }
+body:has(.reader) .install-app { display: none; }
+@media (max-width: 480px) {
+  .install-app { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; font-size: 13px; }
+  .install-app-go { grid-column: 2; justify-self: start; padding-inline: 12px; }
+  .install-app-close { grid-column: 3; grid-row: 1; }
+}

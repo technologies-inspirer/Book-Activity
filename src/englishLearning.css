@@ -166,9 +166,12 @@
 }
 @media (orientation: landscape) and (max-height: 520px) {
   .english-learning .english-reader-layout { padding-top: 6px; gap: 8px; }
+  .english-learning .rfoot { padding-block: 4px; }
   .english-learning .english-reader-dock { padding: 3px; gap: 2px; flex-shrink: 0; }
   .english-learning .english-reader-dock button { padding: 5px 8px; min-height: 36px; }
   .english-learning .rbar { min-height: 48px; }
   .english-learning .rstage { min-height: 0; padding-block: 6px; }
-  .english-learning .book { width: min(100%, calc((100dvh - 170px) * var(--ratio) * 2)); }
+}
+@media (orientation: landscape) and (min-width: 681px) and (max-height: 520px) {
+  .english-letter-rail { width: clamp(52px, 10vw, 84px); padding: 6px; }
 }
