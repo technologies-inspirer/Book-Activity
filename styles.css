@@ -771,6 +771,14 @@ img.ink { pointer-events: none; }
   .activity-open .game-card .modal-x { top: -8px; right: -8px; }
 }
 /* a phone held sideways: thin bars, so the book gets the whole height */
+@media (orientation: landscape) {
+  .reader .rstage { container-type: size; }
+  .reader .rstage .book {
+    /* Leave room for the cover around the spread and fit the space below the toolbars. */
+    width: min(calc(100% - 26px), calc(max(64px, 100vh - 160px) * var(--ratio) * 2));
+    width: min(calc(100% - 26px), calc(max(0px, 100cqh - 18px) * var(--ratio) * 2));
+  }
+}
 @media (orientation: landscape) and (max-height: 520px) {
   .rbar { padding: 4px 10px; gap: 8px; }
   .rbar .btn { padding: 4px 10px; font-size: 12px; }
