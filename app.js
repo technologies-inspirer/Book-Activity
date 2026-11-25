@@ -57,6 +57,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   const activityOpen = () => !!(storyEl || gameEl || focusEl || modalEl?.querySelector('.video-card, .question-scene'));
   const sidewaysBook = () => matchMedia('(orientation: portrait) and (max-width: 820px)').matches;
   const touchScreen = () => matchMedia('(any-pointer: coarse)').matches;
+  const lightweightReader = navigator.deviceMemory == null ? touchScreen() : navigator.deviceMemory <= 4;
   function holdLandscape() {
     clearTimeout(landscapeRelease); landscapeRelease = null;
     if (landscapeHeld || !touchScreen()) return;
@@ -1970,6 +1971,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         if (!(h.video && Math.floor((h.page - 1) / 2) === s)) history.replaceState(history.state, '', link(book, a));
         onPositionChange?.(book.id, a);
       }
+      if (lightweightReader) return;
       // Fetch the neighbouring spreads now so the next page turn has its pictures ready.
       [-2, -1, 2, 3].forEach(k => { const p = pageOf(book, s * 2 + k); if (p?.img) new Image().src = p.img; });
     }
@@ -2011,6 +2013,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     function flip(dir) {
       const s = R.spread, t = s + dir;
       if (R.busy || t < 0 || t >= spreads) return;
+      if (lightweightReader) { pageSound(); show(t); return; }
       R.busy = true;
       stopSpeak(); closeMenu();
       pageSound();
@@ -2040,6 +2043,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     function leafTo(t) {
       t = clamp(t, 0, spreads - 1);
       if (R.busy || t === R.spread) return;
+      if (lightweightReader) { show(t); return; }
       if (Math.abs(t - R.spread) === 1) return flip(t - R.spread);
       stopLessonVideo(); lessonView.hidden = true; root.classList.remove('english-lesson-open');
       closeFocus(false); closeGame(); closeStory(); closeModal();
@@ -2085,6 +2089,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     function closeBook() {
       if (R.busy) return;
       if (!lessonView.hidden) { closeLesson(); return; }
+      if (lightweightReader) {
+        if (readerBook) readerOptions.onClose?.(); else location.hash = link(book);
+        return;
+      }
       R.busy = true;
       stopSpeak(); closeMenu();
       pageSound('book-open');
@@ -2106,7 +2114,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       restoreLesson: key => { const lesson = lessons.find(item => item.key === key); if (!lesson || R.busy) return false; selectLesson(lesson, true); return true; },
       stepLesson: direction => selectLesson(lessons[clamp(lessons.indexOf(currentLesson) + direction, 0, lessons.length - 1)]) };
     show(startSpread);
-    if (intro) openBook();
+    if (intro && !lightweightReader) openBook();
   }
 
   // Recordings of a real book (CC0, "Book Flip Sounds" by Voltiment555 on OpenGameArt).
