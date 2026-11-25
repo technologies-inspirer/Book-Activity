@@ -1,5 +1,5 @@
 // Install the site as a tablet app: an "Install app" button when the browser offers it (Chrome, Edge, Samsung
-// Internet on Android tablets), and a short "Add to Home Screen" note on iPad Safari, which has no install prompt.
+// Internet on Android tablets), and the menu steps where it does not (Opera, Samsung Internet, Firefox, iPad Safari).
 // Once installed it opens full screen from its own icon (manifest.webmanifest), so neither shows there.
 
 const installed = () => matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches || navigator.standalone === true;
@@ -38,8 +38,10 @@ export function startInstallApp() {
     navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`, { scope: import.meta.env.BASE_URL }).catch(error => console.warn('App install: no service worker.', error));
   }
   if (installed() || remembered()) return;
+  let offered = false;
   window.addEventListener('beforeinstallprompt', event => {
     event.preventDefault();
+    offered = true;
     const box = banner('Use Javed Books as an app on this tablet: full screen, from its own icon.', async () => {
       box.remove();
       event.prompt();
@@ -47,9 +49,16 @@ export function startInstallApp() {
     });
   });
   window.addEventListener('appinstalled', () => document.querySelector('.install-app')?.remove());
-  // iPad and iPhone Safari: no prompt, so explain the two taps once
-  const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (ios && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)) {
-    setTimeout(() => { if (!installed()) banner('Use it as an app: tap Share, then "Add to Home Screen".'); }, 2500);
+  // Browsers without an install prompt (or that offer it only from their menu) get their own steps, once.
+  // The same app installs in each: manifest.webmanifest, sw.js.
+  const ua = navigator.userAgent;
+  const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const steps = ios ? (/CriOS|FxiOS|EdgiOS|OPT\//.test(ua) ? null : 'Use it as an app: tap Share, then "Add to Home Screen".')
+    : /OPR\/|OPT\/|Opera/.test(ua) ? 'Use it as an app in Opera: tap the menu (⋮ or O), then "Add to", then "Home screen".'
+    : /SamsungBrowser/.test(ua) ? 'Use it as an app in Samsung Internet: tap the menu (≡), then "Add page to", then "Home screen".'
+    : /Firefox|FxiOS/.test(ua) ? 'Use it as an app in Firefox: tap the menu (⋮), then "Install" or "Add to Home screen".'
+    : null;
+  if (steps && matchMedia('(any-pointer: coarse)').matches) {
+    setTimeout(() => { if (!offered && !installed() && !remembered()) banner(steps); }, 3000);
   }
 }
