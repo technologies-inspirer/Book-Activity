@@ -1,0 +1,5 @@
+# Add to the shared office Caddy configuration AND its ATS repository source.
+ecosystem.javedpublishers.com {
+    encode zstd gzip
+    reverse_proxy book-activity-gateway:80
+}

@@ -14,10 +14,11 @@ import { SiteHeader } from './components/SiteHeader.jsx';
 import { GlobalLoader } from './loading/LoadingScreen.jsx';
 import './portal/portal.css';
 import './portal/mobile.css';
+import { PwaInstall } from './pwa/PwaInstall.jsx';
 const PublishedBookReader = lazy(() => import('./authoring/PublishedBookReader.jsx').then(module => ({ default: module.PublishedBookReader })));
 
 export function App() {
-  return <DemoProvider><AppRoutes /><GlobalLoader /></DemoProvider>;
+  return <DemoProvider><AppRoutes /><GlobalLoader /><PwaInstall /></DemoProvider>;
 }
 
 function AppRoutes() {

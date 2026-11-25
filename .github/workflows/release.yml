@@ -72,12 +72,18 @@ jobs:
     # Off until the office VM, runner and environment have been configured.
     if: vars.ENABLE_OFFICE_DEPLOYMENT == 'true'
     runs-on: [self-hosted, Linux, X64, office-production]
+    timeout-minutes: 45
     environment: production
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out deployment scripts only
+        uses: actions/checkout@v4
+        timeout-minutes: 10
         with:
           ref: ${{ needs.approve-ref.outputs.sha }}
           persist-credentials: false
+          # The image already contains the book library; the office VM only needs
+          # these scripts and Compose files, not another download of every book.
+          sparse-checkout: deploy
       - name: Deploy approved image
         env:
           APP_IMAGE: ${{ needs.image.outputs.image }}

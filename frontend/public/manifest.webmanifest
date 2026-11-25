@@ -1,0 +1,19 @@
+{
+  "id": "/Book-Activity/",
+  "name": "Javed Publishers Ecosystem",
+  "short_name": "Javed Books",
+  "description": "Your school's interactive books and learning activities.",
+  "lang": "en",
+  "start_url": "/Book-Activity/",
+  "scope": "/Book-Activity/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#004344",
+  "background_color": "#f5f4ec",
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "pwa-icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "pwa-icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "pwa-icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -142,3 +142,31 @@ The Add/Edit form uses Pakistan-only country selection, seven province/region ch
 Allowed Series replaces School Modules in school forms and the Series Access action. The register shows series badges instead of Modules; Address and P.Count are removed from table columns, with address and principal contact data retained in the form/database. Series choices come from the current series registry rather than a hard-coded form list. Both client-side bookshelves and protected backend files enforce the selected series.
 
 School and password forms accept non-empty passwords without an eight-character minimum. The backend retains a 128-character maximum.
+
+
+The reader opens in its original layout. Mobile/tablet users can choose Rotate to turn the reader 90 degrees and choose it again to restore the original view. Full screen is available alongside it, with persistent Rotate and Exit full screen controls while expanded. Escape or a browser-native full-screen exit restores normal viewing. Unsupported native full-screen requests fall back to an expanded viewport; no forced orientation prompt or orientation lock is applied.
+# Installable app (PWA)
+
+Production builds include a scoped manifest, home-screen icons and a service worker
+for `/Book-Activity/`. **Install App** is offered across desktop, mobile and tablet
+screen sizes. It opens the native prompt when available, otherwise browser-menu
+guidance. On iPhone/iPad it shows Safari's **Share → Add to Home Screen**
+instructions. The suggestion is hidden inside the reader and after installation.
+The app supports both orientations; reader rotation and full screen remain manual.
+
+Use HTTPS for installation (localhost is also a secure development exception).
+The worker registers only in production builds, so `npm run dev` stays unaffected.
+To check locally, run `npm run build`, then `npm run preview`, and visit the displayed
+localhost URL at `/Book-Activity/`. Real login and books also require the backend;
+Vite preview alone does not proxy API requests. For end-to-end checks, serve the
+build through the backend on localhost or use the HTTPS deployment.
+
+Offline launches show a public reconnect page. This does **not** download books:
+API responses, sessions, PDFs, page images, audio, videos and uploaded content are
+never stored by the service worker. Online navigation always uses the network.
+Updates wait for existing app windows to close, avoiding interrupted reading or
+editing. If changing `public/offline.html`, bump `CACHE_NAME`'s version in
+`public/sw.js` so existing installations receive the updated fallback.
+
+Icons are in `public/pwa-icons/`. Keep 192px and 512px regular icons, a 512px
+maskable icon with safe padding, and the 180px Apple touch icon when rebranding.

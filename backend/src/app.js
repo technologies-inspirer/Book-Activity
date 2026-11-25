@@ -46,7 +46,14 @@ app.use('/Book-Activity', (request, response, next) => {
   next();
 });
 const buildRoot = join(frontendRoot, 'dist');
-if (existsSync(join(buildRoot, 'index.html'))) app.use('/Book-Activity', express.static(buildRoot, { index: 'index.html' }));
+if (existsSync(join(buildRoot, 'index.html'))) app.use('/Book-Activity', express.static(buildRoot, {
+  index: 'index.html',
+  setHeaders(response, file) {
+    if (/[/\\](sw\.js|manifest\.webmanifest|index\.html|offline\.html)$/.test(file)) {
+      response.set('Cache-Control', 'no-cache');
+    }
+  }
+}));
 
 app.use((_request, response) => {
   response.status(404).json({ error: 'Route not found' });

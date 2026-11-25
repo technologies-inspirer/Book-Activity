@@ -1,3 +1,4 @@
+import { attachReaderRotation, readerPoint } from './src/readerRotation.js';
 import { pageButtonPlacement } from './src/authoring/pageLinks.js';
 import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
@@ -12,6 +13,7 @@ import { bookRhymes, rhymeSpread } from './src/data/bookRhymes.js';
 import { lessonAtSpread, rhymeAtSpread } from './src/readerSelection.js';
 import { createLessonHistory } from './src/readerLessonHistory.js';
 import './src/englishLearning.css';
+import './src/readerRotation.css';
 
 const drawings = {};
 const traced = {};                           // page -> the letters traced on it (their stars stay when it reopens)
@@ -24,6 +26,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   const previewOwner = activityPreview ? `activity-preview-${crypto.randomUUID()}` : null;
   const previewBrush = activityPreview ? { ...brush } : null;
   let previewObserver;
+  let readerRotationCleanup;
   let selectedReaderPage = Math.max(1, readerOptions.initialPage || 1);
   const selectReaderPage = number => { selectedReaderPage = number; onPositionChange?.(readerBook.id, number); };
   // Every reader mount owns its delayed work. React can unmount it mid-animation.
@@ -156,6 +159,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   }
 
   function leaveReader() {
+    readerRotationCleanup?.(); readerRotationCleanup = null;
     stopSpeak();
     demoToken++;
     closeMenu();
@@ -348,7 +352,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         b.dot = d; scene.append(b); return b;
       });
       let from = null, live = null;
-      const point = e => { const r = scene.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100]; };
+      const point = e => readerPoint(e, scene, 100, 100);
       scene.addEventListener('pointerdown', e => {
         const b = e.target.closest('.match-dot');
         if (!b || b.classList.contains('done')) return;
@@ -1260,7 +1264,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const limitAt = p => { const l = page?.limit; if (!l) return true; const d = l.getContext('2d').getImageData(Math.floor(p[0]), Math.floor(p[1]), 1, 1).data; return d[3] > 0; };
     const pos = e => {
       const r = c.getBoundingClientRect();
-      return [(e.clientX - r.left) / r.width * c.width, (e.clientY - r.top) / r.height * c.height];
+      return readerPoint(e, c, c.width, c.height);
     };
     const line = (x, a, b) => {
       x.strokeStyle = brush.color;
@@ -1400,7 +1404,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     };
     // a point of the ink picture as a place on the page, in %
     const onPage = (t, [x, y]) => { const [bx, by, bw, bh] = t.dots.box; return [bx + x / t.shape.w * bw, by + y / t.shape.h * bh]; };
-    const toCanvas = (e, c) => { const r = c.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * c.width, (e.clientY - r.top) / r.height * c.height]; };
+    const toCanvas = (e, c) => readerPoint(e, c, c.width, c.height);
 
     // The letter's dots as a picture in one colour, the size of its ink box.
     const tinted = (t, colour) => {
@@ -1884,12 +1888,13 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         el('button', { class: 'btn ghost hide-sm', onclick: () => R.close() }, 'Close book'),
         el('b', {}, book.title),
         el('span', { class: 'grow' }),
-        label, !readerBook && editBtn,
-        el('button', { class: 'btn ghost hide-sm', onclick: () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.() }, 'Full screen')),
+        label, !readerBook && editBtn),
       englishLayout || stage,
       mobileActions,
       el('div', { class: 'rfoot' }, slider, tools));
     app.replaceChildren(root);
+    readerRotationCleanup?.();
+    readerRotationCleanup = attachReaderRotation(root, bookEl, stage, ratio);
 
     function after() {
       const s = R.spread, a = s * 2 + 1, b = Math.min(a + 1, book.pages.length);
@@ -1966,7 +1971,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (!touch || editMode) return;
       const t = e.changedTouches[0], dx = t.clientX - touch.x, dy = t.clientY - touch.y;
       touch = null;
-      const sideways = matchMedia('(orientation: portrait) and (max-width: 820px)').matches;
+      const sideways = root.classList.contains('reader-manual-rotated') || matchMedia('(orientation: portrait) and (max-width: 820px)').matches;
       const along = sideways ? dy : dx, across = sideways ? dx : dy;
       if (Math.abs(along) < 40 || Math.abs(along) < Math.abs(across) * 1.2) return;
       swipedAt = Date.now();
@@ -2451,7 +2456,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (!editMode || e.target.closest('.zone')) return;
       e.preventDefault();
       const r = node.getBoundingClientRect();
-      const pt = ev => [clamp((ev.clientX - r.left) / r.width * 100, 0, 100), clamp((ev.clientY - r.top) / r.height * 100, 0, 100)];
+      const pt = ev => readerPoint(ev, node, 100, 100).map(value => clamp(value, 0, 100));
       const a = pt(e);
       let rect = null;
       const ghost = el('div', { class: 'zone ghost' });

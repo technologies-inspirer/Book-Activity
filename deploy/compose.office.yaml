@@ -1,0 +1,23 @@
+# Installed beside compose.yaml on the Ubuntu VM. The existing office Caddy
+# owns 80/443; this project's gateway is reachable only over Docker networks.
+services:
+  db:
+    mem_limit: 1g
+  app:
+    mem_limit: 2g
+  migrate:
+    mem_limit: 512m
+  proxy:
+    ports: !reset []
+    volumes:
+      - ./Caddyfile.office:/etc/caddy/Caddyfile:ro
+    networks:
+      default: {}
+      office_edge:
+        aliases:
+          - book-activity-gateway
+    mem_limit: 128m
+networks:
+  office_edge:
+    external: true
+    name: attendance-prod_default

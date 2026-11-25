@@ -7,6 +7,9 @@ import '../books/activities.js';
 import '../books/audio-urdu3.js';
 import '../styles.css';
 import './theme.css';
+import { registerPwa } from './pwa/install.js';
+
+registerPwa();
 
 const root = createRoot(document.getElementById('root'));
 root.render(<LoadingScreen />);

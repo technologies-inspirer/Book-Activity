@@ -78,3 +78,34 @@ Docker is not installed on the current Windows workstation. YAML, shell syntax a
 - https://docs.docker.com/reference/compose-file/services/
 - https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments
 - https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/use-in-a-workflow
+
+
+## Office deployment: ecosystem.javedpublishers.com
+
+The initial office deployment was installed on 2026-11-23 from approved main commit `686a01b6d4c34673a27b112a5fd03b284c1e8012`. The image was built on Ubuntu, the existing database was restored (3 accounts and 1 uploaded book), and production gateway tests passed for login, frontend assets, book downloads and authentication/origin protections. Public DNS and the public HTTPS certificate are pending.
+
+The deployment directory is `/srv/book-activity`. Its private `.env` contains `SITE_HOST=ecosystem.javedpublishers.com`, `COMPOSE_FILE=compose.yaml:compose.office.yaml`, and `COMPOSE_PROJECT_NAME=book-activity`, along with separately generated production database credentials. Keep this file private. The office override removes public ports from this project's Caddy gateway. Only that gateway joins the existing `attendance-prod_default` proxy network under the unique name `book-activity-gateway`; the Book Activity application/database remain on their own network. The gateway uses `Caddyfile.office` and the existing shared Caddy terminates public HTTPS.
+
+`ecosystem.caddy` contains the new shared proxy site block. The active `/opt/attendance/Caddyfile` has that block and was validated/reloaded after saving file and active-configuration backups under `/srv/book-activity/backups`. ATS returned HTTP 200 both before and after. The pre-existing `visit.javedpublishers.com` route returned HTTP 502 before and after; its configuration was not changed.
+
+**Pending source integration:** ATS's `attendance-cloud/scripts/sync-release.sh` replaces `/opt/attendance/Caddyfile` from its repository on a release. Its owner must add the `ecosystem.caddy` block to the ATS repository's `attendance-cloud/Caddyfile` before another ATS release. The authenticated GitHub user `zahin2002` currently has no access to that repository. Do not assume a host-only edit survives ATS releases.
+
+Database backups run through `book-activity-backup.timer` at 02:30 Asia/Karachi every day. `backup.sh` produces a custom-format dump and verifies its archive listing before marking it complete. No retention deletion is configured. Backups are on this VM; an off-VM destination still needs to be selected and configured. The initial local database dump is retained separately. Existing local accounts/passwords were preserved, not recreated.
+
+### GitHub owner actions still required
+
+Update: the owner registered `book-activity-office` on 2026-11-23. Its separate service is active, connected to GitHub and listening for jobs. The `ENABLE_OFFICE_DEPLOYMENT` variable now exists and is deliberately `false`. The dedicated GHCR login and `production` environment are still pending. Runner registration steps below are retained for rebuilding the installation.
+
+The existing repository credentials can push but return HTTP 403 when creating a runner registration token. A repository administrator must either grant the deployment operator the required access or perform these steps:
+
+1. Open Book-Activity repository Settings > Actions > Runners > New self-hosted runner and obtain a short-lived Linux x64 registration token. Official runner binaries have been prepared separately under `/srv/book-activity/runner`; the ATS runner has not been modified.
+2. As the Ubuntu `deploy` user, run `bash /srv/book-activity/register-office-runner.sh` and enter the one-time token. The script registers `book-activity-office` with label `office-production`, installs its own service and isolates Docker registry authentication with `DOCKER_CONFIG=/srv/book-activity/docker-auth`.
+3. If the GHCR package is private, authenticate a read-only package account using `DOCKER_CONFIG=/srv/book-activity/docker-auth docker login ghcr.io -u YOUR_GITHUB_ACCOUNT`. Enter its package-read token interactively. Do not overwrite the default Docker credentials used by ATS.
+4. Configure the repository's `production` environment and branch restrictions/reviewers, then set repository variable `ENABLE_OFFICE_DEPLOYMENT=true`. Deployment stays manual: run the release workflow against an approved full main commit SHA. No new main commit was pushed during initial server deployment.
+5. Preserve the office files and the `.env` COMPOSE_FILE setting. The existing release script can then copy/update the base Compose files while this persistent office override prevents port conflicts.
+
+### DNS handoff and acceptance
+
+Create the public A record `ecosystem.javedpublishers.com` pointing to `157.20.146.68` (TTL 300 seconds is suitable during setup). Keep the existing TCP 80/443 forwarding to Ubuntu `10.20.10.97`; do not replace ATS DNS or publish application/database/WinRM ports. IPv6 is not configured for this site, so avoid a conflicting AAAA record.
+
+After DNS resolves publicly, verify Caddy has obtained the public certificate, then open `https://ecosystem.javedpublishers.com/Book-Activity/`. Check `/api/health/db`, sign-in, school accounts, the uploaded book, PDF saving and QR links. Confirm ATS still responds normally. The current production gateway tests do not replace this final browser/TLS acceptance check.

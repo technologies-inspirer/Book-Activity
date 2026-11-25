@@ -1,0 +1,10 @@
+.pwa-install { position: fixed; right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); z-index: 30; max-width: min(300px, calc(100vw - 28px)); padding: 5px; background: #fffdf6; color: #004344; border: 1px solid #d3e0d9; border-radius: 16px; box-shadow: 0 4px 20px #00434418; font: 13px/1.5 system-ui, sans-serif; }
+.pwa-install > div { display: flex; align-items: center; gap: 4px; }
+.pwa-install p { margin: 8px 10px 12px; }
+.pwa-install button { border: 0; cursor: pointer; font: inherit; min-height: 40px; border-radius: 11px; }
+.pwa-install-action { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: #00635c; color: #fff; font-weight: 700 !important; }
+.pwa-install-dismiss { width: 40px; background: transparent; color: #58736e; font-size: 22px !important; }
+.pwa-install button:focus-visible { outline: 3px solid #ffc34f; outline-offset: 2px; }
+/* Installation must never overlap a book's controls or a customization overlay. */
+body:has(.reader) .pwa-install, body:has(.draft-reader-overlay) .pwa-install, :fullscreen .pwa-install { display: none; }
+@media (display-mode: standalone) { .pwa-install { display: none; } }

@@ -10,7 +10,7 @@ const backendPort = Number(process.env.BACKEND_PORT || 3001);
 
 export default defineConfig({
   base: '/Book-Activity/',
-  publicDir: false,
+  publicDir: 'public',
   server: { watch: { ignored: [resolve(projectRoot, 'index.html').replace(/\\/g, '/'), '**/site-assets/**'] } },
   optimizeDeps: { entries: ['app.html'], include: ['react', 'react-dom', 'react-dom/client', 'jszip', 'pdfjs-dist'] },
   plugins: [
