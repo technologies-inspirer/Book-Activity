@@ -55,6 +55,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   // while one is open; elsewhere (iPad Safari) the card itself lies on its side (styles.css, .activity-open).
   let landscapeHeld = false, landscapeFullscreen = false, landscapeRelease = null;
   const activityOpen = () => !!(storyEl || gameEl || focusEl || modalEl?.querySelector('.video-card, .question-scene'));
+  const sidewaysBook = () => matchMedia('(orientation: portrait) and (max-width: 820px)').matches;
   const touchScreen = () => matchMedia('(any-pointer: coarse)').matches;
   function holdLandscape() {
     clearTimeout(landscapeRelease); landscapeRelease = null;
@@ -1281,6 +1282,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       im.src = drawings[key];
     }
     let last = null, inside = null;           // inside: the part of the picture this stroke may colour
+    let strokePointer = null;
     // page.crop: this canvas covers only that part of the page (% of the page), as in an exercise question.
     // page.limit: a mask of this canvas's own size; writing stays inside it, and page.outside() is told when the
     // pencil starts or goes outside (the lines a question is written on).
@@ -1288,7 +1290,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const limitAt = p => { const l = page?.limit; if (!l) return true; const d = l.getContext('2d').getImageData(Math.floor(p[0]), Math.floor(p[1]), 1, 1).data; return d[3] > 0; };
     const pos = e => {
       const r = c.getBoundingClientRect();
-      return [(e.clientX - r.left) / r.width * c.width, (e.clientY - r.top) / r.height * c.height];
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      if (sidewaysBook() && c.closest('.book-wrap')) return [y * c.width, (1 - x) * c.height];
+      return [x * c.width, y * c.height];
     };
     const line = (x, a, b) => {
       x.strokeStyle = brush.color;
@@ -1314,15 +1319,16 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       ctx.drawImage(scratch, x0, y0);
     };
     let own = false;
-    const end = () => {
-      if (!last) return;
+    const end = e => {
+      if (strokePointer !== e.pointerId || !last) return;
+      strokePointer = null;
       last = null;
       inside = null;
       if (own) { own = false; watch.up(c); }
       drawings[key] = c.toDataURL();
     };
     c.addEventListener('pointerdown', e => {
-      if (editMode) return;
+      if (editMode || strokePointer !== null || e.button !== 0) return;
       e.preventDefault();
       const p = pos(e), mode = watch ? watch.down(p, c, brush.erase) : 'free';
       if (mode === 'block') return;
@@ -1341,13 +1347,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       const right = area?.required || (area?.want && page.palette ? requiredSwatch(area.want, page.palette) || page.add?.(hexOf(area.want)) || null : null);
       if (right && right.toLowerCase() !== brush.color.toLowerCase()) { page.wrong?.(right, [p[0] / c.width, p[1] / c.height]); return; }
       c.setPointerCapture(e.pointerId);
+      strokePointer = e.pointerId;
       last = p;
       own = mode === 'own';
       inside = area?.mask || (brush.erase ? null : page?.limit) || null;
       if (!own) seg(last, [last[0] + 0.1, last[1] + 0.1]);
     });
     c.addEventListener('pointermove', e => {
-      if (!last) return;
+      if (strokePointer !== e.pointerId || !last) return;
       const p = pos(e);
       if (page?.limit && !brush.erase && !limitAt(p)) page.outside?.(p);
       if (own) watch.move(p, c); else seg(last, p);
@@ -1355,6 +1362,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     });
     c.addEventListener('pointerup', end);
     c.addEventListener('pointercancel', end);
+    c.addEventListener('lostpointercapture', end);
     return c;
   }
 
@@ -1983,13 +1991,13 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // its side, so the swipe runs along the phone's length.
     let touch = null, swipedAt = 0;
     bookEl.addEventListener('touchstart', e => {
-      touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+      touch = e.touches.length === 1 && !e.target.closest('canvas.ink') ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
     }, { passive: true });
     bookEl.addEventListener('touchend', e => {
       if (!touch || editMode) return;
       const t = e.changedTouches[0], dx = t.clientX - touch.x, dy = t.clientY - touch.y;
       touch = null;
-      const sideways = matchMedia('(orientation: portrait) and (max-width: 820px)').matches;
+      const sideways = sidewaysBook();
       const along = sideways ? dy : dx, across = sideways ? dx : dy;
       if (Math.abs(along) < 40 || Math.abs(along) < Math.abs(across) * 1.2) return;
       swipedAt = Date.now();
