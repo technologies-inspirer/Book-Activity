@@ -278,3 +278,46 @@
 @media (hover: none) and (pointer: coarse) {
   .portal :is(.portal-textlink, .school-actions-trigger, .assignment-edit) { min-height: 44px; display: inline-flex; align-items: center; }
 }
+
+/* Decorative artwork that bleeds past the content (the dashboard's landscape strip) never widens the page. */
+.portal .user-main { overflow-x: clip; }
+
+/* A tablet held sideways (landscape, about 450-820px tall once the browser bars are in): the heading and the
+   progress bar shrink, so the class, subject and book cards are on screen without scrolling. */
+@media (orientation: landscape) and (min-width: 700px) and (max-height: 820px) {
+  .portal .learning-library .library-navigation { margin-bottom: 8px; }
+  .portal .learning-library .library-back-link { min-height: 38px; padding-block: 6px; }
+  .portal .learning-library .library-heading { min-height: 0; padding: 10px 24px; gap: 14px; border-radius: 24px; }
+  .portal .learning-library .library-heading-icon { width: 50px; height: 50px; }
+  .portal .learning-library .library-heading-icon svg { width: 36px; height: 36px; }
+  .portal .learning-library .library-heading h1 { font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+  .portal .learning-library .library-heading > .learning-illustration { max-height: 86px; width: 26%; }
+  .portal .learning-library .library-progress { margin: 10px 0 14px; padding: 10px 20px 12px; border-radius: 22px; }
+  .portal .learning-library .library-progress-summary { margin-bottom: 6px; }
+  .portal .learning-library .library-progress .library-step-number { width: 40px; height: 40px; border-width: 4px; font-size: 1rem; }
+  .portal .learning-library .library-progress .library-steps::before { top: 18px; }
+  .portal .learning-library .library-progress .library-steps li > :is(a, div) { gap: 4px; }
+  .portal .learning-library .library-progress small { display: none; }
+  /* the three classes side by side, so all of them are on screen */
+  .portal .learning-library.library-class-selection .library-class-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); max-width: none; padding-inline: 0; }
+  .portal .learning-library .library-class-card { border-radius: 26px; }
+  .portal .learning-library .library-class-card h2 { font-size: clamp(1rem, 2vw, 1.5rem); }
+  /* the series choice on one thin line */
+  .portal .learning-library .library-series { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin: 0 0 14px; padding: 8px 18px; }
+  .portal .learning-library .library-series h2 { margin: 0; }
+  .portal .learning-library .library-series-options a { min-height: 38px; padding-block: 6px; }
+  /* subjects and books four to a row */
+  .portal .learning-library.library-subject-selection .library-subject-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.8vw, 24px); padding-inline: 0; }
+  .portal .learning-library.library-open-selection .portal-book-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .portal .learning-library.library-open-selection .library-heading { padding-left: 24px; }
+}
+/* a shorter tablet or a large phone sideways (under 560px tall): one thin row above the cards */
+@media (orientation: landscape) and (min-width: 700px) and (max-height: 560px) {
+  .portal .learning-library .library-heading { padding-block: 6px; }
+  .portal .learning-library .library-heading > .learning-illustration { display: none; }
+  .portal .learning-library .library-heading > div { max-width: none; }
+  .portal .learning-library .library-progress { padding-block: 6px 8px; }
+  .portal .learning-library .library-progress-summary { display: none; }
+  .portal .learning-library .library-progress .library-step-number { width: 34px; height: 34px; font-size: .9rem; }
+  .portal .learning-library .library-progress .library-steps::before { top: 15px; }
+}
