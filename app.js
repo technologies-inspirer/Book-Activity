@@ -50,6 +50,43 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   let modalEl = null;
   let focusEl = null;                        // the zoomed-in page, if one is open
   let focusResizeCleanup = null;
+  // Videos and activities open sideways (landscape) on tablets and phones. Where the browser lets a page turn
+  // the screen (Android: the installed app, or full screen in the browser) the screen is locked to landscape
+  // while one is open; elsewhere (iPad Safari) the card itself lies on its side (styles.css, .activity-open).
+  let landscapeHeld = false, landscapeFullscreen = false, landscapeRelease = null;
+  const activityOpen = () => !!(storyEl || gameEl || focusEl || modalEl?.querySelector('.video-card, .question-scene'));
+  const touchScreen = () => matchMedia('(any-pointer: coarse)').matches;
+  function holdLandscape() {
+    clearTimeout(landscapeRelease); landscapeRelease = null;
+    if (landscapeHeld || !touchScreen()) return;
+    landscapeHeld = true;
+    const root = document.documentElement, orientation = screen.orientation;
+    root.classList.add('activity-open');
+    if (!orientation?.lock) return;
+    const appWindow = matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
+    // called straight from the tap that opened the activity, so the browser allows full screen
+    const full = appWindow || document.fullscreenElement || !root.requestFullscreen ? Promise.resolve()
+      : root.requestFullscreen({ navigationUI: 'hide' }).then(() => { landscapeFullscreen = true; });
+    full.then(() => {
+      if (landscapeHeld) return orientation.lock('landscape');
+      if (landscapeFullscreen && document.fullscreenElement) return document.exitFullscreen();
+    }).catch(() => { /* the portrait CSS keeps the activity sideways */ });
+  }
+  function releaseLandscape() {
+    if (!landscapeHeld) return;
+    landscapeHeld = false;
+    document.documentElement.classList.remove('activity-open');
+    try { screen.orientation?.unlock?.(); } catch { /* nothing was locked */ }
+    if (landscapeFullscreen && document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    landscapeFullscreen = false;
+  }
+  // after any activity opens or closes: hold landscape while one is open. Closing one to open the next
+  // (Play again, the next video) does not let go in between.
+  function syncLandscape() {
+    if (activityOpen()) return holdLandscape();
+    clearTimeout(landscapeRelease);
+    landscapeRelease = setTimeout(() => { if (!activityOpen()) releaseLandscape(); }, 400);
+  }
   let introNext = intro;                     // play the cover opening when the reader appears
   const lessonHistory = createLessonHistory({
     history,
@@ -636,6 +673,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     stopSpeak();
     storyEl?.remove();
     storyEl = null;
+    syncLandscape();
   }
 
   function openStory(book, idx, st) {
@@ -662,6 +700,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
           dots)));
     storyEl.addEventListener('pointerdown', e => { if (e.target === storyEl) closeStory(); });
     document.body.append(storyEl);
+    syncLandscape();
 
     // Place the page picture so the view rect {cx, cy, w} (in % of the page) fills the stage.
     const frame = v => {
@@ -729,6 +768,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     stopSpeak();
     gameEl?.remove();
     gameEl = null;
+    syncLandscape();
   }
 
   function openGame(book, idx, g) {
@@ -772,6 +812,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         el('h3', { dir: g.ur ? 'rtl' : null }, g.title || 'Game'), prompt, scene, said, el('div', { class: 'game-result' }, starsEl, scoreEl), again));
     gameEl.addEventListener('pointerdown', e => { if (e.target === gameEl) closeGame(); });
     document.body.append(gameEl);
+    syncLandscape();
     const me = gameEl;
     showScore();
 
@@ -1025,6 +1066,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     stopSpeak();
     focusEl.remove();
     focusEl = null;
+    syncLandscape();
     if (redraw && R && !R.busy) R.show(R.spread);      // redraw the spread so new writing shows on the page
   }
 
@@ -1114,6 +1156,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     focusEl = el('div', { class: 'fx' }, sheet, panel);
     focusEl.addEventListener('pointerdown', e => { if (e.target === focusEl) closeFocus(); });
     document.body.append(focusEl);
+    syncLandscape();
     tools.sync();                      // the pencil cursor (in the chosen colour) now that the page is on screen
 
     // Fit the whole page on screen, then grow it out of the page that was clicked.
@@ -2253,6 +2296,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     modalEl?.remove();
     modalEl = null;
+    syncLandscape();
   }
 
   function modal(card, onClose) {
@@ -2263,6 +2307,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     modalEl.addEventListener('pointerdown', e => { if (e.target === modalEl) close(); });
     modalEl.close = close;
     document.body.append(modalEl);
+    syncLandscape();   // a video or a question opens sideways
   }
 
   function playVideo(book, idx, z) {
@@ -2539,6 +2584,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     clearTimeout(toastTimer);
     document.querySelector('.toast')?.remove();
     leaveReader();
+    clearTimeout(landscapeRelease);
+    releaseLandscape();
     timers.forEach(timer => window.clearTimeout(timer));
     timers.clear();
     for (const box of players.keys()) clearPlayer(box);
