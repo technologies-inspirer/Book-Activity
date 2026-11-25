@@ -2,89 +2,37 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
-import { createInstallController } from '../src/pwa/install.js';
+import { registerPwa } from '../src/pwa/install.js';
 
-function browser({ ios = false, installed = false } = {}) {
-  const target = new EventTarget();
-  const media = new EventTarget();
-  media.matches = installed;
-  target.matchMedia = () => media;
-  target.navigator = { userAgent: ios ? 'iPhone' : 'Chrome', standalone: installed };
-  return target;
-}
-
-test('install prompt is consumed once and can be offered again after dismissal', async () => {
-  const win = browser();
-  const controller = createInstallController(win);
-  assert.equal(controller.getSnapshot().available, true);
-  assert.equal(controller.getSnapshot().manual, true);
-  let prompted = 0;
-  function offer() {
-    const event = new Event('beforeinstallprompt', { cancelable: true });
-    event.prompt = async () => { prompted++; };
-    event.userChoice = Promise.resolve({ outcome: 'dismissed' });
-    win.dispatchEvent(event);
-    assert.equal(event.defaultPrevented, true);
-  }
-  offer();
-  assert.equal(controller.getSnapshot().available, true);
-  assert.equal(controller.getSnapshot().manual, false);
-  await Promise.all([controller.install(), controller.install()]);
-  assert.equal(prompted, 1);
-  assert.equal(controller.getSnapshot().busy, false);
-  assert.equal(controller.getSnapshot().available, true);
-  assert.equal(controller.getSnapshot().manual, true);
-  offer();
-  await controller.install();
-  assert.equal(prompted, 2);
-  win.dispatchEvent(new Event('appinstalled'));
-  assert.equal(controller.getSnapshot().installed, true);
-  assert.equal(controller.getSnapshot().available, false);
-});
-
-test('iOS offers manual installation while standalone app is already installed', () => {
-  const ios = createInstallController(browser({ ios: true }));
-  assert.equal(ios.getSnapshot().available, true);
-  assert.equal(ios.getSnapshot().manual, true);
-  assert.match(ios.getSnapshot().instructions, /Safari/);
-  const installed = createInstallController(browser({ installed: true }));
-  assert.equal(installed.getSnapshot().installed, true);
-});
-
-test('desktop and Android offer installation guidance before a native prompt is available', async () => {
-  for (const userAgent of ['Chrome Windows', 'Chrome Android', 'Firefox Linux']) {
-    const win = browser();
-    win.navigator.userAgent = userAgent;
-    const controller = createInstallController(win);
-    assert.equal(controller.getSnapshot().available, true);
-    assert.equal(controller.getSnapshot().manual, true);
-    assert.match(controller.getSnapshot().instructions, /browser menu/);
-    await controller.install();
-    assert.equal(controller.getSnapshot().available, true);
-  }
-});
-
-test('installation completed during prompt keeps the install suggestion hidden', async () => {
-  const win = browser();
-  const controller = createInstallController(win);
+test('native browser install UI is not intercepted and worker uses the deployment scope', async () => {
+  const browser = new EventTarget();
+  const calls = [];
+  const registration = { scope: 'https://school.example/Book-Activity/' };
+  browser.isSecureContext = true;
+  browser.navigator = { serviceWorker: { async register(...args) { calls.push(args); return registration; } } };
+  assert.equal(await registerPwa(browser, true, '/Book-Activity/'), registration);
+  assert.deepEqual(calls, [['/Book-Activity/sw.js', { scope: '/Book-Activity/', updateViaCache: 'none' }]]);
   const event = new Event('beforeinstallprompt', { cancelable: true });
-  event.prompt = async () => { win.dispatchEvent(new Event('appinstalled')); };
-  event.userChoice = Promise.resolve({ outcome: 'accepted' });
-  win.dispatchEvent(event);
-  await controller.install();
-  assert.equal(controller.getSnapshot().installed, true);
-  assert.equal(controller.getSnapshot().available, false);
+  browser.dispatchEvent(event);
+  assert.equal(event.defaultPrevented, false);
 });
 
-test('failed prompt clears pending state without preventing normal app usage', async () => {
-  const win = browser();
-  const controller = createInstallController(win);
-  const event = new Event('beforeinstallprompt', { cancelable: true });
-  event.prompt = async () => { throw new Error('Browser refused'); };
-  win.dispatchEvent(event);
-  await assert.rejects(controller.install(), /Browser refused/);
-  assert.equal(controller.getSnapshot().busy, false);
-  await controller.install();
+test('unsupported browsers, insecure HTTP and development skip worker registration', () => {
+  const fail = () => assert.fail('Unexpected service-worker registration');
+  assert.equal(registerPwa({ isSecureContext: true, navigator: {} }, true, '/Book-Activity/'), undefined);
+  const browser = { isSecureContext: false, navigator: { serviceWorker: { register: fail } } };
+  assert.equal(registerPwa(browser, true, '/Book-Activity/'), undefined);
+  browser.isSecureContext = true;
+  assert.equal(registerPwa(browser, false, '/Book-Activity/'), undefined);
+});
+
+test('worker registration failure does not prevent normal website startup', async t => {
+  const warnings = t.mock.method(console, 'warn', () => {});
+  const browser = { isSecureContext: true, navigator: { serviceWorker: {
+    async register() { throw new Error('Browser refused'); }
+  } } };
+  await assert.doesNotReject(async () => registerPwa(browser, true, '/Book-Activity/'));
+  assert.equal(warnings.mock.calls.length, 1);
 });
 
 async function worker() {

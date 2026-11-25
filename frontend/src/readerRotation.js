@@ -20,8 +20,8 @@ export function attachReaderRotation(root, book, stage, ratio) {
   full.setAttribute('aria-pressed', 'false');
   root.querySelector('.rbar').append(button, full);
   const controls = doc.createElement('div'); controls.className = 'reader-expanded-controls';
-  const exit = control('Exit full screen', 'btn ghost');
-  const rotateFull = control('? Rotate', 'btn ghost');
+  const exit = control('Exit full screen', 'btn ghost reader-fullscreen-exit');
+  const rotateFull = control('? Rotate', 'btn ghost reader-rotate');
   controls.append(rotateFull, exit); root.append(controls);
   let rotated = false, expanded = false, native = false, disposed = false;
   function fit() {

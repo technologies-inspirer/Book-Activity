@@ -4,7 +4,8 @@ import { books } from './src/data/books.js';
 import { series, seriesOf } from './src/data/series.js';
 import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
-import { evenly, inkShape, inkDistance, cover, finished, nearlyFinished, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
+import { evenly, inkShape, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
+import { createStrokeTracer, tracingRows, isWritingStrip, tracingPointerSamples } from './src/strokeTracing.js';
 import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from './src/colourFill.js';
 import bookColourRegions from './books/colour-regions.json';
 import reviewedPagePalettes from './books/colour-palettes.json';
@@ -1090,7 +1091,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       return hex;
     };
     const regions = fillAct?.colourRegions || bookColourRegions[book.id]?.[idx + 1] || [];
-    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, regions, wrong: wrongColour, add: addColour, reviewedOnly: fillAct?.drawingMode === 'regions' });
+    const canvasFor = () => inkCanvas(book, { w: 100, h: 100 }, key, checker, { img, palette, regions, wrong: wrongColour, add: addColour, tracing: !!checker, reviewedOnly: fillAct?.drawingMode === 'regions' });
     sheet.prepend(img, canvasFor());
     if (pg.qr) sheet.append(videoButton(book, idx, true));
 
@@ -1185,7 +1186,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     return px;
   }
-  function colourArea(img, fx, fy, regions, reviewedOnly = false) {
+  function colourArea(img, fx, fy, regions, reviewedOnly = false, tracing = false) {
     const px = pixelsOf(img);
     if (!px) return null;
     // Dotted pre-writing outlines are open to a flood fill. Their reviewed object
@@ -1219,6 +1220,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const cuts = (regions || []).map(region => region.cut).filter(Boolean);
     const core = regionFrom(px.data, px.w, px.h, fx * px.w, fy * px.h, { grow: 0, cuts });
     if (!core) return null;
+    if (tracing && isWritingStrip(core, px.w, px.h)) return { mask: null, want: null, paper: true };
     // A part this big is the page itself (the paper round the pictures), not something to colour.
     let size = 0;
     for (let i = 0; i < core.length; i++) size += core[i];
@@ -1290,8 +1292,15 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       ctx.drawImage(scratch, x0, y0);
     };
     let own = false;
-    const end = () => {
+    const traceEvent = e => {
+      // Read positions before drawing/moving the guide, avoiding repeated layout
+      // work between batched stylus samples.
+      const points = tracingPointerSamples(e).map(pos);
+      if (watch.moves) watch.moves(points, c); else points.forEach(p => watch.move(p, c));
+    };
+    const end = e => {
       if (!last) return;
+      if (own && e?.type === 'pointerup') traceEvent(e);
       last = null;
       inside = null;
       if (own) { own = false; watch.up(c); }
@@ -1310,7 +1319,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         if (!hit) { page.miss?.(); return; }
         if (hit.allowed?.length && !hit.allowed.some(colour => colour.toLowerCase() === brush.color.toLowerCase())) { page.wrongAll?.(hit.allowed, hit.name); return; }
         area = { mask: hit.mask };
-      } else area = mode === 'free' && !brush.erase && page?.img ? colourArea(page.img, cx0 + p[0] / c.width * cw, cy0 + p[1] / c.height * ch, page.regions, page.reviewedOnly) : null;
+      } else area = mode === 'free' && !brush.erase && page?.img ? colourArea(page.img, cx0 + p[0] / c.width * cw, cy0 + p[1] / c.height * ch, page.regions, page.reviewedOnly, page.tracing) : null;
       // the paper round the pictures is not coloured (nor anything while the page picture is still loading)
       if (mode === 'free' && !brush.erase && page?.img && !page.pick && (!area || area.paper)) return;
       // the colour the book shows for this part: one on offer, or else it is offered now
@@ -1326,7 +1335,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (!last) return;
       const p = pos(e);
       if (page?.limit && !brush.erase && !limitAt(p)) page.outside?.(p);
-      if (own) watch.move(p, c); else seg(last, p);
+      if (own) traceEvent(e); else seg(last, p);
       last = p;
     });
     c.addEventListener('pointerup', end);
@@ -1335,9 +1344,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   }
 
   /* ---------- tracing: touch a letter's start circle, then trace it; the colour goes only onto the letter ---------- */
-  // Each dotted letter has a small circle where it starts. Touching it picks that letter: only it can be
-  // written on until it is finished. As the finger moves, the letter is coloured in around it (its own shape,
-  // cut from the page, so the writing always comes out neat), and when all of it is coloured a star appears.
+  // Each dotted letter is written in stroke order, separately from picture colouring.
   // While the child waits, the next letter's circle glows and a hand points at it, like a game's hint.
   // The Urdu lines are recorded by tools/make_urdu_audio.py (TRACING there): change both together.
   const PRAISE = { en: ['Good job!', 'Well done!', 'Great!', 'Super!', 'Excellent!', 'Very good!'], ur: ['شاباش!', 'بہت خوب!', 'زبردست!', 'بہت اچھے!'] };
@@ -1370,8 +1377,12 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // dots: the book's own dotted letter. Usually that is the ink "Show me how" uses; where "Show me how" draws a
     // nicer shape than the dots (the Urdu rows), the mark carries the dots separately.
     const targets = act.steps.flatMap(s => s.marks).filter(m => m.glyph && (m.dots || m.ink))
-      .map((m, i) => ({ i, m, dots: m.dots || m.ink, shape: null, img: null, covered: null, done: false, circle: null, badge: null, tint: null }));
+      .map((m, i) => ({ i, m, dots: m.dots || m.ink, shape: null, img: null, done: false, circle: null, badge: null, tracer: null }));
     if (!targets.length) return null;
+    const rows = tracingRows(targets.map(t => t.dots.box));
+    const onWritingRow = (p, c) => rows.some(([x, y, right, bottom]) =>
+      p[0] / c.width * 100 >= x && p[0] / c.width * 100 <= right &&
+      p[1] / c.height * 100 >= y && p[1] / c.height * 100 <= bottom);
     const lang = book.rtl ? 'ur' : 'en';
     warmUp([...PRAISE[lang], ...Object.values(SAY[lang])]);
     // The traced letters get their own sheet over the page, drawn plainly (the child's other drawing is blended
@@ -1406,17 +1417,24 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     const onPage = (t, [x, y]) => { const [bx, by, bw, bh] = t.dots.box; return [bx + x / t.shape.w * bw, by + y / t.shape.h * bh]; };
     const toCanvas = (e, c) => readerPoint(e, c, c.width, c.height);
 
-    // The letter's dots as a picture in one colour, the size of its ink box.
-    const tinted = (t, colour) => {
-      const o = document.createElement('canvas');
-      o.width = t.img.naturalWidth; o.height = t.img.naturalHeight;
-      const x = o.getContext('2d');
-      x.drawImage(t.img, 0, 0);
-      x.globalCompositeOperation = 'source-in';
-      x.fillStyle = colour;
-      x.fillRect(0, 0, o.width, o.height);
-      return o;
+    const inInk = (t, p, c) => {
+      const [x, y, w, h] = inkRect(t, c);
+      return [(p[0] - x) / w * t.shape.w, (p[1] - y) / h * t.shape.h];
     };
+    function tracerFor(t) {
+      if (!t.tracer) {
+        const [x, y, w, h] = t.dots.box;
+        const strokes = pathOf(t).map(path => path.map(p => [(p[0] - x) / w * t.shape.w, (p[1] - y) / h * t.shape.h]));
+        t.tracer = createStrokeTracer(strokes, Math.max(2, Math.min(t.shape.w, t.shape.h) * .09));
+      }
+      return t.tracer;
+    }
+    function moveCircle(t) {
+      const next = tracerFor(t).guide();
+      if (!next || !t.circle) return;
+      const [x, y] = onPage(t, next);
+      t.circle.style.left = `${x}%`; t.circle.style.top = `${y}%`;
+    }
 
     // Urdu uses the book's printed start-dot. Latin letters retain their known pen-stroke start.
     function startOf(t) {
@@ -1434,11 +1452,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
 
     function addCircle(t) {
-      const [x, y] = onPage(t, startOf(t));
+      const start = tracerFor(t).expected();
+      if (!start) return;
+      const [x, y] = onPage(t, start);
       const circle = el('button', { class: 'trace-start', style: `left:${x}%;top:${y}%`, 'aria-label': 'Start this letter' });
       // touch the circle and carry on drawing from it
       circle.addEventListener('pointerdown', e => {
         e.preventDefault(); e.stopPropagation();
+        if (brush.erase) return;
         const c = canvas();
         if (!c) return;
         // Small letters sit close together, so a circle can cover the edge of the letter being written
@@ -1453,10 +1474,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         if (near.done) return;
         if (!keep) pick(near);
         circle.setPointerCapture?.(e.pointerId);
-        begin(near, p, c);
+        // A large touch target still starts the pencil at the visible dot.
+        begin(near, p, c, !keep);
       });
-      circle.addEventListener('pointermove', e => { const c = canvas(); if (painting && c) paintTo(toCanvas(e, c), c); });
-      circle.addEventListener('pointerup', () => { const c = canvas(); if (c) up(c); });
+      circle.addEventListener('pointermove', e => { const c = canvas(); if (painting && c) paintMany(tracingPointerSamples(e).map(sample => toCanvas(sample, c)), c); });
+      circle.addEventListener('pointerup', e => { const c = canvas(); if (c) { if (painting) paintMany(tracingPointerSamples(e).map(sample => toCanvas(sample, c)), c); up(c); } });
       circle.addEventListener('pointercancel', () => { const c = canvas(); if (c) up(c); });
       t.circle = circle;
       layer.append(circle);
@@ -1481,43 +1503,53 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       if (talk) speak('', SAY[lang].tap, null, said);
     }
 
-    function begin(t, p, c) {
-      if (!t.tint || t.tint.colour !== brush.color) { t.tint = tinted(t, brush.color); t.tint.colour = brush.color; }
-      painting = { t, last: p };
-      paintAt(t, p, c);
+    function begin(t, p, c, fromCircle = false) {
+      const tracer = tracerFor(t), q = fromCircle ? tracer.expected() : inInk(t, p, c);
+      if (!q || !tracer.begin(q)) { nudge(t, false); return false; }
+      painting = { t, colour: brush.color };
+      const snapped = tracer.expected();
+      drawTrace(t, [snapped, snapped], c);
+      return true;
     }
 
-    // Colour the letter around the finger: only the letter's own ink, never anything beside it.
-    function paintAt(t, p, c) {
-      const s = t.shape, [x0, y0, w, h] = inkRect(t, c), sx = w / s.w, sy = h / s.h;
-      const q = [(p[0] - x0) / sx, (p[1] - y0) / sy];
-      if (inkDistance(s, q) > Math.max(s.half * 4, s.h * .14)) return;     // too far from the letter to count
-      const r = Math.max(s.half * 3, s.h * .1);                          // a wide brush, so small hands get it all
+    // A narrow pencil follows only accepted path segments. Brush size and picture
+    // flood-fill masks never affect tracing, and completion never fills a bitmap.
+    function drawTrace(t, points, c) {
+      if (!points.length) return;
+      const [x, y, w, h] = inkRect(t, c);
+      const mapped = points.map(p => [x + p[0] / t.shape.w * w, y + p[1] / t.shape.h * h]);
       lx.save();
-      lx.beginPath();
-      lx.ellipse(p[0], p[1], r * sx, r * sy, 0, 0, Math.PI * 2);
-      lx.clip();
-      lx.drawImage(t.tint, x0, y0, w, h);
-      lx.restore();
-      cover(s, t.covered, q, r);
+      lx.strokeStyle = painting.colour;
+      lx.lineWidth = Math.max(2, Math.min(w, h) * .055);
+      lx.lineCap = lx.lineJoin = 'round';
+      if (mapped.every(p => p[0] === mapped[0][0] && p[1] === mapped[0][1])) {
+        lx.fillStyle = painting.colour;
+        lx.beginPath(); lx.arc(...mapped[0], lx.lineWidth / 2, 0, Math.PI * 2); lx.fill();
+        lx.restore(); return;
+      }
+      lx.beginPath(); lx.moveTo(...mapped[0]);
+      mapped.slice(1).forEach(p => lx.lineTo(...p));
+      lx.stroke(); lx.restore();
     }
-
     function paintTo(p, c) {
-      const { t, last } = painting, [, , w] = inkRect(t, c);
-      // A slow finger moves less than a step per event: keep the last painted point, so the small moves add up
-      // (moving it on every event lost them, and a slowly traced line stayed uncoloured).
-      const steps = evenly([last, p], Math.max(2, w / t.shape.w * t.shape.half)).slice(1);
-      steps.forEach(q => paintAt(t, q, c));
-      if (steps.length) painting.last = steps[steps.length - 1];
-      if (finished(t.shape, t.covered)) complete(t, c);
+      const { t } = painting;
+      const points = tracerFor(t).move(inInk(t, p, c));
+      drawTrace(t, points, c);
+    }
+    function paintMany(points, c) {
+      if (!painting) return;
+      const { t } = painting;
+      points.forEach(p => paintTo(p, c));
+      moveCircle(t);
     }
 
     function up(c) {
       if (!painting) return;
       const { t } = painting;
       painting = null;
-      // on lifting the finger the test is easier: a letter mostly written is finished and its gaps filled in
-      if (!t.done && nearlyFinished(t.shape, t.covered)) complete(t, c);
+      tracerFor(t).end();
+      if (t.tracer.done()) complete(t, c);
+      else moveCircle(t);
       saveLetters();
       scheduleHint();
     }
@@ -1539,7 +1571,6 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       t.done = true;
       painting = null;
       finishedHere.add(t.i);
-      if (c && t.tint) { lx.drawImage(t.tint, ...inkRect(t, c)); saveLetters(); }   // fill in any corner the finger missed
       t.circle?.remove(); t.circle = null;
       if (active === t) { active = null; layer.classList.remove('busy'); }
       star(t);
@@ -1602,7 +1633,9 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         const next = nextLetter();
         if (!next?.circle || painting) return;
         next.circle.classList.add('hint');
-        const strokes = pathOf(next), first = strokes[0][0];
+        const strokes = tracerFor(next).remaining().map(path => path.map(point => onPage(next, point)));
+        const first = strokes[0]?.[0];
+        if (!first) return;
         hand = el('div', { class: 'trace-hint' });
         const pencil = el('div', { class: 'trace-pencil', style: `left:${first[0]}%;top:${first[1]}%` }, '✏️');
         hand.append(pencil);
@@ -1673,7 +1706,6 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         for (let i = 0; i < alpha.length; i++) alpha[i] = px[i * 4 + 3];
         t.shape = inkShape(alpha, w, h);
         t.img = im;
-        t.covered = new Uint8Array(t.shape.middle.length);
         loaded++;
         prepareStarts();
       };
@@ -1686,18 +1718,29 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       down(p, c, erasing) {
         clearHint();
         const t = letterAt(p, c);
-        if (erasing) return t ? 'block' : 'free';
+        if (erasing) return t || onWritingRow(p, c) ? 'block' : 'free';
+        // Assets may still be loading: never fall through to colour filling on a letter.
+        if (t && !t.shape) return 'block';
         if (active) {
           // on the letter, or just beside it (the colour still only lands on the letter)
-          if (t === active || rectGap(p, letterRect(active, c)) < inkRect(active, c)[3] * .25) { begin(active, p, c); return 'own'; }
+          if (t === active || rectGap(p, letterRect(active, c)) < inkRect(active, c)[3] * .25) return begin(active, p, c) ? 'own' : 'block';
+          if (!t && !onWritingRow(p, c)) return 'free';
           nudge(active, false);
           scheduleHint();
           return 'block';
         }
-        if (t) { if (!t.done) nudge(t, true); scheduleHint(); return 'block'; }
-        return 'free';
+        if (t) {
+          if (!t.done) {
+            pick(t);
+            if (begin(t, p, c)) return 'own';
+            nudge(t, true);
+          }
+          scheduleHint(); return 'block';
+        }
+        return onWritingRow(p, c) ? 'block' : 'free';
       },
-      move(p, c) { if (painting) paintTo(p, c); },
+      move(p, c) { paintMany([p], c); },
+      moves(points, c) { paintMany(points, c); },
       up,
       reset() {
         clearHint();
@@ -1709,7 +1752,8 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         layer.classList.remove('busy');
         targets.forEach(t => {
           t.done = false; t.badge = null; t.circle = null;
-          if (t.shape) { t.covered.fill(0); addCircle(t); }
+          t.tracer?.reset();
+          if (t.shape) addCircle(t);
         });
         showScore();
         scheduleHint();

@@ -144,14 +144,17 @@ Allowed Series replaces School Modules in school forms and the Series Access act
 School and password forms accept non-empty passwords without an eight-character minimum. The backend retains a 128-character maximum.
 
 
-The reader opens in its original layout. Mobile/tablet users can choose Rotate to turn the reader 90 degrees and choose it again to restore the original view. Full screen is available alongside it, with persistent Rotate and Exit full screen controls while expanded. Escape or a browser-native full-screen exit restores normal viewing. Unsupported native full-screen requests fall back to an expanded viewport; no forced orientation prompt or orientation lock is applied.
+The reader opens in its original layout. Mobile/tablet views offer Rotate to turn the reader 90 degrees and restore it on a second tap. Full screen is available on all views. Desktop fullscreen hides the app's Rotate and Exit buttons; Escape or the browser's native fullscreen exit restores normal viewing. Small mobile/tablet views retain both expanded controls for touch access. Unsupported native fullscreen requests fall back to an expanded viewport; no forced orientation prompt or orientation lock is applied.
 # Installable app (PWA)
 
 Production builds include a scoped manifest, home-screen icons and a service worker
-for `/Book-Activity/`. **Install App** is offered across desktop, mobile and tablet
-screen sizes. It opens the native prompt when available, otherwise browser-menu
-guidance. On iPhone/iPad it shows Safari's **Share → Add to Home Screen**
-instructions. The suggestion is hidden inside the reader and after installation.
+for `/Book-Activity/`. Installation uses the browser's own address-bar icon or menu;
+there is no in-page or dashboard install button and no install-prompt interception.
+The browser decides when and where its install option appears. Supporting desktop
+Chrome/Edge browsers can show their native install icon. On iPhone/iPad use the
+browser's Share → Add to Home Screen option; desktop Safari uses Add to Dock.
+Other browsers retain their own available installation/shortcut options. The site
+continues to work normally when installation is unsupported.
 The app supports both orientations; reader rotation and full screen remain manual.
 
 Use HTTPS for installation (localhost is also a secure development exception).

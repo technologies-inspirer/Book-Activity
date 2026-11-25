@@ -1,6 +1,6 @@
-.reader-rotate { display: none; }
-@media (max-width: 1024px), (max-width: 1366px) and (pointer: coarse) {
-  .reader .rbar .reader-rotate { display: inline-flex; flex-shrink: 0; align-items: center; white-space: nowrap; min-height: 36px; padding: 6px 10px; }
+.reader .reader-rotate { display: none; }
+@media (max-width: 1024px), (max-width: 1366px) and (pointer: coarse) and (hover: none) {
+  .reader .rbar .reader-rotate, .reader .reader-expanded-controls .reader-rotate { display: inline-flex; flex-shrink: 0; align-items: center; white-space: nowrap; min-height: 36px; padding: 6px 10px; }
 }
 /* Rotation is entirely opt-in. The original reader is unchanged until clicked. */
 .reader.reader-manual-rotated { position: fixed; left: 50%; top: 50%; width: var(--rotated-width); height: var(--rotated-height); transform: translate(-50%, -50%) rotate(90deg); z-index: 35; background: #f5f4ec; }
@@ -22,10 +22,15 @@
 .reader-expanded-controls { display: none; }
 .reader.reader-manual-fullscreen:not(.reader-manual-rotated) { position: fixed; inset: 0; width: 100%; height: 100dvh; z-index: 35; background: #f5f4ec; }
 .reader.reader-manual-fullscreen .rbar, .reader.reader-manual-fullscreen .rfoot { display: none; }
-.reader.reader-manual-fullscreen .reader-expanded-controls { display: flex; position: absolute; top: max(6px, env(safe-area-inset-top)); right: max(6px, env(safe-area-inset-right)); gap: 6px; z-index: 90; }
+.reader.reader-manual-fullscreen .reader-expanded-controls { display: none; position: absolute; top: max(6px, env(safe-area-inset-top)); right: max(6px, env(safe-area-inset-right)); gap: 6px; z-index: 90; }
 .reader-expanded-controls .btn { min-height: 34px; padding: 6px 12px; border: 1px solid #c9ddd3; background: #fffdf5; color: #125d56; border-radius: 999px; font-size: 12px; }
-.reader.reader-manual-fullscreen .rstage { min-height: 0; padding-top: 44px; }
+.reader.reader-manual-fullscreen .rstage { min-height: 0; padding-top: 10px; }
 .reader.reader-manual-fullscreen .rstage > .nav { color: #145f58; background: #dcebe3; }
+/* Touch views keep an exit control because a keyboard may be unavailable. */
+@media (max-width: 1024px), (max-width: 1366px) and (pointer: coarse) and (hover: none) {
+  .reader.reader-manual-fullscreen .reader-expanded-controls { display: flex; }
+  .reader.reader-manual-fullscreen .rstage { padding-top: 44px; }
+}
 .draft-reader-overlay:has(.reader-manual-fullscreen) .draft-reader-adminbar { display: none; }
 @media (max-width: 680px) {
   .reader .rbar { gap: 4px; }

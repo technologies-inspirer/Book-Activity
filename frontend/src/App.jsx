@@ -11,14 +11,13 @@ import { AdminPortal } from './portal/AdminPortal.jsx';
 import { UserPortal } from './portal/UserPortal.jsx';
 import { SignOut } from './portal/Shared.jsx';
 import { SiteHeader } from './components/SiteHeader.jsx';
-import { GlobalLoader } from './loading/LoadingScreen.jsx';
+import { GlobalLoader, LoadingScreen } from './loading/LoadingScreen.jsx';
 import './portal/portal.css';
 import './portal/mobile.css';
-import { PwaInstall } from './pwa/PwaInstall.jsx';
 const PublishedBookReader = lazy(() => import('./authoring/PublishedBookReader.jsx').then(module => ({ default: module.PublishedBookReader })));
 
 export function App() {
-  return <DemoProvider><AppRoutes /><GlobalLoader /><PwaInstall /></DemoProvider>;
+  return <DemoProvider><AppRoutes /><GlobalLoader /></DemoProvider>;
 }
 
 function AppRoutes() {
@@ -52,7 +51,7 @@ function AppRoutes() {
     }
   }, [route, account?.id]);
 
-  if (loading) return <div className="portal session-screen" role="status"><div className="portal-panel"><span className="session-spinner" /><h1>Opening your workspace</h1><p>Checking your secure session...</p></div></div>;
+  if (loading) return <LoadingScreen />;
   if (bootError) return <div className="portal session-screen"><div className="portal-panel"><h1>Let us reconnect</h1><p role="alert">{bootError}</p><button className="portal-primary" onClick={() => store.initialize()}>Try again</button></div></div>;
   if (!account) {
     return <LoginPage />;
@@ -64,7 +63,7 @@ function AppRoutes() {
     if (account.role !== (route.type === 'admin' ? 'admin' : 'user')) {
       return <div className="portal"><main className="user-main"><section className="portal-panel"><h1>Choose your workspace</h1><p>This page belongs to a different account type.</p><a className="portal-primary" href={`#/${account.role === 'admin' ? 'admin' : 'user'}`}>Open my workspace</a> <SignOut /></section></main></div>;
     }
-    if (route.page === 'published') return <Suspense fallback={<div className="portal session-screen" role="status">Opening book...</div>}><PublishedBookReader key={route.segments[0]} id={route.segments[0]} /></Suspense>;
+    if (route.page === 'published') return <Suspense fallback={<LoadingScreen />}><PublishedBookReader key={route.segments[0]} id={route.segments[0]} /></Suspense>;
     return route.type === 'admin'
       ? <AdminPortal page={route.page} segments={route.segments} onBookOpen={() => setIntroNext(true)} />
       : <UserPortal page={route.page} libraryRoute={route.segments} onBookOpen={() => setIntroNext(true)} />;
