@@ -1,3 +1,4 @@
+import { LETTER_GLYPHS as GLYPHS } from './src/letterGlyphs.js';
 import { attachReaderRotation, readerPoint } from './src/readerRotation.js';
 import { pageButtonPlacement } from './src/authoring/pageLinks.js';
 import { books } from './src/data/books.js';
@@ -6,6 +7,7 @@ import { createLoadingScope } from './src/loading/loadingState.js';
 import { setDrawingCursor } from './src/drawingCursors.js';
 import { evenly, inkShape, printedTraceStart, orderedInkStrokes } from './src/traceCheck.js';
 import { createStrokeTracer, tracingRows, isWritingStrip, tracingPointerSamples } from './src/strokeTracing.js';
+import { formationPen, formationInInk, pencilAnimation } from './src/letterFormation.js';
 import { regionFrom, spread, partColour, colourRegionAt, componentColourRegion, restrictColourRegion, closestColour, requiredSwatch, colourName, hexOf, pageColours } from './src/colourFill.js';
 import bookColourRegions from './books/colour-regions.json';
 import reviewedPagePalettes from './books/colour-palettes.json';
@@ -28,6 +30,7 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   const previewBrush = activityPreview ? { ...brush } : null;
   let previewObserver;
   let readerRotationCleanup;
+  const formationShapes = new Map();
   let selectedReaderPage = Math.max(1, readerOptions.initialPage || 1);
   const selectReaderPage = number => { selectedReaderPage = number; onPositionChange?.(readerBook.id, number); };
   // Every reader mount owns its delayed work. React can unmount it mid-animation.
@@ -849,10 +852,13 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     layer.replaceChildren();
   }
 
+  // Fixed SVG tip at (4, 60); emoji pencil metrics differ between devices.
+  const pencilArt = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M4 60 10 40 45 5Q49 1 53 5L59 11Q63 15 59 19L24 54Z" fill="#ffbf47" stroke="#175a56" stroke-width="2" stroke-linejoin="round"/><path d="m4 60 6-20 14 14Z" fill="#ffe5b4"/><path d="m4 60 3-9 6 6Z" fill="#173b40"/><path d="m14 44 35-35m-29 41 35-35" fill="none" stroke="#fff4b7" stroke-width="3"/><path d="m43 7 14 14 2-2q4-4 0-8l-6-6q-4-4-8 0Z" fill="#ef8b92" stroke="#175a56" stroke-width="2"/></svg>';
+
   function playDemo(act, layer) {
     stopDemo(layer);
     const token = demoToken;
-    const pencil = el('div', { class: 'pencil' }, '✏️');
+    const pencil = el('div', { class: 'pencil', html: pencilArt });
     layer.append(pencil);
     const step = i => {
       if (token !== demoToken) return;
@@ -861,13 +867,32 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
       // The next step waits until the voice has finished and every mark has been drawn.
       let spoke = false, drew = false, next = false;
       const go = () => { if (spoke && drew && !next) { next = true; schedule(() => step(i + 1), 500); } };
-      const gap = k => s.marks.slice(0, k).reduce((t, m) => t + (m.scribble ? 2600 : m.letter || m.glyph ? 1700 : 1400), 0);
+      const gap = k => s.marks.slice(0, k).reduce((t, m) => t + (m.scribble ? 2600 : m.glyph ? 2400 : m.letter ? 1700 : 1400), 0);
       s.marks.forEach((m, k) => schedule(() => {
         if (token !== demoToken) return;
         const mark = makeMark(m, layer);
+        pencil.getAnimations?.().forEach(animation => animation.cancel());
+        pencil.style.transition = m.glyph ? 'none' : '';
+        pencil.style.opacity = '1';
         pencil.style.left = (m.px ?? m.x) + '%';
         pencil.style.top = (m.py ?? m.y) + '%';
-        schedule(() => token === demoToken && layer.append(mark), 450);
+        schedule(() => {
+          if (token !== demoToken) return;
+          layer.append(mark);
+          if (m.glyph) {
+            const strokes = formationOnPage(m);
+            const ratio = layer.clientWidth / layer.clientHeight;
+            const timing = {
+              delay: m.ink ? 450 : 0, duration: m.ink ? 1400 : 1300, fill: 'forwards', easing: 'linear'
+            };
+            pencil.animate?.(pencilAnimation(strokes, ratio), timing);
+            const brush = mark.querySelector(m.ink ? 'path.brush' : 'path');
+            if (brush?.animate) {
+              brush.style.animation = 'none';
+              brush.animate(pencilAnimation(strokes, ratio, false, m.box.slice(2)), timing);
+            }
+          }
+        }, 450);
       }, gap(k)));
       schedule(() => { drew = true; go(); }, gap(s.marks.length) + 600);
       speak('Show me how', s.say, () => { spoke = true; go(); });
@@ -882,77 +907,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
   };
 
   // Each letter as pen strokes, in order, inside the box the dotted letter fills on the page (0..1 both ways).
-  const GLYPHS = {
-    a: 'M.72 .3C.6 .08 .18 .1 .12 .5C.08 .9 .55 1 .7 .62M.74 .12V.82C.76 .97 .9 .98 1 .88',
-    b: 'M.22 0V.97M.22 .62C.38 .38 .9 .4 .9 .7C.9 1 .4 1.02 .22 .9',
-    c: 'M.88 .28C.72 .02 .12 .05 .1 .5C.08 .95 .7 1 .95 .8',
-    d: 'M.68 .52C.55 .36 .12 .36 .1 .7C.08 1 .55 1.02 .68 .78M.7 0V.88C.72 .98 .86 1 .98 .92',
-    e: 'M.1 .52H.88C.88 .15 .22 .08 .1 .5C.05 .95 .7 1 .95 .82',
-    f: 'M.92 .1C.78 -.02 .45 .02 .45 .22V1M.12 .42H.82',
-    g: 'M.78 .14C.62 -.02 .15 .02 .12 .3C.1 .58 .62 .6 .78 .36M.8 .06V.8C.8 1 .3 1.02 .12 .86',
-    h: 'M.18 0V1M.18 .64C.32 .4 .74 .4 .74 .66V.88C.76 1 .9 1 .98 .92',
-    i: 'M.5 .16V.86C.52 .98 .72 1 .9 .92M.5 -.08V-.06',
-    j: 'M.62 .14V.82C.62 1 .2 1.02 .05 .86M.62 -.06V-.04',
-    k: 'M.2 0V1M.85 .45L.24 .72L.9 1',
-    l: 'M.45 0V.86C.47 .98 .65 1 .85 .9',
-    m: 'M.06 .06V1M.06 .32C.14 0 .46 0 .48 .32V1M.48 .32C.54 0 .88 0 .9 .32V.92C.92 .98 .96 1 1 .96',
-    n: 'M.12 .06V1M.12 .32C.22 0 .76 0 .78 .36V.88C.8 .98 .9 1 .98 .94',
-    o: 'M.5 .04C.08 .04 .06 .96 .5 .96C.94 .96 .92 .04 .5 .04Z',
-    p: 'M.2 .04V1M.2 .2C.36 .02 .88 .03 .88 .3C.88 .58 .36 .6 .2 .44',
-    q: 'M.76 .2C.6 .02 .14 .03 .12 .3C.1 .58 .6 .6 .76 .4M.78 .04V1',
-    r: 'M.18 .06V1M.18 .44C.28 .08 .66 0 .92 .16',
-    s: 'M.88 .16C.72 0 .14 .02 .18 .3C.22 .5 .88 .44 .88 .72C.88 1 .24 1 .08 .84',
-    t: 'M.42 0V.86C.44 .98 .64 1 .88 .9M.1 .32H.82',
-    u: 'M.12 .06V.62C.12 1 .74 1 .78 .6M.8 .06V.88C.82 .98 .9 1 .98 .94',
-    v: 'M.04 .04L.5 .96L.96 .04',
-    w: 'M.02 .04L.26 .96L.5 .3L.74 .96L.98 .04',
-    x: 'M.08 .04L.92 .96M.92 .04L.08 .96',
-    y: 'M.14 .04V.32C.14 .6 .74 .6 .78 .32M.8 .04V.8C.8 1 .3 1.02 .12 .86',
-    z: 'M.1 .06H.9L.08 .94H.94',
-    // Capital letters, in the stroke order printed in Stemford English 4+ (the numbered model letters)
-    A: 'M.5 0L.02 1M.5 0L.98 1M.22 .6H.78',
-    B: 'M.06 0V1M.06 0H.55C.92 0 .92 .48 .55 .48H.06M.55 .48C1 .48 1 1 .55 1H.06',
-    C: 'M.94 .16C.8 -.04 .04 -.06 .02 .5C0 1.06 .8 1.04 .96 .82',
-    D: 'M.06 0V1M.06 0H.4C1.15 0 1.15 1 .4 1H.06',
-    E: 'M.06 0V1M.06 0H.95M.06 .5H.8M.06 1H.95',
-    F: 'M.08 0V1M.08 0H.95M.08 .48H.8',
-    G: 'M.92 .14C.76 -.04 .04 -.06 .02 .5C0 1.04 .8 1.06 .9 .6M.52 .47H.92V1',
-    H: 'M.06 0V1M.94 0V1M.06 .48H.94',
-    I: 'M.5 0V1',
-    J: 'M.9 0V.62C.9 1.04 .12 1.04 .02 .72',
-    K: 'M.06 0V1M.94 0L.08 .55M.3 .41L.96 1',
-    L: 'M.06 0V1H.96',
-    M: 'M.04 0V1M.04 0L.5 .88L.96 0V1',
-    N: 'M.06 0V1M.06 0L.94 1M.94 0V1',
-    O: 'M.5 0C-.16 0 -.16 1 .5 1C1.16 1 1.16 0 .5 0',
-    P: 'M.06 0V1M.06 0H.5C1.1 0 1.1 .56 .5 .56H.06',
-    Q: 'M.48 0C-.14 0 -.14 .96 .48 .96C1.06 .96 1.06 0 .48 0M.62 .76L.98 1',
-    R: 'M.06 0V1M.06 0H.5C1.04 0 1.04 .52 .5 .52H.06M.5 .52L.96 1',
-    S: 'M.92 .14C.78 -.04 .1 -.04 .1 .25C.1 .5 .9 .46 .92 .74C.94 1.04 .2 1.06 .04 .84',
-    T: 'M.5 0V1M.02 0H.98',
-    U: 'M.06 0V.6C.06 1.12 .94 1.12 .94 .6V0',
-    V: 'M.02 0L.5 1L.98 0',
-    W: 'M.02 0L.25 1L.5 0L.75 1L.98 0',
-    X: 'M.04 0L.96 1M.96 0L.04 1',
-    Y: 'M.04 0L.54 .5M.96 0L.12 1',
-    Z: 'M.04 0H.96L.04 1H.96',
-    // Urdu letters: the pen sweeps the letter's own ink from right to left, line by line
-    ur: 'M1 0H0V.3H1V.6H0V.9H1',
-    // numbers, written the way the maths books teach them
-    0: 'M.5 .02C.06 .02 .04 .98 .5 .98C.96 .98 .94 .02 .5 .02',
-    1: 'M.5 0V1',
-    2: 'M.08 .26C.12 .02 .86 -.04 .9 .28C.94 .52 .46 .72 .04 .98H.98',
-    3: 'M.08 .14C.4 -.06 .94 .02 .9 .26C.86 .44 .58 .48 .4 .48C.7 .48 .98 .58 .94 .78C.9 1 .32 1.04 .06 .86',
-    4: 'M.62 .02L.04 .68H.98M.74 .3V.98',
-    5: 'M.9 .02H.16L.1 .44C.4 .3 .94 .38 .94 .68C.94 1 .34 1.04 .06 .86',
-    6: 'M.82 .06C.32 -.06 .02 .4 .06 .7C.1 1 .9 1.04 .92 .68C.94 .36 .4 .34 .08 .6',
-    7: 'M.04 .02H.96L.36 .98',
-    8: 'M.5 .48C.12 .42 .12 .02 .5 .02C.88 .02 .88 .42 .5 .48C.06 .54 .06 .98 .5 .98C.94 .98 .94 .54 .5 .48',
-    9: 'M.92 .3C.9 .02 .1 .02 .1 .3C.1 .56 .8 .6 .92 .3V.98'
-  };
+
 
   // A mark's pen path: its own (where a book prints the letter differently, e.g. the dot of i inside the box), else GLYPHS.
-  const penOf = m => m.pen || GLYPHS[m.glyph];
+  const penOf = m => formationPen(m, GLYPHS[m.glyph], formationShapes.get((m.dots || m.ink)?.src));
 
   // A GLYPHS path as its pen strokes, in order: lists of points (0..1 of the letter box), close together.
   const glyphCache = new Map();
@@ -974,6 +932,17 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     return out;
   }
 
+  function formationOnPage(mark) {
+    const paths = glyphStrokes(penOf(mark));
+    const ink = mark.dots || mark.ink, shape = ink && formationShapes.get(ink.src);
+    if (shape && mark.glyph !== 'ur') {
+      const [x, y, w, h] = ink.box;
+      return formationInInk(paths, mark, shape).map(path => path.map(point => [x + point[0] / shape.w * w, y + point[1] / shape.h * h]));
+    }
+    const [x, y, w, h] = mark.box;
+    return paths.map(path => path.map(([u, v]) => [x + u * w, y + v * h]));
+  }
+
   function makeMark(m, layer) {
     if (m.ring || m.line) {
       // drawn on a page-sized sheet so circles and lines keep their shape
@@ -992,19 +961,25 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     }
     if (m.glyph) {
       // box = [x, y, w, h] in % of the page, measured from the dotted letter (tools/find_glyphs.py)
-      const [x, y, w, h] = m.box, d = penOf(m);
+      const [x, y, w, h] = m.box;
+      let d = penOf(m);
       const [sx, sy] = d.match(/^M([-\d.]+) ([-\d.]+)/).slice(1).map(Number);
       m.px = x + sx * w; m.py = y + sy * h;
       if (m.ink) {
+        if (m.glyph !== 'ur') {
+          const paths = formationOnPage(m);
+          d = paths.map(path => 'M' + path.map(p => `${(p[0] - x) / w} ${(p[1] - y) / h}`).join('L')).join('');
+          [m.px, m.py] = paths[0][0];
+        }
         // The letter's own shape, cut from the page (tools/ink.py), is uncovered along the pen strokes,
         // so the colour lands exactly on the book's letter. ink.box is the box plus a 25% margin.
         const [ix, iy, iw, ih] = m.ink.box, id = 'mk' + Math.random().toString(36).slice(2);
-        const mk = el('div', { class: 'mk glyph', style: `left:${ix}%;top:${iy}%;width:${iw}%;height:${ih}%`,
+        const mk = el('div', { class: `mk glyph${m.glyph === 'ur' ? '' : ' formation'}`, style: `left:${ix}%;top:${iy}%;width:${iw}%;height:${ih}%`,
           html: `<svg viewBox="0 0 1 1" preserveAspectRatio="none"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="1" height="1">`
-            + `<path class="brush" pathLength="1" d="${d}" transform="translate(.1667 .1667) scale(.6667)"/></mask></defs>`
+            + `<path class="brush" pathLength="1" d="${d}" transform="translate(${(x - ix) / iw} ${(y - iy) / ih}) scale(${w / iw} ${h / ih})"/></mask></defs>`
             + `<image href="${m.ink.src}" x="0" y="0" width="1" height="1" preserveAspectRatio="none" mask="url(#${id})"/></svg>` });
         // once the pen has finished, show the whole letter in case the brush missed a corner
-        schedule(() => mk.querySelector('image')?.removeAttribute('mask'), 1900);
+        schedule(() => mk.querySelector('image')?.removeAttribute('mask'), 2400);
         return mk;
       }
       const px = (layer.clientWidth * (w > 7 ? .011 : .007)).toFixed(1);
@@ -1599,19 +1574,14 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
     // How the letter is written, as pen strokes in order (each a list of places on the page, in %). The hint
     // pencil follows them, lifting between strokes.
     //   Letters and numbers: the strokes "Show me how" draws (GLYPHS: 'a' goes round from the top right, then
-    //   down the stick), each point moved onto the middle of the book's dots so the pencil stays on them.
+    //   down the stick), mapped smoothly into the book's measured letter box.
     //   Urdu: from the printed start-dot, following connected ink, then lifting for separate letter dots.
     function pathOf(t) {
       if (t.path) return t.path;
       const s = t.shape, g = t.m.glyph !== 'ur' && penOf(t.m);
-      const nearest = q => { let b = s.middle[0], d = Infinity; s.middle.forEach(m => { const e = (m[0] - q[0]) ** 2 + (m[1] - q[1]) ** 2; if (e < d) { d = e; b = m; } }); return [b, Math.sqrt(d)]; };
       let strokes;
       if (g) {
-        strokes = glyphStrokes(g).map(line => line.map(([u, v]) => {
-          const q = [(u * 2 / 3 + 1 / 6) * s.w, (v * 2 / 3 + 1 / 6) * s.h];      // letter box -> ink box
-          const [m, d] = nearest(q);
-          return d < s.h * .12 ? m : q;
-        }));
+        strokes = formationInInk(glyphStrokes(g), t.m, s);
       } else {
         strokes = orderedInkStrokes(s, startOf(t));
       }
@@ -1637,26 +1607,11 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         const first = strokes[0]?.[0];
         if (!first) return;
         hand = el('div', { class: 'trace-hint' });
-        const pencil = el('div', { class: 'trace-pencil', style: `left:${first[0]}%;top:${first[1]}%` }, '✏️');
+        const pencil = el('div', { class: 'trace-pencil', style: `left:${first[0]}%;top:${first[1]}%`, html: pencilArt });
         hand.append(pencil);
         layer.append(hand);
-        // Move at an even speed along each stroke (the page's height is width / ratio). Between strokes the
-        // pencil lifts: it fades out, moves to the next stroke's start, and fades in. Then it rests a moment.
-        const ratio = book.ratio || 0.75, LIFT = 4;      // a lift takes as long as drawing 4% of the page
-        const pts = [];                                   // [x, y, distance so far, shown]
-        let run = 0;
-        strokes.forEach((line, n) => {
-          if (n) { const [px, py] = pts[pts.length - 1]; pts.push([px, py, run += .01, 0]); pts.push([line[0][0], line[0][1], run += LIFT, 0]); }
-          line.forEach((p, k) => {
-            if (k) run += Math.hypot(p[0] - line[k - 1][0], (p[1] - line[k - 1][1]) / ratio);
-            pts.push([p[0], p[1], n && !k ? run += .01 : run, 1]);
-          });
-          if (line.length === 1) pts.push([line[0][0], line[0][1], run += 1.5, 1]);
-        });
-        const total = run || 1;
-        const frames = pts.map(([x, y, d, shown]) => ({ left: x + '%', top: y + '%', opacity: shown, offset: d / total * .8 }));
-        frames.push({ ...frames[frames.length - 1], offset: 1 });
-        pencil.animate?.(frames, { duration: Math.max(2600, total * 120), iterations: Infinity, easing: 'linear' });
+        const strokesOnPage = pencilAnimation(strokes, book.ratio || .75, true);
+        pencil.animate?.(strokesOnPage, { duration: 3800, iterations: Infinity, easing: 'linear' });
       }, wait);
     }
 
@@ -1705,6 +1660,10 @@ export function mountBookActivityApp(app, { intro = false, onPositionChange, lib
         const px = cx.getImageData(0, 0, w, h).data, alpha = new Uint8Array(w * h);
         for (let i = 0; i < alpha.length; i++) alpha[i] = px[i * 4 + 3];
         t.shape = inkShape(alpha, w, h);
+        if (t.m.glyph !== 'ur') {
+          formationShapes.set(t.dots.src, t.shape);
+          if (formationShapes.size > 32) formationShapes.delete(formationShapes.keys().next().value);
+        }
         t.img = im;
         loaded++;
         prepareStarts();

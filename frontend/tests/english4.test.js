@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import vm from 'node:vm';
 import { getLearningBooks } from '../src/data/learningCatalog.js';
+import { LETTER_GLYPHS } from '../src/letterGlyphs.js';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const exists = path => existsSync(new URL('../' + path, import.meta.url));
@@ -77,8 +78,7 @@ test('each alphabet lesson uses its own vocabulary pictures and three rows of re
 });
 
 test('every traced letter has pen strokes, and capitals are not cut off at the top rule', () => {
-  const app = read('app.js'), glyphs = app.slice(app.indexOf('const GLYPHS = {'), app.indexOf('};', app.indexOf('const GLYPHS = {')));
-  const known = new Set([...glyphs.matchAll(/^\s*(\w+): '/gm)].map(m => m[1]));
+  const known = new Set(Object.keys(LETTER_GLYPHS));
   for (const p of picturePages) for (const m of activities[p+1].find(a=>a.type==='fill').steps.flatMap(s=>s.marks)) {
     assert.ok(m.pen || known.has(m.glyph), `page ${p+1}: no pen strokes for ${m.glyph}`);
     // A full capital is about 4.8% of the page tall; the old cut-off tops left only ~3.9%.

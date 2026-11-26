@@ -4,7 +4,12 @@ import { evenly } from './traceCheck.js';
 // Coordinates and tolerance use the same space (the letter crop's pixels).
 export function createStrokeTracer(strokes, tolerance) {
   const radius = Math.max(1, tolerance);
-  const paths = strokes.filter(path => path.length).map(path => evenly(path, radius / 4));
+  const paths = strokes.filter(path => path.length).map(path => {
+    const sampled = evenly(path, radius / 4), end = path.at(-1);
+    // Resampling must retain the exact endpoint, especially a loop's closure.
+    if (Math.hypot(sampled.at(-1)[0] - end[0], sampled.at(-1)[1] - end[1]) > 1e-6) sampled.push(end);
+    return sampled;
+  });
   let stroke = 0, index = 0, held = false, lift = false, last = null;
   const distance = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
   const expected = () => paths[stroke]?.[index] || null;
@@ -29,8 +34,13 @@ export function createStrokeTracer(strokes, tolerance) {
         // enough; the gap between separate strokes never receives a connector.
         const next = paths[stroke + 1];
         if (!next) return accepted;
-        const connected = next.length > 1 && distance(paths[stroke].at(-1), next[0]) <= radius * .75;
-        if (!connected && distance(point, next[0]) > radius * 1.35) return accepted;
+        const connected = next.length > 1 && distance(paths[stroke].at(-1), next[0]) <= radius * .25;
+        if (!connected) {
+          const nextGap = distance(point,next[0]), previousGap = distance(point,paths[stroke].at(-1));
+          // Nearby starts (notably g's ascender) must not steal the end of a
+          // closing loop. Enter only when the finger actually moves toward it.
+          if (nextGap > radius || nextGap >= previousGap) return accepted;
+        }
         stroke++; index = 0; lift = false; last = next[0]; started = true;
         if (next.length === 1) { lift = true; return [next[0], next[0]]; }
       }

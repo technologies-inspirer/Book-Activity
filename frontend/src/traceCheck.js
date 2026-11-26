@@ -50,12 +50,44 @@ export function distanceTo(on, w, h, edgeOn = false) {
 //   outside: distance from each pixel to the ink   middle: points along the middle of the ink
 //   half:    about half the ink's thickness
 export function inkShape(alpha, w, h) {
+  const parts = inkComponents(alpha, w, h);
+  const bounds = parts.length ? [
+    Math.min(...parts.map(p => p.x)), Math.min(...parts.map(p => p.y)),
+    Math.max(...parts.map(p => p.x + p.w)), Math.max(...parts.map(p => p.y + p.h))
+  ] : [0,0,w,h];
+  bounds[2] -= bounds[0]; bounds[3] -= bounds[1];
   const outside = distanceTo(i => alpha[i] > 100, w, h);
   const inside = distanceTo(i => alpha[i] <= 100, w, h, true);
   const step = Math.max(2, Math.round(h / 30));
   const middle = inkMiddle(alpha, w, h, step, inside);
   const depths = middle.map(([x, y]) => inside[y * w + x]).sort((a, b) => a - b);
-  return { w, h, outside, middle, step, half: depths[Math.floor(depths.length / 2)] || 1 };
+  // Tiny printed-dot holes must not pull the guide pencil back and forth. Close
+  // only those pinholes for alignment; keep the original ink/middle for tracing.
+  const gap = Math.max(1, Math.min(w, h) * .012);
+  const expanded = distanceTo(i => outside[i] > gap, w, h, true);
+  const formationInside = distanceTo(i => expanded[i] <= gap, w, h, true);
+  return { w, h, bounds, parts, outside, inside: formationInside, middle, step, half: depths[Math.floor(depths.length / 2)] || 1 };
+}
+
+// Ignore stray pixels in generated crops, while retaining detached i/j dots.
+export function inkComponents(alpha, w, h) {
+  const seen = new Uint8Array(w * h), parts = [];
+  for (let seed = 0; seed < alpha.length; seed++) {
+    if (seen[seed] || alpha[seed] <= 100) continue;
+    const stack = [seed]; seen[seed] = 1;
+    let x0 = w, y0 = h, x1 = 0, y1 = 0, area = 0;
+    for (let k = 0; k < stack.length; k++) {
+      const i = stack[k], x = i % w, y = Math.floor(i / w); area++;
+      x0 = Math.min(x0,x); y0 = Math.min(y0,y); x1 = Math.max(x1,x); y1 = Math.max(y1,y);
+      for (let yy = Math.max(0,y-1); yy <= Math.min(h-1,y+1); yy++) for (let xx = Math.max(0,x-1); xx <= Math.min(w-1,x+1); xx++) {
+        const next = yy*w+xx;
+        if (!seen[next] && alpha[next]>100) { seen[next]=1;stack.push(next); }
+      }
+    }
+    parts.push({x:x0,y:y0,w:x1-x0+1,h:y1-y0+1,area});
+  }
+  const largest = Math.max(0,...parts.map(p=>p.area));
+  return parts.filter(p=>p.area>=Math.max(3,largest*.008)).sort((a,b)=>b.area-a.area);
 }
 
 // How close a point (in the ink picture's pixels) is to the letter's ink: 0 on it, Infinity off the picture.

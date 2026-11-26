@@ -4,6 +4,7 @@ import { createStrokeTracer, tracingRows, isWritingStrip, tracingPointerSamples 
 import { evenly } from '../src/traceCheck.js';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
+import { formationInInk } from '../src/letterFormation.js';
 
 const follow = (tracer, path, step = 1) => {
   assert.equal(tracer.begin(path[0]), true);
@@ -209,7 +210,7 @@ function activityFixture() {
   }
   const sheet = element('div'), score = element('span');
   const context = {
-    createStrokeTracer, tracingRows, evenly,
+    createStrokeTracer, tracingRows, evenly, formationInInk, formationShapes: new Map(),
     el: element, document: { createElement: tag => element(tag) },
     Image: class { naturalWidth = 100; naturalHeight = 100; set src(value) { this.onload?.(); } },
     inkShape: () => ({ w: 100, h: 100, half: 3, middle: [[100 / 6, 100 / 6], [100 / 6, 500 / 6], [500 / 6, 500 / 6]] }),
